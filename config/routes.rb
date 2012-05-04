@@ -1,4 +1,6 @@
 Sokojax::Application.routes.draw do
+  mount Jax::Engine => "/jax" unless Rails.env == "production"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
