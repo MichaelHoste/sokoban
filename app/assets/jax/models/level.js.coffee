@@ -1,18 +1,18 @@
 Jax.getGlobal()['Level'] = Jax.Model.create
   
   after_initialize: ->
-    @id = 0                # Level number (starting with 1)
-    @name = ""             # Name of this level
-    @packName = ""         # Name of pack that contains this level
-    @grid = new Array()    # Grid of the level
-    @objects = new Array() # list of objects to be displayed
-    @boxes_number = 0      # Number of boxes in this level
-    @goals_number = 0      # Number of goals in this level
-    @rows_number = 0       # Rows number
-    @cols_number = 0       # Cols number
-    @pusher_pos_m = 0      # M position of the pusher
-    @pusher_pos_n = 0      # N position of the pusher
-    @won = false           # is this level succeed ?
+    @id = 0             # Level number (starting with 1)
+    @name = ""          # Name of this level
+    @packName = ""      # Name of pack that contains this level
+    @grid = []          # Grid of the level
+    @objects = []       # list of objects to be displayed
+    @boxes_number = 0   # Number of boxes in this level
+    @goals_number = 0   # Number of goals in this level
+    @rows_number = 0    # Rows number
+    @cols_number = 0    # Cols number
+    @pusher_pos_m = 0   # M position of the pusher
+    @pusher_pos_n = 0   # N position of the pusher
+    @won = false        # is this level succeed ?
     
     # load level
     @xml_load()
@@ -23,25 +23,29 @@ Jax.getGlobal()['Level'] = Jax.Model.create
   display_level: ->
     for m in [0..@rows_number-1]
       for n in [0..@cols_number-1]
-        type = @read_pos(m, n)
-        if type == '#'
-          object = Wall.find 'actual'
-        else if type == '$' or type == '*'
-          object = Box.find 'actual'
-        else if type == 's'
-          object = Ground.find 'actual'
-        else if type == '.'
-          object = Goal.find 'actual'
-        else if type == '@' or type == '+'
-          object = Pusher.find 'actual'
-        else
-          object = null
+        @display_position(m, n)
         
-        if object != null
-          start_col = -@cols_number/2.0
-          start_row = @rows_number/2.0
-          object.camera.setPosition [start_col + n, start_row - m, -20.0]
-          @objects.push(object)
+  display_position: (m, n) ->
+    type = @read_pos(m, n)
+    if type == '#'
+      object = Wall.find 'actual'
+    else if type == '$' or type == '*'
+      object = Box.find 'actual'
+    else if type == 's'
+      object = Ground.find 'actual'
+    else if type == '.'
+      object = Goal.find 'actual'
+    else if type == '@' or type == '+'
+      object = Pusher.find 'actual'
+    else
+      object = null
+    
+    if object != null
+      start_col = -@cols_number/2.0
+      start_row = @rows_number/2.0
+      object.camera.setPosition [start_col + n, start_row - m, -20.0]
+      
+    @objects[@cols_number*m + n] = object
 
   ###
     Read the value of position (m,n).
@@ -192,8 +196,6 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         @pusher_pos_n = i % @cols_number
         @pusher_pos_m = Math.floor(i / @cols_number)
         find = true
-        
-    alert("m=" + @pusher_pos_m + ", n=" + @pusher_pos_n)
 
   ###
     Transform empty spaces inside level in ground represented by 's' used
