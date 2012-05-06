@@ -29,13 +29,19 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     type = @read_pos(m, n)
     if type == '#'
       object = Wall.find 'actual'
-    else if type == '$' or type == '*'
+    else if type == '$'
+      object = Box.find 'actual'
+    else if type == '*'
+      # FIX ME another texture
       object = Box.find 'actual'
     else if type == 's'
       object = Ground.find 'actual'
     else if type == '.'
       object = Goal.find 'actual'
-    else if type == '@' or type == '+'
+    else if type == '@'
+      object = Pusher.find 'actual'
+    else if type == '+'
+      # FIX ME another texture
       object = Pusher.find 'actual'
     else
       object = null

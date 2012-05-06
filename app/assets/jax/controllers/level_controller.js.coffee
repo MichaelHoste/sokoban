@@ -10,8 +10,8 @@ Jax.Controller.create "Level", ApplicationController,
     for i in [0..@level.cols_number*@level.rows_number-1]
       if @level.objects[i] != null
         @world.addObject @level.objects[i]
-      
-    @level.print()
+              
+    #@level.print()
       
   update: (timechange) ->    
     ;

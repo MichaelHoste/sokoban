@@ -13,3 +13,4 @@ Jax.getGlobal()['Ground'] = Jax.Model.create
         vertices.push     -width,height,0,  -width,-height,0,  width,height,0,  width,-height,0
         texcoords.push     1,0,              1,1,              0,0,             0,1
         normals.push       0,0,1,            0,0,1,            0,0,1,           0,0,1
+        
