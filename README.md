@@ -4,12 +4,12 @@ Sokoban
 WebGL implementation of Sokoban using jax (http://guides.jaxgl.com/).
 Jax is a special gem for rails that enables nice WebGL implementation using a rails-style stucture
 
-![Image](https://github.com/MichaelHoste/sokoban/raw/master/sokoban.png)
-
 DEMO
 ----
 
 Try it here : http://opengl-fr.be/sokoban/
+
+![Image](https://github.com/MichaelHoste/sokoban/raw/master/sokoban.png)
 
 TO DO
 -----
