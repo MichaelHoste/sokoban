@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>The First One</Title>
+  <Description>
+Better luck next time
+  </Description>
+  <Email>muhammad.umar@esstec.com.pk</Email>
+  <LevelCollection Copyright="Muhammad Umar" MaxWidth="12" MaxHeight="10">
+    <Level Id="Smiley" Width="12" Height="10">
+      <L> ##########</L>
+      <L> #. .... .#</L>
+      <L> #$##  ##$#</L>
+      <L>##        ##</L>
+      <L>#.  #  #  .#</L>
+      <L>#    ##    #</L>
+      <L>##        ##</L>
+      <L> # $$$$$$ #</L>
+      <L> #   @    #</L>
+      <L> ##########</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

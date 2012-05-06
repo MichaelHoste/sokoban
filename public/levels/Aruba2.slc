@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Aruba2</Title>
+  <Description>
+Aruba2 collection.
+  </Description>
+  <Email>serenata@setarnet.aw</Email>
+  <LevelCollection Copyright="Eric F Tchong" MaxWidth="15" MaxHeight="12">
+    <Level Id="Fly in Aruba" Width="10" Height="11">
+      <L>   #######</L>
+      <L>   #     #</L>
+      <L>   # $$$ #</L>
+      <L>  #    $ #</L>
+      <L> # *   $ #</L>
+      <L># *@* #$ #</L>
+      <L># .*. #  #</L>
+      <L># . . ####</L>
+      <L> #. .#</L>
+      <L>  # #</L>
+      <L>   #</L>
+    </Level>
+    <Level Id="Fly in Aruba2" Width="10" Height="11">
+      <L>   #######</L>
+      <L>   #     #</L>
+      <L>   #  $$ #</L>
+      <L>  #  $ $ #</L>
+      <L> # * $   #</L>
+      <L># *@* #$ #</L>
+      <L># .*. #  #</L>
+      <L># . . ####</L>
+      <L> #. .#</L>
+      <L>  # #</L>
+      <L>   #</L>
+    </Level>
+    <Level Id="Heart of Aruba" Width="14" Height="12">
+      <L>##############</L>
+      <L>###    #    ##</L>
+      <L>##  #$ # $#  #</L>
+      <L>#  #       # #</L>
+      <L>#   $ . . $  #</L>
+      <L>#  ##.#.@.## #</L>
+      <L>#     . .    #</L>
+      <L>#  #   .  #  #</L>
+      <L>##  #$ #$#   #</L>
+      <L>## $   #   $ #</L>
+      <L>####       ###</L>
+      <L>##############</L>
+    </Level>
+    <Level Id="Crystal" Width="11" Height="7">
+      <L>###########</L>
+      <L>#  . $ .  #</L>
+      <L># # $.$ # #</L>
+      <L>#  $.@.$  #</L>
+      <L># # $.$ # #</L>
+      <L>#  . $ .  #</L>
+      <L>###########</L>
+    </Level>
+    <Level Id="Zorro" Width="9" Height="9">
+      <L>  #####</L>
+      <L>  #   #</L>
+      <L>##     ##</L>
+      <L># #*.*# #</L>
+      <L>#   @*  #</L>
+      <L># #$*$# #</L>
+      <L>#  *    #</L>
+      <L># #*.*###</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="Columbia Heroes" Width="10" Height="9">
+      <L>   #####</L>
+      <L>   #   #</L>
+      <L> ## . $ #</L>
+      <L>#  .#* $ #</L>
+      <L>#  . $@  #</L>
+      <L>#  .#* $ #</L>
+      <L> ## . $ #</L>
+      <L>   #   #</L>
+      <L>   #####</L>
+    </Level>
+    <Level Id="King of SokoBan" Width="10" Height="9">
+      <L> ########</L>
+      <L> #   #  #</L>
+      <L> # *  * #</L>
+      <L>#  . *   #</L>
+      <L># $.*@$$ #</L>
+      <L>#  . *   #</L>
+      <L> # *  * #</L>
+      <L> #   #  #</L>
+      <L>  ######</L>
+    </Level>
+    <Level Id="X-across" Width="15" Height="10">
+      <L>   #########</L>
+      <L>   ###   ###</L>
+      <L>   #  $ $  #</L>
+      <L>#### .   . ####</L>
+      <L># # #$.#.$# # #</L>
+      <L># $    +    $ #</L>
+      <L>#   #$.#.$#   #</L>
+      <L>#### . $ . ####</L>
+      <L>    #  #  #</L>
+      <L>    #######</L>
+    </Level>
+    <Level Id="X-across2" Width="15" Height="10">
+      <L>   #########</L>
+      <L>   ###   ###</L>
+      <L>   # $   $ #</L>
+      <L>#### . @ . ####</L>
+      <L># # #$.#.$# # #</L>
+      <L># $    .    $ #</L>
+      <L>#   #$.#.$#   #</L>
+      <L>#### . $ . ####</L>
+      <L>    #  #  #</L>
+      <L>    #######</L>
+    </Level>
+    <Level Id="Flying Saucer" Width="15" Height="8">
+      <L> #############</L>
+      <L> # ##     ## #</L>
+      <L>#  $.$.$.$.$  #</L>
+      <L> #  $.#+#.$  #</L>
+      <L> #   *.$.*   #</L>
+      <L>  ##  $.$  ##</L>
+      <L>   ##     ##</L>
+      <L>     #####</L>
+    </Level>
+    <Level Id="Lourdes Cave" Width="11" Height="12">
+      <L>  #######</L>
+      <L>  ### ###</L>
+      <L> #   #   #</L>
+      <L>#  $ @ $  #</L>
+      <L>#  # ###  #</L>
+      <L>#   ...# #</L>
+      <L> #$$. .$$#</L>
+      <L> # #...#  #</L>
+      <L>#  ### #  #</L>
+      <L>#  $   $  #</L>
+      <L>#    #    #</L>
+      <L> #### ####</L>
+    </Level>
+    <Level Id="Dirty Dozen" Width="9" Height="9">
+      <L>  #####</L>
+      <L> #  .  #</L>
+      <L># $.$.$ #</L>
+      <L># $.$.$ #</L>
+      <L>#  .@.  #</L>
+      <L># $.$.$ #</L>
+      <L># $.$.$ #</L>
+      <L>##  .  #</L>
+      <L>  #####</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

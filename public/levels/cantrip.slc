@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>The cantrip collection</Title>
+  <Description>
+Author's note: The puzzles are all small (between 6 and 9
+goals and pretty cramped), with maze and walls designed
+by me and computer-generated start positions. Because of
+the computer involvement, the start positions of the puzzles
+may look abstract or random. The meat of the puzzles is in
+the variations, the unexpected twists, and the underlying
+problems. The human element of design is most evident in
+the solved position, by construction, and I like to think
+of the solving process as producing order from chaos. This
+collection is meant for experienced solvers, or at least
+determined ones, as it contains probably my toughest
+puzzles so far. As usual I have tried to put the puzzles
+in rough ascending order of difficulty, but here this is
+even more approximate than usual as I find the puzzles
+difficult to compare. The puzzles have been extensively
+play-tested. On a good day I can actually solve them... 
+  </Description>
+  <Email>david@clickfest88.freeserve.co.uk</Email>
+  <Url>http://www.clickfest88.freeserve.co.uk</Url>
+  <LevelCollection Copyright="David Holland" MaxWidth="12" MaxHeight="10">
+    <Level Id="loom1" Width="10" Height="7">
+      <L>   #####</L>
+      <L> ###   ###</L>
+      <L> # $ # * #</L>
+      <L>## $*.*  #</L>
+      <L>#  *   . #</L>
+      <L>#@  ###  #</L>
+      <L>##### ####</L>
+    </Level>
+    <Level Id="pinwheel3" Width="10" Height="9">
+      <L> ####</L>
+      <L> #  ######</L>
+      <L> #   $@$ #</L>
+      <L> # **##. #</L>
+      <L>##$.$  . #</L>
+      <L>#  .# .*##</L>
+      <L>#    $  #</L>
+      <L>######  #</L>
+      <L>     ####</L>
+    </Level>
+    <Level Id="fretsaw1" Width="10" Height="9">
+      <L>##########</L>
+      <L>#@ *.##  #</L>
+      <L># $   $  #</L>
+      <L>###*..#  #</L>
+      <L>  #  $  ##</L>
+      <L>  # .#. #</L>
+      <L>  # $ $ #</L>
+      <L>  ####  #</L>
+      <L>     ####</L>
+    </Level>
+    <Level Id="canine4" Width="9" Height="10">
+      <L>#####</L>
+      <L>#   #####</L>
+      <L># # $ $ #</L>
+      <L># $$. *@#</L>
+      <L># #  ** #</L>
+      <L># ### *##</L>
+      <L>#  # .* #</L>
+      <L>##  . . #</L>
+      <L> ##     #</L>
+      <L>  #######</L>
+    </Level>
+    <Level Id="notchwheel1" Width="10" Height="9">
+      <L>     ####</L>
+      <L> #####  #</L>
+      <L>## $  $ #</L>
+      <L>#@$.#.* ##</L>
+      <L># $.$ .  #</L>
+      <L>##$.*#.  #</L>
+      <L> #      ##</L>
+      <L> #  ######</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="quarkspin3" Width="11" Height="8">
+      <L>  ####</L>
+      <L>###  #####</L>
+      <L>#  .$  . ##</L>
+      <L># $*@#$*  #</L>
+      <L>## .$* .  #</L>
+      <L> ### #  ###</L>
+      <L>   #   ##</L>
+      <L>   #####</L>
+    </Level>
+    <Level Id="osmosis1" Width="10" Height="9">
+      <L>##########</L>
+      <L>#   #    #</L>
+      <L># #$. .# #</L>
+      <L>#@#. * # #</L>
+      <L># # * .# #</L>
+      <L># #*$*$# #</L>
+      <L># $      #</L>
+      <L>####  ####</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="catkins5" Width="10" Height="9">
+      <L> #####</L>
+      <L>##   #####</L>
+      <L>#  # $@$ #</L>
+      <L># #..#*  #</L>
+      <L>#  .   . #</L>
+      <L>## $.#.* #</L>
+      <L> # $ $$# #</L>
+      <L> #####   #</L>
+      <L>     #####</L>
+    </Level>
+    <Level Id="splittee1" Width="9" Height="9">
+      <L> #######</L>
+      <L>##  #  ##</L>
+      <L>#     $ #</L>
+      <L># ** **@#</L>
+      <L># * # * #</L>
+      <L>##  .  ##</L>
+      <L> #  .$##</L>
+      <L> ##   #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="flagon1" Width="11" Height="9">
+      <L>  ########</L>
+      <L>  #   #  #</L>
+      <L> ##$#   .##</L>
+      <L>## .* #   #</L>
+      <L>#  .* *$# #</L>
+      <L>#   . #@$ #</L>
+      <L>#  # ##$###</L>
+      <L>####    #</L>
+      <L>   ######</L>
+    </Level>
+    <Level Id="shuffle1" Width="9" Height="8">
+      <L>    #####</L>
+      <L>  ###   #</L>
+      <L>###..$. #</L>
+      <L># $ $.$##</L>
+      <L># #$. * #</L>
+      <L>#  . *$ #</L>
+      <L>##   # @#</L>
+      <L> ########</L>
+    </Level>
+    <Level Id="bigt2" Width="10" Height="9">
+      <L>#####</L>
+      <L>#   ####</L>
+      <L># #$   ###</L>
+      <L># #.*$*  #</L>
+      <L># # .* # #</L>
+      <L>#  . $.#@#</L>
+      <L>###  $ # #</L>
+      <L>  ####   #</L>
+      <L>     #####</L>
+    </Level>
+    <Level Id="gyroscope2" Width="9" Height="9">
+      <L>  #####</L>
+      <L>###   ###</L>
+      <L># $ #$  #</L>
+      <L># ....* #</L>
+      <L>#  *. $ #</L>
+      <L>## # # ##</L>
+      <L> # $$* #</L>
+      <L> ## @ ##</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="moebius2 " Width="9" Height="8">
+      <L> ####</L>
+      <L>##  ####</L>
+      <L># $  $ #</L>
+      <L># $... ##</L>
+      <L>#@*$$$* #</L>
+      <L>## ...  #</L>
+      <L> ##   ###</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="boomerang5" Width="10" Height="10">
+      <L>  ####</L>
+      <L>###  #</L>
+      <L>#@$ .#####</L>
+      <L># *$ $ $ #</L>
+      <L>## * * . #</L>
+      <L> # . . ###</L>
+      <L> # . ###</L>
+      <L> ## $#</L>
+      <L>  #  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="clasp1" Width="11" Height="10">
+      <L>      #####</L>
+      <L> ######   #</L>
+      <L> #   # $  #</L>
+      <L>##  $..#$ #</L>
+      <L>#  #**.   #</L>
+      <L>#@# *.*#  #</L>
+      <L>#   ##   ##</L>
+      <L>### $  ###</L>
+      <L>  ###  #</L>
+      <L>    ####</L>
+    </Level>
+    <Level Id="heart4" Width="11" Height="9">
+      <L>####   ####</L>
+      <L>#  #####  #</L>
+      <L>#    $@$  #</L>
+      <L># *.$#*.* #</L>
+      <L>## . # . ##</L>
+      <L> # . #$. #</L>
+      <L> ## $$  ##</L>
+      <L>  #  #  #</L>
+      <L>  #######</L>
+    </Level>
+    <Level Id="cossack2" Width="10" Height="8">
+      <L>    ####</L>
+      <L>#####  ##</L>
+      <L>#   $ $ ##</L>
+      <L>#   #.$. #</L>
+      <L>##  **.#@#</L>
+      <L> #   . $ #</L>
+      <L> #####  ##</L>
+      <L>     ####</L>
+    </Level>
+    <Level Id="space invader1" Width="9" Height="8">
+      <L>   #####</L>
+      <L> ###   #</L>
+      <L>## .$.$#</L>
+      <L>#  .** ##</L>
+      <L># * . * #</L>
+      <L>##   $$ #</L>
+      <L> #  ## @#</L>
+      <L> ########</L>
+    </Level>
+    <Level Id="bola1" Width="12" Height="10">
+      <L> #####</L>
+      <L> #   #####</L>
+      <L> #     $@#</L>
+      <L> ## ##.#*###</L>
+      <L>### # $  $ #</L>
+      <L># $ .$. .# #</L>
+      <L>#   $ ##$# #</L>
+      <L>###.#.  .  #</L>
+      <L>  #   ######</L>
+      <L>  #####</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

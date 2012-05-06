@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Pico Cosmos</Title>
+  <Description>
+This set is the logical continuation of the sets
+Minicosmos-Microcosmos-Nabokosmos (It sounds like Milli-Micro-Nano-Pico !).
+It's intented to the fanatics of Sokoban. This set contains 3 levels
+"6boxes", 7 levels "7boxes" and 10 levels "8boxes".
+  </Description>
+  <Email>aymeric.dupeloux@smile.fr</Email>
+  <Url>http://membres.lycos.fr/nabokos/index.html</Url>
+  <LevelCollection Copyright="Aymeric du Peloux" MaxWidth="13" MaxHeight="11">
+    <Level Id="PICOKOSMOS 01" Width="9" Height="11">
+      <L> #####</L>
+      <L> #   ####</L>
+      <L> #      #</L>
+      <L>### **# #</L>
+      <L>#  #* *@#</L>
+      <L>#   * ###</L>
+      <L>#  ##  #</L>
+      <L>##     #</L>
+      <L> #.$#  #</L>
+      <L> #  ####</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 02" Width="12" Height="10">
+      <L>       #####</L>
+      <L>     ###   #</L>
+      <L>    ## . # #</L>
+      <L>   ##  $$  #</L>
+      <L>  ## *$. ###</L>
+      <L> ## $  ###</L>
+      <L>## .$. #</L>
+      <L>#  @ ###</L>
+      <L>#  . #</L>
+      <L>######</L>
+    </Level>
+    <Level Id="PICOKOSMOS 03" Width="9" Height="10">
+      <L>   ####</L>
+      <L>   #  #</L>
+      <L>####  ###</L>
+      <L>#  *$*  #</L>
+      <L>#  *@*# #</L>
+      <L>## .**  #</L>
+      <L>## #   ##</L>
+      <L>#    ###</L>
+      <L>#   ##</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 04" Width="9" Height="9">
+      <L>   ####</L>
+      <L> ###  ##</L>
+      <L>## * * #</L>
+      <L>#  * * ##</L>
+      <L>#  * *  #</L>
+      <L>#  $ * @#</L>
+      <L>###. ####</L>
+      <L>  #  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 05" Width="10" Height="8">
+      <L>   #####</L>
+      <L> ###   ##</L>
+      <L>##   #  ##</L>
+      <L>#  * * * #</L>
+      <L>#+  $ *  #</L>
+      <L>#### * ###</L>
+      <L>   #  ##</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 06" Width="9" Height="8">
+      <L>  ####</L>
+      <L> ##  ###</L>
+      <L>##  .  #</L>
+      <L># $.$.$##</L>
+      <L># .$.$. #</L>
+      <L>##$ #.$ #</L>
+      <L> #  @  ##</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="PICOKOSMOS 07" Width="9" Height="8">
+      <L>   #####</L>
+      <L>####   ##</L>
+      <L>#  * *  #</L>
+      <L>#  . *  #</L>
+      <L>##$.$*$##</L>
+      <L> # . *@#</L>
+      <L> #   ###</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 08" Width="11" Height="9">
+      <L>    ####</L>
+      <L>   ##  #</L>
+      <L> ###   ####</L>
+      <L>## * * *  #</L>
+      <L>#  * * $  #</L>
+      <L>#  * # * ##</L>
+      <L>## . ##@ #</L>
+      <L> #  ######</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 09" Width="10" Height="9">
+      <L> ####</L>
+      <L> #  ###</L>
+      <L>##    ####</L>
+      <L>#  * *   #</L>
+      <L># $#*#*  #</L>
+      <L>## * *   #</L>
+      <L> #  + * ##</L>
+      <L> ###  ###</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 10" Width="9" Height="10">
+      <L> ####</L>
+      <L>##  ####</L>
+      <L>#      ##</L>
+      <L># **@** #</L>
+      <L>##  #   #</L>
+      <L> # **$ ##</L>
+      <L> #  *  #</L>
+      <L> ## . ##</L>
+      <L>  ##  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 11" Width="10" Height="9">
+      <L>    ####</L>
+      <L>    #  ###</L>
+      <L>  ###    #</L>
+      <L>### ** * #</L>
+      <L>#  . *$@##</L>
+      <L>#  ***  #</L>
+      <L>##    ###</L>
+      <L> ###  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 12" Width="7" Height="11">
+      <L> #####</L>
+      <L> # + #</L>
+      <L> #$.$#</L>
+      <L> # * #</L>
+      <L> # * #</L>
+      <L> # * ##</L>
+      <L>## *  #</L>
+      <L>#  *  #</L>
+      <L>#    ##</L>
+      <L>##  ##</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 13" Width="13" Height="8">
+      <L>        #####</L>
+      <L>##### ###   #</L>
+      <L>#   ###     #</L>
+      <L># * * # * +##</L>
+      <L>##     $* ##</L>
+      <L> #  *## * #</L>
+      <L> ##  ##  ##</L>
+      <L>  ########</L>
+    </Level>
+    <Level Id="PICOKOSMOS 14" Width="9" Height="10">
+      <L>  #######</L>
+      <L> ##  #  #</L>
+      <L> #      #</L>
+      <L>## # #  #</L>
+      <L>#  *** ##</L>
+      <L>#@#*  $#</L>
+      <L>#  *** #</L>
+      <L>### .  #</L>
+      <L>  ###  #</L>
+      <L>    ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 15" Width="9" Height="9">
+      <L>  ####</L>
+      <L> ##  ##</L>
+      <L> #@ $ #</L>
+      <L>## .* ###</L>
+      <L># $$*.* #</L>
+      <L># #.. # #</L>
+      <L>#   $   #</L>
+      <L>###  ####</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 16" Width="9" Height="8">
+      <L> ######</L>
+      <L> #    #</L>
+      <L>## * .##</L>
+      <L># *$*  ##</L>
+      <L>#@ * *  #</L>
+      <L>##* *   #</L>
+      <L> #   ####</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 17" Width="7" Height="11">
+      <L> #####</L>
+      <L> # + #</L>
+      <L> #$.$#</L>
+      <L> # * #</L>
+      <L> # * #</L>
+      <L>## * #</L>
+      <L>#  * ##</L>
+      <L>#  *  #</L>
+      <L>#  *  #</L>
+      <L>###  ##</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 18" Width="9" Height="8">
+      <L> ########</L>
+      <L> #   #  #</L>
+      <L>##.     #</L>
+      <L># ***** #</L>
+      <L>#   * * #</L>
+      <L>## #$  ##</L>
+      <L> #  @###</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="PICOKOSMOS 19" Width="10" Height="8">
+      <L>  ####</L>
+      <L>  #  ####</L>
+      <L>  #    @##</L>
+      <L> ##** ** #</L>
+      <L>##  **.  #</L>
+      <L># $  # ###</L>
+      <L>#      #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="PICOKOSMOS 20" Width="8" Height="10">
+      <L>  ####</L>
+      <L> ##  #</L>
+      <L>##   ###</L>
+      <L>#  *** #</L>
+      <L>#  *@# #</L>
+      <L>## **. #</L>
+      <L> #     #</L>
+      <L> # #$###</L>
+      <L> #   #</L>
+      <L> #####</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

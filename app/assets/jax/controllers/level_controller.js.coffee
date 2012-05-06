@@ -16,7 +16,6 @@ Jax.Controller.create "Level", ApplicationController,
   update: (timechange) ->    
     ;
     
-    
   key_pressed: (event) ->
     has_moved = 0
     

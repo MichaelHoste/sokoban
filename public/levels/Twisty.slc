@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Twisty</Title>
+  <Description>
+The Twisty collection of Sokoban positions is copyright Martin P Holland
+&lt;m.holland@noether.freeserve.co.uk&gt; These levels may be distributed
+freely as long as this copyright message is retained.
+  </Description>
+  <Email>m.holland@noether.freeserve.co.uk</Email>
+  <LevelCollection Copyright="Martin P Holland" MaxWidth="12" MaxHeight="13">
+    <Level Id="#1" Width="9" Height="13">
+      <L>#########</L>
+      <L>#   #   #</L>
+      <L># $   $ #</L>
+      <L>## # # ##</L>
+      <L>#  # # #</L>
+      <L>#  #.# ##</L>
+      <L># $...$@#</L>
+      <L>## #.#  #</L>
+      <L> # #.# ##</L>
+      <L> # #.#  #</L>
+      <L> #$ $ $ #</L>
+      <L> #   #  #</L>
+      <L> ########</L>
+    </Level>
+    <Level Id="#2" Width="9" Height="9">
+      <L>#########</L>
+      <L>#   #   #</L>
+      <L># +*$$. #</L>
+      <L># . $ . #</L>
+      <L>##*$#$*##</L>
+      <L># . $ . #</L>
+      <L># .$$ . #</L>
+      <L>#   #   #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="#3" Width="12" Height="12">
+      <L>####</L>
+      <L>#  ########</L>
+      <L># $   $@$ #</L>
+      <L>#  ## ##  #</L>
+      <L>## # . #  #</L>
+      <L> #  *..# ###</L>
+      <L> # # ..  $ #</L>
+      <L> # # ..# # #</L>
+      <L>## ## ##   #</L>
+      <L># $ $   $ ##</L>
+      <L>#    ##  ##</L>
+      <L>##########</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

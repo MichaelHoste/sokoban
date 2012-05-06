@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>The dh1 collection</Title>
+  <Description>
+Author's note: I have experimented with computer-generation 
+for several of the smaller puzzles hence the "co-authorship"
+with sokgen (a computer program of mine). If you like the 
+puzzles email me and if you have stylistic criticisms direct
+them to sokgen :-) 
+  </Description>
+  <Email>david@clickfest88.freeserve.co.uk</Email>
+  <Url>http://www.clickfest88.freeserve.co.uk</Url>
+  <LevelCollection Copyright="David Holland" MaxWidth="18" MaxHeight="17">
+    <Level Id="Spade" Width="12" Height="11">
+      <L>      ##</L>
+      <L>    ##  ###</L>
+      <L>  ## $ $   #</L>
+      <L> #   #..#$ #</L>
+      <L> # $$#*.#  #</L>
+      <L> #   ....$ #</L>
+      <L> # # .#.#  #</L>
+      <L># $##$#.#$ #</L>
+      <L># @$    .$ #</L>
+      <L> #  #  ##  #</L>
+      <L>  #####  ##</L>
+    </Level>
+    <Level Id="ninevah" Width="8" Height="10">
+      <L>    ####</L>
+      <L>####   #</L>
+      <L>#@$  # #</L>
+      <L># $$$  #</L>
+      <L>##.#.  #</L>
+      <L>#  ..# #</L>
+      <L>#  #.* #</L>
+      <L># $.$ #</L>
+      <L> ##   #</L>
+      <L> ######</L>
+    </Level>
+    <Level Id="CrissCross" Width="11" Height="10">
+      <L>    ###</L>
+      <L>   #  @###</L>
+      <L>  #  #$$  #</L>
+      <L> ##.#   # #</L>
+      <L>#  $#.#$  #</L>
+      <L>#   ...  #</L>
+      <L> ##$#.#$ #</L>
+      <L>  #     #</L>
+      <L>   ##   #</L>
+      <L>     ####</L>
+    </Level>
+    <Level Id="Carousel" Width="18" Height="13">
+      <L>    ##    ###</L>
+      <L>####  ####   #</L>
+      <L># $  $     $ ###</L>
+      <L># #   # ### #   #</L>
+      <L>#  $   $ # $$ $ #</L>
+      <L> ##  ## $@$     #</L>
+      <L>  #$ ##  # $$ $$ #</L>
+      <L>  #    $  ## ##  #</L>
+      <L> ### #$##  ...# #</L>
+      <L> #  ..*.*..##.# #</L>
+      <L> # #..*.....*.# #</L>
+      <L> #   ########   #</L>
+      <L>  ###        ###</L>
+    </Level>
+    <Level Id="Pattern-oster" Width="17" Height="17">
+      <L>   ##</L>
+      <L>  #  #</L>
+      <L>  #  #  #####</L>
+      <L>  #  # #..   #</L>
+      <L>  # ####..##$##</L>
+      <L>  #  $ $.*     #</L>
+      <L>  # #$ #*.# $# #</L>
+      <L> ##$#  #..#  # #</L>
+      <L>#   #$ #*.# $# #</L>
+      <L># # #  $..#  # #</L>
+      <L># #$#$ #..$  #  #</L>
+      <L>#   #  #..#   # #</L>
+      <L># #@# $#*.#$# # #</L>
+      <L>#  $#  #..#   # #</L>
+      <L> #   $ $ $ ###  #</L>
+      <L>  ###   #      #</L>
+      <L>     ### ######</L>
+    </Level>
+    <Level Id="Saturnine" Width="15" Height="15">
+      <L> ### ####</L>
+      <L>#   ##   # ###</L>
+      <L># $   $ $ #   #</L>
+      <L># $ #  .$ #   #</L>
+      <L> ##  ##.#  $ #</L>
+      <L># ##$##.###. #</L>
+      <L>#   *.......$#</L>
+      <L>#    ##.##   #</L>
+      <L>##$####.#####</L>
+      <L>#  $ # . #   #</L>
+      <L>#  #  **$    #</L>
+      <L>#  $ # @ # $ #</L>
+      <L># $   ### #  #</L>
+      <L> ##   #   ###</L>
+      <L>   ###</L>
+    </Level>
+    <Level Id="briefcase alt 23" Width="9" Height="9">
+      <L>   ###</L>
+      <L>###   #</L>
+      <L># $*@.###</L>
+      <L># # *$  #</L>
+      <L># #. .# #</L>
+      <L># #$* $ #</L>
+      <L>#    .###</L>
+      <L>###   #</L>
+      <L>   ###</L>
+    </Level>
+    <Level Id="Salamandar v3" Width="14" Height="16">
+      <L>       ###</L>
+      <L>##### #   ###</L>
+      <L>#   ## $ $  #</L>
+      <L># # ##    # #</L>
+      <L># #..$ $ ## #</L>
+      <L>#  .$# $#   #</L>
+      <L>###..# $ @$ #</L>
+      <L>  #**# $ # ##</L>
+      <L>  #..#   # #</L>
+      <L>  #..##### ##</L>
+      <L>  #.*#   $  #</L>
+      <L>  #..# $    #</L>
+      <L>  ##.### #####</L>
+      <L>  # $      $ #</L>
+      <L>  #   ####   #</L>
+      <L>  #####  #####</L>
+    </Level>
+    <Level Id="Abstract" Width="8" Height="9">
+      <L>  ####</L>
+      <L> #    #</L>
+      <L> #. * #</L>
+      <L># . $  #</L>
+      <L># #**# #</L>
+      <L>#  *+* #</L>
+      <L> # $$ #</L>
+      <L> #    #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Storm (in a teacup) v6" Width="10" Height="13">
+      <L> ##</L>
+      <L>#  ######</L>
+      <L>#        #</L>
+      <L>#  ###$# #</L>
+      <L> #.# # . #</L>
+      <L> # # #$* #</L>
+      <L> #.### + #</L>
+      <L> # $ #$* #</L>
+      <L> # #   . #</L>
+      <L> #.####* #</L>
+      <L>#  $ $ * #</L>
+      <L>#       ##</L>
+      <L> ########</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

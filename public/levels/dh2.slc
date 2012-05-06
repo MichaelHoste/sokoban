@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>The dh2 collection</Title>
+  <Description>
+Author's note: There are no computer-generated levels as I
+am trying to evolve a puzzle-making style, and so experimenting
+with as many different forms as possible. Some of the puzzles
+are very, or slightly, symmetrical as a stylistic device (in
+this I am influenced by David W. Skinner's excellent Sasquatch
+puzzle sets at his Sokoban page). Others are completely
+unsymmetrical and the style is in the variations alone.
+  </Description>
+  <Email>david@clickfest88.freeserve.co.uk</Email>
+  <Url>http://www.clickfest88.freeserve.co.uk</Url>
+  <LevelCollection Copyright="David Holland" MaxWidth="20" MaxHeight="19">
+    <Level Id="Egg" Width="17" Height="19">
+      <L>      #####</L>
+      <L>     #     #</L>
+      <L>    #  # #  #</L>
+      <L>   #  #   #  #</L>
+      <L>   # #  *  # #</L>
+      <L>  #  # * * #  #</L>
+      <L> #  ##$.#.$##  #</L>
+      <L>#  # $  #  $ #  #</L>
+      <L># # *  *.* .* # #</L>
+      <L>#  $ ##. .## $  #</L>
+      <L># # *. *.*  * # #</L>
+      <L>#  # $  #  $ #  #</L>
+      <L> #  ##$.#.$##  #</L>
+      <L>  #  # * * #  #</L>
+      <L>   # #  *  # #</L>
+      <L>   #  # @ #  #</L>
+      <L>    #  # #  #</L>
+      <L>     #     #</L>
+      <L>      #####</L>
+    </Level>
+    <Level Id="Square version 3" Width="12" Height="13">
+      <L>      #####</L>
+      <L>      #   #</L>
+      <L>####### # #</L>
+      <L>#    $ $ $#</L>
+      <L># # ..... #</L>
+      <L>#  $.$$$.$#</L>
+      <L>### .@# . #</L>
+      <L>  #$.$$$.$##</L>
+      <L>  # .....  #</L>
+      <L>  #$ $ $   #</L>
+      <L>  # # ######</L>
+      <L>  #   #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="clover version 4" Width="11" Height="11">
+      <L> #### ####</L>
+      <L>##  ###  ##</L>
+      <L>#    #  . #</L>
+      <L>#   * *   #</L>
+      <L>## * $ * ##</L>
+      <L> ## *@* ##</L>
+      <L>## * * * ##</L>
+      <L>#   * *   #</L>
+      <L>#    #    #</L>
+      <L>##  ###  ##</L>
+      <L> #### ####</L>
+    </Level>
+    <Level Id="prefab #5" Width="20" Height="15">
+      <L>          ####</L>
+      <L>       ####  ######</L>
+      <L>       #  # .##   #</L>
+      <L>       #  $  #  # #</L>
+      <L> #######.*.**#$## #</L>
+      <L> #        #     # ##</L>
+      <L>## ##$##### $  $#  #</L>
+      <L>#  # . *  ####  ## #</L>
+      <L># ##$* *$ #   #  # #</L>
+      <L># #  .....$@$    # #</L>
+      <L># #   ##  ######## #</L>
+      <L># ##  ##  #        #</L>
+      <L>#  ######## ########</L>
+      <L>##          #</L>
+      <L> ############</L>
+    </Level>
+    <Level Id="Figure eight" Width="15" Height="12">
+      <L> #####   #####</L>
+      <L> #   #####   #</L>
+      <L>##     *     ##</L>
+      <L># **##$.$##** #</L>
+      <L>#  . # * # .  #</L>
+      <L># ** #$.$# ** #</L>
+      <L>##   # . #   ##</L>
+      <L> ### ## ## ###</L>
+      <L>  #  ## ##  #</L>
+      <L>  #    $    #</L>
+      <L>  #### @ ####</L>
+      <L>     #####</L>
+    </Level>
+    <Level Id="Skewsymmetric pattern #6" Width="17" Height="17">
+      <L>         #####</L>
+      <L>      ####   #</L>
+      <L>   ####    # #</L>
+      <L>####  $ # $  ##</L>
+      <L>#   .#.$.$.$. #</L>
+      <L># # $.$.$.$.# #</L>
+      <L>#  $.$.$.#.$.$##</L>
+      <L>##  $.#.$.$.$  #</L>
+      <L> # #.$.$ $.$.# #</L>
+      <L> #  $.$.$.#.$  ##</L>
+      <L> ##$.$.#.$.$.$  #</L>
+      <L>  # #.$.$.$.$ # #</L>
+      <L>  # .$.$.$.#.   #</L>
+      <L>  ##  $ # $  ####</L>
+      <L>   # #  @ ####</L>
+      <L>   #   ####</L>
+      <L>   #####</L>
+    </Level>
+    <Level Id="Butterfly #3" Width="15" Height="13">
+      <L>###############</L>
+      <L>#   #     #   #</L>
+      <L>#  . * *@*  . #</L>
+      <L>##$##  *$ ##$##</L>
+      <L>#    #   # $  #</L>
+      <L>#  #*#####.#  #</L>
+      <L># $* #   # .$ #</L>
+      <L>##   #*.$#   ##</L>
+      <L> ###     * ###</L>
+      <L> #  . * * $. #</L>
+      <L> # ## ###.## #</L>
+      <L> #    # #    #</L>
+      <L> ###### ######</L>
+    </Level>
+    <Level Id="Crossed Swords version 10" Width="20" Height="17">
+      <L> ##### #####</L>
+      <L>##   ###   ######</L>
+      <L>#  #  ##      $ ##</L>
+      <L># $$   ##*###  $ ##</L>
+      <L>#  # $ #...  #  $ ##</L>
+      <L># $# # # *$# ##  $ #</L>
+      <L>#    $ #...#   #$  #</L>
+      <L>##  #####.## $    ##</L>
+      <L># .#...##.### ##  #</L>
+      <L># *.*....*.. $#####</L>
+      <L># .#. .##.### #####</L>
+      <L>## # ####.#       #</L>
+      <L>## $  ###*#$#$$ $ #</L>
+      <L>#  ##   $@$    ## #</L>
+      <L># $ $ #$### # $   #</L>
+      <L>#     #     ##    #</L>
+      <L>###################</L>
+    </Level>
+    <Level Id="interlocked goals" Width="16" Height="12">
+      <L>#########</L>
+      <L>#   #   ####</L>
+      <L>#    * ..$ #</L>
+      <L>###$## # $ ##</L>
+      <L>  #  $  #  @##</L>
+      <L>  ##   .###  ###</L>
+      <L>   ####    # $ #</L>
+      <L>      #$.#*    #</L>
+      <L>     ## * . ####</L>
+      <L>     # $.*.##</L>
+      <L>     #     #</L>
+      <L>     #######</L>
+    </Level>
+    <Level Id="Meshed Squares" Width="15" Height="9">
+      <L> ############</L>
+      <L>### .*.*.$  ##</L>
+      <L>#   * $ * $  ##</L>
+      <L>#  $.$.*.*.$  #</L>
+      <L># $ * *@* * $ #</L>
+      <L>#  $.*.*.$.$  #</L>
+      <L>##  $ * $ *   #</L>
+      <L> ##  $.*.*. ###</L>
+      <L>  ###########</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

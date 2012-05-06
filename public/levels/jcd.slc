@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>jcd levels</Title>
+  <Description>
+There are two different ways of playing Level 2. The first is the normal
+way, moving any ball anywhere at any time. The second way, which is
+more interesting and difficult, and the way it was designed to be played,
+is treating it as eight levels in one. Each letter of 'SOKOBAN!' must be
+completed before the next is started, using only the balls arranged below
+each letter in the shape of that letter. These can be put into the letter
+goals in any order. While doing any letter all the other balls must be
+considered locked, becoming walls. After any letter is finished, the balls
+used for that letter become locked and the ones in the following letter
+become unlocked. Your target is 635 moves (or better!).
+Instead of doing Level 2 this way as one big level, you can do it as
+eight separate levels using levels 3 - 10 to progress automatically. In
+these the locked balls are walls and the goals for other letters are floor.
+This looks a bit peculiar, but the playability is correct. Note that the start
+position for the man for each letter is the end position for one way of
+doing the previous letter. You might have done it a different way....
+When you've finished all eight letters, you've earned the right to do the
+one-push "small reward" level, where all the balls are shown in their
+goals, looking normal again.
+The last few levels are joke levels, mostly needing just two clicks to
+solve. Hey, let the program do the work!
+  </Description>
+  <Email>jcd@ukonline.co.uk</Email>
+  <Url>http://www.virtual-chiswick.ukonline.co.uk</Url>
+  <LevelCollection Copyright="John C Davis" MaxWidth="19" MaxHeight="17">
+    <Level Id="Level 1" Width="16" Height="11">
+      <L>         #######</L>
+      <L>#######  #@    #</L>
+      <L>#     #  ## #  #</L>
+      <L># $$# #  #...  #</L>
+      <L># # $ #####.# ##</L>
+      <L># # $         #</L>
+      <L># # #####$#*#$#</L>
+      <L># $           #</L>
+      <L>##### # #.#.#.#</L>
+      <L>    #   #######</L>
+      <L>    #####</L>
+    </Level>
+    <Level Id="Level 2 - See Description" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ...  .  . .  .  #</L>
+      <L># *$$ .$. * * .$. #</L>
+      <L># *.. * * *.$ * * #</L>
+      <L># $$* * * *$. * * #</L>
+      <L># ..*#$.$#* *#$.$ #</L>
+      <L># $$$  $ @$ $  $  #</L>
+      <L># .. # . #.  #. . #</L>
+      <L># *$. .$. *.  * * #</L>
+      <L># *.$ *.* *$. * * #</L>
+      <L># *$. *$* * $.* $ #</L>
+      <L># *.$ * * *  $* . #</L>
+      <L># $$  $ $ $   $ $ #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - Letter S" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ...             #</L>
+      <L># *$$  #  # #  #  #</L>
+      <L># *.. # # # # # # #</L>
+      <L># $$* # # ##  # # #</L>
+      <L># ..*## ### ### # #</L>
+      <L># $$$  # @# #  #  #</L>
+      <L>#    #   #   #    #</L>
+      <L># ##   #  #   # # #</L>
+      <L># # # # # ##  # # #</L>
+      <L># ##  ### # # # # #</L>
+      <L># # # # # #  ##   #</L>
+      <L># ##  # # #   # # #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - Letter O - 1" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ###  .          #</L>
+      <L># #   .$. # #  #  #</L>
+      <L># ### * * # # # # #</L>
+      <L>#   # * * ##  # # #</L>
+      <L># ####$.$## ### # #</L>
+      <L># @    $  # #  #  #</L>
+      <L>#    #   #   #    #</L>
+      <L># ##   #  #   # # #</L>
+      <L># # # # # ##  # # #</L>
+      <L># ##  ### # # # # #</L>
+      <L># # # # # #  ##   #</L>
+      <L># ##  # # #   # # #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - Letter K" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ###  #@ . .     #</L>
+      <L># #   # # * *  #  #</L>
+      <L># ### # # *.$ # # #</L>
+      <L>#   # # # *$. # # #</L>
+      <L># #### # #* *## # #</L>
+      <L>#         $ $  #  #</L>
+      <L>#    #   #   #    #</L>
+      <L># ##   #  #   # # #</L>
+      <L># # # # # ##  # # #</L>
+      <L># ##  ### # # # # #</L>
+      <L># # # # # #  ##   #</L>
+      <L># ##  # # #   # # #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - Letter O - 2" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ###  #  # #  .  #</L>
+      <L># #   # # # # .$. #</L>
+      <L># ### # # ##  * * #</L>
+      <L>#   # # # # # * * #</L>
+      <L># #### # ## ##$.$ #</L>
+      <L>#           @  $  #</L>
+      <L>#    #   #   #    #</L>
+      <L># ##   #  #   # # #</L>
+      <L># # # # # ##  # # #</L>
+      <L># ##  ### # # # # #</L>
+      <L># # # # # #  ##   #</L>
+      <L># ##  # # #   # # #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - Letter B" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ###  #  # #  #  #</L>
+      <L># #   # # # # # # #</L>
+      <L># ### # # ##  # # #</L>
+      <L>#   # # # # # # # #</L>
+      <L># #### # ## ##@#  #</L>
+      <L>#                 #</L>
+      <L># .. #   #   #    #</L>
+      <L># *$.  #  #   # # #</L>
+      <L># *.$ # # ##  # # #</L>
+      <L># *$. ### # # # # #</L>
+      <L># *.$ # # #  ##   #</L>
+      <L># $$  # # #   # # #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - Letter A" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ###  #  # #  #  #</L>
+      <L># #   # # # # # # #</L>
+      <L># ### # # ##  # # #</L>
+      <L>#   # # # # # # # #</L>
+      <L># #### # ## ## #  #</L>
+      <L>#                 #</L>
+      <L># ## # . #   #    #</L>
+      <L># # # .$. #   # # #</L>
+      <L># ##  *.* ##  # # #</L>
+      <L># # # *$* # # # # #</L>
+      <L># ##@ * * #  ##   #</L>
+      <L>#     $ $ #   # # #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - Letter N" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ###  #  # #  #  #</L>
+      <L># #   # # # # # # #</L>
+      <L># ### # # ##  # # #</L>
+      <L>#   # # # # # # # #</L>
+      <L># #### # ## ## #  #</L>
+      <L>#                 #</L>
+      <L># ## # # #.  #.   #</L>
+      <L># # # # # *.  * # #</L>
+      <L># ##  ### *$. * # #</L>
+      <L># # # #@# * $.* # #</L>
+      <L># ##  # # *  $*   #</L>
+      <L>#         $   $ # #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - Letter !" Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ###  #  # #  #  #</L>
+      <L># #   # # # # # # #</L>
+      <L># ### # # ##  # # #</L>
+      <L>#   # # # # # # # #</L>
+      <L># #### # ## ## #  #</L>
+      <L>#                 #</L>
+      <L># ## # # ##  ##@. #</L>
+      <L># # # # # ##  # * #</L>
+      <L># ##  ### # # # * #</L>
+      <L># # # # # #  ## $ #</L>
+      <L># ##  # # #   # . #</L>
+      <L>#               $ #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Level 2 - A small reward...." Width="19" Height="16">
+      <L>  ####### #######</L>
+      <L>###     ###     ###</L>
+      <L># ***  *  * *  *  #</L>
+      <L># *   * * * * * * #</L>
+      <L># *** * * **  * * #</L>
+      <L>#   * * * * * * * #</L>
+      <L># ***# * #* *# *@ #</L>
+      <L>#               $ #</L>
+      <L># ** # * #*  #* . #</L>
+      <L># * * * * **  * * #</L>
+      <L># **  *** * * * * #</L>
+      <L># * * * * *  **   #</L>
+      <L># **  * * *   * * #</L>
+      <L>#                 #</L>
+      <L>###     ###     ###</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Joke 1 - Big W" Width="19" Height="17">
+      <L> ### #### #### ###</L>
+      <L>##@###  ###  ### ##</L>
+      <L># $.#         #   #</L>
+      <L>#  ##  #####  ##  #</L>
+      <L>## ### #   # ###  #</L>
+      <L> # # # #   # # # ##</L>
+      <L> # # # #   # # # #</L>
+      <L> # # # #   # # # #</L>
+      <L> # # # #   # # # #</L>
+      <L> # # # #   # # # #</L>
+      <L> # # # #   # # # #</L>
+      <L> # # # #   # # # #</L>
+      <L>## # # ## ## # # ##</L>
+      <L>#  ###  # #  ###  #</L>
+      <L>#       # #       #</L>
+      <L>##  #  ## ##  #  ##</L>
+      <L> #######   #######</L>
+    </Level>
+    <Level Id="Joke 2 - Vortex" Width="18" Height="16">
+      <L>             ####</L>
+      <L>##############  #</L>
+      <L># $@            #</L>
+      <L># ########### # #</L>
+      <L>#             # #</L>
+      <L>## ######## # # #</L>
+      <L> #          # # #</L>
+      <L> # # ####.# # # #</L>
+      <L> # #      # # # #</L>
+      <L> # # #        # #</L>
+      <L> # # # ###### # #</L>
+      <L> # #            ##</L>
+      <L> # # ##########  #</L>
+      <L> #               #</L>
+      <L> #  ##############</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="Joke 3 - Four Square" Width="17" Height="15">
+      <L> ####### #######</L>
+      <L>##  #  ###  #  ##</L>
+      <L>#       #       #</L>
+      <L>#  ###  #  ###  #</L>
+      <L>##  #@$###  #  ##</L>
+      <L> #  #  #    #  #</L>
+      <L> # ###.#   ### #</L>
+      <L> # # ####### # #</L>
+      <L> # ###  #  ### #</L>
+      <L> #  #       #  #</L>
+      <L>##  #  ###  #  ##</L>
+      <L>#  ###  #  ###  #</L>
+      <L>#       #       #</L>
+      <L>##  #  ###  #  ##</L>
+      <L> ####### #######</L>
+    </Level>
+    <Level Id="Joke 4 - Dizzy" Width="19" Height="17">
+      <L>###################</L>
+      <L>#             #   #</L>
+      <L># ########### # # #</L>
+      <L># #         # # # #</L>
+      <L># # ####### # # # #</L>
+      <L># # #     # # # # #</L>
+      <L># # # ### # # # # #</L>
+      <L># # # #.@ # # # # #</L>
+      <L># # # ##$## # # # #</L>
+      <L># # # #     # # # #</L>
+      <L># # # ####### # # #</L>
+      <L># # #         # # #</L>
+      <L># # ########### # #</L>
+      <L># #             # #</L>
+      <L># ############### #</L>
+      <L>#                 #</L>
+      <L>###################</L>
+    </Level>
+    <Level Id="Joke 5 - W2" Width="19" Height="16">
+      <L> #### ####### ####</L>
+      <L>##@ ###  #  ###. ##</L>
+      <L>#  . #       #  $ #</L>
+      <L># $  #  ###  #    #</L>
+      <L>### ### # # ### ###</L>
+      <L>  # # # # # # # #</L>
+      <L>  # # # # # # # #</L>
+      <L>  # # # # # # # #</L>
+      <L>  # # # # # # # #</L>
+      <L>  # # # # # # # #</L>
+      <L>  # # # # # # # #</L>
+      <L> ## # # ### # # ##</L>
+      <L> #  ###  #  ###  #</L>
+      <L> #       #       #</L>
+      <L> ##  #  ###  #  ##</L>
+      <L>  ####### #######</L>
+    </Level>
+    <Level Id="Joke 6 - S for Sokoban" Width="19" Height="16">
+      <L>###################</L>
+      <L>#                 #</L>
+      <L># ############### #</L>
+      <L># #            ## #</L>
+      <L># # ##########    #</L>
+      <L># #     $.@# ######</L>
+      <L># ######## #</L>
+      <L>#        # ########</L>
+      <L>######## #        #</L>
+      <L>       # ######## #</L>
+      <L>###### #        # #</L>
+      <L>#    ########## # #</L>
+      <L># ##            # #</L>
+      <L># ############### #</L>
+      <L>#                 #</L>
+      <L>###################</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

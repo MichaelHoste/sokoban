@@ -1,5 +1,6 @@
 Sokojax::Application.routes.draw do
   mount Jax::Engine => "/jax" unless Rails.env == "production"
+  root :to => "games#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

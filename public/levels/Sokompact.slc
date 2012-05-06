@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Sokompact</Title>
+  <Description>
+Sokompact (Soko Must Place All Cans one Targets;)
+This collection contains only very small levels which were considered to be rather
+difficult. Each level of this collection took more than ten minutes to solve for a
+good player.
+  </Description>
+  <Email>sokoban@online.fr</Email>
+  <Url>http://sokoban.online.fr</Url>
+  <LevelCollection Copyright="François Marques" MaxWidth="11" MaxHeight="12">
+    <Level Id="For ban 46" Width="7" Height="8">
+      <L>######</L>
+      <L>#    #</L>
+      <L># $ $##</L>
+      <L># #@$ #</L>
+      <L># * # #</L>
+      <L>## .. #</L>
+      <L> #  .##</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="Hexa ban 1" Width="9" Height="8">
+      <L> #####</L>
+      <L> #   #</L>
+      <L>##*$@####</L>
+      <L># .*$   #</L>
+      <L>#  .*$  #</L>
+      <L>## #. ###</L>
+      <L> #    #</L>
+      <L> ######</L>
+    </Level>
+    <Level Id="Hexa ban 2" Width="8" Height="9">
+      <L>  #####</L>
+      <L> ##   #</L>
+      <L> #  # #</L>
+      <L>##$..$#</L>
+      <L># .$$.##</L>
+      <L># $..$ #</L>
+      <L>## #@  #</L>
+      <L> #   ###</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="For ban 7" Width="8" Height="8">
+      <L>  #####</L>
+      <L>  #@  ##</L>
+      <L>###.   #</L>
+      <L># $*$  #</L>
+      <L>#  . ###</L>
+      <L>## * #</L>
+      <L> #  ##</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="For ban 16" Width="7" Height="9">
+      <L>  ####</L>
+      <L> ##  #</L>
+      <L> # $ #</L>
+      <L>## * #</L>
+      <L># ..@##</L>
+      <L>#  *  #</L>
+      <L>###$  #</L>
+      <L>  #  ##</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="For ban 32" Width="9" Height="7">
+      <L>   ####</L>
+      <L> ###  #</L>
+      <L>## $$ ###</L>
+      <L># ....  #</L>
+      <L>#  $$   #</L>
+      <L>### @####</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Penta ban 4" Width="7" Height="8">
+      <L> ######</L>
+      <L> #    #</L>
+      <L>## ## #</L>
+      <L>#  $. #</L>
+      <L># ***.#</L>
+      <L>## $@ #</L>
+      <L> #   ##</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="Octo ban 1" Width="8" Height="8">
+      <L> #####</L>
+      <L> #   ###</L>
+      <L>## $$  #</L>
+      <L># * .*.#</L>
+      <L>#.*. * #</L>
+      <L># @$$ ##</L>
+      <L>###   #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="For ban 38" Width="7" Height="9">
+      <L>  ####</L>
+      <L>###. #</L>
+      <L># $ .##</L>
+      <L># # ..#</L>
+      <L># @ # #</L>
+      <L># $$$ #</L>
+      <L>##   ##</L>
+      <L> #  ##</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="For ban 13" Width="7" Height="9">
+      <L> ######</L>
+      <L> #    #</L>
+      <L> #$$@ #</L>
+      <L> #..###</L>
+      <L>##.*  #</L>
+      <L>#  $  #</L>
+      <L>#  # ##</L>
+      <L>##   #</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="Level 1" Width="6" Height="9">
+      <L>  ####</L>
+      <L> ##@ #</L>
+      <L> # $ #</L>
+      <L>## * #</L>
+      <L>#  ..#</L>
+      <L>#  * #</L>
+      <L>###$ #</L>
+      <L>  #  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Penta ban 7" Width="8" Height="8">
+      <L>  #####</L>
+      <L>###   #</L>
+      <L>#  @# #</L>
+      <L># #...##</L>
+      <L># $.$. #</L>
+      <L>##$$$# #</L>
+      <L> #     #</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="The arrow" Width="7" Height="12">
+      <L>   #</L>
+      <L>  ##</L>
+      <L> #  #</L>
+      <L> # $ #</L>
+      <L># .$.#</L>
+      <L># $.$ #</L>
+      <L># .$. #</L>
+      <L>###@###</L>
+      <L> #  #</L>
+      <L> #  #</L>
+      <L> #  #</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="Penta ban 6" Width="8" Height="8">
+      <L>  ####</L>
+      <L> ##  #</L>
+      <L> # . ##</L>
+      <L>## *  ##</L>
+      <L># *$*  #</L>
+      <L>#  *   #</L>
+      <L>#  @####</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="Penta ban 8" Width="8" Height="8">
+      <L> #####</L>
+      <L> #   #</L>
+      <L>## *$###</L>
+      <L># *@*  #</L>
+      <L># .*   #</L>
+      <L>##   ###</L>
+      <L> #  ##</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="Hexa ban 15" Width="8" Height="7">
+      <L> #####</L>
+      <L> # . ##</L>
+      <L>## $  #</L>
+      <L># * * ##</L>
+      <L># ***  #</L>
+      <L>#  @   #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="Hexa ban 4" Width="9" Height="9">
+      <L> #####</L>
+      <L> #   ####</L>
+      <L> # #    #</L>
+      <L> #$$..  #</L>
+      <L>## ** ###</L>
+      <L># ..$$#</L>
+      <L>#  #  #</L>
+      <L>## @ ##</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="Hepta ban 1" Width="9" Height="9">
+      <L>  ####</L>
+      <L>  #  ###</L>
+      <L> ##    #</L>
+      <L>## $.$ ##</L>
+      <L># .***. #</L>
+      <L>#  $.$  #</L>
+      <L>### @ ###</L>
+      <L>  #  ##</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="For ban 28" Width="10" Height="7">
+      <L>  #####</L>
+      <L>###   ####</L>
+      <L># .$.$@  #</L>
+      <L>#  $.$.  #</L>
+      <L>### # ####</L>
+      <L>  #   #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="Hexa ban 11" Width="8" Height="10">
+      <L> ####</L>
+      <L> #  #</L>
+      <L> #  ##</L>
+      <L> # . ##</L>
+      <L> #$*  ##</L>
+      <L>## **  #</L>
+      <L>#   *$ #</L>
+      <L># @ .###</L>
+      <L>###  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Hepta ban 2" Width="9" Height="8">
+      <L>  #####</L>
+      <L> ## @ ##</L>
+      <L>## $.$ ##</L>
+      <L># .***. #</L>
+      <L>#  $.$  #</L>
+      <L>##     ##</L>
+      <L> ###  ##</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="Try ban 27" Width="8" Height="7">
+      <L>  ####</L>
+      <L> ##  #</L>
+      <L>## . ###</L>
+      <L># $  $ #</L>
+      <L># ..$  #</L>
+      <L>#####@ #</L>
+      <L>    ####</L>
+    </Level>
+    <Level Id="For ban 20" Width="9" Height="8">
+      <L> ######</L>
+      <L>##    ##</L>
+      <L>#   #. ##</L>
+      <L># # @*$ #</L>
+      <L>#  .*   #</L>
+      <L>####$ ###</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="Reverse" Width="8" Height="9">
+      <L>#######</L>
+      <L>#  #  ##</L>
+      <L>#  #   #</L>
+      <L># .*$# #</L>
+      <L>#  *@  #</L>
+      <L># .*$###</L>
+      <L>## # #</L>
+      <L> #   #</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="Penta ban 11" Width="7" Height="9">
+      <L>  ####</L>
+      <L> ##  #</L>
+      <L>##   #</L>
+      <L># $ $##</L>
+      <L># ... #</L>
+      <L># $.$ #</L>
+      <L>##@.$##</L>
+      <L> ##  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Hexa ban 6" Width="9" Height="9">
+      <L>  #####</L>
+      <L>  #   #</L>
+      <L>##@ # ##</L>
+      <L>#  $$..##</L>
+      <L># #.$$. #</L>
+      <L>#  ..$$ #</L>
+      <L>####  ###</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="Hepta ban 3" Width="8" Height="8">
+      <L>  #####</L>
+      <L>  #   ##</L>
+      <L>###.   #</L>
+      <L># $**  #</L>
+      <L># *@*.##</L>
+      <L>#  *$ #</L>
+      <L>##    #</L>
+      <L> ######</L>
+    </Level>
+    <Level Id="Octo ban 6" Width="10" Height="8">
+      <L>  ####</L>
+      <L> ## @###</L>
+      <L>## $$$.#</L>
+      <L>#  .$..###</L>
+      <L>#  ..$.  #</L>
+      <L>###.$$$  #</L>
+      <L>  #   ####</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="For ban 39" Width="9" Height="8">
+      <L>   ####</L>
+      <L>   #  #</L>
+      <L>  ##$ ###</L>
+      <L>###  .  #</L>
+      <L># .*$*  #</L>
+      <L># # @ ###</L>
+      <L>#   ###</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="Penta ban 12" Width="8" Height="9">
+      <L> #####</L>
+      <L> #   #</L>
+      <L> # # #</L>
+      <L>##..$###</L>
+      <L># $*$  #</L>
+      <L># $..  #</L>
+      <L>#  @####</L>
+      <L>##  #</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="For ban 47" Width="7" Height="8">
+      <L>    ###</L>
+      <L>  ##  #</L>
+      <L> # $  #</L>
+      <L># .* .#</L>
+      <L>#  $  #</L>
+      <L>###@#*#</L>
+      <L>  #   #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="Hexa ban 7" Width="9" Height="9">
+      <L>    ####</L>
+      <L>#####  #</L>
+      <L>#  ##  #</L>
+      <L>#   $*.#</L>
+      <L>#  #*@*##</L>
+      <L>##  .*$ #</L>
+      <L> ## #   #</L>
+      <L>  #   ###</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="Hexa ban 14" Width="8" Height="8">
+      <L>  ####</L>
+      <L> ##  ##</L>
+      <L> #    #</L>
+      <L>##*$* ##</L>
+      <L># .@.  #</L>
+      <L># *$*  #</L>
+      <L>#   ####</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="H to I" Width="9" Height="8">
+      <L> #####</L>
+      <L> #   ###</L>
+      <L>## *.* ##</L>
+      <L>#  $*$  #</L>
+      <L>#  *.*  #</L>
+      <L>### @  ##</L>
+      <L>  #  ###</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="For ban 48" Width="8" Height="8">
+      <L>  ####</L>
+      <L>###  #</L>
+      <L># $  ###</L>
+      <L>#@#.$  #</L>
+      <L># $ $# #</L>
+      <L>## . ..#</L>
+      <L> #  ####</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="For ban 49" Width="8" Height="7">
+      <L> ####</L>
+      <L>##  ####</L>
+      <L># .$$  #</L>
+      <L># .@.  #</L>
+      <L># $$. ##</L>
+      <L>###  ##</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="The boot" Width="8" Height="9">
+      <L>#####</L>
+      <L>#   #</L>
+      <L>#   #</L>
+      <L>#*+*#</L>
+      <L>#   #</L>
+      <L>#*$*####</L>
+      <L>#      #</L>
+      <L>#  #   #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="For ban 50" Width="7" Height="9">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>###  ##</L>
+      <L>#  $$ #</L>
+      <L># #*. #</L>
+      <L># . . #</L>
+      <L>##$#@##</L>
+      <L> #   #</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="R.I.P." Width="9" Height="9">
+      <L>  #####</L>
+      <L>### @ ###</L>
+      <L>#  .$.  #</L>
+      <L>#  ***  #</L>
+      <L>###$.$###</L>
+      <L>  #   #</L>
+      <L>  #   #</L>
+      <L>  #  ##</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="The sword" Width="8" Height="9">
+      <L>   ##</L>
+      <L>  #  #</L>
+      <L> ##. #</L>
+      <L> # . #</L>
+      <L>##$.$###</L>
+      <L>#@$.$  #</L>
+      <L># $.   #</L>
+      <L>###  ###</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Hexa ban 18" Width="8" Height="9">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>###  #</L>
+      <L># $$ ###</L>
+      <L>#. .$. #</L>
+      <L># .*.  #</L>
+      <L>##$ $###</L>
+      <L> # @ #</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="Halloween" Width="8" Height="10">
+      <L> #####</L>
+      <L> # @ #</L>
+      <L>##$ $#</L>
+      <L>#  $ ###</L>
+      <L># .*.  #</L>
+      <L>##.*.  #</L>
+      <L> # $ ###</L>
+      <L> # * #</L>
+      <L> #  ##</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="The pot of flowers" Width="7" Height="10">
+      <L> ####</L>
+      <L> # @#</L>
+      <L> #  #</L>
+      <L>##$$###</L>
+      <L>#     #</L>
+      <L># #   #</L>
+      <L>#.*.*##</L>
+      <L>##   #</L>
+      <L> #  ##</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="Air line" Width="8" Height="8">
+      <L>###</L>
+      <L>#  ####</L>
+      <L># $@$  #</L>
+      <L># $#...#</L>
+      <L>#  *** #</L>
+      <L>#     #</L>
+      <L>####  #</L>
+      <L>    ##</L>
+    </Level>
+    <Level Id="The Shuttle" Width="11" Height="6">
+      <L>###</L>
+      <L>#  ######</L>
+      <L>#    $   #</L>
+      <L>#  **.**  #</L>
+      <L>#   *@*   #</L>
+      <L>##########</L>
+    </Level>
+    <Level Id="Plus - Minus" Width="8" Height="9">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>###  ###</L>
+      <L>#   $$ #</L>
+      <L>#+**...#</L>
+      <L>#   $$ #</L>
+      <L>###  ###</L>
+      <L>  #  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Go up" Width="10" Height="8">
+      <L>   ####</L>
+      <L>   #  ####</L>
+      <L>  #  *   #</L>
+      <L>###@*.*  #</L>
+      <L>#  * $ * #</L>
+      <L>#   ##  ##</L>
+      <L>#### #  #</L>
+      <L>     ####</L>
+    </Level>
+    <Level Id="The mushroom" Width="9" Height="9">
+      <L>   ###</L>
+      <L>  # @ #</L>
+      <L> # .#. #</L>
+      <L> #$$*$$#</L>
+      <L>#  * *  #</L>
+      <L>#   .   #</L>
+      <L>####. ###</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="The table" Width="10" Height="9">
+      <L> ####</L>
+      <L> #  ######</L>
+      <L> #       #</L>
+      <L> # $@#$# #</L>
+      <L>##.*..*. #</L>
+      <L>#  *  * ##</L>
+      <L># #$##$##</L>
+      <L>#      #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="The table again ?" Width="10" Height="9">
+      <L> ####</L>
+      <L> #  ######</L>
+      <L> # $   $ #</L>
+      <L> #   # # #</L>
+      <L>##***.**@#</L>
+      <L>#  .  . ##</L>
+      <L># # ##$##</L>
+      <L>#      #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="The toadstool" Width="9" Height="9">
+      <L>   ###</L>
+      <L>  # @ #</L>
+      <L> # $#$ #</L>
+      <L> # .*. #</L>
+      <L>#  *.*  #</L>
+      <L>#  $ $  #</L>
+      <L>####. ###</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

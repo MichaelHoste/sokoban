@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Takaken collection</Title>
+  <Description>
+These levels are copyright Ken'ichiro Takahashi (takaken).
+  </Description>
+  <Email>takaken@ic-net.or.jp</Email>
+  <Url>http://www.ic-net.or.jp/home/takaken/e/index.html</Url>
+  <LevelCollection Copyright="Ken'ichiro Takahashi (takaken)" MaxWidth="25" MaxHeight="15">
+    <Level Id="scrambled egg" Width="8" Height="8">
+      <L> #####</L>
+      <L> # @ ###</L>
+      <L>## #$  #</L>
+      <L># *. . #</L>
+      <L>#  $$ ##</L>
+      <L>### #.#</L>
+      <L>  #   #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="a point" Width="9" Height="8">
+      <L>#####</L>
+      <L>#   #####</L>
+      <L># # #   #</L>
+      <L># $   $ #</L>
+      <L>#..#$#$##</L>
+      <L>#.@$   #</L>
+      <L>#..  ###</L>
+      <L>######</L>
+    </Level>
+    <Level Id="twins" Width="16" Height="10">
+      <L> ######</L>
+      <L>#   $. #  #####</L>
+      <L>#.$    # #    .#</L>
+      <L>#### .## #.  $ #</L>
+      <L> ###  #  ###  ##</L>
+      <L>  ##  #   ## $#</L>
+      <L>   #  #    #. #</L>
+      <L>####$#######$###</L>
+      <L>#       @      #</L>
+      <L>################</L>
+    </Level>
+    <Level Id="rescue in the bay" Width="12" Height="7">
+      <L>     ####</L>
+      <L>   ###  ####</L>
+      <L>#### $  #  #</L>
+      <L># $  $ $   #</L>
+      <L># # #$#$#  #</L>
+      <L># ....@.. ##</L>
+      <L>###########</L>
+    </Level>
+    <Level Id="baby classic" Width="7" Height="7">
+      <L>#######</L>
+      <L>#...  #</L>
+      <L># # $ #</L>
+      <L>#  $  #</L>
+      <L>###$ ##</L>
+      <L>  # @#</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="key" Width="14" Height="8">
+      <L>  #####</L>
+      <L>###  @#</L>
+      <L>#  $  #</L>
+      <L>#    #########</L>
+      <L># #$   ....  #</L>
+      <L>#  $ ######$ #</L>
+      <L>##  ##    #  #</L>
+      <L> ####     ####</L>
+    </Level>
+    <Level Id="Love" Width="25" Height="15">
+      <L>   #####</L>
+      <L>  ## @ #</L>
+      <L>  #    #  #####    ######</L>
+      <L> ##   #####   ######    #</L>
+      <L>##   ##  .#   #   #  ## #</L>
+      <L># . ## $#.## *$  ## ##  #</L>
+      <L>#   ##  $  # .#  #     ##</L>
+      <L>#   ###    ##   ## $$#. #</L>
+      <L>#  $  #  ####   ####  . #</L>
+      <L># .$  ## #  ## ##  ## ###</L>
+      <L>### #### #   # #    # #</L>
+      <L>  # #  # #   # #    # #</L>
+      <L>### #### ##### ###### ###</L>
+      <L>#                       #</L>
+      <L>#########################</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

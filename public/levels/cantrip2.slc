@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>The Cantrip 2 collection</Title>
+  <Description>
+Unfinished collection.
+  </Description>
+  <Email>david@clickfest88.freeserve.co.uk</Email>
+  <Url>http://www.clickfest88.freeserve.co.uk</Url>
+  <LevelCollection Copyright="David Holland" MaxWidth="12" MaxHeight="11">
+    <Level Id="triplet2" Width="12" Height="11">
+      <L>   ####</L>
+      <L>  ##  #</L>
+      <L>  # . #</L>
+      <L>  #   ##</L>
+      <L>#### . #####</L>
+      <L>#  # #   $@#</L>
+      <L># $  * #$$ #</L>
+      <L>#  . #$.. ##</L>
+      <L>##*# . $ ##</L>
+      <L> #   #####</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="face1" Width="11" Height="8">
+      <L>###########</L>
+      <L>#    .  $@#</L>
+      <L>#  *# #*  #</L>
+      <L>##  *.. ###</L>
+      <L> #$ #.#$ #</L>
+      <L> #  $.$  #</L>
+      <L> #  ###  #</L>
+      <L> #### ####</L>
+    </Level>
+    <Level Id="aitch11" Width="9" Height="9">
+      <L>  #####</L>
+      <L> ##   #</L>
+      <L> #  #$###</L>
+      <L> # . *  #</L>
+      <L> # ..*  #</L>
+      <L>###. .# #</L>
+      <L>#@$$$ $ #</L>
+      <L>#   #####</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="engine1" Width="12" Height="9">
+      <L>    #####</L>
+      <L> ####   #</L>
+      <L> # $@*  ####</L>
+      <L>## ### ##  #</L>
+      <L># $.#  #.  #</L>
+      <L>#    $ $   #</L>
+      <L># .* #. ** #</L>
+      <L>###  #   ###</L>
+      <L>  ########</L>
+    </Level>
+    <Level Id="eightpin14" Width="10" Height="10">
+      <L>   #####</L>
+      <L>   #   #</L>
+      <L>####$$ ###</L>
+      <L># $ .# * #</L>
+      <L>#  #. .  #</L>
+      <L>#  . *#$ #</L>
+      <L>##. #.$@##</L>
+      <L> ##$   ##</L>
+      <L>  #   ##</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="Area52" Width="12" Height="10">
+      <L> ##########</L>
+      <L>##   ##  .#</L>
+      <L># $  ##*#.##</L>
+      <L>#  $   .*. #</L>
+      <L>#   $ #.$. #</L>
+      <L>### $ #*#  #</L>
+      <L>  ###$#   ##</L>
+      <L>    #  # ##</L>
+      <L>    ## @ #</L>
+      <L>     #####</L>
+    </Level>
+    <Level Id="trident4" Width="9" Height="9">
+      <L>   #####</L>
+      <L>####   ##</L>
+      <L>#  #$   #</L>
+      <L># . .$. #</L>
+      <L># .$* * #</L>
+      <L>## .*.$##</L>
+      <L> # $#$ #</L>
+      <L> ## @  #</L>
+      <L>  ######</L>
+    </Level>
+    <Level Id="crosstwist27" Width="11" Height="10">
+      <L>      #####</L>
+      <L>#######   #</L>
+      <L>#  #@$    #</L>
+      <L># . *$#$$ #</L>
+      <L># *.  #  ##</L>
+      <L>##  # $ ##</L>
+      <L> ##.**# .#</L>
+      <L>  #.     #</L>
+      <L>  ##  #  #</L>
+      <L>   #######</L>
+    </Level>
+    <Level Id="meshcross1" Width="11" Height="11">
+      <L>   #####</L>
+      <L>  ##   ####</L>
+      <L> ##  #$$  #</L>
+      <L> #  #   *@#</L>
+      <L> # ##.#$###</L>
+      <L>##  ... ###</L>
+      <L>#  .#*#   #</L>
+      <L>#   $ $ # #</L>
+      <L>#### .  $ #</L>
+      <L>   ###  ###</L>
+      <L>     ####</L>
+    </Level>
+    <Level Id="rugby15" Width="11" Height="11">
+      <L>#####</L>
+      <L>#   ####</L>
+      <L>#    $ #</L>
+      <L>##  $# ##</L>
+      <L> # #..* ##</L>
+      <L> #.*. # @#</L>
+      <L> ##$# *$##</L>
+      <L>  #   $. ##</L>
+      <L>  ##   $. #</L>
+      <L>   ####   #</L>
+      <L>      #####</L>
+    </Level>
+    <Level Id="hinge10" Width="12" Height="11">
+      <L>##########</L>
+      <L>#   #@   #</L>
+      <L>#   ***# ###</L>
+      <L>## #.*.#$  #</L>
+      <L> # # *.    #</L>
+      <L> #  #.### ##</L>
+      <L> #  #     #</L>
+      <L> #  $ $#  #</L>
+      <L> #### $ ###</L>
+      <L>    #   #</L>
+      <L>    #####</L>
+    </Level>
+    <Level Id="anaconda15" Width="11" Height="11">
+      <L>##########</L>
+      <L>#   ##   ##</L>
+      <L>#    $    #</L>
+      <L>##$## ... #</L>
+      <L>#  $ #*#.##</L>
+      <L>#    *+#.#</L>
+      <L>#  $$##  #</L>
+      <L>#  #  #$ #</L>
+      <L>####   $ #</L>
+      <L>   # .####</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="footy6" Width="9" Height="8">
+      <L> ########</L>
+      <L> #      #</L>
+      <L>##$* * $#</L>
+      <L># $. .#.#</L>
+      <L>#@$.#. .#</L>
+      <L>##$*$*  #</L>
+      <L> #      #</L>
+      <L> ########</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Loma</Title>
+  <Description>
+Levels Of Multi Authors collected by Aymeric du Peloux.
+  </Description>
+  <Url>http://membres.lycos.fr/nabokos/index.html</Url>
+  <LevelCollection Copyright="Many Authors, see each level" MaxWidth="14" MaxHeight="13">
+    <Level Id="LOMA01-01" Width="9" Height="8" Copyright="Aymeric du Peloux">
+      <L>  ####</L>
+      <L>  #  ###</L>
+      <L>  #    #</L>
+      <L>###$.# ##</L>
+      <L>#  $.#  #</L>
+      <L># #$. # #</L>
+      <L>#@  #   #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="LOMA01-02" Width="8" Height="8" Copyright="Francois Marques">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>###$.###</L>
+      <L>#  $.  #</L>
+      <L>#@ $.# #</L>
+      <L>###    #</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA01-03" Width="8" Height="10" Copyright="David Skinner">
+      <L>  #####</L>
+      <L> ##   ##</L>
+      <L>### #  #</L>
+      <L>###$.# #</L>
+      <L>#  $.#@#</L>
+      <L># #$.# #</L>
+      <L># #    #</L>
+      <L>#  # ###</L>
+      <L>##   ##</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="LOMA01-04" Width="13" Height="9" Copyright="Sven Egevad">
+      <L>   ##########</L>
+      <L>#### $.     #</L>
+      <L>#    $. #@  #</L>
+      <L>#   #$.######</L>
+      <L>##### ##</L>
+      <L>  #    #</L>
+      <L>  #    #</L>
+      <L>  #  ###</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="LOMA01-05" Width="9" Height="10" Copyright="Victor Kindermans">
+      <L>  ####</L>
+      <L> ##  ##</L>
+      <L> #    ###</L>
+      <L>##$.#   #</L>
+      <L>#@$.    #</L>
+      <L>##$.#  ##</L>
+      <L>#  ## ##</L>
+      <L>#     #</L>
+      <L>####  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA01-06" Width="9" Height="12" Copyright="Michael Steins">
+      <L> #####</L>
+      <L>##   #</L>
+      <L>#    #</L>
+      <L>#    ####</L>
+      <L>### ##@ #</L>
+      <L> ## ##  #</L>
+      <L> #  ##$.#</L>
+      <L> #    $.#</L>
+      <L> ##  #$.#</L>
+      <L>  ####  #</L>
+      <L>     #  #</L>
+      <L>     ####</L>
+    </Level>
+    <Level Id="LOMA02-01" Width="9" Height="8" Copyright="Francois Marques">
+      <L>    ####</L>
+      <L>    #  #</L>
+      <L>#####@ ##</L>
+      <L>#   #$. #</L>
+      <L>#    .$ #</L>
+      <L>## # $.##</L>
+      <L> #   ###</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="LOMA02-02" Width="10" Height="6" Copyright="Aymeric du Peloux">
+      <L> #########</L>
+      <L>##   ##  #</L>
+      <L>#  #$.   #</L>
+      <L># #@.$#  #</L>
+      <L>#   $.  ##</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="LOMA02-03" Width="9" Height="13" Copyright="Sven Egevad">
+      <L>    ####</L>
+      <L>  ###  #</L>
+      <L>  #    #</L>
+      <L>  #    #</L>
+      <L>  ## ###</L>
+      <L>#### $.##</L>
+      <L>#    .$@#</L>
+      <L>#   #$.##</L>
+      <L>##### ##</L>
+      <L>  #    #</L>
+      <L>  #    #</L>
+      <L>  #  ###</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="LOMA02-04" Width="9" Height="9" Copyright="Victor Kindermans">
+      <L>  ######</L>
+      <L>  #    ##</L>
+      <L> ##$.#  #</L>
+      <L> # .$@  #</L>
+      <L>## $.# ##</L>
+      <L>#  ### #</L>
+      <L>#      #</L>
+      <L>#####  #</L>
+      <L>    ####</L>
+    </Level>
+    <Level Id="LOMA02-05" Width="12" Height="5" Copyright="Michael Steins">
+      <L>   #########</L>
+      <L>####@$.#   #</L>
+      <L>#   #.$    #</L>
+      <L>#    $.#####</L>
+      <L>########</L>
+    </Level>
+    <Level Id="LOMA02-06" Width="8" Height="8" Copyright="David Skinner">
+      <L>#####</L>
+      <L>#   ####</L>
+      <L># #$.  #</L>
+      <L>#  .$#@#</L>
+      <L>###$.  #</L>
+      <L>  #  ###</L>
+      <L>  #  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="LOMA03-01" Width="7" Height="8" Copyright="Francois Marques">
+      <L>  #####</L>
+      <L>###.  #</L>
+      <L>#  *  #</L>
+      <L># #*###</L>
+      <L>#  $ #</L>
+      <L>#  @ #</L>
+      <L>#  ###</L>
+      <L>####</L>
+    </Level>
+    <Level Id="LOMA03-02" Width="8" Height="7" Copyright="Aymeric du Peloux">
+      <L> #######</L>
+      <L>##  .  #</L>
+      <L>#  #*# #</L>
+      <L>#   *  #</L>
+      <L>#  #$ ##</L>
+      <L>##  @##</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="LOMA03-03" Width="12" Height="8" Copyright="Sven Egevad">
+      <L>     ######</L>
+      <L>   ###.#  #</L>
+      <L>   #@ *   #</L>
+      <L>######*## #</L>
+      <L>#     $   ##</L>
+      <L>#   #  #   #</L>
+      <L>########   #</L>
+      <L>       #####</L>
+    </Level>
+    <Level Id="LOMA03-04" Width="8" Height="8" Copyright="Victor Kindermans">
+      <L>   ####</L>
+      <L> ###  #</L>
+      <L>## .  ##</L>
+      <L>#  *   #</L>
+      <L># #*#@ #</L>
+      <L>#  $  ##</L>
+      <L>####  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA03-05" Width="8" Height="7" Copyright="Michael Steins">
+      <L>#######</L>
+      <L>#   #.##</L>
+      <L>#    *@#</L>
+      <L>#####* #</L>
+      <L>  #  $ #</L>
+      <L>  #   ##</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="LOMA03-06" Width="7" Height="9" Copyright="David Skinner">
+      <L>  ####</L>
+      <L> ##  #</L>
+      <L> # . #</L>
+      <L> # * #</L>
+      <L>## *###</L>
+      <L>#  $ #</L>
+      <L>#  @ #</L>
+      <L>#  ###</L>
+      <L>####</L>
+    </Level>
+    <Level Id="LOMA04-01" Width="9" Height="9" Copyright="Aymeric du Peloux">
+      <L>#####</L>
+      <L>#   ###</L>
+      <L># #.  ##</L>
+      <L>#  $   #</L>
+      <L>###*## #</L>
+      <L>#  $ # ##</L>
+      <L>#  .    #</L>
+      <L>## @#   #</L>
+      <L> ########</L>
+    </Level>
+    <Level Id="LOMA04-02" Width="8" Height="9" Copyright="David Skinner">
+      <L>###### #</L>
+      <L>#   ## #</L>
+      <L>#  . #</L>
+      <L>#  $ ###</L>
+      <L>## * @ #</L>
+      <L>###$ # #</L>
+      <L>  #.#  #</L>
+      <L># #   ##</L>
+      <L># ######</L>
+    </Level>
+    <Level Id="LOMA04-03" Width="7" Height="10" Copyright="Francois Marques">
+      <L> #####</L>
+      <L>##   #</L>
+      <L>#    #</L>
+      <L># #.###</L>
+      <L>#  $  #</L>
+      <L>###*# #</L>
+      <L> # $@ #</L>
+      <L> # .  #</L>
+      <L> ###  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA04-04" Width="9" Height="10" Copyright="Sven Egevad">
+      <L>  ###</L>
+      <L>###.#####</L>
+      <L>#@ $    #</L>
+      <L># #*#   #</L>
+      <L>#  $  ###</L>
+      <L>###.###</L>
+      <L> #    #</L>
+      <L> #    #</L>
+      <L> #  ###</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="LOMA04-05" Width="8" Height="7" Copyright="Victor Kindermans">
+      <L> #######</L>
+      <L> # .   #</L>
+      <L> # $   #</L>
+      <L>###*#@##</L>
+      <L>#  $  #</L>
+      <L>#  .###</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="LOMA04-06" Width="8" Height="7" Copyright="Michael Steins">
+      <L> ###</L>
+      <L> #.#####</L>
+      <L>##$#   #</L>
+      <L>#@*    #</L>
+      <L>##$#####</L>
+      <L> #.#</L>
+      <L> ###</L>
+    </Level>
+    <Level Id="LOMA05-01" Width="8" Height="10" Copyright="David Skinner">
+      <L> ####</L>
+      <L> #  #</L>
+      <L> #  #</L>
+      <L> #  ####</L>
+      <L>###$$  #</L>
+      <L>#  $.  #</L>
+      <L># #..###</L>
+      <L># @# #</L>
+      <L>##   #</L>
+      <L>######</L>
+    </Level>
+    <Level Id="LOMA05-02" Width="9" Height="8" Copyright="Francois Marques">
+      <L>    #####</L>
+      <L>#####   #</L>
+      <L>#  ## # #</L>
+      <L>#  @$$  #</L>
+      <L>#  #$.###</L>
+      <L>##  ..  #</L>
+      <L>  ###   #</L>
+      <L>    #####</L>
+    </Level>
+    <Level Id="LOMA05-03" Width="8" Height="11" Copyright="Aymeric du Peloux">
+      <L>  #####</L>
+      <L>  #   #</L>
+      <L>  # # #</L>
+      <L>###   #</L>
+      <L>#  $$ #</L>
+      <L># #$.###</L>
+      <L># #..  #</L>
+      <L>#  #@  #</L>
+      <L>##  ## #</L>
+      <L> ##    #</L>
+      <L>  ######</L>
+    </Level>
+    <Level Id="LOMA05-04" Width="9" Height="13" Copyright="Sven Egevad">
+      <L>    ####</L>
+      <L>  ###  #</L>
+      <L>  #    #</L>
+      <L>  #    #</L>
+      <L> ###@###</L>
+      <L>## $$#</L>
+      <L>#  $.#</L>
+      <L># #..#</L>
+      <L># ## #</L>
+      <L>#    ####</L>
+      <L>##      #</L>
+      <L> #  #   #</L>
+      <L> ########</L>
+    </Level>
+    <Level Id="LOMA05-05" Width="9" Height="9" Copyright="Victor Kindermans">
+      <L>########</L>
+      <L>#   #  #</L>
+      <L>#   #  #</L>
+      <L>##  $$ #</L>
+      <L> # #$.###</L>
+      <L> # #.. @#</L>
+      <L> # ###  #</L>
+      <L> #      #</L>
+      <L> ########</L>
+    </Level>
+    <Level Id="LOMA05-06" Width="10" Height="11" Copyright="Michael Steins">
+      <L> ####</L>
+      <L> #  #</L>
+      <L> #  #####</L>
+      <L> #  ##  ##</L>
+      <L>###$$    #</L>
+      <L># @$.##  #</L>
+      <L>#  ..## ##</L>
+      <L>#######  #</L>
+      <L> #       #</L>
+      <L> #   #  ##</L>
+      <L> ########</L>
+    </Level>
+    <Level Id="LOMA06-01" Width="7" Height="8" Copyright="Francois Marques">
+      <L>   ###</L>
+      <L>###  #</L>
+      <L>#  $ ##</L>
+      <L>#@.*. #</L>
+      <L>## $  #</L>
+      <L>  ##  #</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA06-02" Width="9" Height="10" Copyright="Aymeric du Peloux">
+      <L>    ####</L>
+      <L>    #  #</L>
+      <L>#####  ##</L>
+      <L>#   #$  #</L>
+      <L>#   .*. #</L>
+      <L>## ##$###</L>
+      <L>#   #@#</L>
+      <L>#     #</L>
+      <L>####  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA06-03" Width="9" Height="7" Copyright="Sven Egevad">
+      <L>#####</L>
+      <L>#   #####</L>
+      <L># #$#   #</L>
+      <L># .*.   #</L>
+      <L># #$#   #</L>
+      <L>#  @#   #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="LOMA06-04" Width="7" Height="10" Copyright="Victor Kindermans">
+      <L>   ####</L>
+      <L>#### @#</L>
+      <L>#  $  #</L>
+      <L># .*. #</L>
+      <L>#  $  #</L>
+      <L>## ####</L>
+      <L>#  #</L>
+      <L>#  #</L>
+      <L>#  #</L>
+      <L>####</L>
+    </Level>
+    <Level Id="LOMA06-05" Width="8" Height="11" Copyright="Michael Steins">
+      <L>   ####</L>
+      <L>   #  #</L>
+      <L>   #  #</L>
+      <L>   #  #</L>
+      <L>####$###</L>
+      <L>#  .*.@#</L>
+      <L>#  #$###</L>
+      <L>#  #  #</L>
+      <L>##    #</L>
+      <L> #  ###</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="LOMA06-06" Width="7" Height="8" Copyright="David Skinner">
+      <L>  #####</L>
+      <L>  ##  #</L>
+      <L>###   #</L>
+      <L>#  $  #</L>
+      <L># .*.##</L>
+      <L>## $ #</L>
+      <L>###@ #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="LOMA07-01" Width="8" Height="8" Copyright="Francois Marques">
+      <L>  #####</L>
+      <L>###   #</L>
+      <L>#   # ##</L>
+      <L>#   $  #</L>
+      <L>###$*. #</L>
+      <L>  # .###</L>
+      <L>  # @#</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="LOMA07-02" Width="9" Height="10" Copyright="Aymeric du Peloux">
+      <L>########</L>
+      <L>#   #  #</L>
+      <L>#      #</L>
+      <L>## ### ##</L>
+      <L> # $@#  #</L>
+      <L> #$*.   #</L>
+      <L> # .#####</L>
+      <L> #  #</L>
+      <L> #  #</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="LOMA07-03" Width="8" Height="12" Copyright="Sven Egevad">
+      <L>####</L>
+      <L>#  ####</L>
+      <L>#     #</L>
+      <L>#     #</L>
+      <L>### ####</L>
+      <L> #@$#  #</L>
+      <L> #$*.  #</L>
+      <L>## .#  #</L>
+      <L>#  ## ##</L>
+      <L>#     #</L>
+      <L>####  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA07-04" Width="11" Height="7" Copyright="Victor Kindermans">
+      <L>#####</L>
+      <L>#   #######</L>
+      <L># # ##    #</L>
+      <L>#     $   #</L>
+      <L>#####$*.###</L>
+      <L>    #@. #</L>
+      <L>    #####</L>
+    </Level>
+    <Level Id="LOMA07-05" Width="7" Height="8" Copyright="Michael Steins">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>  #  #</L>
+      <L>  #  #</L>
+      <L>### $##</L>
+      <L>#  $*.#</L>
+      <L>#  @.#</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="LOMA07-06" Width="8" Height="8" Copyright="David Skinner">
+      <L>#####</L>
+      <L>#   ##</L>
+      <L>#  $ ##</L>
+      <L>##$*. ##</L>
+      <L> # .@  #</L>
+      <L> #  #  #</L>
+      <L>#####  #</L>
+      <L>##  ####</L>
+    </Level>
+    <Level Id="LOMA08-01" Width="9" Height="8" Copyright="Francois Marques">
+      <L>   ####</L>
+      <L>   #  #</L>
+      <L>####  #</L>
+      <L>#   * #</L>
+      <L>#  . $###</L>
+      <L>####* @ #</L>
+      <L>   #    #</L>
+      <L>   ######</L>
+    </Level>
+    <Level Id="LOMA08-02" Width="8" Height="10" Copyright="Aymeric du Peloux">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>  #  #</L>
+      <L> ##* ###</L>
+      <L>##. $  #</L>
+      <L>#  * # #</L>
+      <L># # @# #</L>
+      <L>#  ##  #</L>
+      <L>##    ##</L>
+      <L> ######</L>
+    </Level>
+    <Level Id="LOMA08-03" Width="14" Height="8" Copyright="Sven Egevad">
+      <L>#########</L>
+      <L>#   #   ####</L>
+      <L>#   @*  #  ###</L>
+      <L>####.#$#     #</L>
+      <L>  #  *     # #</L>
+      <L>  #  #####   #</L>
+      <L>  #  #   #####</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="LOMA08-04" Width="12" Height="10" Copyright="Victor Kindermans">
+      <L>    ####</L>
+      <L> ####  #</L>
+      <L> #     #</L>
+      <L> #  ## ##</L>
+      <L> ## # * #</L>
+      <L>  # #.@$#</L>
+      <L>### ##* ####</L>
+      <L>#          #</L>
+      <L>#   ####   #</L>
+      <L>#####  #####</L>
+    </Level>
+    <Level Id="LOMA08-05" Width="9" Height="9" Copyright="Michael Steins">
+      <L> ####</L>
+      <L> #  #####</L>
+      <L> #  #   #</L>
+      <L> #  *   #</L>
+      <L>###.#$###</L>
+      <L>#   *@ #</L>
+      <L>#   #  #</L>
+      <L>#####  #</L>
+      <L>    ####</L>
+    </Level>
+    <Level Id="LOMA08-06" Width="7" Height="8" Copyright="David Skinner">
+      <L>  #####</L>
+      <L> ##   #</L>
+      <L>###   #</L>
+      <L>#  * ##</L>
+      <L># .@$##</L>
+      <L>#  * ##</L>
+      <L>##  ##</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="LOMA09-01" Width="7" Height="9" Copyright="Francois Marques">
+      <L>  #####</L>
+      <L>  #   #</L>
+      <L> #    #</L>
+      <L>##$*@##</L>
+      <L># *.#</L>
+      <L>#    #</L>
+      <L>###  #</L>
+      <L>  #  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="LOMA09-02" Width="10" Height="10" Copyright="Aymeric du Peloux">
+      <L> #####</L>
+      <L> #   ####</L>
+      <L>## # #@ #</L>
+      <L>#    #$*#</L>
+      <L># #   *.##</L>
+      <L>#   ##   #</L>
+      <L>#####  # #</L>
+      <L>    # #  #</L>
+      <L>    #   ##</L>
+      <L>    #####</L>
+    </Level>
+    <Level Id="LOMA09-03" Width="7" Height="10" Copyright="Sven Egevad">
+      <L>   ####</L>
+      <L>  ##  #</L>
+      <L>  #   #</L>
+      <L> ##$* #</L>
+      <L> # *.##</L>
+      <L>## #  #</L>
+      <L>#     #</L>
+      <L>#    ##</L>
+      <L>#  @##</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="LOMA09-04" Width="7" Height="10" Copyright="Victor Kindermans">
+      <L>####</L>
+      <L>#  ####</L>
+      <L>#     #</L>
+      <L># @#  #</L>
+      <L>#    ##</L>
+      <L>###$*##</L>
+      <L> # *. #</L>
+      <L> #    #</L>
+      <L> ###  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA09-05" Width="9" Height="8" Copyright="Michael Steins">
+      <L>     ####</L>
+      <L>######  #</L>
+      <L>#   ##  #</L>
+      <L>#       #</L>
+      <L>#####$*##</L>
+      <L>#    *.#</L>
+      <L>#   #@ #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="LOMA09-06" Width="8" Height="8" Copyright="David Skinner">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>###  ###</L>
+      <L>## $*  #</L>
+      <L>#  *. @#</L>
+      <L>#   ####</L>
+      <L>#  ##</L>
+      <L>#####</L>
+    </Level>
+    <Level Id="LOMA10-01" Width="8" Height="6" Copyright="David Skinner">
+      <L>#### ###</L>
+      <L>#@ ### #</L>
+      <L># $$ ###</L>
+      <L># $ .  #</L>
+      <L>## ..  #</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="LOMA10-02" Width="7" Height="8" Copyright="Francois Marques">
+      <L>######</L>
+      <L># @  #</L>
+      <L>#  $$##</L>
+      <L>###$ .#</L>
+      <L>  # ..#</L>
+      <L>  ##  #</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="LOMA10-03" Width="10" Height="8" Copyright="Aymeric du Peloux">
+      <L> ########</L>
+      <L>##  #   ##</L>
+      <L>#   $$#  #</L>
+      <L>#  #$@.# #</L>
+      <L>## # ..  #</L>
+      <L>#    #  ##</L>
+      <L>#   ##  #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="LOMA10-04" Width="6" Height="13" Copyright="Sven Egevad">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>  #  #</L>
+      <L>###  #</L>
+      <L># $$##</L>
+      <L># $ .#</L>
+      <L># #..#</L>
+      <L># @  #</L>
+      <L>#### #</L>
+      <L>  #  #</L>
+      <L>  #  #</L>
+      <L>  #  #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="LOMA10-05" Width="8" Height="8" Copyright="Victor Kindermans">
+      <L>  ######</L>
+      <L>  #    #</L>
+      <L>  #    #</L>
+      <L>  #  ###</L>
+      <L>####$$@#</L>
+      <L>#   $ .#</L>
+      <L>#   #..#</L>
+      <L>########</L>
+    </Level>
+    <Level Id="LOMA10-06" Width="11" Height="7" Copyright="Michael Steins">
+      <L>    ######</L>
+      <L>    #    ##</L>
+      <L>##### ##  #</L>
+      <L>#   #$$ # #</L>
+      <L>#    $@.  #</L>
+      <L>######.. ##</L>
+      <L>     #####</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

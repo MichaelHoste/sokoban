@@ -2,8 +2,12 @@
 <html>
 <head>
   <title>Sokojax</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag 'jax/application' %>
+  <%= javascript_include_tag 'jax/runtime' %>
+  <%= javascript_include_tag 'jax/controller-list' %>
+  <%= javascript_include_tag 'game' %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>

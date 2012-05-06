@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Brainsport</Title>
+  <Description>
+Easy Level From Brainsport, Sokoban Clone or was that Brainstorm, I forgot the other levels if anyone remembers the orginals please email me.
+  </Description>
+  <Email>ianmhammond@freeserve.co.uk</Email>
+  <LevelCollection Copyright="Ian Hammond" MaxWidth="10" MaxHeight="10">
+    <Level Id="Get Ready 4 Takeoff" Width="10" Height="10">
+      <L> #########</L>
+      <L> #@####  #</L>
+      <L> #$#     #</L>
+      <L> # #  ## #</L>
+      <L> # ## ## #</L>
+      <L>## ## ## #</L>
+      <L>#  ## ## #</L>
+      <L>#     ## #</L>
+      <L>####  ##.#</L>
+      <L>   #######</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

@@ -15,7 +15,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @won = false        # is this level succeed ?
     
     # load level
-    @xml_load()
+    @xml_load("sasquatch", "10")
     
     # display level
     @display_level()
@@ -47,9 +47,15 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       object = null
     
     if object != null
-      start_col = -@cols_number/2.0
-      start_row = @rows_number/2.0
-      object.camera.setPosition [start_col + n, start_row - m, -20.0]
+      start_col = -@cols_number/2.0 + 0.5
+      start_row = @rows_number/2.0 - 0.5
+      
+      d_height = @rows_number / (2*0.414213563) * 1.1 # 0.41... = tan(22.5°), *0.9 is to create a border
+      d_width = @cols_number / (2*0.414213563/14*18) # 0.41... = tan(22.5°), 14*18 is the ration height/width
+      d = d_height if d_height > d_width
+      d = d_width  if d_width  > d_height
+      
+      object.camera.setPosition [start_col + n, start_row - m, -d]
       
     @objects[@cols_number*m + n] = object
 
@@ -253,28 +259,41 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       for n in [0..@cols_number-1]
         line = line + @read_pos(m, n)
       console.log(line + '\n')
+  
+  ###
+    Load a specific level in a XML pack
+    @pack name of the file (without .slc)
+    @id id of the level (string) 
+  ###
+  xml_load: (pack, id) ->
+    @id = id
+     
+    $.ajax({
+      type:     "GET",
+      url:      "/levels/" + pack + ".slc",
+      dataType: "xml",
+      success:  @xml_parser
+      async:    false
+      context:  @
+    })
+    
+  xml_parser: (xml) ->    
+    xml_level = $(xml).find('Level[Id="' + @id + '"]')
+    
+    @rows_number = $(xml_level).attr("Height")
+    @cols_number = $(xml_level).attr("Width")
+    
+    for i in [0..@rows_number*@cols_number-1]
+      @grid[i] = ' '
+      
+    lines = $(xml_level).find("L")
+    
+    for line, i in lines
+      text = $(line).text()
+      for j in [0..text.length-1]
+        @grid[@cols_number*i + j] = text.charAt(j)
         
-  xml_load: ->
-    @id = 1
-    @rows_number = 11
-    @cols_number = 19
-    
-    #for i in @rows_number * @cols_number
-    #  @grid[i] = ' '
-    
-    @grid = [
-      ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
-      ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
-      ' ', ' ', ' ', ' ', '#', '$', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
-      ' ', ' ', '#', '#', '#', ' ', ' ', '$', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
-      ' ', ' ', '#', ' ', ' ', '$', ' ', '$', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
-      '#', '#', '#', ' ', '#', ' ', '#', '#', ' ', '#', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'
-      '#', ' ', ' ', ' ', '#', ' ', '#', '#', ' ', '#', '#', '#', '#', '#', ' ', ' ', '.', '.', '#'
-      '#', ' ', '$', ' ', ' ', '$', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.', '.', '#'
-      '#', '#', '#', '#', '#', ' ', '#', '#', '#', ' ', '#', '@', '#', '#', ' ', ' ', '.', '.', '#'
-      ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#'
-      ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
-    ]
+    @print()
 
     # Find initial position of pusher
     @initialize_pusher_position()
@@ -289,4 +308,4 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         @boxes_number = @boxes_number + 1
       if(pos == '+' || pos == '*' || pos == '.')
         @goals_number = @goals_number + 1
-
+###

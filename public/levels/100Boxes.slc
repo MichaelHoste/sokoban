@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>100 Boxes</Title>
+  <Description>
+This collection includes 10 small levels of 10 packages each. It is intended for the
+expert who has a few (many) hours in front of them.
+  </Description>
+  <Email>sokoban@online.fr</Email>
+  <Url>http://sokoban.online.fr</Url>
+  <LevelCollection Copyright="François Marques" MaxWidth="11" MaxHeight="12">
+    <Level Id="Connection" Width="9" Height="10">
+      <L>   ####</L>
+      <L>####  ##</L>
+      <L>#   $  #</L>
+      <L>#  *** #</L>
+      <L>#  . . ##</L>
+      <L>## * *  #</L>
+      <L> ##***  #</L>
+      <L>  # $ ###</L>
+      <L>  # @ #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="Two rooms" Width="11" Height="8">
+      <L> #########</L>
+      <L> #   #   #</L>
+      <L> # @ #   #</L>
+      <L>##$**$**$#</L>
+      <L>#  #. .# ##</L>
+      <L>#  .*$*.  #</L>
+      <L>#         #</L>
+      <L>###########</L>
+    </Level>
+    <Level Id="Fill the hall" Width="9" Height="10">
+      <L>  #####</L>
+      <L>  #   #</L>
+      <L>  #   #</L>
+      <L>### * ###</L>
+      <L>#  *.*  #</L>
+      <L>#  *.*  #</L>
+      <L>#  *.*  #</L>
+      <L>###$$$###</L>
+      <L>  # @ #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="Two lines" Width="10" Height="8">
+      <L>  ####</L>
+      <L>### @#####</L>
+      <L>#  $$$   #</L>
+      <L># **.**  #</L>
+      <L>##     ###</L>
+      <L># .***. #</L>
+      <L>#       #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="Dual" Width="9" Height="9">
+      <L> #######</L>
+      <L> #  @  #</L>
+      <L> #*$*$*#</L>
+      <L> # .$. #</L>
+      <L>##. # .##</L>
+      <L>#  *$*  #</L>
+      <L>#   *   #</L>
+      <L>#  ###  #</L>
+      <L>#### ####</L>
+    </Level>
+    <Level Id="Zip" Width="11" Height="8">
+      <L>##### ####</L>
+      <L>#   ###  #</L>
+      <L># $     @#</L>
+      <L>##$*****$##</L>
+      <L># $.....$ #</L>
+      <L>#   #     #</L>
+      <L>########  #</L>
+      <L>       ####</L>
+    </Level>
+    <Level Id="The little dog" Width="10" Height="8">
+      <L> ####</L>
+      <L>##  #####</L>
+      <L>#  $  $ #</L>
+      <L># $*..* ##</L>
+      <L>#  *$$.  #</L>
+      <L>#@ *.*.  #</L>
+      <L>####   ###</L>
+      <L>   #####</L>
+    </Level>
+    <Level Id="Opened circle" Width="9" Height="10">
+      <L>  ####</L>
+      <L>  #  ####</L>
+      <L> ##@ $  #</L>
+      <L> # *.*  #</L>
+      <L>## * * ##</L>
+      <L>#  * * #</L>
+      <L>#  *** #</L>
+      <L>##     #</L>
+      <L> ####  #</L>
+      <L>    ####</L>
+    </Level>
+    <Level Id="Jour J" Width="9" Height="11">
+      <L>  ####</L>
+      <L>  # @##</L>
+      <L>  #$$ #</L>
+      <L>### * ###</L>
+      <L>#  .*.$ #</L>
+      <L>#  .*.  #</L>
+      <L># #.*.# #</L>
+      <L># $$$   #</L>
+      <L>###   ###</L>
+      <L>  ##  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="The crucifix" Width="9" Height="12">
+      <L>  #####</L>
+      <L>  # . #</L>
+      <L>###$ $###</L>
+      <L>#  $ $  #</L>
+      <L># . . . #</L>
+      <L>### * ###</L>
+      <L>  # * #</L>
+      <L>  #$.$#</L>
+      <L>  # . #</L>
+      <L>  #$.$#</L>
+      <L>  # + #</L>
+      <L>  #####</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

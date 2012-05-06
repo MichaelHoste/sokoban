@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>The bagatelle collection</Title>
+  <Description>
+Bagatelle is a French word for a trinket, from the
+Italian for a conjuror's trick. The collection contains
+fairly simple puzzles (of less difficulty than my
+previous collection maelstrom) of various sizes.
+Some of the small puzzles are easier versions of
+puzzles in my other collections. Others are my
+take on some classical Sokoban themes (goals in
+a line, in a cross shape, objects outside goal
+room for tricky start and finish). The problems
+posed by each puzzle are of a fairly straightforward
+kind, but are nevertheless quite varied. The
+puzzles are in roughly ascending order of difficulty. 
+  </Description>
+  <Email>david@clickfest88.freeserve.co.uk</Email>
+  <Url>http://www.clickfest88.freeserve.co.uk</Url>
+  <LevelCollection Copyright="David Holland" MaxWidth="20" MaxHeight="17">
+    <Level Id="small2" Width="12" Height="14">
+      <L>   ####</L>
+      <L>   #  #</L>
+      <L>####$.######</L>
+      <L>#   $.$ #  #</L>
+      <L># $  +     #</L>
+      <L>####$*###* #</L>
+      <L>#### .### ##</L>
+      <L>#   #.  # #</L>
+      <L>#       # #</L>
+      <L>#### #  # ##</L>
+      <L>   # ####  #</L>
+      <L>   #       #</L>
+      <L>   #  ######</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="two piece7" Width="20" Height="10">
+      <L>   ########   #####</L>
+      <L>  ##   #  #####   #</L>
+      <L> ##    #  $       #</L>
+      <L> #  # ##   ##### ###</L>
+      <L>##. . .## ##  $    #</L>
+      <L>#   #      #@ $  # #</L>
+      <L>#   ..####  ####$# #</L>
+      <L>######## ## $      #</L>
+      <L>          #####   ##</L>
+      <L>              #####</L>
+    </Level>
+    <Level Id="four block1" Width="13" Height="13">
+      <L>#############</L>
+      <L>#     #     #</L>
+      <L># *.*$#$*.* #</L>
+      <L># .$. @..$. #</L>
+      <L># *.* # *.* #</L>
+      <L># $ $ # $.$ #</L>
+      <L>### ##### ###</L>
+      <L># $.$ # $.$ #</L>
+      <L># *.* # $.$ #</L>
+      <L># .$.. ..$  #</L>
+      <L># *.*$#$$ $ #</L>
+      <L>#     #     #</L>
+      <L>#############</L>
+    </Level>
+    <Level Id="small cross9" Width="11" Height="10">
+      <L>####</L>
+      <L>#  #######</L>
+      <L># $$ $ $ ##</L>
+      <L>#  $@$ #  #</L>
+      <L>## #*#  # #</L>
+      <L>#  *.   # #</L>
+      <L># $#.#. # #</L>
+      <L>#   .. #  #</L>
+      <L>### *..  ##</L>
+      <L>  ########</L>
+    </Level>
+    <Level Id="bowtie3" Width="19" Height="17">
+      <L>###################</L>
+      <L>##               ##</L>
+      <L> ##  $ $.$.$ $  ##</L>
+      <L>  ##  $.$.$.$  ##</L>
+      <L>   ## .$.$.$. ##</L>
+      <L>    ## .$.$. ##</L>
+      <L>     ## .$. ##</L>
+      <L>      ## . ##</L>
+      <L>       ##@##</L>
+      <L>      ## . ##</L>
+      <L>     ## .$. ##</L>
+      <L>    ## .$.$. ##</L>
+      <L>   ## .$.$.$. ##</L>
+      <L>  ##  $.$.$.$  ##</L>
+      <L> ##  $ $.$.$ $  ##</L>
+      <L>##               ##</L>
+      <L>###################</L>
+    </Level>
+    <Level Id="teapot3" Width="12" Height="10">
+      <L>     #######</L>
+      <L>     #     #</L>
+      <L>    ##.*$# #</L>
+      <L>    #  ..$ #</L>
+      <L>#####$# $###</L>
+      <L># $   # .#</L>
+      <L># #* *  $#</L>
+      <L>#@ .. #  #</L>
+      <L>###   ####</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="boxin10" Width="13" Height="13">
+      <L>  #########</L>
+      <L> ##   #   ##</L>
+      <L>##  # # #  ##</L>
+      <L>#  # $.$ #  #</L>
+      <L># #  * .  # #</L>
+      <L>#   .#*# $  #</L>
+      <L>###.$#@#$.###</L>
+      <L>#  $.###.$  #</L>
+      <L># #  . . .# #</L>
+      <L>#  #  $  #  #</L>
+      <L>##  #$#$#  ##</L>
+      <L> ##   #   ##</L>
+      <L>  #########</L>
+    </Level>
+    <Level Id="slinky5" Width="14" Height="10">
+      <L>####</L>
+      <L>#  #####</L>
+      <L># $#...###</L>
+      <L>#    $$$ #####</L>
+      <L># $#.*.  .#  #</L>
+      <L>#@ # $ .*.#$ #</L>
+      <L>##### $$$    #</L>
+      <L>    ## ...#$ #</L>
+      <L>     ######  #</L>
+      <L>          ####</L>
+    </Level>
+    <Level Id="fizzgig1" Width="16" Height="13">
+      <L>        ####</L>
+      <L>   ######  #####</L>
+      <L>#### .. $$ #   #</L>
+      <L>#    *$ #    $ #</L>
+      <L>#  # .## .## ###</L>
+      <L>## #*.##$### #</L>
+      <L> #     @     #</L>
+      <L>## ###$##.*# ##</L>
+      <L>#  ##. ##. #  #</L>
+      <L>#     # $* $  #</L>
+      <L>#  # $$ .. ####</L>
+      <L>####  ######</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="diode1" Width="11" Height="10">
+      <L> ####</L>
+      <L> #  #######</L>
+      <L> #   $@#  #</L>
+      <L> # #.#$   #</L>
+      <L> # #* .#$ #</L>
+      <L>## #. *  ##</L>
+      <L>#  .#$# ##</L>
+      <L>#       #</L>
+      <L>####   ##</L>
+      <L>   #####</L>
+    </Level>
+    <Level Id="line7" Width="20" Height="10">
+      <L>        ######</L>
+      <L>    #####    ####</L>
+      <L> #### $  $##   @###</L>
+      <L>## $  $ # $ ### $ ##</L>
+      <L>#  $ #$## # ### $  #</L>
+      <L># #$.............. #</L>
+      <L>#  $ ### #$####   ##</L>
+      <L>##   # $  $ # ##  #</L>
+      <L> #####      #  ####</L>
+      <L>     ########</L>
+    </Level>
+    <Level Id="handsaw1" Width="9" Height="10">
+      <L>#####</L>
+      <L>#   #####</L>
+      <L>#       #</L>
+      <L>##$# .$ #</L>
+      <L>#. * #$##</L>
+      <L>#.$.$  #</L>
+      <L>#.$.. ##</L>
+      <L>#$ ####</L>
+      <L>#@ #</L>
+      <L>####</L>
+    </Level>
+    <Level Id="raygun1" Width="17" Height="11">
+      <L>#################</L>
+      <L>#    ....    #  #</L>
+      <L># #.  $@$.**.   #</L>
+      <L># #. * #$#   #$ #</L>
+      <L>#   #. #  ####  #</L>
+      <L>#####$##      $ #</L>
+      <L>    #  ## ####  #</L>
+      <L>    ## $ $ # ####</L>
+      <L>     #  $  #</L>
+      <L>     ##    #</L>
+      <L>      ######</L>
+    </Level>
+    <Level Id="seesaw8" Width="9" Height="9">
+      <L>########</L>
+      <L>#      ##</L>
+      <L># @ # . #</L>
+      <L># $ $.$ #</L>
+      <L>##.#$#$##</L>
+      <L>#  . .  #</L>
+      <L># *$# . #</L>
+      <L>##     ##</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="tree12" Width="10" Height="12">
+      <L> ########</L>
+      <L> #   #  #</L>
+      <L>## #$# $#</L>
+      <L>#       #</L>
+      <L>#  #*# $##</L>
+      <L>#  ..*   #</L>
+      <L>####.### #</L>
+      <L>#  ..* $ #</L>
+      <L>#@ #.#  ##</L>
+      <L># $    $#</L>
+      <L>#  ###  #</L>
+      <L>#### ####</L>
+    </Level>
+    <Level Id="torch1" Width="10" Height="10">
+      <L>####  ####</L>
+      <L>#  ####  #</L>
+      <L># .    . #</L>
+      <L>#  ####$ #</L>
+      <L>## #    ##</L>
+      <L>## .$*# ##</L>
+      <L># *#$ #  #</L>
+      <L>#@$    . #</L>
+      <L>#  ####  #</L>
+      <L>####  ####</L>
+    </Level>
+    <Level Id="cross7" Width="17" Height="15">
+      <L>  #########</L>
+      <L>  #@   #  ####</L>
+      <L>  # $  # $$  #</L>
+      <L>  #  $ $  #  #</L>
+      <L>  ##$ #.#   ####</L>
+      <L>  ## ##.###    #</L>
+      <L>  #  *......#  #</L>
+      <L>  #  ##.##### ###</L>
+      <L>#### ##.##  # $ #</L>
+      <L>#    $   #$   # #</L>
+      <L># #  ##  $  #   #</L>
+      <L># ########  #####</L>
+      <L>#        # ##</L>
+      <L>########   #</L>
+      <L>       #####</L>
+    </Level>
+    <Level Id="moebius1" Width="8" Height="9">
+      <L>   ####</L>
+      <L> ###  #</L>
+      <L> #@$. ##</L>
+      <L> #$* . #</L>
+      <L>##  .  #</L>
+      <L># $*$* #</L>
+      <L>#   . ##</L>
+      <L>###  ##</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="fork7" Width="14" Height="12">
+      <L>     #####</L>
+      <L>  ####   #</L>
+      <L>  #  # $ #</L>
+      <L>  #. .@*######</L>
+      <L> ##..*.. #   #</L>
+      <L>##  #*#    # #</L>
+      <L>#  ##.# $$#  #</L>
+      <L># # $.    # ##</L>
+      <L>#   ## # $   #</L>
+      <L>###### $ $ $ #</L>
+      <L>     #  ######</L>
+      <L>     ####</L>
+    </Level>
+    <Level Id="shuffle2" Width="8" Height="8">
+      <L>########</L>
+      <L>#  #   #</L>
+      <L>#  * . #</L>
+      <L># .$*$ #</L>
+      <L>## * . #</L>
+      <L># *$*  #</L>
+      <L># @ #  #</L>
+      <L>########</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Kokoban</Title>
+  <Description>
+I place in this collection, the levels which cannot be in the other packages of
+levels.
+  </Description>
+  <Email>sokoban@online.fr</Email>
+  <Url>http://sokoban.online.fr</Url>
+  <LevelCollection Copyright="François Marques" MaxWidth="17" MaxHeight="12">
+    <Level Id="The bubble" Width="10" Height="7">
+      <L> #######</L>
+      <L>## + $ ###</L>
+      <L>#  * *   #</L>
+      <L># *#$#*  #</L>
+      <L>#  * *   #</L>
+      <L>##   . ###</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="Level 8" Width="7" Height="10">
+      <L> #####</L>
+      <L>## @ ##</L>
+      <L>#  $  #</L>
+      <L># .$. #</L>
+      <L>##$.$##</L>
+      <L># .$. #</L>
+      <L># $.$ #</L>
+      <L># .$. #</L>
+      <L>##   ##</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="Penta ban 1" Width="10" Height="11">
+      <L>  #####</L>
+      <L>  #...#</L>
+      <L>  #  .#</L>
+      <L>  #  .#</L>
+      <L>####  ####</L>
+      <L>#    #   #</L>
+      <L># $$@$   #</L>
+      <L>## ##   ##</L>
+      <L># $ $ ###</L>
+      <L>#     #</L>
+      <L>#######</L>
+    </Level>
+    <Level Id="The windmill" Width="12" Height="12">
+      <L>     ######</L>
+      <L>######    #</L>
+      <L>#    # $  #</L>
+      <L>#  $ ##$  #</L>
+      <L># $$. ..  #</L>
+      <L>#  #.##.####</L>
+      <L>####.##.#  #</L>
+      <L> #  ....$$ #</L>
+      <L> # $$## $  #</L>
+      <L> ##@$ #    #</L>
+      <L>  #   ######</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="The diamond" Width="9" Height="9">
+      <L> #######</L>
+      <L>##  +  ##</L>
+      <L>#  * *  #</L>
+      <L># * * * #</L>
+      <L>#  *$*  #</L>
+      <L># * * * #</L>
+      <L>#  * *  #</L>
+      <L>##     ##</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="The diamond revisited" Width="9" Height="9">
+      <L> #######</L>
+      <L>##  +  ##</L>
+      <L>#  * *  #</L>
+      <L># # # # #</L>
+      <L>#  *$*  #</L>
+      <L># # # # #</L>
+      <L>#  * *  #</L>
+      <L>##     ##</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="Déjà vu ?" Width="9" Height="9">
+      <L> #######</L>
+      <L>##  +  ##</L>
+      <L>#  # *  #</L>
+      <L># * * # #</L>
+      <L>#  *$*  #</L>
+      <L># # # * #</L>
+      <L>#  * #  #</L>
+      <L>##     ##</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="Move my body" Width="13" Height="11">
+      <L>   ####</L>
+      <L>   #. ###</L>
+      <L>   #    #</L>
+      <L>   #.# @####</L>
+      <L>####.# $#  #</L>
+      <L>#    # $   #</L>
+      <L>#      ##$ ##</L>
+      <L>#.   ##   $ #</L>
+      <L>#######     #</L>
+      <L>      ##   ##</L>
+      <L>       #####</L>
+    </Level>
+    <Level Id="Penta ban 2" Width="10" Height="9">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>###  #####</L>
+      <L># $. #   #</L>
+      <L>#@$  $   #</L>
+      <L>##$##$  ##</L>
+      <L># . . ###</L>
+      <L># . . #</L>
+      <L>#######</L>
+    </Level>
+    <Level Id="Squares" Width="9" Height="9">
+      <L>   ####</L>
+      <L>  ##  #</L>
+      <L> ## $ ##</L>
+      <L>## *.* ##</L>
+      <L># $. .$ #</L>
+      <L>#  *.*  #</L>
+      <L>### $   #</L>
+      <L>  # @ ###</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="Hexa ban 5" Width="9" Height="8">
+      <L>  #####</L>
+      <L>  #   ###</L>
+      <L>  #  .  #</L>
+      <L>### * * #</L>
+      <L>#   $#$##</L>
+      <L>#   *@* #</L>
+      <L>#  # .  #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="Octo ban 7" Width="11" Height="9">
+      <L> #### ####</L>
+      <L> #  # #  #</L>
+      <L> #  ###  #</L>
+      <L> #$$...$$#</L>
+      <L> #  .#.  #</L>
+      <L>##$$.+.$$##</L>
+      <L>#   ###   #</L>
+      <L>#   # #   #</L>
+      <L>##### #####</L>
+    </Level>
+    <Level Id="The butterfly" Width="9" Height="8">
+      <L> ### ###</L>
+      <L>#. ### .#</L>
+      <L>#.  #  .#</L>
+      <L>#@$$#   #</L>
+      <L> #     #</L>
+      <L>#  $# $ #</L>
+      <L>#   #   #</L>
+      <L> ### ###</L>
+    </Level>
+    <Level Id="Hepta ban 5" Width="10" Height="8">
+      <L>#######</L>
+      <L>#     #</L>
+      <L># #.*$####</L>
+      <L># # @ *  #</L>
+      <L># *$*.*  #</L>
+      <L>###     ##</L>
+      <L>  #  ####</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Hepta ban 6" Width="9" Height="9">
+      <L>  #####</L>
+      <L>  #   #</L>
+      <L>###$@$###</L>
+      <L>#  *.*  #</L>
+      <L># #*$*# #</L>
+      <L>#  .#.  #</L>
+      <L>#       #</L>
+      <L>#  ######</L>
+      <L>####</L>
+    </Level>
+    <Level Id="Hexa ban 10" Width="10" Height="8">
+      <L>   ####</L>
+      <L>####  ###</L>
+      <L>#    $  #</L>
+      <L># #$#$# ##</L>
+      <L>#@.*.*.. #</L>
+      <L>#  $     #</L>
+      <L>#  #######</L>
+      <L>####</L>
+    </Level>
+    <Level Id="Nano ban 1" Width="10" Height="9">
+      <L>    ####</L>
+      <L>  ###  ##</L>
+      <L>###  @  #</L>
+      <L>#  $.*.$##</L>
+      <L>#   ***  #</L>
+      <L>###$.*.$ #</L>
+      <L>  #    ###</L>
+      <L>  #  ###</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Deca ban 3" Width="9" Height="9">
+      <L> ######</L>
+      <L> #    ##</L>
+      <L> #  #  #</L>
+      <L>##$.$.$##</L>
+      <L># $.$.$ #</L>
+      <L># .$.$. #</L>
+      <L># .$+$.##</L>
+      <L>##  #  #</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="Deca ban 2" Width="10" Height="9">
+      <L>    #####</L>
+      <L>    #   ##</L>
+      <L>  ###$   #</L>
+      <L> ## .*.  #</L>
+      <L>## $ $*$##</L>
+      <L># .*+ . #</L>
+      <L>#  $*$ ##</L>
+      <L>### .  #</L>
+      <L>  ######</L>
+    </Level>
+    <Level Id="Des cabanes" Width="8" Height="10">
+      <L>  ####</L>
+      <L> ##  #</L>
+      <L> #   ###</L>
+      <L> # *** #</L>
+      <L>## . $ #</L>
+      <L>#  *@* #</L>
+      <L>#  $ . #</L>
+      <L>## *** #</L>
+      <L> ###   #</L>
+      <L>   #####</L>
+    </Level>
+    <Level Id="Hepta ban 7" Width="9" Height="9">
+      <L>  ######</L>
+      <L>  #    ##</L>
+      <L>  # #   #</L>
+      <L>###.*.  #</L>
+      <L># $  * ##</L>
+      <L>#  *.* #</L>
+      <L># $#$###</L>
+      <L>##  @#</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="The robot" Width="11" Height="10">
+      <L> ####  ####</L>
+      <L>##  ####  #</L>
+      <L>#         #</L>
+      <L>#  $ # $  #</L>
+      <L>#  #*.*#  #</L>
+      <L>### . .####</L>
+      <L> #  *.*  #</L>
+      <L> # $ ##$ #</L>
+      <L> #  # # @#</L>
+      <L> #### ####</L>
+    </Level>
+    <Level Id="Octo ban 9" Width="8" Height="9">
+      <L>#######</L>
+      <L>#  #  #</L>
+      <L># *** #</L>
+      <L>#  $  #</L>
+      <L># .@.###</L>
+      <L>#  $   #</L>
+      <L># ***  #</L>
+      <L>#  #  ##</L>
+      <L>#######</L>
+    </Level>
+    <Level Id="The ladder" Width="8" Height="10">
+      <L>########</L>
+      <L>#   .  #</L>
+      <L>#   $  #</L>
+      <L>## ***##</L>
+      <L>#      #</L>
+      <L>#  *** #</L>
+      <L>###   ##</L>
+      <L> # *** #</L>
+      <L> #  @  #</L>
+      <L> #######</L>
+    </Level>
+    <Level Id="The fat man" Width="11" Height="9">
+      <L>   #####</L>
+      <L>   # @ #</L>
+      <L>#### * ####</L>
+      <L>#   * *   #</L>
+      <L>#  *#.#*  #</L>
+      <L>##  *$* ###</L>
+      <L> #   *   #</L>
+      <L> ##  #   #</L>
+      <L>  ########</L>
+    </Level>
+    <Level Id="Octo ban 10" Width="9" Height="9">
+      <L>    ####</L>
+      <L> ####  ##</L>
+      <L>##      #</L>
+      <L># .$*#  #</L>
+      <L># $.@*  #</L>
+      <L># *#.$ ##</L>
+      <L>#  *$. #</L>
+      <L>###   ##</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="The big box" Width="11" Height="9">
+      <L>###########</L>
+      <L>#    #    #</L>
+      <L># $* + *$ #</L>
+      <L>#  *...*  #</L>
+      <L>##$$#*#$$##</L>
+      <L>#  *...*  #</L>
+      <L># $* . *$ #</L>
+      <L>#    #    #</L>
+      <L>###########</L>
+    </Level>
+    <Level Id="Octoban 11" Width="9" Height="9">
+      <L>  #####</L>
+      <L> ## . ##</L>
+      <L> #  +  #</L>
+      <L>##$*$*$##</L>
+      <L>#  .#.  #</L>
+      <L># $ . $ #</L>
+      <L>##  * ###</L>
+      <L> #  ###</L>
+      <L> ####</L>
+    </Level>
+    <Level Id="The castle" Width="10" Height="9">
+      <L>#### #####</L>
+      <L>#  ###   #</L>
+      <L>#   *+*  #</L>
+      <L>#   *** ##</L>
+      <L>###  #  #</L>
+      <L>  # *$* #</L>
+      <L>  #  *  #</L>
+      <L>  #  #  #</L>
+      <L>  #######</L>
+    </Level>
+    <Level Id="The pyramid" Width="15" Height="9">
+      <L>       #</L>
+      <L>      # #</L>
+      <L>     # @ #</L>
+      <L>    #  * ##</L>
+      <L>   ## *$*  #</L>
+      <L>  ## **.**  #</L>
+      <L> #           #</L>
+      <L>####  #########</L>
+      <L>###############</L>
+    </Level>
+    <Level Id="Octo ban 13" Width="11" Height="9">
+      <L>  #######</L>
+      <L>  #  #  #</L>
+      <L>###  #  ###</L>
+      <L>#  $   $  #</L>
+      <L>#  **#**  #</L>
+      <L>###.. .. ##</L>
+      <L>  # $#$ ##</L>
+      <L>  ## @ ##</L>
+      <L>   #####</L>
+    </Level>
+    <Level Id="Octo ban 14" Width="9" Height="9">
+      <L>####</L>
+      <L>#  ######</L>
+      <L>#       #</L>
+      <L># *.$*$ #</L>
+      <L>##$.#. ##</L>
+      <L># ..$*@ #</L>
+      <L># $     #</L>
+      <L>#####  ##</L>
+      <L>    ####</L>
+    </Level>
+    <Level Id="Deca ban 5" Width="11" Height="9">
+      <L>##### #####</L>
+      <L>#   ###   #</L>
+      <L># # $ $ # #</L>
+      <L>#  $#@# $ #</L>
+      <L>###.....###</L>
+      <L>#  $$.$$ ##</L>
+      <L># $..#..$ #</L>
+      <L>#   ##    #</L>
+      <L>###########</L>
+    </Level>
+    <Level Id="The stoper" Width="11" Height="8">
+      <L>   #####</L>
+      <L>#### @ ####</L>
+      <L>#   *#*   #</L>
+      <L>#    *    #</L>
+      <L>### *#.$###</L>
+      <L>  #  *  #</L>
+      <L>  #  #  #</L>
+      <L>  #######</L>
+    </Level>
+    <Level Id="Disorganized" Width="8" Height="9">
+      <L>  #####</L>
+      <L>  #   #</L>
+      <L> ##$  ##</L>
+      <L> #   $ #</L>
+      <L>##*# #+#</L>
+      <L># . $ .#</L>
+      <L># .$ $.#</L>
+      <L>#####  #</L>
+      <L>    ####</L>
+    </Level>
+    <Level Id="The monster" Width="10" Height="8">
+      <L>  ###</L>
+      <L>  #  ###</L>
+      <L>  #$ $  ##</L>
+      <L>### ...  #</L>
+      <L># $$.$*  #</L>
+      <L># .$**.###</L>
+      <L>#   @  #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="Almost circular" Width="10" Height="9">
+      <L>   ###</L>
+      <L> ##   ##</L>
+      <L># $$    #</L>
+      <L># $..**. #</L>
+      <L># #$..$# #</L>
+      <L># .**..$ #</L>
+      <L> #   @$$ #</L>
+      <L>  ##   ##</L>
+      <L>    ###</L>
+    </Level>
+    <Level Id="The jail" Width="10" Height="9">
+      <L>   #####</L>
+      <L>   #   #</L>
+      <L>####   ###</L>
+      <L>#  ****  #</L>
+      <L>#  * @*  #</L>
+      <L>#  *$ * ##</L>
+      <L>## .*** #</L>
+      <L> ##     #</L>
+      <L>  #######</L>
+    </Level>
+    <Level Id="Two bars" Width="9" Height="10">
+      <L>  ####</L>
+      <L>  #  #</L>
+      <L>###  ####</L>
+      <L>#  $.$  #</L>
+      <L># .*.*.@#</L>
+      <L>## #.$ ##</L>
+      <L> # $ $ #</L>
+      <L> ###  ##</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="Siamese twins" Width="17" Height="10">
+      <L>  #############</L>
+      <L>  #  ## @ ##  #</L>
+      <L>  #     #     #</L>
+      <L>###* *  #  * *###</L>
+      <L>#  $*$ ### $*$  #</L>
+      <L>#...$.. # ..*.. #</L>
+      <L>#  $*$# # #$*$  #</L>
+      <L>## * *  #  * * ##</L>
+      <L> #   #######   #</L>
+      <L> #####     #####</L>
+    </Level>
+    <Level Id="The staircase" Width="11" Height="11">
+      <L>   ####</L>
+      <L>   #  #</L>
+      <L>   #  #</L>
+      <L>####  ##</L>
+      <L>#  $*  ##</L>
+      <L>#  .$*  ###</L>
+      <L>### .$*   #</L>
+      <L>  ## .$*  #</L>
+      <L>   ## .@###</L>
+      <L>    ##  #</L>
+      <L>     ####</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

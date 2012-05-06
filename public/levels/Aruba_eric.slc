@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Aruba1</Title>
+  <Description>
+My first set from Aruba. Easy kids stuff. Lowest moves or pushes makes it still interesting.
+  </Description>
+  <Email>serenata@setarnet.aw</Email>
+  <LevelCollection Copyright="Eric F Tchong" MaxWidth="13" MaxHeight="13">
+    <Level Id="Aruba" Width="9" Height="13">
+      <L>#########</L>
+      <L>####.####</L>
+      <L>#  * *  #</L>
+      <L>#  ...  #</L>
+      <L>###.#.###</L>
+      <L>#  .#.  #</L>
+      <L>#   #   #</L>
+      <L># $###$ #</L>
+      <L>#   $   #</L>
+      <L>#  $#$  #</L>
+      <L># $ $ $ #</L>
+      <L>##  @  ##</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="Bonaire" Width="9" Height="9">
+      <L>#########</L>
+      <L>#       #</L>
+      <L># $..$# #</L>
+      <L># #.$.$ #</L>
+      <L># $..$@ #</L>
+      <L># #.$.$ #</L>
+      <L># $..$# #</L>
+      <L>#       #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="Cura‡ao" Width="9" Height="10">
+      <L>#########</L>
+      <L>#       #</L>
+      <L>#  ..*  #</L>
+      <L>#  * $  #</L>
+      <L># $.$   #</L>
+      <L># $+$   #</L>
+      <L>#  * $  #</L>
+      <L>#  ..*  #</L>
+      <L>#       #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="Daisy" Width="9" Height="9">
+      <L>#########</L>
+      <L>#       #</L>
+      <L># $..$$ #</L>
+      <L># #.$.  #</L>
+      <L># $.#+$ #</L>
+      <L># #.$.  #</L>
+      <L># $..$$ #</L>
+      <L>#       #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="ET is Eric Tchong" Width="13" Height="9">
+      <L>#############</L>
+      <L>#           #</L>
+      <L>#  ... ...  #</L>
+      <L>#  *$$ $.$  #</L>
+      <L># $*+$ $*$$ #</L>
+      <L>#  *$$ $.$  #</L>
+      <L>#  ...  .   #</L>
+      <L>#           #</L>
+      <L>#############</L>
+    </Level>
+    <Level Id="Nini" Width="10" Height="8">
+      <L>##########</L>
+      <L>#        #</L>
+      <L># $.$$.$ #</L>
+      <L>#  .* .  #</L>
+      <L># @. *.  #</L>
+      <L># $.$$.$ #</L>
+      <L>#        #</L>
+      <L>##########</L>
+    </Level>
+    <Level Id="Reginita" Width="9" Height="9">
+      <L>#########</L>
+      <L>#       #</L>
+      <L># $.*.$ #</L>
+      <L>#  .$.$ #</L>
+      <L># #.*@# #</L>
+      <L># $.$.  #</L>
+      <L># $.$.$ #</L>
+      <L>#       #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="Solange" Width="8" Height="10">
+      <L>########</L>
+      <L>#      #</L>
+      <L># $..$ #</L>
+      <L># .  . #</L>
+      <L># $+$$ #</L>
+      <L># $$.$ #</L>
+      <L># .  . #</L>
+      <L># $..$ #</L>
+      <L>#      #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="Tammy" Width="9" Height="8">
+      <L>#########</L>
+      <L>#       #</L>
+      <L># .*.*. #</L>
+      <L># .$.$. #</L>
+      <L>#  $.$  #</L>
+      <L># $$.$$ #</L>
+      <L>#   @   #</L>
+      <L>#########</L>
+    </Level>
+    <Level Id="Vilma" Width="9" Height="9">
+      <L>#########</L>
+      <L>#       #</L>
+      <L># .$$$. #</L>
+      <L>#  .$.  #</L>
+      <L># .$@$. #</L>
+      <L># $...$ #</L>
+      <L>#  $.$  #</L>
+      <L>#       #</L>
+      <L>#########</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>

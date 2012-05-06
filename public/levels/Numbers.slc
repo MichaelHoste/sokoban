@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE SokobanLevels SYSTEM "SokobanLev.dtd">
+<SokobanLevels>
+  <Title>Numbers</Title>
+  <Description>
+This collection consists of 10 levels: one for each digit. The difficulty of the levels
+varies. I think that you will be able to test them profitably.
+  </Description>
+  <Email>sokoban@online.fr</Email>
+  <Url>http://sokoban.online.fr</Url>
+  <LevelCollection Copyright="Francois Marques" MaxWidth="10" MaxHeight="13">
+    <Level Id="Zero" Width="7" Height="8">
+      <L>  ###</L>
+      <L> # @.#</L>
+      <L># $$* #</L>
+      <L>#  #. #</L>
+      <L>#     #</L>
+      <L># $#  #</L>
+      <L> #  .#</L>
+      <L>  ###</L>
+    </Level>
+    <Level Id="Number 1" Width="7" Height="10">
+      <L>  ####</L>
+      <L> ##  #</L>
+      <L>#    #</L>
+      <L>#    #</L>
+      <L>###$$#</L>
+      <L>  #..#</L>
+      <L>  #..#</L>
+      <L> #@$$ #</L>
+      <L> #    #</L>
+      <L> ######</L>
+    </Level>
+    <Level Id="Two" Width="8" Height="11">
+      <L> ####</L>
+      <L>##   #</L>
+      <L>#    .#</L>
+      <L># .#  #</L>
+      <L>###@  #</L>
+      <L> # $ #</L>
+      <L>## $ #</L>
+      <L># $ ####</L>
+      <L># $.   #</L>
+      <L>#    . #</L>
+      <L>########</L>
+    </Level>
+    <Level Id="Three" Width="8" Height="9">
+      <L>########</L>
+      <L>#      #</L>
+      <L>#@$ $$ #</L>
+      <L>####  #</L>
+      <L>#  ##  #</L>
+      <L>#  #. .#</L>
+      <L>#   .  #</L>
+      <L> #    #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Four" Width="8" Height="9">
+      <L>    ###</L>
+      <L>   #  #</L>
+      <L>  #   #</L>
+      <L> # #.$##</L>
+      <L>#  ..@ #</L>
+      <L>#  $$* #</L>
+      <L>####   #</L>
+      <L>   #  #</L>
+      <L>   ####</L>
+    </Level>
+    <Level Id="Five" Width="9" Height="12">
+      <L>  #######</L>
+      <L> ##     #</L>
+      <L>##    $ #</L>
+      <L># $ #####</L>
+      <L># $$@$ #</L>
+      <L>#       #</L>
+      <L>#####   #</L>
+      <L>#. # #  #</L>
+      <L>#. .##  #</L>
+      <L>#       #</L>
+      <L> #. .  #</L>
+      <L>  #####</L>
+    </Level>
+    <Level Id="Six" Width="8" Height="11">
+      <L>  ####</L>
+      <L> # .. #</L>
+      <L>#.@*$  #</L>
+      <L>#  #   #</L>
+      <L>#  #####</L>
+      <L>#. $  #</L>
+      <L>#  $   #</L>
+      <L>#.###  #</L>
+      <L># $ $  #</L>
+      <L> #    #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Seven" Width="8" Height="13">
+      <L>########</L>
+      <L>#      #</L>
+      <L># $ $  #</L>
+      <L>#### $ #</L>
+      <L>  #.$ ##</L>
+      <L>  #. ##</L>
+      <L> ##.@##</L>
+      <L> # .  #</L>
+      <L> # $$ #</L>
+      <L> # . ##</L>
+      <L>  #.$#</L>
+      <L>  #. #</L>
+      <L>  ####</L>
+    </Level>
+    <Level Id="Eight" Width="7" Height="10">
+      <L> #####</L>
+      <L>## @ ##</L>
+      <L># .$. #</L>
+      <L># $.$ #</L>
+      <L> #$.$#</L>
+      <L>#  .  #</L>
+      <L># $.$ #</L>
+      <L># .$. #</L>
+      <L>##   ##</L>
+      <L> #####</L>
+    </Level>
+    <Level Id="Nine" Width="10" Height="10">
+      <L>  ######</L>
+      <L> #  .  ##</L>
+      <L>#  *.*  ##</L>
+      <L># $#.#$  #</L>
+      <L># $   $  #</L>
+      <L>#######  #</L>
+      <L>#   ###  #</L>
+      <L># $.$.$  #</L>
+      <L>## .@.  #</L>
+      <L> #######</L>
+    </Level>
+  </LevelCollection>
+</SokobanLevels>
