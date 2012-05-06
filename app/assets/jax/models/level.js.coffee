@@ -270,7 +270,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
      
     $.ajax({
       type:     "GET",
-      url:      "/levels/" + pack + ".slc",
+      url:      "./levels/" + pack + ".slc",
       dataType: "xml",
       success:  @xml_parser
       async:    false

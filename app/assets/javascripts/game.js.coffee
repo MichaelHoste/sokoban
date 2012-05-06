@@ -140,7 +140,7 @@ populate_levels = (pack) ->
   
   $.ajax({
     type:     "GET",
-    url:      "/levels/" + pack + ".slc",
+    url:      "./levels/" + pack + ".slc",
     dataType: "xml",
     success:  get_level_list
     async:    false
