@@ -15,7 +15,9 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @won = false        # is this level succeed ?
     
     # load level
-    @xml_load("sasquatch", "10")
+    pack_name = $("#packs").find(".is-selected").text()
+    level_name = $("#levels").find(".is-selected").text()
+    @xml_load(pack_name, level_name)
     
     # display level
     @display_level()
@@ -32,8 +34,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     else if type == '$'
       object = Box.find 'actual'
     else if type == '*'
-      # FIX ME another texture
-      object = Box.find 'actual'
+      object = Boxgoal.find 'actual'
     else if type == 's'
       object = Ground.find 'actual'
     else if type == '.'
@@ -41,8 +42,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     else if type == '@'
       object = Pusher.find 'actual'
     else if type == '+'
-      # FIX ME another texture
-      object = Pusher.find 'actual'
+      object = Pushergoal.find 'actual'
     else
       object = null
     
@@ -293,7 +293,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       for j in [0..text.length-1]
         @grid[@cols_number*i + j] = text.charAt(j)
         
-    @print()
+    #@print()
 
     # Find initial position of pusher
     @initialize_pusher_position()
@@ -308,4 +308,3 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         @boxes_number = @boxes_number + 1
       if(pos == '+' || pos == '*' || pos == '.')
         @goals_number = @goals_number + 1
-###

@@ -1,0 +1,49 @@
+#packs
+{
+  float:left;
+  display:block;
+  width:130px;
+  height:470px;
+  overflow:auto;
+  border:1px solid;
+  
+  li
+  {
+    cursor:pointer;
+  }
+  
+  li:hover
+  {
+    text-decoration:underline;
+  }
+  
+  .is-selected
+  {
+    color:red;
+  }
+}
+
+#levels
+{
+  float:left;
+  display:block;
+  width:130px;
+  height:470px;
+  overflow:auto;
+  border:1px solid;
+  
+  li
+  {
+    cursor:pointer;
+  }
+  
+  li:hover
+  {
+    text-decoration:underline;
+  }
+  
+  .is-selected
+  {
+    color:red;
+  }
+}

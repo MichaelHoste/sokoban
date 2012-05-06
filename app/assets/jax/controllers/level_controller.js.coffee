@@ -47,3 +47,4 @@ Jax.Controller.create "Level", ApplicationController,
           delete @level.objects[index]
           @level.display_position(position[0], position[1])
           @world.addObject @level.objects[index]
+  
