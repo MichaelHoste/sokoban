@@ -1,6 +1,9 @@
 $ ->  
   populate_packs()
   
+  # initialize webgl
+  window.context = new Jax.Context('webgl')
+  
   $("#packs li").live('click', ->
     $(this).parent().find(".is-selected").removeClass("is-selected")
     $(this).addClass("is-selected")
@@ -10,15 +13,15 @@ $ ->
   $("#levels li").live('click', ->
     $(this).parent().find(".is-selected").removeClass("is-selected")
     $(this).addClass("is-selected")
-    delete window.context
-    window.context = new Jax.Context('webgl')
-    window.context.redirectTo("level")
+    window.context.redirectTo("level/index")
   )
   
+  # select first pack and first level
   $("#packs li:first").addClass("is-selected")
   populate_levels($("#packs li:first").text())
   $("#levels li:first").addClass("is-selected")
-  window.context = new Jax.Context('webgl')
+  
+  # load selected level in webgl
   window.context.redirectTo("level")
   
 populate_packs = ->

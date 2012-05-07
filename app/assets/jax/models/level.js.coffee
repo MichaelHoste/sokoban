@@ -29,24 +29,12 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         
   display_position: (m, n) ->
     type = @read_pos(m, n)
-    if type == '#'
-      object = Wall.find 'actual'
-    else if type == '$'
-      object = Box.find 'actual'
-    else if type == '*'
-      object = Boxgoal.find 'actual'
-    else if type == 's'
-      object = Ground.find 'actual'
-    else if type == '.'
-      object = Goal.find 'actual'
-    else if type == '@'
-      object = Pusher.find 'actual'
-    else if type == '+'
-      object = Pushergoal.find 'actual'
-    else
-      object = null
     
-    if object != null
+    # create object
+    if type != ' ' and not @objects[@cols_number*m + n]
+      object = Ground.find 'actual'
+      @objects[@cols_number*m + n] = object
+      
       start_col = -@cols_number/2.0 + 0.5
       start_row = @rows_number/2.0 - 0.5
       
@@ -54,11 +42,25 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       d_width = @cols_number / (2*0.414213563/14*18) # 0.41... = tan(22.5°), 14*18 is the ration height/width
       d = d_height if d_height > d_width
       d = d_width  if d_width  > d_height
-      
+            
       object.camera.setPosition [start_col + n, start_row - m, -d]
       
-    @objects[@cols_number*m + n] = object
-
+    # refresh material
+    if type == '#'
+      object.mesh.material = "wall"
+    else if type == '$'
+      object.mesh.material = "box"
+    else if type == '*'
+      object.mesh.material = "boxgoal"
+    else if type == 's'
+      object.mesh.material = "ground"
+    else if type == '.'
+      object.mesh.material = "goal"
+    else if type == '@'
+      object.mesh.material = "pusher"
+    else if type == '+'
+      object.mesh.material = "pushergoal"
+      
   ###
     Read the value of position (m,n).
     Position start in the upper-left corner of the grid with (0,0).

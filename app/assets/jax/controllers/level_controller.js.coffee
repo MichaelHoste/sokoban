@@ -2,15 +2,28 @@ Jax.Controller.create "Level", ApplicationController,
   index: ->
     @movement = { up: 0, down: 0, left: 0, right: 0 }
     
+    # unload old level if exists
+    if @level
+      for i in [0..@level.cols_number*@level.rows_number-1]
+        if @level.objects[i]
+          @world.removeObject @level.objects[i].__unique_id
+          @level.objects[i].dispose()
+          delete @level.objects[i]
+      @world.removeObject @level.__unique_id
+      delete @level.objects
+      delete @level.grid
+      delete @level
+    
     # load level and add to the scene
     @level = Level.find "actual"
     @world.addObject @level
     
     # load the components of the level and add on the scene
     for i in [0..@level.cols_number*@level.rows_number-1]
-      if @level.objects[i] != null
+      if @level.objects[i]
         @world.addObject @level.objects[i]
-              
+        
+    #alert(@world.countObjects())
     #@level.print()
       
   update: (timechange) ->    
