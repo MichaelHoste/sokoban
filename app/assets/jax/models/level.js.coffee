@@ -32,7 +32,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     
     # create object
     if type != ' ' and not @objects[@cols_number*m + n]
-      object = Ground.find 'actual'
+      object = Square.find 'actual'
       @objects[@cols_number*m + n] = object
       
       start_col = -@cols_number/2.0 + 0.5
@@ -46,14 +46,14 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       object.camera.setPosition [start_col + n, start_row - m, -d]
       
     # refresh material
-    if type == '#'
+    if type == 's'
+      object.mesh.material = "ground"
+    else if type == '#'
       object.mesh.material = "wall"
     else if type == '$'
       object.mesh.material = "box"
     else if type == '*'
       object.mesh.material = "boxgoal"
-    else if type == 's'
-      object.mesh.material = "ground"
     else if type == '.'
       object.mesh.material = "goal"
     else if type == '@'
