@@ -1,5 +1,6 @@
 Jax.getGlobal()['Level'] = Jax.Model.create
   
+  # Constructor
   after_initialize: ->
     @id = 0             # Level number (starting with 1)
     @name = ""          # Name of this level
@@ -14,7 +15,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @pusher_pos_n = 0   # N position of the pusher
     @won = false        # is this level succeed ?
     
-    # load level
+    # load selected level
     pack_name = $("#packs").find(".is-selected").text()
     level_name = $("#levels").find(".is-selected").text()
     @xml_load(pack_name, level_name)
@@ -22,11 +23,20 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     # display level
     @display_level()
 
+  ###
+    Create (create objects) or refresh (change textures) the level
+  ###
   display_level: ->
     for m in [0..@rows_number-1]
       for n in [0..@cols_number-1]
         @display_position(m, n)
-        
+  
+  ###
+    display a specific position of the level. If the object doesn't exist,
+    create it, and if the object exists, refresh the texture
+    @param m number of the row to create/refresh
+    @param n number of the column to create/refresh
+  ###
   display_position: (m, n) ->
     type = @read_pos(m, n)
     
@@ -121,7 +131,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @param direction Direction where to move the pusher (u,d,l,r,U,D,L,R)
     @return 0 if no move.
             1 if normal move.
-            2 if box move.
+            2 if box push.
   ###
   move: (direction) ->
     action = 1
@@ -193,7 +203,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     Return true if all boxes are in their goals.
     @return true if all boxes are in their goals, false if not
   ###
-  isWon: ->
+  is_won: ->
     for i in [0..@rowsNumber*@colsNumber-1]
       if grid[i] == '$'
         return false;
@@ -264,8 +274,8 @@ Jax.getGlobal()['Level'] = Jax.Model.create
   
   ###
     Load a specific level in a XML pack
-    @pack name of the file (without .slc)
-    @id id of the level (string) 
+    @param pack name of the file (without .slc)
+    @param id of the level (string) 
   ###
   xml_load: (pack, id) ->
     @id = id
@@ -278,7 +288,12 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       async:    false
       context:  @
     })
-    
+  
+  ### 
+    take the xml buffer of a pack (callback of "xml_load") and load 
+    the "id" level in it (where id is the string name of level)
+    @param xml the buffer (callback of xml_load)
+  ###
   xml_parser: (xml) ->    
     xml_level = $(xml).find('Level[Id="' + @id + '"]')
     
@@ -295,8 +310,6 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       for j in [0..text.length-1]
         @grid[@cols_number*i + j] = text.charAt(j)
         
-    #@print()
-
     # Find initial position of pusher
     @initialize_pusher_position()
 
