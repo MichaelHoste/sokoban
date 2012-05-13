@@ -39,6 +39,12 @@ Jax.getGlobal()['Path'] = Jax.Model.create
       @moves.push(direction.toUpperCase())
   
   ###
+    Get last move or push
+  ###
+  get_last_move: ->
+    last_move = @moves[@moves.length - 1]
+      
+  ###
     Delete last move or push
   ###
   delete_last_move: ->

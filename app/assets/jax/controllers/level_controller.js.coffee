@@ -35,12 +35,15 @@ Jax.Controller.create "Level", ApplicationController,
     
   key_pressed: (event) ->
     has_moved = 0
+    has_deleted = 0
     
+    move_letter = ' '
     switch event.keyCode
       when KeyEvent.DOM_VK_UP    then move_letter = 'u'
       when KeyEvent.DOM_VK_DOWN  then move_letter = 'd'
       when KeyEvent.DOM_VK_LEFT  then move_letter = 'l'
       when KeyEvent.DOM_VK_RIGHT then move_letter = 'r'
+      when KeyEvent.DOM_VK_D     then has_deleted = @level.delete_last_move(@path)
       
     has_moved = @level.move(move_letter)
 
@@ -49,23 +52,31 @@ Jax.Controller.create "Level", ApplicationController,
       # save move
       @path.add_move(move_letter) if has_moved == 1
       @path.add_push(move_letter) if has_moved == 2
-      #@path.print()
-      
+
+    if has_moved != 0 or has_deleted != 0
+      @refresh_level(@level)
+  
+  # FIXME optimize squares to refresh (REVERSE !)
+  refresh_level: (level) ->
       # take the new pusher position and its 4 direct neighbours
-      pusher_m = @level.pusher_pos_m
-      pusher_n = @level.pusher_pos_n
+      pusher_m = level.pusher_pos_m
+      pusher_n = level.pusher_pos_n
       positions =
         [
           [pusher_m,   pusher_n],
           [pusher_m+1, pusher_n],
           [pusher_m-1, pusher_n],
           [pusher_m,   pusher_n+1],
-          [pusher_m,   pusher_n-1]
+          [pusher_m,   pusher_n-1],
+          
+          [pusher_m+2, pusher_n],   # if reverse
+          [pusher_m-2, pusher_n],   # if reverse
+          [pusher_m,   pusher_n+2], # if reverse
+          [pusher_m,   pusher_n-2], # if reverse
         ] 
    
       # visually refresh these 5 positions
       for position in positions
-        index = @level.cols_number*position[0] + position[1]
-        if @level.read_pos(position[0], position[1]) != 'E'
-          @level.display_position(position[0], position[1])
-
+        index = level.cols_number*position[0] + position[1]
+        if level.read_pos(position[0], position[1]) != 'E'
+          level.display_position(position[0], position[1])
