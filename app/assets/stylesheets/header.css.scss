@@ -1,0 +1,81 @@
+@import "utils.css.scss";
+
+body
+{
+	margin:0px;
+	padding:0px;
+	background-color:$lighter;
+}
+
+header
+{
+	margin-top:5px;
+	width:100%;
+	height:100px;
+	background-color:white;
+	border-top:1px solid $light;
+	
+	#limited-header
+	{
+		position:absolute;
+		width:1000px;
+		margin-left:50%;
+		left:-500px;
+		
+		#title
+		{
+			margin-top:20px;
+			font-weight:bold;
+			float:left;
+			font-size:50px;
+		}
+
+		#menus
+		{
+			float:right;
+			
+			ul
+			{
+				margin-top:30px;
+				
+				li
+				{
+					float:left;
+					list-style-type:none;
+					padding:10px;
+					padding-left:20px;
+					padding-right:20px;
+					margin-left:15px;
+					@extend .button_off;
+				}
+				
+				li:hover
+				{
+					@extend .button_on;
+				}
+				
+				.is-selected
+			  {
+					@extend .button_selected;
+			  }
+			}
+		}
+	}
+}
+
+#banner
+{
+	@extend .border_box;
+	
+	width:100%;
+	padding-top:20px;
+	padding-bottom:20px;
+	border-top:1px solid $light;
+	border-bottom:1px solid $light;
+	background-color:$lighter;
+	font-family:arial;
+	font-weight:bold;
+	text-align:center;
+	font-size:23px;
+	color:#444444;
+}

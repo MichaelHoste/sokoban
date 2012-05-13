@@ -1,49 +1,85 @@
-#packs
-{
-  float:left;
-  display:block;
-  width:130px;
-  height:470px;
-  overflow:auto;
-  border:1px solid;
-  
-  li
-  {
-    cursor:pointer;
-  }
-  
-  li:hover
-  {
-    text-decoration:underline;
-  }
-  
-  .is-selected
-  {
-    color:red;
-  }
-}
+@import "utils.css.scss";
 
-#levels
+#content
 {
-  float:left;
-  display:block;
-  width:130px;
-  height:470px;
-  overflow:auto;
-  border:1px solid;
-  
-  li
-  {
-    cursor:pointer;
-  }
-  
-  li:hover
-  {
-    text-decoration:underline;
-  }
-  
-  .is-selected
-  {
-    color:red;
-  }
+	width:100%;
+	height:550px;
+	background-color:white;
+	
+	#limited-content
+	{
+		position:absolute;
+		padding-top:30px;
+		width:1000px;
+		margin-left:50%;
+		left:-500px;
+		
+		#menu_levels
+		{
+			@extend .border_box;
+			float:left;
+			width:260px;
+			height:470px;
+			
+			#packs
+			{
+			  height:35px;
+			  overflow:hidden;
+				text-align:center;
+				font-weight:bold;
+				text-transform:uppercase;
+			}
+
+			#levels
+			{				
+				height:435px;
+			  overflow:auto;
+				border:1px solid $lighter;
+				
+
+			  li
+			  {
+					@extend .border_box;
+				
+					float:left;
+					width:60px;
+					margin:10px;
+					padding:5px;
+					text-align:left;
+					list-style-type:none;
+					@extend .button_off;
+					
+					.star
+					{
+						display:block;
+						float:left;
+						padding-right:10px;
+					}
+					
+					.level-id
+					{
+						display:block;
+						float:left;
+						width:15px;
+						text-align:right;
+					}
+			  }
+
+			  li:hover
+			  {
+					@extend .button_on;
+			  }
+
+			  .is-selected
+			  {
+					@extend .button_selected;
+			  }
+			}
+		}
+		
+		canvas
+		{
+			float:right;
+		}
+	}
 }

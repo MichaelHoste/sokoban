@@ -49,7 +49,7 @@ Jax.Controller.create "Level", ApplicationController,
       # save move
       @path.add_move(move_letter) if has_moved == 1
       @path.add_push(move_letter) if has_moved == 2
-      @path.print()
+      #@path.print()
       
       # take the new pusher position and its 4 direct neighbours
       pusher_m = @level.pusher_pos_m
@@ -67,7 +67,5 @@ Jax.Controller.create "Level", ApplicationController,
       for position in positions
         index = @level.cols_number*position[0] + position[1]
         if @level.read_pos(position[0], position[1]) != 'E'
-          @world.removeObject @level.objects[index]
-          delete @level.objects[index]
           @level.display_position(position[0], position[1])
-          @world.addObject @level.objects[index]
+

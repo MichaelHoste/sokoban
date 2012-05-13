@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Sokojax</title>
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag 'jax/application' %>
-  <%= javascript_include_tag 'jax/runtime' %>
-  <%= javascript_include_tag 'jax/controller-list' %>
-  <%= javascript_include_tag 'game' %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Sokojax</title>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag 'jax/application' %>
+    <%= javascript_include_tag 'jax/runtime' %>
+    <%= javascript_include_tag 'jax/controller-list' %>
+    <%= javascript_include_tag 'game' %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    
+    <%= render :template => "layouts/header" %>
+    <%= render :template => "layouts/banner" %>
+    
+    <div id="content">
+      <div id="limited-content">
+        <%= yield %>
+      </div>
+    </div>
+  
+  </body>
 </html>

@@ -1,0 +1,71 @@
+$lighter: #f1f4f8;
+$light: #729fcf;
+$dark: #4575a8;
+$darker: #2d5a8b;
+
+.border_box
+{
+	/* the padding is taken "inside" the box width size */
+	-webkit-box-sizing:border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing:border-box;    /* Firefox, other Gecko */
+	box-sizing:border-box;         /* Opera/IE 8+ */
+}
+
+.button_off
+{
+	border:1px solid #DDDDDD;
+
+	background-image: linear-gradient(bottom, rgb(250,250,250) 47%, rgb(245,245,245) 82%);
+	background-image: -o-linear-gradient(bottom, rgb(250,250,250) 47%, rgb(245,245,245) 82%);
+	background-image: -moz-linear-gradient(bottom, rgb(250,250,250) 47%, rgb(245,245,245) 82%);
+	background-image: -webkit-linear-gradient(bottom, rgb(250,250,250) 47%, rgb(245,245,245) 82%);
+	background-image: -ms-linear-gradient(bottom, rgb(250,250,250) 47%, rgb(245,245,245) 82%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.47, rgb(250,250,250)),
+		color-stop(0.82, rgb(245,245,245))
+	);
+}
+
+.button_on
+{
+	background-image: linear-gradient(bottom, $light 47%, darken($light, 7%) 82%);
+	background-image: -o-linear-gradient(bottom, $light 47%, darken($light, 7%) 82%);
+	background-image: -moz-linear-gradient(bottom, $light 47%, darken($light, 7%) 82%);
+	background-image: -webkit-linear-gradient(bottom, $light 47%, darken($light, 7%) 82%);
+	background-image: -ms-linear-gradient(bottom, $light 47%, darken($light, 7%) 82%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.47, $light),
+		color-stop(0.82, darken($light, 7%))
+	);
+	
+	cursor:pointer;
+	color:#F5F5F5;
+}
+
+.button_selected
+{
+	background-image: linear-gradient(bottom, darken($lighter, 3%) 47%, darken($lighter, 10%) 82%);
+	background-image: -o-linear-gradient(bottom, darken($lighter, 3%) 47%, darken($lighter, 10%) 82%);
+	background-image: -moz-linear-gradient(bottom, darken($lighter, 3%) 47%, darken($lighter, 10%) 82%);
+	background-image: -webkit-linear-gradient(bottom, darken($lighter, 3%) 47%, darken($lighter, 10%) 82%);
+	background-image: -ms-linear-gradient(bottom, darken($lighter, 3%) 47%, darken($lighter, 10%) 82%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.47, darken($lighter, 3%)),
+		color-stop(0.82, darken($lighter, 10%))
+	);
+	
+	cursor:pointer;
+	color:#333333;
+}

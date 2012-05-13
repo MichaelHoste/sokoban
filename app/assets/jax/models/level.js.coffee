@@ -39,7 +39,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
   ###
   display_position: (m, n) ->
     type = @read_pos(m, n)
-    
+        
     # create object
     if type != ' ' and not @objects[@cols_number*m + n]
       object = Square.find 'actual'
@@ -48,13 +48,15 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       start_col = -@cols_number/2.0 + 0.5
       start_row = @rows_number/2.0 - 0.5
       
-      d_height = @rows_number / (2*0.414213563) * 1.1 # 0.41... = tan(22.5°), *0.9 is to create a border
-      d_width = @cols_number / (2*0.414213563/14*18) # 0.41... = tan(22.5°), 14*18 is the ration height/width
+      d_height = @rows_number / (2*0.414213563) * 1.1 # 0.41 = tan(22.5°), *0.9 is to create a border
+      d_width = @cols_number / (2*0.414213563/14*20) # 0.41 = tan(22.5°), 14*20 is the ration height/width
       d = d_height if d_height > d_width
       d = d_width  if d_width  > d_height
             
       object.camera.setPosition [start_col + n, start_row - m, -d]
-      
+    else
+      object = @objects[@cols_number*m + n]
+        
     # refresh material
     if type == 's'
       object.mesh.material = "ground"
@@ -69,7 +71,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     else if type == '@'
       object.mesh.material = "pusher"
     else if type == '+'
-      object.mesh.material = "pushergoal"
+      object.mesh.material = "pushergoal"    
       
   ###
     Read the value of position (m,n).
@@ -183,8 +185,6 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         else
           @write_pos(m_2, n_2, '$')
 
-        # Save push
-        #actualPath->addPush(dir)
         state = 2
 
       # Test on cell (m_1, n_1)
@@ -192,10 +192,6 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         @write_pos(m_1, n_1, '+')
       else
         @write_pos(m_1, n_1, '@')
-
-      # Save move
-      #if state != 2
-      # actualPath->addMove(dir)
 
     return state
   
