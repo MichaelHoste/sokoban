@@ -78,4 +78,3 @@ Jax.Controller.create "Level", ApplicationController,
       @world.removeObject level.__unique_id
       delete level.objects
       delete level.grid
-      delete level
