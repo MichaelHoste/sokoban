@@ -4,31 +4,19 @@ Jax.Controller.create "Level", ApplicationController,
     @movement = { up: 0, down: 0, left: 0, right: 0 }
     
     # unload old level if exists
-    if @level
-      for i in [0..@level.cols_number*@level.rows_number-1]
-        if @level.objects[i]
-          @world.removeObject @level.objects[i].__unique_id
-          @level.objects[i].dispose()
-          delete @level.objects[i]
-      @world.removeObject @level.__unique_id
-      delete @level.objects
-      delete @level.grid
-      delete @level
+    @unload_level(@level)
     
-    # load level and add to the scene
+    # load selected level and add it to the world
     @level = Level.find "actual"
     @world.addObject @level
     
     # Initalize path
     @path = Path.find "actual"
         
-    # load the components of the level and add on the scene
+    # load the components of the level and add them on the world
     for i in [0..@level.cols_number*@level.rows_number-1]
       if @level.objects[i]
         @world.addObject @level.objects[i]
-        
-    #alert(@world.countObjects())
-    #@level.print()
       
   update: (timechange) ->    
     ;
@@ -68,15 +56,26 @@ Jax.Controller.create "Level", ApplicationController,
           [pusher_m-1, pusher_n],
           [pusher_m,   pusher_n+1],
           [pusher_m,   pusher_n-1],
-          
           [pusher_m+2, pusher_n],   # if reverse
           [pusher_m-2, pusher_n],   # if reverse
           [pusher_m,   pusher_n+2], # if reverse
           [pusher_m,   pusher_n-2], # if reverse
         ] 
    
-      # visually refresh these 5 positions
+      # visually refresh these 9 positions
       for position in positions
         index = level.cols_number*position[0] + position[1]
         if level.read_pos(position[0], position[1]) != 'E'
           level.display_position(position[0], position[1])
+          
+  unload_level: (level) ->
+    if level
+      for i in [0..level.cols_number*level.rows_number-1]
+        if level.objects[i]
+          @world.removeObject level.objects[i].__unique_id
+          level.objects[i].dispose()
+          delete level.objects[i]
+      @world.removeObject level.__unique_id
+      delete level.objects
+      delete level.grid
+      delete level
