@@ -6,8 +6,7 @@ gem "jax", "~> 2.0.0"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
+gem 'mysql2'
 gem 'json'
 
 # Gems used only for assets and not required
@@ -23,6 +22,20 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+# Development tools
+group :development do
+  gem 'heroku'
+  gem 'quiet_assets'
+end
+
+# Production/deployment tools
+group :production do
+  gem 'thin'
+#  gem 'therubyracer-heroku', '0.8.1.pre3'
+  gem 'pg'
+end
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
