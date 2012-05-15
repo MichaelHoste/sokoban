@@ -12,3 +12,5 @@
 //
 //= require jquery
 //= require vendor
+//= require _utils
+//= require game

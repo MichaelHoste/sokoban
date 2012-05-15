@@ -1,0 +1,88 @@
+@import "utils.css.scss";
+
+#session
+{	
+	.session-button
+	{
+		margin-top:10px;
+		margin-left:10px;
+		margin-right:10px;
+		padding-top:10px;
+		padding-bottom:10px;
+		padding-left:30px;
+		padding-right:30px;
+		
+		-webkit-box-shadow: 0px 0px 1px $light;
+		-moz-box-shadow: 0px 0px 1px $light;
+		box-shadow: 0px 0px 1px $light;
+		
+		background-color:#F5F5F5;
+		
+		cursor:pointer;
+		
+		.session-connect
+		{
+			@extend .border_box;
+			float:left;
+		}
+		
+		.session-text
+		{
+			@extend .border_box;
+			width:290px;
+			float:left;
+			font-size:12px;
+			padding:22px;
+			padding-left:30px;
+
+			.session-text-title
+			{
+				font-weight:bold;
+				font-size:14px;
+			}
+
+			ul
+			{
+				margin-top:5px;
+				margin-bottom:5px;
+
+				li
+				{
+					list-style-type:none;
+					margin-left:24px;
+				}
+			} 
+		}
+	}
+	
+	.session-button:hover
+	{
+		-webkit-box-shadow: 0px 0px 7px $dark;
+		-moz-box-shadow: 0px 0px 7px $dark;
+		box-shadow: 0px 0px 7px $dark;
+	}
+	
+	.session-note
+	{
+		text-align:center;
+		margin-top:10px;
+		font-size:10px;
+	}
+	
+	.session-regular-link
+	{
+		text-align:right;
+		margin-top:10px;
+		
+		a
+		{
+			font-size:10px;
+			color:black;
+		}
+		
+		a:hover
+		{
+		}
+	}
+}
+

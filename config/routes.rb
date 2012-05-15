@@ -1,6 +1,11 @@
 Sokojax::Application.routes.draw do
   mount Jax::Engine => "/jax" unless Rails.env == "production"
   root :to => "games#index"
+  
+  # OmniAuth (facebook)
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failure'
+  get '/login', :to => 'sessions#new' 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
