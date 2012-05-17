@@ -9,6 +9,7 @@ gem "jax", "~> 2.0.0"
 gem 'mysql2'
 gem 'json'
 gem 'omniauth-facebook'
+gem "koala", "~> 1.4.1"
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  pack_id: 1
+  name: MyString
+  width: 1
+  height: 1
+  copryright: MyString
+  grid: MyText
+  box_count: 1
+  goal_count: 1
+  pusher_pos_m: 1
+  pusher_pos_n: 1
+
+two:
+  id: 1
+  pack_id: 1
+  name: MyString
+  width: 1
+  height: 1
+  copryright: MyString
+  grid: MyText
+  box_count: 1
+  goal_count: 1
+  pusher_pos_m: 1
+  pusher_pos_n: 1

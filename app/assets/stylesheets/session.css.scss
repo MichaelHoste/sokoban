@@ -8,13 +8,13 @@
 		margin-left:10px;
 		margin-right:10px;
 		padding-top:10px;
-		padding-bottom:10px;
+		padding-bottom:0px;
 		padding-left:30px;
 		padding-right:30px;
 		
-		-webkit-box-shadow: 0px 0px 1px $light;
-		-moz-box-shadow: 0px 0px 1px $light;
-		box-shadow: 0px 0px 1px $light;
+		-webkit-box-shadow: 0px 0px 7px $dark;
+		-moz-box-shadow: 0px 0px 7px $dark;
+		box-shadow: 0px 0px 7px $dark;
 		
 		background-color:#F5F5F5;
 		
@@ -49,7 +49,7 @@
 				li
 				{
 					list-style-type:none;
-					margin-left:24px;
+					margin-left:20px;
 				}
 			} 
 		}
@@ -57,9 +57,7 @@
 	
 	.session-button:hover
 	{
-		-webkit-box-shadow: 0px 0px 7px $dark;
-		-moz-box-shadow: 0px 0px 7px $dark;
-		box-shadow: 0px 0px 7px $dark;
+		background-color:$lighter;
 	}
 	
 	.session-note
@@ -72,7 +70,7 @@
 	.session-regular-link
 	{
 		text-align:right;
-		margin-top:10px;
+		margin-top:24px;
 		
 		a
 		{

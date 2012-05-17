@@ -1,8 +1,13 @@
 class SessionsController < ApplicationController
   def create
-    auth_hash = request.env['omniauth.auth']
+    credentials = request.env['omniauth.auth']['credentials']
+    @user = User.find_or_create(credentials)
 
-    render :text => auth_hash.inspect
+    if @user.save!
+      redirect_to :root
+    else
+      render :text => "failed"
+    end
   end
   
   def new
