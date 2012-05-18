@@ -6,10 +6,12 @@ class User < ActiveRecord::Base
   attr_protected :created_at, :updated_at
   
   # Associations
-  has_many :friends,
-           :primary_key => :f_id,
-           :through => :user_user_links
+  has_many :user_user_links,
+           :primary_key => :f_id
   
+  has_many :friends,
+           :through => :user_user_links
+             
   # Nested attributes
   
   # Validations
@@ -19,7 +21,7 @@ class User < ActiveRecord::Base
   
   # Methods
   
-  def self.find_or_create(credentials)
+  def self.update_or_create(credentials)
     token = credentials['token']
     graph = Koala::Facebook::API.new(token)
     profile = graph.get_object('me')
@@ -27,6 +29,7 @@ class User < ActiveRecord::Base
     # Hash with user values
     user_hash = {
       :name => profile['name'],
+      :email => profile['email'],
       :picture => graph.get_picture('me'),
       :gender => profile['gender'],
       :locale => profile['locale'],
@@ -50,11 +53,35 @@ class User < ActiveRecord::Base
     if not user.empty?
       user = user.first
       user.attributes = user_hash
-      Rails.logger.info("UPDATED")
       user
     else
-      Rails.logger.info("CREATED")
       User.new(user_hash)
+    end
+  end
+  
+  # create new user for each friend and link it
+  def build_friendships
+    graph = Koala::Facebook::API.new(self.f_token)
+    friends = graph.get_connections('me', 'friends')
+    
+    # delete each friend relation of user (in user_user_link)
+    self.user_user_links.destroy_all
+    
+    # update users and user_user_link relation
+    friends.each do |friend|
+      user_hash = { :f_id => friend['id'], :name => friend['name'] }
+      user = User.where(:f_id => friend['id'])
+      if not user.empty?
+        user = user.first
+        user.attributes = user_hash
+      else
+        user = User.create!(user_hash)
+      end
+      
+      Rails.logger.info("USER : " + user.to_s)
+      
+      self.user_user_links << UserUserLink.new(:user_id => self.f_id, :friend_id => user.f_id)
+      self.save!
     end
   end
 end

@@ -41,14 +41,14 @@ ActiveRecord::Schema.define(:version => 20120517140116) do
   end
 
   create_table "user_user_links", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :limit => 8
+    t.integer  "friend_id",  :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   add_index "user_user_links", ["friend_id"], :name => "index_user_user_links_on_friend_id"
-  add_index "user_user_links", ["user_id"], :name => "index_user_user_links_on_user_id", :unique => true
+  add_index "user_user_links", ["user_id"], :name => "index_user_user_links_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20120517140116) do
     t.string   "picture"
     t.string   "gender"
     t.string   "locale"
-    t.integer  "f_id"
+    t.integer  "f_id",           :limit => 8
     t.string   "f_token"
     t.string   "f_first_name"
     t.string   "f_middle_name"
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(:version => 20120517140116) do
     t.boolean  "f_verified"
     t.boolean  "f_expires"
     t.datetime "f_expires_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "users", ["f_id"], :name => "index_users_on_f_id", :unique => true

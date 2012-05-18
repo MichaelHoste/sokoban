@@ -42,25 +42,28 @@ Jax.Controller.create "Level", ApplicationController,
       @path.add_push(move_letter) if has_moved == 2
 
     if has_moved != 0 or has_deleted != 0
-      @refresh_level(@level)
+      @refresh_level(@level, has_deleted)
   
   # FIXME optimize squares to refresh (REVERSE !)
-  refresh_level: (level) ->
+  refresh_level: (level, has_deleted = 0) ->
       # take the new pusher position and its 4 direct neighbours
       pusher_m = level.pusher_pos_m
       pusher_n = level.pusher_pos_n
       positions =
         [
-          [pusher_m,   pusher_n],
-          [pusher_m+1, pusher_n],
-          [pusher_m-1, pusher_n],
-          [pusher_m,   pusher_n+1],
-          [pusher_m,   pusher_n-1],
-          [pusher_m+2, pusher_n],   # if reverse
-          [pusher_m-2, pusher_n],   # if reverse
-          [pusher_m,   pusher_n+2], # if reverse
-          [pusher_m,   pusher_n-2], # if reverse
-        ] 
+          [pusher_m,   pusher_n]
+          [pusher_m+1, pusher_n]
+          [pusher_m-1, pusher_n]
+          [pusher_m,   pusher_n+1]
+          [pusher_m,   pusher_n-1]
+        ]
+      
+      # if deleted move, refresh its 8 neighbours
+      if has_deleted
+        position.push( [pusher_m+2, pusher_n] )
+        position.push( [pusher_m-2, pusher_n] )
+        position.push( [pusher_m,   pusher_n+2] )
+        position.push( [pusher_m,   pusher_n-2] )
    
       # visually refresh these 9 positions
       for position in positions

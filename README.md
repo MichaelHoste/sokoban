@@ -7,7 +7,7 @@ Jax is a special gem for rails that enables nice WebGL implementation using a ra
 DEMO
 ----
 
-Try it here : http://sokojax.heroku.com
+Try it here : http://www.sokoban.be
 
 ![Image](https://github.com/MichaelHoste/sokoban/raw/master/sokoban.png)
 

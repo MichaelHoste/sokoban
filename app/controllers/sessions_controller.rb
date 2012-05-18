@@ -9,10 +9,12 @@ class SessionsController < ApplicationController
 
   def create    
     credentials = request.env['omniauth.auth']['credentials']
-    @user = User.find_or_create(credentials)
+    @user = User.update_or_create(credentials)
 
     if @user.save!
+      @user.build_friendships()
       session[:user_id] = @user.id
+      # Get and save friends id of this user
       redirect_to :root
     else
       render :text => "Facebook connection failed (user informations could not be saved)"

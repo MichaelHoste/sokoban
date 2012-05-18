@@ -69,6 +69,11 @@ header
 					background-color:white;
 				}
 				
+				li.name:hover
+				{
+					border:1px solid $dark;
+				}
+				
 				li.picture
 				{
 					float:left;
