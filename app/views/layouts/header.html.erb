@@ -5,9 +5,16 @@
     </div>
     <div id="menus">
       <ul>
-        <li class="is-selected">Game</li>
-        <li>Scores</li>
-        <li>Rules</li>
+        <% if current_user %>
+          <li class="picture fb_logout"><%= image_tag current_user.picture %></li>
+          <li class="name fb_logout"><%= current_user.name %></li>       
+        <% else %>
+          <li class="picture fb_login"><%= image_tag "facebook-connect-small.png" %></li>
+          <li class="name fb_login">Connect to Facebook</li>
+        <% end %>
+        <li class="is-selected"><i class="icon-star"></i>&nbsp;Game</li>
+        <li><i class="icon-trophy"></i>&nbsp;Scores</li>
+        <li><i class="icon-book"></i>&nbsp;Rules</li>
       </ul>
     </div>
   </div>

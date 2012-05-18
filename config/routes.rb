@@ -5,7 +5,8 @@ Sokojax::Application.routes.draw do
   # OmniAuth (facebook)
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure'
-  get '/login', :to => 'sessions#new' 
+  get '/login', :to => 'sessions#new'
+  get '/logout', :to => 'sessions#destroy' 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

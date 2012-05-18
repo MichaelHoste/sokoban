@@ -3,10 +3,13 @@
   <head>
     <title>Sokoban</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
+    
+    <%= javascript_include_tag "application_start" %>
     <%= javascript_include_tag 'jax/application' %>
     <%= javascript_include_tag 'jax/runtime' %>
     <%= javascript_include_tag 'jax/controller-list' %>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "application_end" %>
+
     <%= csrf_meta_tags %>
   </head>
   <body>
