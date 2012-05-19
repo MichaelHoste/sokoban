@@ -22,7 +22,7 @@ $ ->
   $("#levels li:first").addClass("is-selected")
   
   # load selected level in webgl
-  window.context.redirectTo("level")
+  window.context.redirectTo("level/index")
   
 populate_packs = ->
   packs =
