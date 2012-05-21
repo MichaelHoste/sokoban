@@ -367,7 +367,10 @@ class window.LevelCore
       @copyright = data.copyright
       @rows_number = data.rows_number
       @cols_number = data.cols_number
-      @grid = data.grid
+      
+      for i in [0..@rows_number*@cols_number-1]
+        @grid[i] = data.grid.substr(i, 1)
+        
       @initialize_level_properties()
     )
   
