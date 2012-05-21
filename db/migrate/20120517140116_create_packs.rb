@@ -2,7 +2,8 @@ class CreatePacks < ActiveRecord::Migration
   def change
     create_table :packs do |t|
       t.integer :id
-      t.string  :title
+      t.string  :name
+      t.string  :file_name
       t.string  :description
       t.string  :email
       t.string  :url

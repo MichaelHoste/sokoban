@@ -6,10 +6,11 @@ class CreateLevels < ActiveRecord::Migration
       t.string  :name
       t.integer :width
       t.integer :height
-      t.string  :copryright
+      t.string  :copyright
       t.text    :grid
-      t.integer :box_count
-      t.integer :goal_count
+      t.text    :grid_with_floor
+      t.integer :boxes_number
+      t.integer :goals_number
       t.integer :pusher_pos_m
       t.integer :pusher_pos_n
 

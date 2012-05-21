@@ -1,10 +1,12 @@
 <div id="menu_levels">
   <ul id="packs">
-
+    <li title="<%= @pack.name %>"><%= @pack.name %></li>
   </ul>
 
   <ul id="levels">
-
+    <% @pack.levels.each do |level| %>
+      <li><span class="star icon-star-empty"></span><span class="level-id"><%= level.name %></span></li>
+    <% end %>
   </ul>
 </div>
 

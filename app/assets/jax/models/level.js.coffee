@@ -11,7 +11,9 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     # load selected level
     pack_name = $("#packs").find(".is-selected").text()
     level_name = $("#levels").find(".is-selected").text()
-    @level_core = new LevelCore(pack_name, level_name)
+    
+    @level_core = new LevelCore()
+    @level_core.create_from_database(pack_name, level_name)
     
     # display level
     @display_level()
@@ -50,7 +52,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       d = d_width  if d_width  > d_height
             
       object.camera.setPosition [start_col + n, start_row - m, -d]
-    else
+    else if type != ' '
       object = @objects[cols_number*m + n]
         
     # refresh material
@@ -76,6 +78,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     # take the new pusher position and its 4 direct neighbours
     pusher_m = @level_core.pusher_pos_m
     pusher_n = @level_core.pusher_pos_n
+
     positions =
       [
         [pusher_m,   pusher_n]
@@ -94,7 +97,6 @@ Jax.getGlobal()['Level'] = Jax.Model.create
  
     # visually refresh these positions
     for position in positions
-      index = @cols_number()*position[0] + position[1]
       if @read_pos(position[0], position[1]) != 'E'
         @display_position(position[0], position[1])
         

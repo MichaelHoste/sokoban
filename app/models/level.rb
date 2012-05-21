@@ -3,6 +3,9 @@ class Level < ActiveRecord::Base
   # Constants
   
   # Attributes
+  serialize :grid_with_floor
+  serialize :grid
+  
   attr_protected :created_at, :updated_at
   
   # Associations
@@ -15,10 +18,16 @@ class Level < ActiveRecord::Base
   # Callbacks
   
   # Methods
-#  def self.populate
-#    cxt = V8::Context.new
-#    cxt.load('public/assets/jax/application.js')
-#    Rails.logger.info("CIICI: " + cxt.eval('Level.find("actual")'))
-#  end
+  def inline_grid_with_floor
+    self.grid_with_floor.join
+  end
+  
+  def cols_number
+    self.width
+  end
+  
+  def rows_number
+    self.height
+  end
 
 end

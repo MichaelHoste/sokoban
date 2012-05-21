@@ -22,7 +22,7 @@ specular:
 shininess: 30
 
 texture:
-  path: ./images/pushergoal64.png
+  path: /images/pushergoal64.png
   flip_y: false
   scale_x: 1.0
   scale_y: 1.0

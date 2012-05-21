@@ -10,7 +10,8 @@ gem 'mysql2'
 gem 'json'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.4.1"
-gem 'therubyracer'
+gem 'therubyracer'           # Exec js code in ruby
+gem "nokogiri", "~> 1.5.2"   # xml parser
 
 # Gems used only for assets and not required
 # in production environments by default.

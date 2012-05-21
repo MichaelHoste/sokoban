@@ -31,7 +31,7 @@ Jax.Controller.create "Level", ApplicationController,
       when KeyEvent.DOM_VK_LEFT  then move_letter = 'l'
       when KeyEvent.DOM_VK_RIGHT then move_letter = 'r'
       when KeyEvent.DOM_VK_D     then has_deleted = @level.delete_last_move(@path)
-      
+
     has_moved = @level.move(move_letter)
 
     # if moved, refresh concerned level positions objects

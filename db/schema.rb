@@ -18,18 +18,19 @@ ActiveRecord::Schema.define(:version => 20120517140116) do
     t.string   "name"
     t.integer  "width"
     t.integer  "height"
-    t.string   "copryright"
+    t.string   "copyright"
     t.text     "grid"
-    t.integer  "box_count"
-    t.integer  "goal_count"
+    t.text     "grid_with_floor"
+    t.integer  "boxes_number"
+    t.integer  "goals_number"
     t.integer  "pusher_pos_m"
     t.integer  "pusher_pos_n"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "packs", :force => true do |t|
-    t.string   "title"
+    t.string   "name"
     t.string   "description"
     t.string   "email"
     t.string   "url"

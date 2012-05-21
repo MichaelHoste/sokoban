@@ -93,6 +93,7 @@ GEM
     multipart-post (1.1.5)
     mysql2 (0.3.11)
     netrc (0.7.1)
+    nokogiri (1.5.2)
     oauth2 (0.6.1)
       faraday (~> 0.7)
       httpauth (~> 0.1)
@@ -187,6 +188,7 @@ DEPENDENCIES
   json
   koala (~> 1.4.1)
   mysql2
+  nokogiri (~> 1.5.2)
   omniauth-facebook
   pg
   quiet_assets
