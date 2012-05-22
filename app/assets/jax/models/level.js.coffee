@@ -57,7 +57,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         
     # refresh material
     if type == 's'
-      object.mesh.material = "ground"
+      object.mesh.material = "floor"
     else if type == '#'
       object.mesh.material = "wall"
     else if type == '$'
