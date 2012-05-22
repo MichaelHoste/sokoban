@@ -10,7 +10,6 @@ gem 'mysql2'
 gem 'json'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.4.1"
-gem 'therubyracer'           # Exec js code in ruby
 gem "nokogiri", "~> 1.5.2"   # xml parser
 
 # Gems used only for assets and not required
@@ -31,12 +30,13 @@ gem 'jquery-rails'
 group :development do
   gem 'heroku'
   gem 'quiet_assets'
+  gem 'therubyracer'           # Exec js code in ruby
 end
 
 # Production/deployment tools
 group :production do
   gem 'thin'
-#  gem 'therubyracer-heroku', '0.8.1.pre3'
+  gem 'therubyracer-heroku', '0.8.1.pre3'
   gem 'pg'
 end
 
