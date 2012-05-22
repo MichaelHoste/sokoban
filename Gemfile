@@ -11,6 +11,7 @@ gem 'json'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.4.1"
 gem "nokogiri", "~> 1.5.2"   # xml parser
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,7 +36,6 @@ end
 
 # Production/deployment tools
 group :production do
-  gem 'thin'
   gem 'therubyracer-heroku', '0.8.1.pre3'
   gem 'pg'
 end
