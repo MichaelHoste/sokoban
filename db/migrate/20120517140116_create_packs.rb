@@ -4,7 +4,7 @@ class CreatePacks < ActiveRecord::Migration
       t.integer :id
       t.string  :name
       t.string  :file_name
-      t.string  :description
+      t.text    :description
       t.string  :email
       t.string  :url
       t.string  :copyright
