@@ -36,7 +36,7 @@ end
 # Production/deployment tools
 group :production do
   gem 'thin'
-  gem 'therubyracer-heroku'
+  gem 'therubyracer-heroku', '0.8.1.pre3'
   gem 'pg'
 end
 
