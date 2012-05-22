@@ -1,5 +1,5 @@
 ###
-brief Class containing a level and every methods about it
+Class containing a level and every methods about it
 
 Positions in grid start in the upper-left corner with (m=0,n=0).
 
