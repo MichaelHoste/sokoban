@@ -7,7 +7,7 @@ Sokojax::Application.routes.draw do
   end
   
   # Root
-  root :to => "packs#show"
+  root :to => "packs#show", :id => 'Original & Extra'
   
   # OmniAuth (facebook)
   match '/auth/:provider/callback', :to => 'sessions#create'
