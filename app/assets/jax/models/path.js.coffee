@@ -134,51 +134,39 @@ Jax.getGlobal()['Path'] = Jax.Model.create
   
     return compressed_path
   
-# /**
-#  * Uncompress a path (see description of Path class)
-#  * @param path compressed path
-#  * @return uncompressed path
-#  */
-#  char* Path::uncompressPath(const char * compressedPath)
-#  {
-#   int i=0, j=0, nbr;
-#   char buffer[10];
-#   int cpt=1;
-#   char * uncompressedPath;
-#  
-#   // Alloc empty cell
-#   uncompressedPath=(char*)malloc(1*sizeof(char));
-#   uncompressedPath[0]='\0';
-#  
-#   // While we're not in the end of compressed path
-#   while(compressedPath[i]!='\0')
-#   {
-#     buffer[0]='1';
-#     buffer[1]='\0';
-#  
-#     // we put decimal in buffer
-#     while(Util::isDecimal(compressedPath[i]))
-#     {
-#       buffer[j]=compressedPath[i];
-#       buffer[j+1]='\0';
-#       j++;
-#       i++;
-#     }
-#  
-#     // we get decimal on untextual mode
-#     nbr=atoi(buffer);
-#  
-#     for(j=0;j<nbr;j++)
-#     {
-#       cpt++;
-#       uncompressedPath=(char*)realloc(uncompressedPath, cpt*sizeof(char));
-#       uncompressedPath[cpt-2]=compressedPath[i];
-#       uncompressedPath[cpt-1]='\0';
-#     }
-#  
-#     i++;
-#     j=0;
-#   }
-#  
-#   return uncompressedPath;
-#  }
+###
+  Uncompress a path (see description of Path class)
+  @param path compressed path
+  @return uncompressed path
+###
+  uncompress_path: (compressed_path) ->
+   i = 0
+   j = 0
+   buffer = []
+   cpt = 1
+   uncompressed_path = []
+  
+   # While we're not in the end of compressed path
+   while compressed_path[i] != '\0'
+     buffer[0] = '1'
+     buffer[1] = '\0'
+  
+     # we put decimal in buffer
+     while Util::isDecimal(compressed_path[i]) 
+       buffer[j] = compressedPath[i]
+       buffer[j+1] = '\0'
+       j = j + 1
+       i = i + 1
+  
+     # we get decimal on untextual mode
+     nbr = atoi(buffer)
+  
+     for(j = 0 ; j < nbr ; j++)
+       cpt = cpt + 1
+       uncompressed_path[cpt-2] = compressed_path[i]
+       uncompressed_path[cpt-1] = '\0'
+  
+     i = i + 1
+     j = 0
+  
+   return uncompressed_path
