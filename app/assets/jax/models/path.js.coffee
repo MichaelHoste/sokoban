@@ -77,7 +77,7 @@ Jax.getGlobal()['Path'] = Jax.Model.create
   ###
     Print uncompressed path of this object
   ###
-  print_uncompressed: ->
+  print_uncompressed: ->    
     line = ""
     for move in @moves
       line = line + move
@@ -87,7 +87,8 @@ Jax.getGlobal()['Path'] = Jax.Model.create
     Print compressed path of this object
   ###
   print_compressed: ->
-    compressed_moves = @compress_path(@moves)
+    compressed_moves = @compress_path(@moves)  
+    
     line = ""
     for move in compressed_moves
       line = line + move
@@ -134,39 +135,42 @@ Jax.getGlobal()['Path'] = Jax.Model.create
   
     return compressed_path
   
-###
-  Uncompress a path (see description of Path class)
-  @param path compressed path
-  @return uncompressed path
-###
+  ###
+    Uncompress a path (see description of Path class)
+    @param path compressed path
+    @return uncompressed path
+  ###
   uncompress_path: (compressed_path) ->
-   i = 0
-   j = 0
-   buffer = []
-   cpt = 1
-   uncompressed_path = []
-  
-   # While we're not in the end of compressed path
-   while compressed_path[i] != '\0'
-     buffer[0] = '1'
-     buffer[1] = '\0'
-  
-     # we put decimal in buffer
-     while Util::isDecimal(compressed_path[i]) 
-       buffer[j] = compressedPath[i]
-       buffer[j+1] = '\0'
-       j = j + 1
-       i = i + 1
-  
-     # we get decimal on untextual mode
-     nbr = atoi(buffer)
-  
-     for(j = 0 ; j < nbr ; j++)
-       cpt = cpt + 1
-       uncompressed_path[cpt-2] = compressed_path[i]
-       uncompressed_path[cpt-1] = '\0'
-  
-     i = i + 1
-     j = 0
-  
-   return uncompressed_path
+    i = 0
+    uncompressed_path = []
+    
+    # While we're not in the end of compressed path
+    while i < compressed_path.length
+      cell = compressed_path[i]
+      nbr_buffer = []
+      
+      # if not decimal, only 1 move/push
+      if cell < '0' or cell > '9' 
+        nbr_buffer.push('1')
+    
+      # if decimal, we put it in buffer to create a number like ['1', '2'] for 12
+      while cell >= '0' and cell <= '9' 
+        nbr_buffer.push(cell)
+        i = i + 1
+        cell = compressed_path[i]
+    
+      # we transform the array on string...
+      nbr_string = ""
+      for letter in nbr_buffer
+        nbr_string = nbr_string + "#{letter}"
+
+      # ... and then convert the string on integer
+      nbr = parseInt(nbr_string)
+    
+      # write nbr times the move/push
+      for j in [0..nbr-1]
+        uncompressed_path.push(compressed_path[i])
+    
+      i = i + 1
+    
+    return uncompressed_path
