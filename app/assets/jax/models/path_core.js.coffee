@@ -12,13 +12,30 @@
   example compressed mode : 3r2l5Uru3Ld2lu4Rdr
 ###
 
-Jax.getGlobal()['Path'] = Jax.Model.create
+class window.PathCore
 
   # Constructor for a empty path
-  after_initialize: ->
+  constructor: ->
     @n_pushes   = 0
     @n_moves    = 0
     @moves      = []
+    
+  create_from_compressed: (compressed_path) ->
+    @n_pushes   = 0
+    @n_moves    = 0
+    @moves      = []
+    
+    uncompressed_path = @uncompress_path(compressed_path)
+    for i in [0..uncompressed_path.length-1]
+      @add_displacement(uncompressed_path[i])
+
+  create_from_uncompressed: (uncompressed_path) ->
+    @n_pushes   = 0
+    @n_moves    = 0
+    @moves      = []
+    
+    for i in [0..uncompressed_path.length-1]
+      @add_displacement(uncompressed_path[i])
 
   ###
     Add move in a direction

@@ -10,7 +10,7 @@ Jax.Controller.create "Level", ApplicationController,
     @world.addObject @level
         
     # Initalize path
-    @path = Path.find "actual"
+    @path = new PathCore()
             
     # load the components of the level and add them on the world
     for i in [0..@level.cols_number()*@level.rows_number()-1]
