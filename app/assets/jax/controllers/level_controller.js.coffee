@@ -42,3 +42,5 @@ Jax.Controller.create "Level", ApplicationController,
 
     if has_moved != 0 or has_deleted != 0
       @level.refresh(has_deleted)
+      
+      @path.print()

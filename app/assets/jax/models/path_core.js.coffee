@@ -19,23 +19,36 @@ class window.PathCore
     @n_pushes   = 0
     @n_moves    = 0
     @moves      = []
-    
-  create_from_compressed: (compressed_path) ->
-    @n_pushes   = 0
-    @n_moves    = 0
-    @moves      = []
-    
-    uncompressed_path = @uncompress_path(compressed_path)
-    for i in [0..uncompressed_path.length-1]
-      @add_displacement(uncompressed_path[i])
 
+  ###
+    Constructor from an uncompressed path
+    @param uncompressed_path (string)
+  ###
   create_from_uncompressed: (uncompressed_path) ->
     @n_pushes   = 0
     @n_moves    = 0
     @moves      = []
-    
+  
     for i in [0..uncompressed_path.length-1]
       @add_displacement(uncompressed_path[i])
+
+  ###
+    Constructor from a compressed path
+    @param compressed_path (string)
+  ###
+  create_from_compressed: (compressed_path) ->
+    @n_pushes    = 0
+    @n_moves     = 0
+    @moves       = []
+    cmpr_moves   = []
+    uncmpr_moves = []
+    
+    for i in [0..compressed_path.length-1]
+      cmpr_moves.push(compressed_path[i])
+    uncmpr_moves = uncompress_path(cmpr_moves)
+    
+    for move in uncmpr_moves
+      @add_displacement(move)
 
   ###
     Add move in a direction
@@ -104,12 +117,34 @@ class window.PathCore
     Print compressed path of this object
   ###
   print_compressed: ->
-    compressed_moves = @compress_path(@moves)  
+    compressed_moves = @compress_path(@moves)
     
     line = ""
     for move in compressed_moves
       line = line + move
     console.log(line)
+    
+  ###
+    Get the string path
+    @return uncompressed string path
+  ###
+  get_uncompressed_string_path: ->
+    line = ""
+    for move in @moves
+      line = line + move
+    return line
+
+  ###
+    Get the string path
+    @return compressed string path
+  ###
+  get_compressed_string_path: ->
+    compressed_moves = @compress_path(@moves)
+    
+    line = ""
+    for move in compressed_moves
+      line = line + move
+    return line
   
   ###
     Is a direction valid (u,d,r,l,U,D,R,L)

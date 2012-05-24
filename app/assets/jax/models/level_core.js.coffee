@@ -42,8 +42,11 @@ class window.LevelCore
   create_from_database: (pack_name, level_name) ->
     @level_from_database(pack_name, level_name)
     
-  create_from_scratch: (lines, width, height, pack_name, level_name, copyright = "") ->
-    @level_from_scratch(lines, width, height, pack_name, level_name, copyright)
+  create_from_grid: (grid, width, height, pack_name, level_name, copyright = "") ->
+    @level_from_grid(grid, width, height, pack_name, level_name, copyright)
+    
+  create_from_line: (line, width, height, pack_name, level_name, copyright = "") ->
+    @level_from_line(line, width, height, pack_name, level_name, copyright)
     
   ###
     Read the value of position (m,n).
@@ -247,6 +250,15 @@ class window.LevelCore
       if grid[i] == '$'
         return false;
     return true;
+    
+  ###
+    Return true if the path is leading to a solution
+    @return true if all boxes are in their goals, false if not
+  ###
+  is_solution_path: (path) ->
+    for move in path.moves
+      @move(move)
+    return @is_won()
   
   ###
     Initialize (find) starting position of pusher to store it in this object
@@ -374,17 +386,29 @@ class window.LevelCore
       @initialize_level_properties()
     )
   
-  level_from_scratch: (lines, width, height, pack_name, level_name, copyright = "") ->
+  level_from_grid: (grid, width, height, pack_name, level_name, copyright = "") ->
     @pack_name = pack_name
     @level_name = level_name
     @copyright = copyright
     @rows_number = height
     @cols_number = width
-    
-    for line, i in lines
+
+    for line, i in grid
       for j in [0..line.length-1]
-        @grid[@cols_number*i + j] = line.charAt(j)
-        
+        @grid.push(line.charAt(j))
+
+    @initialize_level_properties()
+    
+  level_from_line: (line, width, height, pack_name, level_name, copyright = "") ->
+    @pack_name = pack_name
+    @level_name = level_name
+    @copyright = copyright
+    @rows_number = height
+    @cols_number = width
+  
+    for i in [0..height*width-1]
+      @grid.push(line.charAt(i))
+  
     @initialize_level_properties()
         
   initialize_level_properties: ->

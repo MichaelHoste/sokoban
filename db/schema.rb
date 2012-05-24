@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517140116) do
+ActiveRecord::Schema.define(:version => 20120524084108) do
+
+  create_table "level_user_links", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "level_id"
+    t.text     "uncompressed_path"
+    t.text     "compressed_path"
+    t.integer  "pushes"
+    t.integer  "moves"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "levels", :force => true do |t|
     t.integer  "pack_id"
@@ -31,7 +42,8 @@ ActiveRecord::Schema.define(:version => 20120517140116) do
 
   create_table "packs", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.string   "file_name"
+    t.text     "description"
     t.string   "email"
     t.string   "url"
     t.string   "copyright"

@@ -8,9 +8,15 @@ class User < ActiveRecord::Base
   # Associations
   has_many :user_user_links,
            :primary_key => :f_id
-  
+           
   has_many :friends,
            :through => :user_user_links
+           
+  has_many :scores,
+           :class_name => 'LevelUserLinks'
+           
+  has_many :levels,
+           :through => :scores
              
   # Nested attributes
   
