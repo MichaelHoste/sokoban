@@ -4,15 +4,15 @@
   </ul>
 
   <ul id="levels">
+    
+    <% # Get all the scores for current_user and levels from this pack %>
+    <% won_levels = current_user.scores.where(:level_id => @pack.levels) %>
+    <% # Get ids from the levels of these scores. Each of these level is won %>
+    <% won_levels_ids = won_levels.collect { |score| score.level_id }.uniq %>
+    
     <% @pack.levels.each do |level| %>
-      <% if current_user %>
-        <% level_won = ! level.scores.where(:user_id => current_user).empty? %>
-      <% else %>
-        <% level_won = false %>
-      <% end %>
-      
       <li>
-        <% if level_won %>
+        <% if won_levels_ids.include?(level.id) %>
           <span class="star icon-star"></span>
         <% else %>
           <span class="star icon-star-empty"></span>

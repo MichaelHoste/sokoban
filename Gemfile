@@ -28,14 +28,14 @@ group :development do
   gem 'heroku'
   gem 'quiet_assets'
 
-  # comment when deploy
-#  gem 'therubyracer'  # Exec js code in ruby
+  # comment when deploy then "bundle update;bundle;install;git commit;git push"
+  gem 'therubyracer'  # Exec js code in ruby
 end
 
 # Production/deployment tools
 group :production do
-  # comment when development
-  gem 'therubyracer-heroku', '0.8.1.pre3'
+  # comment when development then "bundle update;bundle;install;git commit;git push"
+  #gem 'therubyracer-heroku', '0.8.1.pre3'
   
   gem 'pg'
 end

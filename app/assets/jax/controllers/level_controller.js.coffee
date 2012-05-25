@@ -31,6 +31,9 @@ Jax.Controller.create "Level", ApplicationController,
       when KeyEvent.DOM_VK_LEFT  then move_letter = 'l'
       when KeyEvent.DOM_VK_RIGHT then move_letter = 'r'
       when KeyEvent.DOM_VK_D     then has_deleted = @level.delete_last_move(@path)
+      
+    if move_letter != ' '
+      window.scrollTo(0, 0)
 
     has_moved = @level.move(move_letter)
 
@@ -67,10 +70,20 @@ Jax.Controller.create "Level", ApplicationController,
           path: @path.get_compressed_string_path()
           authenticity_token: token_tag
         )
-        .success((data, status, xhr) ->
+        .success((data, status, xhr) =>
           if data.result == "ok"
-            if window.is_loggued()
-              window.colorbox_facebook()
-            else
+            alert("niveau réussi !")
+            @star_level()
+            if window.is_logged()
               window.colorbox_next_level()
+            else
+              window.colorbox_facebook()
         )
+        
+  # star selected level
+  star_level: ->
+    button = $('#levels').find('.is-selected .level-id').prev()
+    button.removeClass('icon-star-empty')
+    button.addClass('icon-star')
+    
+    
