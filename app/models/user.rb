@@ -83,9 +83,7 @@ class User < ActiveRecord::Base
       else
         user = User.create!(user_hash)
       end
-      
-      Rails.logger.info("USER : " + user.to_s)
-      
+            
       self.user_user_links << UserUserLink.new(:user_id => self.f_id, :friend_id => user.f_id)
       self.save!
     end

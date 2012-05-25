@@ -80,7 +80,7 @@ class window.PathCore
         @n_pushes++
       else
         @n_moves++
-      @moves.push(direction.toUpperCase())
+      @moves.push(direction)
   
   ###
     Get last move or push

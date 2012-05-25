@@ -9,7 +9,6 @@ class ValidatePath < ActiveModel::Validator
     
     V8::C::Locker() do
       V8::Context.new do |cxt|
-        Rails.logger.info("A")
         cxt.eval('var window = new Object')
         cxt.load('lib/assets/path_core.js')
         cxt.load('lib/assets/level_core.js')
@@ -21,11 +20,10 @@ class ValidatePath < ActiveModel::Validator
         cxt.eval("level.create_from_line('#{level.inline_grid}', #{level.width}, #{level.height}, '', '')")
         
         is_won = cxt.eval('level.is_solution_path(path)')
-        Rails.logger.info("B - #{is_won}")
       end
     end
-    
-    return true
+        
+    score.errors.add(:base, "Path is not solution") if not is_won
   end
 end
 
@@ -89,6 +87,7 @@ class LevelUserLink < ActiveRecord::Base
   
   # compress path
   def compress_path(path)
+    compressed_path = ""
     V8::C::Locker() do
       V8::Context.new do |cxt|
         cxt.eval('var window = new Object')
@@ -96,16 +95,14 @@ class LevelUserLink < ActiveRecord::Base
         cxt.eval('var path = new window.PathCore()')
         cxt.eval("path.create_from_uncompressed('#{path}')")
         compressed_path = cxt.eval("path.get_compressed_string_path()")
-        Rails.logger.info("COMPRESSED PATH 1 " + compressed_path.to_s)
       end
-    end
-    Rails.logger.info("COMPRESSED PATH 2 " + compressed_path.to_s)
-    
+    end    
     compressed_path
   end
   
   # uncompres path
   def uncompress_path(path)
+    uncompressed_path = ""
     V8::C::Locker() do
       V8::Context.new do |cxt|
         cxt.eval('var window = new Object')
@@ -115,7 +112,6 @@ class LevelUserLink < ActiveRecord::Base
         uncompressed_path = cxt.eval("path.get_uncompressed_string_path()")
       end
     end
-    
     uncompressed_path
   end
 end

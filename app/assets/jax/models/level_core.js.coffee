@@ -246,10 +246,10 @@ class window.LevelCore
     @return true if all boxes are in their goals, false if not
   ###
   is_won: ->
-    for i in [0..@rowsNumber*@colsNumber-1]
-      if grid[i] == '$'
-        return false;
-    return true;
+    for i in [0..@rows_number*@cols_number-1]
+      if @grid[i] == '$'
+        return false
+    return true
     
   ###
     Return true if the path is leading to a solution
