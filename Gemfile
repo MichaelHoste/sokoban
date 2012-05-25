@@ -27,7 +27,7 @@ gem 'jquery-rails'
 group :development do
   gem 'heroku'
   gem 'quiet_assets'
-  gem 'therubyracer'  # Exec js code in ruby
+#  gem 'therubyracer'  # Exec js code in ruby
 end
 
 # Production/deployment tools
