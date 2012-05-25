@@ -35,15 +35,21 @@ Jax.Controller.create "Level", ApplicationController,
     has_moved = @level.move(move_letter)
 
     # save move
-    if has_moved != 0
-      @path.add_move(move_letter) if has_moved == 1
-      @path.add_push(move_letter) if has_moved == 2
+    @save_move(has_moved, move_letter)
 
     # if moved, refresh concerned level positions objects
     if has_moved != 0 or has_deleted != 0
       @level.refresh(has_deleted)
     
     # check if level is won, and save the score if it is
+    @save_solution_if_any(has_moved)
+        
+  save_move: (has_moved, move_letter) ->
+    if has_moved != 0
+      @path.add_move(move_letter) if has_moved == 1
+      @path.add_push(move_letter) if has_moved == 2
+      
+  save_solution_if_any: (has_moved) ->
     if has_moved != 0
       if @level.is_won()
         # load selected level

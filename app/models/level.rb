@@ -17,7 +17,7 @@ class Level < ActiveRecord::Base
   belongs_to :pack
   
   has_many :scores,
-           :class_name => 'LevelUserLinks'
+           :class_name => 'LevelUserLink'
            
   has_many :users,
            :through => :scores

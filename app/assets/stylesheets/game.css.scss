@@ -56,6 +56,13 @@
 						padding-right:10px;
 					}
 					
+					.icon-star
+					{
+						color:black;
+						-webkit-text-fill-color:#EDDA74; // fallback color if no stroke
+						-webkit-text-stroke: 1px rgb(0,0,0);
+					}
+					
 					.level-id
 					{
 						display:block;

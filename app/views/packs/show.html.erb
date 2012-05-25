@@ -5,8 +5,18 @@
 
   <ul id="levels">
     <% @pack.levels.each do |level| %>
+      <% if current_user %>
+        <% level_won = ! level.scores.where(:user_id => current_user).empty? %>
+      <% else %>
+        <% level_won = false %>
+      <% end %>
+      
       <li>
-        <span class="star icon-star-empty"></span>
+        <% if level_won %>
+          <span class="star icon-star"></span>
+        <% else %>
+          <span class="star icon-star-empty"></span>
+        <% end %>
         <span class="level-id"><%= level.name %></span>
       </li>
     <% end %>

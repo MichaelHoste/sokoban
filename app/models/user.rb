@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
            :through => :user_user_links
            
   has_many :scores,
-           :class_name => 'LevelUserLinks'
+           :class_name => 'LevelUserLink'
            
   has_many :levels,
            :through => :scores
