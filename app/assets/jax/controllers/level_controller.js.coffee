@@ -34,13 +34,25 @@ Jax.Controller.create "Level", ApplicationController,
 
     has_moved = @level.move(move_letter)
 
-    # if moved, refresh concerned level positions objects
+    # save move
     if has_moved != 0
-      # save move
       @path.add_move(move_letter) if has_moved == 1
       @path.add_push(move_letter) if has_moved == 2
 
+    # if moved, refresh concerned level positions objects
     if has_moved != 0 or has_deleted != 0
       @level.refresh(has_deleted)
-      
-      @path.print()
+    
+    # check if level is won, and save the score if it is
+    if has_moved != 0
+      if @level.is_won()
+        # load selected level
+        pack_name = $("#packs").find(".is-selected").text()
+        level_name = $("#levels").find(".is-selected .level-id").text()
+        token_tag = "" 
+        $('meta').each( ->
+          if $(this).attr('content') != 'authenticity_token'
+            token_tag = $(this).attr('content')
+        )
+        
+        $.post('/scores', { pack_id: pack_name, level_id: level_name, path: @path.get_compressed_string_path(), authenticity_token: token_tag } )

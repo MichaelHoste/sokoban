@@ -13,7 +13,7 @@ class ScoresController < ApplicationController
     if @score.save
       render :json => { :result => "ok" }
     else
-      render :json => { :result => @score.errors.full_messages.to_s }
+      render :json => { :result => @score.errors.full_messages.join(", ") }
     end
   end
 end

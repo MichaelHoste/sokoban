@@ -6,8 +6,8 @@ Sokojax::Application.routes.draw do
     resources :levels
   end
   
-  #resources :scores
-  get '/scores', :to => 'scores#create'
+  resources :scores
+  #get '/scores', :to => 'scores#create'
   
   # Root
   root :to => "packs#show", :id => 'Original & Extra'

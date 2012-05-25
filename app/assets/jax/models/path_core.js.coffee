@@ -45,7 +45,7 @@ class window.PathCore
     
     for i in [0..compressed_path.length-1]
       cmpr_moves.push(compressed_path[i])
-    uncmpr_moves = uncompress_path(cmpr_moves)
+    uncmpr_moves = @uncompress_path(cmpr_moves)
     
     for move in uncmpr_moves
       @add_displacement(move)
@@ -158,7 +158,7 @@ class window.PathCore
   ###
     Compress a path (see description of class)
     @param path uncompressed path
-    @return compressed path
+    @return compressed path (array)
   ###
   compress_path: (uncompressed_path) ->
     cpt_c = 1
@@ -190,7 +190,7 @@ class window.PathCore
   ###
     Uncompress a path (see description of Path class)
     @param path compressed path
-    @return uncompressed path
+    @return uncompressed path (array)
   ###
   uncompress_path: (compressed_path) ->
     i = 0
