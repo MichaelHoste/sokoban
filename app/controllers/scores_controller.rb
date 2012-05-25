@@ -3,7 +3,7 @@ class ScoresController < ApplicationController
     @pack = Pack.find_by_name(params[:pack_id])
     @level = @pack.levels.find_by_name(params[:level_id])
     
-    @score = LevelUserLink.new(:user_id  => current_user.id,
+    @score = LevelUserLink.new(:user_id  => (current_user ? current_user.id : nil),
                                :level_id => @level.id)
     
     # score.path is not saved in the database, we need to check if the path
@@ -11,7 +11,7 @@ class ScoresController < ApplicationController
     @score.path = params[:path]
     
     if @score.save
-      render :json => { :result => "ok" }
+      render :json => { :result => 'ok' }
     else
       render :json => { :result => @score.errors.full_messages.join(", ") }
     end

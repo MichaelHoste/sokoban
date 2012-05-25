@@ -61,4 +61,16 @@ Jax.Controller.create "Level", ApplicationController,
             token_tag = $(this).attr('content')
         )
         
-        $.post('/scores', { pack_id: pack_name, level_id: level_name, path: @path.get_compressed_string_path(), authenticity_token: token_tag } )
+        $.post('/scores', 
+          pack_id: pack_name
+          level_id: level_name
+          path: @path.get_compressed_string_path()
+          authenticity_token: token_tag
+        )
+        .success((data, status, xhr) ->
+          if data.result == "ok"
+            if window.is_loggued()
+              window.colorbox_facebook()
+            else
+              window.colorbox_next_level()
+        )

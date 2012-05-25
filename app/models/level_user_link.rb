@@ -47,7 +47,8 @@ class LevelUserLink < ActiveRecord::Base
 
   validates_with ValidatePath
 
-  validates :user_id, :level_id, :uncompressed_path, :compressed_path, :pushes, :moves,
+  # user_id can be null for anonymous scores
+  validates :level_id, :uncompressed_path, :compressed_path, :pushes, :moves,
             :presence => true
               
   # Callbacks
