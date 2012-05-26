@@ -37,7 +37,7 @@ end
 # Production/deployment tools
 group :production do
   # use "rake app:deploy"
-  if ENV['MY_BUNDLE_ENV'] == "production"
+  if ENV['MY_BUNDLE_ENV'] != "development"
     gem 'therubyracer-heroku', '0.8.1.pre3'
   end
   
