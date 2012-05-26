@@ -32,8 +32,8 @@ Jax.Controller.create "Level", ApplicationController,
       when KeyEvent.DOM_VK_RIGHT then move_letter = 'r'
       when KeyEvent.DOM_VK_D     then has_deleted = @level.delete_last_move(@path)
       
-    if move_letter != ' '
-      window.scrollTo(0, 0)
+    #if move_letter != ' '
+    #  window.scrollTo(0, 0)
 
     has_moved = @level.move(move_letter)
 
