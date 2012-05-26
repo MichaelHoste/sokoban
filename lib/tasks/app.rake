@@ -39,6 +39,7 @@ namespace :app  do
       compile_coffee_to_js()
       # generate right gemfile for production and deploy to server
       `export MY_BUNDLE_ENV='production'`
+      `echo $MY_BUNDLE_ENV`
       `bundle update`
       `bundle install`
       `git add .`
