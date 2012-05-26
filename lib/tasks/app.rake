@@ -43,7 +43,7 @@ namespace :app  do
       `bundle update`
       `bundle install`
       `git add .`
-      `git commit -a -m "gemfile"`
+      `git commit -a -m "gemfile.lock for production"`
       `git push heroku master`
       `heroku run db:migrate`
       `heroku restart`
@@ -54,7 +54,7 @@ namespace :app  do
       `bundle update`
       `bundle install`
       `git add .`
-      `git commit -a -m "gemfile"`
+      `git commit -a -m "gemfile.lock for development"`
       `git push heroku master`
     end
   end
