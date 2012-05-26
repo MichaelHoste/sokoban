@@ -1,0 +1,5 @@
+<% @packs.each do |pack| %>
+  <div>
+    <%= link_to pack.name, "/packs/#{pack.name}" %>
+  </div>
+<% end %>
