@@ -53,5 +53,7 @@ namespace :app  do
       `bundle install`
       `git add .`
       `git commit -a -m "gemfile"`
-      `git push heroku master`    end
-  endend
+      `git push heroku master`
+    end
+  end
+end
