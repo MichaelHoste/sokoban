@@ -8,11 +8,11 @@ class UserUserLink < ActiveRecord::Base
   # Associations
   belongs_to :user,
              :class_name  => 'User',
-             :foreign_key => 'f_id'
+             :primary_key => 'f_id'
   
   belongs_to :friend,
              :class_name  => 'User',
-             :foreign_key => 'f_id'
+             :primary_key => 'f_id'
   
   # Nested attributes
   

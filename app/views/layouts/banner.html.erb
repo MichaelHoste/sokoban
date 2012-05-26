@@ -1,3 +1,7 @@
 <div id="banner">
-  PLAY SOKOBAN AGAINST YOUR FRIENDS
+  <% if current_user %>
+    <%= current_user.friends.where('email IS NOT NULL').all.to_s %>
+  <% else %>
+    PLAY SOKOBAN AGAINST YOUR FRIENDS
+  <% end %>
 </div>

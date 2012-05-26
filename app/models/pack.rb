@@ -20,10 +20,8 @@ class Pack < ActiveRecord::Base
   
   def won_level_ids(current_user)
     if current_user
-      # Get all the scores for current_user and levels from this pack
-      won_levels = current_user.scores.where(:level_id => self.levels)
-      # Get ids from the levels of these scores. Each of these level is won
-      won_levels.collect { |score| score.level_id }.uniq
+      # Get unique level_id from all the scores for current_user related to this pack
+      current_user.scores.where(:level_id => self.levels).pluck(:level_id).uniq
     else
       []
     end
