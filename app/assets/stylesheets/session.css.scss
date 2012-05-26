@@ -9,8 +9,8 @@
 		margin-right:10px;
 		padding-top:10px;
 		padding-bottom:0px;
-		padding-left:30px;
-		padding-right:30px;
+		padding-left:25px;
+		padding-right:25px;
 		
 		-webkit-box-shadow: 0px 0px 7px $dark;
 		-moz-box-shadow: 0px 0px 7px $dark;
@@ -29,10 +29,11 @@
 		.session-text
 		{
 			@extend .border_box;
-			width:290px;
+			width:280px;
 			float:left;
 			font-size:12px;
 			padding:22px;
+			padding-right:10px;
 			padding-left:30px;
 
 			.session-text-title
