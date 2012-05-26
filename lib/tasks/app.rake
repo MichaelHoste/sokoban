@@ -23,6 +23,7 @@ namespace :app  do
     end
   end
   
+  # compile core class from coffeescript to javascript to be used with ruby
   task :compile_coffee => :environment do
     if Rails.env.production?
       puts "Cannot use this task in production"
@@ -30,4 +31,27 @@ namespace :app  do
       compile_coffee_to_js()
     end
   end
-end
+  
+  task :deploy => :environment do
+    if Rails.env.production?
+      puts "Cannot use this task in production"
+    else
+      compile_coffee_to_js()
+      # generate right gemfile for production and deploy to server
+      `export MY_BUNDLE_ENV='production'`
+      `bundle update`
+      `bundle install`
+      `git add .`
+      `git commit -a -m "gemfile"`
+      `git push heroku master`
+      `heroku run db:migrate`
+      `heroku restart`
+      
+      # generate right gemfile for development and save to github
+      `export MY_BUNDLE_ENV='development'`
+      `bundle update`
+      `bundle install`
+      `git add .`
+      `git commit -a -m "gemfile"`
+      `git push heroku master`    end
+  endend
