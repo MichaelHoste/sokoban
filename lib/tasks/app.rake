@@ -39,7 +39,7 @@ namespace :app  do
       compile_coffee_to_js()
       # generate right gemfile for production and deploy to server
       # `export MY_BUNDLE_ENV='production'`
-      ENV['MY_BUNDLE_ENV'] == "production"
+      ENV['MY_BUNDLE_ENV'] = "production"
       `bundle update`
       `bundle install`
       `git add .`
@@ -50,7 +50,7 @@ namespace :app  do
       
       # generate right gemfile for development and save to github
       #`export MY_BUNDLE_ENV='development'`
-      ENV['MY_BUNDLE_ENV'] == "development"
+      ENV['MY_BUNDLE_ENV'] = "development"
       `bundle update`
       `bundle install`
       `git add .`
