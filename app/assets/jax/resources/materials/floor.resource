@@ -30,7 +30,7 @@ texture:
   min_filter: GL_LINEAR
   mag_filter: GL_LINEAR
   mipmap_hint: GL_DONT_CARE
-  format: GL_RGB
+  format: GL_RGBA
   data_type: GL_UNSIGNED_BYTE
   wrap_s: GL_REPEAT
   wrap_t: GL_REPEAT
