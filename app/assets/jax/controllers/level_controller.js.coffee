@@ -17,7 +17,7 @@ Jax.Controller.create "Level", ApplicationController,
       if @level.objects[i]
         @world.addObject @level.objects[i]
       
-  update: (timechange) ->    
+  update: (timechange) ->
     ;
     
   key_pressed: (event) ->
