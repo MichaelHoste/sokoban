@@ -57,19 +57,19 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         
     # refresh material
     if type == 's'
-      object.mesh.material = "floor"
+      object.mesh.material = 'floor'
     else if type == '#'
-      object.mesh.material = "wall"
+      object.mesh.material = 'wall'
     else if type == '$'
-      object.mesh.material = "box"
+      object.mesh.material = 'box'
     else if type == '*'
-      object.mesh.material = "boxgoal"
+      object.mesh.material = 'boxgoal'
     else if type == '.'
-      object.mesh.material = "goal"
+      object.mesh.material = 'goal'
     else if type == '@'
-      object.mesh.material = "pusher"
+      object.mesh.material = 'pusher'
     else if type == '+'
-      object.mesh.material = "pushergoal"
+      object.mesh.material = 'pushergoal'
       
   # refresh the level textures depending on the new position of the pusher
   # * refresh pusher position and 4 neighbours (u,d,l,r) if forward move

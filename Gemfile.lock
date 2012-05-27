@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/sinisterchipmunk/jax.git
+  revision: 942ec8321646304a265ecb64d61c198be63ce472
+  tag: v2.0.10
+  specs:
+    jax (2.0.10)
+      jasmine (~> 1)
+      jquery-rails (>= 1)
+      rails (~> 3)
+      rest-client (~> 1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -70,11 +81,6 @@ GEM
       rspec (>= 1.3.1)
       selenium-webdriver (>= 0.1.3)
     jasmine-core (1.2.0)
-    jax (2.0.10)
-      jasmine (~> 1)
-      jquery-rails (>= 1)
-      rails (~> 3)
-      rest-client (~> 1)
     journey (1.0.3)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -187,7 +193,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   heroku
-  jax (~> 2.0.0)
+  jax!
   jquery-rails
   json
   koala (~> 1.4.1)
