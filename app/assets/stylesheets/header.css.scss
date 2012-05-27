@@ -99,19 +99,3 @@ header
 	}
 }
 
-#banner
-{
-	@extend .border_box;
-	
-	width:100%;
-	padding-top:20px;
-	padding-bottom:20px;
-	border-top:1px solid $light;
-	border-bottom:1px solid $light;
-	background-color:$lighter;
-	font-family:arial;
-	font-weight:bold;
-	text-align:center;
-	font-size:23px;
-	color:#444444;
-}

@@ -88,4 +88,21 @@ class User < ActiveRecord::Base
       self.save!
     end
   end
+  
+  def profile_picture
+    if self.picture
+      self.picture
+    else
+      graph = Koala::Facebook::API.new
+      self.picture = graph.get_picture(self.f_id, :type => 'square')
+    end
+  end
+
+  def subscribed_friends
+    self.friends.where('email IS NOT NULL')
+  end
+  
+  def subscribed_friends_ids
+    self.friends.where('email IS NOT NULL').pluck(:f_id)
+  end
 end

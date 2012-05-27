@@ -1,7 +1,21 @@
-<div id="banner">
-  <% if current_user %>
-    <%= current_user.friends.where('email IS NOT NULL').all.to_s %>
-  <% else %>
+<% if current_user %>
+
+  <div id="banner" class="banner-friends">
+    <div id="limited-banner">
+      <% subscribed_friends = current_user.subscribed_friends %>
+      
+      <%= link_to "INVITE YOUR FRIENDS", "http://www.facebook.com", :class => 'invite-friends' if subscribed_friends.empty? %>
+      
+      <% subscribed_friends.each do |friend| %>
+       <%= image_tag friend.profile_picture, :title => friend.name %>
+      <% end %>
+    </div>
+  </div>  
+
+<% else %>
+
+  <div id="banner" class="banner-text">
     PLAY SOKOBAN AGAINST YOUR FRIENDS
-  <% end %>
-</div>
+  </div>
+
+<% end %>

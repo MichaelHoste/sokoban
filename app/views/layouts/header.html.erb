@@ -6,8 +6,8 @@
     <div id="menus">
       <ul>
         <% if current_user %>
-          <li class="picture fb_logout"><%= image_tag current_user.picture %></li>
-          <li class="name fb_logout"><%= current_user.name %>&nbsp;<i class="icon-signout"></i></li>       
+          <li class="picture fb_logout"><%= image_tag current_user.profile_picture %></li>
+          <li class="name fb_logout" text="Disconnect"><%= current_user.name %>&nbsp;<i class="icon-signout"></i></li>       
         <% else %>
           <li class="picture fb_login"><%= image_tag "facebook-connect-small.png" %></li>
           <li class="name fb_login">Connect with Facebook</li>

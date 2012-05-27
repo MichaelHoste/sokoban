@@ -1,0 +1,54 @@
+@import "utils.css.scss";
+
+#banner
+{
+	@extend .border_box;
+	
+	width:100%;
+	border-top:1px solid $light;
+	border-bottom:1px solid $light;
+	background-color:$lighter;
+	font-family:arial;
+	font-weight:bold;
+	text-align:center;
+	color:#444444;
+	
+	img
+	{
+		width:30px;
+		height:30px;
+		margin-left:3px;
+		margin-right:3px;
+	}
+}
+
+#limited-banner
+{
+	position:absolute;
+	width:1000px;
+	margin-left:50%;
+	left:-500px;
+}
+
+.banner-text
+{
+	height:72px; // img height + 2 x banner-text padding + borders
+	padding-top:20px;
+	padding-bottom:20px;
+	font-size:23px;
+}
+
+.banner-friends
+{
+	height:44px; // img height + 2 x banner-friend padding + borders
+	padding-top:6px;
+	padding-bottom:6px;
+	font-size:0px;
+	
+	a.invite-friends
+	{
+		line-height:30px;
+		font-size:12px;
+		color:black;
+	}
+}
