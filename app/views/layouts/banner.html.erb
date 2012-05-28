@@ -6,7 +6,7 @@
       
       <% if subscribed_friends.empty? %>
         <%= f_url = facebook_send_message_url(current_user) %>
-        <%= link_to "INVITE YOUR FRIENDS", f_url, :class => 'invite-friends' %>
+        <%= link_to "INVITE YOUR FRIENDS", f_url, :class => 'invite-friends popup' %>
       <% end %>
       
       <% subscribed_friends.each do |friend| %>
@@ -14,7 +14,7 @@
       <% end %>
       <% if not subscribed_friends.empty? %>
         <%= f_url = facebook_send_message_url(current_user) %>
-        <%= link_to "invite more friends...", f_url, :class => 'invite-friends' %>
+        <%= link_to "invite more friends...", f_url, :class => 'popup' %>
       <% end %>
     </div>
     <div class="clear:both"></div>

@@ -29,6 +29,11 @@ $ ->
   
   enable_scroll = ->
     document.onkeydown = null
+  
+  $('.popup').on('click', ->
+    window.open(this.href, 'Facebook > New Message', 'height=300,width=600')
+    return false
+  )
     
   disable_scroll()
   
