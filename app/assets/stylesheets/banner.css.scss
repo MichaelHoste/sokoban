@@ -19,20 +19,19 @@
 		height:30px;
 		margin-left:3px;
 		margin-right:3px;
+		padding-top:2px;
+		padding-bottom:2px;
 	}
 }
 
 #limited-banner
-{
-	position:absolute;
-	width:1000px;
-	margin-left:50%;
-	left:-500px;
+{	
+	position:relative;
+	width:100%;
 }
 
 .banner-text
 {
-	height:72px; // img height + 2 x banner-text padding + borders
 	padding-top:20px;
 	padding-bottom:20px;
 	font-size:23px;
@@ -40,10 +39,9 @@
 
 .banner-friends
 {
-	height:44px; // img height + 2 x banner-friend padding + borders
-	padding-top:6px;
-	padding-bottom:6px;
 	font-size:0px;
+	padding-top:2px;
+	padding-bottom:2px;
 	
 	a.invite-friends
 	{

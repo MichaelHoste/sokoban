@@ -16,7 +16,7 @@ TO DO
 
  * Draw the pack/index page
  * workflow when level is succeeded
- * Find why the textures are so pale (and why some color disappeared)
  * Implement basic deadlock detection in coffeescript (corners, 2 boxes etc.)
  * Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone)
  * try raphael to draw in 2D (for fallback and level thumbs)
+ * try to adapt the url of the page to allow "back" (history)

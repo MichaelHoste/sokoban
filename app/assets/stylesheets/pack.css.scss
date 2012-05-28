@@ -3,90 +3,103 @@
 #content
 {
 	width:100%;
-	height:550px;
 	background-color:white;
 	
 	#limited-content
-	{
-		position:absolute;
+	{	
 		padding-top:30px;
+		position:relative;
 		width:1000px;
-		margin-left:50%;
-		left:-500px;
-		
-		#menu_levels
-		{
-			@extend .border_box;
-			float:left;
-			width:260px;
-			height:470px;
-			
-			#packs
-			{
-			  height:35px;
-			  overflow:hidden;
-				text-align:center;
-				font-weight:bold;
-				text-transform:uppercase;
-			}
-
-			#levels
-			{				
-				height:435px;
-			  overflow:auto;
-				border:1px solid $lighter;
-				
-
-			  li
-			  {
-					@extend .border_box;
-				
-					float:left;
-					width:60px;
-					margin:10px;
-					padding:5px;
-					text-align:left;
-					list-style-type:none;
-					@extend .button_off;
-					
-					.star
-					{
-						display:block;
-						float:left;
-						padding-right:10px;
-					}
-					
-					.icon-star
-					{
-						color:black;
-						-webkit-text-fill-color:#EDDA74; // fallback color if no stroke
-						-webkit-text-stroke: 1px rgb(0,0,0);
-					}
-					
-					.level-id
-					{
-						display:block;
-						float:left;
-						width:15px;
-						text-align:right;
-					}
-			  }
-
-			  li:hover
-			  {
-					@extend .button_on;
-			  }
-
-			  .is-selected
-			  {
-					@extend .button_selected;
-			  }
-			}
-		}
+		left:50%;
+		margin-left:-500px;
 		
 		canvas
 		{
 			float:right;
 		}
 	}
+}
+
+// in #limited-content
+#menu-levels
+{
+	@extend .border_box;
+	float:left;
+	width:260px;
+	height:470px;
+	margin-bottom:25px;
+	
+	#packs
+	{
+	  height:35px;
+	  overflow:hidden;
+		text-align:center;
+		font-weight:bold;
+		text-transform:uppercase;
+	}
+
+	#levels
+	{				
+		height:435px;
+	  overflow:auto;
+		border:1px solid $lighter;
+		
+
+	  li
+	  {
+			@extend .border_box;
+		
+			float:left;
+			width:60px;
+			margin:10px;
+			padding:5px;
+			text-align:left;
+			list-style-type:none;
+			@extend .button_off;
+			
+			.star
+			{
+				display:block;
+				float:left;
+				padding-right:10px;
+			}
+			
+			.icon-star
+			{
+				color:black;
+				-webkit-text-fill-color:#EDDA74; // fallback color if no stroke
+				-webkit-text-stroke: 1px rgb(0,0,0);
+			}
+			
+			.level-id
+			{
+				display:block;
+				float:left;
+				width:15px;
+				text-align:right;
+			}
+	  }
+
+	  li:hover
+	  {
+			@extend .button_on;
+	  }
+
+	  .is-selected
+	  {
+			@extend .button_selected;
+	  }
+	}
+}
+
+// in #limited-content
+.pack
+{
+	@extend .border_box;
+	float:left;
+	border:1px solid;
+	width:220px;
+	margin-left:15px;
+	margin-right:15px;
+	margin-bottom:25px;
 }
