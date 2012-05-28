@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem "jax", :git => "git://github.com/sinisterchipmunk/jax.git", :tag => "v2.0.10"
+gem "jax", '2.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

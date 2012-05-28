@@ -36,15 +36,19 @@ class window.LevelCore
     @pusher_pos_m = 0          # M position of the pusher
     @pusher_pos_n = 0          # N position of the pusher
     
+  # see load_from_file for details
   create_from_file: (pack_file_name, level_name) ->
     @level_from_file(pack_name, level_name)
     
+  # see load_from_database for details
   create_from_database: (pack_name, level_name) ->
     @level_from_database(pack_name, level_name)
     
+  # see load_from_grid for details
   create_from_grid: (grid, width, height, pack_name, level_name, copyright = "") ->
     @level_from_grid(grid, width, height, pack_name, level_name, copyright)
-    
+  
+  # see load_from_line for details  
   create_from_line: (line, width, height, pack_name, level_name, copyright = "") ->
     @level_from_line(line, width, height, pack_name, level_name, copyright)
     
@@ -367,6 +371,11 @@ class window.LevelCore
   
     @initialize_level_properties()
     
+  ###
+    Load a level from the server's database (using the API)
+    @param pack_name the name of the pack
+    @param level_name the name of the level
+  ###
   level_from_database: (pack_name, level_name) ->
     jqxhr = $.ajax({ 
               url: 'http://' + location.host + '/packs/' + pack_name + '/levels/' + level_name,
@@ -385,7 +394,16 @@ class window.LevelCore
         
       @initialize_level_properties()
     )
-  
+
+  ###
+    Load a level from a grid like in the .slc file
+    @param grid array of lines of max "width" chars
+    @param width width of the level
+    @param height height of the level
+    @param pack_name the name of the pack
+    @param level_name the name of the level
+    @param copyright copyright of the level
+  ###
   level_from_grid: (grid, width, height, pack_name, level_name, copyright = "") ->
     @pack_name = pack_name
     @level_name = level_name
@@ -403,7 +421,16 @@ class window.LevelCore
         @grid[i*width+j] = line.charAt(j)
 
     @initialize_level_properties()
-    
+
+  ###
+    Load a level from a big line of chars
+    @param line line of width*height chars
+    @param width width of the level
+    @param height height of the level
+    @param pack_name the name of the pack
+    @param level_name the name of the level
+    @param copyright copyright of the level
+  ###
   level_from_line: (line, width, height, pack_name, level_name, copyright = "") ->
     @pack_name = pack_name
     @level_name = level_name
@@ -415,7 +442,11 @@ class window.LevelCore
       @grid.push(line.charAt(i))
   
     @initialize_level_properties()
-        
+  
+  ###
+    Common tasks when initializing a level :
+    find pusher position, create floor, etc.
+  ###
   initialize_level_properties: ->
     # Find initial position of pusher
     @initialize_pusher_position()
