@@ -1,5 +1,5 @@
 Jax.Controller.create "Level", ApplicationController,
-  index: ->
+  index: ->    
     # unload old level if exists
     if @level
       @level.unload(@world)
@@ -11,11 +11,6 @@ Jax.Controller.create "Level", ApplicationController,
         
     # Initalize path
     @path = new PathCore()
-            
-    # load the components of the level and add them on the world
-    for i in [0..@level.cols_number()*@level.rows_number()-1]
-      if @level.objects[i]
-        @world.addObject @level.objects[i]
       
   update: (timechange) ->
     ;

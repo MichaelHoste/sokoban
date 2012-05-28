@@ -99,17 +99,34 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     for position in positions
       if @read_pos(position[0], position[1]) != 'E'
         @display_position(position[0], position[1])
+  
+  # Render every squares of the level (the level itself is just a mesh container)
+  render: (context, options) ->
+    if @objects
+      if !Jax.Model.__instances[@__unique_id]
+        Jax.Model.__instances[@__unique_id] = @
+      options = Jax.Util.normalizeOptions(options, { model_index: @__unique_id });
+      context.pushMatrix( =>
+        #context.multModelMatrix(this.camera.getTransformationMatrix())
+        for i in [0..@cols_number()*@rows_number()-1]
+          if @objects[i]
+            @objects[i].render(context, options)
+      )
         
   unload: (world) ->
+    # delete each square of the level
     for i in [0..@level_core.cols_number*@level_core.rows_number-1]
       if @objects[i]
-        world.removeObject @objects[i].__unique_id
         @objects[i].dispose()
         delete @objects[i]
-    world.removeObject @__unique_id
     delete @objects
+    
+    # delete associated level_core
     delete @level_core.grid
-    delete @level_core
+    delete @level_core    
+    
+    # remove level from the world
+    world.removeObject @__unique_id
       
   cols_number: ->
     @level_core.cols_number
