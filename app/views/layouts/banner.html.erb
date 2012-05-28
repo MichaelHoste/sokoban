@@ -12,6 +12,9 @@
       <% subscribed_friends.each do |friend| %>
         <%= image_tag friend.profile_picture, :title => friend.name %>
       <% end %>
+      <% if not subscribed_friends.empty? %>
+        <%= link_to "invite more friends...", f_url, :class => 'invite-friends' %>
+      <% end %>
     </div>
     <div class="clear:both"></div>
   </div>  
