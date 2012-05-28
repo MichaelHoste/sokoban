@@ -1,5 +1,5 @@
 Jax.Controller.create "Level", ApplicationController,
-  index: ->    
+  index: ->
     # unload old level if exists
     if @level
       @level.unload(@world)
@@ -11,6 +11,9 @@ Jax.Controller.create "Level", ApplicationController,
         
     # Initalize path
     @path = new PathCore()
+    
+    # the game is not freezed (keyboard arrows can be used)
+    @freezed_game = false
       
   update: (timechange) ->
     ;
@@ -19,6 +22,10 @@ Jax.Controller.create "Level", ApplicationController,
     has_moved = 0
     has_deleted = 0
     
+    # freezed game, no move allowed
+    if @freezed_game
+      return false
+    
     move_letter = ' '
     switch event.keyCode
       when KeyEvent.DOM_VK_UP    then move_letter = 'u'
@@ -26,10 +33,8 @@ Jax.Controller.create "Level", ApplicationController,
       when KeyEvent.DOM_VK_LEFT  then move_letter = 'l'
       when KeyEvent.DOM_VK_RIGHT then move_letter = 'r'
       when KeyEvent.DOM_VK_D     then has_deleted = @level.delete_last_move(@path)
-      
-    #if move_letter != ' '
-    #  window.scrollTo(0, 0)
 
+    # move
     has_moved = @level.move(move_letter)
 
     # save move
@@ -69,6 +74,7 @@ Jax.Controller.create "Level", ApplicationController,
           if data.result == "ok"
             alert("niveau réussi !")
             @star_level()
+            @freezed_game = true
             if window.is_logged()
               window.colorbox_next_level()
             else
