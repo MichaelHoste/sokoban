@@ -392,10 +392,15 @@ class window.LevelCore
     @copyright = copyright
     @rows_number = height
     @cols_number = width
+    
+    # initialize grid
+    for i in [0..height*width-1]
+      @grid.push(' ')
 
+    # 
     for line, i in grid
       for j in [0..line.length-1]
-        @grid.push(line.charAt(j))
+        @grid[i*width+j] = line.charAt(j)
 
     @initialize_level_properties()
     
