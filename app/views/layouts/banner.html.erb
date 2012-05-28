@@ -4,17 +4,21 @@
     <div id="limited-banner">
       <% subscribed_friends = current_user.subscribed_friends %>
       
+      <% # no subscribed friends %>
       <% if subscribed_friends.empty? %>
-        <%= f_url = facebook_send_message_url(current_user) %>
+        <% f_url = facebook_send_message_url(current_user) %>
         <%= link_to "INVITE YOUR FRIENDS", f_url, :class => 'invite-friends popup' %>
       <% end %>
       
+      <% # list of subscribed friends %>
       <% subscribed_friends.each do |friend| %>
         <%= image_tag friend.profile_picture, :title => friend.name %>
       <% end %>
+      
+      <% # invite more friends %>
       <% if not subscribed_friends.empty? %>
-        <%= f_url = facebook_send_message_url(current_user) %>
-        <%= link_to "invite more friends...", f_url, :class => 'popup' %>
+        <% f_url = facebook_send_message_url(current_user) %>
+        <%= link_to "...", f_url, :class => 'small-invite-friends popup', :title => 'Invite more friends' %>
       <% end %>
     </div>
     <div class="clear:both"></div>
