@@ -45,7 +45,7 @@ namespace :app  do
       `git add .`
       `git commit -a -m "gemfile.lock for production"`
       `git push heroku master`
-      `heroku run db:migrate`
+      `heroku run rake db:migrate`
       `heroku restart`
       
       # generate right gemfile for development and save to github
