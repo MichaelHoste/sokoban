@@ -125,24 +125,22 @@ end
 # populate levels from
 def populate_levels(packs)
   # loop on each pack
-  packs.each do |pack|
-    puts "Import level pack : #{pack}.slc"
+  packs.each do |pack_file|
+    puts "Import level pack : #{pack_file}.slc"
 
     # Open pack file
-    File.open("lib/assets/levels/#{pack}.slc", 'r') do |f|
+    File.open("lib/assets/levels/#{pack_file}.slc", 'r') do |f|
       xml_doc = Nokogiri::XML(f)
       
       # save pack informations
-      pack = Pack.new
-      pack.file_name   = pack
-      pack.name        = xml_doc.css('SokobanLevels > Title').text().strip
-      pack.description = xml_doc.css('SokobanLevels > Description').text().strip
-      pack.email       = xml_doc.css('SokobanLevels > Email').text().strip
-      pack.url         = xml_doc.css('SokobanLevels > Url').text().strip
-      pack.copyright   = xml_doc.css('LevelCollection').first['Copyright'].strip
-      pack.max_width   = xml_doc.css('LevelCollection').first['MaxWidth'].strip.to_i
-      pack.max_height  = xml_doc.css('LevelCollection').first['MaxHeight'].strip.to_i
-      pack.save!
+      pack = Pack.create!({ :file_name   => pack_file,
+                            :name        => xml_doc.css('SokobanLevels > Title').text().strip,
+                            :description => xml_doc.css('SokobanLevels > Description').text().strip,
+                            :email       => xml_doc.css('SokobanLevels > Email').text().strip,
+                            :url         => xml_doc.css('SokobanLevels > Url').text().strip,
+                            :copyright   => xml_doc.css('LevelCollection').first['Copyright'].strip,
+                            :max_width   => xml_doc.css('LevelCollection').first['MaxWidth'].strip.to_i,
+                            :max_height  => xml_doc.css('LevelCollection').first['MaxHeight'].strip.to_i })
 
       # loop on each level
       levels = xml_doc.css('LevelCollection > Level')
@@ -156,15 +154,12 @@ def populate_levels(packs)
         end
 
         # save level information
-        new_level = Level.new
-        new_level.name      = level['Id'].strip
-        new_level.width     = level['Width'].strip.to_i
-        new_level.height    = level['Height'].strip.to_i
-        new_level.copyright = (level.has_attribute?('Copyright') ? level['Copyright'].strip : '')
-        new_level.grid      = grid
-        new_level.save!
-        pack.levels << new_level
-
+        new_level = pack.levels.create!({ :name      => level['Id'].strip,
+                                          :width     => level['Width'].strip.to_i,
+                                          :height    => level['Height'].strip.to_i,
+                                          :copyright => (level.has_attribute?('Copyright') ? level['Copyright'].strip : ''),
+                                          :grid      => grid })
+        
         # Import the level to javascript, compute the floor and some useful datas
         # and then get back the new grid from javascript to save it to the database
         V8::Context.new do |cxt|

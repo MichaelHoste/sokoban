@@ -10,6 +10,9 @@ class Pack < ActiveRecord::Base
   # Associations
   has_many :levels
   
+  # Scope
+  default_scope :order => 'name ASC'
+  
   # Nested attributes
   
   # Validations

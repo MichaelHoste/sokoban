@@ -14,7 +14,9 @@ class Level < ActiveRecord::Base
   attr_protected :created_at, :updated_at
   
   # Associations
-  belongs_to :pack
+  
+  # counter_cache allows to get pack.levels.size without a count(*) request
+  belongs_to :pack, :counter_cache => true
   
   has_many :scores,
            :class_name => 'LevelUserLink'

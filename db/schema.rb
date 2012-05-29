@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120524084108) do
+ActiveRecord::Schema.define(:version => 20120529081236) do
 
   create_table "level_user_links", :force => true do |t|
     t.integer  "user_id"
@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(:version => 20120524084108) do
     t.string   "copyright"
     t.integer  "max_width"
     t.integer  "max_height"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "levels_count", :default => 0
   end
 
   create_table "user_user_links", :force => true do |t|
