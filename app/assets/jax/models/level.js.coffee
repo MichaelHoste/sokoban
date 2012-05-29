@@ -9,7 +9,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @objects = [] # list of objects to be displayed
 
     # load selected level
-    pack_name = $("#packs").find(".is-selected").text()
+    pack_name = $("#packs > li").text()
     level_name = $("#levels").find(".is-selected .level-id").text()
     
     @level_core = new LevelCore()

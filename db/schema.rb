@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529081236) do
+ActiveRecord::Schema.define(:version => 20120529173218) do
 
   create_table "level_user_links", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(:version => 20120529081236) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  add_index "level_user_links", ["level_id"], :name => "index_level_user_links_on_level_id"
+  add_index "level_user_links", ["user_id"], :name => "index_level_user_links_on_user_id"
 
   create_table "levels", :force => true do |t|
     t.integer  "pack_id"
@@ -40,6 +43,9 @@ ActiveRecord::Schema.define(:version => 20120529081236) do
     t.datetime "updated_at",      :null => false
   end
 
+  add_index "levels", ["name"], :name => "index_levels_on_name"
+  add_index "levels", ["pack_id"], :name => "index_levels_on_pack_id"
+
   create_table "packs", :force => true do |t|
     t.string   "name"
     t.string   "file_name"
@@ -53,6 +59,8 @@ ActiveRecord::Schema.define(:version => 20120529081236) do
     t.datetime "updated_at",                  :null => false
     t.integer  "levels_count", :default => 0
   end
+
+  add_index "packs", ["name"], :name => "index_packs_on_name"
 
   create_table "user_user_links", :force => true do |t|
     t.integer  "user_id",    :limit => 8
@@ -86,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20120529081236) do
     t.datetime "updated_at",                  :null => false
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["f_id"], :name => "index_users_on_f_id", :unique => true
+  add_index "users", ["name"], :name => "index_users_on_name"
 
 end

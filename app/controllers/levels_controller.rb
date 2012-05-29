@@ -1,5 +1,5 @@
 class LevelsController < ApplicationController
-  def show
+  def show_ajax
     @pack = Pack.find_by_name(params[:pack_id])
     @level = @pack.levels.find_by_name(params[:id])
     render :json => { :grid        => @level.inline_grid_with_floor,
@@ -8,5 +8,11 @@ class LevelsController < ApplicationController
                       :copyright   => @level.copyright,
                       :rows_number => @level.rows_number,
                       :cols_number => @level.cols_number }
+  end
+  
+  def show
+    @pack = Pack.find_by_name(params[:pack_id])
+    @selected_level_name = params[:id]
+    render 'packs/show'
   end
 end

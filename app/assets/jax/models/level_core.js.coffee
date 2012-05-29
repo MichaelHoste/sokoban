@@ -377,8 +377,16 @@ class window.LevelCore
     @param level_name the name of the level
   ###
   level_from_database: (pack_name, level_name) ->
+    token_tag = ""
+    $('meta').each( ->
+      if $(this).attr('content') != 'authenticity_token'
+        token_tag = $(this).attr('content')
+    )
+    
     jqxhr = $.ajax({ 
-              url: 'http://' + location.host + '/packs/' + pack_name + '/levels/' + level_name,
+              type: 'POST'
+              url:  'http://' + location.host + '/packs/' + pack_name + '/levels/' + level_name
+              authenticity_token: token_tag
               async:false
             })
                     

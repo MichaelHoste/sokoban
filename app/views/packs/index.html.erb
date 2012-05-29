@@ -1,18 +1,21 @@
+<%= javascript_include_tag 'packs/index' %>
+
 <% @packs.each do |pack| %>
   <div class="pack">
-    <div class="pack-title">
+    <div class="pack-title" title="<%= pack.name %>">
       <%= link_to pack.name, "/packs/#{pack.name}" %>
     </div>
         
     <ul id="levels">
-      
-      <% pack.levels.each_with_index do |level, i| %>
-        <li>
-          <% if true # if won_levels_ids.include?(level.id) %>
+  
+      <% won_levels_ids = Pack.won_level_ids(current_user) %>  
+      <% pack.levels.each_with_index do |level| %>
+        <li title="<%= level.name %>">
+          <% if won_levels_ids.include?(level.id) %>
             <span class="star icon-star"></span>
-          <%  else %>
+          <% else %>
             <span class="star icon-star-empty"></span>
-          <%  end %>
+          <% end %>
         </li>
       <% end %>
       

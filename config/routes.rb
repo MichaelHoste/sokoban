@@ -3,11 +3,12 @@ Sokojax::Application.routes.draw do
   
   # Resources
   resources :packs do
-    resources :levels
+    resources :levels do
+      post ':id' => 'levels#show_ajax', :on => :collection
+    end
   end
   
   resources :scores
-  #get '/scores', :to => 'scores#create'
   
   # Root
   root :to => "packs#show", :id => 'Original & Extra'

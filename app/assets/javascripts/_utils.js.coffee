@@ -30,10 +30,6 @@ $ ->
   enable_scroll = ->
     document.onkeydown = null
   
-  $('#limited-content').masonry(
-    itemSelector: '.pack'
-  )
-  
   # send new message (invite friends)
   $('.popup').on('click', ->
     window.open(this.href, 'Facebook > New Message', 'height=300,width=600')
