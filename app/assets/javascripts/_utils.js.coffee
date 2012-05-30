@@ -7,6 +7,14 @@ $ ->
     
   window.is_logged = ->
     $('#menus .fb_logout').length
+    
+  window.authenticity_token = ->
+    token_tag = ""
+    $('meta').each( ->
+      if $(this).attr('content') != 'authenticity_token'
+        token_tag = $(this).attr('content')
+    )
+    return token_tag
   
   # Disable up, down, left, right to scroll
   # left: 37, up: 38, right: 39, down: 40, spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36

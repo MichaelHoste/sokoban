@@ -56,18 +56,14 @@ Jax.Controller.create "Level", ApplicationController,
     if has_moved != 0
       if @level.is_won()
         # load selected level
-        pack_name = $("#packs").find(".is-selected").text()
+        pack_name = $('#packs > li').text()
         level_name = $("#levels").find(".is-selected .level-id").text()
-        token_tag = "" 
-        $('meta').each( ->
-          if $(this).attr('content') != 'authenticity_token'
-            token_tag = $(this).attr('content')
-        )
+        token_tag = window.authenticity_token()
         
         $.post('/scores', 
-          pack_id: pack_name
+          pack_id:  pack_name
           level_id: level_name
-          path: @path.get_compressed_string_path()
+          path:     @path.get_compressed_string_path()
           authenticity_token: token_tag
         )
         .success((data, status, xhr) =>
