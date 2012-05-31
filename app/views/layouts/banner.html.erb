@@ -13,6 +13,7 @@
       <% # list of subscribed friends %>
       <% subscribed_friends.each do |friend| %>
         <%= image_tag friend.profile_picture, :title => friend.name %>
+        <span style="display:none" title="<%= friend.id %>"><%= friend.won_level_ids.join(',') %></span>
       <% end %>
       
       <% # invite more friends %>

@@ -105,4 +105,14 @@ class User < ActiveRecord::Base
   def subscribed_friends_ids
     self.friends.where('email IS NOT NULL').pluck(:f_id)
   end
+  
+  # list of won level ids from the pack for this user
+  def won_level_ids(pack)
+    pack.won_levels_ids(self)
+  end
+  
+  # whole list of won level ids for this user
+  def won_level_ids
+    Pack.won_levels_ids(self)
+  end
 end
