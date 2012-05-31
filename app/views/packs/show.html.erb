@@ -8,7 +8,7 @@
   <ul id="levels">
   
     <% won_levels_ids = @pack.won_level_ids(current_user) %>  
-    <% @pack.levels.each do |level| %>
+    <% @pack.levels.each_with_index do |level, index| %>
       <% selected = (@selected_level_name == level.name ? 'class="is-selected"' : '') %>
       <li <%= selected.html_safe %>>
         <% if won_levels_ids.include?(level.id) %>
@@ -16,7 +16,7 @@
         <% else %>
           <span class="star icon-star-empty"></span>
         <% end %>
-        <span class="level-id"><%= level.name %></span>
+        <span class="level-id" title="<%= level.name %>"><%= index+1 %></span>
       </li>
     <% end %>
     

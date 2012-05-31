@@ -57,7 +57,7 @@ Jax.Controller.create "Level", ApplicationController,
       if @level.is_won()
         # load selected level
         pack_name = $('#packs > li').text()
-        level_name = $("#levels").find(".is-selected .level-id").text()
+        level_name = $('#levels').find('.is-selected .level-id').attr('title')
         token_tag = window.authenticity_token()
         
         $.post('/scores', 
