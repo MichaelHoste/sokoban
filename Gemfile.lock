@@ -53,7 +53,7 @@ GEM
       rack (~> 1.1)
     ffi (1.0.11)
     hashie (1.2.0)
-    heroku (2.26.2)
+    heroku (2.26.3)
       heroku-api (~> 0.2.1)
       launchy (>= 0.3.2)
       netrc (~> 0.7.2)
