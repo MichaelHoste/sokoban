@@ -107,12 +107,12 @@ class User < ActiveRecord::Base
   end
   
   # list of won level ids from the pack for this user
-  def won_level_ids(pack)
+  def won_levels_ids(pack)
     pack.won_levels_ids(self)
   end
   
   # whole list of won level ids for this user
-  def won_level_ids
+  def won_levels_ids
     Pack.won_levels_ids(self)
   end
 end

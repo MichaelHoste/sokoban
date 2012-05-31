@@ -21,7 +21,7 @@ class Pack < ActiveRecord::Base
   
   # Methods
   
-  def self.won_level_ids(current_user)
+  def self.won_levels_ids(current_user)
     if current_user
       # Get unique level_id from all the scores for current_user related to this pack
       current_user.scores.pluck(:level_id).uniq
@@ -30,7 +30,7 @@ class Pack < ActiveRecord::Base
     end
   end
   
-  def won_level_ids(current_user)
+  def won_levels_ids(current_user)
     if current_user
       # Get unique level_id from all the scores for current_user related to this pack
       current_user.scores.where(:level_id => self.levels).pluck(:level_id).uniq

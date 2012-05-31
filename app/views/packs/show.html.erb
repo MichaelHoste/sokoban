@@ -7,7 +7,7 @@
   
   <ul id="levels">
   
-    <% won_levels_ids = @pack.won_level_ids(current_user) %>  
+    <% won_levels_ids = @pack.won_levels_ids(current_user) %>  
     <% @pack.levels.each_with_index do |level, index| %>
       <% selected = (@selected_level_name == level.name ? 'class="is-selected"' : '') %>
       <li <%= selected.html_safe %>>
