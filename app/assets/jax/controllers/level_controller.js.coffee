@@ -57,7 +57,7 @@ Jax.Controller.create "Level", ApplicationController,
       if @level.is_won()
         # load selected level
         pack_name = $('#packs > li').text()
-        level_name = $('#levels').find('.is-selected .level-id').attr('title')
+        level_name = $('#levels').find('.is-selected .level-index').attr('title')
         token_tag = window.authenticity_token()
         
         $.post('/scores', 
@@ -79,7 +79,7 @@ Jax.Controller.create "Level", ApplicationController,
         
   # star selected level
   star_level: ->
-    button = $('#levels').find('.is-selected .level-id').prev()
+    button = $('#levels').find('.is-selected .level-index').prev()
     button.removeClass('icon-star-empty')
     button.addClass('icon-star')
     
