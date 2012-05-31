@@ -71,12 +71,17 @@
 				-webkit-text-stroke: 1px rgb(0,0,0);
 			}
 			
-			.level-id
+			.level-index
 			{
 				display:block;
 				float:left;
 				width:15px;
 				text-align:right;
+			}
+			
+			.level-id
+			{
+			  display:none;
 			}
 	  }
 

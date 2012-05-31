@@ -10,7 +10,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
 
     # load selected level
     pack_name = $("#packs > li").text()
-    level_name = $('#levels').find('.is-selected .level-id').attr('title')
+    level_name = $('#levels').find('.is-selected .level-index').attr('title')
     
     @level_core = new LevelCore()
     @level_core.create_from_database(pack_name, level_name)
