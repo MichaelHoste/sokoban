@@ -45,4 +45,3 @@ $ ->
   )
 
   disable_scroll()
-  

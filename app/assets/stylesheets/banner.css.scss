@@ -4,6 +4,7 @@
 {
 	@extend .border_box;
 	
+	position:absolute;
 	width:100%;
 	border-top:1px solid $light;
 	border-bottom:1px solid $light;
@@ -12,6 +13,8 @@
 	font-weight:bold;
 	text-align:center;
 	color:#444444;
+	
+	z-index:200;
 }
 
 #limited-banner
