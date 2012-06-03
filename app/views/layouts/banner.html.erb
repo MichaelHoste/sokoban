@@ -13,7 +13,10 @@
       <% # list of subscribed friends %>
       <% subscribed_friends.each do |friend| %>
         <%= image_tag friend.profile_picture, :title => friend.name %>
-        <span style="display:none" title="<%= friend.id %>"><%= friend.won_levels_ids.join(',') %></span>
+        <span style="display:none" title="<%= friend.id %>">
+          <% # won levels ids of current pack OR every won levels id %>
+          <%= friend.won_levels_ids(@pack).join(',') %>
+        </span>
       <% end %>
       
       <% # invite more friends %>

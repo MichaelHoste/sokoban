@@ -6,7 +6,7 @@
       <%= link_to pack.name, "/packs/#{pack.name}" %>
     </div>
         
-    <ul id="levels">
+    <ul class="levels">
   
       <% won_levels_ids = Pack.won_levels_ids(current_user) %>  
       <% pack.levels.each_with_index do |level| %>
@@ -16,6 +16,7 @@
           <% else %>
             <span class="star icon-star-empty"></span>
           <% end %>
+          <span class="level-id" title="<%= level.id %>"></span>
         </li>
       <% end %>
       

@@ -5,9 +5,9 @@ $ ->
       span = $(this).next() # hidden span with won levels informations
       won_levels_ids = span.text().split(',')
       for level_id in won_levels_ids
-        level_button = $("#levels .level-id[title=#{level_id}]").parent()
+        level_button = $(".levels .level-id[title=#{level_id}]").parent()
         $(level_button).addClass('won-by-friend')
     )
     .mouseleave( ->
-      $('#levels > li').removeClass('won-by-friend')
+      $('.levels > li').removeClass('won-by-friend')
     )

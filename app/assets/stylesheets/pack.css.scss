@@ -90,10 +90,15 @@
 			@extend .button_on;
 	  }
 
-	  .is-selected
+	  li.is-selected
 	  {
 			@extend .button_selected;
 	  }
+	  
+	  li.won-by-friend
+	  {
+      @extend .button_selected_red;
+    }
 	}
 }
 
@@ -151,6 +156,11 @@
 			-webkit-text-fill-color:#EDDA74; // fallback color if no stroke
 			-webkit-text-stroke: 1px rgb(0,0,0);
 		}
+		
+		.level-id
+		{
+		  display:none;
+		}
   }
 
   li:hover
@@ -158,8 +168,13 @@
 		@extend .button_on;
   }
 
-  .is-selected
+  li.is-selected
   {
 		@extend .button_selected;
+  }
+  
+  li.won-by-friend
+  {
+    @extend .button_selected_red;
   }
 }

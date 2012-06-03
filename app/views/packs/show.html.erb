@@ -5,7 +5,7 @@
     <li title="<%= @pack.name %>"><%= @pack.name %></li>
   </ul>
   
-  <ul id="levels">
+  <ul id="levels" class="levels">
   
     <% won_levels_ids = @pack.won_levels_ids(current_user) %>  
     <% @pack.levels.each_with_index do |level, index| %>

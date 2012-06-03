@@ -69,3 +69,23 @@ $darker: #2d5a8b;
 	cursor:pointer;
 	color:#333333;
 }
+
+.button_selected_red
+{
+  background-image: linear-gradient(top, rgb(204,118,118) 47%, rgb(207,174,174) 82%);
+  background-image: -o-linear-gradient(top, rgb(204,118,118) 47%, rgb(207,174,174) 82%);
+  background-image: -moz-linear-gradient(top, rgb(204,118,118) 47%, rgb(207,174,174) 82%);
+  background-image: -webkit-linear-gradient(top, rgb(204,118,118) 47%, rgb(207,174,174) 82%);
+  background-image: -ms-linear-gradient(top, rgb(204,118,118) 47%, rgb(207,174,174) 82%);
+
+  background-image: -webkit-gradient(
+  	linear,
+  	left top,
+  	left bottom,
+  	color-stop(0.47, rgb(204,118,118)),
+  	color-stop(0.82, rgb(207,174,174))
+  );
+	
+	cursor:pointer;
+	color:#333333;
+}
