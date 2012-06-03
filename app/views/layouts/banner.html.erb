@@ -12,7 +12,7 @@
       
       <% # list of subscribed friends %>
       <% subscribed_friends.each do |friend| %>
-        <%= image_tag friend.profile_picture, :title => friend.name %>
+        <%= image_tag friend.profile_picture, :title => "#{friend.name} - #{friend.scores.length}" %>
         <span style="display:none" title="<%= friend.id %>">
           <% # won levels ids of current pack OR every won levels id %>
           <%= friend.won_levels_ids(@pack).join(',') %>

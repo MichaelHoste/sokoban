@@ -114,4 +114,8 @@ class User < ActiveRecord::Base
       Pack.won_levels_ids(self)
     end
   end
+  
+  def won_levels_count
+    self.scores.pluck(:level_id).uniq.count
+  end
 end
