@@ -115,7 +115,12 @@ class User < ActiveRecord::Base
     end
   end
   
-  def won_levels_count
-    self.scores.pluck(:level_id).uniq.count
+  def won_levels_count(pack)
+    if pack
+      levels_ids = pack.levels.pluck(:id)
+      self.scores.where(:level_id => levels_ids).uniq.count
+    else
+      self.scores.pluck(:level_id).uniq.count
+    end
   end
 end
