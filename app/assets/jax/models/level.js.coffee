@@ -1,5 +1,5 @@
 ###
-   
+  2D or 3D level display methods
 ###
 
 Jax.getGlobal()['Level'] = Jax.Model.create
@@ -7,32 +7,42 @@ Jax.getGlobal()['Level'] = Jax.Model.create
   # Constructor
   after_initialize: ->
     @objects = [] # list of objects to be displayed
-
-    # load selected level
-    pack_name = $("#packs > li").text()
-    level_name = $('#levels').find('.is-selected .level-index').attr('title')
-    
     @level_core = new LevelCore()
-    @level_core.create_from_database(pack_name, level_name)
     
-    # display level
+  create_3d: (pack_name, level_name) ->
+    @display_type = '3D'
+    @level_core.create_from_database(pack_name, level_name)
+    @display_level()
+    
+  create_2d: (pack_name, level_name) ->
+    @display_type = '2D'
+    @level_core.create_from_database(pack_name, level_name)
+    if window.raphael_div
+      window.raphael_div.clear()
+    else      
+      window.raphael_div = Raphael('raphael', 730, 470)
     @display_level()
 
   ###
-    Create (create objects) or refresh (change textures) the level
+    Create (create objects) or refresh the level
   ###
   display_level: ->
-    for m in [0..@level_core.rows_number-1]
-      for n in [0..@level_core.cols_number-1]
-        @display_position(m, n)
+    if @display_type == '3D'
+      for m in [0..@level_core.rows_number-1]
+        for n in [0..@level_core.cols_number-1]
+          @display_position_3d(m, n)
+    else if @display_type == '2D'
+      for m in [0..@level_core.rows_number-1]
+        for n in [0..@level_core.cols_number-1]
+          @display_position_2d(m, n)
   
   ###
-    display a specific position of the level. If the object doesn't exist,
+    display a specific position of the level in 3D. If the object doesn't exist,
     create it, and if the object exists, refresh the texture
     @param m number of the row to create/refresh
     @param n number of the column to create/refresh
   ###
-  display_position: (m, n) ->
+  display_position_3d: (m, n) ->
     cols_number = @level_core.cols_number
     rows_number = @level_core.rows_number
     
@@ -71,38 +81,65 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     else if type == '+'
       object.mesh.material = 'pushergoal'
       
-  # refresh the level textures depending on the new position of the pusher
-  # * refresh pusher position and 4 neighbours (u,d,l,r) if forward move
-  # * refresh pusher position and 8 neighbours (u,d,l,r,uu,dd,ll,rr) if reverse move (undo)
-  refresh: (reverse = 0) ->
-    # take the new pusher position and its 4 direct neighbours
-    pusher_m = @level_core.pusher_pos_m
-    pusher_n = @level_core.pusher_pos_n
-
-    positions =
-      [
-        [pusher_m,   pusher_n]
-        [pusher_m+1, pusher_n]
-        [pusher_m-1, pusher_n]
-        [pusher_m,   pusher_n+1]
-        [pusher_m,   pusher_n-1]
-      ]
+  ###
+    display a specific position of the level. If the object doesn't exist,
+    create it, and if the object exists, edit the texture
+    @param m number of the row to create/refresh
+    @param n number of the column to create/refresh
+  ###
+  display_position_2d: (m, n) ->
+    cols_number = @level_core.cols_number
+    rows_number = @level_core.rows_number
+  
+    type = @level_core.read_pos(m, n)
     
-    # if deleted move, refresh its 8 neighbours
-    if reverse
-      positions.push( [pusher_m+2, pusher_n] )
-      positions.push( [pusher_m-2, pusher_n] )
-      positions.push( [pusher_m,   pusher_n+2] )
-      positions.push( [pusher_m,   pusher_n-2] )
- 
-    # visually refresh these positions
-    for position in positions
-      if @read_pos(position[0], position[1]) != 'E'
-        @display_position(position[0], position[1])
+    console.log($('#raphael').css('width'))
+    
+    div_width  = $('#raphael').css('width')
+    div_height = $('#raphael').css('height')
+
+    div_widthi  = parseInt(div_width.substring(div_width.length-2, div_width.length))    
+    div_heighti = parseInt(div_height.substring(div_height.length-2, div_height.length))
+    
+    size_width  = div_widthi  / (cols_number + 2.0)
+    size_height = div_heighti / (rows_number + 2.0)
+    
+    size = Math.min(size_width, size_height)
+      
+    # create object
+    if type != ' ' and not @objects[cols_number*m + n]
+      object = window.raphael_div.image('images/box64.png', n*size, m*size, size, size)
+      @objects[cols_number*m + n] = object
+    else if type != ' '
+      object = @objects[cols_number*m + n]
+    
+    # refresh material
+    if type == 's' and object.attrs.src != 'images/floor64.png'
+      object.remove()
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/floor64.png', n*size, m*size, size, size)
+    else if type == '#' and object.attrs.src != 'images/wall64.png'
+      object.remove()
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/wall64.png', n*size, m*size, size, size)
+    else if type == '$' and object.attrs.src != 'images/box64.png'
+      object.remove()
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/box64.png', n*size, m*size, size, size)
+    else if type == '*' and object.attrs.src != 'images/boxgoal64.png'
+      object.remove()
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/boxgoal64.png', n*size, m*size, size, size)
+    else if type == '.' and object.attrs.src != 'images/goal64.png'
+      object.remove()
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/goal64.png', n*size, m*size, size, size)
+    else if type == '@' and object.attrs.src != 'images/pusher64.png'
+      object.remove()
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/pusher64.png', n*size, m*size, size, size)
+    else if type == '+' and object.attrs.src != 'images/pushergoal64.png'
+      object.remove()
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/pushergoal64.png', n*size, m*size, size, size)
   
   # Render every squares of the level (the level itself is just a mesh container)
+  # ONLY IF IN 3D MODE !
   render: (context, options) ->
-    if @objects
+    if @display_type == '3D' and @objects
       if !Jax.Model.__instances[@__unique_id]
         Jax.Model.__instances[@__unique_id] = @
       options = Jax.Util.normalizeOptions(options, { model_index: @__unique_id });

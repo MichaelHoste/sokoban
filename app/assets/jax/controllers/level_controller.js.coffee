@@ -6,7 +6,10 @@ Jax.Controller.create "Level", ApplicationController,
       delete @level
     
     # load selected level and add it to the world
+    pack_name = $("#packs > li").text()
+    level_name = $('#levels').find('.is-selected .level-index').attr('title')
     @level = Level.find "actual"
+    @level.create_2d(pack_name, level_name)
     @world.addObject @level
         
     # Initalize path
@@ -42,7 +45,7 @@ Jax.Controller.create "Level", ApplicationController,
 
     # if moved, refresh concerned level positions objects
     if has_moved != 0 or has_deleted != 0
-      @level.refresh(has_deleted)
+      @level.display_level()
     
     # check if level is won, and save the score if it is
     @save_solution_if_any(has_moved)

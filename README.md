@@ -14,7 +14,6 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- * Draw the pack/index page
  * workflow when level is succeeded
  * Implement basic deadlock detection in coffeescript (corners, 2 boxes etc.)
  * Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone)

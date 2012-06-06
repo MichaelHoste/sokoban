@@ -1,5 +1,16 @@
 @import "utils.css.scss";
 
+#webgl
+{
+  display:none;
+}
+
+#raphael
+{
+  width:730px;
+  height:470px;
+}
+
 #content
 {
   margin-top:40px;
