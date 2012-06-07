@@ -4,7 +4,7 @@
       Sokoban
     </div>
     <div id="menus">
-      <ul>
+      <ul>        
         <% if current_user %>
           <li class="picture fb_logout"><%= image_tag current_user.profile_picture %></li>
           <li class="name fb_logout" title="Logout"><%= current_user.name %>&nbsp;<i class="icon-signout"></i></li>       
@@ -12,6 +12,10 @@
           <li class="picture fb_login"><%= image_tag "facebook-connect-small.png" %></li>
           <li class="name fb_login">Connect with Facebook</li>
         <% end %>
+        
+        <li class="switch switch-2d is-selected">2D</li>
+        <li class="switch switch-3d">3D</li>
+        
         <li class="packs-menu is-selected"><i class="icon-star"></i>&nbsp;Packs</li>
         <li class="scores-menu"><i class="icon-trophy"></i>&nbsp;Scores</li>
         <li class="rules-menu"><i class="icon-book"></i>&nbsp;Rules</li>

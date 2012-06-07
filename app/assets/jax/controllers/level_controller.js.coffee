@@ -1,16 +1,21 @@
 Jax.Controller.create "Level", ApplicationController,
   index: ->
-    # unload old level if exists
+    # watch if it's a redirect (the level already exist. ex : 3D <-> 2D switch)
     if @level
-      @level.unload(@world)
-      delete @level
-    
+      if @display_switch() == '3D'
+        @level.switch_to_3d()
+      else
+        @level.switch_to_2d()
     # load selected level and add it to the world
-    pack_name = $("#packs > li").text()
-    level_name = $('#levels').find('.is-selected .level-index').attr('title')
-    @level = Level.find "actual"
-    @level.create_2d(pack_name, level_name)
-    @world.addObject @level
+    else
+      pack_name = $('#packs > li').text()
+      level_name = $('#levels').find('.is-selected .level-index').attr('title')
+      @level = Level.find "actual"
+      if @display_switch() == '3D'
+        @level.create_3d(pack_name, level_name)
+      else
+        @level.create_2d(pack_name, level_name)
+      @world.addObject @level
         
     # Initalize path
     @path = new PathCore()
@@ -86,4 +91,6 @@ Jax.Controller.create "Level", ApplicationController,
     button.removeClass('icon-star-empty')
     button.addClass('icon-star')
     
-    
+  # "3D" if 3D switch is on, "2D" if 2D switch is on
+  display_switch: ->
+    $('#menus .switch.is-selected').text()

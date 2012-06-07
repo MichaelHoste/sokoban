@@ -17,24 +17,78 @@ Jax.getGlobal()['Level'] = Jax.Model.create
   create_2d: (pack_name, level_name) ->
     @display_type = '2D'
     @level_core.create_from_database(pack_name, level_name)
+    @context_2d = @compute_2d_context()
     if window.raphael_div
       window.raphael_div.clear()
     else      
-      window.raphael_div = Raphael('raphael', 730, 470)
+      window.raphael_div = Raphael('raphael', @context_2d.width, @context_2d.height)
     @display_level()
+    
+  switch_to_3d: ->    
+    # delete 2D objects
+    for i in [0..@level_core.cols_number*@level_core.rows_number-1]
+      if @objects[i]
+        @objects[i].remove()
+        delete @objects[i]
+        
+    # display 3D level
+    @display_type = '3D'
+    @display_level()
+    
+  switch_to_2d: ->    
+    # delete 3D objects
+    for i in [0..@level_core.cols_number*@level_core.rows_number-1]
+      if @objects[i]
+        @objects[i].dispose()
+        delete @objects[i]
+    
+    # display 2D level    
+    @display_type = '2D'
+    @context_2d = @compute_2d_context()
+    if window.raphael_div
+      window.raphael_div.clear()
+    else      
+      window.raphael_div = Raphael('raphael', @context_2d.width, @context_2d.height)
+    @display_level()
+    
+  ###
+    Compute width, height and box_size for 2D Display
+  ###
+  compute_2d_context: ->
+    div_width  = $('#raphael').css('width')
+    div_height = $('#raphael').css('height')
+
+    context.width  = parseInt(div_width.substr(0, div_width.length-2))    
+    context.height = parseInt(div_height.substr(0, div_height.length-2))
+    
+    size_width  = context.width  / (@cols_number() + 2.0)
+    size_height = context.height / (@rows_number() + 2.0)
+    
+    context.box_size = Math.min(size_width, size_height)
+    return context
 
   ###
     Create (create objects) or refresh the level
   ###
   display_level: ->
+    # 3d display    
     if @display_type == '3D'
       for m in [0..@level_core.rows_number-1]
         for n in [0..@level_core.cols_number-1]
           @display_position_3d(m, n)
+    
+    # 2d display
     else if @display_type == '2D'
+      box_size = @context_2d.box_size
+      start =
+        x: Math.round((@context_2d.width - box_size*@cols_number()) / 2.0)
+        y: Math.round((@context_2d.height - box_size*@rows_number()) / 2.0)
       for m in [0..@level_core.rows_number-1]
+        start.x = Math.round((@context_2d.width - box_size*@cols_number()) / 2.0)
         for n in [0..@level_core.cols_number-1]
-          @display_position_2d(m, n)
+          @display_position_2d(m, n, start)
+          start.x = Math.round(start.x + box_size)
+        start.y = Math.round(start.y + box_size)
   
   ###
     display a specific position of the level in 3D. If the object doesn't exist,
@@ -86,29 +140,18 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     create it, and if the object exists, edit the texture
     @param m number of the row to create/refresh
     @param n number of the column to create/refresh
+    @param start pixel position where to start drawing the cell
   ###
-  display_position_2d: (m, n) ->
+  display_position_2d: (m, n, start) ->
     cols_number = @level_core.cols_number
     rows_number = @level_core.rows_number
+    size = @context_2d.box_size
   
     type = @level_core.read_pos(m, n)
-    
-    console.log($('#raphael').css('width'))
-    
-    div_width  = $('#raphael').css('width')
-    div_height = $('#raphael').css('height')
 
-    div_widthi  = parseInt(div_width.substring(div_width.length-2, div_width.length))    
-    div_heighti = parseInt(div_height.substring(div_height.length-2, div_height.length))
-    
-    size_width  = div_widthi  / (cols_number + 2.0)
-    size_height = div_heighti / (rows_number + 2.0)
-    
-    size = Math.min(size_width, size_height)
-      
     # create object
     if type != ' ' and not @objects[cols_number*m + n]
-      object = window.raphael_div.image('images/box64.png', n*size, m*size, size, size)
+      object = window.raphael_div.image('images/box64.png', start.x, start.y, size, size)
       @objects[cols_number*m + n] = object
     else if type != ' '
       object = @objects[cols_number*m + n]
@@ -116,26 +159,26 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     # refresh material
     if type == 's' and object.attrs.src != 'images/floor64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('images/floor64.png', n*size, m*size, size, size)
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/floor64.png', start.x, start.y, size, size)
     else if type == '#' and object.attrs.src != 'images/wall64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('images/wall64.png', n*size, m*size, size, size)
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/wall64.png', start.x, start.y, size, size)
     else if type == '$' and object.attrs.src != 'images/box64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('images/box64.png', n*size, m*size, size, size)
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/box64.png', start.x, start.y, size, size)
     else if type == '*' and object.attrs.src != 'images/boxgoal64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('images/boxgoal64.png', n*size, m*size, size, size)
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/boxgoal64.png', start.x, start.y, size, size)
     else if type == '.' and object.attrs.src != 'images/goal64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('images/goal64.png', n*size, m*size, size, size)
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/goal64.png', start.x, start.y, size, size)
     else if type == '@' and object.attrs.src != 'images/pusher64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('images/pusher64.png', n*size, m*size, size, size)
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/pusher64.png', start.x, start.y, size, size)
     else if type == '+' and object.attrs.src != 'images/pushergoal64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('images/pushergoal64.png', n*size, m*size, size, size)
-  
+      @objects[cols_number*m + n] = object = window.raphael_div.image('images/pushergoal64.png', start.x, start.y, size, size)
+        
   # Render every squares of the level (the level itself is just a mesh container)
   # ONLY IF IN 3D MODE !
   render: (context, options) ->

@@ -46,4 +46,10 @@ $ ->
 
   disable_scroll()
 
-
+  # Show 2D or 3D div depending on the switch
+  if $('#menus .switch.is-selected').text() == '3D'
+    $('#raphael').hide()
+    $('#webgl').show()
+  else
+    $('#webgl').hide()
+    $('#raphael').show()

@@ -69,7 +69,7 @@ header
 					margin-top:7px;
 					margin-left:0px;
 					margin-right:20px;
-					padding:5px;
+					padding:6px;
 					padding-left:10px;
 					padding-right:10px;
 					border-left:0px;
@@ -97,6 +97,33 @@ header
 					{
 						height:26px;
 					}
+				}
+				
+				li.switch
+				{
+				  @extend .border_box;
+				  margin:0px;
+					margin-top:7px;
+					padding:6px;
+					padding-left:10px;
+					padding-right:10px;
+					font-size:11px;
+					height:26px;
+				}
+				
+				li.switch-2d
+				{
+				  margin-left:4px;
+				  -webkit-border-radius: 9px 0px 0px 9px;
+          border-radius: 9px 0px 0px 9px;
+				}
+				
+				li.switch-3d
+				{
+				  margin-right:9px;
+				  -webkit-border-radius: 0px 9px 9px 0px;
+          border-radius: 0px 9px 9px 0px;
+          border-left:0px;
 				}
 				
 				.is-selected
