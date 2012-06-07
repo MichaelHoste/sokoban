@@ -55,11 +55,8 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     Compute width, height and box_size for 2D Display
   ###
   compute_2d_context: ->
-    div_width  = $('#raphael').css('width')
-    div_height = $('#raphael').css('height')
-
-    context.width  = parseInt(div_width.substr(0, div_width.length-2))    
-    context.height = parseInt(div_height.substr(0, div_height.length-2))
+    context.width  = $('#raphael').width()
+    context.height = $('#raphael').height()
     
     size_width  = context.width  / (@cols_number() + 2.0)
     size_height = context.height / (@rows_number() + 2.0)
