@@ -12,7 +12,9 @@ class LevelsController < ApplicationController
   
   def show
     @pack = Pack.find_by_name(params[:pack_id])
+    @level = @pack.levels.find_by_name(params[:id])
     @selected_level_name = params[:id]
+    @scores = @level.scores
     render 'packs/show'
   end
 end
