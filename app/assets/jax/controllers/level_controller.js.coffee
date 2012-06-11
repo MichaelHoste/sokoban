@@ -51,6 +51,9 @@ Jax.Controller.create "Level", ApplicationController,
     # if moved, refresh concerned level positions objects
     if has_moved != 0 or has_deleted != 0
       @level.display_level()
+      
+    # update pushes and moves counter
+    @update_counters()
     
     # check if level is won, and save the score if it is
     @save_solution_if_any(has_moved)
@@ -76,14 +79,15 @@ Jax.Controller.create "Level", ApplicationController,
         )
         .success((data, status, xhr) =>
           if data.result == "ok"
-            alert("niveau réussi !")
-            @star_level()
-            @freezed_game = true
             if window.is_logged()
               window.colorbox_next_level()
             else
               window.colorbox_facebook()
         )
+        
+        @freezed_game = true        
+        @star_level()
+        alert("niveau réussi !")
         
   # star selected level
   star_level: ->
@@ -94,3 +98,7 @@ Jax.Controller.create "Level", ApplicationController,
   # "3D" if 3D switch is on, "2D" if 2D switch is on
   display_switch: ->
     $('#menus .switch.is-selected').text()
+    
+  update_counters: ->
+    $('#current-score .score-pushes').text(@path.n_pushes)
+    $('#current-score .score-moves').text(@path.n_moves)

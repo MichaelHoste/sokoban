@@ -41,6 +41,9 @@ class LevelUserLink < ActiveRecord::Base
   belongs_to :level
   belongs_to :user
   
+  # Scope
+  default_scope :order => 'pushes ASC'
+  
   # Nested attributes
   
   # Validations
@@ -114,5 +117,10 @@ class LevelUserLink < ActiveRecord::Base
       end
     end
     uncompressed_path
+  end
+  
+  # name of the user and 'visitor' if anonymous score
+  def user_name
+    self.user ? self.user.name : 'Anonymous'
   end
 end

@@ -1,0 +1,21 @@
+<div class="score">
+  <div class="score-name">
+    <%= level_user_link.user_name %>
+  </div>
+  <div class="score-pushes">
+    <%= level_user_link.pushes %>
+  </div>
+  <div class="score-pushes-text">
+    pushes
+  </div>
+  <div class="score-moves">
+    <%= level_user_link.moves %>
+  </div>
+  <div class="score-moves-text">
+    moves
+  </div>
+  <div class="score-date" title="<%= level_user_link.created_at %>">
+    <%= when_in_the_past(level_user_link.created_at) %> <%# mettre date from %>
+  </div>
+  <div style="clear:both"></div>
+</div>

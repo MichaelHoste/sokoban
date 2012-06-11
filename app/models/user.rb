@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
   end
   
   # list of won level ids (from the selected pack of for all packs) for this user
-  def won_levels_ids(pack)
+  def won_levels_ids(pack=nil)
     if pack
       pack.won_levels_ids(self)
     else
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def won_levels_count(pack)
+  def won_levels_count(pack=nil)
     if pack
       levels_ids = pack.levels.pluck(:id)
       self.scores.where(:level_id => levels_ids).uniq.count

@@ -41,8 +41,8 @@
 	@extend .border_box;
 	float:left;
 	width:260px;
-	height:470px;
-	margin-bottom:25px;
+	height:500px;
+	margin-bottom:3px;
 	
 	#packs
 	{
@@ -55,7 +55,7 @@
 
 	#levels
 	{				
-		height:435px;
+		height:465px;
 	  overflow:auto;
 		border:1px solid darken($lighter, 10%);
 		background-color:lighten($lighter, 4%);
@@ -67,6 +67,8 @@
 			float:left;
 			width:60px;
 			margin:10px;
+			margin-top:11px;
+			margin-bottom:11px;
 			padding:5px;
 			text-align:left;
 			list-style-type:none;

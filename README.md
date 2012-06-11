@@ -19,3 +19,5 @@ TO DO
  * Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone)
  * try raphael to draw in 2D (for fallback and level thumbs)
  * try to adapt the url of the page to allow "back" (history)
+ * Add indexes on level_user_links (scores) : pushes and moves
+ * challenges : pushes, moves, time, start text, end text, start picture, end picture
