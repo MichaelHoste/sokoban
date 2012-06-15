@@ -3,9 +3,7 @@ Sokojax::Application.routes.draw do
   
   # Resources
   resources :packs do
-    resources :levels do
-      post ':id' => 'levels#show_ajax', :on => :collection
-    end
+    resources :levels
   end
   
   resources :scores

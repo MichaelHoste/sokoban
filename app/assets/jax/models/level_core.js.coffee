@@ -380,8 +380,8 @@ class window.LevelCore
     token_tag = window.authenticity_token()
     
     jqxhr = $.ajax({ 
-              type: 'POST'
-              url:  'http://' + location.host + '/packs/' + pack_name + '/levels/' + level_name
+              type: 'GET'
+              url:  "http://#{location.host}/packs/#{pack_name}/levels/#{level_name}.json"
               async:false
               data: {authenticity_token: token_tag}
             })
