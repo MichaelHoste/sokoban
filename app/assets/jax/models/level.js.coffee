@@ -73,7 +73,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       for m in [0..@level_core.rows_number-1]
         for n in [0..@level_core.cols_number-1]
           @display_position_3d(m, n)
-    
+              
     # 2d display
     else if @display_type == '2D'
       box_size = @context_2d.box_size
@@ -86,6 +86,18 @@ Jax.getGlobal()['Level'] = Jax.Model.create
           @display_position_2d(m, n, start)
           start.x = Math.round(start.x + box_size)
         start.y = Math.round(start.y + box_size)
+        
+  ###
+    Highlight positions (stay highlighted until new call)
+    @param positions array of deadlocked positions [{m, n}, ...]
+  ###
+  highlight: (positions) ->
+    for pos in positions
+      if @display_type == '2D'
+        # get pos and size of the square of that position to draw a rect on it
+        #window.raphael_div.rect(pos.n*size, pos.m*size, size, size).attr({ fill: "90-#333-#333", stroke: "none", opacity: .5 })
+      else
+        ;
   
   ###
     display a specific position of the level in 3D. If the object doesn't exist,

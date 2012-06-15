@@ -8,17 +8,28 @@ Jax.Controller.create "Level", ApplicationController,
         @level.switch_to_2d()
     # load selected level and add it to the world
     else
+      # get the names of the pack and level
       pack_name = $('#packs > li').text()
       level_name = $('#levels').find('.is-selected .level-index').attr('title')
+      
+      # create level in 2D or 3D
       @level = Level.find "actual"
       if @display_switch() == '3D'
         @level.create_3d(pack_name, level_name)
       else
         @level.create_2d(pack_name, level_name)
+      
+      # add level to the world
       @world.addObject @level
         
-    # Initalize path
-    @path = new PathCore()
+      # Initalize path
+      @path = new PathCore()
+      
+      # initialize moves/pushes counter
+      @update_counters()
+    
+    # Initialize deadlocks
+    @deadlock = new DeadlockCore(@level.level_core)
     
     # the game is not freezed (keyboard arrows can be used)
     @freezed_game = false
@@ -47,10 +58,11 @@ Jax.Controller.create "Level", ApplicationController,
 
     # save move
     @save_move(has_moved, move_letter)
-
+    
     # if moved, refresh concerned level positions objects
     if has_moved != 0 or has_deleted != 0
       @level.display_level()
+      @level.highlight(@deadlock.deadlock_positions)
       
     # update pushes and moves counter
     @update_counters()
