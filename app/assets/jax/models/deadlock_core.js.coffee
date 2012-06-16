@@ -57,7 +57,7 @@ class window.DeadlockCore
       escape = { up: false, down: false, left: false, right: false, goal: false }  
       
       ###
-      # Test horizontal line
+      # Test horizontal lines
       ###
       
       # while cell is not wall
@@ -84,6 +84,37 @@ class window.DeadlockCore
           if not @position_in_array(cell_pos, corner_deadlock_positions) and not @position_in_array(cell_pos, line_deadlock_positions)
             line_deadlock_positions.push( { m:cell_pos.m, n:cell_pos.n } )
           cell_pos.n = cell_pos.n + 1
+          
+      ###
+      # Test vertical lines
+      ###
+      
+      escape.goal = false
+      
+      # while cell is not wall
+      cell_pos = { m:corner_pos.m, n:corner_pos.n }
+      cell = level.read_pos(cell_pos.m, cell_pos.n)
+      while cell != '#'
+        # If the cell on the left of the actual cell is not wall
+        if level.read_pos(cell_pos.m, cell_pos.n - 1) != '#'
+          escape.left = true
+        # If the cell on the right of the actual cell is not wall
+        if level.read_pos(cell_pos.m, cell_pos.n + 1) != '#'
+          escape.right = true
+        # If cell is goal
+        if cell == '.' or cell == '*' or cell == '+'
+          escape.goal = true
+      
+        cell_pos.m = cell_pos.m + 1
+        cell = level.read_pos(cell_pos.m, cell_pos.n)
+      
+      # mark vertical line if left or right is full of walls and has no goal
+      if (escape.left == false or escape.right == false) and escape.goal == false
+        cell_pos = { m:corner_pos.m, n:corner_pos.n }
+        while level.read_pos(cell_pos.m, cell_pos.n) != '#'
+          if not @position_in_array(cell_pos, corner_deadlock_positions) and not @position_in_array(cell_pos, line_deadlock_positions)
+            line_deadlock_positions.push( { m:cell_pos.m, n:cell_pos.n } )
+          cell_pos.m = cell_pos.m + 1
     
     return line_deadlock_positions.concat(corner_deadlock_positions)
 
