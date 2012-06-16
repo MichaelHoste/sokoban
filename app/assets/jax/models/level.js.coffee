@@ -62,6 +62,9 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     size_height = context.height / (@rows_number() + 2.0)
     
     context.box_size = Math.min(size_width, size_height)
+    
+    context.highlighted_rects = []
+    
     return context
 
   ###
@@ -92,12 +95,28 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @param positions array of deadlocked positions [{m, n}, ...]
   ###
   highlight: (positions) ->
-    for pos in positions
-      if @display_type == '2D'
+    if @display_type == '2D'
+      # delete old highlighted rects
+      for highlighted_rect in @context_2d.highlighted_rects
+        highlighted_rect.rect.remove()
+      delete @context_2d.highlighted_rects
+      @context_2d.highlighted_rects = []
+      
+      # highlight each positions
+      for pos in positions
         # get pos and size of the square of that position to draw a rect on it
-        #window.raphael_div.rect(pos.n*size, pos.m*size, size, size).attr({ fill: "90-#333-#333", stroke: "none", opacity: .5 })
-      else
-        ;
+        object = @objects[@level_core.cols_number*pos.m + pos.n]
+        size = object.attrs.height
+        x = object.attrs.x
+        y = object.attrs.y
+        
+        # create highlight rect and add it to the list of highlighted rects
+        @context_2d.highlighted_rects.push(
+          pos: pos
+          rect: window.raphael_div.rect(x, y, size, size).attr({ fill: '#FF0000', stroke: "none", opacity: .5 })
+        )
+    else
+      ;
   
   ###
     display a specific position of the level in 3D. If the object doesn't exist,
@@ -231,6 +250,9 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     
   pusher_can_move: (direction) ->
     @level_core.pusher_can_move(direction)
+    
+  pusher_pos: ->
+    { m: @level_core.pusher_pos_m, n: @level_core.pusher_pos_n }
 
   move: (direction) ->
     @level_core.move(direction)
