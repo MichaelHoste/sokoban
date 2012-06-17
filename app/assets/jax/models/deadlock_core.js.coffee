@@ -191,9 +191,7 @@ class window.DeadlockCore
     deadlocked_positions = @deadlocked_square(cell.box, cell.down, cell.down_left, cell.left,
                                               pos.box,  pos.down,  pos.down_left,  pos.left,
                                               deadlocked_positions)
-                                              
-    return deadlocked_positions
-    
+                                                  
     ###
     # Last push made a Z deadlock
     ###
@@ -205,13 +203,8 @@ class window.DeadlockCore
     #  #####   #####
     
     # fig 1, upper box
-    if cell.left == '#' and cell.down_right == '#'
-      if (cell.box == '$' || cell.box == '*') and (cell.down == '$' || cell.down == '*')
-        if not (cell.box == '*' and cell.down == '*') 
-          if not @position_in_array(cell.box, deadlocked_positions)
-            deadlocked_positions.push({ m:cell.box.m, n:cell.box.n })
-          if not @position_in_array()
-            deadlocked_positions.push({ m:cell.down.m, n:cell.down.n })
+    deadlocked_positions = @deadlocked_z(cell.box, cell.down, cell.left, cell.down_right,
+                                         pos.box,  pos.down,  deadlocked_positions)
     
 #    // fig 1, lower box
 #    if(posRight == -1 && posUpLeft == -1
@@ -256,7 +249,7 @@ class window.DeadlockCore
 #        return true;
 #    
 #
-#    return false;
+    return deadlocked_positions
 
   ###
     Test a specific deadlocked square and return the deadlocked positions
@@ -281,6 +274,17 @@ class window.DeadlockCore
       if not @position_in_array(pos3, deadlocked_positions) and cell3 == '$'
         deadlocked_positions.push({ m:pos3.m, n:pos3.n })
                 
+    return deadlocked_positions
+    
+  deadlocked_z: (cell_box, cell_box2, cell_wall1, cell_wall2, pos_box, pos_box2, deadlocked_positions) ->
+    if cell_wall1 == '#' and cell_wall2 == '#'
+      if (cell_box == '$' || cell_box == '*') and (cell_box2 == '$' || cell_box2 == '*')
+        if not (cell_box == '*' and cell_box2 == '*') 
+          if not @position_in_array(pos_box, deadlocked_positions)
+            deadlocked_positions.push({ m:pos_box.m, n:pos_box.n })
+          if not @position_in_array(pos_box2, deadlocked_positions)
+            deadlocked_positions.push({ m:pos_box2.m, n:pos_box2.n })
+              
     return deadlocked_positions
           
   ###
