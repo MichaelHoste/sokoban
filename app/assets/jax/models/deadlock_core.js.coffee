@@ -161,6 +161,7 @@ class window.DeadlockCore
       down_right: { m:box_position.m+1, n:box_position.n+1 }
 
     cell =
+      box:   level.read_pos(pos.box.m,   pos.box.n)
       left:  level.read_pos(pos.left.m,  pos.left.n)
       right: level.read_pos(pos.right.m, pos.right.n)
       down:  level.read_pos(pos.down.m,  pos.down.n)
@@ -172,24 +173,24 @@ class window.DeadlockCore
       down_right: level.read_pos(pos.down_right.m, pos.down_right.n)
         
     # up-right square
-    deadlocked_positions = @deadlocked_square(cell.up, cell.up_right, cell.right,
-                                              pos.up,  pos.up_right,  pos.right,
-                                              pos.box, deadlocked_positions)
+    deadlocked_positions = @deadlocked_square(cell.box, cell.up, cell.up_right, cell.right,
+                                              pos.box,  pos.up,  pos.up_right,  pos.right,
+                                              deadlocked_positions)
     
     # up-left square
-    deadlocked_positions = @deadlocked_square(cell.up, cell.up_left, cell.left,
-                                              pos.up,  pos.up_left,  pos.left,
-                                              pos.box, deadlocked_positions)
+    deadlocked_positions = @deadlocked_square(cell.box, cell.up, cell.up_left, cell.left,
+                                              pos.box,  pos.up,  pos.up_left,  pos.left,
+                                              deadlocked_positions)
                                               
     # down-right square
-    deadlocked_positions = @deadlocked_square(cell.down, cell.down_right, cell.right,
-                                              pos.down,  pos.down_right,  pos.right,
-                                              pos.box,   deadlocked_positions)
+    deadlocked_positions = @deadlocked_square(cell.box, cell.down, cell.down_right, cell.right,
+                                              pos.box,  pos.down,  pos.down_right,  pos.right,
+                                              deadlocked_positions)
     
     # down-left square
-    deadlocked_positions = @deadlocked_square(cell.down, cell.down_left, cell.left,
-                                              pos.down,  pos.down_left,  pos.left,
-                                              pos.box,   deadlocked_positions)
+    deadlocked_positions = @deadlocked_square(cell.box, cell.down, cell.down_left, cell.left,
+                                              pos.box,  pos.down,  pos.down_left,  pos.left,
+                                              deadlocked_positions)
                                               
     return deadlocked_positions
     
@@ -203,12 +204,15 @@ class window.DeadlockCore
     #  #   #   #   #   ######   ######
     #  #####   #####
     
-#    // fig 1, upper box
-#    if(posLeft == -1 && posDownRight == -1
-#        && boxesZone->readPos(posDown) == 1)
-#      if(goalBox == 0 || goalDown == 0)
-#        return true;
-#    
+    # fig 1, upper box
+    if cell.left == '#' and cell.down_right == '#'
+      if (cell.box == '$' || cell.box == '*') and (cell.down == '$' || cell.down == '*')
+        if not (cell.box == '*' and cell.down == '*') 
+          if not @position_in_array(cell.box, deadlocked_positions)
+            deadlocked_positions.push({ m:cell.box.m, n:cell.box.n })
+          if not @position_in_array()
+            deadlocked_positions.push({ m:cell.down.m, n:cell.down.n })
+    
 #    // fig 1, lower box
 #    if(posRight == -1 && posUpLeft == -1
 #        && boxesZone->readPos(posUp) == 1)
@@ -256,24 +260,20 @@ class window.DeadlockCore
 
   ###
     Test a specific deadlocked square and return the deadlocked positions
-    @param box_pos position of the box we want to test
+    @param cell_box letter of the box we want to test ('$' or '*')
+    @param pos_box position of the box we want to test
     @param cell1, cell2, cell3 values of cells that made a square with the current box
     @param pos1, pos2, pos3 {m,n} positions of the corresponding cells
     @param deadlocked_positions array of deadlocked boxes positions
     @return completed array of deadlocked_positions (no duplicates positions)
   ###
-  deadlocked_square: (cell1, cell2, cell3, pos1, pos2, pos3, box_pos, deadlocked_positions) ->
-    console.log("#{cell1} - #{cell2} - #{cell3}")
-    console.log(pos1)
-    console.log(pos2)
-    console.log(pos3)
-    console.log(box_pos)
-    
-    if (cell1 == '#' or cell1 == '$') and
+  deadlocked_square: (cell_box, cell1, cell2, cell3, pos_box, pos1, pos2, pos3, deadlocked_positions) ->    
+    if cell_box == '$' and
+       (cell1 == '#' or cell1 == '$') and
        (cell2 == '#' or cell2 == '$') and
        (cell3 == '#' or cell3 == '$')
-      if not @position_in_array(box_pos, deadlocked_positions)
-        deadlocked_positions.push({ m:box_pos.m, n:box_pos.n })
+      if not @position_in_array(pos_box, deadlocked_positions)
+        deadlocked_positions.push({ m:pos_box.m, n:pos_box.n })
       if not @position_in_array(pos1, deadlocked_positions) and cell1 == '$'
         deadlocked_positions.push({ m:pos1.m, n:pos1.n })
       if not @position_in_array(pos2, deadlocked_positions) and cell2 == '$'
