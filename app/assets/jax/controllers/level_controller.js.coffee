@@ -63,7 +63,9 @@ Jax.Controller.create "Level", ApplicationController,
     if has_moved != 0 or has_deleted != 0
       @level.display_level()
       #@level.highlight(@deadlock.deadlock_positions)
-      @level.highlight(@deadlock.deadlocked_boxes(@level))
+      # if push, highlight deadlock if any
+      if has_moved == 2 or has_deleted != 0
+        @level.highlight(@deadlock.deadlocked_boxes(@level))
       
     # update pushes and moves counter
     @update_counters()

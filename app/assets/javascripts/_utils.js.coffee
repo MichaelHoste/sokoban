@@ -1,9 +1,13 @@
 $ ->  
   window.colorbox_facebook = ->
-    $.colorbox({href:'/login', top:'190px', height:'263px', width:'500px'})
+    $.colorbox({href:'/login', top:'190px', height:'230px', width:'500px'}, ->
+      $("#cboxClose").hide()
+    )
   
   window.next_level = ->
-    $.colorbox({href:'/next_level?level_id=', top:'190px', height:'260px', width:'500px'})
+    $.colorbox({href:'/next_level?level_id=', top:'190px', height:'230px', width:'500px'}, ->
+      $("#cboxClose").hide()
+    )
     
   window.is_logged = ->
     $('#menus .fb_logout').length

@@ -27,3 +27,25 @@
 {
 	background:$lighter;
 }
+
+// to not display title bar in colorbox
+#cboxTitle
+{
+  display: none;
+}
+
+#cboxBottomLeft
+{
+  height:10px;
+  background:url(colorbox/controls.png) no-repeat 0 -65px;
+}
+#cboxBottomRight
+{
+  height:10px;
+  background:url(colorbox/controls.png) no-repeat -36px -65px;
+}
+
+#cboxBottomCenter
+{
+  height:10px;
+}

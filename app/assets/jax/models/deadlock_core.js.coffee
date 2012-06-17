@@ -81,7 +81,8 @@ class window.DeadlockCore
       if (escape.up == false or escape.down == false) and escape.goal == false
         cell_pos = { m:corner_pos.m, n:corner_pos.n }
         while level.read_pos(cell_pos.m, cell_pos.n) != '#'
-          if not @position_in_array(cell_pos, corner_deadlock_positions) and not @position_in_array(cell_pos, line_deadlock_positions)
+          if (not @position_in_array(cell_pos, corner_deadlock_positions) and 
+              not @position_in_array(cell_pos, line_deadlock_positions))
             line_deadlock_positions.push( { m:cell_pos.m, n:cell_pos.n } )
           cell_pos.n = cell_pos.n + 1
           
@@ -112,55 +113,13 @@ class window.DeadlockCore
       if (escape.left == false or escape.right == false) and escape.goal == false
         cell_pos = { m:corner_pos.m, n:corner_pos.n }
         while level.read_pos(cell_pos.m, cell_pos.n) != '#'
-          if not @position_in_array(cell_pos, corner_deadlock_positions) and not @position_in_array(cell_pos, line_deadlock_positions)
+          # add cell in deadlock positions if not already added
+          if (not @position_in_array(cell_pos, corner_deadlock_positions) and 
+              not @position_in_array(cell_pos, line_deadlock_positions))
             line_deadlock_positions.push( { m:cell_pos.m, n:cell_pos.n } )
           cell_pos.m = cell_pos.m + 1
     
     return line_deadlock_positions.concat(corner_deadlock_positions)
-
-#     /**********************/
-#     /* Test vertical line */
-#     /**********************/
-#     tempLevelPos = cLevelPos;
-#
-#     tempZonePos = levelToZonePos[tempLevelPos];
-#     tempCar = level->readPos(tempLevelPos);
-#
-#     // while cell is...
-#     while(tempZonePos != -1          // ...not wall...
-#        && tempCar != '.' && tempCar != '*')  // ...and not goal
-#     {
-#       // If the cell just above the actual cell is not wall
-#       if(levelToZonePos[tempLevelPos-1] != -1)
-#         leftEscape = true;
-#       if(levelToZonePos[tempLevelPos+1] != -1)
-#         rightEscape = true;
-#
-#       if(leftEscape && rightEscape)
-#         break;
-#
-#       tempLevelPos+=nCols;
-#       tempZonePos = levelToZonePos[tempLevelPos];
-#       tempCar = level->readPos(tempLevelPos);
-#     }
-#
-#     // mark horizontal line if up or down is full of walls
-#     if(tempZonePos == -1)
-#     {
-#       tempLevelPos = cLevelPos+nCols;
-#       tempZonePos = levelToZonePos[tempLevelPos];
-#       tempCar = level->readPos(tempLevelPos);
-#       while(tempZonePos != -1)
-#       {
-#         write1ToPos(tempZonePos);
-#         tempLevelPos+=nCols;
-#         tempZonePos = levelToZonePos[tempLevelPos];
-#         tempCar = level->readPos(tempLevelPos);
-#       }
-#     }
-#   }
-#
-#   free(cornerPos);
 
   ###
     Get the list of deadlocked boxes 
