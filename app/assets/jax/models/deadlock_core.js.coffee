@@ -130,10 +130,159 @@ class window.DeadlockCore
     deadlocked_boxes = []
     for pos in @deadlock_positions
       if level.read_pos(pos.m, pos.n) == '$'
-        deadlocked_boxes.push( pos )
+        deadlocked_boxes.push(pos)
   
     return deadlocked_boxes
-  
+    
+  ###
+    Did the last push imply a deadlock ?
+    @param level (current position of boxes) we want to test
+    @param box_position position of the last pushed box {m, n}
+    @return deadlocked boxes positions [{m,n},...] if deadlock, false if not
+  ###
+  deadlocked_last_push: (level, box_position) ->
+    deadlocked_positions = []
+
+    ###
+    # Last push made a square of boxes/walls
+    ###
+    
+    # neighbours cells
+    pos =
+      box:   box_position
+      left:  { m:box_position.m,   n:box_position.n-1 }
+      right: { m:box_position.m,   n:box_position.n+1 }
+      down:  { m:box_position.m+1, n:box_position.n }
+      up:    { m:box_position.m-1, n:box_position.n }
+    
+      up_left:    { m:box_position.m-1, n:box_position.n-1 }
+      down_left:  { m:box_position.m+1, n:box_position.n-1 }
+      up_right:   { m:box_position.m-1, n:box_position.n+1 }
+      down_right: { m:box_position.m+1, n:box_position.n+1 }
+
+    cell =
+      left:  level.read_pos(pos.left.m,  pos.left.n)
+      right: level.read_pos(pos.right.m, pos.right.n)
+      down:  level.read_pos(pos.down.m,  pos.down.n)
+      up:    level.read_pos(pos.up.m,    pos.up.n)
+    
+      up_left:    level.read_pos(pos.up_left.m,    pos.up_left.n)
+      down_left:  level.read_pos(pos.down_left.m,  pos.down_left.n)
+      up_right:   level.read_pos(pos.up_right.m,   pos.up_right.n)
+      down_right: level.read_pos(pos.down_right.m, pos.down_right.n)
+        
+    # up-right square
+    deadlocked_positions = @deadlocked_square(cell.up, cell.up_right, cell.right,
+                                              pos.up,  pos.up_right,  pos.right,
+                                              pos.box, deadlocked_positions)
+    
+    # up-left square
+    deadlocked_positions = @deadlocked_square(cell.up, cell.up_left, cell.left,
+                                              pos.up,  pos.up_left,  pos.left,
+                                              pos.box, deadlocked_positions)
+                                              
+    # down-right square
+    deadlocked_positions = @deadlocked_square(cell.down, cell.down_right, cell.right,
+                                              pos.down,  pos.down_right,  pos.right,
+                                              pos.box,   deadlocked_positions)
+    
+    # down-left square
+    deadlocked_positions = @deadlocked_square(cell.down, cell.down_left, cell.left,
+                                              pos.down,  pos.down_left,  pos.left,
+                                              pos.box,   deadlocked_positions)
+                                              
+    return deadlocked_positions
+    
+    ###
+    # Last push made a Z deadlock
+    ###
+    #  #####   #####   ######   ######
+    #  #   #   #   #   # #  #   #  # #
+    #  ##O #   # O##   # OO #   # OO #
+    #  # O##   ##O #   #  # #   # #  #
+    #  #   #   #   #   ######   ######
+    #  #####   #####
+    
+#    // fig 1, upper box
+#    if(posLeft == -1 && posDownRight == -1
+#        && boxesZone->readPos(posDown) == 1)
+#      if(goalBox == 0 || goalDown == 0)
+#        return true;
+#    
+#    // fig 1, lower box
+#    if(posRight == -1 && posUpLeft == -1
+#        && boxesZone->readPos(posUp) == 1)
+#      if(goalBox == 0 || goalUp == 0)
+#        return true;
+#    
+#    // fig 2, upper box
+#    if(posRight == -1 && posDownLeft == -1
+#        && boxesZone->readPos(posDown) == 1)
+#      if(goalBox == 0 || goalDown == 0)
+#        return true;
+#    
+#    // fig 2, lower box
+#    if(posLeft == -1 && posUpRight == -1
+#        && boxesZone->readPos(posUp) == 1)
+#      if(goalBox == 0 || goalUp == 0)
+#        return true;
+#    
+#    // fig 3, left box
+#    if(posUp == -1 && posDownRight == -1
+#        && boxesZone->readPos(posRight) == 1)
+#      if(goalBox == 0 || goalRight == 0)
+#        return true;
+#    
+#    // fig 3, right box
+#    if(posDown == -1 && posUpLeft == -1
+#        && boxesZone->readPos(posLeft) == 1)
+#      if(goalBox == 0 || goalLeft == 0)
+#        return true;
+#    
+#    // fig 4, left box
+#    if(posDown == -1 && posUpRight == -1
+#        && boxesZone->readPos(posRight) == 1)
+#      if(goalBox == 0 || goalRight == 0)
+#        return true;
+#    
+#    // fig 4, right box
+#    if(posUp == -1 && posDownLeft == -1
+#        && boxesZone->readPos(posLeft) == 1)
+#      if(goalBox == 0 || goalLeft == 0)
+#        return true;
+#    
+#
+#    return false;
+
+  ###
+    Test a specific deadlocked square and return the deadlocked positions
+    @param box_pos position of the box we want to test
+    @param cell1, cell2, cell3 values of cells that made a square with the current box
+    @param pos1, pos2, pos3 {m,n} positions of the corresponding cells
+    @param deadlocked_positions array of deadlocked boxes positions
+    @return completed array of deadlocked_positions (no duplicates positions)
+  ###
+  deadlocked_square: (cell1, cell2, cell3, pos1, pos2, pos3, box_pos, deadlocked_positions) ->
+    console.log("#{cell1} - #{cell2} - #{cell3}")
+    console.log(pos1)
+    console.log(pos2)
+    console.log(pos3)
+    console.log(box_pos)
+    
+    if (cell1 == '#' or cell1 == '$') and
+       (cell2 == '#' or cell2 == '$') and
+       (cell3 == '#' or cell3 == '$')
+      if not @position_in_array(box_pos, deadlocked_positions)
+        deadlocked_positions.push({ m:box_pos.m, n:box_pos.n })
+      if not @position_in_array(pos1, deadlocked_positions) and cell1 == '$'
+        deadlocked_positions.push({ m:pos1.m, n:pos1.n })
+      if not @position_in_array(pos2, deadlocked_positions) and cell2 == '$'
+        deadlocked_positions.push({ m:pos2.m, n:pos2.n })
+      if not @position_in_array(pos3, deadlocked_positions) and cell3 == '$'
+        deadlocked_positions.push({ m:pos3.m, n:pos3.n })
+                
+    return deadlocked_positions
+          
   ###
     return true if position is in a corner of level (corner with 2 walls)
     @param level we want to test

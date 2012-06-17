@@ -65,7 +65,10 @@ Jax.Controller.create "Level", ApplicationController,
       #@level.highlight(@deadlock.deadlock_positions)
       # if push, highlight deadlock if any
       if has_moved == 2 or has_deleted != 0
-        @level.highlight(@deadlock.deadlocked_boxes(@level))
+        box_position = @position_of_last_pushed_box()
+        a = @deadlock.deadlocked_boxes(@level)
+        b = @deadlock.deadlocked_last_push(@level, box_position)
+        @level.highlight(a.concat(b))
       
     # update pushes and moves counter
     @update_counters()
@@ -117,3 +120,24 @@ Jax.Controller.create "Level", ApplicationController,
   update_counters: ->
     $('#current-score .score-pushes').text(@path.n_pushes)
     $('#current-score .score-moves').text(@path.n_moves)
+    
+  ###
+    Return the position of the last pushed box after push or deletion
+    @return position {m, n} of the last pushed box
+  ###
+  position_of_last_pushed_box: ->
+    pusher_pos = @level.pusher_pos()
+    letter = @path.get_last_move()
+    m = pusher_pos.m
+    n = pusher_pos.n
+    
+    if letter == 'U'
+      return {m: m-1, n: n}
+    else if letter == 'D'
+      return {m: m+1, n: n}
+    else if letter == 'L'
+      return {m: m, n: n-1}
+    else if letter == 'R'
+      return {m: m, n: n+1}
+    else
+      return false

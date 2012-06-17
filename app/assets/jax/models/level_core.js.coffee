@@ -244,7 +244,6 @@ class window.LevelCore
   
     return state
   
-  
   ###
     Return true if all boxes are in their goals.
     @return true if all boxes are in their goals, false if not

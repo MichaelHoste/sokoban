@@ -83,10 +83,14 @@ class window.PathCore
       @moves.push(direction)
   
   ###
-    Get last move or push
+    Get letter of last action (can be move or push)
+    @return letter or false if not last move
   ###
   get_last_move: ->
-    last_move = @moves[@moves.length - 1]
+    if @moves.length > 0
+      return @moves[@moves.length - 1]
+    else
+      return false
       
   ###
     Delete last move or push
@@ -97,7 +101,7 @@ class window.PathCore
       if last_move >= 'A' and last_move <= 'Z'
         @n_pushes--
       @n_moves--
-      
+
   ###
     print path
   ###
