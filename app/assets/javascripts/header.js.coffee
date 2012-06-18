@@ -39,3 +39,14 @@ $ ->
       $('#raphael').hide()
       $('#webgl').show()
   )
+  
+  # likes div
+  $('#likes > div').live('mouseenter', ->
+    $(this).clearQueue()
+    $(this).transition({opacity:0.93})
+  )
+  
+  $('#likes > div').live('mouseleave', ->
+    $(this).clearQueue()
+    $(this).transition({opacity:0.1})
+  )

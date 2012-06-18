@@ -14,10 +14,10 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
+ * keep active square and z deadlocks in memory
  * workflow when level is succeeded
- * Implement basic deadlock detection in coffeescript (corners, 2 boxes etc.)
  * Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone)
- * try raphael to draw in 2D (for fallback and level thumbs)
+ * try raphael to draw in 2D (for level thumbs)
  * try to adapt the url of the page to allow "back" (history)
  * Add indexes on level_user_links (scores) : pushes and moves
- * challenges : pushes, moves, time, start text, end text, start picture, end picture
+ * challenges : invite 1 friend by challenge
