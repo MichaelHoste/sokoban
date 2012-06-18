@@ -62,13 +62,7 @@ Jax.Controller.create "Level", ApplicationController,
     # if moved, refresh concerned level positions objects
     if has_moved != 0 or has_deleted != 0
       @level.display_level()
-      #@level.highlight(@deadlock.deadlock_positions)
-      # if push, highlight deadlock if any
-      if has_moved == 2 or has_deleted != 0
-        box_position = @position_of_last_pushed_box()
-        deadlocked_positions = @deadlock.deadlocked_boxes(@level)
-        deadlocked_positions = @deadlock.deadlocked_last_push(@level, box_position, deadlocked_positions)
-        @level.highlight(deadlocked_positions)
+      @highlight_deadlocks(has_moved, has_deleted)
       
     # update pushes and moves counter
     @update_counters()
@@ -106,6 +100,20 @@ Jax.Controller.create "Level", ApplicationController,
         @freezed_game = true        
         @star_level()
         alert("niveau réussi !")
+        
+  highlight_deadlocks: (has_moved, has_deleted) ->
+    if has_moved == 2 or has_deleted != 0
+      box_position = @position_of_last_pushed_box()
+      deadlocked_positions = @deadlock.deadlocked_boxes(@level)
+      deadlocked_positions = @deadlock.deadlocked_last_push(@level, box_position, deadlocked_positions)
+      if deadlocked_positions.length != 0
+        @level.highlight(deadlocked_positions)
+        if $('#deadlock').css('display') == 'none'
+          $('#deadlock').show().clearQueue()
+                        .transition({opacity:0}, 0).transition({opacity:0.70}, 1000)
+                        .delay(1000).transition({opacity:0.20})
+      else
+        $('#deadlock').clearQueue().fadeOut(500)
         
   # star selected level
   star_level: ->

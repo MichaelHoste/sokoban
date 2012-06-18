@@ -18,3 +18,14 @@ $ ->
     window.context = new Jax.Context('webgl')
     window.context.redirectTo("level/index")
   )
+  
+  # deadlock div
+  $('#deadlock').live('mouseenter', ->
+    $(this).clearQueue()
+    $(this).transition({opacity:0.93})
+  )
+  
+  $('#deadlock').live('mouseleave', ->
+    $(this).clearQueue()
+    $(this).transition({opacity:0.2})
+  )

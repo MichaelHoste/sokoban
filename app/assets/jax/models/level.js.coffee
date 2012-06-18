@@ -113,7 +113,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         # create highlight rect and add it to the list of highlighted rects
         @context_2d.highlighted_rects.push(
           pos: pos
-          rect: window.raphael_div.rect(x, y, size, size).attr({ fill: '#FF0000', stroke: "none", opacity: .5 })
+          rect: window.raphael_div.rect(x, y, size, size).attr({ fill: '#2d5a8b', stroke: "none", opacity: .5 })
         )
     else
       ;
