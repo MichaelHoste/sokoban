@@ -110,12 +110,9 @@ Jax.Controller.create "Level", ApplicationController,
 
       # "there is a deadlock" div
       if deadlocked_positions.length != 0
-        if $('#deadlock').css('display') == 'none'
-          $('#deadlock').show().clearQueue()
-                        .transition({opacity:0}, 0).transition({opacity:0.93}, 1000)
-                        .delay(1000).transition({opacity:0.20}, 1000)
+        $('#deadlock').fadeIn(1000)
       else
-        $('#deadlock').clearQueue().fadeOut(500)
+        $('#deadlock').fadeOut(500)
         
   # star selected level
   star_level: ->
