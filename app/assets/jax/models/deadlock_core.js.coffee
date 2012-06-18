@@ -138,10 +138,10 @@ class window.DeadlockCore
     Did the last push imply a deadlock ?
     @param level (current position of boxes) we want to test
     @param box_position position of the last pushed box {m, n}
+    @param array of already deadlocked positions [{m,n}, ...]
     @return deadlocked boxes positions [{m,n},...] if deadlock, false if not
   ###
-  deadlocked_last_push: (level, box_position) ->
-    deadlocked_positions = []
+  deadlocked_last_push: (level, box_position, deadlocked_positions) ->
 
     ###
     # Last push made a square of boxes/walls
