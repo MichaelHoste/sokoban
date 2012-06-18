@@ -106,8 +106,10 @@ Jax.Controller.create "Level", ApplicationController,
       box_position = @position_of_last_pushed_box()
       deadlocked_positions = @deadlock.deadlocked_boxes(@level)
       deadlocked_positions = @deadlock.deadlocked_last_push(@level, box_position, deadlocked_positions)
+      @level.highlight(deadlocked_positions)
+
+      # "there is a deadlock" div
       if deadlocked_positions.length != 0
-        @level.highlight(deadlocked_positions)
         if $('#deadlock').css('display') == 'none'
           $('#deadlock').show().clearQueue()
                         .transition({opacity:0}, 0).transition({opacity:0.93}, 1000)
