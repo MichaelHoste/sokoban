@@ -206,49 +206,34 @@ class window.DeadlockCore
     deadlocked_positions = @deadlocked_z(cell.box, cell.down, cell.left, cell.down_right,
                                          pos.box,  pos.down,  deadlocked_positions)
     
-#    // fig 1, lower box
-#    if(posRight == -1 && posUpLeft == -1
-#        && boxesZone->readPos(posUp) == 1)
-#      if(goalBox == 0 || goalUp == 0)
-#        return true;
-#    
-#    // fig 2, upper box
-#    if(posRight == -1 && posDownLeft == -1
-#        && boxesZone->readPos(posDown) == 1)
-#      if(goalBox == 0 || goalDown == 0)
-#        return true;
-#    
-#    // fig 2, lower box
-#    if(posLeft == -1 && posUpRight == -1
-#        && boxesZone->readPos(posUp) == 1)
-#      if(goalBox == 0 || goalUp == 0)
-#        return true;
-#    
-#    // fig 3, left box
-#    if(posUp == -1 && posDownRight == -1
-#        && boxesZone->readPos(posRight) == 1)
-#      if(goalBox == 0 || goalRight == 0)
-#        return true;
-#    
-#    // fig 3, right box
-#    if(posDown == -1 && posUpLeft == -1
-#        && boxesZone->readPos(posLeft) == 1)
-#      if(goalBox == 0 || goalLeft == 0)
-#        return true;
-#    
-#    // fig 4, left box
-#    if(posDown == -1 && posUpRight == -1
-#        && boxesZone->readPos(posRight) == 1)
-#      if(goalBox == 0 || goalRight == 0)
-#        return true;
-#    
-#    // fig 4, right box
-#    if(posUp == -1 && posDownLeft == -1
-#        && boxesZone->readPos(posLeft) == 1)
-#      if(goalBox == 0 || goalLeft == 0)
-#        return true;
-#    
-#
+    # fig 1, lower box
+    deadlocked_positions = @deadlocked_z(cell.box, cell.up, cell.right, cell.up_left
+                                         pos.box,  pos.up,  deadlocked_positions)
+    
+    # fig 2, upper box
+    deadlocked_positions = @deadlocked_z(cell.box, cell.down, cell.right, cell.down_left
+                                         pos.box,  pos.down,  deadlocked_positions)
+
+    # fig 2, lower box
+    deadlocked_positions = @deadlocked_z(cell.box, cell.up, cell.left, cell.up_right
+                                         pos.box,  pos.up,  deadlocked_positions)
+
+    # fig 3, left box
+    deadlocked_positions = @deadlocked_z(cell.box, cell.right, cell.up, cell.down_right
+                                         pos.box,  pos.right,  deadlocked_positions)
+
+    # fig 3, right box
+    deadlocked_positions = @deadlocked_z(cell.box, cell.left, cell.down, cell.up_left
+                                         pos.box,  pos.left,  deadlocked_positions)
+
+    # fig 4, left box
+    deadlocked_positions = @deadlocked_z(cell.box, cell.right, cell.down, cell.up_right
+                                         pos.box,  pos.right,  deadlocked_positions)
+
+    # fig 4, right box
+    deadlocked_positions = @deadlocked_z(cell.box, cell.left, cell.up, cell.down_left
+                                         pos.box,  pos.left,  deadlocked_positions)
+
     return deadlocked_positions
 
   ###
