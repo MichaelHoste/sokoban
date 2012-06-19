@@ -22,28 +22,18 @@
     <% end %>
     
   </ul>
-</div>
-
-<%= render 'show_webgl_canvas' %>
-<%= render 'show_raphael_canvas' %>
-<%= render 'show_deadlock_message'%>
-
-<canvas id="webgl" width="730" height="470">
-  Sorry, your browser doesn't support the &lt;canvas/&gt; tag. Please come back with a newer
-  browser.
-</canvas>
-
-<div id="raphael">
-</div>
-
-<div id="deadlock">
-  <div id="deadlock-message">
-    A deadlock has been found
-  </div>
-  <div id="deadlock-press-d">
-    <span>Press <%= image_tag "key_d.png" %> to cancel the last move</span>
+  
+  <div id="level-thumb">
+    <div class="level-thumb-text">############sssssssss##ss#s$s#ss##ss.$s$.ss##s..#$s#.s##ss.$s$.ss##ss#s$s#ss##@ssssssss############</div>
+    <div class="level-thumb-width">11</div>
+    <div class="level-thumb-height">9</div>
+    <div id="level-thumb-canvas"></div>
   </div>
 </div>
+
+<%= render 'packs/show_webgl_canvas' %>
+<%= render 'packs/show_raphael_canvas' %>
+<%= render 'packs/show_deadlock_message'%>
 
 <%= render 'packs/current_score' %>
 

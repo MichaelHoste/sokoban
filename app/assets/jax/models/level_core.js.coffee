@@ -407,7 +407,7 @@ class window.LevelCore
     @param level_name the name of the level
     @param copyright copyright of the level
   ###
-  level_from_grid: (grid, width, height, pack_name, level_name, copyright = "") ->
+  level_from_grid: (grid, width, height, pack_name = "", level_name = "", copyright = "") ->
     @pack_name = pack_name
     @level_name = level_name
     @copyright = copyright

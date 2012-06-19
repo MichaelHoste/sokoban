@@ -9,19 +9,29 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @objects = [] # list of objects to be displayed
     @level_core = new LevelCore()
     
-  create_3d: (pack_name, level_name) ->
+  create_3d: (pack_name, level_name, line = "", width = 0, height = 0) ->
     @display_type = '3D'
-    @level_core.create_from_database(pack_name, level_name)
+    if line != ""
+      @level_core.create_from_line(line, parseInt(width), parseInt(height))
+    else
+      @level_core.create_from_database(pack_name, level_name)
+    
     @display_level()
     
-  create_2d: (pack_name, level_name) ->
+  create_2d: (pack_name, level_name, line = "", width = 0, height = 0, canvas_id = "raphael") ->    
     @display_type = '2D'
-    @level_core.create_from_database(pack_name, level_name)
-    @context_2d = @compute_2d_context()
-    if window.raphael_div
-      window.raphael_div.clear()
-    else      
-      window.raphael_div = Raphael('raphael', @context_2d.width, @context_2d.height)
+    if line != ""
+      @level_core.create_from_line(line, parseInt(width), parseInt(height))
+    else
+      @level_core.create_from_database(pack_name, level_name)
+          
+    @context_2d = @compute_2d_context(canvas_id)
+
+    if @context_2d.canvas
+      @context_2d.canvas.clear()
+    else
+      @context_2d.canvas = Raphael(canvas_id, @context_2d.width, @context_2d.height)
+        
     @display_level()
     
   switch_to_3d: ->    
@@ -45,27 +55,31 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     # display 2D level    
     @display_type = '2D'
     @context_2d = @compute_2d_context()
-    if window.raphael_div
-      window.raphael_div.clear()
+    if @context_2d.canvas
+      @context_2d.canvas.clear()
     else      
-      window.raphael_div = Raphael('raphael', @context_2d.width, @context_2d.height)
+      @context_2d.canvas = Raphael(@context_2d.canvas_id, @context_2d.width, @context_2d.height)
     @display_level()
     
   ###
     Compute width, height and box_size for 2D Display
   ###
-  compute_2d_context: ->
-    context.width  = $('#raphael').width()
-    context.height = $('#raphael').height()
+  compute_2d_context: (canvas_id) ->
+    context_2d = {}
+    context_2d.canvas_id = canvas_id
+    context_2d.canvas = null
     
-    size_width  = context.width  / (@cols_number() + 2.0)
-    size_height = context.height / (@rows_number() + 2.0)
+    context_2d.width  = $("##{canvas_id}").width()
+    context_2d.height = $("##{canvas_id}").height()
     
-    context.box_size = Math.min(size_width, size_height)
+    size_width  = context_2d.width  / (@cols_number() + 2.0)
+    size_height = context_2d.height / (@rows_number() + 2.0)
     
-    context.highlighted_rects = []
+    context_2d.box_size = Math.min(size_width, size_height)
     
-    return context
+    context_2d.highlighted_rects = []
+    
+    return context_2d
 
   ###
     Create (create objects) or refresh the level
@@ -113,7 +127,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
         # create highlight rect and add it to the list of highlighted rects
         @context_2d.highlighted_rects.push(
           pos: pos
-          rect: window.raphael_div.rect(x, y, size, size).attr({ fill: '#2d5a8b', stroke: "none", opacity: .5 })
+          rect: @context_2d.canvas.rect(x, y, size, size).attr({ fill: '#2d5a8b', stroke: "none", opacity: .5 })
         )
     else
       ;
@@ -179,7 +193,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
 
     # create object
     if type != ' ' and not @objects[cols_number*m + n]
-      object = window.raphael_div.image('/images/box64.png', start.x, start.y, size, size)
+      object = @context_2d.canvas.image('/images/box64.png', start.x, start.y, size, size)
       @objects[cols_number*m + n] = object
     else if type != ' '
       object = @objects[cols_number*m + n]
@@ -187,25 +201,25 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     # refresh material
     if type == 's' and object.attrs.src != '/images/floor64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('/images/floor64.png', start.x, start.y, size, size)
+      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/floor64.png', start.x, start.y, size, size)
     else if type == '#' and object.attrs.src != '/images/wall64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('/images/wall64.png', start.x, start.y, size, size)
+      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/wall64.png', start.x, start.y, size, size)
     else if type == '$' and object.attrs.src != '/images/box64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('/images/box64.png', start.x, start.y, size, size)
+      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/box64.png', start.x, start.y, size, size)
     else if type == '*' and object.attrs.src != '/images/boxgoal64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('/images/boxgoal64.png', start.x, start.y, size, size)
+      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/boxgoal64.png', start.x, start.y, size, size)
     else if type == '.' and object.attrs.src != '/images/goal64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('/images/goal64.png', start.x, start.y, size, size)
+      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/goal64.png', start.x, start.y, size, size)
     else if type == '@' and object.attrs.src != '/images/pusher64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('/images/pusher64.png', start.x, start.y, size, size)
+      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/pusher64.png', start.x, start.y, size, size)
     else if type == '+' and object.attrs.src != '/images/pushergoal64.png'
       object.remove()
-      @objects[cols_number*m + n] = object = window.raphael_div.image('/images/pushergoal64.png', start.x, start.y, size, size)
+      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/pushergoal64.png', start.x, start.y, size, size)
         
   # Render every squares of the level (the level itself is just a mesh container)
   # ONLY IF IN 3D MODE !
