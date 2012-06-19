@@ -9,6 +9,9 @@ class window.DeadlockCore
     @param level we want to test for deadlocks
   ###
   constructor: (level) ->
+    # Array of square and Z deadlocks that were already found (not detected by the last push)
+    @already_found_deadlocks = []
+    
     # array of positions where a box trigger a deadlock situation
     @deadlock_positions = @create_deadlock_positions(level)
 
@@ -234,6 +237,21 @@ class window.DeadlockCore
     deadlocked_positions = @deadlocked_z(cell.box, cell.left, cell.up, cell.down_left
                                          pos.box,  pos.left,  deadlocked_positions)
 
+    # Since this detection only detect last push, we need to also deadlock positions of
+    # already detected and still existing square and z deadlocks
+    for deadlock in @already_found_deadlocks
+      still_deadlocked = true
+      # if every pos of old deadlock is still a box, still deadlock !
+      for pos in deadlock
+        cell = level.read_pos(pos.m, pos.n)
+        if not (cell == '$' or cell == '*' or cell == '#') and still_deadlocked
+          still_deadlocked = false
+      if still_deadlocked
+        for pos in deadlock
+          cell = level.read_pos(pos.m, pos.n)
+          if cell != '#' and not @position_in_array(pos, deadlocked_positions)
+            deadlocked_positions.push({ m:pos.m, n:pos.n })
+
     return deadlocked_positions
 
   ###
@@ -250,6 +268,8 @@ class window.DeadlockCore
        (cell1 == '#' or cell1 == '$') and
        (cell2 == '#' or cell2 == '$') and
        (cell3 == '#' or cell3 == '$')
+      
+      # add deadlocks in array        
       if not @position_in_array(pos_box, deadlocked_positions)
         deadlocked_positions.push({ m:pos_box.m, n:pos_box.n })
       if not @position_in_array(pos1, deadlocked_positions) and cell1 == '$'
@@ -258,7 +278,15 @@ class window.DeadlockCore
         deadlocked_positions.push({ m:pos2.m, n:pos2.n })
       if not @position_in_array(pos3, deadlocked_positions) and cell3 == '$'
         deadlocked_positions.push({ m:pos3.m, n:pos3.n })
-                
+      
+      # save this deadlock for the future
+      @already_found_deadlocks.push([
+        {m: pos_box.m, n: pos_box.n}
+        {m: pos1.m,    n: pos1.n}
+        {m: pos2.m,    n: pos2.n}
+        {m: pos3.m,    n: pos3.n}
+      ])
+               
     return deadlocked_positions
     
   deadlocked_z: (cell_box, cell_box2, cell_wall1, cell_wall2, pos_box, pos_box2, deadlocked_positions) ->
@@ -269,6 +297,12 @@ class window.DeadlockCore
             deadlocked_positions.push({ m:pos_box.m, n:pos_box.n })
           if not @position_in_array(pos_box2, deadlocked_positions)
             deadlocked_positions.push({ m:pos_box2.m, n:pos_box2.n })
+            
+          # save this deadlock for the future
+          @already_found_deadlocks.push([
+            {m: pos_box.m,  n: pos_box.n}
+            {m: pos_box2.m, n: pos_box2.n}
+          ])
               
     return deadlocked_positions
           
