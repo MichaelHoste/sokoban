@@ -10,7 +10,7 @@ Jax.Controller.create "Level", ApplicationController,
     else
       # get the names of the pack and level
       pack_name = $('#packs > li').text()
-      level_name = $('#levels').find('.is-selected .level-index').attr('title')
+      level_name = $('#levels').find('.is-selected').attr('data-level-name')
       
       # create level in 2D or 3D
       @level = Level.find "actual"
@@ -79,8 +79,8 @@ Jax.Controller.create "Level", ApplicationController,
     if has_moved != 0
       if @level.is_won()
         # load selected level
-        pack_name = $('#packs > li').text()
-        level_name = $('#levels').find('.is-selected .level-index').attr('title')
+        pack_name = $('#packs > li').attr('data-pack-name')
+        level_name = $('#levels').find('.is-selected').attr('data-level-name')
         token_tag = window.authenticity_token()
         
         $.post('/scores', 
