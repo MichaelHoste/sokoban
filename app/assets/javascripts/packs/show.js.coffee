@@ -19,6 +19,28 @@ $ ->
     window.context.redirectTo("level/index")
   )
   
+  # Level on level => create and position thumb
+  $('#levels li').live('mouseenter', ->
+    level_thumb = $('.level-thumb')
+    level_thumb.show()
+    
+    level_li = $(this)
+    grid   = level_li.attr('data-level-grid')
+    width  = level_li.attr('data-level-width')
+    height = level_li.attr('data-level-height')
+    
+    level_thumb.attr('data-level-grid', grid)
+    level_thumb.attr('data-level-width', width)
+    level_thumb.attr('data-level-height', height)
+    
+    window.level_thumb()
+  )
+  
+  $('#levels li').live('mouseleave', ->
+    level_thumb = $('.level-thumb')
+    level_thumb.hide()
+  )
+  
   # deadlock div
   $('#deadlock').live('mouseenter', ->
     $(this).clearQueue()
@@ -30,15 +52,3 @@ $ ->
     $(this).transition({opacity:0.2})
   )
   
-  # level thumbs
-  $('#level-thumb').each( ->
-    pack_name    = ''
-    level_name   = ''
-    level_line   = $(this).find('.level-thumb-text').text()
-    level_width  = $(this).find('.level-thumb-width').text()
-    level_height = $(this).find('.level-thumb-height').text()
-    level_canvas = 'level-thumb-canvas'
-
-    thumb = Level.find "actual"
-    thumb.create_2d(pack_name, level_name, level_line, level_width, level_height, level_canvas)
-  )

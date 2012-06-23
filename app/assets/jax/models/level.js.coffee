@@ -18,7 +18,9 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     
     @display_level()
     
-  create_2d: (pack_name, level_name, line = "", width = 0, height = 0, canvas_id = "raphael") ->    
+  create_2d: (pack_name, level_name, line = "", width = 0, height = 0, canvas_id = "raphael") ->
+    $("##{canvas_id} svg").remove()
+    
     @display_type = '2D'
     if line != ""
       @level_core.create_from_line(line, parseInt(width), parseInt(height))
@@ -71,9 +73,9 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     
     context_2d.width  = $("##{canvas_id}").width()
     context_2d.height = $("##{canvas_id}").height()
-    
-    size_width  = context_2d.width  / (@cols_number() + 2.0)
-    size_height = context_2d.height / (@rows_number() + 2.0)
+          
+    size_width  = Math.floor(context_2d.width  / (@cols_number() + 2.0))
+    size_height = Math.floor(context_2d.height / (@rows_number() + 2.0))
     
     context_2d.box_size = Math.min(size_width, size_height)
     
@@ -95,14 +97,18 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     else if @display_type == '2D'
       box_size = @context_2d.box_size
       start =
-        x: Math.round((@context_2d.width - box_size*@cols_number()) / 2.0)
-        y: Math.round((@context_2d.height - box_size*@rows_number()) / 2.0)
+        x: (@context_2d.width - box_size*@cols_number()) / 2.0
+        y: (@context_2d.height - box_size*@rows_number()) / 2.0
+      console.log("size : #{@context_2d.width} x #{@context_2d.height}")
+      console.log("start : (#{start.x}, #{start.y})")
+      console.log("box_size : #{box_size}")
+      console.log("cols : #{@cols_number()}, rows : #{@rows_number()}")
       for m in [0..@level_core.rows_number-1]
-        start.x = Math.round((@context_2d.width - box_size*@cols_number()) / 2.0)
+        start.x = (@context_2d.width - box_size*@cols_number()) / 2.0
         for n in [0..@level_core.cols_number-1]
           @display_position_2d(m, n, start)
-          start.x = Math.round(start.x + box_size)
-        start.y = Math.round(start.y + box_size)
+          start.x = start.x + box_size
+        start.y = start.y + box_size
         
   ###
     Highlight positions (stay highlighted until new call)

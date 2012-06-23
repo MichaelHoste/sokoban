@@ -19,6 +19,20 @@ $ ->
         token_tag = $(this).attr('content')
     )
     return token_tag
+    
+  # level thumbs
+  window.level_thumb = ->
+    $('.level-thumb').each( ->
+      pack_name    = ''
+      level_name   = ''
+      level_line   = $(this).attr('data-level-grid')
+      level_width  = $(this).attr('data-level-width')
+      level_height = $(this).attr('data-level-height')
+      level_canvas = 'level-thumb-canvas'
+  
+      thumb = Level.find "actual"
+      thumb.create_2d(pack_name, level_name, level_line, level_width, level_height, level_canvas)
+    )
   
   # Disable up, down, left, right to scroll
   # left: 37, up: 38, right: 39, down: 40, spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
