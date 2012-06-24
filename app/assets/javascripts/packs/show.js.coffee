@@ -23,6 +23,7 @@ $ ->
   $('#levels li').live('mouseenter', ->
     level_thumb = $('.level-thumb')
     level_thumb.stop(true, true)
+    clearTimeout(window.time_out_thumb)
     level_thumb.show()
     
     # compute and set position of the level thumb
@@ -58,9 +59,13 @@ $ ->
   $('#levels li').live('mouseleave', ->
     # hide level thumb
     level_thumb = $('.level-thumb')
-    level_thumb.delay(1000).animate({ left: '50px' }, 200, ->
-      $(this).hide()
-    )
+    
+    my_method = (level_thumb) ->
+      level_thumb.animate({ left: '50px' }, 200, ->
+        $(this).hide()
+      )
+      
+    window.time_out_thumb = setTimeout((-> my_method(level_thumb)), 1000)
   )
   
   # deadlock div
