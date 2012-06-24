@@ -83,10 +83,12 @@
 #menu-levels
 {
 	@extend .border_box;
+  position:relative;
 	float:left;
 	width:260px;
 	height:500px;
 	margin-bottom:3px;
+	z-index:50;
 	
 	#packs
 	{
@@ -155,33 +157,32 @@
       @extend .button_selected_red;
     }
 	}
-	
-	.level-thumb
-	{
-	  position:absolute;
-	  background-color:red;
-	  width:200px;
-	  height:150px;
-		border:1px solid darken($lighter, 10%);
-		background-color:lighten($lighter, 4%);
-		top:65px;
-	  left:260px;
-	  display:none;
-	  z-index:100;
-	  
-	  -moz-opacity:0.98;
-    opacity:0.98;
+}
 
-    -webkit-box-shadow: 0px 0px 16px rgba(50, 50, 50, 0.35);
-    -moz-box-shadow:    0px 0px 16px rgba(50, 50, 50, 0.35);
-    box-shadow:         0px 0px 16px rgba(50, 50, 50, 0.35);
-    
-    #level-thumb-canvas
-    {
-      width:200px;
-      height:150px;
-    }
-	}
+.level-thumb
+{
+  position:absolute;
+  width:200px;
+  height:150px;
+	border:1px solid darken($lighter, 10%);
+	background-color:lighten($lighter, 4%);
+	top:65px;
+  left:50px;
+  display:none;
+  z-index:1;
+  
+  -moz-opacity:0.98;
+  opacity:0.98;
+
+  -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.15);
+  -moz-box-shadow:    0px 0px 8px rgba(50, 50, 50, 0.15);
+  box-shadow:         0px 0px 8px rgba(50, 50, 50, 0.15);
+  
+  #level-thumb-canvas
+  {
+    width:200px;
+    height:150px;
+  }
 }
 
 // in #limited-content

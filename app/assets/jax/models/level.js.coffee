@@ -99,10 +99,6 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       start =
         x: (@context_2d.width - box_size*@cols_number()) / 2.0
         y: (@context_2d.height - box_size*@rows_number()) / 2.0
-      console.log("size : #{@context_2d.width} x #{@context_2d.height}")
-      console.log("start : (#{start.x}, #{start.y})")
-      console.log("box_size : #{box_size}")
-      console.log("cols : #{@cols_number()}, rows : #{@rows_number()}")
       for m in [0..@level_core.rows_number-1]
         start.x = (@context_2d.width - box_size*@cols_number()) / 2.0
         for n in [0..@level_core.cols_number-1]
