@@ -16,4 +16,13 @@ class ScoresController < ApplicationController
       render :json => { :result => @score.errors.full_messages.join(", ") }
     end
   end
+  
+  def index
+    @pack = Pack.find_by_name(params[:pack_id])
+    @level = @pack.levels.find_by_name(params[:level_id])
+    @pushes_scores = @level.pushes_scores
+    @pushes_scores_friends = @level.pushes_scores_friends(current_user)
+    
+    render 'level_user_links/index', :layout => false
+  end
 end

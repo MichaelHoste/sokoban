@@ -17,6 +17,18 @@ $ ->
     window.context.dispose()
     window.context = new Jax.Context('webgl')
     window.context.redirectTo("level/index")
+    
+    # show scores related to the new level
+    pack_name = $('#packs > li').text()
+    level_name = $('#levels').find('.is-selected').attr('data-level-name')
+    $.get('/scores',
+      pack_id: pack_name
+      level_id: level_name
+    )
+    .success((data, status, xhr) =>
+      $('#scores').html(data)
+      $('#scores').effect('highlight')
+    )
   )
   
   # Level on level => create and position thumb
