@@ -2,7 +2,7 @@
 
 #scores
 {
-  margin-left:278px;
+  margin-left:275px;
   margin-right:20px;
   padding-bottom:18px;
   background-color:white;
@@ -66,7 +66,22 @@
 
 .scores-list
 {
-  width:349px;
+  width:350px;
+  margin-top:10px;
   border:1px solid;
   float:left;
+  
+  .score-picture
+  {
+    float:left;
+		padding:0px;
+		margin:0px;
+		border:0px;
+		font-size:0px;
+		
+		img
+		{
+		  width:30px;
+		}
+  }
 }
