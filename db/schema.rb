@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529173218) do
+ActiveRecord::Schema.define(:version => 20120625075654) do
 
   create_table "level_user_links", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20120529173218) do
   end
 
   add_index "level_user_links", ["level_id"], :name => "index_level_user_links_on_level_id"
+  add_index "level_user_links", ["moves"], :name => "index_level_user_links_on_moves"
+  add_index "level_user_links", ["pushes"], :name => "index_level_user_links_on_pushes"
   add_index "level_user_links", ["user_id"], :name => "index_level_user_links_on_user_id"
 
   create_table "levels", :force => true do |t|
