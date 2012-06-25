@@ -6,7 +6,11 @@
       </th>
     </tr>
   </thead>
-  <%= render @pushes_scores_friends %>
+  <% if current_user %> 
+    <%= render @pushes_scores_friends %>
+  <% else %>
+    <tr><td colspan="7">Enregistrez-vous</td></tr>
+  <% end %>
 </table>
 
 <table class="scores-list">

@@ -57,8 +57,12 @@ class Level < ActiveRecord::Base
   end
   
   def pushes_scores_friends(user)
-    self.scores.select('MIN(pushes) as pushes, moves as moves, user_id, created_at')
-               .where(:user_id => user.friends)
-               .group(:user_id)
+    if not user
+      nil
+    else
+      self.scores.select('MIN(pushes) as pushes, moves as moves, user_id, created_at')
+                 .where(:user_id => user.friends)
+                 .group(:user_id)
+    end
   end
 end
