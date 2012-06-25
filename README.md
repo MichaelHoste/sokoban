@@ -14,10 +14,8 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- 1. Level thumbs using raphaeljs (special div with level string on it)
- 2. Add indexes on level_user_links (scores) : pushes and moves
- 3. Workflow when starting website
- 4. Workflow when level is succeeded
- 5. Implement challenges : invite 5 friend by challenge
- 6. Try to adapt the url of the page to allow "back" (history)
- 7. Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone)
+ 1. Workflow when starting website
+ 2. Workflow when level is succeeded
+ 3. Implement challenges : invite 5 friend by challenge
+ 4. Try to adapt the url of the page to allow "back" (history)
+ 5. Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone)
