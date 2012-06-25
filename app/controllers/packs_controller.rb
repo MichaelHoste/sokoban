@@ -8,8 +8,11 @@ class PacksController < ApplicationController
     @level = @pack.levels.first
     @selected_level_name = @level.name
     
-    @best_pushes_score = @level.scores.limit(1)
-    @best_moves_score  = @level.scores.order(:moves).limit(1)
-    @scores = @level.scores.group(:user_id)
+    @pushes_scores = @level.scores.select('MIN(pushes) as pushes, moves as moves, user_id, created_at')
+                                  .group(:user_id)
+
+    @pushes_scores_friends = @level.scores.select('MIN(pushes) as pushes, moves as moves, user_id, created_at')
+                                          .where(:user_id => current_user.friends)
+                                          .group(:user_id)
   end
 end

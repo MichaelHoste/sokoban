@@ -36,5 +36,10 @@
 <div style="clear:both"></div>
 
 <div id="scores">
-  <%# render @scores %>
+  <table class="scores-list">
+    <%= render @pushes_scores %>
+  </table>
+  <table class="scores-list">
+    <%= render @pushes_scores_friends %>
+  </table>
 </div>
