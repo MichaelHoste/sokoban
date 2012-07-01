@@ -60,7 +60,7 @@ class Level < ActiveRecord::Base
     if not user
       []
     else
-      scores = self.scores.where(:user_id => user.friends).all
+      scores = self.scores.where(:user_id => user.friends + [user.id]).all
       improved_scores(scores)
     end
   end
