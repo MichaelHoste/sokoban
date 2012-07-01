@@ -42,7 +42,7 @@ class LevelUserLink < ActiveRecord::Base
   belongs_to :user
   
   # Scope
-  default_scope :order => 'pushes ASC'
+  default_scope :order => 'pushes ASC, moves ASC, created_at DESC'
   
   # Nested attributes
   
@@ -57,13 +57,12 @@ class LevelUserLink < ActiveRecord::Base
   # Callbacks
 
   before_validation :populate_and_validate_score
-  
-  # Methods
-
   def populate_and_validate_score
     generate_paths(self.path)
     generate_pushes_and_moves()
   end
+  
+  # Methods
   
   # generate compressed and uncompressed paths
   def generate_paths(path)

@@ -52,17 +52,33 @@ class Level < ActiveRecord::Base
   end
   
   def pushes_scores
-    self.scores.select('MIN(pushes) as pushes, moves as moves, user_id, created_at')
-               .group(:user_id)
+    scores = self.scores.all
+    improved_scores(scores)
   end
   
   def pushes_scores_friends(user)
     if not user
-      nil
+      []
     else
-      self.scores.select('MIN(pushes) as pushes, moves as moves, user_id, created_at')
-                 .where(:user_id => user.friends)
-                 .group(:user_id)
+      scores = self.scores.where(:user_id => user.friends).all
+      improved_scores(scores)
     end
+  end
+  
+  private
+
+  def improved_scores(scores)
+    selected_scores = []
+    selected_user_ids = []
+    
+    scores.each do |score|
+      # if anonymous or first occurance of user (best score of this user)
+      if score.user_id == nil or not selected_user_ids.include?(score.user_id)
+        selected_user_ids << score.user_id
+        selected_scores << score
+      end 
+    end
+    
+    selected_scores
   end
 end

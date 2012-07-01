@@ -6,8 +6,8 @@ class ScoresController < ApplicationController
     @score = LevelUserLink.new(:user_id  => (current_user ? current_user.id : nil),
                                :level_id => @level.id)
     
-    # score.path is not saved in the database, we need to check if the path
-    # is compressed or uncompressed before saving it
+    # score.path is not saved in the database, it is use to populate compressed
+    # and uncompressed path when saving
     @score.path = params[:path]
     
     if @score.save
