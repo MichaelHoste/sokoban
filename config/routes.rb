@@ -7,8 +7,13 @@ Sokojax::Application.routes.draw do
   end
   
   resources :workflows do
-    member do
-      post :show
+    collection do
+      get :show_welcome
+      get :show_rules
+      get :show_inputs
+      get :show_challenges_and_packs
+      
+      post :show_next_level
     end
   end
   

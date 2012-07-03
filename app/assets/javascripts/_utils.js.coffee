@@ -3,11 +3,31 @@ $ ->
     $.colorbox({href:'/login', top:'190px', height:'230px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
+    
+  window.colorbox_welcome = ->
+    $.colorbox({href:'/workflows/show_welcome/', top:'190px', height:'230px', width:'500px'}, ->
+      $("#cboxClose").hide()
+    )
+      
+  window.colorbox_rules = ->
+    $.colorbox({href:'/workflows/show_rules/', top:'190px', height:'230px', width:'500px'}, ->
+      $("#cboxClose").hide()
+    )
+    
+  window.colorbox_inputs = ->
+    $.colorbox({href:'/workflows/show_inputs/', top:'190px', height:'230px', width:'500px'}, ->
+      $("#cboxClose").hide()
+    )
+  
+  window.colorbox_challenges_and_packs = ->
+    $.colorbox({href:'/workflows/show_challenges_and_packs/', top:'190px', height:'230px', width:'500px'}, ->
+      $("#cboxClose").hide()
+    )
   
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
     token_tag = window.authenticity_token()
     
-    $.colorbox({ href:'/workflows/next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'190px', height:'230px', width:'500px' }, ->
+    $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'190px', height:'230px', width:'500px' }, ->
       $("#cboxClose").hide()
       window.next_level_thumb()
     )
@@ -89,3 +109,7 @@ $ ->
   else
     $('#webgl').hide()
     $('#raphael').show()
+
+  # if new user (data-new-user="1" in <body> tag... computed server-side)
+  if $('body').attr('data-new-user') == '1'
+    window.colorbox_welcome()

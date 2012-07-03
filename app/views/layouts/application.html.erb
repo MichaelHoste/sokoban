@@ -14,8 +14,10 @@
     
     <%= render :template => 'layouts/google_analytics_headers' %>
   </head>
-  <body>
-    
+  
+  <% new_user = (not session[:user_id]) ? '1' : '0' %>
+  
+  <body data-new-user="<%= new_user %>">
     <%= render :template => 'layouts/facebook_headers' %>
     <%= render :template => 'layouts/googleplus_headers' %>
     
@@ -30,6 +32,5 @@
       <!-- With this "trick", the main div stretch to adapt itself to the two floating div (features and new user) -->
       <div style="clear:both"></div>
     </div>
-    
   </body>
 </html>
