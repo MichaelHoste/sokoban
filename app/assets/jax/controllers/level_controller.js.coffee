@@ -90,17 +90,15 @@ Jax.Controller.create "Level", ApplicationController,
           authenticity_token: token_tag
         )
         .success((data, status, xhr) =>
-          if data.result == "ok"
-            if window.is_logged()
-              window.colorbox_next_level()
-            else
-              window.colorbox_facebook()
+          if window.is_logged()
+            window.colorbox_next_level(pack_name, level_name, data.score_id)
+          else
+            window.colorbox_facebook()
         )
         
         @freezed_game = true        
         @star_level()
-        alert("niveau réussi !")
-        
+
   highlight_deadlocks: (has_moved, has_deleted) ->
     if has_moved == 2 or has_deleted != 0
       box_position = @position_of_last_pushed_box()

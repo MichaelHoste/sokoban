@@ -51,23 +51,38 @@ class Level < ActiveRecord::Base
     self.height
   end
   
-  def pushes_scores
-    scores = self.scores.all
-    improved_scores(scores)
+  # get next level from this pack (nil if last level)
+  def next_level
+    next_level = Level.where(:id => self.id + 1)
+
+    # if next level exists and is in the same pack of the previous level
+    if not next_level.empty? and next_level.first.pack_id == self.pack_id
+      next_level.first
+    else
+      nil
+    end
   end
   
+  # list of pushes scores
+  def pushes_scores
+    scores = self.scores.all
+    best_scores(scores)
+  end
+  
+  # list of pushes scores for user friends
   def pushes_scores_friends(user)
     if not user
       []
     else
       scores = self.scores.where(:user_id => user.friends + [user.id]).all
-      improved_scores(scores)
+      best_scores(scores)
     end
   end
   
   private
 
-  def improved_scores(scores)
+  # only keep best score for each users
+  def best_scores(scores)
     selected_scores = []
     selected_user_ids = []
     

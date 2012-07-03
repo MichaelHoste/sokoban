@@ -1,0 +1,15 @@
+<br/>pack name :       <%= @pack_name %>
+<br/>level name :      <%= @level_name %>
+<br/>pushes :          <%= @score.pushes %>
+<br/>moves :           <%= @score.moves %>
+<br/>global ranking :  <%= @score.global_ranking %> 
+<br/>friends ranking : <%= @score.friends_ranking %>
+
+<% if @next_level %>
+  <br/>next level :      <%= @next_level.name %>
+  
+  <div class="next-level-thumb" style="border:1px solid black;width:200px;height:120px" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>">
+    <div id="next-level-thumb-canvas" style="width:200px;height:120px">
+    </div>
+  </div>
+<% end %>

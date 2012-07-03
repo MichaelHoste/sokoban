@@ -27,7 +27,6 @@ $ ->
     )
     .success((data, status, xhr) =>
       $('#scores').html(data)
-      $('#scores').effect('highlight')
     )
   )
   

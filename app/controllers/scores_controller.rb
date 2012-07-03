@@ -11,9 +11,11 @@ class ScoresController < ApplicationController
     @score.path = params[:path]
     
     if @score.save
-      render :json => { :result => 'ok' }
+      render :json => { :success  => true,
+                        :score_id => @score.id }
     else
-      render :json => { :result => @score.errors.full_messages.join(", ") }
+      render :json => { :success => false,
+                        :result  => @score.errors.full_messages.join(", ") }
     end
   end
   

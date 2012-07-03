@@ -4,9 +4,12 @@ $ ->
       $("#cboxClose").hide()
     )
   
-  window.next_level = ->
-    $.colorbox({href:'/next_level?level_id=', top:'190px', height:'230px', width:'500px'}, ->
+  window.colorbox_next_level = (pack_name, level_name, score_id) ->
+    token_tag = window.authenticity_token()
+    
+    $.colorbox({ href:'/workflows/next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'190px', height:'230px', width:'500px' }, ->
       $("#cboxClose").hide()
+      window.next_level_thumb()
     )
     
   window.is_logged = ->
@@ -22,13 +25,24 @@ $ ->
     
   # level thumbs
   window.level_thumb = ->
-    $('.level-thumb').each( ->
+    create_thumb('level-thumb')
+    
+  # next level thumb
+  window.next_level_thumb = ->
+    create_thumb('next-level-thumb')
+    
+  # create thumb of a level depending on the class name of the div
+  # <div class="#{class_name}">
+  #   <div id="#{class_name}-canvas"></div>
+  # </div>
+  create_thumb = (class_name) ->
+    $(".#{class_name}").each( ->
       pack_name    = ''
       level_name   = ''
       level_line   = $(this).attr('data-level-grid')
       level_width  = $(this).attr('data-level-width')
       level_height = $(this).attr('data-level-height')
-      level_canvas = 'level-thumb-canvas'
+      level_canvas = "#{class_name}-canvas"
   
       thumb = Level.find "actual"
       thumb.create_2d(pack_name, level_name, level_line, level_width, level_height, level_canvas)

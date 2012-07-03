@@ -6,6 +6,12 @@ Sokojax::Application.routes.draw do
     resources :levels
   end
   
+  resources :workflows do
+    member do
+      post :show
+    end
+  end
+  
   resources :scores
   
   # Root
