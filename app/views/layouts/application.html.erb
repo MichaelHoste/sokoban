@@ -15,7 +15,7 @@
     <%= render :template => 'layouts/google_analytics_headers' %>
   </head>
   
-  <% new_user = (not session[:user_id]) ? '1' : '0' %>
+  <% new_user = (not session[:user_id] and not cookies[:already_read_the_welcome_message]) ? '1' : '0' %>
   
   <body data-new-user="<%= new_user %>">
     <%= render :template => 'layouts/facebook_headers' %>
