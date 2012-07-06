@@ -1,0 +1,85 @@
+@import "utils.css.scss";
+
+#welcome
+{
+  .title
+  {
+    font-size:18px;
+    text-align:center;
+    font-weight:bold;
+    color:#444444;
+    padding-top:20px;
+  }
+  
+  .sub-title
+  {
+    height:20px;
+    text-align:center;
+    color:#555555;
+  }
+  
+  .description-bar
+  {
+  	border-top:1px solid $light;
+  	border-bottom:1px solid $light;
+  	margin-top:10px;
+  	padding-top:5px;
+  	padding-bottom:5px;
+  	background-color:$lighter;
+  	font-family:arial;
+  	font-weight:bold;
+  	text-align:center;
+  	color:#444444;
+  }
+  
+  .image
+  {
+    table
+    {
+      margin-top:20px;
+      left:-50%;
+      margin-left:160px;
+      
+      td
+      {
+        margin:0px;
+        padding:0px;
+        font-size:0px;
+        
+        img
+        {
+          width:32px;
+          height:32px;
+          font-size:0px;
+        }
+      }
+    }
+  }
+  
+  .buttons
+  {
+    margin-left:70px;
+    margin-right:70px;
+    margin-top:20px;
+    
+		ul
+		{				
+			li
+			{
+				float:left;
+				list-style-type:none;
+				padding:10px;
+				padding-left:15px;
+				padding-right:20px;
+				margin-left:25px;
+				margin-right:25px;
+				@extend .button_off;
+			}
+			
+			li:hover
+			{
+				@extend .button_on;
+			}
+		} 
+  }
+}

@@ -5,7 +5,7 @@ $ ->
     )
     
   window.colorbox_welcome = ->
-    $.colorbox({href:'/workflows/show_welcome/', top:'190px', height:'230px', width:'500px'}, ->
+    $.colorbox({href:'/workflows/show_welcome/', top:'100px', height:'320px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
       

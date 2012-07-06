@@ -2,24 +2,48 @@
 
 <div id="welcome">
   <div class="title">
-    Welcome to Sokoban.be - the great Puzzle-Game made Social
-  <div>
+    Welcome to Sokoban.be
+  </div>
     
-  <div class="description">
+  <div class="sub-title">
+    The Puzzle-Game made Social
+  </div>
+    
+  <div class="description-bar">
     PLAY SOKOBAN AND CHALLENGE YOUR FRIENDS
   </div>
   
   <div class="image">
-    <%= image_tag "" %>
+    <table>
+      <tr>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+      </tr>
+      <tr>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/pusher64.png" %></td>
+        <td><%= image_tag "/images/box64.png" %></td>
+        <td><%= image_tag "/images/goal64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+      </tr>
+      <tr>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+        <td><%= image_tag "/images/wall64.png" %></td>
+      </tr>
+    </table>
   </div>
   
   <div class="buttons">
-    <div class="button-how-to-play">
-      <%= link_to 'How to Play' %>
-    </div>
-    
-    <div class="button-play">
-      <%= link_to 'Play' %>
-    </div>
+    <ul>        
+      <li class="button-how-to-play"><i class="icon-book"></i>&nbsp;How to Play</li>
+      <li class="button-play"><i class="icon-play"></i>&nbsp;Play</li>
+    </ul>
+    <div style="clear:both"></div>
   </div>
 </div>
