@@ -21,10 +21,10 @@ $ ->
   start_animation = (delay) ->
     setTimeout(( -> pusher_move('up')), delay)
     setTimeout(( -> pusher_center()), 2*delay)
-    setTimeout(( -> pusher_move('right')), 3*delay)
+    setTimeout(( -> pusher_move('down')), 3*delay)
     setTimeout(( -> pusher_center()), 4*delay)
-    setTimeout(( -> pusher_move('down')), 5*delay)
+    setTimeout(( -> pusher_move('left')), 5*delay)
     setTimeout(( -> pusher_center()), 6*delay)
-    setTimeout(( -> pusher_move('left')), 7*delay)
+    setTimeout(( -> pusher_move('right')), 7*delay)
     setTimeout(( -> pusher_center()), 8*delay)
     setTimeout(( -> start_animation(delay)), 8*delay)
