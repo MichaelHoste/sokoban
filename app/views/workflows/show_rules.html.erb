@@ -8,9 +8,47 @@
   <div class="images">
     <table>
       <tr>
-        <td><%= image_tag "arrow_keys.png" %></td>
-        <td>blabla</td>
-        <td>blabla</td>
+        <td class="keyboard"><%= image_tag "arrow_keys.png" %></td>
+        <td class="arrow"><i class="icon-arrow-right"></i></td>
+        <td class="level">
+          <table class="pusher">
+            <tr>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/floor64.png" %></td>
+              <td class="up"><%= image_tag "/images/floor64.png" %></td>
+              <td><%= image_tag "/images/floor64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td class="left"><%= image_tag "/images/floor64.png" %></td>
+              <td class="middle"><%= image_tag "/images/pusher64.png" %></td>
+              <td class="right"><%= image_tag "/images/floor64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/floor64.png" %></td>
+              <td class="down"><%= image_tag "/images/floor64.png" %></td>
+              <td><%= image_tag "/images/floor64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+              <td><%= image_tag "/images/wall64.png" %></td>
+            </tr>
+          </table>
+        </td>
       </tr>
     </table>
   </div>
@@ -19,6 +57,9 @@
     <ul>        
       <li class="button-continue"><i class="icon-forward"></i>&nbsp;Continue</li>
     </ul>
+    <span>
+      Use the arrow keys to move the <emp>pusher<emp> one step up, down, left or right.
+    </span>
     <div style="clear:both"></div>
   </div>
 </div>

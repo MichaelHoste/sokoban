@@ -1,16 +1,54 @@
 @import "utils.css.scss";
 
-#welcome
+// common to all workflows
+.title
 {
-  .title
+  font-size:18px;
+  text-align:center;
+  font-weight:bold;
+  color:#444444;
+  padding-top:20px;
+}
+
+.buttons
+{
+  border-top:1px solid $light;
+  margin-top:20px;
+  padding-top:9px;
+  padding-left:6px;
+  padding-right:6px;
+  
+  span
   {
-    font-size:18px;
-    text-align:center;
-    font-weight:bold;
-    color:#444444;
-    padding-top:20px;
+    font-family:'Droid Sans', Arial, Verdana, Helvetica, sans-serif;
+    font-color:#444444;
   }
   
+	ul
+	{
+    float:right;
+
+		li
+		{
+			float:left;
+			list-style-type:none;
+			padding:10px;
+			padding-left:15px;
+			padding-right:20px;
+			margin-left:4px;
+			@extend .button_off;
+		}
+		
+		li:hover
+		{
+			@extend .button_on;
+		}
+	} 
+}
+
+// specific to some workflows
+#welcome
+{ 
   .sub-title
   {
     height:20px;
@@ -55,31 +93,66 @@
       }
     }
   }
-  
-  .buttons
-  {
-    border-top:1px solid $light;
-    margin-top:20px;
-    padding-top:9px;
-    
-		ul
-		{	
-		  margin-left:340px;
-
-			li
-			{
-				float:left;
-				list-style-type:none;
-				padding:10px;
-				padding-left:15px;
-				padding-right:20px;
-				@extend .button_off;
-			}
-			
-			li:hover
-			{
-				@extend .button_on;
-			}
-		} 
-  }
 }
+
+#controls
+{ 
+  .images
+  {
+    margin-top:20px;
+    margin-left:22px;
+    
+    img
+    {
+      width:140px;
+    }
+    
+    table
+    {
+      .keyboard
+      {
+        @extend .border_box;
+        width:170px;
+        padding-left:10px;
+      }
+      
+      .arrow
+      {
+        @extend .border_box;
+        width:80px;
+        text-align:center;
+        
+        i
+        {
+          color:#444444;
+          font-size:40px;
+        }
+      }
+      
+      .level
+      {
+        @extend .border_box;
+        width:170px;
+        padding-left:25px;
+      }
+    }
+    
+    table.pusher
+    {
+      td
+      {
+        margin:0px;
+        padding:0px;
+        font-size:0px;
+        
+        img
+        {
+          width:25px;
+          height:25px;
+          font-size:0px;
+        }        
+      }
+    }
+  } 
+}
+

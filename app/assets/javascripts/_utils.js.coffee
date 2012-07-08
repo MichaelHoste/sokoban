@@ -18,7 +18,7 @@ $ ->
     )
       
   window.colorbox_rules = ->
-    $.colorbox({href:'/workflows/show_rules/', top:'100px', height:'320px', width:'500px'}, ->
+    $.colorbox({href:'/workflows/show_rules/', top:'100px', height:'290px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
     
