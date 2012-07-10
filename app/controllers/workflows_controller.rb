@@ -5,12 +5,19 @@ class WorkflowsController < ApplicationController
     render 'show_welcome', :layout => false   
   end
   
-  def show_rules
-    render 'show_rules', :layout => false
+  def show_controls
+    render 'show_controls', :layout => false
   end
   
-  def show_inputs
-    render 'show_inputs', :layout => false
+  def show_rules
+    @pack = Pack.find_by_name('Original & Extra')
+    @level = @pack.levels.find_by_name('1')
+    
+    @grid1 = @level.inline_grid_with_floor
+    @grid2 = @level.inline_grid_with_floor.gsub('$', 's').gsub('.', '*').gsub('@', 's')
+    @grid2['s**'] = '@**'
+    
+    render 'show_rules', :layout => false
   end
   
   def show_challenges_and_packs

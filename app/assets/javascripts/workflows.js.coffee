@@ -1,8 +1,14 @@
 $ ->
-  # click on 'how to play'
-  $('#welcome .button-continue').on('click', ->
-    window.colorbox_rules()
+  # click on 'next' on "controls"
+  $('#welcome .button-next').on('click', ->
+    window.colorbox_controls()
     start_animation(1000)
+    false
+  )
+  
+  # click on 'next' on "controls"
+  $('#controls .button-next').on('click', ->
+    window.colorbox_rules()
     false
   )
 
@@ -17,7 +23,8 @@ $ ->
       
     $("#controls .pusher .middle img").attr('src', '/images/pusher64.png')
     $("#controls .keyboard img").attr("src", "/assets/arrow_keys.png")
-    
+  
+  # controls animation : pusher up, down, left, right
   start_animation = (delay) ->
     setTimeout(( -> pusher_move('up')), delay)
     setTimeout(( -> pusher_center()), 2*delay)

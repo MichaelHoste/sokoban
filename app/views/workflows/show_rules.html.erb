@@ -1,55 +1,21 @@
 <%= javascript_include_tag "workflows" %>
 
-<div id="controls">
+<div id="rules">
   <div class="title">
-    Controls
+    Rules
   </div>
   
-  <div class="images">
+  <div class="levels">
     <table>
       <tr>
-        <td class="keyboard">
-          <%= image_tag "arrow_keys.png" %>
+        <td class="rules-level1" data-level-grid="<%= @grid1 %>" data-level-width="<%= @level.width %>" data-level-height="<%= @level.height %>">
+          <div id="rules-level1-canvas">
+          </div>
         </td>
         <td class="arrow"><i class="icon-arrow-right"></i></td>
-        <td class="level">
-          <table class="pusher">
-            <tr>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-            </tr>
-            <tr>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/floor64.png" %></td>
-              <td class="up"><%= image_tag "/images/floor64.png" %></td>
-              <td><%= image_tag "/images/floor64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-            </tr>
-            <tr>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td class="left"><%= image_tag "/images/floor64.png" %></td>
-              <td class="middle"><%= image_tag "/images/pusher64.png" %></td>
-              <td class="right"><%= image_tag "/images/floor64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-            </tr>
-            <tr>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/floor64.png" %></td>
-              <td class="down"><%= image_tag "/images/floor64.png" %></td>
-              <td><%= image_tag "/images/floor64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-            </tr>
-            <tr>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-              <td><%= image_tag "/images/wall64.png" %></td>
-            </tr>
-          </table>
+        <td class="rules-level2" data-level-grid="<%= @grid2 %>" data-level-width="<%= @level.width %>" data-level-height="<%= @level.height %>">
+          <div id="rules-level2-canvas">
+          </div>
         </td>
       </tr>
     </table>
@@ -57,10 +23,10 @@
   
   <div class="buttons">
     <ul>        
-      <li class="button-continue"><i class="icon-forward"></i>&nbsp;Continue</li>
+      <li class="button-next"><i class="icon-forward"></i>&nbsp;Next</li>
     </ul>
     <span>
-      Use the arrow keys to move the <emp>pusher<emp> one step up, down, left or right.
+      The Sokoban must place <emp>boxes</emp> on a <emp>goal</emp>. A level is won when each box is on a goal.
     </span>
     <div style="clear:both"></div>
   </div>

@@ -22,6 +22,7 @@
   {
     font-family:'Droid Sans', Arial, Verdana, Helvetica, sans-serif;
     font-color:#444444;
+    font-size:13px;
   }
   
 	ul
@@ -47,6 +48,22 @@
 }
 
 // specific to some workflows
+#next-level
+{
+  .next-level-thumb
+  {
+    width:200px;
+    height:120px;
+    border:1px solid black;
+  }
+  
+  .next-level-thumb-canvas
+  {
+    width:200px;
+    height:120px;
+  }
+}
+
 #welcome
 { 
   .sub-title
@@ -156,3 +173,33 @@
   } 
 }
 
+#rules
+{
+  table
+  { 
+    .arrow
+    {
+      @extend .border_box;
+      width:60px;
+      text-align:center;
+      
+      i
+      {
+        color:#444444;
+        font-size:40px;
+      }
+    }
+  }
+  
+  .rules-level1, .rules-level2
+  {
+    width:210px;
+    height:165px;
+
+    #rules-level1-canvas, #rules-level2-canvas
+    {
+      width:210px;
+      height:165px;
+    }
+  }
+}

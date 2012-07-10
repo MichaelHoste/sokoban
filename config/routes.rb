@@ -10,7 +10,7 @@ Sokojax::Application.routes.draw do
     collection do
       get :show_welcome
       get :show_rules
-      get :show_inputs
+      get :show_controls
       get :show_challenges_and_packs
       
       post :show_next_level

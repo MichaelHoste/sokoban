@@ -16,15 +16,17 @@ $ ->
     $.colorbox({href:'/workflows/show_welcome/', top:'100px', height:'320px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
-      
-  window.colorbox_rules = ->
-    $.colorbox({href:'/workflows/show_rules/', top:'100px', height:'290px', width:'500px'}, ->
+    
+  window.colorbox_controls = ->
+    $.colorbox({href:'/workflows/show_controls/', top:'100px', height:'290px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
-    
-  window.colorbox_inputs = ->
-    $.colorbox({href:'/workflows/show_inputs/', top:'100px', height:'320px', width:'500px'}, ->
+      
+  window.colorbox_rules = ->
+    $.colorbox({href:'/workflows/show_rules/', top:'100px', height:'310px', width:'500px'}, ->
       $("#cboxClose").hide()
+      create_thumb('rules-level1')
+      create_thumb('rules-level2')
     )
   
   window.colorbox_challenges_and_packs = ->
