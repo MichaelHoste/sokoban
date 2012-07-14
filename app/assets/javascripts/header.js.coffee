@@ -1,7 +1,23 @@
 $ ->
-    
+  # click on "login with facebook" icon
   $('#menus .fb_login').on('click', ->
     window.colorbox_facebook()
+  )
+  
+  # hover on "login with facebook" icon
+  $('#menus .fb_login').on('mouseenter', ->
+    pos = $('#menus .picture.fb_login').position()
+    height = $('#menus .picture.fb_login').height() + 7
+    
+    login_hover = $('#login-hover')
+    login_hover.css('left', pos.left)
+    login_hover.css('top' , pos.top + height)
+    login_hover.css('z-index', 201)
+    login_hover.clearQueue().transition({ opacity: 1.0 })
+  )
+  
+  $('#menus .fb_login').on('mouseleave', ->
+    $('#login-hover').clearQueue().transition({ opacity: 0.0 })
   )
 
   $('#menus .fb_logout').on('click', ->
@@ -17,7 +33,7 @@ $ ->
   )
   
   $('#menus .rules-menu').on('click', ->
-    location.assign('/rules')
+    window.colorbox_welcome()
   )
   
   # Click on 2D switch

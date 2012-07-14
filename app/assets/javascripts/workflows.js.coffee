@@ -11,6 +11,12 @@ $ ->
     window.colorbox_rules()
     false
   )
+  
+  # click on 'next' on "controls"
+  $('#rules .button-next').on('click', ->
+    window.colorbox_facebook()
+    false
+  )
 
   pusher_move = (dir) ->
     $('#controls .pusher .middle img').attr('src', '/images/floor64.png')

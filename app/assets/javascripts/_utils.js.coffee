@@ -8,7 +8,7 @@ $ ->
     )
    
   window.colorbox_facebook = ->
-    $.colorbox({href:'/login', top:'190px', height:'230px', width:'500px'}, ->
+    $.colorbox({href:'/login', top:'190px', height:'175px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
     

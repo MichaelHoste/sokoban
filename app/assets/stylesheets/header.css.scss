@@ -140,6 +140,27 @@ header
 			}
 		}
 		
+		#login-hover
+		{
+		  position:absolute;
+    	border:1px solid darken($lighter, 10%);
+    	background-color:lighten($lighter, 4%);
+    	padding:4px;
+    	
+    	-moz-opacity:0.0;
+      opacity:0.0;
+    			  
+		  ul
+			{
+			  font-size:12px;
+			  
+				li
+				{
+					list-style-type:none;
+				}
+			}
+		}
+		
 		#likes
 		{
 		  position:absolute;

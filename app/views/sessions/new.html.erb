@@ -3,16 +3,12 @@
 <div id="session">
   <div class="session-button">
     <div class="session-connect">
-      <%= link_to image_tag("facebook-connect.png"), '/auth/facebook' %>
+      <%= link_to image_tag("facebook-connect.jpg"), '/auth/facebook' %>
     </div>
     
     <div class="session-text">
-      <span class="session-text-title">Connect with Facebook</span>
-      <ul>
-        <li><i class="icon-th-list"></i> to save your progression.</li>
-        <li><i class="icon-trophy"></i> to save your best scores.</li>
-        <li><i class="icon-user"></i> to compare your scores with your friends.</li>
-      </ul>
+      <span class="session-text-title">Login with Facebook</span>
+      <%= render :template => 'sessions/_login_advantages' %>
     </div>
     
     <div style="clear:both"></div>
@@ -20,10 +16,5 @@
 
   <div class="session-note">
     <strong>Note</strong> : We will NEVER publish something on your page.
-  </div>
-
-
-  <div class="session-regular-link">
-    <%= link_to 'I care too much about my privacy. I want to play alone and without saves'.html_safe %>
   </div>
 </div>

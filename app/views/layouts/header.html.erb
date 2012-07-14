@@ -12,7 +12,7 @@
           <li class="name fb_logout" title="Logout"><%= current_user.name %>&nbsp;<i class="icon-signout"></i></li>       
         <% else %>
           <li class="picture fb_login"><%= image_tag "facebook-connect-small.png" %></li>
-          <li class="name fb_login">Connect with Facebook</li>
+          <li class="name fb_login">Login with Facebook</li>
         <% end %>
         
         <li class="switch switch-2d is-selected">2D</li>
@@ -24,6 +24,10 @@
       </ul>
     </div>
     
+    <div id="login-hover">
+      <%= render :template => 'sessions/_login_advantages' %>
+    </div>
+        
     <div id="likes">
       <div class="fb-like" data-href="http://www.sokoban.be" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false">
       </div>

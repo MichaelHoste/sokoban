@@ -20,7 +20,7 @@ Sokojax::Application.routes.draw do
   resources :scores
   
   # Root
-  root :to => "packs#show", :id => 'Original & Extra'
+  root :to => "packs#show", :id => 'Novoban'
   
   # OmniAuth (facebook)
   match '/auth/:provider/callback', :to => 'sessions#create'
