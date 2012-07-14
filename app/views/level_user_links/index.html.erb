@@ -1,25 +1,21 @@
-<table class="scores-list">
-  <thead>
-    <tr>
-      <th colspan="7" style="text-align:center">
-        Friends
-      </th>
-    </tr>
-  </thead>
+<div class="scores-list">
+  <div class="scores-title">
+    Friends
+  </div>
+  
   <% if current_user %> 
     <%= render @pushes_scores_friends %>
   <% else %>
-    <tr><td colspan="7">Enregistrez-vous</td></tr>
+    <div class="scores-login">
+      Login with Facebook
+    </div>
   <% end %>
-</table>
+</div>
 
-<table class="scores-list">
-  <thead>
-    <tr>
-      <th colspan="7" style="text-align:center">
-        All
-      </th>
-    </tr>
-  </thead>
+<div class="scores-list">
+  <div class="scores-title">
+    All
+  </div>
+  
   <%= render @pushes_scores %>
-</table>
+</div>

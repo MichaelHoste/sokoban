@@ -72,17 +72,20 @@
   border:1px solid;
   float:left;
   
-  .score-picture
+  .score-item
   {
-    float:left;
-		padding:0px;
-		margin:0px;
-		border:0px;
-		font-size:0px;
-		
-		img
-		{
-		  width:30px;
-		}
+    .score-picture
+    {
+      float:left;
+  		padding:0px;
+  		margin:0px;
+  		border:0px;
+  		font-size:0px;
+
+  		img
+  		{
+  		  width:30px;
+  		}
+    } 
   }
 }

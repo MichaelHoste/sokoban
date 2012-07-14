@@ -14,7 +14,11 @@ $ ->
   
   # click on 'next' on "rules"
   $('#rules .button-next').on('click', ->
-    window.colorbox_facebook()
+    if $('#menus .fb_login').length
+      window.colorbox_facebook()
+    else
+      $.fn.colorbox.close()
+    
     false
   )
 
