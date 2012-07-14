@@ -35,9 +35,11 @@ header
 		#title
 		{
 			margin-top:20px;
+			margin-left:20px;
 			font-weight:bold;
 			float:left;
 			font-size:50px;
+			font-family:'Droid Sans', Arial, Verdana, Helvetica, sans-serif;
 		  
 		  a
 		  {
@@ -49,6 +51,7 @@ header
 		#menus
 		{
 			float:right;
+			padding-right:50px;
 			
 			ul
 			{
@@ -68,6 +71,35 @@ header
 				li:hover
 				{
 					@extend .button_on;
+				}
+				
+				li.challenges-menu
+				{
+				  margin-right:0px;
+				  -webkit-border-radius: 9px 0px 0px 9px;
+          border-radius: 9px 0px 0px 9px;
+				}
+				
+				li.packs-menu
+				{
+				  margin-left:0px;
+				  -webkit-border-radius: 0px 9px 9px 0px;
+          border-radius: 0px 9px 9px 0px;
+				}
+				
+				li.rules-menu
+				{
+				  @extend .border_box;
+				  position:relative;
+				  font-size:11px;
+				  height:26px;
+				  margin:0px;
+					margin-top:7px;
+					padding:6px;
+					padding-left:10px;
+					padding-right:15px;
+					border-left:0px;
+					z-index:301;
 				}
 				
 				li.name
@@ -164,7 +196,7 @@ header
 		#likes
 		{
 		  position:absolute;
-      left:672px;
+      left:656px;
 		  top:5px;
 		  
 		  .fb-like

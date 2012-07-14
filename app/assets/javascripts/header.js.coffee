@@ -4,10 +4,14 @@ $ ->
     window.colorbox_facebook()
   )
   
-  # hover on "login with facebook" icon
-  $('#menus .fb_login').on('mouseenter', ->
-    pos = $('#menus .picture.fb_login').position()
-    height = $('#menus .picture.fb_login').height() + 7
+  # hover on "login with facebook" or "name of user" icon
+  $('#menus .fb_login, #menus .fb_logout').on('mouseenter', ->
+    if $('#menus .fb_login').length
+      pos = $('#menus .picture.fb_login').position()
+      height = $('#menus .picture.fb_login').height() + 7
+    else if $('#menus .fb_logout').length
+      pos = $('#menus .picture.fb_logout').position()
+      height = $('#menus .picture.fb_logout').height() + 7
     
     login_hover = $('#login-hover')
     login_hover.css('left', pos.left)
@@ -16,7 +20,7 @@ $ ->
     login_hover.clearQueue().transition({ opacity: 1.0 })
   )
   
-  $('#menus .fb_login').on('mouseleave', ->
+  $('#menus .fb_login, #menus .fb_logout').on('mouseleave', ->
     $('#login-hover').clearQueue().transition({ opacity: 0.0 })
   )
 
@@ -24,12 +28,12 @@ $ ->
     location.assign('/logout')
   )
 
+  $('#menus .challenges-menu').on('click', ->
+    location.assign('/scores')
+  )
+
   $('#menus .packs-menu').on('click', ->
     location.assign('/packs')
-  )
-  
-  $('#menus .scores-menu').on('click', ->
-    location.assign('/scores')
   )
   
   $('#menus .rules-menu').on('click', ->

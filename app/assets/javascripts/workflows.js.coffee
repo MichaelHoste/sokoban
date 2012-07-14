@@ -1,5 +1,5 @@
 $ ->
-  # click on 'next' on "controls"
+  # click on 'next' on "welcome"
   $('#welcome .button-next').on('click', ->
     window.colorbox_controls()
     start_animation(1000)
@@ -12,7 +12,7 @@ $ ->
     false
   )
   
-  # click on 'next' on "controls"
+  # click on 'next' on "rules"
   $('#rules .button-next').on('click', ->
     window.colorbox_facebook()
     false
