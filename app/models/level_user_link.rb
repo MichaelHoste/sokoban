@@ -126,7 +126,7 @@ class LevelUserLink < ActiveRecord::Base
   # global ranking of this score
   def global_ranking
     LevelUserLink.select(:user_id)
-                 .uniq
+#                 .uniq
                  .where('user_id != ?', self.user_id) # not the user himself
                  .where('pushes < ? OR (pushes = ? AND moves < ?)', self.pushes, self.pushes, self.moves)
                  .all.uniq.count + 1
@@ -136,7 +136,7 @@ class LevelUserLink < ActiveRecord::Base
   def friends_ranking
     if self.user != nil
       LevelUserLink.select(:user_id)
-                   .uniq
+ #                  .uniq
                    .where(:user_id => self.user.friends.select(:user_id).where('email IS NOT NULL'))
                    .where('pushes < ? OR (pushes = ? AND moves < ?)', self.pushes, self.pushes, self.moves)
                    .all.uniq.count + 1
