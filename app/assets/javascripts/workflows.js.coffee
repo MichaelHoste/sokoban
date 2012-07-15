@@ -24,7 +24,6 @@ $ ->
   # Hover the next-level image
   $('#next-level-thumb-canvas').live('click', ->
     # change the level (the '.is-selected' level is chosen)
-    alert("salut")
     $.fn.colorbox.close()
     
     button = $('#levels .is-selected')
