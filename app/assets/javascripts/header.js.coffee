@@ -68,14 +68,14 @@ $ ->
   
   $('#likes > div').live('mouseleave', ->
     $(this).clearQueue()
-    $(this).transition({opacity:0.1})
+    $(this).transition({opacity:0.0})
   )
   
   # animation on like divs
   animate_like_divs = ->
-    $('#likes .fb-like').clearQueue().transition({ opacity:0.93 }).delay(300).transition({ opacity:0.1 }).delay(200, ->
-      $('#likes .twitter-like').clearQueue().transition({ opacity:0.93 }).delay(300).transition({ opacity:0.1 }).delay(200, ->
-        $('#likes .gplus-like').clearQueue().transition({ opacity:0.93 }).delay(300).transition({ opacity:0.1 }).delay(200, ->
+    $('#likes .fb-like').clearQueue().transition({ opacity:0.93 }).delay(300).transition({ opacity:0.0 }).delay(200, ->
+      $('#likes .twitter-like').clearQueue().transition({ opacity:0.93 }).delay(300).transition({ opacity:0.0 }).delay(200, ->
+        $('#likes .gplus-like').clearQueue().transition({ opacity:0.93 }).delay(300).transition({ opacity:0.0 }).delay(200, ->
           setTimeout(animate_like_divs, 120000)  
         )
       )

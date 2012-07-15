@@ -3,10 +3,10 @@
 
 <div class="score-item">
   <div class="score-picture">
-    <%= link_to image_tag(user_picture, :title => "#{level_user_link.user_name}"), user_link %>
+    <%= link_to image_tag(user_picture, :title => level_user_link.user_name), user_link %>
   </div>
   <div class="score-name">
-    <%= link_to level_user_link.user_name, user_link %>
+    <%= link_to level_user_link.user_name, user_link, :title => level_user_link.user_name %>
   </div>
   <div class="score-pushes">
     <p><strong><%= level_user_link.pushes %></strong> pushes (<%= level_user_link.moves %>)</p>
