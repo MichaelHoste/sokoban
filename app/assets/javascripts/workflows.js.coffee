@@ -30,6 +30,9 @@ $ ->
     next_button = button.next('li')
     button.removeClass('is-selected')
     next_button.addClass('is-selected')
+    console.log(button)
+    console.log(next_button)
+    
     window.change_level()
     
     false
