@@ -9,8 +9,8 @@ $ ->
   
   # Click on level (on packs/show)
   $('#levels li').live('click', ->
-    $(this).parent().find(".is-selected").removeClass("is-selected")
-    $(this).addClass("is-selected")
+    $(this).parent().find(".is-selected").removeClass('is-selected')
+    $(this).addClass('is-selected')
     
     # change the level (the '.is-selected' level is chosen)
     window.change_level()

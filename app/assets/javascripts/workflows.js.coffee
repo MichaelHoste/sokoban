@@ -23,15 +23,16 @@ $ ->
   
   # Hover the next-level image
   $('#next-level-thumb-canvas').live('click', ->
+    # change the level (the '.is-selected' level is chosen)
+    alert("salut")
+    $.fn.colorbox.close()
+    
     button = $('#levels .is-selected')
     next_button = button.next('li')
     button.removeClass('is-selected')
     next_button.addClass('is-selected')
-        
-    # change the level (the '.is-selected' level is chosen)
     window.change_level()
     
-    $.fn.colorbox.close()
     false
   )
 
