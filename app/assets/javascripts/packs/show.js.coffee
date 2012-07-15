@@ -11,23 +11,9 @@ $ ->
   $('#levels li').live('click', ->
     $(this).parent().find(".is-selected").removeClass("is-selected")
     $(this).addClass("is-selected")
-
-    # FIXME window.context.redirectTo must be sufficient and faster !
-    # but it seems to have a memory leak somewhere (Jax or me ?)
-    window.context.dispose()
-    window.context = new Jax.Context('webgl')
-    window.context.redirectTo("level/index")
     
-    # show scores related to the new level
-    pack_name = $('#packs > li').text()
-    level_name = $('#levels').find('.is-selected').attr('data-level-name')
-    $.get('/scores',
-      pack_id: pack_name
-      level_id: level_name
-    )
-    .success((data, status, xhr) =>
-      $('#scores').html(data)
-    )
+    # change the level (the '.is-selected' level is chosen)
+    window.change_level()
   )
   
   # Level on level => create and position thumb

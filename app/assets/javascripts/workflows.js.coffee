@@ -1,24 +1,37 @@
 $ ->
-  # click on 'next' on "welcome"
+  # Click on 'next' on "welcome"
   $('#welcome .button-next').on('click', ->
     window.colorbox_controls()
     start_animation(1000)
     false
   )
   
-  # click on 'next' on "controls"
+  # Click on 'next' on "controls"
   $('#controls .button-next').on('click', ->
     window.colorbox_rules()
     false
   )
   
-  # click on 'next' on "rules"
+  # Click on 'next' on "rules"
   $('#rules .button-next').on('click', ->
     if $('#menus .fb_login').length
       window.colorbox_facebook()
     else
       $.fn.colorbox.close()
+    false
+  )
+  
+  # Hover the next-level image
+  $('#next-level-thumb-canvas').live('click', ->
+    button = $('#levels .is-selected')
+    next_button = button.next()
+    button.removeClass('is-selected')
+    next_button.addClass('is-selected')
+        
+    # change the level (the '.is-selected' level is chosen)
+    window.change_level()
     
+    $.fn.colorbox.close()
     false
   )
 

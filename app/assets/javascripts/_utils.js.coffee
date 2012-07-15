@@ -69,6 +69,24 @@ $ ->
       thumb = Level.find "actual"
       thumb.create_2d(pack_name, level_name, level_line, level_width, level_height, level_canvas)
     )
+    
+  window.change_level = ->
+    # FIXME window.context.redirectTo must be sufficient and faster !
+    # but it seems to have a memory leak somewhere (Jax or me ?)
+    window.context.dispose()
+    window.context = new Jax.Context('webgl')
+    window.context.redirectTo("level/index")
+  
+    # show scores related to the new level
+    pack_name = $('#packs > li').text()
+    level_name = $('#levels').find('.is-selected').attr('data-level-name')
+    $.get('/scores',
+      pack_id: pack_name
+      level_id: level_name
+    )
+    .success((data, status, xhr) =>
+      $('#scores').html(data)
+    )
   
   # Disable up, down, left, right to scroll
   # left: 37, up: 38, right: 39, down: 40, spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
