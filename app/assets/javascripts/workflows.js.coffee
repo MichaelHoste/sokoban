@@ -22,7 +22,7 @@ $ ->
   )
   
   # Hover the next-level image
-  $('#next-level-thumb-canvas').live('click', ->
+  $('#next-level-thumb-canvas').on('click', ->
     # change the level (the '.is-selected' level is chosen)
     $.fn.colorbox.close()
     
