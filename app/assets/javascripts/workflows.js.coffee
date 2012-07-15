@@ -24,7 +24,7 @@ $ ->
   # Hover the next-level image
   $('#next-level-thumb-canvas').live('click', ->
     button = $('#levels .is-selected')
-    next_button = button.next()
+    next_button = button.next('li')
     button.removeClass('is-selected')
     next_button.addClass('is-selected')
         
