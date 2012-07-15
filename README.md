@@ -14,8 +14,8 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- 1. Workflow when starting website
- 2. Workflow when level is succeeded
- 3. Implement challenges : invite 5 friend by challenge
+ 1. Workflow when level is succeeded
+ 2. Implement challenges : invite 5 friend by challenge
+ 3. Create dashboard
  4. Try to adapt the url of the page to allow "back" (history)
  5. Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone)

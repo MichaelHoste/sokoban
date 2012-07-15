@@ -1,16 +1,15 @@
+<% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture : 'default_user.png' )%>
+<% user_link = (level_user_link.user_id ? level_user_link.user.f_link : '#') %>
+
 <div class="score-item">
   <div class="score-picture">
-    <% user_name = (level_user_link.user_id ? level_user_link.user_name : 'Anonymous') %>
-    <% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture : 'default_user.png' )%>
-    <% won_levels_count = (level_user_link.user_id ? level_user_link.user.won_levels_count : '' )%>
-    <%= image_tag user_picture, :title => "#{user_name} - #{won_levels_count}" %>
+    <%= link_to image_tag(user_picture, :title => "#{level_user_link.user_name}"), user_link %>
   </div>
   <div class="score-name">
-    <%= level_user_link.user_name %>
+    <%= link_to level_user_link.user_name, user_link %>
   </div>
   <div class="score-pushes">
-    <%= level_user_link.pushes %>
-    pushes (<%= level_user_link.moves %>)
+    <p><strong><%= level_user_link.pushes %></strong> pushes (<%= level_user_link.moves %>)</p>
   </div>
   <div class="score-date" title="<%= level_user_link.created_at %>">
     <%= when_in_the_past(level_user_link.created_at) %> <%# mettre date from %>

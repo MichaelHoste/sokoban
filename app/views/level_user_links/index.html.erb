@@ -7,10 +7,12 @@
     <%= render @pushes_scores_friends %>
   <% else %>
     <div class="scores-login">
-      Login with Facebook
+      <%= link_to image_tag("facebook-connect-banner.gif"), '/auth/facebook' %>
     </div>
   <% end %>
+  <div style="clear:both"></div>
 </div>
+
 
 <div class="scores-list">
   <div class="scores-title">
@@ -18,4 +20,5 @@
   </div>
   
   <%= render @pushes_scores %>
+  <div style="clear:both"></div>
 </div>
