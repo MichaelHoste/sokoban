@@ -82,9 +82,11 @@ header
 				
 				li.packs-menu
 				{
-				  margin-left:0px;
-				  -webkit-border-radius: 0px 9px 9px 0px;
-          border-radius: 0px 9px 9px 0px;
+				  //margin-left:0px;
+				  //-webkit-border-radius: 0px 9px 9px 0px;
+          //border-radius: 0px 9px 9px 0px;
+          -webkit-border-radius: 9px 9px 9px 9px;
+          border-radius: 9px 9px 9px 9px;
 				}
 				
 				li.rules-menu
