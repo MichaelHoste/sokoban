@@ -57,22 +57,97 @@
 // specific to some workflows
 #next-level
 {
+  .next-level-star
+  {
+    float:left;
+    height:135px;
+    width:180px;
+    text-align:center;
+    
+    i
+    {
+      display:block;
+      margin-top:-10px;
+      color:black;
+			-webkit-text-fill-color:#EDDA74; // fallback color if no stroke
+			-webkit-text-stroke: 3px rgb(0,0,0);
+      font-size:140px;
+    }
+  }
+  
+  .next-level-text
+  {
+    float:left;
+    height:185px;
+    width:280px;
+    vertical-align:center;
+    
+    p
+    {
+      font-size:30px;
+      font-weight:bold;
+      font-family:'Droid Sans', Arial, Verdana, Helvetica, sans-serif;
+      margin:0px;
+      padding:0px;
+      margin-top:34px;
+      margin-bottom:34px;
+    }
+  }
+  
+  .next-level-score
+  {
+    float:left;
+    width:180px;
+    height:50px;
+    font-weight:bold;
+    font-size:20px;
+    text-align:center;
+    margin-top:-65px;
+    
+    p
+    {
+      margin:0px;
+      padding:0px;
+      padding-top:5px;
+      padding-bottom:5px;
+    }
+  }
+  
   .next-level-thumb
   {
-    width:200px;
-    height:120px;
-    border:1px solid black;
+    width:460px;
+    height:200px;
+    //border:1px solid black;
     
     #next-level-thumb-canvas
     {
-      width:200px;
-      height:120px;
+      width:460px;
+      height:200px;
     }
     
     #next-level-thumb-canvas:hover
     {
       cursor:pointer;
     }
+  }
+  
+  .next-level-next
+  {
+    cursor:pointer;
+    width:460px;
+    height:40px;
+    text-align:center;
+    font-size:30px;
+    
+    i
+    {
+
+    } 
+  }
+  
+  .next-level-next:hover
+  {
+    text-decoration:underline;
   }
 }
 
@@ -199,12 +274,12 @@
   .rules-level1, .rules-level2
   {
     width:210px;
-    height:165px;
+    height:150px;
 
     #rules-level1-canvas, #rules-level2-canvas
     {
       width:210px;
-      height:165px;
+      height:150px;
     }
   }
 }

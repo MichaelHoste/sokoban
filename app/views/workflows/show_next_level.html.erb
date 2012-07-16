@@ -1,19 +1,32 @@
 <%= javascript_include_tag "workflows" %>
 
 <div id="next-level">
-  <br/>pack name :       <%= @pack_name %>
-  <br/>level name :      <%= @level_name %>
-  <br/>pushes :          <%= @score.pushes %>
-  <br/>moves :           <%= @score.moves %>
-  <br/>global ranking :  <%= @score.global_ranking %> 
-  <br/>friends ranking : <%= @score.friends_ranking %>
+  <div class="next-level-star">
+    <i class="icon-star"></i>
+  </div>
+  
+  <div class="next-level-text">
+    <p>LEVEL</p>
+    <p>&nbsp;&nbsp;SUCCESSFULLY</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;COMPLETED !</p>
+  </div>
+  
+  <div class="next-level-score">
+    <p><%= @score.pushes %> pushes</p>
+    <p><%= @score.moves %> moves</p>
+  </div>
+  
+  <div style="clear:both"></div>
   
   <% if @next_level %>
-    <br/>next level :      <%= @next_level.name %>
-    
-    <div class="next-level-thumb" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>">
+    <div class="next-level-thumb" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>" title="<%= @next_level.name %>">
       <div id="next-level-thumb-canvas">
       </div>
     </div>
+    
+    <div class="next-level-next">
+      <i class="icon-forward"></i>&nbsp;Next Level
+    </div>
   <% end %>
+
 </div>
