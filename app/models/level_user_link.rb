@@ -64,6 +64,12 @@ class LevelUserLink < ActiveRecord::Base
   
   # Methods
   
+  # publish the "user has completed the level" on open graph (facebook)
+  def publish_on_facebook
+    graph = Koala::Facebook::API.new(user.f_token)
+    graph.put_connections("me", "sokojax:complete", :object => 'http://www.sokoban.be/packs/Alberto%20Garc%C3%ADa%201-1/levels/soko8')
+  end
+  
   # generate compressed and uncompressed paths
   def generate_paths(path)
     if path =~ /[0-9]/
