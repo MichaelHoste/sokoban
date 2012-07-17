@@ -8,10 +8,10 @@
     <% if @level %>
       <meta property="fb:app_id"       content="312592002148798" /> 
       <meta property="og:type"         content="sokojax:level" /> 
-      <meta property="og:url"          content="http://sokoban.be/packs/<%= @level.pack.name %>/levels/<%= @level.name %>" /> 
+      <meta property="og:url"          content="http://sokoban.be/packs/<%= @level.pack.name.html_safe %>/levels/<%= @level.name.html_safe %>" /> 
       <meta property="og:title"        content="<%= @level.name %>" /> 
       <meta property="og:description"  content="Pack : <%= @level.pack.name.gsub(/\n/," ").gsub(/\r/," ") %> | <%= @level.pack.description.gsub(/\n/," ").gsub(/\r/," ") %>" /> 
-      <meta property="og:image"        content="http://sokoban.be/packs/<%= @level.pack.name %>/levels/<%= @level.name %>/thumb.png" />
+      <meta property="og:image"        content="http://sokoban.be/packs/<%= @level.pack.name.html_safe %>/levels/<%= @level.name.html_safe %>/thumb.png" />
       <meta property="sokojax:level_name" content="<%= @level.name %>" />
       <meta property="sokojax:pack_name"  content="<%= @level.pack.name %>" />
     <% end %>
