@@ -68,7 +68,7 @@ class LevelUserLink < ActiveRecord::Base
   def publish_on_facebook
     graph = Koala::Facebook::API.new(user.f_token)
     graph.put_connections("me", "sokojax:complete", :level  => 'http://www.sokoban.be/packs/Alberto%20Garc%C3%ADa%201-1/levels/soko8',
-                                                    :pushes => self.pushes
+                                                    :pushes => self.pushes,
                                                     :moves  => self.moves)
   end
   
