@@ -98,8 +98,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  def subscribed_friends
-    self.friends.where('email IS NOT NULL')
+  # list of subscribed friends, user included, sorted by won levels (relative to packs or all)
+  def subscribed_friends(pack=nil)
+    friends = self.friends.where('email IS NOT NULL').all
+    friends.sort {|x,y| y.won_levels_count(pack) <=> x.won_levels_count(pack) }
+  end
+  
+  def subscribed_friends_and_me(pack=nil)
+    friends = self.friends.where('email IS NOT NULL').all
+    friends << self
+    friends.sort {|x,y| y.won_levels_count(pack) <=> x.won_levels_count(pack) }
   end
   
   def subscribed_friends_ids

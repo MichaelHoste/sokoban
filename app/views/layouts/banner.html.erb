@@ -2,16 +2,16 @@
 
   <div id="banner" class="banner-friends">
     <div id="limited-banner">
-      <% subscribed_friends = current_user.subscribed_friends %>
+      <% subscribed_friends_and_me = current_user.subscribed_friends_and_me %>
       
       <% # no subscribed friends %>
-      <% if subscribed_friends.empty? %>
+      <% if subscribed_friends_and_me.length == 1 %>
         <% f_url = facebook_send_message_url(current_user) %>
         <%= link_to "INVITE YOUR FRIENDS", f_url, :class => 'invite-friends popup' %>
       <% end %>
       
-      <% # list of subscribed friends %>
-      <% subscribed_friends.each do |friend| %>
+      <% # list of subscribed friends and me %>
+      <% subscribed_friends_and_me.each do |friend| %>
         <%= image_tag friend.profile_picture, :title => "#{friend.name} - #{friend.won_levels_count(@pack)}" %>
         <span style="display:none" title="<%= friend.id %>">
           <% # won levels ids of current pack OR every won levels id %>
@@ -20,7 +20,7 @@
       <% end %>
       
       <% # invite more friends %>
-      <% if not subscribed_friends.empty? %>
+      <% if not subscribed_friends_and_me.length == 1 %>
         <% f_url = facebook_send_message_url(current_user) %>
         <%= link_to "...", f_url, :class => 'small-invite-friends popup', :title => 'Invite more friends' %>
       <% end %>
