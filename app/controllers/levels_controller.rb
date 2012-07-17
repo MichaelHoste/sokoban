@@ -1,6 +1,4 @@
-class LevelsController < ApplicationController
-  layout "empty", :except => [:show]
-  
+class LevelsController < ApplicationController  
   def show
     @pack = Pack.find_by_name(params[:pack_id])
     @level = @pack.levels.find_by_name(params[:id])
@@ -26,28 +24,16 @@ class LevelsController < ApplicationController
   def thumb
     @pack = Pack.find_by_name(params[:pack_id])
     @level = @pack.levels.find_by_name(params[:level_id])
-    @grid = @level.grid_with_floor
+    @local_file = "public/images/levels/#{@level.id}.png"
     
-    @grid.each_with_index do |row, index|
-      row = row.gsub(' ', 'empty64:png ')
-      row = row.gsub('s', 'floor64:png ')
-      row = row.gsub('.', 'goal64:png ')
-      row = row.gsub('#', 'wall64:png ')
-      row = row.gsub('$', 'box64:png ')
-      row = row.gsub('*', 'boxgoal64:png ')
-      row = row.gsub('@', 'pusher64:png ')
-      row = row.gsub('+', 'pushergoal64:png ')
-      row = row.gsub(':', '.')
-      
-      `cd public/images/;convert #{row} +append row_#{index+1}.png`
-    end
-  
-    command = ""
-    (1..@level.height).to_a.each do |m|
-      command = command + "row_#{m}.png "
+    # thumb is generated if not already generated in the past
+    if not FileTest.exists?(@local_file)
+      @level.generate_thumb
     end
     
-    `cd public/images/;convert #{command} -append #{@level.id}.png`
-    `cd public/images/;rm -f row_*.png`
+    response.headers['Cache-Control'] = "public, max-age=#{12.hours.to_i}"
+    response.headers['Content-Type'] = 'image/jpeg'
+    response.headers['Content-Disposition'] = 'inline'
+    render :text => open(@local_file, 'rb').read
   end
 end

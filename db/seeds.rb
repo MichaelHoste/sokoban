@@ -195,14 +195,15 @@ def populate_levels(packs)
   end # end of packs loop
 end
 
-def create_level_thumbs
-  (1..Level.count).to_a.each do |level_id|
-    Level.find(level_id).generate_thumb
-  end
-end
+# LEVEL THUMBS ARE GENERATED THE FIRST TIME THEY ARE USED
+#def create_level_thumbs
+#  (1..Level.count).to_a.each do |level_id|
+#    Level.find(level_id).generate_thumb
+#  end
+#end
 
 populate_levels(packs)
-create_level_thumbs()
+#create_level_thumbs()
 
 
 
