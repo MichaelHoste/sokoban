@@ -6,9 +6,9 @@ $ ->
     .mouseenter( ->
       #$(this).transition({ scale: 1.5 })
       span = $(this).next() # hidden span with won levels informations
-      won_levels_ids = span.text().split(',')
+      won_levels_ids = $.trim(span.text()).split(',')
       for level_id in won_levels_ids
-        level_button = $(".levels li[data-level-id=#{level_id}]")
+        level_button = $("#level-#{level_id}")
         $(level_button).addClass('won-by-friend')
     )
     .mouseleave( ->

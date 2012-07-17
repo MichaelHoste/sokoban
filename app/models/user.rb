@@ -126,9 +126,9 @@ class User < ActiveRecord::Base
   def won_levels_count(pack=nil)
     if pack
       levels_ids = pack.levels.pluck(:id)
-      self.scores.where(:level_id => levels_ids).uniq.count
+      self.scores.select('DISTINCT level_id').where(:level_id => levels_ids).count
     else
-      self.scores.pluck(:level_id).uniq.count
+      self.scores.select('DISTINCT level_id').count
     end
   end
 end
