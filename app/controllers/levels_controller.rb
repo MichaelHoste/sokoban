@@ -32,7 +32,7 @@ class LevelsController < ApplicationController
     end
     
     response.headers['Cache-Control'] = "public, max-age=#{12.hours.to_i}"
-    response.headers['Content-Type'] = 'image/jpeg'
+    response.headers['Content-Type'] = 'image/png'
     response.headers['Content-Disposition'] = 'inline'
     render :text => open(@local_file, 'rb').read
   end
