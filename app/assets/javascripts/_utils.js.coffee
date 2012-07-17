@@ -57,7 +57,7 @@ $ ->
   # <div class="#{class_name}">
   #   <div id="#{class_name}-canvas"></div>
   # </div>
-  create_thumb = (class_name) ->
+  window.create_thumb = (class_name) ->
     $(".#{class_name}").each( ->
       pack_name    = ''
       level_name   = ''

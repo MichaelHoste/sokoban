@@ -3,7 +3,9 @@ Sokojax::Application.routes.draw do
   
   # Resources
   resources :packs do
-    resources :levels
+    resources :levels do
+      get :thumb
+    end
   end
   
   resources :workflows do

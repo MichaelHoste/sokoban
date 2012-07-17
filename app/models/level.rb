@@ -79,6 +79,35 @@ class Level < ActiveRecord::Base
     end
   end
   
+  # generate an image of the level in /public/images/levels
+  def generate_thumb
+    @pack  = self.pack
+    @level = self
+    @grid  = self.grid_with_floor
+    
+    @grid.each_with_index do |row, index|
+      row = row.gsub(' ', 'empty64:png ')
+      row = row.gsub('s', 'floor64:png ')
+      row = row.gsub('.', 'goal64:png ')
+      row = row.gsub('#', 'wall64:png ')
+      row = row.gsub('$', 'box64:png ')
+      row = row.gsub('*', 'boxgoal64:png ')
+      row = row.gsub('@', 'pusher64:png ')
+      row = row.gsub('+', 'pushergoal64:png ')
+      row = row.gsub(':', '.')
+      
+      `cd public/images/;convert #{row} +append levels/row_#{index+1}.png`
+    end
+  
+    command = ""
+    (1..self.height).to_a.each do |m|
+      command = command + "row_#{m}.png "
+    end
+    
+    `cd public/images/levels;convert #{command} -append #{self.id}.png`
+    `cd public/images/levels;rm -f row_*.png`
+  end
+  
   private
 
   # only keep best score for each users
