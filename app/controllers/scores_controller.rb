@@ -11,7 +11,9 @@ class ScoresController < ApplicationController
     @score.path = params[:path]
     
     if @score.save
-      @score.publish_on_facebook  # open graph
+      if current_user and Rails.env == 'production'
+        @score.publish_on_facebook  # open graph
+      end
       
       render :json => { :success  => true,
                         :score_id => @score.id }

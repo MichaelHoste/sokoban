@@ -114,7 +114,7 @@ packs_production = [
                       "sokogen-990602"
                    ]
 
-packs_development =  ['Original']
+packs_development =  ['Original', 'Novoban']
 
 if Rails.env == 'development'
   packs = packs_development
@@ -195,14 +195,16 @@ def populate_levels(packs)
   end # end of packs loop
 end
 
+populate_levels(packs)
+
 # LEVEL THUMBS ARE GENERATED THE FIRST TIME THEY ARE USED
+
 #def create_level_thumbs
 #  (1..Level.count).to_a.each do |level_id|
 #    Level.find(level_id).generate_thumb
 #  end
 #end
 
-populate_levels(packs)
 #create_level_thumbs()
 
 
