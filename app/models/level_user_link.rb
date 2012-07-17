@@ -67,7 +67,7 @@ class LevelUserLink < ActiveRecord::Base
   # publish the "user has completed the level" on open graph (facebook)
   def publish_on_facebook
     graph = Koala::Facebook::API.new(user.f_token)
-    graph.put_connections("me", "sokojax:complete", :level  => 'http://www.sokoban.be/packs/Alberto%20Garc%C3%ADa%201-1/levels/soko8',
+    graph.put_connections("me", "sokojax:complete", :level  => "http://sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}",
                                                     :pushes => self.pushes,
                                                     :moves  => self.moves)
   end
