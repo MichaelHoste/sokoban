@@ -31,9 +31,6 @@ class LevelsController < ApplicationController
       @level.generate_thumb
     end
     
-    response.headers['Cache-Control'] = "public, max-age=#{12.hours.to_i}"
-    response.headers['Content-Type'] = 'image/png'
-    response.headers['Content-Disposition'] = 'inline'
-    render :text => open(@local_file, 'rb').read
+    send_file @local_file, :type => 'image/png', :disposition => 'inline'
   end
 end

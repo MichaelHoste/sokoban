@@ -12,8 +12,8 @@
       <meta property="og:title"        content="<%= @level.name %>" /> 
       <meta property="og:description"  content="Pack : <%= @level.pack.name %> | <%= @level.pack.description %>" /> 
       <meta property="og:image"        content="http://sokoban.be/packs/<%= @level.pack.name %>/levels/<%= @level.name %>/thumb.png" />
-      <meta property="sokojax:level_name" content="<%= @level.name %>" />
-      <meta property="sokojax:pack_name"  content="<%= @level.pack.name %>" />
+      <meta property="og:level_name"   content="<%= @level.name %>" />
+      <meta property="og:pack_name"    content="<%= @level.pack.name %>" />
     <% end %>
     
     <%= stylesheet_link_tag    "application", :media => "all" %>
