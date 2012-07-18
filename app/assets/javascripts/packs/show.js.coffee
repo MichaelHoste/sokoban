@@ -66,13 +66,13 @@ $ ->
   )
   
   # deadlock div
-  $('#deadlock').live('mouseenter', ->
-    $(this).clearQueue()
-    $(this).transition({opacity:0.93})
-  )
+#  $('#deadlock').live('mouseenter', ->
+#    $(this).clearQueue()
+#    $(this).transition({opacity:0.93})
+#  )
   
-  $('#deadlock').live('mouseleave', ->
-    $(this).clearQueue()
-    $(this).transition({opacity:0.2})
-  )
+#  $('#deadlock').live('mouseleave', ->
+#    $(this).clearQueue()
+#    $(this).transition({opacity:0.2})
+#  )
   
