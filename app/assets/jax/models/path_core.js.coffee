@@ -78,8 +78,7 @@ class window.PathCore
     if @is_valid_direction(direction)
       if direction >= 'A' and direction <= 'Z'
         @n_pushes++
-      else
-        @n_moves++
+      @n_moves++
       @moves.push(direction)
   
   ###
