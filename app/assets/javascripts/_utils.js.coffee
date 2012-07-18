@@ -133,3 +133,5 @@ $ ->
   # if new user (data-new-user="1" in <body> tag... computed server-side)
   if $('body').attr('data-new-user') == '1'
     window.colorbox_welcome()
+    
+  $('.tips').tipsy()
