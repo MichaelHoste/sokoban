@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625075654) do
+ActiveRecord::Schema.define(:version => 20120718073709) do
 
   create_table "level_user_links", :force => true do |t|
     t.integer  "user_id"

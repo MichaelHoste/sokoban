@@ -58,6 +58,7 @@ class LevelUserLink < ActiveRecord::Base
 
   before_validation :populate_and_validate_score
   def populate_and_validate_score
+    self.path = self.uncompressed_path if not self.path  
     generate_paths(self.path)
     generate_pushes_and_moves()
   end
@@ -95,6 +96,8 @@ class LevelUserLink < ActiveRecord::Base
         self.moves = cxt.eval('path.n_moves')
       end
     end
+    
+    Rails.logger.info("ICI " + self.moves.to_s)
   end
   
   # compress path
