@@ -14,7 +14,7 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- 1. Nombre de mouvements est faux !
+ 1. Updater banner lorsqu'on change de niveau (et donc lorsqu'un niveau est réussi)
  2. Implement challenges : invite 5 friend by challenge
  3. Create dashboard
  4. Try to adapt the url of the page to allow "back" (history)

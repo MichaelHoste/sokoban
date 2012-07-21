@@ -22,7 +22,7 @@ specular:
 shininess: 30
 
 texture:
-  path: /images/wall64.png
+  path: /images/themes/classic/wall64.png
   flip_y: true
   scale_x: 1.0
   scale_y: 1.0

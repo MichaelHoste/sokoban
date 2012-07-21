@@ -36,15 +36,15 @@ $ ->
   )
 
   pusher_move = (dir) ->
-    $('#controls .pusher .middle img').attr('src', '/images/floor64.png')
-    $("#controls .pusher .#{dir} img").attr('src', '/images/pusher64.png')
+    $('#controls .pusher .middle img').attr('src', '/images/themes/classic/floor64.png')
+    $("#controls .pusher .#{dir} img").attr('src', '/images/themes/classic/pusher64.png')
     $("#controls .keyboard img").attr("src", "/assets/arrow_keys_#{dir}.png")
 
   pusher_center = ->
     for dir in ['up', 'down', 'left', 'right']
-      $("#controls .pusher .#{dir} img").attr('src', '/images/floor64.png')
+      $("#controls .pusher .#{dir} img").attr('src', '/images/themes/classic/floor64.png')
       
-    $("#controls .pusher .middle img").attr('src', '/images/pusher64.png')
+    $("#controls .pusher .middle img").attr('src', '/images/themes/classic/pusher64.png')
     $("#controls .keyboard img").attr("src", "/assets/arrow_keys.png")
   
   # controls animation : pusher up, down, left, right

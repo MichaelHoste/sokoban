@@ -1,4 +1,27 @@
 $ ->
+  push_this_state = ->
+    if history and history.pushState
+      state = 
+        pack_name: $('#packs > li').text()
+        level_name: $('#levels').find('.is-selected').attr('data-level-name')
+      history.pushState(state, "Sokoban #{state.pack_name}/#{state.level_name}", "/packs/#{state.pack_name}/levels/#{state.level_name}")
+
+  # push the initial state
+  if history and history.pushState
+    push_this_state()
+
+  # if return to previous state, load the state level
+  $(window).bind('popstate', (event) ->
+    state = event.originalEvent.state
+    if state
+      level_li = '#levels li[data-level-name="' + state.level_name + '"]'
+      $(level_li).parent().find(".is-selected").removeClass('is-selected')
+      $(level_li).addClass('is-selected')
+
+      # change the level (the '.is-selected' level is chosen)
+      window.change_level()
+  )
+
   # Initialize webgl and load selected level
   window.context = new Jax.Context('webgl')
   window.context.redirectTo('level/index')
@@ -14,6 +37,9 @@ $ ->
     
     # change the level (the '.is-selected' level is chosen)
     window.change_level()
+    
+    # change the url and save related state (pack and level)
+    push_this_state()
   )
   
   # Level on level => create and position thumb

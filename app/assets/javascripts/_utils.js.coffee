@@ -70,7 +70,7 @@ $ ->
       thumb.create_2d(pack_name, level_name, level_line, level_width, level_height, level_canvas)
     )
     
-  window.change_level = ->
+  window.change_level = (back=false) ->
     # FIXME window.context.redirectTo must be sufficient and faster !
     # but it seems to have a memory leak somewhere (Jax or me ?)
     window.context.dispose()
@@ -135,3 +135,11 @@ $ ->
     window.colorbox_welcome()
     
   $('.tips').tipsy()
+  
+  # initialize and change theme
+  window.theme = $('#theme').val()
+  $('#theme').on('change', ->
+    window.theme = $(this).val()
+    level = Level.find "actual"
+    level.display_level()
+  )

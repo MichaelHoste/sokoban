@@ -195,34 +195,24 @@ Jax.getGlobal()['Level'] = Jax.Model.create
 
     # create object
     if type != ' ' and not @objects[cols_number*m + n]
-      object = @context_2d.canvas.image('/images/box64.png', start.x, start.y, size, size)
+      object = @context_2d.canvas.image('/images/themes/classic/wall64.png', start.x, start.y, size, size)
       @objects[cols_number*m + n] = object
     else if type != ' '
       object = @objects[cols_number*m + n]
     
     # refresh material
-    if type == 's' and object.attrs.src != '/images/floor64.png'
-      object.remove()
-      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/floor64.png', start.x, start.y, size, size)
-    else if type == '#' and object.attrs.src != '/images/wall64.png'
-      object.remove()
-      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/wall64.png', start.x, start.y, size, size)
-    else if type == '$' and object.attrs.src != '/images/box64.png'
-      object.remove()
-      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/box64.png', start.x, start.y, size, size)
-    else if type == '*' and object.attrs.src != '/images/boxgoal64.png'
-      object.remove()
-      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/boxgoal64.png', start.x, start.y, size, size)
-    else if type == '.' and object.attrs.src != '/images/goal64.png'
-      object.remove()
-      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/goal64.png', start.x, start.y, size, size)
-    else if type == '@' and object.attrs.src != '/images/pusher64.png'
-      object.remove()
-      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/pusher64.png', start.x, start.y, size, size)
-    else if type == '+' and object.attrs.src != '/images/pushergoal64.png'
-      object.remove()
-      @objects[cols_number*m + n] = object = @context_2d.canvas.image('/images/pushergoal64.png', start.x, start.y, size, size)
-        
+    @refresh_2d(object, type, 's', 'floor')
+    @refresh_2d(object, type, '#', 'wall')
+    @refresh_2d(object, type, '$', 'box')
+    @refresh_2d(object, type, '*', 'boxgoal')
+    @refresh_2d(object, type, '.', 'goal')
+    @refresh_2d(object, type, '@', 'pusher')
+    @refresh_2d(object, type, '+', 'pushergoal')
+    
+  refresh_2d: (object_2d, type, letter, texture) ->
+    if type == letter and object_2d.attr('src') != "/images/themes/#{window.theme}/#{texture}64.png"
+      object_2d.attr('src', "/images/themes/#{window.theme}/#{texture}64.png")
+            
   # Render every squares of the level (the level itself is just a mesh container)
   # ONLY IF IN 3D MODE !
   render: (context, options) ->

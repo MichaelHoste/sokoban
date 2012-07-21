@@ -22,7 +22,7 @@ specular:
 shininess: 30
 
 texture:
-  path: /images/boxgoal64.png
+  path: /images/themes/classic/boxgoal64.png
   flip_y: true
   scale_x: 1.0
   scale_y: 1.0
