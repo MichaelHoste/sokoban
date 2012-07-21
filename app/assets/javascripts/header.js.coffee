@@ -40,6 +40,14 @@ $ ->
     window.colorbox_welcome()
   )
   
+  # initialize and change theme
+  window.old_theme = $('#theme').val()
+  window.theme = window.old_theme
+  
+  $('#theme').on('change', ->
+    window.theme = $(this).val()
+  )
+  
   # Click on 2D switch
   $('#menus .switch-2d').live('click', ->
     if not $(this).hasClass('is-selected')

@@ -35,7 +35,9 @@ Jax.Controller.create "Level", ApplicationController,
     @freezed_game = false
       
   update: (timechange) ->
-    ;
+    if window.old_theme != window.theme
+      window.old_theme = window.theme
+      @level.display_level()
     
   key_pressed: (event) ->
     has_moved = 0

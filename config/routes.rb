@@ -28,5 +28,8 @@ Sokojax::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure'
   get '/login', :to => 'sessions#new'
-  get '/logout', :to => 'sessions#destroy' 
+  get '/logout', :to => 'sessions#destroy'
+  
+  # Banner
+  get '/banner/:pack_name', :to => 'application#banner'
 end

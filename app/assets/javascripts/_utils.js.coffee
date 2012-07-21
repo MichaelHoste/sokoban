@@ -136,10 +136,3 @@ $ ->
     
   $('.tips').tipsy()
   
-  # initialize and change theme
-  window.theme = $('#theme').val()
-  $('#theme').on('change', ->
-    window.theme = $(this).val()
-    level = Level.find "actual"
-    level.display_level()
-  )
