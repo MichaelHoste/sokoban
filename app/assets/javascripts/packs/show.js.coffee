@@ -18,16 +18,6 @@ $ ->
     # change the level (the '.is-selected' level is chosen)
     window.change_level()
     
-    # Update the banner (list of pictures, scores and successfully completed levels)
-    window.update_banner()
-    
     # change the url and save related state (pack and level)
-    window.push_this_state()
+#    window.push_this_state()
   )
-
-  # update the banner with new pictures and scores
-  window.update_banner = ->
-    pack_name = $('#packs > li').text()
-    $.get("/banner/#{pack_name}").success((data, status, xhr) =>
-      $('#banner').replaceWith(data)
-    )

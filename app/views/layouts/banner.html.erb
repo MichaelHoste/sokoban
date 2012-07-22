@@ -22,7 +22,7 @@
       <% # invite more friends %>
       <% if not subscribed_friends_and_me.length == 1 %>
         <% f_url = facebook_send_message_url(current_user) %>
-        <%= link_to "...", f_url, :class => 'small-invite-friends popup', :title => 'Invite more friends' %>
+        <%= link_to image_tag('add_friend.png'), f_url, :class => 'tips popup', :title => 'Invite more friends' %>
       <% end %>
     </div>
     <div style="clear:both"></div>

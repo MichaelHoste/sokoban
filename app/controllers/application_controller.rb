@@ -6,9 +6,4 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  
-  def banner
-    @pack = Pack.find_by_name(params[:pack_name])
-    render :template => 'layouts/banner', :layout => false
-  end
 end
