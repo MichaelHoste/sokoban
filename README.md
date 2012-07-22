@@ -14,7 +14,7 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- 1a. Updater banner lorsqu'on change de niveau ou qu'un niveau est réussi (updater compteur + update ordre ?).
+ 1a. Updater banner lorsqu'on change de niveau ou qu'un niveau est réussi (update ordre ?).
  1b. Faire passer les éléments de la bannière au dessus du fork me on github.
  1c. Faire persister le theme dans les cookies : faire plus tard : pas sur de garder un seul theme
  2.  Implement challenges : invite 5 friend by challenge.

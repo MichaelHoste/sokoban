@@ -36,18 +36,6 @@ $ ->
     # change the url and save related state (pack and level)
     window.push_this_state()
 
-    # update banner
-    pack_name = $('#packs > li').text()
-    $.get('/banner', {pack_name: pack_name}).success((data, status, xhr) ->
-      # update each hidden span with successfully completed levels string
-      $.each(data, (key, value) ->
-        id = key.split('_')[1]
-        user_span = $("#limited-banner span[data-user-id=#{id}]")
-        if user_span.length
-          user_span.html(value)
-      )
-    )
-
     false
   )
 

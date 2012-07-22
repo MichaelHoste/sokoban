@@ -9,12 +9,14 @@ class ApplicationController < ActionController::Base
   
   # get hash of banner infos : {:id_54 => '233,455', :id_66 => '444,666'}
   def banner
-    hash = {}
+    hash = {:success => {}, :count => {}}
         
     if current_user
       pack = (params[:pack_name] ? Pack.find_by_name(params[:pack_name]) : nil)
       current_user.subscribed_friends_and_me(pack).each do |user|
-        hash["id_#{user.id}"] = user.won_levels_ids(pack).join(',')
+        won_levels = user.won_levels_ids(pack)
+        hash[:success][user.id] = won_levels.join(',')
+        hash[:count][user.id] = "#{user.name} - #{won_levels.count}"
       end
     end
     

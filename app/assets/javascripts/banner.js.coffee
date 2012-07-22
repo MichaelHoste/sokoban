@@ -29,3 +29,22 @@ $ ->
       $('#banner').css('position', 'absolute')
       $('#banner').css('top', window.banner_position)
   )
+
+  # update banner with each user score and hidden levels string  
+  window.update_banner = ->
+    pack_name = $('#packs > li').text()
+    $.get('/banner', {pack_name: pack_name}).success((data, status, xhr) ->
+      # update each hidden span with successfully completed levels string
+      $.each(data['success'], (key, value) ->
+        user_span = $("#limited-banner span[data-user-id=#{key}]")
+        if user_span.length
+          user_span.html(value)
+      )
+          
+      # update each image title with name and new count
+      $.each(data['count'], (key, value) ->
+        user_span = $("#limited-banner span[data-user-id=#{key}]")
+        if user_span.length
+          user_span.prev().attr('original-title', value)
+      )
+    )
