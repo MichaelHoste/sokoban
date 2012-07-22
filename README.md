@@ -14,9 +14,10 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- 1a. Updater banner lorsqu'on change de niveau (et donc lorsqu'un niveau est réussi)
- 1b. faire passer les éléments de la bannière au dessus du fork me on github
- 2.  Implement challenges : invite 5 friend by challenge
- 3.  Create dashboard
- 4.  Try to adapt the url of the page to allow "back" (history)
- 5.  Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone)
+ 1a. Updater banner lorsqu'on change de niveau ou qu'un niveau est réussi (updater compteur + update ordre ?).
+ 1b. Faire passer les éléments de la bannière au dessus du fork me on github.
+ 1c. Faire persister le theme dans les cookies : faire plus tard : pas sur de garder un seul theme
+ 2.  Implement challenges : invite 5 friend by challenge.
+ 3.  Create dashboard.
+ 4.  Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone).
+ 5.  Envoyer des mails aux utilisateurs sur les dernières activités de leurs amis.

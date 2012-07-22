@@ -29,4 +29,6 @@ Sokojax::Application.routes.draw do
   match '/auth/failure', :to => 'sessions#failure'
   get '/login', :to => 'sessions#new'
   get '/logout', :to => 'sessions#destroy'
+  
+  get '/banner', :to => 'application#banner'
 end

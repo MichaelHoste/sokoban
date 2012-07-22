@@ -70,7 +70,7 @@ $ ->
       thumb.create_2d(pack_name, level_name, level_line, level_width, level_height, level_canvas)
     )
     
-  window.change_level = (back=false) ->
+  window.change_level = ->
     # FIXME window.context.redirectTo must be sufficient and faster !
     # but it seems to have a memory leak somewhere (Jax or me ?)
     window.context.dispose()
