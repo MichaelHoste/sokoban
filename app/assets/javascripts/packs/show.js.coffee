@@ -1,4 +1,4 @@
-# require packs/show-history
+#= require packs/show-history
 #= require packs/show-level-thumb
 
 $ ->
@@ -19,5 +19,5 @@ $ ->
     window.change_level()
     
     # change the url and save related state (pack and level)
-#    window.push_this_state()
+    window.push_this_state()
   )
