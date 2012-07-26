@@ -7,6 +7,8 @@
 *.rbc
 *.sassc
 .sass-cache
+.DS_Store
+.vagrant
 capybara-*.html
 .rspec
 /.bundle
@@ -24,3 +26,4 @@ rerun.txt
 pickle-email-*.html
 /config/database.yml
 /config/initializers/facebook.rb
+config/database.yml

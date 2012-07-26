@@ -1,0 +1,3 @@
+[submodule "config/puppet/puppet-master"]
+	path = config/puppet/puppet-master
+	url = git://github.com/aurels/puppet-master.git
