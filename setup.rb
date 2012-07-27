@@ -1,9 +1,8 @@
 # launch with "ruby setup.rb" (ruby 1.9 only)
 
 def setup
-  @hostname = 'sokoban.local'
-  
   host_check_ruby_version()
+  host_ask_questions()
   host_install_gems()
   host_ask_host_password()
   host_update_git_submodules()
@@ -15,13 +14,12 @@ def setup
   @tab1 = host_new_tab(@terminal)
   @tab2 = host_new_tab(@terminal)
 
+  guest_ssh()
   guest_bundle_install()
-  guest_bundle_update()
   guest_app_reset()
-  guest_git_initialize()
+  guest_git_setup()
   guest_launch_server()
   host_open_project()
-#  host_open_tools()
 
   display_info_message()
 end
@@ -31,11 +29,11 @@ def host_check_ruby_version
   @ruby_version = `ruby --version`
   @gem_version  = `gem --version`
   @git_version  = `git --version`
-  @guest_status = `vagrant status | grep default`.split('                  ')[1]
-  @git_name     = `cat ~/.gitconfig | grep name`.split(' = ')[1]
-  @git_email    = `cat ~/.gitconfig | grep email`.split(' = ')[1]
+  @guest_status = `vagrant status | grep default`.split('                  ')[1].strip
+  @git_name     = `cat ~/.gitconfig | grep name`.split(' = ')[1].strip
+  @git_email    = `cat ~/.gitconfig | grep email`.split(' = ')[1].strip
   @id_rsa       = `cat ~/.ssh/id_rsa`
-  @id_rsa_pub       = `cat ~/.ssh/id_rsa.pub`
+  @id_rsa_pub   = `cat ~/.ssh/id_rsa.pub`
   
   puts "\n================="
   puts "Your Git is #{@git_version}"
@@ -43,7 +41,7 @@ def host_check_ruby_version
   puts "Your Gem is #{@gem_version}"
   puts "Your Git Name is #{@git_name}"
   puts "Your Git Email is #{@git_email}"
-  puts "Your Vagrant status is #{@guest_status}"
+  puts "Your Vagrant status is '#{@guest_status}'"
   
   if @ruby_version.include?('1.8') or (not @gem_version.include?('.')) or not (@git_version.include?('.'))
     puts "\nYOUR RUBY VERSION IS NOT COMPATIBLE WITH THIS SCRIPT"
@@ -53,6 +51,26 @@ def host_check_ruby_version
   end
   
   puts "=================\n"
+end
+
+def host_ask_questions
+  current_folder = File.basename(Dir.getwd)
+  default_hostname = "#{current_folder}.local".downcase
+  default_host     = '192.168.42.101'
+  
+  print "Host (default is '#{default_host}'): "  
+  STDOUT.flush  
+  @host = gets.chomp
+
+  print "Hostname (default is '#{default_hostname}'): "  
+  STDOUT.flush  
+  @hostname = gets.chomp.downcase
+  
+  @host = default_host if @host.empty?()
+  @hostname = default_hostname if @hostname.empty?()
+
+  puts "Host is #{@host}"
+  puts "Hostname is #{@hostname}"
 end
 
 def host_install_gems
@@ -102,6 +120,24 @@ def host_update_git_submodules
   puts "\n================="
   puts 'Install and update git submodules (puppet rules)'
   puts "=================\n"
+  
+  if not File.exist?('Vagrantfile')
+    puts 'ERROR : you must create a Vagrantfile in your project directory'
+    puts '        in order to define how to build the virtual machine'
+    exit()
+  end
+  
+  if not File.exist?('config/puppet/manifests/development.pp')
+    puts 'ERROR : you must create the file config/puppet/manifests/development.pp'
+    puts '        in order to define the configuration of your virtual machine'
+    exit()
+  end
+  
+  if not File.exist?('config/puppet/puppet-master/.git/config')
+    command = 'git submodule add git://github.com/aurels/puppet-master.git config/puppet/puppet-master'
+    puts command
+    system(command)
+  end
   
   commands = [
     'git submodule update --init --recursive',
@@ -157,8 +193,8 @@ def host_create_dns
   unless redirection_dns
     @password = ask("Host password: ") { |q| q.echo = false } if not @password
     
-    host1 = "192.168.42.101       www.#{@hostname}"
-    host2 = "192.168.42.101           #{@hostname}"
+    host1 = "#{@host}       www.#{@hostname}"
+    host2 = "#{@host}           #{@hostname}"
   
     commands = [
       "sudo sh -c \"echo '#{host1}' >> /etc/hosts\"",
@@ -186,21 +222,22 @@ def host_new_tab(terminal)
   terminal.windows[1].tabs.last.get
 end
 
-def guest_bundle_install
+def guest_ssh
   puts "\n================="
-  puts 'Guest Bundle update'
+  puts 'Guest SSH'
   puts "=================\n"
   
   @terminal.do_script('vagrant ssh',    :in => @tab1)
   @terminal.do_script('cd /vagrant',    :in => @tab1)
-  @terminal.do_script('bundle update',  :in => @tab1)
 end
 
-def guest_bundle_update
+def guest_bundle_install
   puts "\n================="
   puts 'Guest Bundle install'
   puts "=================\n"
   
+# No automatic update so the Gemfile.lock is used
+# @terminal.do_script('bundle update',  :in => @tab1)
   @terminal.do_script('bundle install', :in => @tab1)
 end
 
@@ -214,10 +251,10 @@ def guest_app_reset
   end
 end
 
-def guest_git_initialize
+def guest_git_setup
   if @guest_status == "not created"
     puts "\n================="
-    puts 'Guest initialize git configuration'
+    puts 'Guest setup git configuration'
     puts 'With copy of host name/email/SSH keys'
     puts "=================\n"
   
@@ -256,23 +293,9 @@ def host_open_project
   @terminal.do_script('clear',              :in => @tab2)
 end
 
-#def host_open_tools
-#  sequel_pro = "/Applications/Sequel\ Pro.app/Contents/MacOS/Sequel\ Pro"
-#  mock_smtp  = "/Applications/MockSmtp.app/Contents/MacOS/MockSmtpOwn"
-#  
-#  puts "\n================="
-#  puts 'Launch Sequel Pro and MockSMTP'
-#  puts 'ERROR : Sequel Pro is not installed !' if not File.exist?(sequel_pro)
-#  puts 'ERROR : MockSMTP is not installed !' if not File.exist?(mock_smtp)
-#  puts "=================\n"
-#  
-#  IO.popen("#{sequel_pro}&")
-#  IO.popen("#{mock_smtp}&")
-#end
-
 def display_info_message
   puts "\n================="
-  puts 'Guest is up on 192.168.42.101'
+  puts "Guest is up on #{@host}"
   puts "Serveur is running on http://#{@hostname}:3000"
   puts 'Database > name  : development'
   puts '         > login : development'

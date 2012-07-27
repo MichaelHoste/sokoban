@@ -9,7 +9,7 @@ gem "jax", '2.0.10'
 gem 'mysql2'
 gem 'json'
 gem 'omniauth-facebook'
-gem "koala", "~> 1.4.1"
+gem "koala", "~> 1.5.0"
 gem "nokogiri", "~> 1.5.2"   # xml parser
 gem 'thin'
 
