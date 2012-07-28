@@ -1,6 +1,6 @@
 [submodule "config/puppet/puppet-master"]
 	path = config/puppet/puppet-master
-	url = git://github.com/aurels/puppet-master.git
+	url = git@github.com:MichaelHoste/puppet-master.git
 [submodule "config/setup"]
 	path = config/setup
 	url = git://github.com/MichaelHoste/rails-setup-vagrant.git
