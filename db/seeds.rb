@@ -162,33 +162,34 @@ def populate_levels(packs)
         
         # Import the level to javascript, compute the floor and some useful datas
         # and then get back the new grid from javascript to save it to the database
-        V8::Context.new do |cxt|
-          cxt.eval('var window = new Object')
-          cxt.load('lib/assets/level_core.js')
-          cxt.eval('var lines = new Array')
-          grid.each_with_index do |line, i|
-            cxt.eval("lines[#{i}]  = '#{line}'")
-          end
-
-          cxt.eval('var level = new window.LevelCore()')
-          cxt.eval("level.create_from_grid(lines, #{new_level.width}, #{new_level.height}, \"#{pack.name}\", \"#{new_level.name}\", \"#{new_level.copyright}\")")
-
-          new_level.grid_with_floor = Array.new
-          (0..new_level.height-1).each do |i|
-            line = ""
-            (0..new_level.width-1).each do |j|
-              letter = cxt.eval("level.grid[#{i*new_level.width+j}]")
-              line = line + (letter ? letter : ' ')
-              new_level.grid_with_floor[i] = line
+        V8::C::Locker() do
+          V8::Context.new do |cxt|
+            cxt.eval('var window = new Object')
+            cxt.load('lib/assets/level_core.js')
+            cxt.eval('var lines = new Array')
+            grid.each_with_index do |line, i|
+              cxt.eval("lines[#{i}]  = '#{line}'")
             end
+          
+            cxt.eval('var level = new window.LevelCore()')
+            cxt.eval("level.create_from_grid(lines, #{new_level.width}, #{new_level.height}, \"#{pack.name}\", \"#{new_level.name}\", \"#{new_level.copyright}\")")
+          
+            new_level.grid_with_floor = Array.new
+            (0..new_level.height-1).each do |i|
+              line = ""
+              (0..new_level.width-1).each do |j|
+                letter = cxt.eval("level.grid[#{i*new_level.width+j}]")
+                line = line + (letter ? letter : ' ')
+                new_level.grid_with_floor[i] = line
+              end
+            end
+            new_level.boxes_number = cxt.eval("level.boxes_number")
+            new_level.goals_number = cxt.eval("level.goals_number")
+            new_level.pusher_pos_m = cxt.eval("level.pusher_pos_m")
+            new_level.pusher_pos_n = cxt.eval("level.pusher_pos_n")
+            new_level.save!
           end
-          new_level.boxes_number = cxt.eval("level.boxes_number")
-          new_level.goals_number = cxt.eval("level.goals_number")
-          new_level.pusher_pos_m = cxt.eval("level.pusher_pos_m")
-          new_level.pusher_pos_n = cxt.eval("level.pusher_pos_n")
-          new_level.save!
         end
-        
       end # end of levels
       puts ""
     end # end of fopen pack
