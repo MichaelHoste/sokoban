@@ -7,6 +7,8 @@ stdout_path "/home/deploy/apps/sokoban/shared/log/unicorn.log"
 # for super-fast worker spawn times
 preload_app true
 
-listen "/tmp/unicorn.sokoban.sock" #  :backlog => 2048, tries => 10
-worker_processes 4
+listen "/tmp/unicorn.sokoban.sock"
+#  :backlog => 2048, tries => 10
+
+worker_processes 2
 timeout 30
