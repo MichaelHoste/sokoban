@@ -12,6 +12,8 @@ gem 'omniauth-facebook'
 gem "koala", "~> 1.5.0"
 gem "nokogiri", "~> 1.5.2"   # xml parser
 gem 'thin'
+gem 'unicorn'
+gem 'capistrano'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -44,18 +46,11 @@ group :production do
   gem 'pg'
 end
 
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
