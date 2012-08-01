@@ -39,31 +39,34 @@ namespace :app  do
       compile_coffee_to_js()
     end
   end
-  
-  task :deploy => :environment do
-    if Rails.env.production?
-      puts "Cannot use this task in production"
-    else
-      compile_coffee_to_js()
-      # generate right gemfile for production and deploy to server
-      # `export MY_BUNDLE_ENV='production'`
-      ENV['MY_BUNDLE_ENV'] = "production"
-      `bundle update`
-      `bundle install`
-      `git add .`
-      `git commit -a -m "gemfile.lock for production"`
-      `git push heroku master`
-      `heroku run rake db:migrate`
-      `heroku restart`
-      
-      # generate right gemfile for development and save to github
-      #`export MY_BUNDLE_ENV='development'`
-      ENV['MY_BUNDLE_ENV'] = "development"
-      `bundle update`
-      `bundle install`
-      `git add .`
-      `git commit -a -m "gemfile.lock for development"`
-      `git push origin master`
-    end
-  end
+ 
+###
+#  That was only in use for heroku and now we are on dedicated server
+###
+#  task :deploy => :environment do
+#    if Rails.env.production?
+#      puts "Cannot use this task in production"
+#    else
+#      compile_coffee_to_js()
+#      # generate right gemfile for production and deploy to server
+#      # `export MY_BUNDLE_ENV='production'`
+#      ENV['MY_BUNDLE_ENV'] = "production"
+#      `bundle update`
+#      `bundle install`
+#      `git add .`
+#      `git commit -a -m "gemfile.lock for production"`
+#      `git push heroku master`
+#      `heroku run rake db:migrate`
+#      `heroku restart`
+#      
+#      # generate right gemfile for development and save to github
+#      #`export MY_BUNDLE_ENV='development'`
+#      ENV['MY_BUNDLE_ENV'] = "development"
+#      `bundle update`
+#      `bundle install`
+#      `git add .`
+#      `git commit -a -m "gemfile.lock for development"`
+#      `git push origin master`
+#    end
+#  end
 end

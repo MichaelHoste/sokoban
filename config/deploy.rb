@@ -34,3 +34,32 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
+
+namespace :deploy do
+  task :start do
+    unicorn_config_path = "#{deploy_to}/current/config/unicorn.rb"
+    run "cd #{deploy_to}/current && bundle exec unicorn -c config/unicorn.rb -E production -D"
+  end
+
+  task :stop do
+    unicorn_pid = "#{deploy_to}/shared/pids/unicorn.pid"
+    if 'true' ==  capture("if [ -e #{unicorn_pid} ]; then echo 'true'; fi").strip
+      run "kill -s QUIT `cat #{unicorn_pid}`"
+    end
+  end
+
+  task :kill do
+    unicorn_pid = "#{deploy_to}/shared/pids/unicorn.pid"
+    run "kill `cat #{unicorn_pid}`"
+  end
+
+  task :restart do
+    deploy.stop
+    deploy.start
+  end
+  
+  task :update_code do
+    run "sudo unlink /etc/nginx/sites-enabled/#{application}"
+    run "sudo ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+  end
+end
