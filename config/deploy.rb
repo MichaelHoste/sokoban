@@ -7,7 +7,7 @@ set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 
 # to find bundle with rbenv
 set :default_environment, {
-  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+  'PATH' => "/home/deploy/.rbenv/shims:/home/deploy/.rbenv/bin:$PATH"
 }
 
 set :application, "sokoban"
@@ -59,7 +59,7 @@ namespace :deploy do
   end
   
   task :update_code do
-    run "#{sudo} unlink /etc/nginx/sites-enabled/#{application}"
+    run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
     run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
   end
 end
