@@ -20,7 +20,7 @@ set :scm,  :git
 ssh_options[:forward_agent] = true # use the same ssh keys as my computer for git checkout
 set :branch, "master"
 
-# default_run_options[:pty] = true
+default_run_options[:pty] = true
 
 # get the submodules
 # set :git_enable_submodules, 1 
@@ -59,7 +59,7 @@ namespace :deploy do
   end
   
   task :update_code do
-    run "sudo unlink /etc/nginx/sites-enabled/#{application}"
-    run "sudo ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+    run "#{sudo} unlink /etc/nginx/sites-enabled/#{application}"
+    run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
   end
 end
