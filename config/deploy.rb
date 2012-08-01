@@ -27,7 +27,7 @@ default_run_options[:pty] = true
 # get the submodules
 # set :git_enable_submodules, 1 
 
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 
 role :web, "188.165.255.96"                          # Your HTTP server, Apache/etc
 role :app, "188.165.255.96"                          # This may be the same as your `Web` server
@@ -65,6 +65,6 @@ namespace :deploy do
     run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
     run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
     
-    put "ENV['SOKOBAN_FACEBOOK_KEY'] = '#{facebook_key}'\nENV['SOKOBAN_FACEBOOK_SECRET'] = '#{facebook_secret}'", "#{deploy_to}/current/config/initializers/facebook.rb"
+    put "ENV['SOKOBAN_FACEBOOK_KEY'] = '#{facebook_key}'\nENV['SOKOBAN_FACEBOOK_SECRET'] = '#{facebook_secret}'\n", "#{deploy_to}/current/config/initializers/facebook.rb"
   end
 end
