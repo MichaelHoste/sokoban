@@ -6,7 +6,7 @@ gem "jax", '2.0.10'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql'
 gem 'json'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.5.0"
