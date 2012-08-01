@@ -9,7 +9,7 @@ DEMO
 
 Try it here : http://www.sokoban.be
 
-![Image](https://github.com/MichaelHoste/sokoban/raw/master/sokoban.png)
+![Image](https://github.com/MichaelHoste/sokoban/raw/master/misc/sokoban.png)
 
 TO DO
 -----
@@ -22,6 +22,7 @@ TO DO
    * Last levels from all
    * Invite more friends
    * Challenges (packs ?)
+ 1.a sort user thumbs (in a pack, there is an error, they are sorted by absolute number of win)
  2.  paginate level scores
  3a. make the banner images on top of the "fork me on github".
  3b. save the theme choice in the cookies : not sure to keep many themes. Don't worry about that
