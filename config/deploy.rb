@@ -13,6 +13,8 @@ set :default_environment, {
 set :application, "sokoban"
 set :repository,  "git://github.com/MichaelHoste/#{application}.git"
 set :user,        "deploy"
+set :facebook_key, "312592002148798"
+set :facebook_secret, "ff7e6fe75598c1d94a8e6362bc3fe7ba"
 set :deploy_to,   "/home/#{user}/apps/#{application}"
 set :use_sudo, false
 
@@ -62,5 +64,7 @@ namespace :deploy do
     run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
     run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
     run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
+    
+    run "echo \"ENV['SOKOBAN_FACEBOOK_KEY'] = '#{facebook_key}'\nENV['SOKOBAN_FACEBOOK_SECRET'] = '#{facebook_secret}'\" > #{deploy_to}/current/config/initializers/facebook.rb"
   end
 end

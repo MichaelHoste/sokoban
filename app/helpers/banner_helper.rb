@@ -1,6 +1,6 @@
 module BannerHelper
   def facebook_send_message_url(user)
-    options = { :app_id       => ENV['FACEBOOK_KEY'],
+    options = { :app_id       => ENV['SOKOBAN_FACEBOOK_KEY'],
                 :name         => 'Sokoban.be',
                 :picture      => '',
                 :description  => 'Join me to play Sokoban, a great puzzle-game !',
