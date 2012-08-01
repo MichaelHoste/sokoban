@@ -61,5 +61,6 @@ namespace :deploy do
   task :update_code do
     run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
     run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+    run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml"
   end
 end
