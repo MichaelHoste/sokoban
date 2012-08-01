@@ -11,7 +11,7 @@ gem 'json'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.5.0"
 gem "nokogiri", "~> 1.5.2"   # xml parser
-gem 'capistrano'
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,25 +22,41 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'therubyracer'  # Exec js code in ruby
 
 # Development tools
 group :development do
-  gem 'thin'
+  gem 'heroku'
   gem 'quiet_assets'
-# gem 'heroku'
+
+  # use "rake app:deploy"
+  if ENV['MY_BUNDLE_ENV'] == "development"
+    gem 'therubyracer'  # Exec js code in ruby
+  end
 end
 
 # Production/deployment tools
 group :production do
-  gem 'unicorn'
+  # use "rake app:deploy"
+  if ENV['MY_BUNDLE_ENV'] != "development"
+    gem 'therubyracer-heroku', '0.8.1.pre3'
+  end
+  
+  gem 'pg'
+  gem 'taps'
 end
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
+
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Deploy with Capistrano
+# gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
