@@ -11,8 +11,6 @@ gem 'json'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.5.0"
 gem "nokogiri", "~> 1.5.2"   # xml parser
-gem 'thin'
-gem 'unicorn'
 gem 'capistrano'
 
 # Gems used only for assets and not required
@@ -24,26 +22,18 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'therubyracer'  # Exec js code in ruby
 
 # Development tools
 group :development do
-  gem 'heroku'
+  gem 'thin'
   gem 'quiet_assets'
-
-  # use "rake app:deploy"
-  if ENV['MY_BUNDLE_ENV'] == "development"
-    gem 'therubyracer'  # Exec js code in ruby
-  end
+# gem 'heroku'
 end
 
 # Production/deployment tools
 group :production do
-  # use "rake app:deploy"
-  if ENV['MY_BUNDLE_ENV'] != "development"
-    gem 'therubyracer-heroku', '0.8.1.pre3'
-  end
-  
-  gem 'pg'
+  gem 'unicorn'
 end
 
 # To use ActiveModel has_secure_password
