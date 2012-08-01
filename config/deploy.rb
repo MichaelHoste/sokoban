@@ -44,13 +44,13 @@ namespace :deploy do
   task :stop do
     unicorn_pid = "#{deploy_to}/shared/pids/unicorn.pid"
     if 'true' ==  capture("if [ -e #{unicorn_pid} ]; then echo 'true'; fi").strip
-      run "kill -s QUIT `cat #{unicorn_pid}`"
+      run "kill -s QUIT `cat #{unicorn_pid}`;true"
     end
   end
 
   task :kill do
     unicorn_pid = "#{deploy_to}/shared/pids/unicorn.pid"
-    run "kill `cat #{unicorn_pid}`"
+    run "kill `cat #{unicorn_pid}`;true"
   end
 
   task :restart do
@@ -60,7 +60,7 @@ namespace :deploy do
   
   task :update_code do
     run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
-    run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml"
+    run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
+    run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
   end
 end
