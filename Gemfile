@@ -6,12 +6,12 @@ gem "jax", '2.0.10'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+gem 'mysql2'
 gem 'json'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.5.0"
 gem "nokogiri", "~> 1.5.2"   # xml parser
-gem 'thin'
+gem 'capistrano'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,41 +22,25 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'therubyracer'  # Exec js code in ruby
 
 # Development tools
 group :development do
-  gem 'heroku'
+  gem 'thin'
   gem 'quiet_assets'
-
-  # use "rake app:deploy"
-  if ENV['MY_BUNDLE_ENV'] == "development"
-    gem 'therubyracer'  # Exec js code in ruby
-  end
+# gem 'heroku'
 end
 
 # Production/deployment tools
 group :production do
-  # use "rake app:deploy"
-  if ENV['MY_BUNDLE_ENV'] != "development"
-    gem 'therubyracer-heroku', '0.8.1.pre3'
-  end
-  
-  gem 'pg'
-  gem 'taps'
+  gem 'unicorn'
 end
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
