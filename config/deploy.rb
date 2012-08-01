@@ -27,7 +27,7 @@ default_run_options[:pty] = true
 # get the submodules
 # set :git_enable_submodules, 1 
 
-#set :deploy_via, :remote_cache
+set :deploy_via, :remote_cache
 
 role :web, "188.165.255.96"                          # Your HTTP server, Apache/etc
 role :app, "188.165.255.96"                          # This may be the same as your `Web` server
