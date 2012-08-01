@@ -65,8 +65,6 @@ namespace :deploy do
     run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
     run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
     
-    run "printf  \"ENV['SOKOBAN_FACEBOOK_KEY'] = '#{facebook_key}'\n
-                   ENV['SOKOBAN_FACEBOOK_SECRET'] = '#{facebook_secret}'\"
-                 > #{deploy_to}/current/config/initializers/facebook.rb"
+    put "ENV['SOKOBAN_FACEBOOK_KEY'] = '#{facebook_key}'\nENV['SOKOBAN_FACEBOOK_SECRET'] = '#{facebook_secret}'", "#{deploy_to}/current/config/initializers/facebook.rb"
   end
 end
