@@ -13,8 +13,6 @@ set :default_environment, {
 set :application, "sokoban"
 set :repository,  "git://github.com/MichaelHoste/#{application}.git"
 set :user,        "deploy"
-set :facebook_key, "312592002148798"
-set :facebook_secret, "ff7e6fe75598c1d94a8e6362bc3fe7ba"
 set :deploy_to,   "/home/#{user}/apps/#{application}"
 set :use_sudo, false
 
@@ -39,8 +37,14 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 
 namespace :deploy do
   task :start do
+    run "unlink #{deploy_to}/current/config/database.yml;true"
+    run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
+
+    run "unlink #{deploy_to}/current/config/initializers/facebook.rb;true"
+    run "ln -s #{deploy_to}/shared/config/initializers/facebook.rb #{deploy_to}/current/config/initializers/facebook.rb;true"
+    
     unicorn_config_path = "#{deploy_to}/current/config/unicorn.rb"
-    run "cd #{deploy_to}/current && bundle exec unicorn -c config/unicorn.rb -E production -D"
+    run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_config_path} -E production -D"
   end
 
   task :stop do
@@ -59,12 +63,20 @@ namespace :deploy do
     deploy.stop
     deploy.start
   end
-  
-  task :update_code do
-    run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
-    run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
-    run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
-    
-    put "ENV['SOKOBAN_FACEBOOK_KEY'] = '#{facebook_key}'\nENV['SOKOBAN_FACEBOOK_SECRET'] = '#{facebook_secret}'\n", "#{deploy_to}/current/config/initializers/facebook.rb"
-  end
 end
+
+after 'deploy:setup' do
+  run "mkdir #{deploy_to}/shared/config"
+  run "mkdir #{deploy_to}/shared/config/initializers"
+end
+
+after 'deploy:update_code' do
+  run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
+  run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
+
+  upload "config/database.yml", "#{deploy_to}/shared/config/database.yml"
+  upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
+end
+
+#after 'deploy:finalize_update' do
+#end
