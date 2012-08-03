@@ -116,11 +116,11 @@ packs_production = [
 
 packs_development =  ['Original', 'Novoban']
 
-if Rails.env == 'development'
-  packs = packs_development
-elsif Rails.env == 'production'
+#if Rails.env == 'development'
+#  packs = packs_development
+#elsif Rails.env == 'production'
   packs = packs_production
-end
+#end
 
 # populate levels from
 def populate_levels(packs)
@@ -190,6 +190,8 @@ def populate_levels(packs)
             new_level.save!
           end
         end
+        # for garbage collector purposes
+        V8::C::V8::IdleNotification()
       end # end of levels
       puts ""
     end # end of fopen pack

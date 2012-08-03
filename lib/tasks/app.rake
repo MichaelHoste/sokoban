@@ -21,18 +21,19 @@ def compile_file_coffee_to_js(coffee_file, js_file)
 end
 
 namespace :app  do
-  task :server do
+  task :setup do
     if Rails.env.production?
       puts "Cannot use this task in production"
     else
-      [ 'git submodule update --init --recursive',
-        'git submodule foreach git pull origin master',
-        'rm log/development.log',
-        'touch log/development.log',
-        'rm log/production.log',
-        'touch log/production.log',
-        'bundle install',
-        'bundle exec rails server'
+      # the ruby version is automatically defined in the .rbenv-version file
+      [ 'git submodule update --init --recursive',      # get submodules of this project
+        'git submodule foreach git pull origin master', # update submodules of this project
+        'rm log/development.log',                       # rm log files
+        'touch log/development.log',                    # rm log files
+        'rm log/production.log',                        # rm log files
+        'touch log/production.log',                     # rm log files
+        'bundle install',                               # install gem dependencies
+        'bundle exec rails server'                      # launch server
       ].each do |command|
         puts command
         system(command)

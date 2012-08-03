@@ -77,6 +77,3 @@ after 'deploy:update_code' do
   upload "config/database.yml", "#{deploy_to}/shared/config/database.yml"
   upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
 end
-
-#after 'deploy:finalize_update' do
-#end
