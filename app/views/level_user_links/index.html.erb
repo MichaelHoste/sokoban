@@ -10,9 +10,13 @@
       <%= link_to image_tag("facebook-connect-banner.gif"), '/auth/facebook' %>
     </div>
   <% end %>
-  <div style="clear:both"></div>
+  
+  <% more_scores_count = @level.unique_friends_scores_count(current_user) - @pushes_scores_friends.count %>
+  <%# style = more_scores_count == 0 ? "style=\"display:none\"" : '' %>
+  <div id="more-friend-score" class="scores-more" data-page="<%= (@pushes_scores_friends.count-1) / 8 + 1 %>">
+    More scores (<%= more_scores_count %>)
+  </div>
 </div>
-
 
 <div class="scores-list">
   <div class="scores-title">
@@ -20,5 +24,10 @@
   </div>
   
   <%= render @pushes_scores %>
-  <div style="clear:both"></div>
+  
+  <% more_scores_count = @level.unique_scores_count - @pushes_scores.count %>
+  <%# style = more_scores_count == 0 ? "style=\"display:none\"" : '' %>
+  <div id="more-global-score" class="scores-more" data-page="<%= (@pushes_scores.count-1) / 8 + 1 %>">
+    More scores (<%= more_scores_count  %>)
+  </div>
 </div>

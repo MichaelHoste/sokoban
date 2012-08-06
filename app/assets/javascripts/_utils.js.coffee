@@ -78,11 +78,16 @@ $ ->
     window.context.redirectTo("level/index")
   
     # show scores related to the new level
+    window.reload_scores()
+    
+  window.reload_scores = (friend_page = 1, global_page = 1) ->
     pack_name = $('#packs > li').text()
     level_name = $('#levels').find('.is-selected').attr('data-level-name')
     $.get('/scores',
       pack_id: pack_name
       level_id: level_name
+      friend_score_page: friend_page
+      global_score_page: global_page
     )
     .success((data, status, xhr) =>
       $('#scores').html(data)

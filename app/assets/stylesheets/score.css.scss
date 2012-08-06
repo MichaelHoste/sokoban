@@ -70,10 +70,32 @@
   margin-top:10px;
   margin-bottom:20px;
   
+  .scores-title
+  {
+    
+  }
+  
   .scores-login
   {
 
   }
+  
+  .scores-more
+  {
+    clear:both;
+    font-size:12px;
+    text-align:center;
+
+    padding-top:3px;
+    padding-bottom:3px;
+		
+    @extend .button_off;
+	}
+	
+	.scores-more:hover
+	{
+	  @extend .button_on;
+	}
   
   .score-item
   {
@@ -87,8 +109,11 @@
     
     .score-name
     {
-      overflow:hidden;
+      overflow:hidden;      
+      white-space:nowrap;
+      text-overflow:ellipsis;
       height:18px;
+      width:110px;
       
       a
       {

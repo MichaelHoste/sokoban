@@ -6,8 +6,8 @@ class LevelsController < ApplicationController
     
     respond_to do |format|
       format.html do
-        @pushes_scores = @level.pushes_scores
-        @pushes_scores_friends = @level.pushes_scores_friends(current_user)
+        @pushes_scores = @level.pushes_scores(30)[0..7]
+        @pushes_scores_friends = @level.pushes_scores_friends(current_user, 30)[0..7]
         render 'packs/show'
       end
       format.json do

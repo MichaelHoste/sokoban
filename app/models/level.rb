@@ -63,18 +63,30 @@ class Level < ActiveRecord::Base
     end
   end
   
+  # Get count of unique scores for this level
+  def unique_scores_count
+    self.scores.select('distinct user_id').count
+  end
+  
+  # Get count of unique scores for this level
+  def unique_friends_scores_count(user)
+    self.scores.select('distinct user_id').where(:user_id => user.friends + [user.id]).count
+  end
+  
   # list of pushes scores
-  def pushes_scores
-    scores = self.scores.all
+  # limit is the default row limit (not user limit since there may be several scores by user for a level)
+  def pushes_scores(limit = 100)
+    scores = self.scores.limit(limit).all
     best_scores(scores)
   end
   
   # list of pushes scores for user friends
-  def pushes_scores_friends(user)
+  # limit is the default row limit (not user limit since there may be several scores by user for a level)
+  def pushes_scores_friends(user, limit = 100)
     if not user
       []
     else
-      scores = self.scores.where(:user_id => user.friends + [user.id]).all
+      scores = self.scores.where(:user_id => user.friends + [user.id]).limit(limit).all
       best_scores(scores)
     end
   end

@@ -23,12 +23,17 @@ class ScoresController < ApplicationController
     end
   end
   
+  # Called in AJAX when level changes (similar to show in pack controller)
   def index
     @pack = Pack.find_by_name(params[:pack_id])
     @level = @pack.levels.find_by_name(params[:level_id])
-    @pushes_scores = @level.pushes_scores
-    @pushes_scores_friends = @level.pushes_scores_friends(current_user)
-    
+    @global_rows = params[:global_score_page].to_i*8 - 1
+    @friend_rows = params[:friend_score_page].to_i*8 - 1
+   
+    # Take first two rows of friends and public scores
+    @pushes_scores = @level.pushes_scores(@global_rows*2)[0..@global_rows]
+    @pushes_scores_friends = @level.pushes_scores_friends(current_user, @friend_rows*2)[0..@friend_rows]
+   
     render 'level_user_links/index', :layout => false
   end
 end

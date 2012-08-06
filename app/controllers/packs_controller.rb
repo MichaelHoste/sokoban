@@ -8,7 +8,9 @@ class PacksController < ApplicationController
     @level = @pack.levels.first
     @selected_level_name = @level.name
     
-    @pushes_scores = @level.pushes_scores
-    @pushes_scores_friends = @level.pushes_scores_friends(current_user)
+    # Take first two rows of friends and public scores
+    # (other rows are displayed by scores_controlelr in AJAX)
+    @pushes_scores = @level.pushes_scores(30)[0..7]
+    @pushes_scores_friends = @level.pushes_scores_friends(current_user, 30)[0..7]
   end
 end
