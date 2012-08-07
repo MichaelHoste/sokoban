@@ -7,8 +7,8 @@
     <%= render @pushes_scores_friends %>
     
     <% more_scores_count = @level.unique_friends_scores_count(current_user) - @pushes_scores_friends.count %>
-    <%# style = more_scores_count == 0 ? "style=\"display:none\"" : '' %>
-    <div id="more-friend-score" class="scores-more" data-page="<%= (@pushes_scores_friends.count-1) / 8 + 1 %>">
+    <% style = more_scores_count == 0 ? 'display:none' : '' %>
+    <div id="more-friend-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores_friends.count-1) / 8 + 1 %>">
       More scores (<%= more_scores_count %>)
     </div>
   <% else %>
@@ -26,8 +26,8 @@
   <%= render @pushes_scores %>
   
   <% more_scores_count = @level.unique_scores_count - @pushes_scores.count %>
-  <%# style = more_scores_count == 0 ? "style=\"display:none\"" : '' %>
-  <div id="more-global-score" class="scores-more" data-page="<%= (@pushes_scores.count-1) / 8 + 1 %>">
+  <% style = more_scores_count == 0 ? 'display:none' : '' %>
+  <div id="more-global-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores.count-1) / 8 + 1 %>">
     More scores (<%= more_scores_count  %>)
   </div>
 </div>
