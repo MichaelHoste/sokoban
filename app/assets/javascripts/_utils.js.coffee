@@ -117,7 +117,8 @@ $ ->
 
   # automatically adapt margin of content to height of the banner
   # (useful because the banner adapt itself when scrolling and different height of banners are used)
-  $('#content').css('marginTop', $('#banner').outerHeight(true))
+  window.onresize = ->
+    $('#content').css('marginTop', $('#banner').outerHeight(true))
   
   # send new message (invite friends)
   $('.popup').on('click', ->
