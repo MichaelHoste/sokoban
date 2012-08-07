@@ -3,7 +3,8 @@
     Friends
   </div>
   
-  <% if current_user %> 
+  <% if current_user %>
+  
     <%= render @pushes_scores_friends %>
     
     <% more_scores_count = @level.unique_friends_scores_count(current_user) - @pushes_scores_friends.count %>
@@ -11,10 +12,13 @@
     <div id="more-friend-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores_friends.count-1) / 8 + 1 %>">
       More scores (<%= more_scores_count %>)
     </div>
+    
   <% else %>
+  
     <div class="scores-login">
       <%= link_to image_tag("facebook-connect-banner.gif"), '/auth/facebook' %>
     </div>
+
   <% end %>
 </div>
 

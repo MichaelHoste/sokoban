@@ -98,12 +98,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  # list of subscribed friends, user included, sorted by won levels (relative to packs or all)
+  # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to packs or all)
   def subscribed_friends(pack=nil)
     friends = self.friends.where('email IS NOT NULL').all
     friends.sort {|x,y| y.won_levels_count(pack) <=> x.won_levels_count(pack) }
   end
   
+  # list of subscribed friends, user INCLUDED, sorted by won levels (relative to packs or all)
   def subscribed_friends_and_me(pack=nil)
     friends = self.friends.where('email IS NOT NULL').all
     friends << self
@@ -112,6 +113,11 @@ class User < ActiveRecord::Base
   
   def subscribed_friends_ids
     self.friends.where('email IS NOT NULL').pluck(:f_id)
+  end
+  
+  # n random popular friends : algo to maximize the people (registred or not) with a lot of registred friends
+  def popular_friends
+    
   end
   
   # list of won level ids (from the selected pack of for all packs) for this user
