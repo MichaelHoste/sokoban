@@ -24,6 +24,21 @@ class User < ActiveRecord::Base
   validates :f_id, :uniqueness => true
   
   # Callbacks
+  after_save    :update_friends_count
+  after_destroy :update_friends_count
+  
+  def after_save
+    self.update_counter_cache
+  end
+
+  def after_destroy
+    self.update_counter_cache
+  end
+
+  def update_counter_cache
+    self.post.public_comments_count = Comment.count( :conditions => ["is_spam = false AND post_id = ?",self.post.id])
+    self.post.save
+  end
   
   # Methods
   
@@ -136,5 +151,20 @@ class User < ActiveRecord::Base
     else
       self.scores.select('DISTINCT level_id').count
     end
+  end
+  
+  private
+  
+  # update (bi-directional) friends count
+  # cannot be used with simple 'counter_cache' because of non-registred friends 
+  # that only are on the 'friend_id' side of the relation
+  def update_friends_count
+    # registred user of not registred user
+    if self.email
+      self.friends_count = self.friends.count
+    else
+      self.friends_count = UserUserLink.where(:friend_id => self.id).count
+    end
+    self.save
   end
 end
