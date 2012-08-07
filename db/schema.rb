@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718073709) do
+ActiveRecord::Schema.define(:version => 20120807131221) do
 
   create_table "level_user_links", :force => true do |t|
     t.integer  "user_id"
@@ -92,8 +92,9 @@ ActiveRecord::Schema.define(:version => 20120718073709) do
     t.boolean  "f_verified"
     t.boolean  "f_expires"
     t.datetime "f_expires_at"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.integer  "friends_count",               :default => 0, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

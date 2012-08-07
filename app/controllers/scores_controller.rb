@@ -34,6 +34,6 @@ class ScoresController < ApplicationController
     @pushes_scores = @level.pushes_scores(@global_rows*2)[0..@global_rows]
     @pushes_scores_friends = @level.pushes_scores_friends(current_user, @friend_rows*2)[0..@friend_rows]
    
-    render 'level_user_links/index', :layout => false
+    render 'level_user_links/index'
   end
 end

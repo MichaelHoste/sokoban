@@ -24,21 +24,7 @@ class User < ActiveRecord::Base
   validates :f_id, :uniqueness => true
   
   # Callbacks
-  after_save    :update_friends_count
-  after_destroy :update_friends_count
-  
-  def after_save
-    self.update_counter_cache
-  end
-
-  def after_destroy
-    self.update_counter_cache
-  end
-
-  def update_counter_cache
-    self.post.public_comments_count = Comment.count( :conditions => ["is_spam = false AND post_id = ?",self.post.id])
-    self.post.save
-  end
+  before_save :update_friends_count
   
   # Methods
   
@@ -163,8 +149,7 @@ class User < ActiveRecord::Base
     if self.email
       self.friends_count = self.friends.count
     else
-      self.friends_count = UserUserLink.where(:friend_id => self.id).count
+      self.friends_count = UserUserLink.where(:friend_id => self.f_id).count
     end
-    self.save
   end
 end
