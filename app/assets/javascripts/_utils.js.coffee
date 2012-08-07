@@ -8,7 +8,7 @@ $ ->
     )
    
   window.colorbox_facebook = ->
-    $.colorbox({href:'/login', top:'190px', height:'175px', width:'500px'}, ->
+    $.colorbox({href:'/login', top:'190px', height:'155px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
     
@@ -117,6 +117,7 @@ $ ->
 
   # automatically adapt margin of content to height of the banner
   # (useful because the banner adapt itself when scrolling and different height of banners are used)
+  $('#content').css('marginTop', $('#banner').outerHeight(true))
   window.onresize = ->
     $('#content').css('marginTop', $('#banner').outerHeight(true))
   

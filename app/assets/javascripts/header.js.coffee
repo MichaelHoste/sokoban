@@ -1,7 +1,7 @@
 $ ->
   # click on "login with facebook" icon
   $('#menus .fb_login').on('click', ->
-    window.colorbox_facebook()
+    location.assign('/auth/facebook')
   )
   
   # hover on "login with facebook" or "name of user" icon

@@ -116,9 +116,47 @@ class User < ActiveRecord::Base
     self.friends.where('email IS NOT NULL').pluck(:f_id)
   end
   
-  # n random popular friends : algo to maximize the people (registred or not) with a lot of registred friends
-  def popular_friends
+  # n random popular friends
+  # algo to maximize the selection of the people (registred or not) with a lot of registred friends
+  # statisticaly we will select half the time a registred friend
+  def popular_friends(n)
+    registred_friends = self.friends.where('email IS NOT NULL').all
+    not_registred_friends = self.friends.where('email IS NULL').all
+    popular_friends = []
+
+    # array of friends of registred and not registred friends
+    # [3, 55, 34, ...] means that first friend has 3 friends, second friend has 55 friends etc.
+    friends_of_rf  = registred_friends.collect { |friend| friend.friends_count } 
+    friends_of_nrf = not_registred_friends.collect { |friend| friend.friends_count } 
+        
+    sum_friends_of_rf  = friends_of_rf.reduce(:+)
+    sum_friends_of_nrf = friends_of_nrf.reduce(:+)
     
+    while popular_friends.size < n and sum_friends_of_rf != 0 do
+      rand_number = rand(sum_friends_of_rf)
+      friends_of_rf.each_with_index do |friends_count, index|
+        if rand_number <= friends_count
+          popular_friends << registred_friends[index]
+          # remove this friend from the list
+          registred_friends.delete_at(index)
+          friends_of_rf.delete_at(index)
+          sum_friends_of_rf = friends_of_rf.reduce(:+)
+          break
+        else
+          rand_number = rand_number - friends_count
+        end
+      end
+    end
+    
+    return popular_friends
+    
+#    n.times do
+#      if rand(1..2) == 1
+#        friends_of_rf
+#      else 
+#        friends_of_nrf
+#      end
+#    end
   end
   
   # list of won level ids (from the selected pack of for all packs) for this user
