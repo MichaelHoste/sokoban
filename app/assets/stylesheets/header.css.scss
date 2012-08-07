@@ -10,11 +10,25 @@ body
 
 #github-banner
 {
+  display:block;
   position:absolute;
   top:0;
   right:0;
   border:0;
   z-index:300;
+  
+  width:112px;
+  height:112px;
+  overflow:hidden;
+  
+  img
+  {
+    position:absolute;
+    top:-20px;
+    right:-20px;
+    width:149px;
+    height:149px;
+  }
 }
 
 header

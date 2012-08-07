@@ -65,7 +65,8 @@ class Level < ActiveRecord::Base
   
   # Get count of unique scores for this level
   def unique_scores_count
-    self.scores.select('distinct user_id').count
+    # distincts users + anonymous users (NULL is not a distinct user)
+    self.scores.select('distinct user_id').count + self.scores.where('user_id IS NULL').count
   end
   
   # Get count of unique scores for this level
