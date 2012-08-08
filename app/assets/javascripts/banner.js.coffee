@@ -50,7 +50,18 @@ $ ->
     )
     
   # send new message (invite friends)
-  $('#add-friend').on('click', ->
-    window.facebook_send(window.location.href, "Can you beat me on that Sokoban level !?")
+  $('#add-friend').live('click', ->
+    window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?')
+    return false
+  )
+  
+  # send new message (clic on a friend on the banner)
+  $('#limited-banner img').live('click', ->
+    if $(this).attr('data-f_id')
+      f_id = $(this).attr('data-f_id')
+    else
+      f_id = ''
+    
+    window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?', f_id)
     return false
   )
