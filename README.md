@@ -14,11 +14,10 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- 1a. refresh the invitations when changing level
- 1b. Put link to my stuff at the bottom of the page (and also privacy and legal stuffs)
- 1c. Integrate application in fb canvas
- 1d. Register to fb application
- 1e. Use "feed dialog", "request dialog" and "send dialog" when appropriate (request can only be used in canvas) (1)
+ 1a. Put link to my stuff at the bottom of the page (and also privacy and legal stuffs)
+ 1b. Integrate application in fb canvas
+ 1c. Register to fb application
+ 1d. Use "feed dialog", "request dialog" and "send dialog" when appropriate (request can only be used in canvas) (1)
  2. 99Design for main page
  3.  Create dashboard :
    * total users / total resolved levels / total boxes on goals

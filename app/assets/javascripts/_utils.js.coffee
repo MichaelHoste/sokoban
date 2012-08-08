@@ -91,6 +91,7 @@ $ ->
   
     # show scores related to the new level
     window.reload_scores()
+    window.reload_invitations()
     
   window.reload_scores = (friend_page = 1, global_page = 1) ->
     pack_name = $('#packs > li').text()
