@@ -128,10 +128,7 @@ $ ->
   $('#add-friend').on('click', ->
     options = 
       method:       'send'
-      name:         'Sokoban.be'
-      description:  'Join me to play Sokoban, a great puzzle-game'
-      link:         'http://www.sokoban.be'
-      redirect_uri: 'http://www.sokoban.be'
+      link:         window.location
               
     FB.ui(options)
 
