@@ -48,3 +48,9 @@ $ ->
           user_span.prev().attr('original-title', value)
       )
     )
+    
+  # send new message (invite friends)
+  $('#add-friend').on('click', ->
+    window.facebook_send(window.location.href, "Can you beat me on that Sokoban level !?")
+    return false
+  )

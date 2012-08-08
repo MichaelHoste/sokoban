@@ -1,6 +1,15 @@
 $ -> 
   # connect to facebook
   FB.init({appId: '312592002148798', xfbml: true, cookie: true})
+  
+  window.facebook_send = (link, description, to = "") ->
+    options = 
+      method:       'send'
+      link:         link
+      description:  description
+      to:           to
+              
+    FB.ui(options)
 
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
     token_tag = window.authenticity_token()
@@ -123,18 +132,6 @@ $ ->
   $('#content').css('marginTop', $('#banner').outerHeight(true))
   window.onresize = ->
     $('#content').css('marginTop', $('#banner').outerHeight(true))
-  
-  # send new message (invite friends)
-  $('#add-friend').on('click', ->
-    options = 
-      method:       'send'
-      link:         window.location.href
-      description:  "Can you beat me on that Sokoban level !?"
-              
-    FB.ui(options)
-
-    return false
-  )
 
   disable_scroll()
 

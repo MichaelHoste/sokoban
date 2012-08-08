@@ -1,5 +1,6 @@
 #= require packs/show-history
 #= require packs/show-level-thumb
+#= require packs/show-invitation
 
 $ ->
   # Initialize webgl and load selected level

@@ -1,6 +1,6 @@
 <% link = invitation.registred? ? invitation.f_link : "http://www.facebook.com/#{invitation.f_id}" %>
 
-<div class="invite-item">
+<div class="invite-item" data-f_id="<%= invitation.f_id %>">
   <div class="invite-picture">
     <%= link_to image_tag(invitation.profile_picture, :title => invitation.name), link %>
   </div>
@@ -9,7 +9,7 @@
   </div>
   <div class="invite-challenge">
     <p>
-      <span>
+      <span class="invite-friend">
         <i class="icon-trophy"></i>Challenge this user
       </span>
     </p>
