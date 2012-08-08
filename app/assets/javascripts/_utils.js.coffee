@@ -129,6 +129,7 @@ $ ->
     options = 
       method:       'send'
       link:         window.location.href
+      description:  "Can you beat me on that Sokoban level !?"
               
     FB.ui(options)
 
