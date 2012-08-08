@@ -1,7 +1,7 @@
 <% if current_user %>
-  <%= render :partial => 'users/invitation', :collection => current_user.popular_friends(5) %>
+  <%= render :partial => 'users/invitation', :collection => @popular_friends %>
   <div id="invitations-more">
-    More challenges
+    More users to challenge
   </div>
 <% else %>
   <%# link_to image_tag("facebook-connect-banner.gif"), '/auth/facebook' %>

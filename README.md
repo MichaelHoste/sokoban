@@ -14,9 +14,9 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- 1a. Invite friends (at the bottom of levels list)
- 1b. Integrate application in fb canvas
- 1c. Put link to my stuff at the bottom of the page (and also privacy and legal stuffs)
+ 1a. refresh the invitations when changing level
+ 1b. Put link to my stuff at the bottom of the page (and also privacy and legal stuffs)
+ 1c. Integrate application in fb canvas
  1d. Register to fb application
  1e. Use "feed dialog", "request dialog" and "send dialog" when appropriate (request can only be used in canvas) (1)
  2. 99Design for main page
@@ -32,8 +32,6 @@ TO DO
  5.  Implement challenges : invite 5 friend by challenge.
  6.  Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone).
  7.  Send mails to users to tell about the last activities of their friends.
- 
- 
  
 (1)
 feed : http://developers.facebook.com/docs/reference/dialogs/feed/
