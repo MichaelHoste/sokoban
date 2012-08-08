@@ -130,8 +130,8 @@ $ ->
       method:       'send'
       name:         'Sokoban.be'
       description:  'Join me to play Sokoban, a great puzzle-game'
-      link:         'http://localhost'
-      redirect_uri: 'http://localhost'
+      link:         'http://www.sokoban.be'
+      redirect_uri: 'http://www.sokoban.be'
               
     FB.ui(options)
 
