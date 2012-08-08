@@ -128,7 +128,7 @@ $ ->
   $('#add-friend').on('click', ->
     options = 
       method:       'send'
-      link:         window.location
+      link:         window.location.href
               
     FB.ui(options)
 
