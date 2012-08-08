@@ -147,7 +147,7 @@ class LevelUserLink < ActiveRecord::Base
   def friends_ranking
     if self.user != nil
       LevelUserLink.select(:user_id)
-                   .where(:user_id => self.user.friends.select(:user_id).where('email IS NOT NULL'))
+                   .where(:user_id => self.user.friends.select(:user_id).registred)
                    .where('pushes < ? OR (pushes = ? AND moves < ?)', self.pushes, self.pushes, self.moves)
                    .all.uniq.count + 1
     else

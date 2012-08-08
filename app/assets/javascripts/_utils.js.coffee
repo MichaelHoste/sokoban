@@ -1,4 +1,7 @@
 $ -> 
+  # connect to facebook
+  FB.init({appId: '312592002148798', xfbml: true, cookie: true})
+
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
     token_tag = window.authenticity_token()
   
@@ -122,8 +125,16 @@ $ ->
     $('#content').css('marginTop', $('#banner').outerHeight(true))
   
   # send new message (invite friends)
-  $('.popup').on('click', ->
-    window.open(this.href, 'Facebook > New Message', 'height=300,width=600')
+  $('#add-friend').on('click', ->
+    options = 
+      method:       'send'
+      name:         'Sokoban.be'
+      description:  'Join me to play Sokoban, a great puzzle-game'
+      link:         'http://localhost'
+      redirect_uri: 'http://localhost'
+              
+    FB.ui(options)
+
     return false
   )
 

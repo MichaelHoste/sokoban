@@ -1,1 +1,17 @@
-<%= invitation.name %>
+<% link = invitation.registred? ? invitation.f_link : "http://www.facebook.com/#{invitation.f_id}" %>
+
+<div class="invite-item">
+  <div class="invite-picture">
+    <%= link_to image_tag(invitation.profile_picture, :title => invitation.name), link %>
+  </div>
+  <div class="invite-name">
+    <%= link_to invitation.name, link, :title => invitation.name %>
+  </div>
+  <div class="invite-challenge">
+    <p>
+      <span>
+        <i class="icon-trophy"></i>Challenge this user
+      </span>
+    </p>
+  </div>
+</div>

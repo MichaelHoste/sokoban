@@ -1,0 +1,111 @@
+@import "utils.css.scss";
+
+#invitations
+{
+  float:left;
+  margin-left:0px;
+  margin-top:28px;
+  padding-bottom:18px;
+  width:260px;
+  
+  .invite-item
+  {
+    width:258px;
+    float:left;
+    margin-bottom:5px;
+  	border:1px solid darken($lighter, 10%);
+  	background-color:lighten($lighter, 4%);
+    overflow:hidden;
+    
+    .invite-picture
+    {
+      float:left;
+  		padding:0px;
+  		margin:0px;
+  		border:0px;
+  		font-size:0px;
+
+  		img
+  		{
+  		  width:50px;
+  		  margin-right:5px;
+  		}
+    }
+    
+    .invite-name
+    {
+      overflow:hidden;      
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      height:18px;
+      width:200px;
+      
+      a
+      {
+        color:#3B5998;
+        font-weight:bold;
+        font-size:13px;
+        font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+        text-decoration:none;
+      }
+      
+      a:hover
+      {
+        text-decoration:underline;
+      }
+    }
+    
+    .invite-challenge
+    {
+      p
+      { 
+        margin:0px;
+        padding:0px;
+        margin-top:9px;
+        margin-left:3px;
+        font-size:13px;
+      }
+      
+      span
+      {
+        font-size:14px;
+        color:#444444;
+        cursor:pointer;
+        padding-left:5px;
+        
+        i
+        {
+          padding-right:5px;
+        }
+      }
+      
+      span:hover
+      {
+        text-decoration:underline;
+      }
+    }
+  }
+  
+  .invite-item:hover
+  {
+    background-color:$lighter;
+  }
+  
+  #invitations-more
+  {
+    position:relative;
+    clear:both;
+    font-size:12px;
+    text-align:center;
+    padding-top:3px;
+    padding-bottom:3px;
+    top:-1px;
+		
+    @extend .button_off;
+	}
+	
+	#invitations-more:hover
+	{
+	  @extend .button_on;
+	}
+}

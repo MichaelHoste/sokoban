@@ -2,7 +2,8 @@
 
 #scores
 {
-  margin-left:275px;
+  float:left;
+  margin-left:15px;
   margin-right:20px;
   padding-bottom:18px;
   background-color:white;
@@ -167,5 +168,10 @@
     {
       display:none;
     }
+  }
+  
+  .score-item:hover
+  {
+    background-color:$lighter;
   }
 }

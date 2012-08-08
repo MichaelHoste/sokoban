@@ -26,6 +26,16 @@ class User < ActiveRecord::Base
   # Callbacks
   before_save :update_friends_count
   
+  # Scopes
+  
+  def self.registred
+    where('email IS NOT NULL')
+  end
+  
+  def self.not_registred
+    where('email IS NULL')
+  end
+  
   # Methods
   
   def self.update_or_create(credentials)
@@ -66,6 +76,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def registred?
+    self.email != nil
+  end
+  
   # create new user for each friend and link it
   def build_friendships
     graph = Koala::Facebook::API.new(self.f_token)
@@ -101,27 +115,27 @@ class User < ActiveRecord::Base
 
   # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to packs or all)
   def subscribed_friends(pack=nil)
-    friends = self.friends.where('email IS NOT NULL').all
+    friends = self.friends.registred.all
     friends.sort {|x,y| y.won_levels_count(pack) <=> x.won_levels_count(pack) }
   end
   
   # list of subscribed friends, user INCLUDED, sorted by won levels (relative to packs or all)
   def subscribed_friends_and_me(pack=nil)
-    friends = self.friends.where('email IS NOT NULL').all
+    friends = self.friends.registred.all
     friends << self
     friends.sort {|x,y| y.won_levels_count(pack) <=> x.won_levels_count(pack) }
   end
   
   def subscribed_friends_ids
-    self.friends.where('email IS NOT NULL').pluck(:f_id)
+    self.friends.registred.pluck(:f_id)
   end
   
   # n random popular friends
   # algo to maximize the selection of the people (registred or not) with a lot of registred friends
   # statisticaly we will select half the time a registred friend
   def popular_friends(n)
-    registred_friends = self.friends.where('email IS NOT NULL').all
-    not_registred_friends = self.friends.where('email IS NULL').all
+    registred_friends = self.friends.registred.all
+    not_registred_friends = self.friends.not_registred.all
     popular_friends = []
 
     # array of friends of registred and not registred friends
@@ -133,9 +147,6 @@ class User < ActiveRecord::Base
     # (in an array so we can later pass it by reference)
     sum_friends_of_rf  = [friends_of_rf.sum]
     sum_friends_of_nrf = [friends_of_nrf.sum]
-    
-    Rails.logger.info("ICICICI : " + sum_friends_of_rf.to_s)
-    Rails.logger.info("ICICICI : " + sum_friends_of_nrf.to_s)
     
     while popular_friends.size < n and (sum_friends_of_rf[0] != 0 or sum_friends_of_nrf[0] != 0)
       choice = rand(1..2)
