@@ -128,35 +128,50 @@ class User < ActiveRecord::Base
     # [3, 55, 34, ...] means that first friend has 3 friends, second friend has 55 friends etc.
     friends_of_rf  = registred_friends.collect { |friend| friend.friends_count } 
     friends_of_nrf = not_registred_friends.collect { |friend| friend.friends_count } 
-        
-    sum_friends_of_rf  = friends_of_rf.reduce(:+)
-    sum_friends_of_nrf = friends_of_nrf.reduce(:+)
     
-    while popular_friends.size < n and sum_friends_of_rf != 0 do
-      rand_number = rand(sum_friends_of_rf)
-      friends_of_rf.each_with_index do |friends_count, index|
-        if rand_number <= friends_count
-          popular_friends << registred_friends[index]
-          # remove this friend from the list
-          registred_friends.delete_at(index)
-          friends_of_rf.delete_at(index)
-          sum_friends_of_rf = friends_of_rf.reduce(:+)
-          break
-        else
-          rand_number = rand_number - friends_count
-        end
+    # sum of the array of friends of registred and not registred friends
+    # (in an array so we can later pass it by reference)
+    sum_friends_of_rf  = [friends_of_rf.sum]
+    sum_friends_of_nrf = [friends_of_nrf.sum]
+    
+    Rails.logger.info("ICICICI : " + sum_friends_of_rf.to_s)
+    Rails.logger.info("ICICICI : " + sum_friends_of_nrf.to_s)
+    
+    while popular_friends.size < n and (sum_friends_of_rf[0] != 0 or sum_friends_of_nrf[0] != 0)
+      choice = rand(1..2)
+      # select a registred popular friend
+      if choice == 1 and sum_friends_of_rf[0]  != 0
+        popular_friends << select_one_user(registred_friends, friends_of_rf, sum_friends_of_rf)
+      # select an not registred popular friend
+      elsif choice == 2 and sum_friends_of_nrf[0] != 0
+        popular_friends << select_one_user(not_registred_friends, friends_of_nrf, sum_friends_of_nrf)
       end
     end
     
     return popular_friends
+  end
+  
+  # select one random user
+  # users : array of users [steve_object, paul_object, marc_object]
+  # users_friends_count : array of friends num for each of these users [34,11,55] (steve has 34 friends)
+  # total_user_friends : sum of users_friends_count. ATTENTION : in an array ! (here : [100])
+  def select_one_user(users, users_friends_count, total_user_friends)
+    selected_user = nil
+    rand_number = rand(total_user_friends[0])
+    users_friends_count.each_with_index do |friends_count, index|
+      if rand_number <= friends_count
+        selected_user = users[index]
+        # remove this user of the list
+        total_user_friends[0] = total_user_friends[0] - users_friends_count[index]
+        users.delete_at(index)
+        users_friends_count.delete_at(index)
+        break
+      else
+        rand_number = rand_number - friends_count
+      end
+    end
     
-#    n.times do
-#      if rand(1..2) == 1
-#        friends_of_rf
-#      else 
-#        friends_of_nrf
-#      end
-#    end
+    return selected_user
   end
   
   # list of won level ids (from the selected pack of for all packs) for this user
