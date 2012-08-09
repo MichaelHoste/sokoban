@@ -85,3 +85,6 @@ after 'deploy:update_code' do
   upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
 end
+
+set :keep_releases, 1
+after "deploy:update", "deploy:cleanup"
