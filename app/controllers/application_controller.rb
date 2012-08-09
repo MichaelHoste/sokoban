@@ -22,4 +22,12 @@ class ApplicationController < ActionController::Base
     
     render :json => hash
   end
+  
+  def privacy_policy
+    render 'layouts/privacy_policy', :layout => false
+  end
+  
+  def terms_of_service
+    render 'layouts/terms_of_service', :layout => false
+  end
 end

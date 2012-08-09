@@ -162,29 +162,6 @@ class User < ActiveRecord::Base
     return popular_friends
   end
   
-  # select one random user
-  # users : array of users [steve_object, paul_object, marc_object]
-  # users_friends_count : array of friends num for each of these users [34,11,55] (steve has 34 friends)
-  # total_user_friends : sum of users_friends_count. ATTENTION : in an array ! (here : [100])
-  def select_one_user(users, users_friends_count, total_user_friends)
-    selected_user = nil
-    rand_number = rand(total_user_friends[0])
-    users_friends_count.each_with_index do |friends_count, index|
-      if rand_number <= friends_count
-        selected_user = users[index]
-        # remove this user of the list
-        total_user_friends[0] = total_user_friends[0] - users_friends_count[index]
-        users.delete_at(index)
-        users_friends_count.delete_at(index)
-        break
-      else
-        rand_number = rand_number - friends_count
-      end
-    end
-    
-    return selected_user
-  end
-  
   # list of won level ids (from the selected pack of for all packs) for this user
   def won_levels_ids(pack=nil)
     if pack
@@ -215,5 +192,28 @@ class User < ActiveRecord::Base
     else
       self.friends_count = UserUserLink.where(:friend_id => self.f_id).count
     end
+  end
+  
+  # select one random user
+  # users : array of users [steve_object, paul_object, marc_object]
+  # users_friends_count : array of friends num for each of these users [34,11,55] (steve has 34 friends)
+  # total_user_friends : sum of users_friends_count. ATTENTION : in an array ! (here : [100])
+  def select_one_user(users, users_friends_count, total_user_friends)
+    selected_user = nil
+    rand_number = rand(total_user_friends[0])
+    users_friends_count.each_with_index do |friends_count, index|
+      if rand_number <= friends_count
+        selected_user = users[index]
+        # remove this user of the list
+        total_user_friends[0] = total_user_friends[0] - users_friends_count[index]
+        users.delete_at(index)
+        users_friends_count.delete_at(index)
+        break
+      else
+        rand_number = rand_number - friends_count
+      end
+    end
+    
+    return selected_user
   end
 end
