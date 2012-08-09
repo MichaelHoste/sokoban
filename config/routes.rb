@@ -40,4 +40,6 @@ Sokojax::Application.routes.draw do
   
   get '/privacy_policy', :to => 'application#privacy_policy'
   get '/terms_of_service', :to => 'application#terms_of_service'
+  
+  get '/stats', :to => 'application#stats'
 end

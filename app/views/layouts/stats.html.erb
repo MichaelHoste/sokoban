@@ -1,0 +1,45 @@
+Users : <%= @total_users %> (<%= @total_friends %> amis)
+
+<br/><br/>
+
+Completed Levels : <%= @total_scores %>
+
+<br/><br/>
+
+10 last connections :
+
+<div>
+  <% @last_users.each do |user| %>
+    <div>
+      <%= link_to image_tag(user.profile_picture, :width => '30px', :class => 'tips', :title => "#{user.name} - #{user.won_levels_count()}"), user.f_link %>
+      |
+      <%= user.name %>
+      |
+      <%= when_in_the_past(user.updated_at) %>
+      |
+      <%= user.won_levels_count() %> completed levels
+    </div>
+  <% end %>
+</div>  
+    
+<br/><br/>
+
+100 last completed levels :
+
+<div>
+  <% @last_scores.each do |score| %>
+    <% user_picture = (score.user_id ? score.user.profile_picture : 'default_user.png' )%>
+    <% user_link = (score.user_id ? score.user.f_link : '#') %>
+    <% won_levels = score.user ? score.user.won_levels_count() : 0 %>
+  
+    <div>
+      <%= link_to image_tag(user_picture, :width => '30px', :class => 'tips', :title => "#{score.user_name} - #{won_levels}"), user_link %>
+      |
+      <%= score.user_name %>
+      |
+      <%= when_in_the_past(score.created_at) %>
+      |
+      <%= link_to "#{score.level.pack.name} / #{score.level.name}", "/packs/#{URI.escape(score.level.pack.name)}/levels/#{URI.escape(score.level.name)}" %>
+    </div>
+  <% end %>
+</div>

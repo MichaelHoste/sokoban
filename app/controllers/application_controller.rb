@@ -30,4 +30,13 @@ class ApplicationController < ActionController::Base
   def terms_of_service
     render 'layouts/terms_of_service', :layout => false
   end
+  
+  def stats
+    @total_users   = User.registred.count
+    @total_friends = User.not_registred.count  
+    @total_scores  = LevelUserLink.count
+    @last_users    = User.registred.order('updated_at DESC').limit(10)
+    @last_scores   = LevelUserLink.unscoped.order('created_at DESC').limit(100)
+    render 'layouts/stats'
+  end
 end
