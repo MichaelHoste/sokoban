@@ -1,17 +1,17 @@
-Users : <%= @total_users %> (<%= @total_friends %> amis)
+<strong>Users</strong> : <%= @total_users %> (<%= @total_friends %> amis)
 
 <br/><br/>
 
-Completed Levels : <%= @total_scores %>
+<strong>Completed Levels</strong> : <%= @total_scores %>
 
 <br/><br/>
 
-10 last connections :
+<strong>10 last connections</strong> :
 
 <div>
   <% @last_users.each do |user| %>
     <div>
-      <%= link_to image_tag(user.profile_picture, :width => '30px', :class => 'tips', :title => "#{user.name} - #{user.won_levels_count()}"), user.f_link %>
+      <%= link_to image_tag(user.profile_picture, :width => '25px', :class => 'tips', :title => "#{user.name} - #{user.won_levels_count()}"), user.f_link %>
       |
       <%= user.name %>
       |
@@ -24,7 +24,7 @@ Completed Levels : <%= @total_scores %>
     
 <br/><br/>
 
-100 last completed levels :
+<strong>100 last completed levels</strong> :
 
 <div>
   <% @last_scores.each do |score| %>
@@ -33,7 +33,7 @@ Completed Levels : <%= @total_scores %>
     <% won_levels = score.user ? score.user.won_levels_count() : 0 %>
   
     <div>
-      <%= link_to image_tag(user_picture, :width => '30px', :class => 'tips', :title => "#{score.user_name} - #{won_levels}"), user_link %>
+      <%= link_to image_tag(user_picture, :width => '25px', :class => 'tips', :title => "#{score.user_name} - #{won_levels}"), user_link %>
       |
       <%= score.user_name %>
       |
@@ -43,3 +43,5 @@ Completed Levels : <%= @total_scores %>
     </div>
   <% end %>
 </div>
+
+<br/><br/>
