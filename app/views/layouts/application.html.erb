@@ -2,8 +2,11 @@
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# sokojax: http://ogp.me/ns/fb/sokojax#">
     <title>Sokoban</title>
+    <meta charset="UTF-8" />
     <meta name="description" content="Play Sokoban and Challenge your Friends" />
+    <meta name="author" content="Michaël Hoste">
     <meta name="keywords" content="sokoban, puzzle, game, levels, packs, challenge, friends, social" />
+    <link rel="shortcut icon" href="favicon.ico">
 
     <% if @level %>
       <meta property="fb:app_id"       content="<%= ENV['SOKOBAN_FACEBOOK_KEY'] %>" /> 
