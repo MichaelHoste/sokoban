@@ -37,12 +37,19 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 
 namespace :deploy do
   task :start do
+    # Database
     run "unlink #{deploy_to}/current/config/database.yml;true"
     run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
 
+    # Facebook configuration
     run "unlink #{deploy_to}/current/config/initializers/facebook.rb;true"
     run "ln -s #{deploy_to}/shared/config/initializers/facebook.rb #{deploy_to}/current/config/initializers/facebook.rb;true"
+
+    # Errbit configuration
+    run "unlink #{deploy_to}/current/config/initializers/errbit.rb;true"
+    run "ln -s #{deploy_to}/shared/config/initializers/errbit.rb #{deploy_to}/current/config/initializers/errbit.rb;true"
     
+    # Unicorn configuration
     unicorn_config_path = "#{deploy_to}/current/config/unicorn.rb"
     run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_config_path} -E production -D"
   end
