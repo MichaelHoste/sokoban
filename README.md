@@ -14,7 +14,6 @@ Try it here : http://www.sokoban.be
 TO DO
 -----
 
- 0. use airbreak for bugs !
  1. Use "feed dialog" (success ?), "request dialog" and "send dialog" when appropriate (request can only be used in canvas) (1)
  2. 99Design for main page
  3. Create fan page
