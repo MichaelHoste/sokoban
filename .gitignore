@@ -27,3 +27,4 @@ pickle-email-*.html
 /config/database.yml
 /config/initializers/facebook.rb
 /config/initializers/errbit.rb
+/public/images/levels
