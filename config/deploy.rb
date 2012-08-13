@@ -41,6 +41,10 @@ namespace :deploy do
     run "unlink #{deploy_to}/current/config/database.yml;true"
     run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
 
+    # Thumbs of levels (generated when needed)
+    run "unlink #{deploy_to}/current/public/images/levels;true"
+    run "ln -s #{deploy_to}/shared/public/images/levels #{deploy_to}/current/public/images/levels;true"
+
     # Facebook configuration
     run "unlink #{deploy_to}/current/config/initializers/facebook.rb;true"
     run "ln -s #{deploy_to}/shared/config/initializers/facebook.rb #{deploy_to}/current/config/initializers/facebook.rb;true"
@@ -75,6 +79,9 @@ end
 after 'deploy:setup' do
   run "mkdir #{deploy_to}/shared/config"
   run "mkdir #{deploy_to}/shared/config/initializers"
+  run "mkdir #{deploy_to}/shared/public"
+  run "mkdir #{deploy_to}/shared/public/images"
+  run "mkdir #{deploy_to}/shared/public/images/levels"
 end
 
 after 'deploy:update_code' do
