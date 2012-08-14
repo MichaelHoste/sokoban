@@ -32,8 +32,8 @@ role :app, "188.165.255.96"                          # This may be the same as y
 role :db,  "188.165.255.96", :primary => true        # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+set :keep_releases, 1
+after "deploy:restart", "deploy:cleanup"
 
 namespace :deploy do
   task :start do
@@ -92,6 +92,3 @@ after 'deploy:update_code' do
   upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
 end
-
-set :keep_releases, 1
-after "deploy:update", "deploy:cleanup"

@@ -182,7 +182,7 @@ class User < ActiveRecord::Base
   
   private
   
-  # update (bi-directional) friends count
+  # update (bi-directional) friends count (friends that are on the database : registred or not)
   # cannot be used with simple 'counter_cache' because of non-registred friends 
   # that only are on the 'friend_id' side of the relation
   def update_friends_count
@@ -194,7 +194,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  # select one random user
+  # select one random user depending on the common number of friends (the more friends, the more the chance to be selected)
   # users : array of users [steve_object, paul_object, marc_object]
   # users_friends_count : array of friends num for each of these users [34,11,55] (steve has 34 friends)
   # total_user_friends : sum of users_friends_count. ATTENTION : in an array ! (here : [100])
