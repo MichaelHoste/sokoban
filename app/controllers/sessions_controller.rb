@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
     @user = User.update_or_create(credentials)
 
     if @user.save!
-      @user.build_friendships()
       session[:user_id] = @user.id
+      @user.build_friendships()
       # Get and save friends id of this user
       redirect_to :root
     else
