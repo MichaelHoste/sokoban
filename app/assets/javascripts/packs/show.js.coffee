@@ -4,7 +4,9 @@
 
 $ ->
   # Initialize webgl and load selected level
-  window.context = new Jax.Context('webgl')
+  window.context = new Jax.Context({renderers: []})
+  window.context.canvas = document.body
+  window.context.setupInputDevices()  
   window.context.redirectTo('level/index')
   
   # Scroll the left menu to the selected level
