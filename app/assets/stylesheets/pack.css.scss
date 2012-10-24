@@ -2,8 +2,9 @@
 
 #webgl
 {
-  display:none;
-  float:left;
+  position:absolute;
+  border:1px solid black;
+  top:-500px;
 }
 
 #raphael

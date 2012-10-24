@@ -79,6 +79,15 @@ $ ->
     $(this).transition({opacity:0.0})
   )
   
+  # hover on "fork me on github"
+  $('#github-banner').on('mouseenter', ->
+    $(this).animate({ paddingTop: '13px' }, 300)
+  )
+  
+  $('#github-banner').on('mouseleave', ->
+    $(this).animate({ paddingTop: '6px' }, 300)
+  )
+  
   # animation on like divs
   animate_like_divs = ->
     $('#likes .fb-like').clearQueue().transition({ opacity:0.93 }).delay(300).transition({ opacity:0.0 }).delay(200, ->

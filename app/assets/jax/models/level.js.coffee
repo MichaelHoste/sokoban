@@ -159,7 +159,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
       d = d_height if d_height > d_width
       d = d_width  if d_width  > d_height
             
-      object.camera.setPosition [start_col + n, start_row - m, -d]
+      object.camera.position = [start_col + n, start_row - m, -d]
     else if type != ' '
       object = @objects[cols_number*m + n]
         
@@ -215,17 +215,17 @@ Jax.getGlobal()['Level'] = Jax.Model.create
             
   # Render every squares of the level (the level itself is just a mesh container)
   # ONLY IF IN 3D MODE !
-  render: (context, options) ->
-    if @display_type == '3D' and @objects
-      if !Jax.Model.__instances[@__unique_id]
-        Jax.Model.__instances[@__unique_id] = @
-      options = Jax.Util.normalizeOptions(options, { model_index: @__unique_id });
-      context.pushMatrix( =>
-        #context.multModelMatrix(this.camera.getTransformationMatrix())
-        for i in [0..@cols_number()*@rows_number()-1]
-          if @objects[i]
-            @objects[i].render(context, options)
-      )
+#  render: (context, options) ->
+#    if @display_type == '3D' and @objects
+#      if !Jax.Model.__instances[@__unique_id]
+#        Jax.Model.__instances[@__unique_id] = @
+#      options = Jax.Util.normalizeOptions(options, { model_index: @__unique_id });
+#      context.pushMatrix( =>
+#        #context.multModelMatrix(this.camera.getTransformationMatrix())
+#        for i in [0..@cols_number()*@rows_number()-1]
+#          if @objects[i]
+#            @objects[i].render(context, options)
+#      )
         
   unload: (world) ->
     # delete each square of the level

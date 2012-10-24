@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem "jax", '2.0.10'
+gem "jax", '3.0.0.rc1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,7 +34,8 @@ end
 # Production/deployment tools
 group :production do
   gem 'unicorn'
-  gem 'airbrake'
+  # gem 'airbrake'
+  gem 'airbrake_user_attributes'
 end
 
 # To use ActiveModel has_secure_password

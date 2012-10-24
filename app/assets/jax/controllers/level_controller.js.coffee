@@ -39,7 +39,7 @@ Jax.Controller.create "Level", ApplicationController,
       window.old_theme = window.theme
       @level.display_level()
     
-  key_pressed: (event) ->
+  key_pressed: (event) ->    
     has_moved = 0
     has_deleted = 0
     

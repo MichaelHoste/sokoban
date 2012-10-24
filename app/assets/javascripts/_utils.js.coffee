@@ -138,11 +138,15 @@ $ ->
 
   # Show 2D or 3D div depending on the switch
   if $('#menus .switch.is-selected').text() == '3D'
-    $('#raphael').hide()
+    #$('#raphael').hide()
     $('#webgl').show()
   else
-    $('#webgl').hide()
+    #$('#webgl').hide()
     $('#raphael').show()
+
+  $(document).live('click', ->
+    $('#webgl').focus()
+  )
 
   # if new user (data-new-user="1" in <body> tag... computed server-side)
   if $('body').attr('data-new-user') == '1'
