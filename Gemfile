@@ -34,8 +34,7 @@ end
 # Production/deployment tools
 group :production do
   gem 'unicorn'
-  # gem 'airbrake'
-  gem 'airbrake_user_attributes'
+  gem 'airbrake'
 end
 
 # To use ActiveModel has_secure_password
