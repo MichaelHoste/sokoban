@@ -1,12 +1,19 @@
 <%= javascript_include_tag 'packs/show' %>
 
 <div id="menu-levels">
-  <ul id="packs">
-    <li data-pack-name="<%= @pack.name %>"><%= @pack.name %></li>
-  </ul>
+  <div id="packs" data-pack-name="<%= @pack.name %>">
+    <select>
+      <% Pack.all.each do |pack| %>
+        <option value="<%= CGI::unescape(pack.name) %>" <%= 'selected="selected"' if pack.id == @pack.id %>><%= pack.name %></option>
+      <% end %>
+    </select>
+    
+    <div class="packs-button">
+      <a href="<%= packs_path %>"><i class="icon-th"></i></a>
+    </div>
+  </div>
   
   <ul id="levels" class="levels">
-  
     <% won_levels_ids = @pack.won_levels_ids(current_user) %>  
     <% @pack.levels.each_with_index do |level, index| %>
       <% selected = (@selected_level_name == level.name ? 'class="is-selected"' : '') %>
@@ -19,7 +26,6 @@
         <span class="level-index"><%= index+1 %></span>
       </li>
     <% end %>
-    
   </ul>
 </div>
 

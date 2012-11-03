@@ -32,9 +32,9 @@ $ ->
     location.assign('/scores')
   )
 
-  $('#menus .packs-menu').on('click', ->
-    location.assign('/packs')
-  )
+#  $('#menus .packs-menu').on('click', ->
+#    location.assign('/packs')
+#  )
   
   $('#menus .rules-menu').on('click', ->
     window.colorbox_welcome()

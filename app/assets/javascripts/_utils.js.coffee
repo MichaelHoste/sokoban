@@ -96,7 +96,7 @@ $ ->
     window.reload_invitations()
     
   window.reload_scores = (friend_page = 1, global_page = 1) ->
-    pack_name = $('#packs > li').text()
+    pack_name = $('#packs').attr('data-pack-name')
     level_name = $('#levels').find('.is-selected').attr('data-level-name')
     $.get('/scores',
       pack_id: pack_name

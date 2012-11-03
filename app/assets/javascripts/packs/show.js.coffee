@@ -40,3 +40,9 @@ $ ->
     
     window.reload_scores(friend_page, global_page)
   )
+  
+  # Change level when select another level
+  $('#packs select').on('change', ->
+    pack_name = $('#packs select').val()
+    location.assign("/packs/#{pack_name}")
+  )

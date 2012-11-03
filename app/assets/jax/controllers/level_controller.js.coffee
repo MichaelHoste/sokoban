@@ -9,7 +9,7 @@ Jax.Controller.create "Level", ApplicationController,
     # load selected level and add it to the world
     else
       # get the names of the pack and level
-      pack_name = $('#packs > li').text()
+      pack_name = $('#packs').attr('data-pack-name')
       level_name = $('#levels').find('.is-selected').attr('data-level-name')
       
       # create level in 2D or 3D
@@ -81,7 +81,7 @@ Jax.Controller.create "Level", ApplicationController,
     if has_moved != 0
       if @level.is_won()
         # load selected level
-        pack_name = $('#packs > li').attr('data-pack-name')
+        pack_name = $('#packs').attr('data-pack-name')
         level_name = $('#levels').find('.is-selected').attr('data-level-name')
         token_tag = window.authenticity_token()
         

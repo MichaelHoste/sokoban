@@ -24,20 +24,31 @@ namespace :app  do
   task :setup do
     if Rails.env.production?
       puts "Cannot use this task in production"
-    else
+    else      
       # the ruby version is automatically defined in the .rbenv-version file
-      [ 'git submodule update --init --recursive',      # get submodules of this project
-        'git submodule foreach git pull origin master', # update submodules of this project
-        'rm log/development.log',                       # rm log files
-        'touch log/development.log',                    # rm log files
-        'rm log/production.log',                        # rm log files
-        'touch log/production.log',                     # rm log files
-        'bundle install',                               # install gem dependencies
-        'bundle exec rails server'                      # launch server
+      [ 'git submodule update --init --recursive',           # get submodules of this project
+        'git submodule foreach git pull origin master',      # update submodules of this project
+        'rm log/development.log',                            # rm log files
+        'touch log/development.log',                         # rm log files
+        'rm log/production.log',                             # rm log files
+        'touch log/production.log',                          # rm log files
+        'rm log/delayed_job.log',                            # rm log files
+        'touch log/delayed_job.log',                         # rm log files
+        'rm log/test.log',                                   # rm log files
+        'touch log/test.log',                                # rm log files
+        'rm chromedriver.log',                               # rm log files
+        'bundle install',                                    # install gem dependencies
+        "/bin/bash #{Dir.pwd}/script/rename_tab.sh Server"   #
       ].each do |command|
         puts command
         system(command)
       end
+
+      # Empty shell
+      new_tab('Shell', ["cd #{Dir.pwd}", "clear"])
+
+      # Launch server
+      system('bundle exec rails s')
     end
   end
 
@@ -59,4 +70,12 @@ namespace :app  do
       compile_coffee_to_js()
     end
   end
+end
+
+def new_tab(name, commands)
+  commands = ["/bin/bash #{Dir.pwd}/script/rename_tab.sh #{name}"] + commands
+  command_line = commands.collect! { |command| '-e \'tell application "Terminal" to do script "' + command + '" in front window\''}.join(' ')
+  `osascript -e 'tell application "Terminal" to activate' \
+             -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+             #{command_line} > /dev/null`
 end

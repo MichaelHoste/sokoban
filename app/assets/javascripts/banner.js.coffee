@@ -32,7 +32,7 @@ $ ->
 
   # update banner with each user score and hidden levels string  
   window.update_banner = ->
-    pack_name = $('#packs > li').text()
+    pack_name = $('#packs').attr('data-pack-name')
     $.get('/banner', {pack_name: pack_name}).success((data, status, xhr) ->
       # update each hidden span with successfully completed levels string
       $.each(data['success'], (key, value) ->
