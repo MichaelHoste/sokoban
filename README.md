@@ -1,8 +1,9 @@
 Sokoban
 =======
 
-WebGL implementation of Sokoban using jax (http://guides.jaxgl.com/).
-Jax is a special gem for rails that enables nice WebGL implementation using a rails-style stucture
+WebGL/RaphaelJS implementation of Sokoban using jax (http://guides.jaxgl.com/).
+
+Jax is a special gem for rails that enables nice WebGL implementation using a rails-style stucture. In our case, WebGL is disabled by default to increase the game compatibility (JaxGL is only used for its javascript MVC structure).
 
 DEMO
 ----
@@ -32,8 +33,11 @@ TO DO
  9.  Send mails to users to tell about the last activities of their friends.
  
 (1)
+
 feed : http://developers.facebook.com/docs/reference/dialogs/feed/
+
 request : http://developers.facebook.com/docs/reference/dialogs/requests/
+
 send : http://developers.facebook.com/docs/reference/dialogs/send/
 
 canvas : http://developers.facebook.com/docs/appsonfacebook/tutorial/
