@@ -41,7 +41,8 @@ $ ->
   )
   
   # initialize and change theme
-  window.old_theme = $('#theme').val()
+  #window.old_theme = $('#theme').val()
+  window.old_theme = "classic"
   window.theme = window.old_theme
   
   $('#theme').on('change', ->

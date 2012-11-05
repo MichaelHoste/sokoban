@@ -74,6 +74,7 @@ header
 			
 			#theme
 			{
+			  display:none;
 			  float:left;
 			  margin-top:10px;
 			  margin-right:8px;
@@ -232,8 +233,8 @@ header
 		  {
 		    float:left;
 		    width:100px;
-		    -moz-opacity:0.0;
-        opacity:0.0;
+		    -moz-opacity:0.7;
+        opacity:0.7;
 		  }
 		  
 		  .twitter-like
@@ -241,8 +242,8 @@ header
 		    float:left;
 		    width:100px;
 		    margin-left:13px;
-		    -moz-opacity:0.0;
-        opacity:0.0;
+		    -moz-opacity:0.7;
+        opacity:0.7;
 		  }
 		  
 		  .gplus-like
@@ -250,8 +251,8 @@ header
 		    float:left;
 		    //width:100px;
 		    margin-left:18px;
-		    -moz-opacity:0.0;
-        opacity:0.0;
+		    -moz-opacity:0.7;
+        opacity:0.7;
 		  }
 		}
 	}
