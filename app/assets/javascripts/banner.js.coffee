@@ -50,7 +50,7 @@ $ ->
     )
     
   # send new message (invite friends)
-  $('#add-friend').live('click', ->
+  $('#limited-banner').delegate('#add-friend', 'click', ->
     window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?')
     return false
   )
