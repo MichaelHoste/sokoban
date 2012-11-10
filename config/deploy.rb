@@ -1,8 +1,8 @@
 require "bundler/capistrano"
 
 # Comment when first "cap deploy" (gem is not present yet and "bundle" is made after this)
-#set :whenever_command, 'bundle exec whenever'
-#require 'whenever/capistrano'
+set :whenever_command, 'bundle exec whenever'
+require 'whenever/capistrano'
 
 # We want Bundler to handle our gems and we want it to package everything locally with the app. 
 # The --binstubs flag means any gem executables will be added to <app>/bin 
@@ -59,9 +59,9 @@ namespace :deploy do
     
     # Backup configuration
     run "mkdir #{deploy_to}/current/config/backups;true"
-    run "unlink #{deploy_to}/current/config/backups/socitrad.rb;true"
+    run "unlink #{deploy_to}/current/config/backups/sokoban.rb;true"
     run "unlink #{deploy_to}/current/config/backup.rb;true"
-    run "ln -s #{deploy_to}/shared/config/backups/socitrad.rb #{deploy_to}/current/config/backups/socitrad.rb;true"
+    run "ln -s #{deploy_to}/shared/config/backups/sokoban.rb #{deploy_to}/current/config/backups/sokoban.rb;true"
     run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
     
     # Unicorn configuration
@@ -103,6 +103,6 @@ after 'deploy:update_code' do
   upload "config/database.yml", "#{deploy_to}/shared/config/database.yml"
   upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
-  upload "config/backups/socitrad.rb", "#{deploy_to}/shared/config/backups/socitrad.rb"
+  upload "config/backups/sokoban.rb", "#{deploy_to}/shared/config/backups/sokoban.rb"
   upload "config/backup.rb", "#{deploy_to}/shared/config/backup.rb"
 end
