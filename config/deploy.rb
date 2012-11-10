@@ -1,5 +1,8 @@
 require "bundler/capistrano"
 
+set :whenever_command, 'bundle exec whenever'
+require 'whenever/capistrano'
+
 # We want Bundler to handle our gems and we want it to package everything locally with the app. 
 # The --binstubs flag means any gem executables will be added to <app>/bin 
 # and the --shebang ruby-local-exec option makes sure we'll use the ruby version defined in the .rbenv-version in the app root.
@@ -53,6 +56,13 @@ namespace :deploy do
     run "unlink #{deploy_to}/current/config/initializers/errbit.rb;true"
     run "ln -s #{deploy_to}/shared/config/initializers/errbit.rb #{deploy_to}/current/config/initializers/errbit.rb;true"
     
+    # Backup configuration
+    run "mkdir #{deploy_to}/current/config/backups;true"
+    run "unlink #{deploy_to}/current/config/backups/socitrad.rb;true"
+    run "unlink #{deploy_to}/current/config/backup.rb;true"
+    run "ln -s #{deploy_to}/shared/config/backups/socitrad.rb #{deploy_to}/current/config/backups/socitrad.rb;true"
+    run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
+    
     # Unicorn configuration
     unicorn_config_path = "#{deploy_to}/current/config/unicorn.rb"
     run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_config_path} -E production -D"
@@ -82,6 +92,7 @@ after 'deploy:setup' do
   run "mkdir #{deploy_to}/shared/public"
   run "mkdir #{deploy_to}/shared/public/images"
   run "mkdir #{deploy_to}/shared/public/images/levels"
+  run "mkdir #{deploy_to}/shared/config/backups"
 end
 
 after 'deploy:update_code' do
@@ -91,4 +102,6 @@ after 'deploy:update_code' do
   upload "config/database.yml", "#{deploy_to}/shared/config/database.yml"
   upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
+  upload "config/backups/socitrad.rb", "#{deploy_to}/shared/config/backups/socitrad.rb"
+  upload "config/backup.rb", "#{deploy_to}/shared/config/backup.rb"
 end

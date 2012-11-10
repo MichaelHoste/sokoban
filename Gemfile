@@ -35,6 +35,9 @@ end
 group :production do
   gem 'unicorn'
   gem 'airbrake'
+  gem 'whenever',                :require => false
+  gem 'backup',                  :require => false
+  gem 'dropbox-sdk', '~> 1.2.0', :require => false
 end
 
 # To use ActiveModel has_secure_password
