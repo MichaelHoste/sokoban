@@ -1,8 +1,8 @@
 require "bundler/capistrano"
 
 # Comment when first "cap deploy" (gem is not present yet and "bundle" is made after this)
-set :whenever_command, 'bundle exec whenever'
-require 'whenever/capistrano'
+#set :whenever_command, 'bundle exec whenever'
+#require 'whenever/capistrano'
 
 # We want Bundler to handle our gems and we want it to package everything locally with the app. 
 # The --binstubs flag means any gem executables will be added to <app>/bin 
