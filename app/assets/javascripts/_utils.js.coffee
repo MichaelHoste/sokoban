@@ -50,12 +50,7 @@ $ ->
     $('#menus .fb_logout').length
     
   window.authenticity_token = ->
-    token_tag = ""
-    $('meta').each( ->
-      if $(this).attr('content') != 'authenticity_token'
-        token_tag = $(this).attr('content')
-    )
-    return token_tag
+    $('meta[name="csrf-token"]').attr('content')
     
   # level thumbs
   window.level_thumb = ->

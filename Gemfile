@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem "jax", '3.0.0.rc1'
+gem "jax", '3.0.0.rc2'
+gem 'jasmine', '1.3.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -23,6 +24,7 @@ end
 
 gem 'jquery-rails'
 gem 'therubyracer'  # Exec js code in ruby
+gem 'libv8', '~> 3.11.8'
 
 # Development tools
 group :development do
