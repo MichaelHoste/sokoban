@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# sokojax: http://ogp.me/ns/fb/sokojax#">
+<title>Sokoban</title>
+<meta charset="UTF-8" />
+<meta name="description" content="Play Sokoban and Challenge your Friends" />
+<meta name="author" content="Michaël Hoste">
+<link href="/assets/application-00b088777039a6ca635a0afba1cd84a7.css" media="all" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet" type="text/css">
+
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body data-new-user="0">
+
+<!-- <a id="github-banner" href="https://github.com/MichaelHoste/sokoban"> <i class="icon-large icon-github"></i>&nbsp;&nbsp;Fork me on GitHub </a> -->
+	<header class="header">
+		<div id="limited-header">
+			<div id="title"><h1><a href="/">Sokoban</a></h1></div>
+			<div id="menus">
+				<ul>
+					<li class="name fb_logged">
+						<div>
+							<span class="fb_img"><img title="Michaël Hoste" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" alt="371650_634478837_38342687_q"></span>
+							<span>User profile</span>
+						</div>
+					</li>
+					<li class="rules-menu">
+						<div>
+							Rules
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id="login-hover">
+				<ul>
+					<li><i class="icon-th-list"></i> to save your progression.</li>
+					<li><i class="icon-trophy"></i> to save your best scores.</li>
+					<li><i class="icon-user"></i> to compare your scores with your friends.</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	
+	<div id="banner" class="logged">
+		<div id="limited-banner">
+			<ul id="users-top">
+				<li><a href="#"><img title="Julien Boisdequin" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/369570_637813500_947389205_q.jpg" alt="369570_637813500_947389205_q"></a></li>
+				<li><a href="#"><img title="Juan Berger" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/372607_1578229592_1398183250_q.jpg" alt="372607_1578229592_1398183250_q"></a></li>
+				<li><a href="#"><img title="Michaël Hoste" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" alt="371650_634478837_38342687_q"></a></li>
+				<li><a href="#"><img title="Marc Ducobu" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/274359_61214298_1804132851_q.jpg" alt="274359_61214298_1804132851_q"></a></li>
+				<li><a href="#"><img title="Mathieu Michel" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/70542_1003836606_1608592734_q.jpg" alt="70542_1003836606_1608592734_q"></a></li>
+				<li><a href="#"><img title="Julien Boisdequin" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/369570_637813500_947389205_q.jpg" alt="369570_637813500_947389205_q"></a></li>
+				<li><a href="#"><img title="Juan Berger" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/372607_1578229592_1398183250_q.jpg" alt="372607_1578229592_1398183250_q"></a></li>
+				<li><a href="#"><img title="Michaël Hoste" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" alt="371650_634478837_38342687_q"></a></li>
+				<li><a href="#"><img title="Marc Ducobu" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/274359_61214298_1804132851_q.jpg" alt="274359_61214298_1804132851_q"></a></li>
+				<li><a href="#"><img title="Mathieu Michel" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/70542_1003836606_1608592734_q.jpg" alt="70542_1003836606_1608592734_q"></a></li>
+				<li><a href="#"><img title="Julien Boisdequin" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/369570_637813500_947389205_q.jpg" alt="369570_637813500_947389205_q"></a></li>
+				<li><a href="#"><img title="Juan Berger" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/372607_1578229592_1398183250_q.jpg" alt="372607_1578229592_1398183250_q"></a></li>
+				<li><a href="#"><img title="Michaël Hoste" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" alt="371650_634478837_38342687_q"></a></li>
+				<li><a href="#"><img title="Marc Ducobu" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/274359_61214298_1804132851_q.jpg" alt="274359_61214298_1804132851_q"></a></li>
+				<li><a href="#"><img title="Mathieu Michel" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/70542_1003836606_1608592734_q.jpg" alt="70542_1003836606_1608592734_q"></a></li>
+				<li><a href="#"><img title="Julien Boisdequin" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/369570_637813500_947389205_q.jpg" alt="369570_637813500_947389205_q"></a></li>
+				<li><a href="#"><img title="Juan Berger" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/372607_1578229592_1398183250_q.jpg" alt="372607_1578229592_1398183250_q"></a></li>
+			</ul>
+			<div class="user-hover">
+				<div class="user-hover-in">
+					<div class="user-name">Michaël Hoste</div>
+					<div class="user-stars">
+						<div class="user-stars-pack">
+							<span class="star icon-star"></span> <span class="num">12</span> <span>In this pack</span>
+						</div>
+						<div class="user-stars-total">
+							<span class="star icon-star"></span> <span class="num">12</span> <span>Total</span>
+						</div>
+					</div>
+					<div class="user-challenge-this">
+						<a href="#">Challenge on this LEVEL</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="content">
+		<div id="limited-content">
+				
+			<div id="menu-levels">
+				<div id="packs" data-pack-name="Novoban">
+					<select>
+						<option value="100 Boxes" >100 Boxes</option>
+						<option value="81" >81</option>
+						<option value="Alberto García 1-1" >Alberto García 1-1</option>
+						<option value="Alberto García 1-2" >Alberto García 1-2</option>
+						<option value="Alberto García 1-3" >Alberto García 1-3</option>
+						<option value="Alberto García Best 4 U" >Alberto García Best 4 U</option>
+						<option value="Albizia" >Albizia</option>
+						<option value="Aruba1" >Aruba1</option>
+						<option value="Aruba10" >Aruba10</option>
+						<option value="Aruba2" >Aruba2</option>
+						<option value="Aruba3" >Aruba3</option>
+						<option value="Aruba4" >Aruba4</option>
+						<option value="Aruba5" >Aruba5</option>
+						<option value="Aruba6" >Aruba6</option>
+						<option value="Aruba7" >Aruba7</option>
+						<option value="Aruba8" >Aruba8</option>
+						<option value="Aruba9" >Aruba9</option>
+						<option value="Boxxle 1" >Boxxle 1</option>
+						<option value="Boxxle 2" >Boxxle 2</option>
+						<option value="Brainsport" >Brainsport</option>
+						<option value="Brian Kent's Sokoban2K" >Brian Kent's Sokoban2K</option>
+						<option value="Calx" >Calx</option>
+						<option value="Cosmac" >Cosmac</option>
+						<option value="Cosmac 2" >Cosmac 2</option>
+						<option value="Cosmac 3" >Cosmac 3</option>
+						<option value="Cosmac 4" >Cosmac 4</option>
+						<option value="D&amp;R: Demons &amp; Diamonds" >D&amp;R: Demons &amp; Diamonds</option>
+						<option value="Dimitri &amp; Yorick" >Dimitri &amp; Yorick</option>
+						<option value="Erim Sever Collection" >Erim Sever Collection</option>
+						<option value="Essai" >Essai</option>
+						<option value="Fly" >Fly</option>
+						<option value="Frantisek Pokorny collection" >Frantisek Pokorny collection</option>
+						<option value="Gabi &amp; Jenny" >Gabi &amp; Jenny</option>
+						<option value="Grigr 2001" >Grigr 2001</option>
+						<option value="Grigr 2002" >Grigr 2002</option>
+						<option value="Howard Levels 1" >Howard Levels 1</option>
+						<option value="Howard's Fourth Set" >Howard's Fourth Set</option>
+						<option value="Howard's Second Set" >Howard's Second Set</option>
+						<option value="Howard's Third Set" >Howard's Third Set</option>
+						<option value="Initial Trouble" >Initial Trouble</option>
+						<option value="jcd levels" >jcd levels</option>
+						<option value="KEAS Collection" >KEAS Collection</option>
+						<option value="Kobus Theron collection" >Kobus Theron collection</option>
+						<option value="Kokoban" >Kokoban</option>
+						<option value="Loma" >Loma</option>
+						<option value="Mario Bonenfant collection" >Mario Bonenfant collection</option>
+						<option value="Mas Microban" >Mas Microban</option>
+						<option value="Mas Sasquatch" >Mas Sasquatch</option>
+						<option value="Master Head" >Master Head</option>
+						<option value="Micro Cosmos" >Micro Cosmos</option>
+						<option value="Microban" >Microban</option>
+						<option value="Mini Cosmos" >Mini Cosmos</option>
+						<option value="Monde" >Monde</option>
+						<option value="Nabo Cosmos" >Nabo Cosmos</option>
+						<option value="Novoban" selected=&quot;selected&quot;>Novoban</option>
+						<option value="Numbers" >Numbers</option>
+						<option value="Original &amp; Extra" >Original &amp; Extra</option>
+						<option value="Patera" >Patera</option>
+						<option value="Pico Cosmos" >Pico Cosmos</option>
+						<option value="Richard Weston Collection" >Richard Weston Collection</option>
+						<option value="Sasquatch" >Sasquatch</option>
+						<option value="Sasquatch III" >Sasquatch III</option>
+						<option value="Sasquatch IV" >Sasquatch IV</option>
+						<option value="Sasquatch V" >Sasquatch V</option>
+						<option value="Sasquatch VI" >Sasquatch VI</option>
+						<option value="Sasquatch VII" >Sasquatch VII</option>
+						<option value="Serena1" >Serena1</option>
+						<option value="Serena2" >Serena2</option>
+						<option value="Serena3" >Serena3</option>
+						<option value="Serena4" >Serena4</option>
+						<option value="Serena5" >Serena5</option>
+						<option value="Serena6" >Serena6</option>
+						<option value="Serena7" >Serena7</option>
+						<option value="Serena8" >Serena8</option>
+						<option value="Serena9" >Serena9</option>
+						<option value="Sharpen Collection" >Sharpen Collection</option>
+						<option value="Simple collection" >Simple collection</option>
+						<option value="Sokoban Online" >Sokoban Online</option>
+						<option value="Sokogen-990602 Levels" >Sokogen-990602 Levels</option>
+						<option value="Sokolate" >Sokolate</option>
+						<option value="Sokomania" >Sokomania</option>
+						<option value="Sokompact" >Sokompact</option>
+						<option value="Soloban" >Soloban</option>
+						<option value="Spirals" >Spirals</option>
+						<option value="Still More collection" >Still More collection</option>
+						<option value="Svens Collection" >Svens Collection</option>
+						<option value="Takaken collection" >Takaken collection</option>
+						<option value="TBox" >TBox</option>
+						<option value="TBox 2" >TBox 2</option>
+						<option value="TBox 3" >TBox 3</option>
+						<option value="TBox 4" >TBox 4</option>
+						<option value="The Bagatelle 2 collection" >The Bagatelle 2 collection</option>
+						<option value="The bagatelle collection" >The bagatelle collection</option>
+						<option value="The Cantrip 2 collection" >The Cantrip 2 collection</option>
+						<option value="The cantrip collection" >The cantrip collection</option>
+						<option value="The dh1 collection" >The dh1 collection</option>
+						<option value="The dh2 collection" >The dh2 collection</option>
+						<option value="The First One" >The First One</option>
+						<option value="The maelstrom collection" >The maelstrom collection</option>
+						<option value="The SokEvo collection" >The SokEvo collection</option>
+						<option value="The SokHard collection" >The SokHard collection</option>
+						<option value="Title Screens" >Title Screens</option>
+						<option value="Twisty" >Twisty</option>
+						<option value="YASGood" >YASGood</option>
+						<option value="Yoshio Murase's Auto-Generated" >Yoshio Murase's Auto-Generated</option>
+						<option value="Yoshio Murase's Hand-Made" >Yoshio Murase's Hand-Made</option>
+					</select>
+					<div class="packs-button"> <a href="/packs">Packs</a> </div>
+					<div class="clear">&nbsp;</div>
+				</div>
+				
+				<ul id="levels" class="levels">
+					<li class="is-selected" id="level-2227" data-level-name="Be ban 10" data-level-grid="####  #ss####ss$@##s*.s###sss# #####" data-level-width="6" data-level-height="6"> <span class="star icon-star"></span> <span class="level-index">1</span> </li>
+					<li  id="level-2228" data-level-name="Be ban 9" data-level-grid="####  #ss#  #ss####ss$s###*#.##ss@s##ssss##ss#######  " data-level-width="6" data-level-height="9"> <span class="star icon-star-empty"></span> <span class="level-index">2</span> </li>
+					<li  id="level-2229" data-level-name="Be ban 7" data-level-grid="####  #ss#  #ss#  #s@####s$$s##.ss.#######" data-level-width="6" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">3</span> </li>
+					<li  id="level-2230" data-level-name="Be ban 1" data-level-grid="##### #sss# #.#$###ss@s##.s$s####ss#  ####" data-level-width="6" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">4</span> </li>
+					<li  id="level-2231" data-level-name="Be ban 5" data-level-grid="  #######ss##.$$.##s#ss##s@ss####ss#  ####" data-level-width="6" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">5</span> </li>
+					<li  id="level-2232" data-level-name="Try ban 5" data-level-grid="  ####  ###ss#  #ssss#  #sss.######s#@.#  #s$$s#  #ss$s#  #.s###  ####  " data-level-width="8" data-level-height="9"> <span class="star icon-star-empty"></span> <span class="level-index">6</span> </li>
+					<li  id="level-2233" data-level-name="Surrounded" data-level-grid=" ##### ##...###s$$$.##s$+$s##.$$$s###..ss# ######" data-level-width="7" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">7</span> </li>
+					<li  id="level-2234" data-level-name="Be ban 3" data-level-grid=" ###### ##ssss# #s$##s###ssssss###ss.@.# #$#s### #sss#   #####  " data-level-width="8" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">8</span> </li>
+					<li  id="level-2235" data-level-name="The gun" data-level-grid=" ####   ##ss#####ssssss##s..#$s####ss$s#  ###@s#    ####" data-level-width="8" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">9</span> </li>
+					<li  id="level-2236" data-level-name="Be ban 2" data-level-grid="    #####     #sss# #####s#s###ss#s$sss##sss$ss#s##s..s#sss####@s#####  #ss#      ####    " data-level-width="10" data-level-height="9"> <span class="star icon-star-empty"></span> <span class="level-index">10</span> </li>
+					<li  id="level-2237" data-level-name="Try ban 11" data-level-grid="  #####    #sss######@$.ss##ss*#sss##sss$.s#######ss#     #### " data-level-width="9" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">11</span> </li>
+					<li  id="level-2238" data-level-name="Be ban 14" data-level-grid="####   #ss#####s.sss##s@$$s###ss### #.s#   #ss#   ####  " data-level-width="7" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">12</span> </li>
+					<li  id="level-2239" data-level-name="Be Ban 04" data-level-grid=" ##### ##ss.# #s$#.# #ssss####s#ss# #$s@s# #sss## ##### " data-level-width="7" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">13</span> </li>
+					<li  id="level-2240" data-level-name="The dog" data-level-grid="   #####   #sss#####sss##.*sss###s$#ss# #@s#ss# ####### " data-level-width="8" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">14</span> </li>
+					<li  id="level-2241" data-level-name="Be ban 6" data-level-grid="####  #.@#  #ss####s$ss##s$.s##ss#######  " data-level-width="6" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">15</span> </li>
+					<li  id="level-2242" data-level-name="Try ban 7" data-level-grid="   ####      #ss#      #ss#   ####ss#####sss#s$@s##sssss$$.####s###ss# ##s.##### #sss#     #.ss#     #####    " data-level-width="10" data-level-height="11"> <span class="star icon-star-empty"></span> <span class="level-index">16</span> </li>
+					<li  id="level-2243" data-level-name="The house" data-level-grid="     #         ###      ##s@s##   #s.s*s.s# #s$.$*$.$s##ss##s##ss##sssssssss############" data-level-width="11" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">17</span> </li>
+					<li  id="level-2244" data-level-name="Be ban 11" data-level-grid=" ####### #ssss.# #s###.###s#sss##ss#s$s##ss@s$###ss#ss# ####### " data-level-width="8" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">18</span> </li>
+					<li  id="level-2245" data-level-name="Try ban 6" data-level-grid="  ####   ###ss#####ssss#@.##ssss$$.##ss##s$.######sss#    #####" data-level-width="9" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">19</span> </li>
+					<li  id="level-2246" data-level-name="For ban 21" data-level-grid=" #####   #s@s### #s#sss###$.*#s##s$.*ss##s#ss####ssss#  ######  " data-level-width="8" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">20</span> </li>
+					<li  id="level-2247" data-level-name="The finger" data-level-grid="  ##      #ss#     #$@#     #.$##   ##.$ss## #s.#sss###sssssss######sss#    #####" data-level-width="9" data-level-height="9"> <span class="star icon-star-empty"></span> <span class="level-index">21</span> </li>
+					<li  id="level-2248" data-level-name="Try ban 1" data-level-grid="####   #ss### #s@ss# #.s#$####.$ss##s$.#s##s#sss##ssss#####ss#   #### " data-level-width="7" data-level-height="10"> <span class="star icon-star-empty"></span> <span class="level-index">22</span> </li>
+					<li  id="level-2249" data-level-name="For ban 9" data-level-grid=" #######  ##ss#ss####s$s#s$ss##ss.@.sss###$s#s$### #s.s.s#   #######  " data-level-width="10" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">23</span> </li>
+					<li  id="level-2250" data-level-name="Try ban 17" data-level-grid="####    #ss######ss.*.s##s$s$s@##sss#########   " data-level-width="8" data-level-height="6"> <span class="star icon-star-empty"></span> <span class="level-index">24</span> </li>
+					<li  id="level-2251" data-level-name="Try ban 19" data-level-grid="########.s.s.##sss#s###ss$s# #s$$## #ss@#  ##### " data-level-width="7" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">25</span> </li>
+					<li  id="level-2252" data-level-name="Be ban 8" data-level-grid=" ####   #ss## ##sss###s@$$s##s#s#s##..sss########" data-level-width="7" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">26</span> </li>
+					<li  id="level-2253" data-level-name="Try ban 20" data-level-grid="  ####   #s.# ###ss###s$$ss##sssss###$#s## #.@.#  ##### " data-level-width="7" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">27</span> </li>
+					<li  id="level-2254" data-level-name="Try ban 21" data-level-grid="  #####   #sss# ###$#s###ss$@$s##s#ssss##...s#########  " data-level-width="8" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">28</span> </li>
+					<li  id="level-2255" data-level-name="For ban 4" data-level-grid="######    #ssss#    #ss.$#######*+$ssss# #s.$#sss# ##ss#####  ####    " data-level-width="10" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">29</span> </li>
+					<li  id="level-2256" data-level-name="Try ban 22" data-level-grid=" #########s.sss##s$*$#s##s#@sss##ss.s#########  " data-level-width="8" data-level-height="6"> <span class="star icon-star-empty"></span> <span class="level-index">30</span> </li>
+					<li  id="level-2257" data-level-name="For ban 8" data-level-grid=" ####### ##....@###ss$s#$s##ss$ss$s##ss##sss##########" data-level-width="9" data-level-height="6"> <span class="star icon-star-empty"></span> <span class="level-index">31</span> </li>
+					<li  id="level-2258" data-level-name="Try ban 10" data-level-grid="   ########s@##ss$$s##s.s$s###..s## ##### " data-level-width="7" data-level-height="6"> <span class="star icon-star-empty"></span> <span class="level-index">32</span> </li>
+					<li  id="level-2259" data-level-name="For ban 35" data-level-grid="#########s.@.ss##s$s$ss###*#*####sssss# #sssss# #ss#### ####    " data-level-width="8" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">33</span> </li>
+					<li  id="level-2260" data-level-name="For ban 18" data-level-grid="####### #s.sss# #ss$..# ###$*####s$@sss##ssssss#########" data-level-width="8" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">34</span> </li>
+					<li  id="level-2261" data-level-name="Try ban 14" data-level-grid="  #### ###ss# #ssss###s#s..##s$$$@####s#s#  #ss.#  #####" data-level-width="7" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">35</span> </li>
+					<li  id="level-2262" data-level-name="Try ban 16" data-level-grid="  ########sss##s$$$@##...s###ssss# ###### " data-level-width="7" data-level-height="6"> <span class="star icon-star-empty"></span> <span class="level-index">36</span> </li>
+					<li  id="level-2263" data-level-name="Try ban 18" data-level-grid="  ##### ##sss# #s@ss###s$s###s$*s# #s#.s# #ss.## #####  " data-level-width="7" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">37</span> </li>
+					<li  id="level-2264" data-level-name="For ban 26" data-level-grid="  ####    #ss#  ###$s## #ss$ss# #@#*.s###ss*.ss####ssss#  ######" data-level-width="8" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">38</span> </li>
+					<li  id="level-2265" data-level-name="Try ban 8" data-level-grid="    #####  ###@ss#  #.s$s.#  #ss$s## ###s### ##s$ss#  #sssss#  #.ss###  #####    " data-level-width="9" data-level-height="9"> <span class="star icon-star-empty"></span> <span class="level-index">39</span> </li>
+					<li  id="level-2266" data-level-name="Try ban 15" data-level-grid="####  #ss## #@.s# #..$###s$$s##ssss#######" data-level-width="6" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">40</span> </li>
+					<li  id="level-2267" data-level-name="Try ban 23" data-level-grid="  ####    #ss######s.ss##@$$$ss##sss#.s####.ss##  ##### " data-level-width="8" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">41</span> </li>
+					<li  id="level-2268" data-level-name="Try ban 28" data-level-grid=" ####    #ss#    #ss#### #s..*s###s$$@s##sss#####sss#   #####   " data-level-width="8" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">42</span> </li>
+					<li  id="level-2269" data-level-name="For ban 10" data-level-grid="#####    #sss###  #ss.$s#####s.#s$s# #s.#s$@# ##.ss$s#  #ss####  ####   " data-level-width="9" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">43</span> </li>
+					<li  id="level-2270" data-level-name="The plane" data-level-grid="####     #ss##### #ssss@s###s.*.$*s###ss#$ss# ##sss###  #####  " data-level-width="9" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">44</span> </li>
+					<li  id="level-2271" data-level-name="For ban 6" data-level-grid="    #### #####ss# #sss..$###s$@#s$s###$..sss# #ss##ss# ########" data-level-width="9" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">45</span> </li>
+					<li  id="level-2272" data-level-name="For ban 17" data-level-grid=" #####  #sss#  #s#$####..@s##s*.$s##s#s$###ssss# ###### " data-level-width="7" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">46</span> </li>
+					<li  id="level-2273" data-level-name="For ban 27" data-level-grid="###      #.#####  #...ss#  #s#s#s####sss$$s@####ss$$s#  ###sss#    #####" data-level-width="9" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">47</span> </li>
+					<li  id="level-2274" data-level-name="Try ban 4" data-level-grid=" ######## #ss##s.###sss$ss##ss$#$s.##sss#@s###.s##ss# ######## " data-level-width="9" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">48</span> </li>
+					<li  id="level-2275" data-level-name="For ban 37" data-level-grid=" #####   #sss#  ##sss####s$$$$s##s....s###s@s### #####  " data-level-width="8" data-level-height="7"> <span class="star icon-star-empty"></span> <span class="level-index">49</span> </li>
+					<li  id="level-2276" data-level-name="For ban 5" data-level-grid="######## #..s@..# #ss$$$s# ####s#####sssssss##sssss$s##ss##########     " data-level-width="9" data-level-height="8"> <span class="star icon-star-empty"></span> <span class="level-index">50</span> </li>
+				</ul>
+			</div>
+  
+			<div class="level-thumb" data-level-grid="" data-level-width="" data-level-height="">
+				<div class="level-thumb-in">
+					<div id="level-thumb-canvas">Preview</div>
+				</div>
+			</div>
+				
+			<div id="game">
+				<div class="game-out">
+					<div class="game-won">
+						<div class="game-won-in">
+							<a href="#" class="close-game-won">Close</a>
+							<div class="game-won-in-left">
+								<h3>Level successfully completed!</h3>
+								<div id="final-score" class="score">
+									<div class="score-pushes"> <span class="num">12</span> pushes</div>
+									<div class="score-moves"> <span class="num">26</span> moves</div>
+								</div>
+								
+								<div class="final-score-item">
+									<div class="score-position">2.</div>
+									<div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+									<div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+									<div class="score-pushes">
+										<p><strong>5</strong> pushes (30)</p>
+									</div>
+								</div>
+								<div class="final-score-item">
+									<div class="score-position">3.</div>
+									<div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+									<div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+									<div class="score-pushes">
+										<p><strong>5</strong> pushes (30)</p>
+									</div>
+								</div>
+								<div class="final-score-item">
+									<div class="score-position">4.</div>
+									<div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+									<div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+									<div class="score-pushes">
+										<p><strong>5</strong> pushes (30)</p>
+									</div>
+								</div>
+							</div>
+							<div class="game-won-in-right">
+								<div class="ad300">	Ad 300 x 250</div>
+								
+								<div class="challenge-user">
+									<div class="challenge-user-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+									<h2 class="challenge-small-title">Challenge</h2>
+									<div class="challenge-user-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+								</div>
+								
+								<ul class="game-actions">
+									<li class="game-action-retry"><a href="#">Retry</a></li>
+									<li class="game-action-next"><a href="#">Next</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="game-in">&nbsp;</div>
+				</div>
+				<div class="large-shad">&nbsp;</div>
+
+			</div>
+
+		</div>
+		
+		<div id="limited-content-xl">
+			<div id="challenges">
+				<div id="limited-challenges">
+					<h2 class="challenge-title">Challenges</h2>
+				
+					<div id="invitations">  
+						<div data-f_id="637813500" class="invite-item">
+							<div class="invite-picture">
+								<a href="http://www.facebook.com/jboisdequin"><img title="Julien Boisdequin" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/369570_637813500_947389205_q.jpg" alt="369570_637813500_947389205_q"></a>
+							</div>
+							<div class="invite-name">
+								<a title="Julien Boisdequin" href="http://www.facebook.com/jboisdequin">Julien Boisdequin</a>
+							</div>
+						</div>
+						
+						<div data-f_id="548637961" class="invite-item">
+							<div class="invite-picture">
+								<a href="http://www.facebook.com/giuseppe.cappalonga"><img title="Giuseppe Cappalonga" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/573141_548637961_1327302896_q.jpg" alt="573141_548637961_1327302896_q"></a>
+							</div>
+							<div class="invite-name">
+								<a title="Giuseppe Cappalonga" href="http://www.facebook.com/giuseppe.cappalonga">Giuseppe Cappalonga</a>
+							</div>
+						</div>
+						
+						<div data-f_id="1003836606" class="invite-item">
+							<div class="invite-picture">
+								<a href="http://www.facebook.com/mathieu.michel.5437"><img title="Mathieu Michel" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/70542_1003836606_1608592734_q.jpg" alt="70542_1003836606_1608592734_q"></a>
+							</div>
+							<div class="invite-name">
+								<a title="Mathieu Michel" href="http://www.facebook.com/mathieu.michel.5437">Mathieu Michel</a>
+							</div>
+						</div>
+						
+						<div data-f_id="61214298" class="invite-item">
+							<div class="invite-picture">
+								<a href="http://www.facebook.com/marcucobu"><img title="Marc Ducobu" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/274359_61214298_1804132851_q.jpg" alt="274359_61214298_1804132851_q"></a>
+							</div>
+							<div class="invite-name">
+								<a title="Marc Ducobu" href="http://www.facebook.com/marcucobu">Marc Ducobu</a>
+							</div>
+						</div>
+						
+						<div data-f_id="783107305" class="invite-item">
+							<div class="invite-picture">
+								<a href="http://www.facebook.com/783107305"><img title="Denis Lambert" src="http://profile.ak.fbcdn.net/hprofile-ak-snc6/623459_783107305_1205759292_q.jpg" alt="623459_783107305_1205759292_q"></a>
+							</div>
+							<div class="invite-name">
+								<a title="Denis Lambert" href="http://www.facebook.com/783107305">Denis Lambert</a>
+							</div>
+						</div>
+					
+					</div>
+					<div id="invitations-more">
+						<a href="#">More users to challenge</a>
+					</div>
+				</div>
+			</div>
+			<div id="users">
+				<div id="friends">
+					<div class="scores-title">Friends</div>
+					<div id="score-friends">
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/juan.berger.9"><img alt="372607_1578229592_1398183250_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/372607_1578229592_1398183250_q.jpg" title="Juan Berger" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/juan.berger.9" title="Juan Berger">Juan Berger</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/manuel.valansi"><img alt="370006_1111656110_636224774_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/370006_1111656110_636224774_q.jpg" title="Manuel Valansi" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/manuel.valansi" title="Manuel Valansi">Manuel Valansi</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/miles.johnson.165"><img alt="368718_100002391736813_1062165200_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/368718_100002391736813_1062165200_q.jpg" title="Miles Johnson" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/miles.johnson.165" title="Miles Johnson">Miles Johnson</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/hidayetnaci.akkaya"><img alt="273700_100002980959074_904464133_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/273700_100002980959074_904464133_q.jpg" title="Hidayet Naci Akkaya" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/hidayetnaci.akkaya" title="Hidayet Naci Akkaya">Hidayet Naci Akkaya</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div id="more-global-score" class="scores-less" style="" data-page="1"><a href="#">Less</a></div>
+					</div>
+				</div>
+				<div class="large-shad">&nbsp;</div>
+				
+				<div id="all">
+					<div class="scores-title">All</div>
+					<div id="score-all">
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/hidayetnaci.akkaya"><img alt="273700_100002980959074_904464133_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc6/273700_100002980959074_904464133_q.jpg" title="Hidayet Naci Akkaya" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/hidayetnaci.akkaya" title="Hidayet Naci Akkaya">Hidayet Naci Akkaya</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div class="score-item">
+							<div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+							<div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+							<div class="score-pushes">
+								<p><strong>5</strong> pushes (30)</p>
+							</div>
+						</div>
+						<div id="more-global-score" class="scores-more" style="" data-page="1"><a href="#">More</a></div>
+					</div>
+				</div>
+				<div class="large-shad">&nbsp;</div>
+			</div>
+		</div>
+		<!-- With this "trick", the main div stretch to adapt itself to the two floating div (features and new user) -->
+		
+	</div>
+	<div class="footer"> <a href="/terms_of_service">Terms of Service</a> | <a href="/privacy_policy">Privacy Policy</a> | <a href="mailto:contact@sokoban.be">Contact us</a> </div>
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+	google.load("jquery", "1.4.3");
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#level-2230').hover(
+		function () {
+			$('.level-thumb').show();
+		}, 
+		function () {
+			$('.level-thumb').hide();
+		}
+	);
+});
+</script>
+</body>
+</html>
