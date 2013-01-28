@@ -3,7 +3,7 @@
   <div id="banner" class="banner-friends">
     <div id="limited-banner">
       <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack) %>
-      
+
       <% # list of subscribed friends and me %>
       <% subscribed_friends_and_me.each do |friend| %>
         <%= image_tag friend.profile_picture, :class => 'tips', :title => "#{friend.name} - #{friend.won_levels_count(@pack)}", 'data-f_id' => friend.f_id %>
@@ -12,17 +12,19 @@
           <%= friend.won_levels_ids(@pack).join(',') %>
         </span>
       <% end %>
-      
+
       <% # invite more friends %>
       <%= image_tag 'add_friend.png', :id => 'add-friend', :class => 'tips popup', :title => 'Invite more friends' %>
     </div>
     <div style="clear:both"></div>
-  </div>  
+  </div>
 
 <% else %>
 
-  <div id="banner" class="banner-text">
-    <h1>PLAY SOKOBAN AND CHALLENGE YOUR FRIENDS</h1>
+  <div id="banner">
+    <div id="limited-banner" class="banner-text">
+      <h2>Play Sokoban and Challenge your Friends</h2>
+    </div>
   </div>
 
 <% end %>

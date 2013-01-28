@@ -9,20 +9,21 @@
     <link rel="shortcut icon" href="/favicon.gif">
 
     <% if @level %>
-      <meta property="fb:app_id"       content="<%= ENV['SOKOBAN_FACEBOOK_KEY'] %>" /> 
-      <meta property="og:type"         content="sokojax:level" /> 
-      <meta property="og:url"          content="http://sokoban.be/packs/<%= URI.escape(@level.pack.name) %>/levels/<%= URI.escape(@level.name) %>" /> 
-      <meta property="og:title"        content="<%= @level.name %>" /> 
-      <meta property="og:description"  content="Pack : <%= @level.pack.name.gsub(/\n/," ").gsub(/\r/," ") %> | <%= @level.pack.description.gsub(/\n/," ").gsub(/\r/," ") %>" /> 
+      <meta property="fb:app_id"       content="<%= ENV['SOKOBAN_FACEBOOK_KEY'] %>" />
+      <meta property="og:type"         content="sokojax:level" />
+      <meta property="og:url"          content="http://sokoban.be/packs/<%= URI.escape(@level.pack.name) %>/levels/<%= URI.escape(@level.name) %>" />
+      <meta property="og:title"        content="<%= @level.name %>" />
+      <meta property="og:description"  content="Pack : <%= @level.pack.name.gsub(/\n/," ").gsub(/\r/," ") %> | <%= @level.pack.description.gsub(/\n/," ").gsub(/\r/," ") %>" />
       <meta property="og:image"        content="http://sokoban.be/packs/<%= URI.escape(@level.pack.name) %>/levels/<%= URI.escape(@level.name) %>/thumb.png" />
       <meta property="sokojax:level_name" content="<%= @level.name %>" />
       <meta property="sokojax:pack_name"  content="<%= @level.pack.name %>" />
     <% end %>
-    
+
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css' />
-    
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet" type="text/css">
+
     <%= javascript_include_tag "application_start" %>
     <%= javascript_include_tag 'jax' %>
     <%#= javascript_include_tag 'jax/runtime' %>
@@ -31,28 +32,24 @@
     <script src="http://connect.facebook.net/en_US/all.js" type="text/javascript"></script>
 
     <%= csrf_meta_tags %>
-    
+
     <%= render :template => 'layouts/google_analytics_headers' %>
   </head>
-  
+
   <% new_user = (not session[:user_id] and not cookies[:already_read_the_welcome_message]) ? '1' : '0' %>
   <body data-new-user="<%= new_user %>">
     <%= render :template => 'layouts/facebook_headers' %>
     <%= render :template => 'layouts/googleplus_headers' %>
-    
-    <%= render :template => 'layouts/github_banner' %>
+
+    <%# render :template => 'layouts/github_banner' %>
     <%= render :template => "layouts/header" %>
     <%= render :template => "layouts/banner" %>
-    
+
     <div id="content">
-      <div id="limited-content">
-        <%= yield %>
-      </div>
-      <!-- With this "trick", the main div stretch to adapt itself to the two floating div (features and new user) -->
-      <div style="clear:both"></div>
+      <%= yield %>
     </div>
-    
-    <footer>
+
+    <footer class="footer">
       <%= render :template => 'layouts/footer' %>
     </footer>
   </body>

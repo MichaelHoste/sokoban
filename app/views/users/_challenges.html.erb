@@ -1,0 +1,14 @@
+<div id="challenges">
+  <div id="limited-challenges">
+    <h2 class="challenge-title">Challenges</h2>
+    <div id="invitations">
+      <% unless current_user %>
+        <%= link_to image_tag("facebook-connect-banner.gif"), '/auth/facebook' %>
+      <% end %>
+      <%# AJAX ! 'users/popular_friends' %>
+    </div>
+    <div id="invitations-more">
+      <a href="#">More users to challenge</a>
+    </div>
+  </div>
+</div>
