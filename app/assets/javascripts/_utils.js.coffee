@@ -1,65 +1,65 @@
-$ -> 
+$ ->
   # connect to facebook
   FB.init({appId: '312592002148798', xfbml: true, cookie: true})
-  
+
   window.facebook_send = (link, description, to = "") ->
-    options = 
+    options =
       method:       'send'
       link:         link
       description:  description
       to:           to
-              
+
     FB.ui(options)
 
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
     token_tag = window.authenticity_token()
-  
+
     $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'100px', height:'455px', width:'500px' }, ->
       $("#cboxClose").hide()
       window.next_level_thumb()
     )
-   
+
   window.colorbox_facebook = ->
     $.colorbox({href:'/login', top:'190px', height:'155px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
-    
+
   window.colorbox_welcome = ->
     $.colorbox({href:'/workflows/show_welcome/', top:'100px', height:'320px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
-    
+
   window.colorbox_controls = ->
     $.colorbox({href:'/workflows/show_controls/', top:'100px', height:'310px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
-      
+
   window.colorbox_rules = ->
     $.colorbox({href:'/workflows/show_rules/', top:'100px', height:'315px', width:'500px'}, ->
       $("#cboxClose").hide()
       create_thumb('rules-level1')
       create_thumb('rules-level2')
     )
-  
+
   window.colorbox_challenges_and_packs = ->
     $.colorbox({href:'/workflows/show_challenges_and_packs/', top:'100px', height:'320px', width:'500px'}, ->
       $("#cboxClose").hide()
     )
-    
+
   window.is_logged = ->
     $('#menus .fb_logout').length
-    
+
   window.authenticity_token = ->
     $('meta[name="csrf-token"]').attr('content')
-    
+
   # level thumbs
   window.level_thumb = ->
     create_thumb('level-thumb')
-    
+
   # next level thumb
   window.next_level_thumb = ->
     create_thumb('next-level-thumb')
-    
+
   # create thumb of a level depending on the class name of the div
   # <div class="#{class_name}">
   #   <div id="#{class_name}-canvas"></div>
@@ -72,11 +72,11 @@ $ ->
       level_width  = $(this).attr('data-level-width')
       level_height = $(this).attr('data-level-height')
       level_canvas = "#{class_name}-canvas"
-  
+
       thumb = Level.find "actual"
       thumb.create_2d(pack_name, level_name, level_line, level_width, level_height, level_canvas)
     )
-    
+
   window.change_level = ->
     # FIXME window.context.redirectTo must be sufficient and faster !
     # but it seems to have a memory leak somewhere (Jax or me ?)
@@ -85,11 +85,11 @@ $ ->
     window.context.canvas = document.body
     window.context.setupInputDevices()
     window.context.redirectTo("level/index")
-  
+
     # show scores related to the new level
     window.reload_scores()
     window.reload_invitations()
-    
+
   window.reload_scores = (friend_page = 1, global_page = 1) ->
     pack_name = $('#packs').attr('data-pack-name')
     level_name = $('#levels').find('.is-selected').attr('data-level-name')
@@ -102,26 +102,26 @@ $ ->
     .success((data, status, xhr) =>
       $('#scores').html(data)
     )
-  
+
   # Disable up, down, left, right to scroll
   # left: 37, up: 38, right: 39, down: 40, spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
   keys = [37, 38, 39, 40]
-  
+
   preventDefault = (e) ->
     e = e || window.event
     if e.preventDefault
       e.preventDefault()
     e.returnValue = false
-  
+
   keydown = (e) ->
-    for i in keys      
+    for i in keys
       if e.keyCode == i
         preventDefault(e)
         return
-  
+
   disable_scroll = ->
     document.onkeydown = keydown
-  
+
   enable_scroll = ->
     document.onkeydown = null
 
@@ -144,6 +144,6 @@ $ ->
   # if new user (data-new-user="1" in <body> tag... computed server-side)
   if $('body').attr('data-new-user') == '1'
     window.colorbox_welcome()
-    
+
   $('.tips').tipsy()
-  
+

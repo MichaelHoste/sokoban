@@ -1,0 +1,290 @@
+@import "utils.css.scss";
+
+// common to all workflows
+.title
+{
+  font-size:18px;
+  text-align:center;
+  font-weight:bold;
+  color:#444444;
+  padding-top:20px;
+}
+
+.sub-title
+{
+  height:20px;
+  text-align:center;
+  color:#555555;
+}
+
+.buttons
+{
+  border-top:1px solid $light;
+  margin-top:20px;
+  padding-top:9px;
+  padding-left:6px;
+  padding-right:6px;
+
+  span
+  {
+    font-family:'Droid Sans', Arial, Verdana, Helvetica, sans-serif;
+    font-color:#444444;
+    font-size:13px;
+  }
+
+  ul
+  {
+    float:right;
+
+    li
+    {
+      float:left;
+      list-style-type:none;
+      padding:10px;
+      padding-left:15px;
+      padding-right:20px;
+      margin-left:4px;
+      @extend .button_off;
+    }
+
+    li:hover
+    {
+      @extend .button_on;
+    }
+  }
+}
+
+// specific to some workflows
+#next-level
+{
+  .next-level-star
+  {
+    float:left;
+    height:135px;
+    width:180px;
+    text-align:center;
+
+    i
+    {
+      display:block;
+      margin-top:-10px;
+      color:black;
+      -webkit-text-fill-color:#EDDA74; // fallback color if no stroke
+      -webkit-text-stroke: 3px rgb(0,0,0);
+      font-size:140px;
+    }
+  }
+
+  .next-level-text
+  {
+    float:left;
+    height:185px;
+    width:280px;
+    vertical-align:center;
+
+    p
+    {
+      font-size:30px;
+      font-weight:bold;
+      font-family:'Droid Sans', Arial, Verdana, Helvetica, sans-serif;
+      margin:0px;
+      padding:0px;
+      margin-top:34px;
+      margin-bottom:34px;
+    }
+  }
+
+  .next-level-score
+  {
+    float:left;
+    width:180px;
+    height:50px;
+    font-weight:bold;
+    font-size:20px;
+    text-align:center;
+    margin-top:-65px;
+
+    p
+    {
+      margin:0px;
+      padding:0px;
+      padding-top:5px;
+      padding-bottom:5px;
+    }
+  }
+
+  .next-level-thumb
+  {
+    width:460px;
+    height:200px;
+    //border:1px solid black;
+
+    #next-level-thumb-canvas
+    {
+      width:460px;
+      height:200px;
+    }
+
+    #next-level-thumb-canvas:hover
+    {
+      cursor:pointer;
+    }
+  }
+
+  .next-level-next
+  {
+    cursor:pointer;
+    width:460px;
+    height:40px;
+    text-align:center;
+    font-size:30px;
+
+    i
+    {
+
+    }
+  }
+
+  .next-level-next:hover
+  {
+    text-decoration:underline;
+  }
+}
+
+#welcome
+{
+  .description-bar
+  {
+    border-top:1px solid $light;
+    border-bottom:1px solid $light;
+    margin-top:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:$lighter;
+    font-family:arial;
+    font-weight:bold;
+    text-align:center;
+    color:#444444;
+  }
+
+  .image
+  {
+    table
+    {
+      margin-top:20px;
+      left:-50%;
+      margin-left:160px;
+
+      td
+      {
+        margin:0px;
+        padding:0px;
+        font-size:0px;
+
+        img
+        {
+          width:32px;
+          height:32px;
+          font-size:0px;
+        }
+      }
+    }
+  }
+}
+
+#controls
+{
+  .images
+  {
+    margin-top:20px;
+    margin-left:22px;
+
+    img
+    {
+      width:140px;
+    }
+
+    table
+    {
+      .keyboard
+      {
+        @extend .border_box;
+        width:170px;
+        padding-left:10px;
+        vertical-align: middle;
+      }
+
+      .arrow
+      {
+        @extend .border_box;
+        width:80px;
+        text-align:center;
+        vertical-align: middle;
+
+        i
+        {
+          color:#444444;
+          font-size:40px;
+        }
+      }
+
+      .level
+      {
+        @extend .border_box;
+        width:170px;
+        padding-left:25px;
+        vertical-align: middle;
+      }
+    }
+
+    table.pusher
+    {
+      td
+      {
+        margin:0px;
+        padding:0px;
+        font-size:0px;
+
+        img
+        {
+          width:25px;
+          height:25px;
+          font-size:0px;
+        }
+      }
+    }
+  }
+}
+
+#rules
+{
+  table
+  {
+    .arrow
+    {
+      @extend .border_box;
+      width:60px;
+      text-align:center;
+      vertical-align: middle;
+
+      i
+      {
+        color:#444444;
+        font-size:40px;
+      }
+    }
+  }
+
+  .rules-level1, .rules-level2
+  {
+    width:210px;
+    height:150px;
+    vertical-align: middle;
+
+    #rules-level1-canvas, #rules-level2-canvas
+    {
+      width:210px;
+      height:150px;
+    }
+  }
+}
