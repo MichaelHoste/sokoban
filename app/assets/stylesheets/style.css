@@ -67,10 +67,15 @@ body {
 	height: 76px;
 	background: url('/assets/banner-blue-bkg.png') repeat-x;
 	z-index:10;
+	overflow:hidden;
 }
-#banner.logged {
+#banner.banner-friends {
 	height: 76px;
 	background: url('/assets/banner-gray-bkg.png') repeat-x;
+}
+#banner #add-friend {
+	height:40px;
+	width:40px;
 }
 #content {
 	padding: 25px 0 0 0;
@@ -124,6 +129,7 @@ body {
 		#limited-banner #users-top li {
 			float: left;
 			padding: 4px;
+			padding-bottom: 10px;
 		}
 			#limited-banner #users-top li a {
 				display: block;
@@ -273,6 +279,7 @@ body {
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
 		margin-left: 10px;
+		cursor:pointer;
 	}
 
 #limited-header #login-hover { display: none; }
@@ -574,7 +581,7 @@ body {
 			border-right: 1px solid #e0e0e0;
 		}
 
-		#invitations-more a {
+		#invitations-more {
 			text-decoration: none;
 			background: url('/assets/challenges-more.png') no-repeat;
 			display: block;
@@ -586,27 +593,28 @@ body {
 			font-weight: bold;
 			text-shadow: 0px 1px 1px #555555;
 			filter: dropshadow(color=#555555, offx=0, offy=1);
+			cursor:pointer;
 		}
 
 /* ==================== Users scores =================== */
-#users {
+#scores {
 	float: right;
 	width: 596px;
 	position: relative;
 }
 
-	#users #friends,
-	#users #all {
-		padding: 10px 5px 10px 82px;
+	#scores #friends,
+	#scores #all {
+		padding: 10px 5px 6px 82px;
 		background: #FFF;
 		border: 1px solid #e0e0e0;
 		border-bottom: 0;
 		position: relative;
 	}
-	#users #all {
+	#scores #all {
 		margin: 20px 0 0;
 	}
-	#users .scores-title {
+	#scores .scores-title {
 		width: 76px;
 		height: 50px;
 		padding: 20px 0 0;
@@ -618,20 +626,20 @@ body {
 		line-height: 14px;
 		text-indent: -9999px;
 	}
-	#users #friends .scores-title {
+	#scores #friends .scores-title {
 		background: url('/assets/friends-img.png') no-repeat;
 	}
-	#users #all .scores-title {
+	#scores #all .scores-title {
 		background: url('/assets/all-img.png') no-repeat;
 	}
-	#users .scores-more a,
-	#users .scores-less a {
+	#scores .scores-more a,
+	#scores .scores-less a {
 		text-decoration: none;
 		display: block;
 		color: #444;
 		position: absolute;
 		left: 10px;
-		bottom: 10px;
+		bottom: 11px;
 		border: 1px solid #cccccc;
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
@@ -641,7 +649,7 @@ body {
 		font-weight: bold;
 		background: url('/assets/sprites.png') no-repeat 100% 0;
 	}
-	#users .scores-less a{
+	#scores .scores-less a{
 		background: url('/assets/sprites.png') no-repeat 100% -50px;
 	}
 /* ==================== People items =================== */
@@ -665,6 +673,7 @@ body {
 		}
 
 		.invite-item {
+			height:85px;
 			width: 60px;
 			overflow: hidden;
 			margin: 0 6px 12px 6px;

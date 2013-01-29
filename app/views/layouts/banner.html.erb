@@ -2,21 +2,48 @@
 
   <div id="banner" class="banner-friends">
     <div id="limited-banner">
-      <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack) %>
+      <ul id="users-top">
 
-      <% # list of subscribed friends and me %>
-      <% subscribed_friends_and_me.each do |friend| %>
-        <%= image_tag friend.profile_picture, :class => 'tips', :title => "#{friend.name} - #{friend.won_levels_count(@pack)}", 'data-f_id' => friend.f_id %>
-        <span style="display:none" data-user-id="<%= friend.id %>">
-          <% # won levels ids of current pack OR every won levels id %>
-          <%= friend.won_levels_ids(@pack).join(',') %>
-        </span>
-      <% end %>
+        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack) %>
 
-      <% # invite more friends %>
-      <%= image_tag 'add_friend.png', :id => 'add-friend', :class => 'tips popup', :title => 'Invite more friends' %>
+        <% # list of subscribed friends and me %>
+        <% subscribed_friends_and_me.each do |friend| %>
+          <li>
+            <a href="#">
+              <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id %>
+            </a>
+          </li>
+          <span style="display:none" data-user-id="<%= friend.id %>">
+            <% # won levels ids of current pack OR every won levels id %>
+            <%= friend.won_levels_ids(@pack).join(',') %>
+          </span>
+        <% end %>
+
+        <% # invite more friends %>
+        <li>
+          <a href="#">
+            <%= image_tag 'add_friend.png', :id => 'add-friend', :class => 'tips popup', :title => 'Invite more friends' %>
+          </a>
+        </li>
+      </ul>
+
+      <div class="user-hover" style="display:none">
+        <div class="user-hover-in">
+          <div class="user-name">Michaël Hoste</div>
+          <div class="user-stars">
+            <div class="user-stars-pack">
+              <span class="star icon-star"></span> <span class="num">12</span> <span>In this pack</span>
+            </div>
+            <div class="user-stars-total">
+              <span class="star icon-star"></span> <span class="num">12</span> <span>Total</span>
+            </div>
+          </div>
+          <div class="user-challenge-this">
+            <a href="#">Challenge on this LEVEL</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div style="clear:both"></div>
   </div>
 
 <% else %>

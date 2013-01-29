@@ -94,8 +94,8 @@ $ ->
     pack_name = $('#packs').attr('data-pack-name')
     level_name = $('#levels').find('.is-selected').attr('data-level-name')
     $.get('/scores',
-      pack_id: pack_name
-      level_id: level_name
+      pack_id:           pack_name
+      level_id:          level_name
       friend_score_page: friend_page
       global_score_page: global_page
     )
