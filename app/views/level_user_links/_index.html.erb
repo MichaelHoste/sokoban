@@ -9,7 +9,7 @@
       <% more_scores_count = @level.unique_friends_scores_count(current_user) - @pushes_scores_friends.count %>
       <% style = more_scores_count == 0 ? 'display:none' : '' %>
 
-      <div id="more-friend-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores_friends.count-1) / 8 + 1 %>">
+      <div id="more-friend-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores_friends.count-1) / 6 + 1 %>">
         <a href="#">More</a>
       </div>
     <% else %>
@@ -33,7 +33,7 @@
     <% more_scores_count = @level.unique_scores_count - @pushes_scores.count %>
     <% style = more_scores_count == 0 ? 'display:none' : '' %>
 
-    <div id="more-global-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores.count-1) / 8 + 1 %>">
+    <div id="more-global-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores.count-1) / 6 + 1 %>">
       <a href="#">More</a>
     </div>
   </div>
