@@ -27,12 +27,12 @@ class ScoresController < ApplicationController
   def index
     @pack = Pack.find_by_name(params[:pack_id])
     @level = @pack.levels.find_by_name(params[:level_id])
-    @global_rows = params[:global_score_page].to_i*6 - 1
-    @friend_rows = params[:friend_score_page].to_i*6 - 1
+    @global_rows = params[:global_score_page].to_i*6
+    @friend_rows = params[:friend_score_page].to_i*6
 
     # Take first two rows of friends and public scores
-    @pushes_scores = @level.pushes_scores(@global_rows*2)[0..@global_rows]
-    @pushes_scores_friends = @level.pushes_scores_friends(current_user, @friend_rows*2)[0..@friend_rows]
+    @pushes_scores = @level.pushes_scores(@global_rows)
+    @pushes_scores_friends = @level.pushes_scores_friends(current_user, @friend_rows)
 
     render :partial => 'level_user_links/index'
   end

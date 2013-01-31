@@ -10,7 +10,7 @@
       <% style = more_scores_count == 0 ? 'display:none' : '' %>
 
       <div id="more-friend-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores_friends.count-1) / 6 + 1 %>">
-        <a href="#">More</a>
+        More
       </div>
     <% else %>
       <div class="scores-login">
@@ -34,7 +34,7 @@
     <% style = more_scores_count == 0 ? 'display:none' : '' %>
 
     <div id="more-global-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores.count-1) / 6 + 1 %>">
-      <a href="#">More</a>
+      More
     </div>
   </div>
 </div>

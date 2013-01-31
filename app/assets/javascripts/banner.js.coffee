@@ -16,8 +16,7 @@ $ ->
       $('.levels > li').removeClass('won-by-friend')
     )
 
-  # keep the friends banner on top of the page
-  $(window).scroll( ->
+  reposition_banner = ->
     scroll_top = $(window).scrollTop()
 
     # banner on top !
@@ -28,7 +27,6 @@ $ ->
     else
       $('#banner').css('position', 'absolute')
       $('#banner').css('top', window.banner_position)
-  )
 
   # update banner with each user score and hidden levels string
   window.update_banner = ->
@@ -65,3 +63,7 @@ $ ->
     window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?', f_id)
     return false
   )
+
+  # keep the friends banner on top of the page
+  reposition_banner()
+  $(window).scroll( -> reposition_banner())

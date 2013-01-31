@@ -10,7 +10,7 @@ class PacksController < ApplicationController
 
     # Take first two rows of friends and public scores
     # (other rows are displayed by scores_controlelr in AJAX)
-    @pushes_scores = @level.pushes_scores(30)[0..5]
-    @pushes_scores_friends = @level.pushes_scores_friends(current_user, 30)[0..5]
+    @pushes_scores = @level.pushes_scores(6)
+    @pushes_scores_friends = @level.pushes_scores_friends(current_user, 6)
   end
 end

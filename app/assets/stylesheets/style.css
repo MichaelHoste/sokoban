@@ -633,8 +633,8 @@ body {
 	#scores #all .scores-title {
 		background: url('/assets/all-img.png') no-repeat;
 	}
-	#scores .scores-more a,
-	#scores .scores-less a {
+	#scores .scores-more,
+	#scores .scores-less {
 		text-decoration: none;
 		display: block;
 		color: #444;
@@ -649,8 +649,9 @@ body {
 		line-height: 12px;
 		font-weight: bold;
 		background: url('/assets/sprites.png') no-repeat 100% 0;
+		cursor:pointer;
 	}
-	#scores .scores-less a{
+	#scores .scores-less {
 		background: url('/assets/sprites.png') no-repeat 100% -50px;
 	}
 /* ==================== People items =================== */
