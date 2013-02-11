@@ -11,12 +11,13 @@
           <li>
             <a href="#">
               <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id %>
+
+              <span style="display:none" data-user-id="<%= friend.id %>" data-user-name="<%= friend.name %>" data-local-success="<%= friend.won_levels_count(@pack) %>" data-global-success="<%= friend.won_levels_count() %>">
+                <% # won levels ids of current pack OR every won levels id %>
+                <%= friend.won_levels_ids(@pack).join(',') %>
+              </span>
             </a>
           </li>
-          <span style="display:none" data-user-id="<%= friend.id %>">
-            <% # won levels ids of current pack OR every won levels id %>
-            <%= friend.won_levels_ids(@pack).join(',') %>
-          </span>
         <% end %>
 
         <% # invite more friends %>
@@ -27,21 +28,26 @@
         </li>
       </ul>
 
-      <div class="user-hover" style="display:none">
-        <div class="user-hover-in">
-          <div class="user-name">Michaël Hoste</div>
-          <div class="user-stars">
-            <div class="user-stars-pack">
-              <span class="star icon-star"></span> <span class="num">12</span> <span>In this pack</span>
-            </div>
-            <div class="user-stars-total">
-              <span class="star icon-star"></span> <span class="num">12</span> <span>Total</span>
-            </div>
-          </div>
-          <div class="user-challenge-this">
-            <a href="#">Challenge on this LEVEL</a>
-          </div>
+    </div>
+  </div>
+
+  <div id="user-hover">
+    <div class="user-hover-in">
+      <div class="user-name">...</div>
+      <div class="user-stars">
+        <div class="user-stars-pack">
+          <span class="star icon-star"></span>
+          <span class="num">...</span>
+          <span>In this pack</span>
         </div>
+        <div class="user-stars-total">
+          <span class="star icon-star"></span>
+          <span class="num">...</span>
+          <span>Total</span>
+        </div>
+      </div>
+      <div class="user-challenge-this">
+        <a href="#">Challenge on this LEVEL</a>
       </div>
     </div>
   </div>

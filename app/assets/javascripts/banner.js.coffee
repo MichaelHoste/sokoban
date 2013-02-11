@@ -4,17 +4,40 @@ $ ->
   # mouse hover on a picture in the banner to show the won levels of this user
   $('#limited-banner img')
     .mouseenter( ->
-      #$(this).transition({ scale: 1.5 })
       span = $(this).next() # hidden span with won levels informations
       won_levels_ids = $.trim(span.text()).split(',')
       for level_id in won_levels_ids
-        level_button = $("#level-#{level_id}")
-        $(level_button).addClass('won-by-friend')
+        level_button = $("#level-#{level_id} span")
+        $(level_button).addClass('s-icon-star-selected')
+      show_user_infos(span)
     )
     .mouseleave( ->
-      #$(this).transition({ scale: 1.0 })
-      $('.levels > li').removeClass('won-by-friend')
+      $('.levels > li span').removeClass('s-icon-star-selected')
+      hide_user_infos()
     )
+
+  show_user_infos = (span) ->
+    user_id              = span.attr('data-user-id')
+    user_name            = span.attr('data-user-name')
+    local_success_count  = span.attr('data-local-success')
+    global_success_count = span.attr('data-global-success')
+
+    user_picture = span.prev()
+    user_hover = $('#user-hover')
+
+    user_hover.css(
+      top:  user_picture.offset().top + 43
+      left: user_picture.offset().left - user_hover.width() / 2.0 + user_picture.width() / 2.0 + 6
+    )
+
+    user_hover.find('.user-name').html(user_name)
+    user_hover.find('.user-stars-pack .num').html(local_success_count)
+    user_hover.find('.user-stars-total .num').html(global_success_count)
+
+    user_hover.show()
+
+  hide_user_infos = ->
+    $('#user-hover').hide()
 
   reposition_banner = ->
     scroll_top = $(window).scrollTop()
