@@ -344,6 +344,18 @@ body {
 			background: #e4e4e4 url('/assets/level-hover-bkg.png') repeat-x top left;
 			cursor: pointer;
 		}
+		#levels li.is-selected {
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			border: 1px solid #c7c7c7;
+			background: #e4e4e4 url('/assets/level-hover-bkg.png') repeat-x top left;
+		}
+		#levels li.won-selected {
+			-webkit-box-shadow: inset 0px 2px 2px 1px #c92d02;
+			box-shadow: inset 0px 2px 2px 1px #c92d02;
+			background: #cf684c;
+		}
+
 			#levels li span {
 				font-size: 18px;
 			}
@@ -354,11 +366,6 @@ body {
 					vertical-align: middle;
 					width: 24px;
 					height: 24px;
-				}
-				#levels li.selected {
-					-webkit-box-shadow: inset 0px 2px 2px 1px #c92d02;
-					box-shadow: inset 0px 2px 2px 1px #c92d02;
-					background-color: #cf684c;
 				}
 				#levels li .s-icon-star-empty { background-position: 0 0;}
 				#levels li .s-icon-star-selected { background-position: -25px 0 !important;}

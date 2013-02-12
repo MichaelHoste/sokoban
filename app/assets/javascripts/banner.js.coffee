@@ -8,11 +8,11 @@ $ ->
       won_levels_ids = $.trim(span.text()).split(',')
       for level_id in won_levels_ids
         level_button = $("#level-#{level_id} span")
-        $(level_button).closest('li').addClass('selected')
+        $(level_button).closest('li').addClass('won-selected')
       show_user_infos(span)
     )
     .mouseleave( ->
-      $('.levels > li span').closest('li').removeClass('selected')
+      $('.levels > li span').closest('li').removeClass('won-selected')
       hide_user_infos()
     )
 
