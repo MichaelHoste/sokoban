@@ -12,6 +12,12 @@ $ ->
     FB.ui(options)
 
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
+
+    console.log("salut")
+    console.log(pack_name)
+    console.log(level_name)
+    console.log(score_id)
+
     token_tag = window.authenticity_token()
 
     $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'100px', height:'455px', width:'500px' }, ->
@@ -47,7 +53,7 @@ $ ->
     )
 
   window.is_logged = ->
-    $('#menus .fb_logout').length
+    $('#menus .fb_logged').length
 
   window.authenticity_token = ->
     $('meta[name="csrf-token"]').attr('content')

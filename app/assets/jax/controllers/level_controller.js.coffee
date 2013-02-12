@@ -82,6 +82,7 @@ Jax.Controller.create "Level", ApplicationController,
         )
         .success((data, status, xhr) =>
           window.update_banner()
+
           if window.is_logged()
             window.colorbox_next_level(pack_name, level_name, data.score_id)
           else

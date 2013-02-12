@@ -8,11 +8,11 @@ $ ->
       won_levels_ids = $.trim(span.text()).split(',')
       for level_id in won_levels_ids
         level_button = $("#level-#{level_id} span")
-        $(level_button).addClass('s-icon-star-selected')
+        $(level_button).closest('li').addClass('selected')
       show_user_infos(span)
     )
     .mouseleave( ->
-      $('.levels > li span').removeClass('s-icon-star-selected')
+      $('.levels > li span').closest('li').removeClass('selected')
       hide_user_infos()
     )
 
@@ -53,6 +53,7 @@ $ ->
 
   # update banner with each user score and hidden levels string
   window.update_banner = ->
+    console.log("verifier methode")
     pack_name = $('#packs').attr('data-pack-name')
     $.get('/banner', {pack_name: pack_name}).success((data, status, xhr) ->
       # update each hidden span with successfully completed levels string

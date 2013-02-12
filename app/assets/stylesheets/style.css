@@ -355,6 +355,11 @@ body {
 					width: 24px;
 					height: 24px;
 				}
+				#levels li.selected {
+					-webkit-box-shadow: inset 0px 2px 2px 1px #c92d02;
+					box-shadow: inset 0px 2px 2px 1px #c92d02;
+					background-color: #cf684c;
+				}
 				#levels li .s-icon-star-empty { background-position: 0 0;}
 				#levels li .s-icon-star-selected { background-position: -25px 0 !important;}
 				#levels li .s-icon-star,
