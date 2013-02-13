@@ -12,12 +12,6 @@ $ ->
     FB.ui(options)
 
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
-
-    console.log("salut")
-    console.log(pack_name)
-    console.log(level_name)
-    console.log(score_id)
-
     token_tag = window.authenticity_token()
 
     $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'100px', height:'455px', width:'500px' }, ->
@@ -97,8 +91,9 @@ $ ->
     window.reload_invitations()
 
   window.reload_scores = (friend_page = 1, global_page = 1) ->
-    pack_name = $('#packs').attr('data-pack-name')
+    pack_name  = $('#packs').attr('data-pack-name')
     level_name = $('#levels').find('.is-selected').attr('data-level-name')
+
     $.get('/scores',
       pack_id:           pack_name
       level_id:          level_name

@@ -82,6 +82,7 @@ class Level < ActiveRecord::Base
     loop do
       scores = self.scores.limit(limit).all
       best = best_scores(scores)
+      limit = limit * 2
       break if best.count >= number or best.count == self.scores.count
     end
 
@@ -97,8 +98,9 @@ class Level < ActiveRecord::Base
       best = []
 
       loop do
-        scores = self.scores.where(:user_id => user.friends + [user.id]).limit(limit).all
+        scores = self.scores.where(:user_id => user.friends.registred + [user.id]).limit(limit).all
         best = best_scores(scores)
+        limit = limit * 2
         break if best.count >= number or best.count == self.scores.count
       end
 

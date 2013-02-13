@@ -6,7 +6,7 @@ Positions in grid start in the upper-left corner with (m=0,n=0).
 Example : (2,4) means third rows and fifth cols starting in the upper-left
 corner.
 
-Grid is made like this in loaded files :  
+Grid is made like this in loaded files :
 ###
 
 #      #####                 # -> wall
@@ -22,7 +22,7 @@ Grid is made like this in loaded files :
 #      #######
 
 class window.LevelCore
-  
+
   # Constructor
   constructor: ->
     @pack_name = ""            # Name of pack that contains this level
@@ -35,23 +35,23 @@ class window.LevelCore
     @cols_number = 0           # Cols number
     @pusher_pos_m = 0          # M position of the pusher
     @pusher_pos_n = 0          # N position of the pusher
-    
+
   # see load_from_file for details
   create_from_file: (pack_file_name, level_name) ->
     @level_from_file(pack_name, level_name)
-    
+
   # see load_from_database for details
   create_from_database: (pack_name, level_name) ->
     @level_from_database(pack_name, level_name)
-    
+
   # see load_from_grid for details
   create_from_grid: (grid, width, height, pack_name, level_name, copyright = "") ->
     @level_from_grid(grid, width, height, pack_name, level_name, copyright)
-  
-  # see load_from_line for details  
+
+  # see load_from_line for details
   create_from_line: (line, width, height, pack_name, level_name, copyright = "") ->
     @level_from_line(line, width, height, pack_name, level_name, copyright)
-    
+
   ###
     Read the value of position (m,n).
     Position start in the upper-left corner of the grid with (0,0).
@@ -64,7 +64,7 @@ class window.LevelCore
       return @grid[@cols_number*m + n]
     else
       return 'E'
-  
+
   ###
     Write the value of letter in position (m,n).
     Position start in the upper-left corner of the grid with (0,0).
@@ -75,7 +75,7 @@ class window.LevelCore
   write_pos: (m, n, letter) ->
     if m < @rows_number and n < @cols_number and m >= 0 and n >= 0
       @grid[@cols_number*m + n] = letter
-  
+
   ###
     Look if pusher can move in a given direction
     @param direction 'u', 'd', 'l', 'r' in lowercase and uppercase
@@ -86,7 +86,7 @@ class window.LevelCore
     mouv2 = ' '
     m = @pusher_pos_m
     n = @pusher_pos_n
-  
+
     # Following of the direction, test 2 cells
     if direction == 'u'
       mouv1 = @read_pos(m-1, n)
@@ -100,13 +100,13 @@ class window.LevelCore
     else if direction == 'r'
       mouv1 = @read_pos(m, n+1)
       mouv2 = @read_pos(m, n+2)
-  
+
     # If (there is a wall) OR (two boxes or one box and a wall)
     if mouv1 == '#' or ((mouv1 == '*' || mouv1 == '$') and (mouv2 == '*' || mouv2 == '$' || mouv2 == '#'))
       return false
     else
       return true
-  
+
   ###
     Move the pusher in a given direction and save it in the actualPath
     @param direction Direction where to move the pusher (u,d,l,r,U,D,L,R)
@@ -118,10 +118,10 @@ class window.LevelCore
     action = 1
     m = @pusher_pos_m
     n = @pusher_pos_n
-  
+
     # accept upper and lower dir
     direction = direction.toLowerCase()
-      
+
     # Following of the direction, test 2 cells
     if direction == 'u' && @pusher_can_move('u')
       m_1 = m-1
@@ -146,34 +146,34 @@ class window.LevelCore
     else
       action = 0
       state = 0
-  
+
     # Move accepted
     if action == 1
       state = 1
-      
+
       # Test on cell (m,n)
       if @read_pos(m, n) == '+'
         @write_pos(m, n, '.')
       else
         @write_pos(m, n, 's')
-  
+
       # Test on cell (m_2,n_2)
       if @read_pos(m_1, n_1) == '$' or @read_pos(m_1, n_1) == '*'
         if @read_pos(m_2, n_2) == '.'
           @write_pos(m_2, n_2, '*')
         else
           @write_pos(m_2, n_2, '$')
-  
+
         state = 2
-  
+
       # Test on cell (m_1, n_1)
       if @read_pos(m_1, n_1) == '.' || @read_pos(m_1, n_1)=='*'
         @write_pos(m_1, n_1, '+')
       else
         @write_pos(m_1, n_1, '@')
-  
+
     return state
-  
+
   ###
     Move the pusher backward and erase last move in the path
     @return 0 if no move.
@@ -187,11 +187,11 @@ class window.LevelCore
     n = @pusher_pos_n
     direction = path.get_last_move()
     state = 1;
-  
+
     if direction == 'U' || direction == 'D' || direction == 'L' || direction == 'R'
       maj = 1
       state = 2
-  
+
     # Following of the direction, test 2 cells
     if direction == 'u' || direction == 'U'
       m_1 = m - 1
@@ -216,20 +216,20 @@ class window.LevelCore
     else
       action = 0
       state = 0
-  
-    if action == 1 
+
+    if action == 1
       # Test of cell (m_2,n_2)
       if @read_pos(m_2, n_2) == '.'
         @write_pos(m_2, n_2, '+')
       else
         @write_pos(m_2, n_2, '@')
-  
+
       # Test of cell (m_1, n_1)
       if @read_pos(m_1, n_1) == '*' && maj == 1
         @write_pos(m_1, n_1, '.')
       else if @read_pos(m_1, n_1) == '$' && maj == 1
         @write_pos(m_1, n_1, 's')
-  
+
       # Test of cell (m,n)
       if @read_pos(m, n) == '+' && maj == 0
         @write_pos(m, n, '.')
@@ -239,11 +239,11 @@ class window.LevelCore
         @write_pos(m, n, '*')
       else if @read_pos(m, n) == '@' && maj == 1
         @write_pos(m, n, '$')
-  
+
     path.delete_last_move()
-  
+
     return state
-  
+
   ###
     Return true if all boxes are in their goals.
     @return true if all boxes are in their goals, false if not
@@ -253,7 +253,7 @@ class window.LevelCore
       if @grid[i] == '$'
         return false
     return true
-    
+
   ###
     Return true if the path is leading to a solution
     @return true if all boxes are in their goals, false if not
@@ -262,19 +262,19 @@ class window.LevelCore
     for move in path.moves
       @move(move)
     return @is_won()
-  
+
   ###
     Initialize (find) starting position of pusher to store it in this object
-  ### 
+  ###
   initialize_pusher_position: ->
     find = false
-  
+
     for cell, i in @grid
       if not find and cell in ['@', '+']
         @pusher_pos_n = i % @cols_number
         @pusher_pos_m = Math.floor(i / @cols_number)
         find = true
-  
+
   ###
     Transform empty spaces inside level in floor represented by 's' used
     to draw the level. Call to recursive function "makeFloorRec".
@@ -282,16 +282,16 @@ class window.LevelCore
   make_floor: ->
     # Recursively set "inside floor" to 's' starting with pusher position
     @make_floor_rec(@pusher_pos_m, @pusher_pos_n)
-  
+
     # Set back modified (by recusively method) symbols to regular symbols
     for cell, i in @grid
       if cell == 'p'
         @grid[i] = '.'
-      else if cell == 'd' 
+      else if cell == 'd'
         @grid[i] = '$'
       else if cell == 'a'
         @grid[i] = '*'
-  
+
   ###
     Recursive function used to transform inside spaces by floor ('s')
     started with initial position of sokoban.
@@ -301,7 +301,7 @@ class window.LevelCore
   ###
   make_floor_rec: (m, n) ->
     a = @read_pos(m, n)
-  
+
     # Change of values to "floor" or "visited"
     if a == ' '
       @write_pos(m, n, 's')
@@ -311,14 +311,14 @@ class window.LevelCore
       @write_pos(m, n, 'd')
     else if a == '*'
       @write_pos(m, n, 'a')
-  
+
     # If non-visited cell, test neighbours cells
     if a != '#' && a != 's' && a != 'p' && a != 'd' && a != 'a'
       @make_floor_rec(m+1, n)
       @make_floor_rec(m-1, n)
       @make_floor_rec(m, n+1)
       @make_floor_rec(m, n-1)
-  
+
   ###
     Print the level in the javascript console
   ###
@@ -328,14 +328,14 @@ class window.LevelCore
       for n in [0..@cols_number-1]
         line = line + @read_pos(m, n)
       console.log(line + '\n')
-  
+
   ###
     Load a specific level in a XML pack
   ###
   level_from_file: (pack_name, level_name) ->
     @pack_name = pack_name
     @level_name = level_name
-    
+
     $.ajax({
       type:     "GET",
       url:      "./levels/" + @pack_name + ".slc",
@@ -344,32 +344,32 @@ class window.LevelCore
       async:    false
       context:  @
     })
-  
-  ### 
-    take the xml buffer of a pack (callback of "xml_load") and load 
+
+  ###
+    take the xml buffer of a pack (callback of "xml_load") and load
     the "id" level in it (where id is the string name of level)
     @param xml the buffer (callback of xml_load)
   ###
   xml_parser: (xml) ->
     xml_level = $(xml).find('Level[Id="' + @level_name + '"]')
-  
+
     @rows_number = $(xml_level).attr("Height")
     @cols_number = $(xml_level).attr("Width")
     if copyright = $(xml_level).attr("Copyright")
       @copyright = copyright
-  
+
     for i in [0..@rows_number*@cols_number-1]
       @grid[i] = ' '
-  
+
     lines = $(xml_level).find("L")
-  
+
     for line, i in lines
       text = $(line).text()
       for j in [0..text.length-1]
         @grid[@cols_number*i + j] = text.charAt(j)
-  
+
     @initialize_level_properties()
-    
+
   ###
     Load a level from the server's database (using the API)
     @param pack_name the name of the pack
@@ -377,24 +377,24 @@ class window.LevelCore
   ###
   level_from_database: (pack_name, level_name) ->
     token_tag = window.authenticity_token()
-    
-    jqxhr = $.ajax({ 
+
+    jqxhr = $.ajax({
               type: 'GET'
               url:  "http://#{location.host}/packs/#{pack_name}/levels/#{level_name}.json"
               async:false
               data: {authenticity_token: token_tag}
             })
-                    
+
     jqxhr.success((data, status, xhr) =>
       @pack_name = data.pack_name
       @level_name = data.level_name
       @copyright = data.copyright
       @rows_number = data.rows_number
       @cols_number = data.cols_number
-      
+
       for i in [0..@rows_number*@cols_number-1]
         @grid[i] = data.grid.substr(i, 1)
-        
+
       @initialize_level_properties()
     )
 
@@ -413,12 +413,12 @@ class window.LevelCore
     @copyright = copyright
     @rows_number = height
     @cols_number = width
-    
+
     # initialize grid
     for i in [0..height*width-1]
       @grid.push(' ')
 
-    # 
+    #
     for line, i in grid
       for j in [0..line.length-1]
         @grid[i*width+j] = line.charAt(j)
@@ -440,12 +440,12 @@ class window.LevelCore
     @copyright = copyright
     @rows_number = height
     @cols_number = width
-  
+
     for i in [0..height*width-1]
       @grid.push(line.charAt(i))
-  
+
     @initialize_level_properties()
-  
+
   ###
     Common tasks when initializing a level :
     find pusher position, create floor, etc.

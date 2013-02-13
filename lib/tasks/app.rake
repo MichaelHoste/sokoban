@@ -1,4 +1,4 @@
-# compile coffee file that will be loaded by the server in javascript 
+# compile coffee file that will be loaded by the server in javascript
 # to reuse the level methods in ruby
 
 require 'coffee-rails'
@@ -24,7 +24,7 @@ namespace :app  do
   task :setup do
     if Rails.env.production?
       puts "Cannot use this task in production"
-    else      
+    else
       # the ruby version is automatically defined in the .rbenv-version file
       [ 'git submodule update --init --recursive',           # get submodules of this project
         'git submodule foreach git pull origin master',      # update submodules of this project
@@ -44,6 +44,8 @@ namespace :app  do
         system(command)
       end
 
+      compile_coffee_to_js()
+
       # Empty shell
       new_tab('Shell', ["cd #{Dir.pwd}", "clear"])
 
@@ -61,7 +63,7 @@ namespace :app  do
       Rake::Task['db:seed'].invoke
     end
   end
-  
+
   # compile core class from coffeescript to javascript to be used with ruby
   task :compile_coffee => :environment do
     if Rails.env.production?
