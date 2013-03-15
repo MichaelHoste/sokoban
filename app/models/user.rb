@@ -72,8 +72,12 @@ class User < ActiveRecord::Base
       user.attributes = user_hash
       user
     else
-      User.new(user_hash)
+      user = User.new(user_hash)
+      mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
+      mimi.csv_import("email, first name, last name, full name, gender, locale\n" +
+                      "#{user.email}, #{user.f_first_name}, #{user.f_last_name}, #{user.name}, #{user.gender}, #{user.locale}")
     end
+    user
   end
 
   def registred?

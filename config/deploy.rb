@@ -4,8 +4,8 @@ require "bundler/capistrano"
 set :whenever_command, 'bundle exec whenever'
 require 'whenever/capistrano'
 
-# We want Bundler to handle our gems and we want it to package everything locally with the app. 
-# The --binstubs flag means any gem executables will be added to <app>/bin 
+# We want Bundler to handle our gems and we want it to package everything locally with the app.
+# The --binstubs flag means any gem executables will be added to <app>/bin
 # and the --shebang ruby-local-exec option makes sure we'll use the ruby version defined in the .rbenv-version in the app root.
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 
@@ -27,7 +27,7 @@ set :branch, "master"
 default_run_options[:pty] = true
 
 # get the submodules
-# set :git_enable_submodules, 1 
+# set :git_enable_submodules, 1
 
 set :deploy_via, :remote_cache
 
@@ -53,17 +53,21 @@ namespace :deploy do
     run "unlink #{deploy_to}/current/config/initializers/facebook.rb;true"
     run "ln -s #{deploy_to}/shared/config/initializers/facebook.rb #{deploy_to}/current/config/initializers/facebook.rb;true"
 
+    # Madmimi configuration
+    run "unlink #{deploy_to}/current/config/initializers/madmimi.rb;true"
+    run "ln -s #{deploy_to}/shared/config/initializers/madmimi.rb #{deploy_to}/current/config/initializers/madmimi.rb;true"
+
     # Errbit configuration
     run "unlink #{deploy_to}/current/config/initializers/errbit.rb;true"
     run "ln -s #{deploy_to}/shared/config/initializers/errbit.rb #{deploy_to}/current/config/initializers/errbit.rb;true"
-    
+
     # Backup configuration
     run "mkdir #{deploy_to}/current/config/backups;true"
     run "unlink #{deploy_to}/current/config/backups/sokoban.rb;true"
     run "unlink #{deploy_to}/current/config/backup.rb;true"
     run "ln -s #{deploy_to}/shared/config/backups/sokoban.rb #{deploy_to}/current/config/backups/sokoban.rb;true"
     run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
-    
+
     # Unicorn configuration
     unicorn_config_path = "#{deploy_to}/current/config/unicorn.rb"
     run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_config_path} -E production -D"
@@ -102,6 +106,7 @@ after 'deploy:update_code' do
 
   upload "config/database.yml", "#{deploy_to}/shared/config/database.yml"
   upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
+  upload "config/initializers/madmimi.rb", "#{deploy_to}/shared/config/initializers/madmimi.rb"
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
   upload "config/backups/sokoban.rb", "#{deploy_to}/shared/config/backups/sokoban.rb"
   upload "config/backup.rb", "#{deploy_to}/shared/config/backup.rb"

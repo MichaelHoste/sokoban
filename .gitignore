@@ -27,6 +27,7 @@ pickle-email-*.html
 /config/database.yml
 /config/initializers/facebook.rb
 /config/initializers/errbit.rb
+/config/initializers/madmimi.rb
 /config/backups/sokoban.rb
 /config/backup.rb
 /public/images/levels

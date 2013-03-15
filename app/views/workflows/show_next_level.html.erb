@@ -1,32 +1,52 @@
 <%= javascript_include_tag "workflows" %>
 
-<div id="next-level">
-  <div class="next-level-star">
-    <i class="icon-star"></i>
-  </div>
-  
-  <div class="next-level-text">
-    <p>LEVEL</p>
-    <p>&nbsp;&nbsp;SUCCESSFULLY</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;COMPLETED !</p>
-  </div>
-  
-  <div class="next-level-score">
-    <p><%= @score.pushes %> pushes</p>
-    <p><%= @score.moves %> moves</p>
-  </div>
-  
-  <div style="clear:both"></div>
-  
-  <% if @next_level %>
-    <div class="next-level-thumb" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>" title="<%= @next_level.name %>">
-      <div id="next-level-thumb-canvas">
+<div id="game-won">
+  <div class="game-won-in">
+    <div class="game-won-in-left">
+      <h3>Level successfully completed!</h3>
+      <div id="final-score" class="score">
+        <div class="score-pushes"> <span class="num">12</span> pushes</div>
+        <div class="score-moves"> <span class="num">26</span> moves</div>
+      </div>
+
+      <div class="final-score-item">
+        <div class="score-position">2.</div>
+        <div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+        <div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+        <div class="score-pushes">
+          <p><strong>5</strong> pushes (30)</p>
+        </div>
+      </div>
+      <div class="final-score-item">
+        <div class="score-position">3.</div>
+        <div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+        <div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+        <div class="score-pushes">
+          <p><strong>5</strong> pushes (30)</p>
+        </div>
+      </div>
+      <div class="final-score-item">
+        <div class="score-position">4.</div>
+        <div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+        <div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+        <div class="score-pushes">
+          <p><strong>5</strong> pushes (30)</p>
+        </div>
       </div>
     </div>
-    
-    <div class="next-level-next">
-      <i class="icon-forward"></i>&nbsp;Next Level
-    </div>
-  <% end %>
+    <div class="game-won-in-right">
+      <div class="ad300"> Ad 300 x 250</div>
 
+      <div class="challenge-user">
+        <div class="challenge-user-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
+        <h2 class="challenge-small-title">Challenge</h2>
+        <div class="challenge-user-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+      </div>
+
+      <ul class="game-actions">
+        <li class="game-action-retry"><a href="#">Retry</a></li>
+        <li class="game-action-next"><a href="#">Next</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

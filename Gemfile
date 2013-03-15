@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.12'
 gem "jax", '3.0.0.rc2'
 gem 'jasmine', '1.3.0'
 
@@ -10,9 +10,10 @@ gem 'jasmine', '1.3.0'
 gem 'mysql2'
 gem 'json'
 gem 'omniauth-facebook'
-gem "koala", "~> 1.5.0"
-gem "nokogiri", "~> 1.5.2"   # xml parser
+gem "koala"
+gem "nokogiri"
 gem 'capistrano'
+gem "madmimi"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,29 +25,19 @@ end
 
 gem 'jquery-rails'
 gem 'therubyracer'  # Exec js code in ruby
-gem 'libv8', '~> 3.11.8'
+gem 'libv8'
 
 # Development tools
 group :development do
   gem 'thin'
   gem 'quiet_assets'
-# gem 'heroku'
 end
 
 # Production/deployment tools
 group :production do
   gem 'unicorn'
   gem 'airbrake'
-  gem 'whenever',                :require => false
-  gem 'backup',                  :require => false
-  gem 'dropbox-sdk', '~> 1.2.0', :require => false
+  gem 'whenever',    :require => false
+  gem 'backup',      :require => false
+  gem 'dropbox-sdk', :require => false
 end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# To use debugger
-# gem 'ruby-debug'
