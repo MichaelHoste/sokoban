@@ -76,6 +76,7 @@ class User < ActiveRecord::Base
       mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
       mimi.csv_import("email, first name, last name, full name, gender, locale\n" +
                       "#{user.email}, #{user.f_first_name}, #{user.f_last_name}, #{user.name}, #{user.gender}, #{user.locale}")
+      mimi.add_to_list(user.email, 'Sokoban')
     end
     user
   end
