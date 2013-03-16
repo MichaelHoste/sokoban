@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807131221) do
+ActiveRecord::Schema.define(:version => 20130316171550) do
 
   create_table "level_user_links", :force => true do |t|
     t.integer  "user_id"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(:version => 20120807131221) do
     t.text     "compressed_path"
     t.integer  "pushes"
     t.integer  "moves"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.boolean  "best_level_user_score", :default => false, :null => false
   end
 
   add_index "level_user_links", ["level_id"], :name => "index_level_user_links_on_level_id"

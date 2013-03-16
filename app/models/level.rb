@@ -83,7 +83,7 @@ class Level < ActiveRecord::Base
       scores = self.scores.limit(limit).all
       best = best_scores(scores)
       limit = limit * 2
-      break if best.count >= number or best.count == self.scores.count
+      break if best.count >= number or best.count == self.scores.count or limit > 10000
     end
 
     best[0..number-1]
@@ -101,7 +101,7 @@ class Level < ActiveRecord::Base
         scores = self.scores.where(:user_id => user.friends.registred + [user.id]).limit(limit).all
         best = best_scores(scores)
         limit = limit * 2
-        break if best.count >= number or best.count == self.scores.count
+        break if best.count >= number or best.count == self.scores.count or limit > 10000
       end
 
       best[0..number-1]

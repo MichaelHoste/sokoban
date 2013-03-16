@@ -419,27 +419,22 @@ body {
 			height: 445px;
 		}
 		#game-won {
-			background: url('/assets/header-bkg.png') repeat-x;
+			background: #fff url('/assets/header-bkg.png') repeat-x;
 			position: absolute;
-			/*top: 11px;
-			left: 11px;
 			z-index: 10;
-			width: 564px;
-			height: 385px;
-			padding: 30px 5px;*/
+			width: 540px;
+			padding: 0px 0px;
 		}
 		#game-won .game-won-in {
 			position: relative;
-/*			background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
-			width: 520px;
-			height: 355px;
-			padding: 26px 20px 4px;
-			-webkit-border-radius: 10px;
-			border-radius: 10px;
-			-webkit-box-shadow:  0px 5px 5px 0px #777777;
-			box-shadow:  0px 5px 5px 0px #777777;*/
+			background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
+			overflow:hidden;
+			padding-top:14px;
+			padding-bottom:11px;
+			padding-left:10px;
+			padding-right:18px;
 		}
-			#game h3 {
+			#game-won h3 {
 				font-family: "Ubuntu", Arial, Helvetica, sans-serif;
 				font-size: 18px;
 				color: #43416d;
@@ -455,7 +450,8 @@ body {
 				float: right;
 				width: 300px;
 			}
-				.ad300 {
+				#game-won .game-catch {
+					border:1px solid;
 					background: #0c7298;
 					width: 300px;
 					height: 250px;
@@ -463,14 +459,14 @@ body {
 					text-align: center;
 					margin-bottom: 10px;
 				}
-				.game-actions {
+				#game-won .game-actions {
 					float: right;
 					overflow: hidden;
 					padding: 8px 0;
 				}
-					.game-actions li {
+					#game-won .game-actions li {
 					}
-						.game-actions li a {
+						#game-won .game-actions li a {
 							text-decoration: none;
 							display: block;
 							background: url("/assets/sprites.png") no-repeat -100px -250px;
@@ -484,16 +480,16 @@ body {
 							margin-bottom: 3px;
 							padding: 0 18px;
 						}
-						.game-actions li.game-action-retry a {
+						#game-won .game-actions li.game-action-retry a {
 							background-position: -100px -250px;
 							padding-left: 40px;
 						}
-						.game-actions li.game-action-next a {
+						#game-won .game-actions li.game-action-next a {
 							background-position: 100% -300px;
 							padding-right: 40px;
 						}
 
-	#game #current-score {
+	#game-won #current-score {
 		width: 55px;
 		padding: 0 10px;
 		height: 175px;
@@ -502,8 +498,8 @@ body {
 		top: 135px;
 		text-align: center;
 	}
-		#game #current-score .score-pushes,
-		#game #current-score .score-moves {
+		#current-score .score-pushes,
+		#current-score .score-moves {
 			margin: 10px 0 5px;
 			background: url('/assets/sprites.png') no-repeat;
 			display: block;
@@ -519,30 +515,30 @@ body {
 			text-shadow: 0px 1px 1px #555555;
 			filter: dropshadow(color=#555555, offx=0, offy=1);
 		}
-		#game #current-score .score-pushes { background-position: 0 -50px;}
-		#game #current-score .score-moves { background-position: 0 -150px;}
+		#current-score .score-pushes { background-position: 0 -50px;}
+		#current-score .score-moves { background-position: 0 -150px;}
 
-	#game #final-score {
+	#game-won #final-score {
 		overflow: hidden;
 		padding: 25px 0;
 		margin: 0 0 25px;
 		border-bottom: 1px solid #e9e9e9;
 	}
-		#game #final-score .score-pushes,
-		#game #final-score .score-moves {
+		#game-won #final-score .score-pushes,
+		#game-won #final-score .score-moves {
 			float: left;
 			width: 48%;
 			font-size: 16px;
 			color: #b3b3b3;
 			text-align: center;
 		}
-			#game #final-score .score-pushes .num,
-			#game #final-score .score-moves .num {
+			#game-won #final-score .score-pushes .num,
+			#game-won #final-score .score-moves .num {
 				font-family: "androgyneregular", Arial, Helvetica, sans-serif;
 				font-size: 24px;
 				color: #99ce40;
 			}
-			#game #final-score .score-moves .num {
+			#game-won #final-score .score-moves .num {
 				color: #208cc6;
 			}
 

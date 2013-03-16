@@ -14,7 +14,7 @@ $ ->
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
     token_tag = window.authenticity_token()
 
-    $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'100px', height:'455px', width:'500px' }, ->
+    $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'100px', height:'395px', width:'570px' }, ->
       $("#cboxClose").hide()
       window.next_level_thumb()
     )
@@ -147,4 +147,6 @@ $ ->
     window.colorbox_welcome()
 
   $('.tips').tipsy()
+
+  window.colorbox_next_level('Original & Extra', '1', 1)
 

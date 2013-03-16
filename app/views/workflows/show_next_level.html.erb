@@ -5,8 +5,8 @@
     <div class="game-won-in-left">
       <h3>Level successfully completed!</h3>
       <div id="final-score" class="score">
-        <div class="score-pushes"> <span class="num">12</span> pushes</div>
-        <div class="score-moves"> <span class="num">26</span> moves</div>
+        <div class="score-pushes"> <span class="num"><%= @score.pushes %></span><br/>pushes</div>
+        <div class="score-moves"> <span class="num"><%= @score.moves %></span><br/>moves</div>
       </div>
 
       <div class="final-score-item">
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="game-won-in-right">
-      <div class="ad300"> Ad 300 x 250</div>
+      <div class="game-catch"> Ad 300 x 250</div>
 
       <div class="challenge-user">
         <div class="challenge-user-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
@@ -48,5 +48,7 @@
         <li class="game-action-next"><a href="#">Next</a></li>
       </ul>
     </div>
+  </div>
+  <div style="clear:both">
   </div>
 </div>
