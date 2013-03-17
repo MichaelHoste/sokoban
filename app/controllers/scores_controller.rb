@@ -11,9 +11,8 @@ class ScoresController < ApplicationController
     @score.path = params[:path]
 
     if @score.save
-      if current_user and Rails.env == 'production'
-        @score.publish_on_facebook  # open graph
-      end
+      @score.publish_on_facebook if current_user
+      @score.tag_best_level_user_score           # true if it's the best score for this user/level combo
 
       render :json => { :success  => true,
                         :score_id => @score.id }

@@ -1,126 +1,113 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-
 require 'v8'
 
-puts ENV['RAILS_ENV']
-
-packs_production = [
-                      "100Boxes",
-                      "81",
-                      "ALDMGR",
-                      "AlbertoG-Best4U",
-                      "AlbertoG1-1",
-                      "AlbertoG1-2",
-                      "AlbertoG1-3",
-                      "Albizia",
-                      "Aruba10",
-                      "Aruba2",
-                      "Aruba3",
-                      "Aruba4",
-                      "Aruba5",
-                      "Aruba6",
-                      "Aruba7",
-                      "Aruba8",
-                      "Aruba9",
-                      "Aruba_eric",
-                      "AutoGen",
-                      "Boxxle1",
-                      "Boxxle2",
-                      "Calx",
-                      "Cosmac",
-                      "Cosmac2",
-                      "Cosmac3",
-                      "Cosmac4",
-                      "Dimitri-Yorick",
-                      "Erim",
-                      "Essai",
-                      "Fly",
-                      "GabyJenny",
-                      "Handmade",
-                      "HeyTak",
-                      "Ian01",
-                      "Jct",
-                      "Kepez",
-                      "Kokoban",
-                      "Loma",
-                      "MarioB",
-                      "MasterHead",
-                      "MicroCosmos",
-                      "MiniCosmos",
-                      "Monde",
-                      "NaboCosmos",
-                      "Novoban",
-                      "Numbers",
-                      "Original",
-                      "Patera",
-                      "PicoCosmos",
-                      "RBox_Levels",
-                      "SQA-File",
-                      "Serena1",
-                      "Serena2",
-                      "Serena3",
-                      "Serena4",
-                      "Serena5",
-                      "Serena6",
-                      "Serena7",
-                      "Serena8",
-                      "Serena9",
-                      "Sharpen",
-                      "Simple",
-                      "SokEvo",
-                      "SokHard",
-                      "Sokoban_Online",
-                      "Sokolate",
-                      "Sokomania",
-                      "Sokompact",
-                      "Soloban",
-                      "Spirals",
-                      "StillMore",
-                      "Sven",
-                      "TBox_2",
-                      "TBox_3",
-                      "TBox_4",
-                      "Takaken",
-                      "TitleScreens",
-                      "Twisty",
-                      "YASGood",
-                      "aenigma",
-                      "bagatelle",
-                      "bagatelle2",
-                      "cantrip",
-                      "cantrip2",
-                      "dh1",
-                      "dh2",
-                      "dur01dnd",
-                      "fpok",
-                      "grigr2001",
-                      "grigr2002",
-                      "howard1text",
-                      "howard2text",
-                      "howard3text",
-                      "howard4text",
-                      "jcd",
-                      "maelstrm",
-                      "masmicroban",
-                      "massasquatch",
-                      "microban",
-                      "sasquatch",
-                      "sasquatchiii",
-                      "sasquatchiv",
-                      "sasquatchv",
-                      "sasquatchvi",
-                      "sasquatchvii",
-                      "sokogen-990602"
-                   ]
-
-packs_development =  ['Original', 'Novoban']
-
-#if Rails.env == 'development'
-#  packs = packs_development
-#elsif Rails.env == 'production'
-  packs = packs_production
-#end
+packs = [
+          "100Boxes",
+          "81",
+          "ALDMGR",
+          "AlbertoG-Best4U",
+          "AlbertoG1-1",
+          "AlbertoG1-2",
+          "AlbertoG1-3",
+          "Albizia",
+          "Aruba10",
+          "Aruba2",
+          "Aruba3",
+          "Aruba4",
+          "Aruba5",
+          "Aruba6",
+          "Aruba7",
+          "Aruba8",
+          "Aruba9",
+          "Aruba_eric",
+          "AutoGen",
+          "Boxxle1",
+          "Boxxle2",
+          "Calx",
+          "Cosmac",
+          "Cosmac2",
+          "Cosmac3",
+          "Cosmac4",
+          "Dimitri-Yorick",
+          "Erim",
+          "Essai",
+          "Fly",
+          "GabyJenny",
+          "Handmade",
+          "HeyTak",
+          "Ian01",
+          "Jct",
+          "Kepez",
+          "Kokoban",
+          "Loma",
+          "MarioB",
+          "MasterHead",
+          "MicroCosmos",
+          "MiniCosmos",
+          "Monde",
+          "NaboCosmos",
+          "Novoban",
+          "Numbers",
+          "Original",
+          "Patera",
+          "PicoCosmos",
+          "RBox_Levels",
+          "SQA-File",
+          "Serena1",
+          "Serena2",
+          "Serena3",
+          "Serena4",
+          "Serena5",
+          "Serena6",
+          "Serena7",
+          "Serena8",
+          "Serena9",
+          "Sharpen",
+          "Simple",
+          "SokEvo",
+          "SokHard",
+          "Sokoban_Online",
+          "Sokolate",
+          "Sokomania",
+          "Sokompact",
+          "Soloban",
+          "Spirals",
+          "StillMore",
+          "Sven",
+          "TBox_2",
+          "TBox_3",
+          "TBox_4",
+          "Takaken",
+          "TitleScreens",
+          "Twisty",
+          "YASGood",
+          "aenigma",
+          "bagatelle",
+          "bagatelle2",
+          "cantrip",
+          "cantrip2",
+          "dh1",
+          "dh2",
+          "dur01dnd",
+          "fpok",
+          "grigr2001",
+          "grigr2002",
+          "howard1text",
+          "howard2text",
+          "howard3text",
+          "howard4text",
+          "jcd",
+          "maelstrm",
+          "masmicroban",
+          "massasquatch",
+          "microban",
+          "sasquatch",
+          "sasquatchiii",
+          "sasquatchiv",
+          "sasquatchv",
+          "sasquatchvi",
+          "sasquatchvii",
+          "sokogen-990602"
+        ]
 
 # populate levels from
 def populate_levels(packs)
@@ -131,7 +118,7 @@ def populate_levels(packs)
     # Open pack file
     File.open("lib/assets/levels/#{pack_file}.slc", 'r') do |f|
       xml_doc = Nokogiri::XML(f)
-      
+
       # save pack informations
       pack = Pack.create!({ :file_name   => pack_file,
                             :name        => xml_doc.css('SokobanLevels > Title').text().strip,
@@ -146,7 +133,7 @@ def populate_levels(packs)
       levels = xml_doc.css('LevelCollection > Level')
       levels.each do |level|
         puts '  * level name : ' + level['Id'].strip
-        
+
         # create the grid of the level (array with 1 string = 1 row )
         grid = []
         level.css('L').each do |line|
@@ -159,7 +146,7 @@ def populate_levels(packs)
                                           :height    => level['Height'].strip.to_i,
                                           :copyright => (level.has_attribute?('Copyright') ? level['Copyright'].strip : ''),
                                           :grid      => grid })
-        
+
         # Import the level to javascript, compute the floor and some useful datas
         # and then get back the new grid from javascript to save it to the database
         V8::C::Locker() do
@@ -170,10 +157,10 @@ def populate_levels(packs)
             grid.each_with_index do |line, i|
               cxt.eval("lines[#{i}]  = '#{line}'")
             end
-          
+
             cxt.eval('var level = new window.LevelCore()')
             cxt.eval("level.create_from_grid(lines, #{new_level.width}, #{new_level.height}, \"#{pack.name}\", \"#{new_level.name}\", \"#{new_level.copyright}\")")
-          
+
             new_level.grid_with_floor = Array.new
             (0..new_level.height-1).each do |i|
               line = ""
