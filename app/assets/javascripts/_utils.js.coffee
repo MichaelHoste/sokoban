@@ -18,9 +18,7 @@ $ ->
       $("#cboxClose").hide()
       create_thumb('next-level')
       create_thumb('this-level')
-      $('#next-level-canvas').click( ->
-
-      )
+      $('.game-catch').html($('#my_super_stuff').html())
     )
 
   window.colorbox_facebook = ->

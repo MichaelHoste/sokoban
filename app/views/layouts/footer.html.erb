@@ -1,9 +1,0 @@
-<%= link_to "Terms of Service", '/terms_of_service' %>
-|
-<%= link_to "Privacy Policy", '/privacy_policy' %>
-|
-<% if current_user and current_user.id == 1 %>
-  <%= link_to "Stats", '/stats' %>
-  |
-<% end %>
-<%= link_to "Contact us", 'mailto:contact@sokoban.be' %>

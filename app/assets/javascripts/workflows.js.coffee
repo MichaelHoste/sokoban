@@ -22,7 +22,7 @@ $ ->
   )
 
   # Hover the next-level image
-  $('#next-level-canvas, .game-action-retry').on('click', ->
+  $('#next-level-canvas, .game-action-next').on('click', ->
     # change the level (the '.is-selected' level is chosen)
     $.fn.colorbox.close()
 
@@ -40,7 +40,7 @@ $ ->
   )
 
   # Hover the next-level image
-  $('#this-level-canvas, .game-action-next').on('click', ->
+  $('#this-level-canvas, .game-action-retry').on('click', ->
     # change the level (the '.is-selected' level is chosen)
     $.fn.colorbox.close()
     window.change_level()

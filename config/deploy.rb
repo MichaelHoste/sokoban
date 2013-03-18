@@ -68,6 +68,8 @@ namespace :deploy do
     run "ln -s #{deploy_to}/shared/config/backups/sokoban.rb #{deploy_to}/current/config/backups/sokoban.rb;true"
     run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
 
+    deploy.migrate
+
     # Unicorn configuration
     unicorn_config_path = "#{deploy_to}/current/config/unicorn.rb"
     run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_config_path} -E production -D"
@@ -110,8 +112,4 @@ after 'deploy:update_code' do
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
   upload "config/backups/sokoban.rb", "#{deploy_to}/shared/config/backups/sokoban.rb"
   upload "config/backup.rb", "#{deploy_to}/shared/config/backup.rb"
-end
-
-before "deploy:start" do
-  deploy.migrate
 end

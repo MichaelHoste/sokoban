@@ -33,24 +33,25 @@
 
     <%= csrf_meta_tags %>
 
-    <%= render :template => 'layouts/google_analytics_headers' %>
+    <%= render 'layouts/google_analytics_headers' %>
   </head>
 
   <% new_user = (not session[:user_id] and not cookies[:already_read_the_welcome_message]) ? '1' : '0' %>
   <body data-new-user="<%= new_user %>">
-    <%= render :template => 'layouts/facebook_headers' %>
-    <%= render :template => 'layouts/googleplus_headers' %>
+    <%= render 'layouts/facebook_headers' %>
+    <%= render 'layouts/googleplus_headers' %>
+    <%= render 'layouts/advert' %>
 
-    <%# render :template => 'layouts/github_banner' %>
-    <%= render :template => "layouts/header" %>
-    <%= render :template => "layouts/banner" %>
+    <%# render 'layouts/github_banner' %>
+    <%= render "layouts/header" %>
+    <%= render "layouts/banner" %>
 
     <div id="content">
       <%= yield %>
     </div>
 
     <footer class="footer">
-      <%= render :template => 'layouts/footer' %>
+      <%= render 'layouts/footer' %>
     </footer>
   </body>
 </html>
