@@ -161,12 +161,24 @@ class LevelUserLink < ActiveRecord::Base
   private
 
   def limited_ladder(ladder, num_of_scores)
+    # if current_score is not a best score, add it by hand on the ladder
+    if self.best_level_user_score == false
+      ladder = ladder.reject { |score| score.user_id == self.user_id } + [self]
+    end
+
     user_index  = user_in_top_of_ladder(ladder)
+    start_index = [user_index - (num_of_scores - 1),                0].max
+    end_index   = [user_index + (num_of_scores - 1), ladder.count - 1].min
 
-    start_index = [user_index - num_of_scores/2,                0].max
-    end_index   = [user_index + num_of_scores/2, ladder.count - 1].min
+    while end_index - start_index > num_of_scores
+      if user_index - start_index > end_index - user_index
+        start_index += 1
+      else
+        end_index -= 1
+      end
+    end
 
-    ladder[start_index..end_index].each_with_index do |score, index|
+    ladder[start_index..end_index].each do |score|
       score.position = ladder.index(score) + 1
       score
     end
@@ -178,7 +190,7 @@ class LevelUserLink < ActiveRecord::Base
 
     while user_score_index - 1 >= 0
       previous = ladder[user_score_index - 1]
-      if previous.pushes == self.pushes and previous.moves == self.moves
+      if (previous.pushes > self.pushes) or (previous.pushes == self.pushes and previous.moves >= self.moves)
         ladder[user_score_index - 1], ladder[user_score_index] = ladder[user_score_index], ladder[user_score_index - 1]
         user_score_index = user_score_index - 1
       else

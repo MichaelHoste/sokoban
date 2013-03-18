@@ -27,16 +27,18 @@
     <div class="game-won-in-right">
       <div class="game-catch"> Ad 300 x 250</div>
 
-      <div class="challenge-user">
-        <div class="challenge-user-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
-        <h2 class="challenge-small-title">Challenge</h2>
-        <div class="challenge-user-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
+      <div class="this-level" title="Retry this level : <%= @level.name %>" data-level-name="<%= @level.name %>" data-level-grid="<%= @level.inline_grid_with_floor %>" data-level-width="<%= @level.width %>" data-level-height="<%= @level.height %>">
+        <div id="this-level-canvas"></div>
       </div>
 
       <ul class="game-actions">
-        <li class="game-action-retry"><a href="#">Retry</a></li>
-        <li class="game-action-next"><a href="#">Next</a></li>
+        <li class="game-action-retry" title="Retry this level : <%= @level.name %>"><a href="#">Retry</a></li>
+        <li class="game-action-next" title="Go to next level : <%= @next_level.name %>"><a href="#">Next</a></li>
       </ul>
+
+      <div class="next-level" title="Go to next level : <%= @next_level.name %>" data-level-name="<%= @next_level.name %>" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>">
+        <div id="next-level-canvas"></div>
+      </div>
     </div>
   </div>
   <div style="clear:both">

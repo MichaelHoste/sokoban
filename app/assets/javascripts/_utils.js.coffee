@@ -16,7 +16,11 @@ $ ->
 
     $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'100px', height:'500px', width:'570px' }, -> #395px
       $("#cboxClose").hide()
-      window.next_level_thumb()
+      create_thumb('next-level')
+      create_thumb('this-level')
+      $('#next-level-canvas').click( ->
+
+      )
     )
 
   window.colorbox_facebook = ->
@@ -55,10 +59,6 @@ $ ->
   # level thumbs
   window.level_thumb = ->
     create_thumb('level-thumb')
-
-  # next level thumb
-  window.next_level_thumb = ->
-    create_thumb('next-level-thumb')
 
   # create thumb of a level depending on the class name of the div
   # <div class="#{class_name}">
@@ -148,5 +148,5 @@ $ ->
 
   $('.tips').tipsy()
 
-  #window.colorbox_next_level('Novoban', 'Be ban 10', 519)
+  window.colorbox_next_level('Novoban', 'Be ban 10', 148)
 

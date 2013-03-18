@@ -427,6 +427,7 @@ body {
 		}
 		#game-won .game-won-in {
 			position: relative;
+			height:446px;
 			background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
 			overflow:hidden;
 			padding-top:14px;
@@ -462,7 +463,8 @@ body {
 				#game-won .game-actions {
 					float: right;
 					overflow: hidden;
-					padding: 8px 0;
+					padding: 0px 0;
+					margin-top:10px;
 				}
 					#game-won .game-actions li {
 					}
@@ -518,6 +520,27 @@ body {
 		#game #current-score .score-pushes { background-position: 0 -50px;}
 		#game #current-score .score-moves { background-position: 0 -150px;}
 
+	#game-won #this-level-canvas {
+		border:1px solid #C9C9C9;
+		float:left;
+		width:186px;
+		height:186px;
+	}
+
+	#game-won #next-level-canvas {
+		border:1px solid #C9C9C9;
+		float:left;
+		width:89px;
+		height:102px;
+		margin-left:20px;
+		margin-top:10px;
+	}
+
+	#game-won #this-level-canvas:hover, #game-won #next-level-canvas:hover {
+		background-color:#d7e8f0;
+		cursor:pointer;
+	}
+
 	#game-won #final-score {
 		overflow: hidden;
 		padding: 25px 0;
@@ -536,10 +559,10 @@ body {
 			#game-won #final-score .score-moves .num {
 				font-family: "androgyneregular", Arial, Helvetica, sans-serif;
 				font-size: 24px;
-				color: #99ce40;
+				color: #208cc6;
 			}
 			#game-won #final-score .score-moves .num {
-				color: #208cc6;
+				color: #99ce40;
 			}
 
 #limited-content-xl {
@@ -689,16 +712,6 @@ body {
 				text-decoration: none;
 			}
 
-		.challenge-user {
-			width: 186px;
-			overflow: hidden;
-			float: left;
-			background: #d7e8f0;
-			border: 1px solid #cccccc;
-			-webkit-border-radius: 8px;
-			border-radius: 8px;
-			padding: 10px 7px;
-		}
 		.score-item {
 			width: 132px;
 			overflow: hidden;
@@ -712,6 +725,9 @@ body {
 			text-align: center;
 			font-size: 12px;
 		}
+		.final-score-item:hover {
+			 background-color: #d7e8f0;
+		}
 			.final-score-item .score-position {
 				float: left;
 				width: 30px;
@@ -722,8 +738,7 @@ body {
 				line-height: 50px;
 			}
 			.score-item .score-picture,
-			.final-score-item .score-picture,
-			.challenge-user .challenge-user-picture {
+			.final-score-item .score-picture {
 				float: left;
 				margin-right: 10px;
 			}
@@ -735,16 +750,13 @@ body {
 				height: 30px;
 				vertical-align: bottom;
 			}
-			.challenge-user .challenge-user-name {
-				float: left;
-				width: 110px;
-				font-weight: bold;
-				height: 30px;
-				vertical-align: bottom;
+			.final-score-item .score-name {
+				margin-top:6px;
+				width: 94px;
+				height:auto;
 			}
 				.score-item .score-name a,
-				.final-score-item .score-name a,
-				.challenge-user .challenge-user-name a {
+				.final-score-item .score-name a {
 					color: #444;
 					text-decoration: none;
 					font-size: 12px;
@@ -754,6 +766,9 @@ body {
 				float: left;
 				width: 72px;
 				font-size: 11px;
+			}
+			.final-score-item .score-pushes {
+				width: 94px;
 			}
 			.challenge-small-title {
 				color: #7b7b7b;
