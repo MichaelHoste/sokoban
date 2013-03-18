@@ -31,8 +31,12 @@ class ScoresController < ApplicationController
 
     # Take first two rows of friends and public scores
     @pushes_scores         = @level.best_scores.limit(@global_rows)
-    @pushes_scores_friends = @level.best_scores.where(:user_id => current_user.friends + [current_user.id])
-                                               .limit(@friend_rows)
+    if current_user
+      @pushes_scores_friends = @level.best_scores.where(:user_id => current_user.friends + [current_user.id])
+                                                 .limit(@friend_rows)
+    else
+      @pushes_scores_friends = []
+    end
 
     render :partial => 'level_user_links/index'
   end

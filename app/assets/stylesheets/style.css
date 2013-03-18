@@ -244,6 +244,9 @@ body {
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
 	}
+	#limited-header #menus .fb_login div:hover {
+		cursor:pointer;
+	}
 	#limited-header #menus .fb_logged div {
 		background: url('/assets/sprites.png') no-repeat 100% -350px;
 		height: 34px;
@@ -636,8 +639,8 @@ body {
 		position: relative;
 		min-height:80px;
 	}
-	#scores #all {
-		margin: 20px 0 0;
+	#scores .friends-large-shad {
+		margin-bottom: 20px;
 	}
 	#scores .scores-title {
 		width: 76px;

@@ -148,5 +148,5 @@ $ ->
 
   $('.tips').tipsy()
 
-  window.colorbox_next_level('Novoban', 'Be ban 10', 148)
+  #window.colorbox_next_level('Novoban', 'Be ban 10', 148)
 
