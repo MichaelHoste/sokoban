@@ -1,0 +1,63 @@
+<% if current_user %>
+
+  <div id="banner" class="banner-friends">
+    <div id="limited-banner">
+      <ul id="users-top">
+
+        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack) %>
+
+        <% # list of subscribed friends and me %>
+        <% subscribed_friends_and_me.each do |friend| %>
+          <li>
+            <a href="#">
+              <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id %>
+
+              <span style="display:none" data-user-id="<%= friend.id %>" data-user-name="<%= friend.name %>" data-local-success="<%= friend.won_levels_count(@pack) %>" data-global-success="<%= friend.won_levels_count() %>">
+                <% # won levels ids of current pack OR every won levels id %>
+                <%= friend.won_levels_ids(@pack).join(',') %>
+              </span>
+            </a>
+          </li>
+        <% end %>
+
+        <% # invite more friends %>
+        <li>
+          <a href="#">
+            <%= image_tag 'add_friend.png', :id => 'add-friend', :class => 'tips popup', :title => 'Invite more friends' %>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div id="user-hover">
+    <div class="user-hover-in">
+      <div class="user-name">...</div>
+      <div class="user-stars">
+        <div class="user-stars-pack">
+          <span class="star icon-star"></span>
+          <span class="num">...</span>
+          <span>In this pack</span>
+        </div>
+        <div class="user-stars-total">
+          <span class="star icon-star"></span>
+          <span class="num">...</span>
+          <span>Total</span>
+        </div>
+      </div>
+      <div class="user-challenge-this">
+        <a href="#">Click to challenge on this LEVEL</a>
+      </div>
+    </div>
+  </div>
+
+<% else %>
+
+  <div id="banner">
+    <div id="limited-banner" class="banner-text">
+      <h2>Play Sokoban and Challenge your Friends</h2>
+    </div>
+  </div>
+
+<% end %>
