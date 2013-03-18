@@ -33,16 +33,13 @@ class LevelUserLink < ActiveRecord::Base
 
   # Attributes
 
-  attr_accessor :path
+  attr_accessor :path, :position
   attr_protected :created_at, :updated_at
 
   # Associations
 
   belongs_to :level
   belongs_to :user
-
-  # Scope
-  default_scope :order => 'pushes ASC, moves ASC, created_at DESC'
 
   # Nested attributes
 
@@ -90,6 +87,16 @@ class LevelUserLink < ActiveRecord::Base
       end
     end
     self.save!
+  end
+
+  def ladder_friends(num_of_scores)
+    ladder = self.level.best_scores.where(:user_id => self.user.friends + [self.user.id]).all
+    limited_ladder(ladder, num_of_scores)
+  end
+
+  def ladder(num_of_scores)
+    ladder = self.level.best_scores.where('user_id IS NOT NULL').all
+    limited_ladder(ladder, num_of_scores)
   end
 
   # generate compressed and uncompressed paths
@@ -151,23 +158,34 @@ class LevelUserLink < ActiveRecord::Base
     self.user ? self.user.name : 'Anonymous'
   end
 
-  # global ranking of this score
-  def global_ranking
-    LevelUserLink.select(:user_id)
-                 .where('user_id != ?', self.user_id) # not the user himself
-                 .where('pushes < ? OR (pushes = ? AND moves < ?)', self.pushes, self.pushes, self.moves)
-                 .all.uniq.count + 1
+  private
+
+  def limited_ladder(ladder, num_of_scores)
+    user_index  = user_in_top_of_ladder(ladder)
+
+    start_index = [user_index - num_of_scores/2,                0].max
+    end_index   = [user_index + num_of_scores/2, ladder.count - 1].min
+
+    ladder[start_index..end_index].each_with_index do |score, index|
+      score.position = ladder.index(score) + 1
+      score
+    end
   end
 
-  # friends ranking of this score
-  def friends_ranking
-    if self.user != nil
-      LevelUserLink.select(:user_id)
-                   .where(:user_id => self.user.friends.select(:user_id).registred)
-                   .where('pushes < ? OR (pushes = ? AND moves < ?)', self.pushes, self.pushes, self.moves)
-                   .all.uniq.count + 1
-    else
-      0
+  # user must be in top of list of users with same scores
+  def user_in_top_of_ladder(ladder)
+    user_score_index = ladder.index(self)
+
+    while user_score_index - 1 >= 0
+      previous = ladder[user_score_index - 1]
+      if previous.pushes == self.pushes and previous.moves == self.moves
+        ladder[user_score_index - 1], ladder[user_score_index] = ladder[user_score_index], ladder[user_score_index - 1]
+        user_score_index = user_score_index - 1
+      else
+        break
+      end
     end
+
+    return user_score_index
   end
 end

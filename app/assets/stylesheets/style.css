@@ -489,7 +489,7 @@ body {
 							padding-right: 40px;
 						}
 
-	#game-won #current-score {
+	#game #current-score {
 		width: 55px;
 		padding: 0 10px;
 		height: 175px;
@@ -498,8 +498,8 @@ body {
 		top: 135px;
 		text-align: center;
 	}
-		#current-score .score-pushes,
-		#current-score .score-moves {
+		#game #current-score .score-pushes,
+		#game #current-score .score-moves {
 			margin: 10px 0 5px;
 			background: url('/assets/sprites.png') no-repeat;
 			display: block;
@@ -515,8 +515,8 @@ body {
 			text-shadow: 0px 1px 1px #555555;
 			filter: dropshadow(color=#555555, offx=0, offy=1);
 		}
-		#current-score .score-pushes { background-position: 0 -50px;}
-		#current-score .score-moves { background-position: 0 -150px;}
+		#game #current-score .score-pushes { background-position: 0 -50px;}
+		#game #current-score .score-moves { background-position: 0 -150px;}
 
 	#game-won #final-score {
 		overflow: hidden;

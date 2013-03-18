@@ -6,8 +6,9 @@ class LevelsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @pushes_scores = @level.pushes_scores(6)
-        @pushes_scores_friends = @level.pushes_scores_friends(current_user, 6)
+        @pushes_scores         = @level.best_scores.limit(6)
+        @pushes_scores_friends = @level.best_scores.where(:user_id => current_user.friends + [current_user.id])
+                                                   .limit(6)
         render 'packs/show'
       end
       format.json do

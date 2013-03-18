@@ -9,30 +9,20 @@
         <div class="score-moves"> <span class="num"><%= @score.moves %></span><br/>moves</div>
       </div>
 
-      <div class="final-score-item">
-        <div class="score-position">2.</div>
-        <div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
-        <div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
-        <div class="score-pushes">
-          <p><strong>5</strong> pushes (30)</p>
+      <% @ladder.each do |score| %>
+        <div class="final-score-item">
+          <div class="score-position"><%= score.position %></div>
+          <div class="score-picture">
+            <%= link_to image_tag(score.user.profile_picture, :width => '50px', :class => 'tips', :title => "#{score.user.name} - #{score.user.won_levels_count()}"), score.user.f_link %>
+          </div>
+          <div class="score-name">
+            <%= link_to score.user.name, score.user.f_link, :title => score.user.name %>
+          </div>
+          <div class="score-pushes">
+            <p><strong><%= score.pushes %></strong> pushes (<%= score.moves %>)</p>
+          </div>
         </div>
-      </div>
-      <div class="final-score-item">
-        <div class="score-position">3.</div>
-        <div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
-        <div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
-        <div class="score-pushes">
-          <p><strong>5</strong> pushes (30)</p>
-        </div>
-      </div>
-      <div class="final-score-item">
-        <div class="score-position">4.</div>
-        <div class="score-picture"> <a href="http://www.facebook.com/michael.hoste"><img alt="371650_634478837_38342687_q" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc7/371650_634478837_38342687_q.jpg" title="Michaël Hoste" /></a> </div>
-        <div class="score-name"> <a href="http://www.facebook.com/michael.hoste" title="Michaël Hoste">Michaël Hoste</a> </div>
-        <div class="score-pushes">
-          <p><strong>5</strong> pushes (30)</p>
-        </div>
-      </div>
+      <% end %>
     </div>
     <div class="game-won-in-right">
       <div class="game-catch"> Ad 300 x 250</div>

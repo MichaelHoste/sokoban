@@ -13,7 +13,13 @@ class User < ActiveRecord::Base
            :through => :user_user_links
 
   has_many :scores,
-           :class_name => 'LevelUserLink'
+           :class_name => 'LevelUserLink',
+           :order      => 'pushes ASC, moves ASC, created_at DESC'
+
+  has_many :best_scores,
+           :class_name => 'LevelUserLink',
+           :order      => 'pushes ASC, moves ASC, created_at DESC',
+           :conditions => { :best_level_user_score => true }
 
   has_many :levels,
            :through => :scores
@@ -179,9 +185,9 @@ class User < ActiveRecord::Base
   def won_levels_count(pack=nil)
     if pack
       levels_ids = pack.levels.pluck(:id)
-      self.scores.select('DISTINCT level_id').where(:level_id => levels_ids).count
+      self.best_scores.where(:level_id => levels_ids).count
     else
-      self.scores.select('DISTINCT level_id').count
+      self.best_scores.count
     end
   end
 

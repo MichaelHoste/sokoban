@@ -19,7 +19,13 @@ class Level < ActiveRecord::Base
   belongs_to :pack, :counter_cache => true
 
   has_many :scores,
-           :class_name => 'LevelUserLink'
+           :class_name => 'LevelUserLink',
+           :order      => 'pushes ASC, moves ASC, created_at DESC'
+
+  has_many :best_scores,
+           :class_name => 'LevelUserLink',
+           :order      => 'pushes ASC, moves ASC, created_at DESC',
+           :conditions => { :best_level_user_score => true }
 
   has_many :users,
            :through => :scores
@@ -66,46 +72,12 @@ class Level < ActiveRecord::Base
   # Get count of unique scores for this level
   def unique_scores_count
     # distincts users + anonymous users (NULL is not a distinct user)
-    self.scores.select('distinct user_id').count + self.scores.where('user_id IS NULL').count
+    self.best_scores.count
   end
 
   # Get count of unique scores for this level
   def unique_friends_scores_count(user)
-    self.scores.select('distinct user_id').where(:user_id => user.friends + [user.id]).count
-  end
-
-  # list of best pushes scores
-  def pushes_scores(number)
-    limit = number * 2
-    best = []
-
-    loop do
-      scores = self.scores.limit(limit).all
-      best = best_scores(scores)
-      limit = limit * 2
-      break if best.count >= number or best.count == self.scores.count or limit > 10000
-    end
-
-    best[0..number-1]
-  end
-
-  # list of best pushes scores for user friends
-  def pushes_scores_friends(user, number)
-    if not user
-      []
-    else
-      limit = number * 2
-      best = []
-
-      loop do
-        scores = self.scores.where(:user_id => user.friends.registred + [user.id]).limit(limit).all
-        best = best_scores(scores)
-        limit = limit * 2
-        break if best.count >= number or best.count == self.scores.count or limit > 10000
-      end
-
-      best[0..number-1]
-    end
+    self.best_scores.where(:user_id => user.friends + [user.id]).count
   end
 
   # generate an image of the level in /public/images/levels
@@ -137,23 +109,5 @@ class Level < ActiveRecord::Base
       `cd public/images/levels;convert #{command} -append #{self.id}.png`
       `cd public/images/levels;rm -f row_*.png`
     end
-  end
-
-  private
-
-  # only keep best score for each users
-  def best_scores(scores)
-    selected_scores = []
-    selected_user_ids = []
-
-    scores.each do |score|
-      # if anonymous or first occurance of user (best score of this user)
-      if score.user_id == nil or not selected_user_ids.include?(score.user_id)
-        selected_user_ids << score.user_id
-        selected_scores << score
-      end
-    end
-
-    selected_scores
   end
 end
