@@ -43,17 +43,16 @@ $ ->
     scroll_top = $(window).scrollTop()
 
     # banner on top !
-    if scroll_top > window.banner_position
+    if scroll_top > window.banner_position + 9
       $('#banner').css('position', 'fixed')
-      $('#banner').css('top', '0px')
+      $('#banner').css('top', '-9px')
     # banner on this normal position
     else
       $('#banner').css('position', 'absolute')
-      $('#banner').css('top', window.banner_position)
+      $('#banner').css('top', window.banner_position )
 
   # update banner with each user score and hidden levels string
   window.update_banner = ->
-    console.log("verifier methode")
     pack_name = $('#packs').attr('data-pack-name')
     $.get('/banner', {pack_name: pack_name}).success((data, status, xhr) ->
       # update each hidden span with successfully completed levels string
