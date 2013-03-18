@@ -1,5 +1,5 @@
 ###
-  2D or 3D level display methods
+  Level display methods
 ###
 
 Jax.getGlobal()['Level'] = Jax.Model.create
@@ -9,175 +9,82 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @objects = [] # list of objects to be displayed
     @level_core = new LevelCore()
 
-  create_3d: (pack_name, level_name, line = "", width = 0, height = 0) ->
-    @display_type = '3D'
-    if line != ""
-      @level_core.create_from_line(line, parseInt(width), parseInt(height))
-    else
-      @level_core.create_from_database(pack_name, level_name)
-
-    @display_level()
-
-  create_2d: (pack_name, level_name, line = "", width = 0, height = 0, canvas_id = "raphael") ->
+  create: (pack_name, level_name, line = "", width = 0, height = 0, canvas_id = "raphael") ->
     $("##{canvas_id} svg").remove()
 
-    @display_type = '2D'
     if line != ""
       @level_core.create_from_line(line, parseInt(width), parseInt(height))
     else
       @level_core.create_from_database(pack_name, level_name)
 
-    @context_2d = @compute_2d_context(canvas_id)
+    @context = @compute_context(canvas_id)
 
-    if @context_2d.canvas
-      @context_2d.canvas.clear()
+    if @context.canvas
+      @context.canvas.clear()
     else
-      @context_2d.canvas = Raphael(canvas_id, @context_2d.width, @context_2d.height)
+      @context.canvas = Raphael(canvas_id, @context.width, @context.height)
 
     @display_level()
 
-#  switch_to_3d: ->
-#    # delete 2D objects
-#    for i in [0..@level_core.cols_number*@level_core.rows_number-1]
-#      if @objects[i]
-#        @objects[i].remove()
-#        delete @objects[i]
-#
-#    # display 3D level
-#    @display_type = '3D'
-#    @display_level()
-#
-#  switch_to_2d: ->
-#    # delete 3D objects
-#    for i in [0..@level_core.cols_number*@level_core.rows_number-1]
-#      if @objects[i]
-#        @objects[i].dispose()
-#        delete @objects[i]
-#
-#    # display 2D level
-#    @display_type = '2D'
-#    @context_2d = @compute_2d_context()
-#    if @context_2d.canvas
-#      @context_2d.canvas.clear()
-#    else
-#      @context_2d.canvas = Raphael(@context_2d.canvas_id, @context_2d.width, @context_2d.height)
-#    @display_level()
-
   ###
-    Compute width, height and box_size for 2D Display
+    Compute width, height and box_size
   ###
-  compute_2d_context: (canvas_id) ->
-    context_2d = {}
-    context_2d.canvas_id = canvas_id
-    context_2d.canvas = null
+  compute_context: (canvas_id) ->
+    context = {}
+    context.canvas_id = canvas_id
+    context.canvas = null
 
-    context_2d.width  = $("##{canvas_id}").width()
-    context_2d.height = $("##{canvas_id}").height()
+    context.width  = $("##{canvas_id}").width()
+    context.height = $("##{canvas_id}").height()
 
-    size_width  = Math.floor(context_2d.width  / (@cols_number() + 2.0))
-    size_height = Math.floor(context_2d.height / (@rows_number() + 2.0))
+    size_width  = Math.floor(context.width  / (@cols_number() + 2.0))
+    size_height = Math.floor(context.height / (@rows_number() + 2.0))
 
-    context_2d.box_size = Math.min(size_width, size_height)
+    context.box_size = Math.min(size_width, size_height)
 
-    context_2d.highlighted_rects = []
+    context.highlighted_rects = []
 
-    return context_2d
+    return context
 
   ###
     Create (create objects) or refresh the level
   ###
   display_level: ->
-    # 3d display
-    if @display_type == '3D'
-      for m in [0..@level_core.rows_number-1]
-        for n in [0..@level_core.cols_number-1]
-          @display_position_3d(m, n)
-
-    # 2d display
-    else if @display_type == '2D'
-      box_size = @context_2d.box_size
-      start =
-        x: (@context_2d.width - box_size*@cols_number()) / 2.0
-        y: (@context_2d.height - box_size*@rows_number()) / 2.0
-      for m in [0..@level_core.rows_number-1]
-        start.x = (@context_2d.width - box_size*@cols_number()) / 2.0
-        for n in [0..@level_core.cols_number-1]
-          @display_position_2d(m, n, start)
-          start.x = start.x + box_size
-        start.y = start.y + box_size
+    box_size = @context.box_size
+    start =
+      x: 0 # will be overriden
+      y: (@context.height - box_size*@rows_number()) / 2.0
+    for m in [0..@level_core.rows_number-1]
+      start.x = (@context.width - box_size*@cols_number()) / 2.0
+      for n in [0..@level_core.cols_number-1]
+        @display_position(m, n, start)
+        start.x = start.x + box_size
+      start.y = start.y + box_size
 
   ###
     Highlight positions (stay highlighted until new call)
     @param positions array of deadlocked positions [{m, n}, ...]
   ###
   highlight: (positions) ->
-    if @display_type == '2D'
-      # delete old highlighted rects
-      for highlighted_rect in @context_2d.highlighted_rects
-        highlighted_rect.rect.remove()
-      delete @context_2d.highlighted_rects
-      @context_2d.highlighted_rects = []
+    # delete old highlighted rects
+    for highlighted_rect in @context.highlighted_rects
+      highlighted_rect.rect.remove()
+    delete @context.highlighted_rects
+    @context.highlighted_rects = []
 
-      # highlight each positions
-      for pos in positions
-        # get pos and size of the square of that position to draw a rect on it
-        object = @objects[@level_core.cols_number*pos.m + pos.n]
-        size = object.attrs.height
-        x = object.attrs.x
-        y = object.attrs.y
+    # highlight each positions
+    for pos in positions
+      # get pos and size of the square of that position to draw a rect on it
+      object = @objects[@level_core.cols_number*pos.m + pos.n]
+      size = object.attrs.height
+      x = object.attrs.x
+      y = object.attrs.y
 
-        # create highlight rect and add it to the list of highlighted rects
-        @context_2d.highlighted_rects.push(
-          pos: pos
-          rect: @context_2d.canvas.rect(x, y, size, size).attr({ fill: '#2d5a8b', stroke: "none", opacity: .5 })
-        )
-    else
-      ;
-
-  ###
-    display a specific position of the level in 3D. If the object doesn't exist,
-    create it, and if the object exists, refresh the texture
-    @param m number of the row to create/refresh
-    @param n number of the column to create/refresh
-  ###
-  display_position_3d: (m, n) ->
-    cols_number = @level_core.cols_number
-    rows_number = @level_core.rows_number
-
-    type = @level_core.read_pos(m, n)
-
-    # create object
-    if type != ' ' and not @objects[cols_number*m + n]
-      object = Square.find 'actual'
-      @objects[cols_number*m + n] = object
-
-      start_col = -cols_number/2.0 + 0.5
-      start_row = rows_number/2.0 - 0.5
-
-      d_height = rows_number / (2*0.414213563) * 1.1 # 0.41 = tan(22.5°), *0.9 is to create a border
-      d_width = cols_number / (2*0.414213563/14*20) # 0.41 = tan(22.5°), 14*20 is the ration height/width
-      d = d_height if d_height > d_width
-      d = d_width  if d_width  > d_height
-
-      object.camera.position = [start_col + n, start_row - m, -d]
-    else if type != ' '
-      object = @objects[cols_number*m + n]
-
-    # refresh material
-    if type == 's'
-      object.mesh.material = 'floor'
-    else if type == '#'
-      object.mesh.material = 'wall'
-    else if type == '$'
-      object.mesh.material = 'box'
-    else if type == '*'
-      object.mesh.material = 'boxgoal'
-    else if type == '.'
-      object.mesh.material = 'goal'
-    else if type == '@'
-      object.mesh.material = 'pusher'
-    else if type == '+'
-      object.mesh.material = 'pushergoal'
+      # create highlight rect and add it to the list of highlighted rects
+      @context.highlighted_rects.push(
+        pos: pos
+        rect: @context.canvas.rect(x, y, size, size).attr({ fill: '#2d5a8b', stroke: "none", opacity: .5 })
+      )
 
   ###
     display a specific position of the level. If the object doesn't exist,
@@ -186,46 +93,32 @@ Jax.getGlobal()['Level'] = Jax.Model.create
     @param n number of the column to create/refresh
     @param start pixel position where to start drawing the cell
   ###
-  display_position_2d: (m, n, start) ->
+  display_position: (m, n, start) ->
     cols_number = @level_core.cols_number
     rows_number = @level_core.rows_number
-    size = @context_2d.box_size
+    size = @context.box_size
 
     type = @level_core.read_pos(m, n)
 
     # create object
     if type != ' ' and not @objects[cols_number*m + n]
-      object = @context_2d.canvas.image('/images/themes/classic/wall64.png', start.x, start.y, size, size)
+      object = @context.canvas.image('/images/themes/classic/wall64.png', start.x, start.y, size, size)
       @objects[cols_number*m + n] = object
     else if type != ' '
       object = @objects[cols_number*m + n]
 
     # refresh material
-    @refresh_2d(object, type, 's', 'floor')
-    @refresh_2d(object, type, '#', 'wall')
-    @refresh_2d(object, type, '$', 'box')
-    @refresh_2d(object, type, '*', 'boxgoal')
-    @refresh_2d(object, type, '.', 'goal')
-    @refresh_2d(object, type, '@', 'pusher')
-    @refresh_2d(object, type, '+', 'pushergoal')
+    @refresh(object, type, 's', 'floor')
+    @refresh(object, type, '#', 'wall')
+    @refresh(object, type, '$', 'box')
+    @refresh(object, type, '*', 'boxgoal')
+    @refresh(object, type, '.', 'goal')
+    @refresh(object, type, '@', 'pusher')
+    @refresh(object, type, '+', 'pushergoal')
 
-  refresh_2d: (object_2d, type, letter, texture) ->
-    if type == letter and object_2d.attr('src') != "/images/themes/#{window.theme}/#{texture}64.png"
-      object_2d.attr('src', "/images/themes/#{window.theme}/#{texture}64.png")
-
-  # Render every squares of the level (the level itself is just a mesh container)
-  # ONLY IF IN 3D MODE !
-#  render: (context, options) ->
-#    if @display_type == '3D' and @objects
-#      if !Jax.Model.__instances[@__unique_id]
-#        Jax.Model.__instances[@__unique_id] = @
-#      options = Jax.Util.normalizeOptions(options, { model_index: @__unique_id });
-#      context.pushMatrix( =>
-#        #context.multModelMatrix(this.camera.getTransformationMatrix())
-#        for i in [0..@cols_number()*@rows_number()-1]
-#          if @objects[i]
-#            @objects[i].render(context, options)
-#      )
+  refresh: (object, type, letter, texture) ->
+    if type == letter and object.attr('src') != "/images/themes/#{window.theme}/#{texture}64.png"
+      object.attr('src', "/images/themes/#{window.theme}/#{texture}64.png")
 
   unload: (world) ->
     # delete each square of the level

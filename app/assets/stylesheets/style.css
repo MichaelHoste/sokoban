@@ -423,8 +423,10 @@ body {
 	}
 		#game .game-out .game-in {
 			background: #F4F4F4;
-			width: 574px;
+			width: 514px;
 			height: 445px;
+			padding-left:60px;
+
 		}
 		#game-won {
 			background: #fff url('/assets/header-bkg.png') repeat-x;

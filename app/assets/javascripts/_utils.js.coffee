@@ -72,7 +72,7 @@ $ ->
       level_canvas = "#{class_name}-canvas"
 
       thumb = Level.find "actual"
-      thumb.create_2d(pack_name, level_name, level_line, level_width, level_height, level_canvas)
+      thumb.create(pack_name, level_name, level_line, level_width, level_height, level_canvas)
     )
 
   window.change_level = ->
@@ -131,14 +131,6 @@ $ ->
     $('#content').css('marginTop', $('#banner').outerHeight(true))
 
   disable_scroll()
-
-  # Show 2D or 3D div depending on the switch
-  if $('#menus .switch.is-selected').text() == '3D'
-    $('#raphael').hide()
-    $('#webgl').show()
-  else
-    $('#webgl').hide()
-    $('#raphael').show()
 
   # if new user (data-new-user="1" in <body> tag... computed server-side)
   if $('body').attr('data-new-user') == '1'

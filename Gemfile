@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
-gem "jax", '3.0.0.rc2'
+gem 'rails',   '3.2.13'
+gem "jax",     '3.0.0.rc2'
 gem 'jasmine', '1.3.0'
 
 # Bundle edge Rails instead:
@@ -10,10 +10,10 @@ gem 'jasmine', '1.3.0'
 gem 'mysql2'
 gem 'json'
 gem 'omniauth-facebook'
-gem "koala"
-gem "nokogiri"
+gem 'koala'
+gem 'nokogiri'
 gem 'capistrano'
-gem "madmimi"
+gem 'madmimi'
 
 # Gems used only for assets and not required
 # in production environments by default.

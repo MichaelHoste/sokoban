@@ -4,9 +4,9 @@ Jax.Controller.create "Level", ApplicationController,
     pack_name = $('#packs').attr('data-pack-name')
     level_name = $('#levels').find('.is-selected').attr('data-level-name')
 
-    # create level in 2D or 3D
+    # create level
     @level = Level.find "actual"
-    @level.create_2d(pack_name, level_name)
+    @level.create(pack_name, level_name)
 
     # add level to the world
     @world.addObject @level

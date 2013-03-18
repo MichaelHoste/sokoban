@@ -47,23 +47,4 @@ $ ->
 #    window.theme = $(this).val()
 #  )
 
-#  # Click on 2D switch
-#  $('#menus .switch-2d').live('click', ->
-#    if not $(this).hasClass('is-selected')
-#      $(this).addClass('is-selected')
-#      $('#menus .switch-3d').removeClass('is-selected')
-#      window.context.redirectTo("level/index")
-#      $('#webgl').hide()
-#      $('#raphael').show()
-#  )
-#
-#  # Click on 3D switch
-#  $('#menus .switch-3d').live('click', ->
-#    if not $(this).hasClass('is-selected')
-#      $(this).addClass('is-selected')
-#      $('#menus .switch-2d').removeClass('is-selected')
-#      window.context.redirectTo("level/index")
-#      $('#raphael').hide()
-#      $('#webgl').show()
-#  )
-#  #
+
