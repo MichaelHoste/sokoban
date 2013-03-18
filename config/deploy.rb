@@ -111,3 +111,7 @@ after 'deploy:update_code' do
   upload "config/backups/sokoban.rb", "#{deploy_to}/shared/config/backups/sokoban.rb"
   upload "config/backup.rb", "#{deploy_to}/shared/config/backup.rb"
 end
+
+before "deploy:start" do
+  deploy.migrate
+end
