@@ -1,19 +1,21 @@
-<div id="my_super_stuff" style="display:none">
-  <!-- begin ryad tag -->
-  <div id="_ryad_1691357312"></div>
-  <!-- end ryad tag -->
-</div>
+<% if Rails.env.production? %>
+  <div id="my_super_stuff" style="display:none">
+    <!-- begin ryad tag -->
+    <div id="_ryad_1691357312"></div>
+    <!-- end ryad tag -->
+  </div>
 
-<script type="text/javascript">
-  _ryadConfig = new Object();
-  _ryadConfig.thirdPartyId = "";
-  _ryadConfig.placeguid = "1691357312";
-  _ryadConfig.type = "MediumRectangle";
-  _ryadConfig.width = "300";
-  _ryadConfig.height = "250";
-  //Set to 1 if modifying width and height
-  _ryadConfig.customSizeAd = "0";
-  _ryadConfig.popup = 1;
-  //Do not modify below this line
-  document.write(unescape("%3Cscript src='" + document.location.protocol + "//cdnrockyou-a.akamaihd.net/apps/ams/tag_os.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
+  <script type="text/javascript">
+    _ryadConfig = new Object();
+    _ryadConfig.thirdPartyId = "";
+    _ryadConfig.placeguid = "1691357312";
+    _ryadConfig.type = "MediumRectangle";
+    _ryadConfig.width = "300";
+    _ryadConfig.height = "250";
+    //Set to 1 if modifying width and height
+    _ryadConfig.customSizeAd = "0";
+    _ryadConfig.popup = 1;
+    //Do not modify below this line
+    document.write(unescape("%3Cscript src='" + document.location.protocol + "//cdnrockyou-a.akamaihd.net/apps/ams/tag_os.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+<% end %>

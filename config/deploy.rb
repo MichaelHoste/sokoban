@@ -61,13 +61,6 @@ namespace :deploy do
     run "unlink #{deploy_to}/current/config/initializers/errbit.rb;true"
     run "ln -s #{deploy_to}/shared/config/initializers/errbit.rb #{deploy_to}/current/config/initializers/errbit.rb;true"
 
-    # Backup configuration
-    run "mkdir #{deploy_to}/current/config/backups;true"
-    run "unlink #{deploy_to}/current/config/backups/sokoban.rb;true"
-    run "unlink #{deploy_to}/current/config/backup.rb;true"
-    run "ln -s #{deploy_to}/shared/config/backups/sokoban.rb #{deploy_to}/current/config/backups/sokoban.rb;true"
-    run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
-
     deploy.migrate
 
     # Unicorn configuration
@@ -112,4 +105,11 @@ after 'deploy:update_code' do
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
   upload "config/backups/sokoban.rb", "#{deploy_to}/shared/config/backups/sokoban.rb"
   upload "config/backup.rb", "#{deploy_to}/shared/config/backup.rb"
+
+  # Backup configuration
+  run "mkdir #{deploy_to}/current/config/backups;true"
+  run "unlink #{deploy_to}/current/config/backups/sokoban.rb;true"
+  run "unlink #{deploy_to}/current/config/backup.rb;true"
+  run "ln -s #{deploy_to}/shared/config/backups/sokoban.rb #{deploy_to}/current/config/backups/sokoban.rb;true"
+  run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
 end
