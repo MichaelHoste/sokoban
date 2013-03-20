@@ -15,11 +15,14 @@
               </span>
               <span>User profile</span>
             </div>
+            <div style="display:none;border:1px solid;height:30px;overflow:hidden;position:relative;z-index:1000">
+              Logout
+            </div>
           </li>
         <% else %>
           <li class="name fb_login">
             <div>
-              <span>Login with Facebook</span>
+              <a href="/auth/facebook">Login with Facebook</a>
             </div>
           </li>
         <% end %>
@@ -33,14 +36,6 @@
           <div>Rules</div>
         </li>
       </ul>
-    </div>
-
-    <div id="login-hover">
-      <% if current_user %>
-        <%= render :template => 'sessions/_logout_text' %>
-      <% else %>
-        <%= render :template => 'sessions/_login_advantages' %>
-      <% end %>
     </div>
 
     <!--

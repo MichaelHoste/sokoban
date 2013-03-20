@@ -57,7 +57,7 @@ body {
 }
 
 .header {
-	overflow: hidden;
+/*	overflow: hidden;*/
 	height: 85px;
 	background: url('/assets/header-bkg.png') repeat-x;
 }
@@ -219,13 +219,14 @@ body {
 		filter: dropshadow(color=#fff, offx=0, offy=1);
 	}
 #limited-header #menus {
+	/*position:absolute;*/
 	float: right;
 	margin: 34px 0 0;
 }
 	#limited-header #menus li {
 		display: inline-block;
 		vertical-align: top;
-		height: 34px;
+		/*height: 34px;*/
 	}
 	#limited-header #menus .fb_login { padding-top: 5px;}
 	#limited-header #menus .rules-menu { padding-top: 3px;}
@@ -243,6 +244,10 @@ body {
 		filter: dropshadow(color=#46577a, offx=0, offy=1);
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
+	}
+	#limited-header #menus .fb_login div a {
+		color:white;
+		text-decoration: none;
 	}
 	#limited-header #menus .fb_login div:hover {
 		cursor:pointer;
@@ -291,8 +296,6 @@ body {
 		margin-left: 10px;
 		cursor:pointer;
 	}
-
-#limited-header #login-hover { display: none; }
 
 /* ==================== Levels =================== */
 
