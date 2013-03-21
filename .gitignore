@@ -31,3 +31,4 @@ pickle-email-*.html
 /config/backups/sokoban.rb
 /config/backup.rb
 /public/images/levels
+/private
