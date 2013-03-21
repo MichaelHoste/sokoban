@@ -120,7 +120,8 @@ class User < ActiveRecord::Base
       self.picture
     else
       graph = Koala::Facebook::API.new
-      self.picture = graph.get_picture(self.f_id, :type => 'square')
+
+      self.picture = graph.get_picture(self.f_id, :type => 'square').sub('http://', 'https://')
     end
   end
 
