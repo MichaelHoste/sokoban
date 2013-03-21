@@ -172,7 +172,7 @@ class LevelUserLink < ActiveRecord::Base
     start_index = [user_index - (num_of_scores - 1),                0].max
     end_index   = [user_index + (num_of_scores - 1), ladder.count - 1].min
 
-    while end_index - start_index > num_of_scores
+    while end_index - start_index >= num_of_scores
       if user_index - start_index > end_index - user_index
         start_index += 1
       else
