@@ -9,7 +9,7 @@ class PacksController < ApplicationController
   def show
     Rails.logger.info("PARAMS : " + params.inspect)
     if params[:signed_request]
-      redirect_to "/auth/facebook?signed_request=#{params['signed_request']}&state=canvas"
+      redirect_to "/auth/facebook/callback?signed_request=#{params['signed_request']}&state=canvas"
     end
 
     @pack = Pack.find_by_name(params[:id])
