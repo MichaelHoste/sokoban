@@ -22,7 +22,6 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    Rails.logger.info("FAILED CONNEXION - params : " + params.inspect)
   end
 
   def destroy
