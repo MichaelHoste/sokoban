@@ -8,6 +8,11 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # if already connected (facebook canvas is configured to redirect to this action)
+    if session[:user_id]
+      redirect_to :root
+    end
+
     credentials = request.env['omniauth.auth']['credentials']
     @user = User.update_or_create(credentials)
 
