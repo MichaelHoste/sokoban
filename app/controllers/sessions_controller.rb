@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
   def create
     # if already connected (facebook canvas is configured to redirect to this action)
     if session[:user_id]
+      Rails.logger.info("USER_ID USER_ID")
       redirect_to :root
     end
 
