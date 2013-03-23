@@ -9,7 +9,7 @@ gem 'jasmine', '1.3.0'
 
 gem 'mysql2'
 gem 'json'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '1.4.0' # because of this in 1.4.1 : https://github.com/mkdynamic/omniauth-facebook/issues/73
 gem 'koala'
 gem 'nokogiri'
 gem 'capistrano'
