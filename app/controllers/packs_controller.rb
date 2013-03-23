@@ -1,6 +1,7 @@
-skip_before_filter :verify_authenticity_token, :only => ['show']
-
 class PacksController < ApplicationController
+
+  skip_before_filter :verify_authenticity_token, :only => ['show']
+
   def index
     @packs = Pack.all
   end
