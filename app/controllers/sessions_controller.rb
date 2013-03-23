@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
   def new
-    if current_user 
+    if current_user
       redirect_to :root
     else
       render :layout => false
     end
   end
 
-  def create    
+  def create
     credentials = request.env['omniauth.auth']['credentials']
     @user = User.update_or_create(credentials)
 
@@ -20,11 +20,12 @@ class SessionsController < ApplicationController
       render :text => "Facebook connection failed (user informations could not be saved)"
     end
   end
-  
+
   def failure
-    render :text => "Facebook connection failed (access not granted)"
+    Rails.logger.info("FAILED CONNEXION - params : " + params.inspect)
+    Rails.logger.info("FAILED CONNEXION - request : " + request.inspect)
   end
-  
+
   def destroy
     session[:user_id] = nil
     redirect_to :root
