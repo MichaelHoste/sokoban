@@ -8,18 +8,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # if already connected (facebook canvas is configured to redirect to this action)
-    if session[:user_id]
-      Rails.logger.info("USER_ID USER_ID")
-      redirect_to :root
-    end
-
     credentials = request.env['omniauth.auth']['credentials']
     @user = User.update_or_create(credentials)
 
     if @user.save!
       session[:user_id] = @user.id
-      @user.build_friendships()
+      @user.build_friendships
       # Get and save friends id of this user
       redirect_to :root
     else

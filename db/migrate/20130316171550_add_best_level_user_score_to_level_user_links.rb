@@ -4,7 +4,7 @@ class AddBestLevelUserScoreToLevelUserLinks < ActiveRecord::Migration
 
     # tag best_level_user_score to true of false depending on if best user/level combo
     LevelUserLink.all.each do |score|
-      score.tag_best_level_user_score
+      score.tag_best_score
     end
   end
 

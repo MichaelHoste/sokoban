@@ -72,7 +72,13 @@ class LevelUserLink < ActiveRecord::Base
     end
   end
 
-  def tag_best_level_user_score
+  def update_stats
+    self.tag_best_score
+    PackUserLink.find_or_create_by_pack_id_and_user_id(self.level.pack_id, self.user_id).update_stats
+  end
+
+  # Tag (only) the best score (best_level_user_score = true) for each level/user combo
+  def tag_best_score
     if self.user_id == nil
       self.best_level_user_score = true
     else

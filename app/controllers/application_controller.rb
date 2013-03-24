@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     if current_user
       pack = (params[:pack_name] ? Pack.find_by_name(params[:pack_name]) : nil)
       current_user.subscribed_friends_and_me(pack).each do |user|
-        won_levels = user.won_levels_ids(pack)
+        won_levels = user.won_levels_list(pack)
         hash[:success][user.id] = won_levels.join(',')
         hash[:count][user.id] = "#{user.name} - #{won_levels.count}"
       end

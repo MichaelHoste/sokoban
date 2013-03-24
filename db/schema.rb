@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130316171550) do
+ActiveRecord::Schema.define(:version => 20130324191110) do
 
   create_table "level_user_links", :force => true do |t|
     t.integer  "user_id"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(:version => 20130316171550) do
 
   add_index "levels", ["name"], :name => "index_levels_on_name"
   add_index "levels", ["pack_id"], :name => "index_levels_on_pack_id"
+
+  create_table "pack_user_links", :force => true do |t|
+    t.integer  "pack_id"
+    t.integer  "user_id"
+    t.integer  "won_levels_count", :default => 0
+    t.text     "won_levels_list"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
 
   create_table "packs", :force => true do |t|
     t.string   "name"

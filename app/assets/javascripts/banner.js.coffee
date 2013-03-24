@@ -5,8 +5,8 @@ $ ->
   $('#limited-banner img')
     .mouseenter( ->
       span = $(this).next() # hidden span with won levels informations
-      won_levels_ids = $.trim(span.text()).split(',')
-      for level_id in won_levels_ids
+      won_levels_list = $.trim(span.text()).split(',')
+      for level_id in won_levels_list
         level_button = $("#level-#{level_id} span")
         $(level_button).closest('li').addClass('won-selected')
       show_user_infos(span)

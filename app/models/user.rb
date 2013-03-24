@@ -76,9 +76,9 @@ class User < ActiveRecord::Base
     if not user.empty?
       user = user.first
       user.attributes = user_hash
-      user
     else
       user = User.new(user_hash)
+
       mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
       mimi.csv_import("email, first name, last name, full name, gender, locale\n" +
                       "#{user.email}, #{user.f_first_name}, #{user.f_last_name}, #{user.name}, #{user.gender}, #{user.locale}")
@@ -174,11 +174,11 @@ class User < ActiveRecord::Base
   end
 
   # list of won level ids (from the selected pack of for all packs) for this user
-  def won_levels_ids(pack=nil)
+  def won_levels_list(pack=nil)
     if pack
-      pack.won_levels_ids(self)
+      pack.won_levels_list(self)
     else
-      Pack.won_levels_ids(self)
+      Pack.won_levels_list(self)
     end
   end
 
