@@ -10,7 +10,7 @@ DEMO
 
 Try it here : http://www.sokoban.be
 
-![Image](https://github.com/MichaelHoste/sokoban/raw/master/misc/sokoban.png)
+![Image](https://github.com/MichaelHoste/sokoban/raw/master/_html/sokoban.png)
 
 TO DO
 -----
@@ -32,7 +32,7 @@ TO DO
  7.  Implement challenges : invite 5 friend by challenge.
  8.  Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone).
  9.  Send mails to users to tell about the last activities of their friends.
- 
+
 (1)
 
 feed : http://developers.facebook.com/docs/reference/dialogs/feed/
