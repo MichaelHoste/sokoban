@@ -12,9 +12,9 @@
             <a href="#">
               <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id %>
 
-              <span style="display:none" data-user-id="<%= friend.id %>" data-user-name="<%= friend.name %>" data-local-success="<%= friend.won_levels_count(@pack) %>" data-global-success="<%= friend.won_levels_count() %>">
+              <span style="display:none" data-user-id="<%= friend.user_id %>" data-user-name="<%= friend.name %>" data-local-success="<%= friend.won_levels_count %>" data-global-success="<%= friend.total_won_levels %>">
                 <% # won levels ids of current pack OR every won levels id %>
-                <%= friend.won_levels_list(@pack).join(',') %>
+                <%= friend.won_levels_list %>
               </span>
             </a>
           </li>

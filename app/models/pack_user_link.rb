@@ -20,9 +20,12 @@ class PackUserLink < ActiveRecord::Base
 
   def update_stats
     if self.user # not anonymous score
-      self.won_levels_count = self.user.won_levels_count(self.pack)
-      self.won_levels_list  = self.user.won_levels_list(self.pack)
+      self.won_levels_count = self.user.best_scores.where(:level_id => self.pack.level_ids).count
+      self.won_levels_list  = self.pack.won_levels_list(self.user)
       self.save!
     end
   end
 end
+
+
+

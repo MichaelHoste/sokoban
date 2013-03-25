@@ -7,20 +7,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  # get hash of banner infos : {:id_54 => '233,455', :id_66 => '444,666'}
   def banner
-    hash = {:success => {}, :count => {}}
-
-    if current_user
-      pack = (params[:pack_name] ? Pack.find_by_name(params[:pack_name]) : nil)
-      current_user.subscribed_friends_and_me(pack).each do |user|
-        won_levels = user.won_levels_list(pack)
-        hash[:success][user.id] = won_levels.join(',')
-        hash[:count][user.id] = "#{user.name} - #{won_levels.count}"
-      end
-    end
-
-    render :json => hash
+    @pack = Pack.find_by_name(params[:pack_name])
+    render :partial => 'layouts/banner'
   end
 
   def privacy_policy

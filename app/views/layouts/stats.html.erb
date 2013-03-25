@@ -12,13 +12,13 @@
   <div>
     <% @last_users.each do |user| %>
       <div>
-        <%= link_to image_tag(user.profile_picture, :width => '25px', :class => 'tips', :title => "#{user.name} - #{user.won_levels_count()}"), user.f_link %>
+        <%= link_to image_tag(user.profile_picture, :width => '25px', :class => 'tips', :title => "#{user.name} - #{user.total_won_levels}"), user.f_link %>
         |
         <%= user.name %>
         |
         <%= when_in_the_past(user.updated_at) %>
         |
-        <%= user.won_levels_count() %> completed levels
+        <%= user.total_won_levels %> completed levels
       </div>
     <% end %>
   </div>
@@ -31,7 +31,7 @@
     <% @last_scores.each do |score| %>
       <% user_picture = (score.user_id ? score.user.profile_picture : 'default_user.png' )%>
       <% user_link = (score.user_id ? score.user.f_link : '#') %>
-      <% won_levels = score.user ? score.user.won_levels_count() : 0 %>
+      <% won_levels = score.user ? score.user.total_won_levels : 0 %>
 
       <div>
         <%= link_to image_tag(user_picture, :width => '25px', :class => 'tips', :title => "#{score.user_name} - #{won_levels}"), user_link %>

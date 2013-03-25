@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :levels,
            :through => :scores
 
+  has_many :pack_user_links
+
   # Nested attributes
 
   # Validations
@@ -124,29 +126,24 @@ class User < ActiveRecord::Base
     end
   end
 
-  # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to packs or all)
-  def subscribed_friends(pack=nil)
+  # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to one pack)
+  def subscribed_friends(pack)
     friends = self.friends.registred.all
-    friends.sort {|x,y| y.won_levels_count(pack) <=> x.won_levels_count(pack) }
+    join_users_to_pack_user_links_and_sort(friends, pack)
   end
 
-  # list of subscribed friends, user INCLUDED, sorted by won levels (relative to packs or all)
-  def subscribed_friends_and_me(pack=nil)
-    friends = self.friends.registred.all
-    friends << self
-    friends.sort {|x,y| y.won_levels_count(pack) <=> x.won_levels_count(pack) }
-  end
-
-  def subscribed_friends_ids
-    self.friends.registred.pluck(:f_id)
+  # list of subscribed friends, user INCLUDED, sorted by won levels (relative to one pack)
+  def subscribed_friends_and_me(pack)
+    friends = self.friends.registred.all + [self]
+    join_users_to_pack_user_links_and_sort(friends, pack)
   end
 
   # n random popular friends
   # algo to maximize the selection of the people (registred or not) with a lot of registred friends
   # statisticaly we will select half the time a registred friend
   def popular_friends(n)
-    registred_friends = self.friends.registred.all
-    not_registred_friends = self.friends.not_registred.all
+    registred_friends     = self.friends.registred.all
+    not_registred_friends = self.friends.not_registred.order('friends_count DESC').limit(50).all
     popular_friends = []
 
     # array of friends of registred and not registred friends
@@ -155,14 +152,14 @@ class User < ActiveRecord::Base
     friends_of_nrf = not_registred_friends.collect { |friend| friend.friends_count }
 
     # sum of the array of friends of registred and not registred friends
-    # (in an array so we can later pass it by reference)
+    # (in an array so we can later pass it by reference and get updated)
     sum_friends_of_rf  = [friends_of_rf.sum]
     sum_friends_of_nrf = [friends_of_nrf.sum]
 
     while popular_friends.size < n and (sum_friends_of_rf[0] != 0 or sum_friends_of_nrf[0] != 0)
       choice = rand(1..2)
       # select a registred popular friend
-      if choice == 1 and sum_friends_of_rf[0]  != 0
+      if choice == 1 and sum_friends_of_rf[0] != 0
         popular_friends << select_one_user(registred_friends, friends_of_rf, sum_friends_of_rf)
       # select an not registred popular friend
       elsif choice == 2 and sum_friends_of_nrf[0] != 0
@@ -173,29 +170,9 @@ class User < ActiveRecord::Base
     return popular_friends
   end
 
-  # list of won level ids (from the selected pack of for all packs) for this user
-  def won_levels_list(pack=nil)
-    if pack
-      pack.won_levels_list(self)
-    else
-      Pack.won_levels_list(self)
-    end
-  end
-
-  def won_levels_count(pack=nil)
-    if pack
-      levels_ids = pack.levels.pluck(:id)
-      self.best_scores.where(:level_id => levels_ids).count
-    else
-      self.best_scores.count
-    end
-  end
-
   private
 
   # update (bi-directional) friends count (friends that are on the database : registred or not)
-  # cannot be used with simple 'counter_cache' because of non-registred friends
-  # that only are on the 'friend_id' side of the relation
   def update_friends_count
     # registred user of not registred user
     if self.email
@@ -206,9 +183,10 @@ class User < ActiveRecord::Base
   end
 
   # select one random user depending on the common number of friends (the more friends, the more the chance to be selected)
-  # users : array of users [steve_object, paul_object, marc_object]
+  # users               : array of users [steve_object, paul_object, marc_object]
   # users_friends_count : array of friends num for each of these users [34,11,55] (steve has 34 friends)
-  # total_user_friends : sum of users_friends_count. ATTENTION : in an array ! (here : [100])
+  # total_user_friends  : sum of users_friends_count. ATTENTION : in an array ! (here : [100])
+  # --> return user and update entry values
   def select_one_user(users, users_friends_count, total_user_friends)
     selected_user = nil
     rand_number = rand(total_user_friends[0])
@@ -216,7 +194,7 @@ class User < ActiveRecord::Base
       if rand_number <= friends_count
         selected_user = users[index]
         # remove this user of the list
-        total_user_friends[0] = total_user_friends[0] - users_friends_count[index]
+        total_user_friends[0] = total_user_friends[0] - friends_count
         users.delete_at(index)
         users_friends_count.delete_at(index)
         break
@@ -226,5 +204,13 @@ class User < ActiveRecord::Base
     end
 
     return selected_user
+  end
+
+  def join_users_to_pack_user_links_and_sort(friends, pack)
+    friend_ids = friends.collect(&:id)
+    User.where(:id => friend_ids)
+        .select('users.*, pack_user_links.*')
+        .joins(:pack_user_links).where('pack_user_links.pack_id = ?', pack.id)
+        .sort {|x,y| y.won_levels_count <=> x.won_levels_count }
   end
 end

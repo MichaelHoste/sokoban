@@ -13,7 +13,7 @@
         <div class="final-score-item">
           <div class="score-position"><%= score.position %></div>
           <div class="score-picture">
-            <%= link_to image_tag(score.user.profile_picture, :width => '50px', :class => 'tips', :title => "#{score.user.name} - #{score.user.won_levels_count()}"), score.user.f_link %>
+            <%= link_to image_tag(score.user.profile_picture, :width => '50px', :class => 'tips', :title => "#{score.user.name} - #{score.user.total_won_levels}"), score.user.f_link %>
           </div>
           <div class="score-name">
             <%= link_to score.user.name, score.user.f_link, :title => score.user.name %>
