@@ -1,6 +1,6 @@
 class AddTotalWonLevelsToUsers < ActiveRecord::Migration
   def change
-    add_column :users, :total_won_levels, :integer, :null => false
+    add_column :users, :total_won_levels, :integer, :default => 0, :null => false
 
     User.reset_column_information
 

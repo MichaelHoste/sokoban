@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(:version => 20130325153301) do
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.integer  "friends_count",                 :default => 0, :null => false
-    t.integer  "total_won_levels",                             :null => false
+    t.integer  "total_won_levels",              :default => 0, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

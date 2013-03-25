@@ -98,23 +98,16 @@ class User < ActiveRecord::Base
     graph = Koala::Facebook::API.new(self.f_token)
     friends = graph.get_connections('me', 'friends')
 
-    # delete each friend relation of user (in user_user_link)
-    self.user_user_links.destroy_all
-
     # update users and user_user_link relation
     friends.each do |friend|
-      user_hash = { :f_id => friend['id'], :name => friend['name'] }
-      user = User.where(:f_id => friend['id'])
-      if not user.empty?
-        user = user.first
-        user.attributes = user_hash
-      else
-        user = User.create!(user_hash)
-      end
-
-      self.user_user_links << UserUserLink.new(:user_id => self.f_id, :friend_id => user.f_id)
-      self.save!
+      user = User.find_or_create_by_f_id(friend['id'])
+      user.update_attributes!({ :name => friend['name'] })
+      self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
     end
+
+    # delete user_user_link is not facebook friend anymore
+    friend_ids = friends.collect{ |friend| friend['id'] }
+    self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
   end
 
   def profile_picture

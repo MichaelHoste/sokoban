@@ -31,6 +31,7 @@ gem 'libv8'
 group :development do
   gem 'thin'
   gem 'quiet_assets'
+  gem 'query_reviewer'
 end
 
 # Production/deployment tools
