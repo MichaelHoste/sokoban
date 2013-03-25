@@ -13,7 +13,7 @@
               <span class="fb_img">
                 <%= image_tag current_user.profile_picture, :title => current_user.name %>
               </span>
-              <span>User profile</span>
+              <span><%= current_user.name %></span>
             </div>
             <div style="display:none;border:1px solid;height:30px;overflow:hidden;position:relative;z-index:1000">
               Logout

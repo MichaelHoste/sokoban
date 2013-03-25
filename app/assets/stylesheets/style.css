@@ -255,7 +255,7 @@ body {
 	#limited-header #menus .fb_logged div {
 		height: 34px;
 		line-height: 34px;
-		padding: 0 20px 0 10px;
+		padding: 0 5px 0 10px;
 		font-size: 13px;
 		font-weight: bold;
 		-webkit-border-radius: 3px;
@@ -263,7 +263,7 @@ body {
 		overflow: hidden;
 		border: 1px solid #c9c9c9;
 		color: #333;
-		background: url('/assets/sprites.png') no-repeat 100% -402px;
+		background: url('/assets/sprites.png') no-repeat 50% -402px;
 	}
 	#limited-header #menus .fb_logged div.selected {
 		color: #8b8b8b;
