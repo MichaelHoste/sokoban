@@ -11,7 +11,8 @@ class ScoresController < ApplicationController
     @score.path = params[:path]
 
     if @score.save
-      @score.publish_on_facebook(request.protocol) if current_user
+      @score.publish_on_facebook if current_user
+      #@score.notify_friends      if current_user
       @score.update_stats
 
       render :json => { :success  => true,

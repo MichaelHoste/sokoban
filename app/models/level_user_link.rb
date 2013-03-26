@@ -63,14 +63,33 @@ class LevelUserLink < ActiveRecord::Base
   # Methods
 
   # publish the "user has completed the level" on open graph (facebook)
-  def publish_on_facebook(request_protocol)
+  def publish_on_facebook
     if Rails.env.production?
       graph = Koala::Facebook::API.new(user.f_token)
-      graph.put_connections("me", "sokojax:complete", :level  => URI.escape("#{request_protocol}sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}"),
+      graph.put_connections("me", "sokojax:complete", :level  => URI.escape("https://sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}"),
                                                       :pushes => self.pushes,
                                                       :moves  => self.moves)
     end
   end
+
+  # App notifications : https://developers.facebook.com/docs/concepts/notifications/
+#  def notify_friends
+#    oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
+#    access_token = oauth.get_app_access_token
+#    graph        = Koala::Facebook::API.new(access_token)
+#
+#    friends_to_notify = Score.best_scores
+#                             .where(:user_id  => self.user.friends.registred.pluck(:id),
+#                                    :level_id => self.level_id)
+#                             .where('pushes > :p or (pushes = :p and moves > :m)',
+#                                    :p => self.pushes, :m => self.moves)
+#
+#    friends_to_notify.each do |friend|
+#      graph.put_connections(friend.f_id, "notifications",
+#                            :template => "@[#{self.f_id}]'s just beat your score on level #{self.level.name}, get revenge!",
+#                            :href     => "packs/" + URI.escape(self.level.pack.name) + "/levels/" + URI.escape(self.level.name))
+#    end
+#  end
 
   def update_stats
     self.tag_best_score

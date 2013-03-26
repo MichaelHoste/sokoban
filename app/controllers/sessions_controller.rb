@@ -14,8 +14,13 @@ class SessionsController < ApplicationController
     if @user.save!
       session[:user_id] = @user.id
       @user.build_friendships
-      # Get and save friends id of this user
-      redirect_to :root
+
+      if params[:fb_source] == 'notification'
+        level = Level.find(params[:level_id])
+        redirect_to pack_level_path(level.pack.name, level.name)
+      else
+        redirect_to :root
+      end
     else
       render :text => "Facebook connection failed (user informations could not be saved)"
     end
