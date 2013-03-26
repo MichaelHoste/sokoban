@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   # Constants
 
+  DAYS_BEFORE_UPDATING_FRIENDS = 2
+
   # Attributes
   attr_protected :created_at, :updated_at
 
@@ -95,19 +97,21 @@ class User < ActiveRecord::Base
 
   # create new user for each friend and link it
   def build_friendships
-    graph = Koala::Facebook::API.new(self.f_token)
-    friends = graph.get_connections('me', 'friends')
+    if self.has_to_build_friendships?
+      graph = Koala::Facebook::API.new(self.f_token)
+      friends = graph.get_connections('me', 'friends')
 
-    ## update users and user_user_link relation
-    #friends.each do |friend|
-    #  user = User.find_or_create_by_f_id(friend['id'])
-    #  user.update_attributes!({ :name => friend['name'] })
-    #  self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
-    #end
-#
-    ## delete user_user_link is not facebook friend anymore
-    #friend_ids = friends.collect{ |friend| friend['id'] }
-    #self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
+      # update users and user_user_link relation
+      friends.each do |friend|
+        user = User.find_or_create_by_f_id(friend['id'])
+        user.update_attributes!({ :name => friend['name'] })
+        self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
+      end
+
+      # delete user_user_link is not facebook friend anymore
+      friend_ids = friends.collect{ |friend| friend['id'] }
+      self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
+    end
   end
 
   def profile_picture
@@ -205,5 +209,14 @@ class User < ActiveRecord::Base
         .select('users.*, pack_user_links.*')
         .joins(:pack_user_links).where('pack_user_links.pack_id = ?', pack.id)
         .sort {|x,y| y.won_levels_count <=> x.won_levels_count }
+  end
+
+  # If new user (no friends) or existing user and old update
+  def has_to_build_friendships?
+    new_user       = !self.friends.any?
+    time_to_update = self.friends.any? and
+                     Time.now.to_date - self.friends_updated_at.to_date > DAYS_BEFORE_UPDATING_FRIENDS
+
+    new_user or time_to_update
   end
 end

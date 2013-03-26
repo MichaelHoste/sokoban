@@ -27,6 +27,6 @@ class ApplicationController < ActionController::Base
     @best_scores   = LevelUserLink.where(:best_level_user_score => true).count
     @last_users    = User.registred.order('updated_at DESC').limit(10)
     @last_scores   = LevelUserLink.unscoped.order('created_at DESC').limit(100)
-    render 'layouts/stats'
+    render 'layouts/stats', :layout => false
   end
 end
