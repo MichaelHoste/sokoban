@@ -73,23 +73,23 @@ class LevelUserLink < ActiveRecord::Base
   end
 
   # App notifications : https://developers.facebook.com/docs/concepts/notifications/
-#  def notify_friends
-#    oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
-#    access_token = oauth.get_app_access_token
-#    graph        = Koala::Facebook::API.new(access_token)
-#
-#    friends_to_notify = Score.best_scores
-#                             .where(:user_id  => self.user.friends.registred.pluck(:id),
-#                                    :level_id => self.level_id)
-#                             .where('pushes > :p or (pushes = :p and moves > :m)',
-#                                    :p => self.pushes, :m => self.moves)
-#
-#    friends_to_notify.each do |friend|
-#      graph.put_connections(friend.f_id, "notifications",
-#                            :template => "@[#{self.f_id}]'s just beat your score on level #{self.level.name}, get revenge!",
-#                            :href     => "packs/" + URI.escape(self.level.pack.name) + "/levels/" + URI.escape(self.level.name))
-#    end
-#  end
+  def notify_friends
+    oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
+    access_token = oauth.get_app_access_token
+    graph        = Koala::Facebook::API.new(access_token)
+
+    friends_to_notify = Score.best_scores
+                             .where(:user_id  => self.user.friends.registred.pluck(:id),
+                                    :level_id => self.level_id)
+                             .where('pushes > :p or (pushes = :p and moves > :m)',
+                                    :p => self.pushes, :m => self.moves)
+
+    friends_to_notify.each do |friend|
+      graph.put_connections(friend.f_id, "notifications",
+                            :template => "@[#{self.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
+                            :href     => "?level_id=#{level.id}")
+    end
+  end
 
   def update_stats
     self.tag_best_score
