@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   # Constants
 
-  DAYS_BEFORE_UPDATING_FRIENDS = 2
+  DAYS_BEFORE_UPDATING_FRIENDS = 5
 
   # Attributes
   attr_protected :created_at, :updated_at
