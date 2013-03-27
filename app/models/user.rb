@@ -111,6 +111,8 @@ class User < ActiveRecord::Base
       # delete user_user_link is not facebook friend anymore
       friend_ids = friends.collect{ |friend| friend['id'] }
       self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
+
+      self.update_attributes!({ :friends_updated_at => Time.now })
     end
   end
 
@@ -169,7 +171,7 @@ class User < ActiveRecord::Base
 
   private
 
-  # update (bi-directional) friends count (friends that are on the database : registred or not)
+  # update friends count (friends that are on the database : registred or not)
   def update_friends_count
     # registred user of not registred user
     if self.email
