@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require "delayed/recipes"
 
 # Comment when first "cap deploy" (gem is not present yet and "bundle" is made after this)
 set :whenever_command, 'bundle exec whenever'
@@ -39,12 +40,25 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 set :keep_releases, 1
 after "deploy:restart", "deploy:cleanup"
 
+# delayed jobs
+set :delayed_job_args,  "-n 1"       # only 1 delayed job
+set :rails_env,         "production" # for delayed jobs
+after "deploy:stop",    "delayed_job:stop"
+after "deploy:start",   "delayed_job:start"
+after "deploy:restart", "delayed_job:restart"
+
+before "deploy:assets:precompile" do
+  # Database
+  upload "config/database.yml", "#{deploy_to}/shared/config/database.yml"
+  run "ln -s #{deploy_to}/shared/config/database.yml #{latest_release}/config/database.yml;true"
+
+  # Emails
+  upload "config/email.yml", "#{deploy_to}/shared/config/email.yml"
+  run "ln -s #{deploy_to}/shared/config/email.yml #{latest_release}/config/email.yml;true"
+end
+
 namespace :deploy do
   task :start do
-    # Database
-    run "unlink #{deploy_to}/current/config/database.yml;true"
-    run "ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/current/config/database.yml;true"
-
     # Thumbs of levels (generated when needed)
     run "unlink #{deploy_to}/current/public/images/levels;true"
     run "ln -s #{deploy_to}/shared/public/images/levels #{deploy_to}/current/public/images/levels;true"
@@ -60,6 +74,13 @@ namespace :deploy do
     # Errbit configuration
     run "unlink #{deploy_to}/current/config/initializers/errbit.rb;true"
     run "ln -s #{deploy_to}/shared/config/initializers/errbit.rb #{deploy_to}/current/config/initializers/errbit.rb;true"
+
+    # Backup configuration
+    run "mkdir #{deploy_to}/current/config/backups;true"
+    run "unlink #{deploy_to}/current/config/backups/sokoban.rb;true"
+    run "unlink #{deploy_to}/current/config/backup.rb;true"
+    run "ln -s #{deploy_to}/shared/config/backups/sokoban.rb #{deploy_to}/current/config/backups/sokoban.rb;true"
+    run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
 
     deploy.migrate
 
@@ -99,17 +120,9 @@ after 'deploy:update_code' do
   run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
   run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
 
-  upload "config/database.yml", "#{deploy_to}/shared/config/database.yml"
   upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
   upload "config/initializers/madmimi.rb", "#{deploy_to}/shared/config/initializers/madmimi.rb"
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
   upload "config/backups/sokoban.rb", "#{deploy_to}/shared/config/backups/sokoban.rb"
   upload "config/backup.rb", "#{deploy_to}/shared/config/backup.rb"
-
-  # Backup configuration
-  run "mkdir #{deploy_to}/current/config/backups;true"
-  run "unlink #{deploy_to}/current/config/backups/sokoban.rb;true"
-  run "unlink #{deploy_to}/current/config/backup.rb;true"
-  run "ln -s #{deploy_to}/shared/config/backups/sokoban.rb #{deploy_to}/current/config/backups/sokoban.rb;true"
-  run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
 end

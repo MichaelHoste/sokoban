@@ -25,6 +25,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 /config/database.yml
+/config/email.yml
 /config/initializers/facebook.rb
 /config/initializers/errbit.rb
 /config/initializers/madmimi.rb

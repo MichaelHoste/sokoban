@@ -46,6 +46,10 @@ namespace :app  do
 
       compile_coffee_to_js()
 
+      # Delayed_jobs
+      new_tab('Delayed_Jobs', ["cd #{Dir.pwd}",
+                               "bundle exec rake jobs:work"])
+
       # Empty shell
       new_tab('Shell', ["cd #{Dir.pwd}", "clear"])
 
