@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
   def check_facebook
     # redirection from facebook applications center
     if params[:signed_request]
-      Rails.logger.info("redirect")
-      redirect_to "/auth/facebook/callback?signed_request=#{params[:signed_request]}"
+      redirect_to "/auth/facebook"
     # autologin when new user (only on facebook)
     elsif not session[:user_id] and params[:fb_source]
       redirect_to '/auth/facebook'
