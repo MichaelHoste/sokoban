@@ -70,8 +70,8 @@ module Sokojax
       :domain               => EMAIL['smtp_settings']['domain'],
       :address              => EMAIL['smtp_settings']['address'],
       :port                 => EMAIL['smtp_settings']['port'].to_i,
-      :authentication       => EMAIL['smtp_settings']['authentification'].to_sym,
-      :enable_starttls_auto => EMAIL['smtp_settings']['enable_startttls_auto'] == "true"
+      :authentication       => EMAIL['smtp_settings']['authentification'] ? EMAIL['smtp_settings']['authentification'].to_sym : '',
+      :enable_starttls_auto => EMAIL['smtp_settings']['enable_startttls_auto'] ? EMAIL['smtp_settings']['enable_startttls_auto'] == "true" : ''
     }
   end
 end

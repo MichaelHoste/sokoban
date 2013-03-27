@@ -219,8 +219,12 @@ class User < ActiveRecord::Base
 
   # If new user (no friends) or existing user and old update
   def has_to_build_friendships?
-    new_user       = !self.friends.any?
-    time_to_update = Time.now.to_date - self.friends_updated_at.to_date > DAYS_BEFORE_UPDATING_FRIENDS
-    new_user or time_to_update
+    if not self.friends_updated_at
+      true
+    elsif Time.now.to_date - self.friends_updated_at.to_date > DAYS_BEFORE_UPDATING_FRIENDS
+      true
+    else
+      false
+    end
   end
 end
