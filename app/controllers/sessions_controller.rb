@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       @user.build_friendships
 
-      if params[:fb_source] == 'notification'
+      if params[:level_id]
         level = Level.find(params[:level_id])
         redirect_to pack_level_path(level.pack.name, level.name)
       else

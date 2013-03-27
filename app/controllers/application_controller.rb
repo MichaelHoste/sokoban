@@ -15,9 +15,15 @@ class ApplicationController < ActionController::Base
       Rails.logger.info("1 : #{params.inspect}")
       redirect_to '/auth/facebook'
     elsif not current_user and params[:fb_source]
+      level_id = ''
+      if params[:pack_id] and params[:id]
+        pack = Pack.find_by_name(params[:pack_id])
+        level = pack.levels.find_by_name(params[:id])
+        level_id = "level_id=#{level.id}"
+      end
       Rails.logger.info("3 : #{params.inspect}")
       render :inline => "<script type = \"text/javascript\">
-                           top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&scope=#{ENV['FACEBOOK_SCOPE']}&redirect_uri=https://apps.facebook.com/sokojax/auth/facebook/callback'
+                           top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&scope=#{ENV['FACEBOOK_SCOPE']}&redirect_uri=https://apps.facebook.com/sokojax/auth/facebook/callback?#{level_id}'
                          </script>"
     end
   end
