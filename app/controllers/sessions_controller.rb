@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_filter :check_facebook
+
   def new
     if current_user
       redirect_to :root
