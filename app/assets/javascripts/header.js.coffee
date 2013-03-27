@@ -3,6 +3,10 @@ $ ->
     location.assign('/logout')
   )
 
+  $('#menus .fb_login').on('click', ->
+    location.assign('/auth/facebook')
+  )
+
   $('#menus .rules-menu').on('click', ->
     window.colorbox_welcome()
   )

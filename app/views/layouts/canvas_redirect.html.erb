@@ -1,0 +1,3 @@
+<script type = "text/javascript">
+  top.location.href='https://www.facebook.com/dialog/oauth?client_id=<%= ENV['FACEBOOK_KEY'] %>&scope=<%= ENV['FACEBOOK_SCOPE'] %>&redirect_uri=https://apps.facebook.com/sokojax/auth/facebook/callback?<%= "level_id=#{@level.id}" if @level %>'
+</script>"

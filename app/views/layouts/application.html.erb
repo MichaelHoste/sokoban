@@ -11,10 +11,10 @@
     <% if @level %>
       <meta property="fb:app_id"       content="<%= ENV['FACEBOOK_KEY'] %>" />
       <meta property="og:type"         content="sokojax:level" />
-      <meta property="og:url"          content="http://sokoban.be/packs/<%= URI.escape(@level.pack.name) %>/levels/<%= URI.escape(@level.name) %>" />
+      <meta property="og:url"          content="https://sokoban.be/packs/<%= URI.escape(@level.pack.name) %>/levels/<%= URI.escape(@level.name) %>" />
       <meta property="og:title"        content="<%= @level.name %>" />
       <meta property="og:description"  content="Pack : <%= @level.pack.name.gsub(/\n/," ").gsub(/\r/," ") %> | <%= @level.pack.description.gsub(/\n/," ").gsub(/\r/," ") %>" />
-      <meta property="og:image"        content="http://sokoban.be/packs/<%= URI.escape(@level.pack.name) %>/levels/<%= URI.escape(@level.name) %>/thumb.png" />
+      <meta property="og:image"        content="https://sokoban.be/packs/<%= URI.escape(@level.pack.name) %>/levels/<%= URI.escape(@level.name) %>/thumb.png" />
       <meta property="sokojax:level_name" content="<%= @level.name %>" />
       <meta property="sokojax:pack_name"  content="<%= @level.pack.name %>" />
     <% end %>
