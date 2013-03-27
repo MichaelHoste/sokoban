@@ -66,9 +66,10 @@ class LevelUserLink < ActiveRecord::Base
   def publish_on_facebook
     if Rails.env.production?
       graph = Koala::Facebook::API.new(user.f_token)
-      graph.put_connections("me", "sokojax:complete", :level  => URI.escape("https://sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}"),
-                                                      :pushes => self.pushes,
-                                                      :moves  => self.moves)
+      graph.put_connections("me", "sokojax:complete",
+                            :level  => URI.escape("https://sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}"),
+                            :pushes => self.pushes,
+                            :moves  => self.moves)
     end
   end
 
@@ -78,11 +79,22 @@ class LevelUserLink < ActiveRecord::Base
     access_token = oauth.get_app_access_token
     graph        = Koala::Facebook::API.new(access_token)
 
-    friends_to_notify = Score.best_scores
-                             .where(:user_id  => self.user.friends.registred.pluck(:id),
-                                    :level_id => self.level_id)
-                             .where('pushes > :p or (pushes = :p and moves > :m)',
-                                    :p => self.pushes, :m => self.moves)
+    # new score is not yet tagged as (eventual) best score
+    old_best_score = self.user.best_scores.where(:level_id => self.level_id)
+
+    friends_lower_scores = self.level.best_scores
+                                     .where(:user_id => self.user.friends.registred.pluck('users.id'))
+                                     .where('pushes > :p or (pushes = :p and moves > :m)',
+                                            :p => self.pushes, :m => self.moves)
+
+    if old_best_score.empty?
+      friends_to_notify = friends_lower_scores.collect { |score| score.user }
+    else
+      friends_to_notify = friends_lower_scores.where('pushes < :p or (pushes = :p and moves < :m)',
+                                                     :p => old_best_score.pushes,
+                                                     :m => old_best_score.moves)
+                                              .collect { |score| score.user }
+    end
 
     friends_to_notify.each do |friend|
       graph.put_connections(friend.f_id, "notifications",

@@ -12,7 +12,7 @@ class ScoresController < ApplicationController
 
     if @score.save
       @score.publish_on_facebook if current_user
-      #@score.notify_friends      if current_user
+      @score.notify_friends      if current_user
       @score.update_stats
 
       render :json => { :success  => true,
