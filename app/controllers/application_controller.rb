@@ -17,9 +17,8 @@ class ApplicationController < ActionController::Base
     # auto-register when new user (only on facebook)
     elsif not session[:user_id] and params[:fb_source]
       Rails.logger.info("3 : #{params.inspect}")
-      Rails.logger.info("top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&scope=#{ENV['FACEBOOK_SCOPE']}&redirect_uri=http://apps.facebook.com/sokojax'")
       render :inline => "<script type = \"text/javascript\">
-                           top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&scope=#{ENV['FACEBOOK_SCOPE']}&redirect_uri=http://apps.facebook.com/sokojax'
+                           top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&scope=#{ENV['FACEBOOK_SCOPE']}&redirect_uri=auth/facebook/callback'
                          </script>"
 
     end
