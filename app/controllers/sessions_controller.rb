@@ -9,9 +9,6 @@ class SessionsController < ApplicationController
 
   def create
     credentials = request.env['omniauth.auth']['credentials']
-
-    Rails.logger.info("CRED #{credentials.inspect}")
-
     @user = User.update_or_create(credentials)
 
     if @user.save!

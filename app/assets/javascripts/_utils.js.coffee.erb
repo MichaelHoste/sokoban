@@ -1,6 +1,6 @@
 $ ->
   # connect to facebook
-  FB.init({appId: '312592002148798', status:true, xfbml: true, cookie: true})
+  FB.init({appId: '<%= ENV["FACEBOOK_KEY"] %>', status: true, xfbml: true, cookie: true})
 
   window.facebook_send = (link, description, to = "") ->
     options =

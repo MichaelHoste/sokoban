@@ -3,6 +3,22 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  before_filter :check_facebook
+
+  def check_facebook
+    # redirection from facebook applications center
+    if params[:signed_request]
+      Rails.logger.info("redirect")
+      redirect_to "/auth/facebook/callback?signed_request=#{params[:signed_request]}"
+    # autologin when new user (only on facebook)
+    elsif not session[:user_id] and params[:fb_source]
+      redirect_to '/auth/facebook'
+    # user is connected but session is expired
+    elsif session[:user_id] and User.find(session[:user_id]).f_expires_at < Time.now
+      redirect_to '/auth/facebook'
+    end
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
