@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
 
   # create new user for each friend and link it
   def build_friendships
-    if self.has_to_build_friendships?
+    if has_to_build_friendships?()
       graph = Koala::Facebook::API.new(self.f_token)
       friends = graph.get_connections('me', 'friends')
 
