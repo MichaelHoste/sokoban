@@ -99,8 +99,8 @@ class LevelUserLink < ActiveRecord::Base
     friends_to_notify.each do |friend|
       Rails.logger.info("FRIEND : #{friend.name}")
       graph.put_connections(friend.f_id, "notifications",
-                            :template => "@[#{self.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
-                            :href     => "?level_id=#{level.id}")
+                            :template => "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
+                            :href     => "?level_id=#{self.level.id}")
     end
   end
 
