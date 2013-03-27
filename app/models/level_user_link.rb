@@ -91,12 +91,13 @@ class LevelUserLink < ActiveRecord::Base
       friends_to_notify = friends_lower_scores.collect { |score| score.user }
     else
       friends_to_notify = friends_lower_scores.where('pushes < :p or (pushes = :p and moves < :m)',
-                                                     :p => old_best_score.pushes,
-                                                     :m => old_best_score.moves)
+                                                     :p => old_best_score.first.pushes,
+                                                     :m => old_best_score.first.moves)
                                               .collect { |score| score.user }
     end
 
     friends_to_notify.each do |friend|
+      Rails.logger.info("FRIEND : #{friend.name}")
       graph.put_connections(friend.f_id, "notifications",
                             :template => "@[#{self.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
                             :href     => "?level_id=#{level.id}")
