@@ -232,6 +232,7 @@ DEPENDENCIES
   backup
   capistrano
   coffee-rails (~> 3.2.1)
+  daemons
   delayed_job_active_record
   dropbox-sdk
   jasmine (= 1.3.0)
