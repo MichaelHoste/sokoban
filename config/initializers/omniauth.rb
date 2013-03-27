@@ -5,3 +5,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            :scope            => 'email, publish_actions',
            :secure_image_url => true
 end
+
+OmniAuth.config.on_failure = Proc.new { |env|
+  OmniAuth::FailureEndpoint.new(env).redirect_to_failure
+}
