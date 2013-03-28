@@ -131,13 +131,13 @@ class User < ActiveRecord::Base
   end
 
   def profile_picture
-    if self.picture
-      self.picture
-    else
+    if not self.picture
       graph = Koala::Facebook::API.new
-      self.update_attributes(:picture => graph.get_picture(self.f_id, { :return_ssl_resources => 1, :type => 'square' })
-      self.picture
+      new_picture = graph.get_picture(self.f_id, { :return_ssl_resources => 1, :type => 'square' })
+      self.update_attributes(:picture => new_picture)
     end
+
+    self.picture
   end
 
   # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to one pack)
