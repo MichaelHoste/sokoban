@@ -16,7 +16,15 @@ class SessionsController < ApplicationController
 
     if @user.save!
       session[:user_id] = @user.id
-      @user.build_friendships
+
+      # update friendships if necessary (and delay only if not first time)
+      if @user.has_to_build_friendships?
+        if @user.friends_updated_at
+          @user.delay.build_friendships
+        else
+          @user.build_friendships
+        end
+      end
 
       if params[:level_id]
         level = Level.find(params[:level_id])

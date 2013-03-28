@@ -62,10 +62,16 @@ class LevelUserLink < ActiveRecord::Base
 
   # Methods
 
+  def fb_and_update_stats
+    self.publish_on_facebook
+    self.notify_friends
+    self.update_stats
+  end
+
   # publish the "user has completed the level" on open graph (facebook)
   def publish_on_facebook
-    if Rails.env.production?
-      graph = Koala::Facebook::API.new(user.f_token)
+    if Rails.env.production? and self.user
+      graph = Koala::Facebook::API.new(self.user.f_token)
       graph.put_connections("me", "sokojax:complete",
                             :level  => URI.escape("https://sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}"),
                             :pushes => self.pushes,
@@ -75,32 +81,34 @@ class LevelUserLink < ActiveRecord::Base
 
   # App notifications : https://developers.facebook.com/docs/concepts/notifications/
   def notify_friends
-    oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
-    access_token = oauth.get_app_access_token
-    graph        = Koala::Facebook::API.new(access_token)
+    if Rails.env.production? and self.user
+      # new score is not yet tagged as (eventual) best score
+      old_best_score = self.user.best_scores.where(:level_id => self.level_id)
 
-    # new score is not yet tagged as (eventual) best score
-    old_best_score = self.user.best_scores.where(:level_id => self.level_id)
+      friends_lower_scores = self.level.best_scores
+                                       .where(:user_id => self.user.friends.registred.pluck('users.id'))
+                                       .where('pushes > :p or (pushes = :p and moves > :m)',
+                                              :p => self.pushes, :m => self.moves)
 
-    friends_lower_scores = self.level.best_scores
-                                     .where(:user_id => self.user.friends.registred.pluck('users.id'))
-                                     .where('pushes > :p or (pushes = :p and moves > :m)',
-                                            :p => self.pushes, :m => self.moves)
+      if old_best_score.empty?
+        friends_to_notify = friends_lower_scores.collect { |score| score.user }
+      else
+        friends_to_notify = friends_lower_scores.where('pushes < :p or (pushes = :p and moves < :m)',
+                                                       :p => old_best_score.first.pushes,
+                                                       :m => old_best_score.first.moves)
+                                                .collect { |score| score.user }
+      end
 
-    if old_best_score.empty?
-      friends_to_notify = friends_lower_scores.collect { |score| score.user }
-    else
-      friends_to_notify = friends_lower_scores.where('pushes < :p or (pushes = :p and moves < :m)',
-                                                     :p => old_best_score.first.pushes,
-                                                     :m => old_best_score.first.moves)
-                                              .collect { |score| score.user }
-    end
+      oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
+      access_token = oauth.get_app_access_token
+      graph        = Koala::Facebook::API.new(access_token)
 
-    friends_to_notify.each do |friend|
-      Rails.logger.info("FRIEND : #{friend.name}")
-      graph.put_connections(friend.f_id, "notifications",
-                            :template => "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
-                            :href     => "?level_id=#{self.level.id}")
+      friends_to_notify.each do |friend|
+        Rails.logger.info("FRIEND : #{friend.name}")
+        graph.put_connections(friend.f_id, "notifications",
+                              :template => "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
+                              :href     => "?level_id=#{self.level.id}")
+      end
     end
   end
 

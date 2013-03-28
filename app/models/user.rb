@@ -99,25 +99,34 @@ class User < ActiveRecord::Base
     self.email != nil
   end
 
+  # If new user (no friends) or existing user and old update
+  def has_to_build_friendships?
+    if not self.friends_updated_at
+      true
+    elsif Time.now.to_date - self.friends_updated_at.to_date > DAYS_BEFORE_UPDATING_FRIENDS
+      true
+    else
+      false
+    end
+  end
+
   # create new user for each friend and link it
   def build_friendships
-    if has_to_build_friendships?()
-      graph = Koala::Facebook::API.new(self.f_token)
-      friends = graph.get_connections('me', 'friends')
+    graph = Koala::Facebook::API.new(self.f_token)
+    friends = graph.get_connections('me', 'friends')
 
-      # update users and user_user_link relation
-      friends.each do |friend|
-        user = User.find_or_create_by_f_id(friend['id'])
-        user.update_attributes!({ :name => friend['name'] })
-        self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
-      end
-
-      # delete user_user_link is not facebook friend anymore
-      friend_ids = friends.collect{ |friend| friend['id'] }
-      self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
-
-      self.update_attributes!({ :friends_updated_at => Time.now })
+    # update users and user_user_link relation
+    friends.each do |friend|
+      user = User.find_or_create_by_f_id(friend['id'])
+      user.update_attributes!({ :name => friend['name'] })
+      self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
     end
+
+    # delete user_user_link is not facebook friend anymore
+    friend_ids = friends.collect{ |friend| friend['id'] }
+    self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
+
+    self.update_attributes!({ :friends_updated_at => Time.now })
   end
 
   def profile_picture
@@ -215,16 +224,5 @@ class User < ActiveRecord::Base
         .select('users.*, pack_user_links.*')
         .joins(:pack_user_links).where('pack_user_links.pack_id = ?', pack.id)
         .sort {|x,y| y.won_levels_count <=> x.won_levels_count }
-  end
-
-  # If new user (no friends) or existing user and old update
-  def has_to_build_friendships?
-    if not self.friends_updated_at
-      true
-    elsif Time.now.to_date - self.friends_updated_at.to_date > DAYS_BEFORE_UPDATING_FRIENDS
-      true
-    else
-      false
-    end
   end
 end

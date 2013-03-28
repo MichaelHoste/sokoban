@@ -1,6 +1,6 @@
 class ScoresController < ApplicationController
   def create
-    @pack = Pack.find_by_name(params[:pack_id])
+    @pack  = Pack.find_by_name(params[:pack_id])
     @level = @pack.levels.find_by_name(params[:level_id])
 
     @score = LevelUserLink.new(:user_id  => (current_user ? current_user.id : nil),
@@ -11,9 +11,7 @@ class ScoresController < ApplicationController
     @score.path = params[:path]
 
     if @score.save
-      @score.publish_on_facebook if current_user
-      @score.notify_friends      if current_user
-      @score.update_stats
+      @score.delay.fb_and_update_stats
 
       render :json => { :success  => true,
                         :score_id => @score.id }
