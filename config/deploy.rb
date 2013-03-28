@@ -41,7 +41,7 @@ set :keep_releases, 1
 after "deploy:restart", "deploy:cleanup"
 
 # delayed jobs
-set :delayed_job_args,  "-n 1"       # only 1 delayed job
+set :delayed_job_args,  "-n 2"       # 2 delayed jobs (lot of works for pictures when new user)
 set :rails_env,         "production" # for delayed jobs
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
