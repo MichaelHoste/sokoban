@@ -119,6 +119,7 @@ class User < ActiveRecord::Base
     friends.each do |friend|
       user = User.find_or_create_by_f_id(friend['id'])
       user.update_attributes!({ :name => friend['name'] })
+      user.profile_picture # has the side_effect of creating a profile picture if not existing
       self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
     end
 
@@ -134,7 +135,8 @@ class User < ActiveRecord::Base
       self.picture
     else
       graph = Koala::Facebook::API.new
-      self.picture = graph.get_picture(self.f_id, :type => 'square')
+      self.update_attributes(:picture => graph.get_picture(self.f_id, { :return_ssl_resources => 1, :type => 'square' })
+      self.picture
     end
   end
 
