@@ -7,15 +7,15 @@ $ ->
       .success((data, status, xhr) ->
         $('#invitations').html(data)
       )
-  
+
   # send new message (challenge friend)
-  $('#invitations .invite-friend').live('click', ->
+  $('#challenges').delegate('.invite-item', 'click', ->
     window.facebook_send(window.location.href, "Can you beat me on that Sokoban level !?", $(this).closest('.invite-item').attr('data-f_id'))
     return false
   )
-  
+
   $('#invitations-more').live('click', ->
     window.reload_invitations()
   )
-  
+
   window.reload_invitations()

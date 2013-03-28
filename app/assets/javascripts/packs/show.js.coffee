@@ -1,6 +1,7 @@
 #= require packs/show-history
 #= require packs/show-level-thumb
 #= require packs/show-invitation
+#= require packs/show-scores
 
 $ ->
   # Initialize webgl and load selected level
@@ -23,22 +24,6 @@ $ ->
 
     # change the url and save related state (pack and level)
     window.push_this_state()
-  )
-
-  # Refresh scores when click on "more scores" of "friends scores"
-  $('#more-friend-score').live('click', ->
-    friend_page = parseInt($(this).attr('data-page')) + 1
-    global_page = parseInt($('#more-global-score').attr('data-page'))
-
-    window.reload_scores(friend_page, global_page)
-  )
-
-  # Refresh scores when click on "more scores" of "global scores"
-  $('#more-global-score').live('click', ->
-    friend_page = parseInt($('#more-friend-score').attr('data-page'))
-    global_page = parseInt($(this).attr('data-page')) + 1
-
-    window.reload_scores(friend_page, global_page)
   )
 
   # Change level when select another level

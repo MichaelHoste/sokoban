@@ -703,7 +703,11 @@ body {
 			border: 1px solid #cccccc;
 			-webkit-border-radius: 8px;
 			border-radius: 8px;
-			padding: 10px 7px;
+			padding-left:7px;
+			padding-right:7px;
+			padding-top:7px;
+			padding-bottom:4px;
+			cursor:pointer;
 		}
 		.invite-item:hover,
 		.score-item:hover {
@@ -737,6 +741,7 @@ body {
 			margin: 0 3px 5px 3px;
 			text-align: center;
 			font-size: 12px;
+			cursor:pointer;
 		}
 		.final-score-item:hover {
 			 background-color: #d7e8f0;
@@ -760,8 +765,9 @@ body {
 				float: left;
 				width: 86px;
 				font-weight: bold;
-				height: 30px;
 				vertical-align: bottom;
+				margin-top:5px;
+				margin-bottom:4px;
 			}
 			.final-score-item .score-name {
 				margin-top:6px;

@@ -1,7 +1,7 @@
 <% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture : 'default_user.png' )%>
 <% user_link = (level_user_link.user_id ? level_user_link.user.f_link : '#') %>
 
-<div class="score-item">
+<div class="score-item" data-f_id="<%= level_user_link.user.f_id if level_user_link.user %>">
   <div class="score-picture">
     <%= link_to image_tag(user_picture, :title => level_user_link.user_name), user_link %>
   </div>
