@@ -703,7 +703,7 @@ body {
 			border: 1px solid #cccccc;
 			-webkit-border-radius: 8px;
 			border-radius: 8px;
-			padding: 10px 14px;
+			padding: 10px 7px;
 		}
 		.invite-item:hover,
 		.score-item:hover {
@@ -726,7 +726,7 @@ body {
 			}
 
 		.score-item {
-			width: 132px;
+			width: 146px;
 			overflow: hidden;
 			margin: 0 3px 5px 3px;
 			text-align: center;
@@ -758,7 +758,7 @@ body {
 			.score-item .score-name,
 			.final-score-item .score-name {
 				float: left;
-				width: 72px;
+				width: 86px;
 				font-weight: bold;
 				height: 30px;
 				vertical-align: bottom;
@@ -777,7 +777,7 @@ body {
 			.score-item .score-pushes,
 			.final-score-item .score-pushes{
 				float: left;
-				width: 72px;
+				width: 86px;
 				font-size: 11px;
 			}
 			.final-score-item .score-pushes {

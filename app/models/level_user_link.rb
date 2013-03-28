@@ -64,7 +64,7 @@ class LevelUserLink < ActiveRecord::Base
 
   def fb_and_update_stats
     self.publish_on_facebook
-    self.notify_friends
+    #self.notify_friends
     self.update_stats
   end
 
