@@ -119,7 +119,6 @@ class User < ActiveRecord::Base
     friends.each do |friend|
       user = User.find_or_create_by_f_id(friend['id'])
       user.update_attributes!({ :name => friend['name'] })
-      user.profile_picture # has the side_effect of creating a profile picture if not existing
       self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
     end
 
@@ -128,6 +127,14 @@ class User < ActiveRecord::Base
     self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
 
     self.update_attributes!({ :friends_updated_at => Time.now })
+
+    self.delay.build_friends_pictures
+  end
+
+  def build_friends_pictures
+    self.friends.all.each do |friend|
+      friend.profile_picture
+    end
   end
 
   def profile_picture
