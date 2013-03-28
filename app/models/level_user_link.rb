@@ -64,7 +64,7 @@ class LevelUserLink < ActiveRecord::Base
 
   def fb_and_update_stats
     self.publish_on_facebook
-    #self.notify_friends
+    self.notify_friends
     self.update_stats
   end
 
@@ -105,9 +105,13 @@ class LevelUserLink < ActiveRecord::Base
 
       friends_to_notify.each do |friend|
         Rails.logger.info("FRIEND : #{friend.name}")
-        graph.put_connections(friend.f_id, "notifications",
-                              :template => "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
-                              :href     => "?level_id=#{self.level.id}")
+        begin
+          graph.put_connections(friend.f_id, "notifications",
+                                :template => "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
+                                :href     => "?level_id=#{self.level.id}")
+        rescue
+          Rails.logger.info("NOTIFICATION FAILED FOR #{friend.name}")
+        end
       end
     end
   end
