@@ -62,10 +62,9 @@ class LevelUserLink < ActiveRecord::Base
 
   # Methods
 
-  def fb_and_update_stats
+  def facebook_actions
     self.publish_on_facebook
     self.notify_friends
-    self.update_stats
   end
 
   # publish the "user has completed the level" on open graph (facebook)
@@ -82,8 +81,12 @@ class LevelUserLink < ActiveRecord::Base
   # App notifications : https://developers.facebook.com/docs/concepts/notifications/
   def notify_friends
     if Rails.env.production? and self.user
-      # new score is not yet tagged as (eventual) best score
-      old_best_score = self.user.best_scores.where(:level_id => self.level_id)
+      best_score     = self.user.best_scores.where(:level_id => self.level_id)
+      old_best_score = self.user.scores.where(:level_id => self.level_id)
+                                       .where('pushes >= :p or (pushes = :p and moves >= :m)',
+                                              :p => best_score.pushes, :m => best_score.moves)
+                                       .where('created_at < ?', best_score.created_at)
+                                       .order('pushes ASC, moves ASC, created_at DESC')
 
       friends_lower_scores = self.level.best_scores
                                        .where(:user_id => self.user.friends.registred.pluck('users.id'))

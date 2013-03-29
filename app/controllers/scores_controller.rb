@@ -11,7 +11,8 @@ class ScoresController < ApplicationController
     @score.path = params[:path]
 
     if @score.save
-      @score.delay.fb_and_update_stats
+      self.update_stats
+      self.delay.facebook_actions
 
       render :json => { :success  => true,
                         :score_id => @score.id }
