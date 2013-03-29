@@ -82,11 +82,15 @@ class LevelUserLink < ActiveRecord::Base
   def notify_friends
     if Rails.env.production? and self.user
       best_score     = self.user.best_scores.where(:level_id => self.level_id)
-      old_best_score = self.user.scores.where(:level_id => self.level_id)
-                                       .where('pushes >= :p or (pushes = :p and moves >= :m)',
-                                              :p => best_score.pushes, :m => best_score.moves)
-                                       .where('created_at < ?', best_score.created_at)
-                                       .order('pushes ASC, moves ASC, created_at DESC')
+      if best_score.empty?
+        old_best_score = []
+      else
+        old_best_score = self.user.scores.where(:level_id => self.level_id)
+                                         .where('pushes >= :p or (pushes = :p and moves >= :m)',
+                                                :p => best_score.first.pushes, :m => best_score.first.moves)
+                                         .where('created_at < ?', best_score.first.created_at)
+                                         .order('pushes ASC, moves ASC, created_at DESC')
+      end
 
       friends_lower_scores = self.level.best_scores
                                        .where(:user_id => self.user.friends.registred.pluck('users.id'))
@@ -133,14 +137,11 @@ class LevelUserLink < ActiveRecord::Base
                          .where('pushes < :p or (pushes = :p and moves < :m) or (pushes = :p and moves = :m and created_at > :c)',
                                 :p => self.pushes, :m => self.moves, :c => self.created_at)
       if l_u.empty?
-        Rails.logger.info("EMPTY")
         LevelUserLink.where('id != ?', self.id).where(:user_id => self.user_id, :level_id => self.level_id).each do |score|
-          Rails.logger.info("update false")
           score.update_attributes!({ :best_level_user_score => false })
         end
         self.update_attributes!({ :best_level_user_score => true })
       else
-        Rails.logger.info("ELSE")
         self.update_attributes!({ :best_level_user_score => false })
       end
     end
