@@ -30,7 +30,7 @@ class ScoresController < ApplicationController
     @friend_rows = params[:friend_score_page].to_i*6
 
     # Take first two rows of friends and public scores
-    @pushes_scores         = @level.best_scores.limit(@global_rows)
+    @pushes_scores = @level.best_scores.limit(@global_rows)
     if current_user
       @pushes_scores_friends = @level.best_scores.where(:user_id => current_user.friends + [current_user.id])
                                                  .limit(@friend_rows)
