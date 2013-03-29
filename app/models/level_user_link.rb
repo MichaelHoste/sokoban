@@ -134,7 +134,7 @@ class LevelUserLink < ActiveRecord::Base
                                 :p => self.pushes, :m => self.moves, :c => self.created_at)
       if l_u.empty?
         Rails.logger.info("EMPTY")
-        LevelUserLink.where(:user_id => self.user_id, :level_id => self.level_id, :best_level_user_score => true).each do |score|
+        LevelUserLink.where('id != ?', self.id).where(:user_id => self.user_id, :level_id => self.level_id).each do |score|
           Rails.logger.info("update false")
           score.update_attributes!({ :best_level_user_score => false })
         end
