@@ -127,21 +127,20 @@ class LevelUserLink < ActiveRecord::Base
   # Tag (only) the best score (best_level_user_score = true) for each level/user combo
   def tag_best_score
     if self.user_id == nil
-      self.best_level_user_score = true
+      self.update_attributes!({ :best_level_user_score => true })
     else
       l_u = LevelUserLink.where(:user_id => self.user_id, :level_id => self.level_id)
                          .where('pushes < :p or (pushes = :p and moves < :m) or (pushes = :p and moves = :m and created_at > :c)',
                                 :p => self.pushes, :m => self.moves, :c => self.created_at)
       if l_u.empty?
-        LevelUserLink.where(:user_id => self.user_id, :level_id => self.level_id).each do |score|
+        LevelUserLink.where(:user_id => self.user_id, :level_id => self.level_id, :best_level_user_score => true).each do |score|
           score.update_attributes!({ :best_level_user_score => false })
         end
-        self.best_level_user_score = true
+        self.update_attributes!({ :best_level_user_score => true })
       else
-        self.best_level_user_score = false
+        self.update_attributes!({ :best_level_user_score => false })
       end
     end
-    self.save!
   end
 
   def ladder_friends(num_of_scores)
