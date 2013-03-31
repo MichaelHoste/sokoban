@@ -79,10 +79,14 @@ class User < ActiveRecord::Base
     user = User.where(:f_id => profile['id'])
     if not user.empty?
       user = user.first
+      new_registred_user = (not user.email) ? true : false
       user.attributes = user_hash
     else
+      new_registred_user = true
       user = User.new(user_hash)
+    end
 
+    if new_registred_user
       # Subscription to mailing list
       mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
       mimi.csv_import("email, first name, last name, full name, gender, locale\n" +
@@ -92,6 +96,7 @@ class User < ActiveRecord::Base
       # email to admin
       UserNotifier.delay.new_user(user.name, user.email)
     end
+
     user
   end
 
