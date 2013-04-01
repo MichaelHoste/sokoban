@@ -17,7 +17,7 @@ $ ->
 
     FB.ui(options)
 
-  window.facebook_app_request = (title, message, redirect_uri = "", to = "", filters = "", data = "") ->
+  window.facebook_app_request = (title, message, redirect_uri = "", to = "", filters = [], data = "") ->
     options =
       method:       'apprequests'
       title:        title
