@@ -16,20 +16,16 @@ TO DO
 -----
 
  0. Select an open-source license (GPL ? MIT ?). Find a way to exclude the packs/levels from it.
- 1. Use "feed dialog" (success ?), "request dialog" and "send dialog" when appropriate (request can only be used in canvas) (1)
- 2. 99Design for main page
+ 1. Use "feed dialog" (success ?) when appropriate (1)
  3. Create fan page
- 4. Register to fb Espace Application
  5.  Create dashboard :
    * total users / total resolved levels / total boxes on goals
    * Top 10 friends
    * Top 10 all
    * Last levels from friends
    * Last levels from all
-   * Invite more friends
    * Challenges (packs ?)
- 6.  save the theme choice in the cookies : not sure to keep many themes. Don't worry about that
- 7.  Implement challenges : invite 5 friend by challenge.
+ 7.  Implement challenges with awards : invite 5 friend by challenge.
  8.  Implement advanced deadlock detection in coffeescript if fast enough (prototype algorithm of dead zone).
  9.  Send mails to users to tell about the last activities of their friends.
 
