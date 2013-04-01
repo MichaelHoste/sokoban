@@ -183,12 +183,12 @@ class User < ActiveRecord::Base
     sum_friends_of_nrf = [friends_of_nrf.sum]
 
     while popular_friends.size < n and (sum_friends_of_rf[0] != 0 or sum_friends_of_nrf[0] != 0)
-      choice = rand(1..2)
+      choice = rand(1..6)
       # select a registred popular friend
       if choice == 1 and sum_friends_of_rf[0] != 0
         popular_friends << select_one_user(registred_friends, friends_of_rf, sum_friends_of_rf)
       # select an not registred popular friend
-      elsif choice == 2 and sum_friends_of_nrf[0] != 0
+      elsif choice.in? [2, 3, 4, 5, 6] and sum_friends_of_nrf[0] != 0
         popular_friends << select_one_user(not_registred_friends, friends_of_nrf, sum_friends_of_nrf)
       end
     end

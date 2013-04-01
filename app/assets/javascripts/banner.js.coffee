@@ -49,12 +49,8 @@ bind_banner = ->
 
   # send app requests (https://developers.facebook.com/docs/tutorials/canvas-games/requests/)
   $('#add-more-friends').live('click', ->
-    total_success = $('#user-infos').attr('data-global-success')
-    if total_success != '' and parseInt(total_success) <= 5
-      message = "Can you solve as many Sokoban levels as me?"
-    else
-      message = "I already solved #{total_success} Sokoban levels, can you beat me?"
-    window.facebook_app_request("Play Sokoban with me!", message, {})
+    message = window.facebook_invitation_message()
+    window.facebook_app_request("Play Sokoban with me!", message, '', '', 'app_non_users')
     return false
   )
 
@@ -65,7 +61,8 @@ bind_banner = ->
     else
       f_id = ''
 
-    window.facebook_send(window.location.href, 'Can solve this Sokoban level !?', f_id)
+    message = window.facebook_invitation_message()
+    window.facebook_app_request("Can you solve this Sokoban level ?", message, window.location.href, f_id)
     return false
   )
 

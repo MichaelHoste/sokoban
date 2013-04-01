@@ -10,7 +10,8 @@ $ ->
 
   # send new message (challenge friend)
   $('#challenges').delegate('.invite-item', 'click', ->
-    window.facebook_send(window.location.href, "Can you solve this Sokoban level !?", $(this).closest('.invite-item').attr('data-f_id'))
+    message = window.facebook_invitation_message()
+    window.facebook_app_request("Play Sokoban with me!", message, {})
     return false
   )
 
@@ -19,3 +20,5 @@ $ ->
   )
 
   window.reload_invitations()
+
+

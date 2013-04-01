@@ -17,16 +17,17 @@ $ ->
 
     FB.ui(options)
 
-  window.facebook_app_request = (title, message, data = {}) ->
+  window.facebook_app_request = (title, message, redirect_uri = "", to = "", filters = "", data = "") ->
     options =
-      method:  'apprequests'
-      title:   title
-      message: message
-      data:    data
+      method:       'apprequests'
+      title:        title
+      message:      message
+      redirect_uri: redirect_uri
+      to:           to
+      filters:      filters
+      data:         data
 
-    FB.ui(options, ->
-      console.log(response)
-    )
+    FB.ui(options)
 
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
     token_tag = window.authenticity_token()
@@ -118,6 +119,13 @@ $ ->
     .success((data, status, xhr) =>
       $('#scores').html(data)
     )
+
+  window.facebook_invitation_message = ->
+    total_success = $('#user-infos').attr('data-global-success')
+    if total_success != '' and parseInt(total_success) <= 5
+      message = "Can you solve as many Sokoban levels as me?"
+    else
+      message = "I already solved #{total_success} Sokoban levels, can you beat me?"
 
   # Disable up, down, left, right to scroll
   # left: 37, up: 38, right: 39, down: 40, spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
