@@ -43,24 +43,29 @@ window.update_banner = ->
 bind_banner = ->
   # send new message (invite friends)
   $('#add-one-friend').live('click', ->
-    window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?')
+    window.facebook_send(window.location.href, 'Can you solve this Sokoban level !?')
     return false
   )
 
   # send app requests (https://developers.facebook.com/docs/tutorials/canvas-games/requests/)
   $('#add-more-friends').live('click', ->
-    window.facebook_app_request("titre", "message", {})
+    total_success = $('#user-infos').attr('data-global-success')
+    if total_success != '' and parseInt(total_success) <= 5
+      message = "Can you solve as many Sokoban levels as me?"
+    else
+      message = "I already solved #{total_success} Sokoban levels, can you beat me?"
+    window.facebook_app_request("Play Sokoban with me!", message, {})
     return false
   )
 
   # send new message (clic on a friend on the banner)
-  $('#limited-banner').delegate('img', 'click', ->
+  $('#limited-banner').delegate('img.facebook-friends', 'click', ->
     if $(this).attr('data-f_id')
       f_id = $(this).attr('data-f_id')
     else
       f_id = ''
 
-    window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?', f_id)
+    window.facebook_send(window.location.href, 'Can solve this Sokoban level !?', f_id)
     return false
   )
 

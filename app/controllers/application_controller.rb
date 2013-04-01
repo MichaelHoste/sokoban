@@ -10,16 +10,16 @@ class ApplicationController < ActionController::Base
   end
 
   def check_facebook
-    if current_user and current_user.f_expires_at < Time.now  # user is connected but session is expired
+    if current_user and current_user.f_expires_at < Time.now                    # user is connected but session is expired
       redirect_to '/auth/facebook'
-    elsif not current_user and params[:fb_source]             # On each click on facebook to the application
-      if params[:pack_id] and params[:id]                     # if click on notification or feed with specific level, keep it on redirected params
+    elsif not current_user and (params[:fb_source] or params[:signed_request])  # On each click on facebook to the application
+      if params[:pack_id] and params[:id]                                       # if click on notification or feed with specific level, keep it on redirected params
         pack   = Pack.find_by_name(params[:pack_id])
         @level = pack.levels.find_by_name(params[:id])
       elsif params[:level_id]
-        @level = Level.find(params[:level_id])                # if redirected by notification
+        @level = Level.find(params[:level_id])                                  # if redirected by notification
       end
-      render 'layouts/canvas_redirect', :layout => false      # redirect to facebook oauth (register or log user)
+      render 'layouts/canvas_redirect', :layout => false                        # redirect to facebook oauth (register or log user)
     end
   end
 

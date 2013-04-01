@@ -10,7 +10,7 @@
         <% subscribed_friends_and_me.each do |friend| %>
           <li>
             <a href="#">
-              <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id %>
+              <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id, :class => 'facebook-friends' %>
 
               <span style="display:none" data-user-id="<%= friend.user_id %>" data-user-name="<%= friend.name %>" data-local-success="<%= friend.won_levels_count %>" data-global-success="<%= friend.total_won_levels %>">
                 <% # won levels ids of current pack OR every won levels id %>
