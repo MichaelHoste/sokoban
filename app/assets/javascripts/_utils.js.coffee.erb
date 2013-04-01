@@ -1,6 +1,12 @@
 $ ->
   # connect to facebook
-  FB.init({appId: '<%= ENV["FACEBOOK_KEY"] %>', status: true, xfbml: true, cookie: true})
+  FB.init(
+    appId: '<%= ENV["FACEBOOK_KEY"] %>'
+    status: true
+    xfbml: true
+    cookie: true
+    frictionlessRequests: true
+  )
 
   window.facebook_send = (link, description, to = "") ->
     options =
@@ -10,6 +16,17 @@ $ ->
       to:           to
 
     FB.ui(options)
+
+  window.facebook_app_request = (title, message, data = {}) ->
+    options =
+      method:  'apprequests'
+      title:   title
+      message: message
+      data:    data
+
+    FB.ui(options, ->
+      console.log(response)
+    )
 
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
     token_tag = window.authenticity_token()

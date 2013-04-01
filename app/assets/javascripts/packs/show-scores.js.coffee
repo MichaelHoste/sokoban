@@ -16,13 +16,15 @@ $ ->
   )
 
   $('#scores').delegate('.score-item', 'click', ->
-    if f_id = $(this).attr('data-f_id') != ''
+    f_id = $(this).attr('data-f_id')
+    if f_id != ''
       window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?', f_id)
     return false
   )
 
   $('#game-won .final-score-item').live('click', ->
-    if f_id = $(this).attr('data-f_id') != ''
+    f_id = $(this).attr('data-f_id')
+    if f_id != ''
       window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?', f_id)
     return false
   )

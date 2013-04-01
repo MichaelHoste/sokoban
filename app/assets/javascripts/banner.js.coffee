@@ -42,8 +42,14 @@ window.update_banner = ->
 
 bind_banner = ->
   # send new message (invite friends)
-  $('#limited-banner').delegate('#add-friend', 'click', ->
+  $('#add-one-friend').live('click', ->
     window.facebook_send(window.location.href, 'Can you beat me on that Sokoban level !?')
+    return false
+  )
+
+  # send app requests (https://developers.facebook.com/docs/tutorials/canvas-games/requests/)
+  $('#add-more-friends').live('click', ->
+    window.facebook_app_request("titre", "message", {})
     return false
   )
 

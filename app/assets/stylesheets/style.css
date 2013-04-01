@@ -73,7 +73,7 @@ body {
 	height: 76px;
 	background: url('/assets/banner-gray-bkg.png') repeat-x;
 }
-#banner #add-friend {
+#banner #add-friend, #banner #add-more-friends {
 	height:40px;
 	width:40px;
 }
@@ -123,12 +123,16 @@ body {
 	position: relative;
 }
 	#limited-banner #users-top {
-		padding: 12px 20px;
+		padding:12px;
+		padding-left:0px;
+		padding-right:0px;
 		overflow: hidden;
 	}
 		#limited-banner #users-top li {
 			float: left;
 			padding: 4px;
+			padding-left: 3.6px;
+			padding-right: 3.6px;
 			padding-bottom: 10px;
 		}
 			#limited-banner #users-top li a {
@@ -273,7 +277,7 @@ body {
 			float: left;
 			display: block;
 			vertical-align: middle;
-			padding: 2px 5px 2px 0;
+			padding: 2px 9px 0px 2px;
 			height: 30px;
 			line-height: 30px;
 		}
@@ -286,7 +290,7 @@ body {
 		background: url('/assets/sprites.png') no-repeat -100px -100px;
 		border: 1px solid #c9c9c9;
 		height: 27px;
-		line-height: 27px;
+		line-height: 28px;
 		padding: 0 25px 0 50px;
 		font-size: 12px;
 		font-weight: bold;

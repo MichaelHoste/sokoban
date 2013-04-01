@@ -4,7 +4,7 @@
     <div id="limited-banner">
       <ul id="users-top">
 
-        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack) %>
+        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(16) %>
 
         <% # list of subscribed friends and me %>
         <% subscribed_friends_and_me.each do |friend| %>
@@ -20,10 +20,16 @@
           </li>
         <% end %>
 
-        <% # invite more friends %>
+        <% # invite one more friends %>
         <li>
           <a href="#">
-            <%= image_tag 'add_friend.png', :id => 'add-friend', :class => 'tips popup', :title => 'Invite more friends' %>
+            <%= image_tag 'add_friend.png', :id => 'add-one-friend', :class => 'tips popup', :title => 'Challenge one friend on this level' %>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <%= image_tag 'add_friends.png', :id => 'add-more-friends', :class => 'tips popup', :title => 'Invite more friends' %>
           </a>
         </li>
       </ul>
@@ -47,7 +53,7 @@
         </div>
       </div>
       <div class="user-challenge-this">
-        <a href="#">Click to challenge on this LEVEL</a>
+        <a href="#">Click to challenge on this level</a>
       </div>
     </div>
   </div>
