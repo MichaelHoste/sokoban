@@ -132,24 +132,10 @@ class User < ActiveRecord::Base
     self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
 
     self.update_attributes!({ :friends_updated_at => Time.now })
-
-    self.delay.build_friends_pictures
-  end
-
-  def build_friends_pictures
-    self.friends.all.each do |friend|
-      friend.profile_picture
-    end
   end
 
   def profile_picture
-    if not self.picture
-      graph = Koala::Facebook::API.new
-      new_picture = graph.get_picture(self.f_id, { :return_ssl_resources => 1, :type => 'square' })
-      self.update_attributes(:picture => new_picture)
-    end
-
-    self.picture
+    "https://graph.facebook.com/#{self.f_id}/picture?type=square"
   end
 
   # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to one pack)
