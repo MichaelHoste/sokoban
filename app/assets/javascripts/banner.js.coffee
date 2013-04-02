@@ -41,6 +41,11 @@ window.update_banner = ->
   )
 
 bind_banner = ->
+  $('#limited-banner').delegate('img.facebook-friends', 'click', ->
+    window.facebook_send_to_feed($(this).attr('data-f_id'))
+    return false
+  )
+
   $('#add-one-friend').live('click', ->
     window.facebook_send_invitation_message()
     return false
@@ -51,10 +56,12 @@ bind_banner = ->
     return false
   )
 
-  $('#limited-banner').delegate('img.facebook-friends', 'click', ->
-    window.facebook_send_to_feed($(this).attr('data-f_id'))
+  $('#share-on-wall').live('click', ->
+    window.facebook_send_to_feed()
     return false
   )
+
+
 
   # mouse hover on a picture in the banner to show the won levels of this user
   $('#limited-banner').delegate('img', 'mouseenter', ->

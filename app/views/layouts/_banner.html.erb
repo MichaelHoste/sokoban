@@ -4,7 +4,7 @@
     <div id="limited-banner">
       <ul id="users-top">
 
-        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(16) %>
+        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(15) %>
 
         <% # list of subscribed friends and me %>
         <% subscribed_friends_and_me.each do |friend| %>
@@ -20,7 +20,6 @@
           </li>
         <% end %>
 
-        <% # invite one more friends %>
         <li>
           <a href="#">
             <%= image_tag 'add_friend.png', :id => 'add-one-friend', :class => 'tips popup', :title => 'Challenge one friend on this level' %>
@@ -30,6 +29,12 @@
         <li>
           <a href="#">
             <%= image_tag 'add_friends.png', :id => 'add-more-friends', :class => 'tips popup', :title => 'Invite more friends' %>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <%= image_tag 'add_wall.png', :id => 'share-on-wall', :class => 'tips popup', :title => 'Share the current level on your Facebook feed' %>
           </a>
         </li>
       </ul>

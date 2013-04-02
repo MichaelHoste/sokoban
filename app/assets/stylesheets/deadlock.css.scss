@@ -13,6 +13,7 @@
   padding-right:30px;
   border:2px solid $dark;
   background-color:$light;
+  color:#222222;
 
   -moz-opacity:0.93;
   opacity:0.93;
@@ -27,6 +28,11 @@
     font-size:14px;
     font-weight:bold;
     text-transform:uppercase;
+
+    a
+    {
+      color:#222222;
+    }
   }
 
   #deadlock-press-d

@@ -40,7 +40,7 @@ $ ->
       method:       'feed'
       redirect_uri: window.current_url()
       picture:      $('meta[property="og:image"]').attr('content')
-      link:         window.location.href
+      link:         window.current_url()
       name:         name
       caption:      $('meta[property="og:title"]').attr('content')
       description:  description
