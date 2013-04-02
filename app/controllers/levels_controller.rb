@@ -25,17 +25,4 @@ class LevelsController < ApplicationController
       end
     end
   end
-
-  def thumb
-    @pack = Pack.find_by_name(params[:pack_id])
-    @level = @pack.levels.find_by_name(params[:level_id])
-    @local_file = "public/images/levels/#{@level.id}.png"
-
-    # thumb is generated if not already generated in the past
-    if not FileTest.exists?(@local_file)
-      @level.generate_thumb
-    end
-
-    send_file @local_file, :type => 'image/png', :disposition => 'inline'
-  end
 end

@@ -112,6 +112,6 @@ class Level < ActiveRecord::Base
   end
 
   def thumb
-    "https://sokoban.be/packs/" + URI.escape(self.pack.name) + "/levels/" + URI.escape(self.name) + "/thumb.png"
+    "https://sokoban.be/images/levels/#{self.id}.png"
   end
 end

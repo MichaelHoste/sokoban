@@ -187,15 +187,9 @@ end
 
 populate_levels(packs)
 
-# LEVEL THUMBS ARE GENERATED THE FIRST TIME THEY ARE USED
-
-#def create_level_thumbs
-#  (1..Level.count).to_a.each do |level_id|
-#    Level.find(level_id).generate_thumb
-#  end
-#end
-
-#create_level_thumbs()
+Level.all.each do |level|
+  level.generate_thumb
+end
 
 
 
