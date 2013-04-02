@@ -41,33 +41,18 @@ window.update_banner = ->
   )
 
 bind_banner = ->
-  # send new message (invite friends)
   $('#add-one-friend').live('click', ->
-    window.facebook_send(window.location.href, 'Can you solve this Sokoban level?')
+    window.facebook_send_invitation_message()
     return false
   )
 
-  # send app requests (https://developers.facebook.com/docs/tutorials/canvas-games/requests/)
   $('#add-more-friends').live('click', ->
-    message = window.facebook_invitation_message()
-    window.facebook_app_request("Play Sokoban with me!", message, '', '', ['app_non_users'])
+    window.facebook_send_app_request_to_non_users()
     return false
   )
 
-  # send new message (clic on a friend on the banner)
   $('#limited-banner').delegate('img.facebook-friends', 'click', ->
-    if $(this).attr('data-f_id')
-      f_id = $(this).attr('data-f_id')
-    else
-      f_id = ''
-
-    current_level_solved = $('#levels li.is-selected .s-icon-star').length
-    if current_level_solved
-      message = "I just solved this Sokoban level and I bet you can't!"
-    else
-      message = "I can't solve this Sokoban level, can you help me?"
-
-    window.facebook_app_request("Can you solve this Sokoban level?", message, window.location.href, f_id)
+    window.facebook_send_to_feed($(this).attr('data-f_id'))
     return false
   )
 

@@ -1,4 +1,5 @@
 #= require packs/show-history
+#= require packs/show-facebook
 #= require packs/show-level-thumb
 #= require packs/show-invitation
 #= require packs/show-scores

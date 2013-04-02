@@ -1,0 +1,70 @@
+$ ->
+  # connect to facebook
+  FB.init(
+    appId: '<%= ENV["FACEBOOK_KEY"] %>'
+    status: true
+    xfbml: true
+    cookie: true
+    frictionlessRequests: true
+  )
+
+  window.current_level_id = ->
+    $('#levels').find('.is-selected').attr('data-level-id')
+
+  window.current_url = ->
+    "#{window.location.href}?level_id=#{window.current_level_id()}"
+
+  window.facebook_send = (description, to = "") ->
+    options =
+      method:       'send'
+      link:         window.current_url()
+      description:  description
+      to:           to
+
+    FB.ui(options)
+
+  window.facebook_app_request = (title, message, to = "", filters = [], data = "") ->
+    options =
+      method:       'apprequests'
+      redirect_uri: window.current_url()
+      title:        title
+      message:      message
+      to:           to
+      filters:      filters
+      data:         data
+
+    FB.ui(options)
+
+  window.facebook_feed = (name, description, to = "") ->
+    options =
+      method:       'feed'
+      redirect_uri: window.current_url()
+      picture:      $('meta[property="og:image"]').attr('content')
+      link:         window.location.href
+      name:         name
+      caption:      $('meta[property="og:title"]').attr('content')
+      description:  description
+      to:           to
+
+    FB.ui(options)
+
+  window.facebook_send_invitation_message = (to = "") ->
+    window.facebook_send('Can you solve this Sokoban level?', to)
+
+  window.facebook_send_to_feed = (to = "") ->
+    current_level_solved = $('#levels li.is-selected .s-icon-star').length
+    if current_level_solved
+      description = "I just solved this Sokoban level and I bet you can't!"
+    else
+      description = "I can't solve this Sokoban level, can you help me?"
+
+    window.facebook_feed("Can you solve this Sokoban level?", description, to)
+
+  window.facebook_send_app_request_to_non_users = (to = '', filters = ['app_non_users']) ->
+    total_success = $('#user-infos').attr('data-global-success')
+    if total_success != '' and parseInt(total_success) <= 5
+      message = "Can you solve as many Sokoban levels as me?"
+    else
+      message = "I already solved #{total_success} Sokoban levels, can you beat me?"
+
+    window.facebook_app_request("Play Sokoban with me!", message, to, filters)
