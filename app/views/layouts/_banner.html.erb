@@ -4,7 +4,7 @@
     <div id="limited-banner">
       <ul id="users-top">
 
-        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack) %>
+        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(16) %>
 
         <% # list of subscribed friends and me %>
         <% subscribed_friends_and_me.each do |friend| %>
