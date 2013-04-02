@@ -66,6 +66,16 @@ $ ->
 
     window.facebook_feed("Can you solve this Sokoban level?", description, to)
 
+  window.facebook_send_to_feed_in_ladder = (to, brag) ->
+    if brag
+      title       = "Can you solve this Sokoban level?"
+      description = "I just beat your score on that Sokoban level! Can you do better?"
+    else
+      title       = "Nice Job!"
+      description = "I can't solve this Sokoban level with so few pushes and moves as you!"
+
+    window.facebook_feed(title, description, to)
+
   window.facebook_send_app_request = (to = '', filters = ['app_non_users']) ->
     total_success = $('#user-infos').attr('data-global-success')
     if total_success != '' and parseInt(total_success) <= 5
@@ -74,3 +84,4 @@ $ ->
       message = "I already solved #{total_success} Sokoban levels, can you beat me?"
 
     window.facebook_app_request("Play Sokoban with me!", message, to, filters)
+

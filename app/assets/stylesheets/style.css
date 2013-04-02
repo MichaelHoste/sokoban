@@ -461,7 +461,8 @@ body {
 			}
 			#game-won .game-won-in .game-won-in-left {
 				float: left;
-				width: 200px;
+				width: 205px;
+				padding-right:5px;
 			}
 
 			#game-won .game-won-in .game-won-in-right {
@@ -581,6 +582,25 @@ body {
 			#game-won #final-score .score-moves .num {
 				color: #99ce40;
 			}
+
+#brag {
+	margin-top:12px;
+	display:none;
+}
+
+#brag .brag-button {
+	border: 1px solid #C9C9C9;
+	padding: 5px;
+	padding-left: 13px;
+	padding-right: 13px;
+	font-weight: bold;
+	font-size: 13px;
+	border-radius: 3px;
+	color: #7B7B7B;
+	background: url('/assets/sprites.png') no-repeat -150px -250px;
+	height: 27px;
+  line-height: 27px;
+}
 
 #limited-content-xl {
 	width: 990px;

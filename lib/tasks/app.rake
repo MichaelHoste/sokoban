@@ -63,8 +63,9 @@ namespace :app  do
       puts "Cannot use this task in production"
     else
       compile_coffee_to_js()
-      Rake::Task['db:migrate:reset'].invoke
-      Rake::Task['db:seed'].invoke
+
+      system('rake db:migrate:reset')
+      system('rake db:seed')
     end
   end
 

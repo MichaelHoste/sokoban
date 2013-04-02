@@ -1,7 +1,7 @@
 class WorkflowsController < ApplicationController
   def show_welcome
     cookies[:already_read_the_welcome_message] = { :value => "1",
-                                                   :expires => 6.hours.from_now }
+                                                   :expires => 7.days.from_now }
     render 'show_welcome', :layout => false
   end
 

@@ -33,7 +33,7 @@ class LevelUserLink < ActiveRecord::Base
 
   # Attributes
 
-  attr_accessor :path, :position
+  attr_accessor :path, :position, :worse
   attr_protected :created_at, :updated_at
 
   # Associations
@@ -237,8 +237,17 @@ class LevelUserLink < ActiveRecord::Base
       end
     end
 
-    ladder[start_index..end_index].each do |score|
+    # select restricted ladder and get absolute position
+    restricted_ladder = ladder[start_index..end_index].each do |score|
       score.position = ladder.index(score) + 1
+      score
+    end
+
+    # tag scores worse than user's score
+    worse = false
+    restricted_ladder.each do |score|
+      score.worse = worse ? true : false
+      worse = true if score.user_id == self.user_id
       score
     end
   end
