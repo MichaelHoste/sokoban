@@ -583,12 +583,12 @@ body {
 				color: #99ce40;
 			}
 
-#brag {
+.brag {
 	margin-top:12px;
 	display:none;
 }
 
-#brag .brag-button {
+.brag .brag-button {
 	border: 1px solid #C9C9C9;
 	padding: 5px;
 	padding-left: 13px;
