@@ -60,7 +60,7 @@ $ ->
 
     window.facebook_feed("Can you solve this Sokoban level?", description, to)
 
-  window.facebook_send_app_request_to_non_users = (to = '', filters = ['app_non_users']) ->
+  window.facebook_send_app_request = (to = '', filters = ['app_non_users']) ->
     total_success = $('#user-infos').attr('data-global-success')
     if total_success != '' and parseInt(total_success) <= 5
       message = "Can you solve as many Sokoban levels as me?"

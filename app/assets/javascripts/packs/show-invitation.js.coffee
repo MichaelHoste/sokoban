@@ -13,7 +13,7 @@ $ ->
     f_ids = $(this).closest('#invitations').find('.invite-item').map( ->
       $(this).attr('data-f_id')
     ).get().join()
-    window.facebook_send_app_request_to_non_users(f_ids, [])
+    window.facebook_send_app_request_to_users(f_ids, [])
     return false
   )
 

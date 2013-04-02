@@ -47,7 +47,7 @@ bind_banner = ->
   )
 
   $('#add-more-friends').live('click', ->
-    window.facebook_send_app_request_to_non_users()
+    window.facebook_send_app_request_to_users()
     return false
   )
 

@@ -16,7 +16,10 @@ $ ->
   )
 
   $('#scores').delegate('.score-item', 'click', ->
-    window.facebook_send_to_feed($(this).attr('data-f_id'))
+    if $(this).attr('data-is-friend') == 'true'
+      window.facebook_send_to_feed($(this).attr('data-f_id'))
+    else
+      window.facebook_send_invitation_message($(this).attr('data-f_id'))
     return false
   )
 
