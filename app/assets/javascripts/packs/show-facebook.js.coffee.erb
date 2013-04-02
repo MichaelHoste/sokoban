@@ -11,6 +11,12 @@ $ ->
   window.current_level_id = ->
     $('#levels').find('.is-selected').attr('data-level-id')
 
+  window.current_level_name = ->
+    $('#levels').find('.is-selected').attr('data-level-name')
+
+  window.current_level_thumb = ->
+    $('#levels').find('.is-selected').attr('data-level-thumb')
+
   window.current_url = ->
     "#{window.location.href}?level_id=#{window.current_level_id()}"
 
@@ -39,10 +45,10 @@ $ ->
     options =
       method:       'feed'
       redirect_uri: window.current_url()
-      picture:      $('meta[property="og:image"]').attr('content')
+      picture:      window.current_level_thumb()
       link:         window.current_url()
       name:         name
-      caption:      $('meta[property="og:title"]').attr('content')
+      caption:      window.current_level_name()
       description:  description
       to:           to
 

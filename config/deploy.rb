@@ -37,7 +37,7 @@ role :app, "188.165.255.96"                          # This may be the same as y
 role :db,  "188.165.255.96", :primary => true        # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
-set :keep_releases, 1
+set :keep_releases, 5
 after "deploy:restart", "deploy:cleanup"
 
 # delayed jobs

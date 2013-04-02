@@ -110,4 +110,8 @@ class Level < ActiveRecord::Base
       `cd public/images/levels;rm -f row_*.png`
     end
   end
+
+  def thumb
+    "https://sokoban.be/packs/" + URI.escape(self.pack.name) + "/levels/" + URI.escape(self.name) + "/thumb.png"
+  end
 end
