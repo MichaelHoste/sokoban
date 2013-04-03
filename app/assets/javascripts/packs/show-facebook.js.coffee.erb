@@ -68,16 +68,19 @@ $ ->
   window.facebook_send_to_feed = (to = "") ->
     current_level_solved = $('#levels li.is-selected .s-icon-star').length
     if current_level_solved
-      description = "I just solved this Sokoban level and I bet you can't!"
+      description = "I just solved this Sokoban level and I bet that you can't!"
     else
       description = "I can't solve this Sokoban level, can you help me?"
 
     window.facebook_feed("Can you solve this Sokoban level?", description, to)
 
-  window.facebook_send_to_feed_in_ladder = (to, brag) ->
+  window.facebook_send_to_feed_in_ladder = (to, brag, pushes = -1, moves = -1) ->
     if brag
-      title       = "Can you solve this Sokoban level?"
-      description = "I just beat your score on that Sokoban level! Can you do better?"
+      title  = "Can you solve this Sokoban level?"
+      if pushes != -1 and moves != -1
+        description = "I just beat your score on that Sokoban level! Can you do better than #{pushes} pushes and #{moves} moves?"
+      else
+        description = "I just beat your score on that Sokoban level! Can you do better?"
     else
       title       = "Nice Job!"
       description = "I can't solve this Sokoban level with so few pushes and moves as you!"

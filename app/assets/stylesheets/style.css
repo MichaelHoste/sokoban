@@ -444,7 +444,7 @@ body {
 		}
 		#game-won .game-won-in {
 			position: relative;
-			height:446px;
+			height:516px;
 			background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
 			overflow:hidden;
 			padding-top:14px;

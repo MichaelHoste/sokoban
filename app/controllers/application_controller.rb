@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
       elsif params[:level_id]
         @level = Level.find(params[:level_id])                                  # if redirected by notification
       end
-      render 'layouts/canvas_redirect', :layout => false                        # redirect to facebook oauth (register or log user)
+      render 'layouts/canvas_redirect', :layout => false                        # canvas redirect to facebook oauth (register or log user)
     end
   end
 

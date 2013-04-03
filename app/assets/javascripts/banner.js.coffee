@@ -16,7 +16,7 @@ show_user_infos = (span) ->
   user_hover.find('.user-stars-pack .num').html(local_success_count)
   user_hover.find('.user-stars-total .num').html(global_success_count)
 
-  user_hover.show()
+  user_hover.fadeIn()
 
 hide_user_infos = ->
   $('#user-hover').hide()
@@ -60,8 +60,6 @@ bind_banner = ->
     window.facebook_send_to_feed()
     return false
   )
-
-
 
   # mouse hover on a picture in the banner to show the won levels of this user
   $('#limited-banner').delegate('img', 'mouseenter', ->

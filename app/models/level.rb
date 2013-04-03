@@ -117,7 +117,7 @@ class Level < ActiveRecord::Base
 
   def best_global_scores(user, count)
     scores = self.best_scores.limit(count)
-    LevelUserLink.tag_worse_scores_than_user(scores, user.id)
+    LevelUserLink.tag_worse_scores_than_user(scores, user.id) if user
   end
 
   def best_friends_scores(user, count)
