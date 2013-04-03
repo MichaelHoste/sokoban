@@ -114,4 +114,14 @@ class Level < ActiveRecord::Base
   def thumb
     "https://sokoban.be/images/levels/#{self.id}.png"
   end
+
+  def best_global_scores(user, count)
+    scores = self.best_scores.limit(count)
+    LevelUserLink.tag_worse_scores_than_user(scores, user.id)
+  end
+
+  def best_friends_scores(user, count)
+    scores = user ? self.best_scores.where(:user_id => user.friends.registred.pluck('users.id') + [user.id]).limit(count) : []
+    LevelUserLink.tag_worse_scores_than_user(scores, user.id)
+  end
 end

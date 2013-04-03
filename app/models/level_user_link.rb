@@ -60,6 +60,17 @@ class LevelUserLink < ActiveRecord::Base
     generate_pushes_and_moves()
   end
 
+  # Class Methods
+
+  def self.tag_worse_scores_than_user(array_of_scores, user_id)
+    worse = false
+    array_of_scores.each do |score|
+      score.worse = worse ? true : false
+      worse = true if score.user_id == user_id
+      score
+    end
+  end
+
   # Methods
 
   def facebook_actions
@@ -243,13 +254,7 @@ class LevelUserLink < ActiveRecord::Base
       score
     end
 
-    # tag scores worse than user's score
-    worse = false
-    restricted_ladder.each do |score|
-      score.worse = worse ? true : false
-      worse = true if score.user_id == self.user_id
-      score
-    end
+    LevelUserLink.tag_worse_scores_than_user(restricted_ladder, self.user_id)
   end
 
   # user must be in top of list of users with same scores

@@ -30,7 +30,7 @@ $ ->
 
   bragging = false
 
-  $('#game-won .final-score-item[data-score-worse="true"]')
+  $('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]')
     .live('mouseover', ->
       $(this).parent().find('.brag').hide()
       $(this).parent().find('.score-name, .score-pushes').show()
@@ -46,7 +46,7 @@ $ ->
 
   hide_brag_anim = ->
     if not bragging
-      worse_scores = $('#game-won .final-score-item[data-score-worse="true"]')
+      worse_scores = $('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]')
       worse_scores.find('.brag').hide()
       worse_scores.find('.score-name').show()
       worse_scores.find('.score-pushes').show()
@@ -54,10 +54,10 @@ $ ->
 
   show_brag_anim = ->
     if not bragging
-      worse_scores = $('#game-won .final-score-item[data-score-worse="true"]')
+      worse_scores = $('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]')
       worse_scores.find('.score-name').hide()
       worse_scores.find('.score-pushes').hide()
       worse_scores.find('.brag').show()
     setTimeout(hide_brag_anim, 500)
 
-  show_brag_anim()
+  setTimeout(show_brag_anim, 3000)

@@ -124,8 +124,8 @@ $ ->
   if $('body').attr('data-new-user') == '1'
     window.colorbox_welcome()
 
-  $('.tips').tipsy({live: true})
-  $('.tips-left').tipsy({live: true, gravity: 'e'})
+  $('.tips').tipsy({live: true, fade: true, opacity: 0.8 })
+  $('.tips-left').tipsy({live: true, gravity: 'e', fade: true, opacity: 0.8})
 
   #window.colorbox_next_level('Novoban', 'Be ban 10', 141)
 

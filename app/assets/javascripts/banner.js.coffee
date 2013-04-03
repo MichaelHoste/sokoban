@@ -52,7 +52,7 @@ bind_banner = ->
   )
 
   $('#add-more-friends').live('click', ->
-    window.facebook_send_app_request()
+    window.facebook_send_recursive_app_request()
     return false
   )
 

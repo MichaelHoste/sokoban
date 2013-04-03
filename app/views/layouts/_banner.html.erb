@@ -2,8 +2,10 @@
 
   <div id="banner" class="banner-friends">
     <div id="limited-banner">
-      <ul id="users-top">
 
+      <%= render 'layouts/fb_friend_ids' %>
+
+      <ul id="users-top">
         <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(15) %>
 
         <% # list of subscribed friends and me %>

@@ -408,7 +408,7 @@ body {
 		border-radius: 0px 8px 8px 8px;
 	}
 		.level-thumb .level-thumb-in {
-			padding: 10px;
+			/* padding: 10px;*/
 		}
 
 		#level-thumb-canvas

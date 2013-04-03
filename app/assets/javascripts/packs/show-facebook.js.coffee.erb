@@ -29,17 +29,25 @@ $ ->
 
     FB.ui(options)
 
-  window.facebook_app_request = (title, message, to = "", filters = [], data = "") ->
+  # iteration > 0 if must be called recursively by batch of 50 friends (in the DOM)
+  window.facebook_app_request = (title, message, to, filters = [], data = "", iteration = 0) ->
+    console.log(iteration)
+
     options =
       method:       'apprequests'
       redirect_uri: window.current_url()
       title:        title
       message:      message
-      to:           to
+      to:           if iteration == 0 then to else $("#fb-friends .batch-#{iteration}").html()
       filters:      filters
       data:         data
 
-    FB.ui(options)
+    if iteration == 0 or not $("#fb-friends .batch-#{iteration+1}").length
+      FB.ui(options)
+    else
+      FB.ui(options, ->
+        window.facebook_app_request(title, message, to, filters, data, iteration + 1)
+      )
 
   window.facebook_feed = (name, description, to = "") ->
     options =
@@ -84,4 +92,13 @@ $ ->
       message = "I already solved #{total_success} Sokoban levels, can you beat me?"
 
     window.facebook_app_request("Play Sokoban with me!", message, to, filters)
+
+  window.facebook_send_recursive_app_request = ->
+    total_success = $('#user-infos').attr('data-global-success')
+    if total_success != '' and parseInt(total_success) <= 5
+      message = "Can you solve as many Sokoban levels as me?"
+    else
+      message = "I already solved #{total_success} Sokoban levels, can you beat me?"
+
+    window.facebook_app_request('Play Sokoban with me!' , message, '', '', '', 1)
 
