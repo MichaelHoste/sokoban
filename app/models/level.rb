@@ -122,6 +122,6 @@ class Level < ActiveRecord::Base
 
   def best_friends_scores(user, count)
     scores = user ? self.best_scores.where(:user_id => user.friends.registred.pluck('users.id') + [user.id]).limit(count) : []
-    LevelUserLink.tag_worse_scores_than_user(scores, user.id)
+    LevelUserLink.tag_worse_scores_than_user(scores, user.id) if user
   end
 end
