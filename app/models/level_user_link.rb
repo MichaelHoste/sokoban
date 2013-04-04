@@ -254,7 +254,7 @@ class LevelUserLink < ActiveRecord::Base
       score
     end
 
-    LevelUserLink.tag_worse_scores_than_user(restricted_ladder, self.user_id) if self.user
+    LevelUserLink.tag_worse_scores_than_user(restricted_ladder, self.user ? self.user_id : 0)
   end
 
   # user must be in top of list of users with same scores
