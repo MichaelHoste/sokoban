@@ -35,8 +35,8 @@
 
       </div>
 
-      <div class="this-level" title="Retry this level : <%= @level.name %>" data-level-name="<%= @level.name %>" data-level-grid="<%= @level.inline_grid_with_floor %>" data-level-width="<%= @level.width %>" data-level-height="<%= @level.height %>">
-        <div id="this-level-canvas"></div>
+      <div class="this-level tips" data-level-name="<%= @level.name %>" data-level-grid="<%= @level.inline_grid_with_floor %>" data-level-width="<%= @level.width %>" data-level-height="<%= @level.height %>">
+        <div id="this-level-canvas" class="tips" title="Retry this level : <%= @level.name %>"></div>
       </div>
 
       <ul class="game-actions">
@@ -44,15 +44,21 @@
         <li class="game-action-next" title="Go to next level : <%= @next_level.name %>"><a href="#">Next</a></li>
       </ul>
 
-      <div class="next-level" title="Go to next level : <%= @next_level.name %>" data-level-name="<%= @next_level.name %>" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>">
-        <div id="next-level-canvas"></div>
+      <div class="next-level" data-level-name="<%= @next_level.name %>" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>">
+        <div id="next-level-canvas" class="tips" title="Go to next level : <%= @next_level.name %>"></div>
       </div>
     </div>
 
     <div style="clear:both">
     </div>
 
-    <div style="display:none">salut
+    <div id="share-on-fb" class="tips" title="I just solved this Sokoban level with <%= @score.pushes %> pushes and <%= @score.moves %> moves and I bet that you can't!">
+      <div class="share-bullhorn">
+        <i class="icon-bullhorn"></i>
+      </div>
+      <div class="share-text">
+        <span>BRAG YOUR FRIENDS</span>
+      </div>
     </div>
 
   </div>

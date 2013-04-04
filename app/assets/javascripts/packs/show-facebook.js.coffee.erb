@@ -65,10 +65,13 @@ $ ->
   window.facebook_send_invitation_message = (to = "") ->
     window.facebook_send('Can you solve this Sokoban level?', to)
 
-  window.facebook_send_to_feed = (to = "") ->
+  window.facebook_send_to_feed = (to = "", pushes = -1, moves = -1) ->
     current_level_solved = $('#levels li.is-selected .s-icon-star').length
     if current_level_solved
-      description = "I just solved this Sokoban level and I bet that you can't!"
+      if pushes != -1 and moves != -1
+        description = "I just solved this Sokoban level with #{pushes} pushes and #{moves} moves and I bet that you can't!"
+      else
+        description = "I just solved this Sokoban level and I bet that you can't!"
     else
       description = "I can't solve this Sokoban level, can you help me?"
 

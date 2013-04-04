@@ -444,7 +444,7 @@ body {
 		}
 		#game-won .game-won-in {
 			position: relative;
-			height:516px;
+			height:548px;
 			background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
 			overflow:hidden;
 			padding-top:14px;
@@ -582,6 +582,38 @@ body {
 			#game-won #final-score .score-moves .num {
 				color: #99ce40;
 			}
+
+  #game-won #share-on-fb {
+  	background-color:#3b5998;
+  	width:502px;
+  	height:93px;
+  	margin-top:4px;
+  	margin-left:9px;
+  	color:#F9F9FF;
+  	font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+  	-webkit-box-shadow: 0px 0px 3px #4575a8;
+  	-moz-box-shadow: 0px 0px 3px #4575a8;
+  	box-shadow: 0px 0px 3px #4575a8;
+  	border-radius: 5px;
+  	cursor:pointer;
+  }
+
+  #game-won #share-on-fb .share-bullhorn {
+  	float:left;
+  	width:110px;
+  	font-size:60px;
+  	padding-top:11px;
+  	text-align:center;
+  }
+
+  #game-won #share-on-fb .share-text {
+  	float:left;
+  	font-size:34px;
+  	width:388px;
+  	text-align:left;
+  	padding-top:26px;
+  	padding-left:4px;
+  }
 
 .brag {
 	margin-top:12px;

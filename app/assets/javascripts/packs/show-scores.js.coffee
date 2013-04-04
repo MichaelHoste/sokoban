@@ -32,6 +32,11 @@ $ ->
     return false
   )
 
+  $('#game-won #share-on-fb').live('click', ->
+    window.facebook_send_to_feed('', $('#final-score .score-pushes .num').html(),
+                                     $('#final-score .score-moves .num').html())
+  )
+
   bragging = false
 
   $('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]')

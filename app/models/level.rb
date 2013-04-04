@@ -57,15 +57,18 @@ class Level < ActiveRecord::Base
     self.height
   end
 
-  # get next level from this pack (nil if last level)
+  # get next level from this pack (first from the pack if last level)
   def next_level
     next_level = Level.where(:id => self.id + 1)
 
-    # if next level exists and is in the same pack of the previous level
-    if not next_level.empty? and next_level.first.pack_id == self.pack_id
-      next_level.first
+    if not next_level.empty?
+      if next_level.first.pack_id == self.pack_id
+        next_level.first
+      else
+        self.pack.levels.first
+      end
     else
-      nil
+      self.pack.levels.first
     end
   end
 

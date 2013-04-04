@@ -19,7 +19,8 @@ show_user_infos = (span) ->
   user_hover.fadeIn()
 
 hide_user_infos = ->
-  $('#user-hover').hide()
+
+  $('#user-hover').stop().hide()
 
 reposition_banner = ->
   scroll_top = $(window).scrollTop()
