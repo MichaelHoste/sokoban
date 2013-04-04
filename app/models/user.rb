@@ -97,11 +97,28 @@ class User < ActiveRecord::Base
       UserNotifier.delay.new_user(user.name, user.email)
     end
 
+    user.like_fan_page = user.request_like_fan_page?
+
     user
   end
 
   def registred?
     self.email != nil
+  end
+
+  # Ask facebook if this user likes the facebook fan page of the application
+  # return true or false
+  def request_like_fan_page?
+    oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
+    access_token = oauth.get_app_access_token
+    graph        = Koala::Facebook::API.new(access_token)
+    data         = graph.get_connections(self.f_id, "likes/#{ENV['FACEBOOK_FAN_PAGE']}")
+
+    found = false
+    data.each do |like|
+      found = true if like['id'] == "#{ENV['FACEBOOK_FAN_PAGE']}"
+    end
+    return found
   end
 
   # If new user (no friends) or existing user and old update

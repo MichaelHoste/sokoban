@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327105142) do
+ActiveRecord::Schema.define(:version => 20130404155640) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -118,11 +118,12 @@ ActiveRecord::Schema.define(:version => 20130327105142) do
     t.boolean  "f_verified"
     t.boolean  "f_expires"
     t.datetime "f_expires_at"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.integer  "friends_count",                   :default => 0, :null => false
-    t.integer  "total_won_levels",                :default => 0, :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
+    t.integer  "friends_count",                   :default => 0,     :null => false
+    t.integer  "total_won_levels",                :default => 0,     :null => false
     t.datetime "friends_updated_at"
+    t.boolean  "like_fan_page",                   :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
