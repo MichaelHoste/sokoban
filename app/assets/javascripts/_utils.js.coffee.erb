@@ -42,6 +42,13 @@ $ ->
   window.authenticity_token = ->
     $('meta[name="csrf-token"]').attr('content')
 
+  bind_tipsy = ->
+    $('.tips').tipsy({live: true, fade: true, opacity: 0.8 })
+    $('.tips-left').tipsy({live: true, gravity: 'e', fade: true, opacity: 0.8})
+
+  window.hide_all_tipsy = ->
+    $('.tipsy').remove()
+
   # level thumbs
   window.level_thumb = ->
     create_thumb('level-thumb')
@@ -124,8 +131,7 @@ $ ->
   if $('body').attr('data-new-user') == '1'
     window.colorbox_welcome()
 
-  $('.tips').tipsy({live: true, fade: true, opacity: 0.8 })
-  $('.tips-left').tipsy({live: true, gravity: 'e', fade: true, opacity: 0.8})
+  bind_tipsy()
 
   #window.colorbox_next_level('Novoban', 'Be ban 10', 141)
 

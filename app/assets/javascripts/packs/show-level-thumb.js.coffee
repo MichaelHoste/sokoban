@@ -9,7 +9,7 @@ $ ->
     button_offset = $(this).offset()
     levels_offset = $('#levels').offset()
     thumb_offset =
-      left: button_offset.left + 65
+      left: button_offset.left + 67
       top: button_offset.top
 
     level_thumb.offset(thumb_offset)

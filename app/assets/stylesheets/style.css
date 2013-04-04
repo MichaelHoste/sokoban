@@ -339,7 +339,7 @@ body {
 			margin: 0 10px 7px 0;
 			padding: 14px 5px;
 			text-align: center;
-			width: 55px;
+			width: 58px;
 			height: 24px;
 			background: #e2e2e2;
 			-webkit-box-shadow: inset 0px 2px 2px 1px #cacaca;
@@ -379,8 +379,12 @@ body {
 					background: url('/assets/sprites.png') no-repeat;
 					display: inline-block;
 					vertical-align: middle;
-					width: 24px;
+					width: 20px;
 					height: 24px;
+					padding-left: 3px;
+				}
+				.user-stars .star-big-number {
+					padding-left: 0px;
 				}
 				#levels li .s-icon-star-empty { background-position: 0 0;}
 				#levels li .s-icon-star-selected { background-position: -25px 0 !important;}
@@ -462,6 +466,7 @@ body {
 			#game-won .game-won-in .game-won-in-left {
 				float: left;
 				width: 205px;
+				height: 456px;
 				padding-right:5px;
 			}
 
@@ -482,7 +487,6 @@ body {
 					float: right;
 					overflow: hidden;
 					padding: 0px 0;
-					margin-top:10px;
 				}
 					#game-won .game-actions li {
 					}
@@ -503,6 +507,9 @@ body {
 						#game-won .game-actions li.game-action-retry a {
 							background-position: -100px -250px;
 							padding-left: 40px;
+						}
+						#game-won .game-actions li.game-action-next {
+							margin-top:6px;
 						}
 						#game-won .game-actions li.game-action-next a {
 							background-position: 100% -300px;
@@ -549,7 +556,7 @@ body {
 		border:1px solid #C9C9C9;
 		float:left;
 		width:89px;
-		height:102px;
+		height:109px;
 		margin-left:20px;
 		margin-top:10px;
 	}

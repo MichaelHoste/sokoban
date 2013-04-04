@@ -24,10 +24,15 @@ $ ->
   # Hover the next-level image
   $('#next-level-canvas, .game-action-next').on('click', ->
     # change the level (the '.is-selected' level is chosen)
+    window.hide_all_tipsy()
     $.fn.colorbox.close()
 
     button = $('#levels .is-selected')
+
     next_button = button.next('li')
+    if not next_button.length
+      next_button = button.parent().find('li:first')
+
     button.removeClass('is-selected')
     next_button.addClass('is-selected')
 
@@ -42,6 +47,7 @@ $ ->
   # Hover the next-level image
   $('#this-level-canvas, .game-action-retry').on('click', ->
     # change the level (the '.is-selected' level is chosen)
+    window.hide_all_tipsy()
     $.fn.colorbox.close()
     window.change_level()
 
