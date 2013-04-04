@@ -49,6 +49,8 @@ class User < ActiveRecord::Base
   # Methods
 
   def self.update_or_create(credentials)
+    Rails.logger.info(credentials.inspect)
+
     token = credentials['token']
     graph = Koala::Facebook::API.new(token)
     profile = graph.get_object('me')
