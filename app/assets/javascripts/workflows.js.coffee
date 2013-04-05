@@ -1,3 +1,9 @@
+redirect_to_facebook_login_if_not_logged = ->
+  if $('#menus .fb_login').length
+    window.colorbox_facebook()
+  else
+    $.fn.colorbox.close()
+
 $ ->
   # Click on 'next' on "welcome"
   $('#welcome .button-next').on('click', ->
@@ -14,10 +20,17 @@ $ ->
 
   # Click on 'next' on "rules"
   $('#rules .button-next').on('click', ->
-    if $('#menus .fb_login').length
-      window.colorbox_facebook()
+    if $("#menus .fb_logged").length and $("#menus .fb_logged").attr('data-like-facebook-page') == 'false'
+      window.facebook_page()
     else
-      $.fn.colorbox.close()
+      redirect_to_facebook_login_if_not_logged()
+    false
+  )
+
+  # Click on 'next' on "facebook-page"
+  $('#facebook-page .button-next').on('click', ->
+    window.update_like_facebook_page_value()
+    redirect_to_facebook_login_if_not_logged()
     false
   )
 

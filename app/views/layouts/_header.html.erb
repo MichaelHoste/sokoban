@@ -8,7 +8,7 @@
     <div id="menus">
       <ul>
         <% if current_user %>
-          <li class="name fb_logged" id="user-infos" data-id="<%= current_user.id %>" data-global-success="<%= current_user.total_won_levels %>">
+          <li class="name fb_logged" id="user-infos" data-id="<%= current_user.id %>" data-global-success="<%= current_user.total_won_levels %>" data-like-facebook-page="<%= current_user.like_fan_page %>">
             <div>
               <span class="fb_img">
                 <%= image_tag current_user.profile_picture, :title => current_user.name %>

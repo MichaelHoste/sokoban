@@ -32,7 +32,7 @@ $ ->
     )
 
   window.facebook_page = ->
-    $.colorbox({href:'/workflows/show_facebook_page/', top:'100px', height:'315px', width:'500px'}, ->
+    $.colorbox({href:'/workflows/show_facebook_page/', top:'100px', height:'420px', width:'500px', overlayClose: false, escKey: false }, ->
       $("#cboxClose").hide()
     )
 
@@ -101,6 +101,16 @@ $ ->
     .success((data, status, xhr) =>
       $('#scores').html(data)
     )
+
+  window.update_like_facebook_page_value = ->
+    if $("#user-infos").length
+      id = $("#user-infos").attr('data-id')
+      $.get("/users/#{id}/is_like_facebook_page").success((data, status, xhr) ->
+        if data.like == true
+          $("#user-infos").attr('data-like-facebook-page', "true")
+        else
+          $("#user-infos").attr('data-like-facebook-page', "false")
+      )
 
   # Disable up, down, left, right to scroll
   # left: 37, up: 38, right: 39, down: 40, spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36

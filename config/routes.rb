@@ -24,6 +24,7 @@ Sokojax::Application.routes.draw do
   resources :users do
     member do
       get :popular_friends
+      get :is_like_facebook_page # question
     end
   end
 
