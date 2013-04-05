@@ -13,6 +13,8 @@ Sokojax::Application.routes.draw do
       get :show_controls
       get :show_challenges_and_packs
 
+      get :show_facebook_page
+
       post :show_next_level
     end
   end

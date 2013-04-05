@@ -2,7 +2,7 @@ $ ->
   window.colorbox_next_level = (pack_name, level_name, score_id) ->
     token_tag = window.authenticity_token()
 
-    $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'50px', height:'602px', width:'570px' }, -> #395px
+    $.colorbox({ href:'/workflows/show_next_level/', data:{ pack_name:pack_name, level_name:level_name, score_id:score_id, authenticity_token:token_tag }, top:'50px', height:'602px', width:'570px', overlayClose: false, escKey: false }, ->
       $("#cboxClose").hide()
       create_thumb('next-level')
       create_thumb('this-level')
@@ -29,6 +29,11 @@ $ ->
       $("#cboxClose").hide()
       create_thumb('rules-level1')
       create_thumb('rules-level2')
+    )
+
+  window.facebook_page = ->
+    $.colorbox({href:'/workflows/show_facebook_page/', top:'100px', height:'315px', width:'500px'}, ->
+      $("#cboxClose").hide()
     )
 
   window.colorbox_challenges_and_packs = ->
@@ -133,5 +138,6 @@ $ ->
 
   bind_tipsy()
 
-  #window.colorbox_next_level('Novoban', 'Be ban 10', 141)
+  # window.colorbox_next_level('Novoban', 'Be ban 10', 141)
+  # window.facebook_page()
 

@@ -82,7 +82,7 @@ class LevelUserLink < ActiveRecord::Base
   def publish_on_facebook
     if Rails.env.production? and self.user
       graph = Koala::Facebook::API.new(self.user.f_token)
-      graph.put_connections("me", "sokojax:complete",
+      graph.put_connections("me", "sokoban_game:complete",
                             :level  => URI.escape("https://sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}"),
                             :pushes => self.pushes,
                             :moves  => self.moves)

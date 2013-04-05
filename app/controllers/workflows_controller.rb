@@ -24,6 +24,10 @@ class WorkflowsController < ApplicationController
     render 'show_challenges_and_packs', :layout => false
   end
 
+  def show_facebook_page
+    render 'show_facebook_page', :layout => false
+  end
+
   def show_next_level
     @pack_name = params[:pack_name]
     @level_name = params[:level_name]
