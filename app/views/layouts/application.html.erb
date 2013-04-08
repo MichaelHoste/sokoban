@@ -34,14 +34,14 @@
     <%= csrf_meta_tags %>
 
     <%= render 'layouts/google_analytics_headers' %>
-    <%= render 'layouts/advert_head' %>
+    <%# render 'layouts/advert_head' %>
   </head>
 
   <% new_user = (not cookies[:already_read_the_welcome_message]) ? '1' : '0' %>
   <body data-new-user="<%= new_user %>">
     <%= render 'layouts/facebook_headers' %>
     <%= render 'layouts/googleplus_headers' %>
-    <%= render 'layouts/advert_body' %>
+    <%# render 'layouts/advert_body' %>
 
     <%# render 'layouts/github_banner' %>
     <%= render "layouts/header" %>
