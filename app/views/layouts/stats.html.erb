@@ -29,7 +29,7 @@
 
   <div>
     <% @last_scores.each do |score| %>
-      <% user_picture = (score.user_id ? score.user.profile_picture : 'default_user.png' )%>
+      <% user_picture = (score.user_id ? score.user.profile_picture : 'default_user.gif' )%>
       <% user_link = (score.user_id ? score.user.f_link : '#') %>
       <% won_levels = score.user ? score.user.total_won_levels : 0 %>
 

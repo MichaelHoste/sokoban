@@ -1,4 +1,4 @@
-<% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture : 'default_user.png' )%>
+<% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture : 'default_user.gif' )%>
 <% user_link = (level_user_link.user_id ? level_user_link.user.f_link : '#') %>
 
 <% is_friend = current_user && level_user_link.user_id ? current_user.friends.registred.pluck('users.id').include?(level_user_link.user.id) : false %>
