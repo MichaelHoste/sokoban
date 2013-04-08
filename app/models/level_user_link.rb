@@ -92,7 +92,7 @@ class LevelUserLink < ActiveRecord::Base
   # App notifications : https://developers.facebook.com/docs/concepts/notifications/
   def notify_friends
     if Rails.env.production? and self.user
-      best_score     = self.user.best_scores.where(:level_id => self.level_id)
+      best_score = self.user.best_scores.where(:level_id => self.level_id)
       if best_score.empty?
         old_best_score = []
       else

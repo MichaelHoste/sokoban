@@ -2,26 +2,57 @@
 
 <div id="limited-content">
 
+  <h1>List of Sokoban levels</h1>
+
   <% @packs.each do |pack| %>
-    <div class="pack">
-      <div class="pack-title" data-pack-name="<%= pack.name %>">
-        <%= link_to pack.name, "/packs/#{pack.name}" %>
-      </div>
-
-      <ul class="levels">
-
-        <% won_level_ids = Pack.won_level_ids(current_user) %>
-        <% pack.levels.each_with_index do |level| %>
-          <li id="level-<%= level.id %>" data-level-name="<%= level.name %>">
-            <% if won_level_ids.include?(level.id) %>
-              <span class="star icon-star"></span>
-            <% else %>
-              <span class="star icon-star-empty"></span>
+    <br/><br/>
+    <div>
+      <table>
+        <tr>
+          <td><strong>Name</strong></td>
+          <td style="padding-left:10px;padding-right:10px">:</td>
+          <td><h2><%= pack.name %></h2></td>
+        </tr>
+        <tr>
+          <td>Filename</td>
+          <td style="padding-left:10px;padding-right:10px">:</td>
+          <td><%= pack.file_name %>.slc</td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td style="padding-left:10px;padding-right:10px">:</td>
+          <td><%= pack.description %></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td style="padding-left:10px;padding-right:10px">:</td>
+          <td><%= pack.email %></td>
+        </tr>
+        <tr>
+          <td>Url</td>
+          <td style="padding-left:10px;padding-right:10px">:</td>
+          <td><a href="<%= pack.url %>"><%= pack.url %></a></td>
+        </tr>
+        <tr>
+          <td>Copyright</td>
+          <td style="padding-left:10px;padding-right:10px">:</td>
+          <td><%= pack.copyright %></td>
+        </tr>
+        <tr>
+          <td>Levels</td>
+          <td style="padding-left:10px;padding-right:10px">:</td>
+          <td>
+            <% pack.levels.each_with_index do |level, index| %>
+              <strong><h3><%= link_to level.name, pack_level_path(pack.name, level.name) %></h3></strong>
+              <% if level.copyright.present? %>
+                (copyright : <%= level.copyright %>)
+              <% end %>
+              <br/>
             <% end %>
-          </li>
-        <% end %>
+          </td>
+        </tr>
 
-      </ul>
+      </table>
     </div>
   <% end %>
 

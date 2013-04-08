@@ -6,20 +6,20 @@
       <%= render 'layouts/fb_friend_ids' %>
 
       <ul id="users-top">
-        <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(15) %>
+        <% if @pack %>
+          <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(15) %>
+          <% subscribed_friends_and_me.each do |friend| %>
+            <li>
+              <a href="#">
+                <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id, :class => 'facebook-friends' %>
 
-        <% # list of subscribed friends and me %>
-        <% subscribed_friends_and_me.each do |friend| %>
-          <li>
-            <a href="#">
-              <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id, :class => 'facebook-friends' %>
-
-              <span style="display:none" data-user-id="<%= friend.user_id %>" data-user-name="<%= friend.name %>" data-local-success="<%= friend.won_levels_count %>" data-global-success="<%= friend.total_won_levels %>">
-                <% # won levels ids of current pack OR every won levels id %>
-                <%= friend.won_levels_list %>
-              </span>
-            </a>
-          </li>
+                <span style="display:none" data-user-id="<%= friend.user_id %>" data-user-name="<%= friend.name %>" data-local-success="<%= friend.won_levels_count %>" data-global-success="<%= friend.total_won_levels %>">
+                  <% # won levels ids of current pack OR every won levels id %>
+                  <%= friend.won_levels_list %>
+                </span>
+              </a>
+            </li>
+          <% end %>
         <% end %>
 
         <li>

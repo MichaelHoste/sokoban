@@ -474,7 +474,7 @@ body {
 				float: right;
 				width: 300px;
 			}
-				#game-won .game-catch {
+				#game-won #game-position {
 					border:1px solid;
 					background: #DDDDDD;
 					width: 300px;
