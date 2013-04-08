@@ -138,6 +138,9 @@ class LevelUserLink < ActiveRecord::Base
     self.tag_best_score
     PackUserLink.find_or_create_by_pack_id_and_user_id(self.level.pack_id, self.user_id).update_stats
     self.user.update_attributes!({ :total_won_levels => self.user.pack_user_links.collect(&:won_levels_count).sum }) if self.user
+
+    # delayed
+    self.level.delay.update_attributes!({ :won_count => self.level.best_scores.where('level_user_links.user_id IS NOT NULL').count })
   end
 
   # Tag (only) the best score (best_level_user_score = true) for each level/user combo
@@ -160,7 +163,7 @@ class LevelUserLink < ActiveRecord::Base
   end
 
   def ladder_friends(num_of_scores)
-    ladder = self.level.best_scores.where(:user_id => self.user.friends + [self.user.id]).all
+    ladder = self.level.best_scores.where(:user_id => self.user.friends.registred + [self.user_id]).all
     limited_ladder(ladder, num_of_scores)
   end
 

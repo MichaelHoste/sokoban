@@ -6,7 +6,6 @@ class PacksController < ApplicationController
   def show
     @pack = Pack.find_by_name(params[:id])
     @level = @pack.levels.first
-    @selected_level_name = @level.name
 
     # Take first two rows of friends and public scores
     # (other rows are displayed by scores_controller in AJAX)

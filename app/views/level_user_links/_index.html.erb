@@ -26,7 +26,7 @@
   <div id="score-all">
     <%= render @pushes_scores %>
 
-    <% more_scores_count = @level.unique_scores_count - @pushes_scores.count %>
+    <% more_scores_count = @level.won_count - @pushes_scores.count %>
     <% style = more_scores_count == 0 ? 'display:none' : '' %>
 
     <div id="more-global-score" class="scores-more" style="<%= style %>" data-page="<%= (@pushes_scores.count-1) / 6 + 1 %>">

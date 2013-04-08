@@ -6,6 +6,12 @@ Sokojax::Application.routes.draw do
     resources :levels
   end
 
+  resources :levels do
+    collection do
+      get :random
+    end
+  end
+
   resources :workflows do
     collection do
       get :show_welcome

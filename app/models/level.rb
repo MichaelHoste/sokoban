@@ -36,7 +36,42 @@ class Level < ActiveRecord::Base
 
   # Callbacks
 
+  # Class Methods
+
+  def self.complexity_random(user = nil)
+    levels = user ? Level.where('id not in (?)', user.best_scores.pluck(:level_id)) : Level
+
+    limit = rand(1..10) * 10 # More chance to get first easiest levels
+    levels.order('complexity ASC').limit(limit).sample
+  end
+
+  def self.users_random(user = nil)
+    levels = user ? Level.where('id not in (?)', user.best_scores.pluck(:level_id)) : Level
+
+    limit = rand(1..10) * 10 # More chance to get first easiest levels
+    levels.order('won_count DESC').limit(limit).sample
+  end
+
+  def self.friends_random(user)
+    if user
+      completed_levels = user.best_scores.pluck(:level_id)
+      friend_level_ids = user.friends.registred.collect do |friend|
+        friend.best_scores.where('level_id not in (?)', completed_levels).pluck(:level_id)
+      end.flatten
+
+      occurrences   = friend_level_ids.inject(Hash.new(0)) { |h,v| h[v] += 1; h } # hash { level_id => occurences } like { 2227=>34, 2230=>26, 2229=>28, 2231=>25, 2233=>21, 2238=>19 }
+      occurrences   = occurrences.to_a.sort_by { |x| x[1] }.reverse               # Convert hash to array and sort it by number of occurrences
+      occurrence_id = occurrences.take(occurrences.count / 10).sample[0]          # Take one occurrence from the top 1O
+
+      selected_level = Level.where(:id => occurrence_id)
+      selected_level.empty? ? nil : selected_level.first
+    else
+      nil
+    end
+  end
+
   # Methods
+
   def inline_grid_with_floor
     complete_grid = Array.new(self.grid_with_floor)
     complete_grid.collect!{ |line| line + (1..self.width-line.length).collect { |n| ' ' }.join }
@@ -73,14 +108,8 @@ class Level < ActiveRecord::Base
   end
 
   # Get count of unique scores for this level
-  def unique_scores_count
-    # distincts users + anonymous users (NULL is not a distinct user)
-    self.best_scores.count
-  end
-
-  # Get count of unique scores for this level
   def unique_friends_scores_count(user)
-    self.best_scores.where(:user_id => user.friends + [user.id]).count
+    self.best_scores.where(:user_id => user.friends.registred + [user.id]).count
   end
 
   # generate an image of the level in /public/images/levels
