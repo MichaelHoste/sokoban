@@ -31,14 +31,16 @@ $ ->
       create_thumb('rules-level2')
     )
 
-  window.facebook_page = ->
+  window.colorbox_facebook_page = ->
     $.colorbox({href:'/workflows/show_facebook_page/', top:'100px', height:'420px', width:'500px', overlayClose: false, escKey: false }, ->
       $("#cboxClose").hide()
     )
 
-  window.colorbox_challenges_and_packs = ->
-    $.colorbox({href:'/workflows/show_challenges_and_packs/', top:'100px', height:'320px', width:'500px'}, ->
+  window.colorbox_random_level = ->
+    $.colorbox({href:'/workflows/show_random_level/', top:'70px', height:'510px', width:'500px' }, ->
       $("#cboxClose").hide()
+      window.hide_all_tipsy()
+      create_thumb('random-level')
     )
 
   window.is_logged = ->
@@ -149,5 +151,5 @@ $ ->
   bind_tipsy()
 
   # window.colorbox_next_level('Novoban', 'Be ban 10', 141)
-  # window.facebook_page()
+  # window.colorbox_facebook_page()
 

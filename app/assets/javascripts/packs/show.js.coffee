@@ -32,3 +32,8 @@ $ ->
     pack_name = $('#packs select').val()
     location.assign("/packs/#{pack_name}")
   )
+
+  $('#packs .packs-button a').on('click', ->
+    window.colorbox_random_level()
+    false
+  )

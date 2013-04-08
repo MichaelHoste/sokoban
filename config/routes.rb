@@ -17,9 +17,10 @@ Sokojax::Application.routes.draw do
       get :show_welcome
       get :show_rules
       get :show_controls
-      get :show_challenges_and_packs
 
       get :show_facebook_page
+
+      get :show_random_level
 
       post :show_next_level
     end

@@ -8,6 +8,7 @@
   font-weight:bold;
   color:#444444;
   padding-top:20px;
+  font-family:'Droid Sans', Arial, Verdana, Helvetica, sans-serif;
 }
 
 .sub-title
@@ -206,8 +207,80 @@
   }
 }
 
+#random-level
+{
+  .random-level
+  {
+    background: #e4e4e4 url('/assets/level-hover3-bkg.png') no-repeat top right;
+    width: 400px;
+    height: 300px;
+    margin-top: 20px;
+    margin-left: 35px;
+    border: 1px solid #c7c7c7;
+    -webkit-border-radius: 8px 8px 8px 8px;
+    border-radius: 8px 8px 8px 8px;
+    cursor: pointer;
+  }
+
+  .random-level:hover
+  {
+    background: #d7e8f0;
+  }
+
+  #random-level-canvas
+  {
+    width:400px;
+    height:300px;
+  }
+
+  #completed-friends
+  {
+    height: 70px;
+
+    #completed-friends-in
+    {
+      border:1px solid #CCCCCC;
+      margin:10px;
+      margin-left:34px;
+      margin-right:34px;
+      padding:5px;
+      text-align:center;
+      background-color:#F5F5F5;
+
+      .tips
+      {
+        font-weight:bold;
+      }
+    }
+  }
+
+  .reload-button
+  {
+    text-align:center;
+
+    a
+    {
+      display: inline-block;
+      background: url('/assets/sprites.png') no-repeat -100px -150px;
+      border: 1px solid #c9c9c9;
+      height: 25px;
+      line-height: 25px;
+      padding: 0 10px 0 36px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #333;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      margin-left: 10px;
+      text-decoration: none;
+    }
+  }
+}
+
 #cboxLoadedContent
 {
   /*background: #fff url('/assets/header-bkg.png') repeat-x;*/
   background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
 }
+
+

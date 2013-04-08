@@ -21,7 +21,7 @@ $ ->
   # Click on 'next' on "rules"
   $('#rules .button-next').on('click', ->
     if $("#menus .fb_logged").length and $("#menus .fb_logged").attr('data-like-facebook-page') == 'false'
-      window.facebook_page()
+      window.colorbox_facebook_page()
     else
       redirect_to_facebook_login_if_not_logged()
     false
@@ -63,8 +63,22 @@ $ ->
     window.hide_all_tipsy()
     $.fn.colorbox.close()
     window.change_level()
-
     false
+  )
+
+  $('#random-level-canvas').on('click', ->
+    level_name = $(this).parent().attr('data-level-name')
+    pack_name  = $(this).parent().attr('data-pack-name')
+    location.assign("/packs/#{pack_name}/levels/#{level_name}")
+  )
+
+  $('#random-level .reload-button').on('click', ->
+    $(document).bind('cbox_closed', ->
+      window.colorbox_random_level()
+      $(document).unbind('cbox_closed')
+    )
+    window.hide_all_tipsy()
+    $.fn.colorbox.close()
   )
 
   pusher_move = (dir) ->

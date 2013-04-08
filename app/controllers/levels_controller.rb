@@ -28,16 +28,7 @@ class LevelsController < ApplicationController
   end
 
   def random
-    while not @level
-      number = rand(1..5)
-      if number <= 3
-        @level = Level.friends_random(current_user)
-      elsif number == 4
-        @level = Level.complexity_random(current_user)
-      else
-        @level = Level.users_random(current_user)
-      end
-    end
+    @level = Level.random(current_user)
     redirect_to pack_level_path(@level.pack.name, @level.name)
   end
 end

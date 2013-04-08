@@ -38,15 +38,38 @@ class Level < ActiveRecord::Base
 
   # Class Methods
 
+  def self.random(user = nil)
+    level = nil
+    while not level
+      number = rand(1..5)
+      if number <= 3
+        level = Level.friends_random(user)
+      elsif number == 4
+        level = Level.complexity_random(user)
+      else
+        level = Level.users_random(user)
+      end
+    end
+    level
+  end
+
   def self.complexity_random(user = nil)
-    levels = user ? Level.where('id not in (?)', user.best_scores.pluck(:level_id)) : Level
+    if user and user.best_scores.pluck(:level_id).count != 0
+      levels = Level.where('id not in (?)', user.best_scores.pluck(:level_id))
+    else
+      levels = Level
+    end
 
     limit = rand(1..10) * 10 # More chance to get first easiest levels
     levels.order('complexity ASC').limit(limit).sample
   end
 
   def self.users_random(user = nil)
-    levels = user ? Level.where('id not in (?)', user.best_scores.pluck(:level_id)) : Level
+    if user and user.best_scores.pluck(:level_id).count != 0
+      levels = Level.where('id not in (?)', user.best_scores.pluck(:level_id))
+    else
+      levels = Level
+    end
 
     limit = rand(1..10) * 10 # More chance to get first easiest levels
     levels.order('won_count DESC').limit(limit).sample
@@ -56,12 +79,22 @@ class Level < ActiveRecord::Base
     if user
       completed_levels = user.best_scores.pluck(:level_id)
       friend_level_ids = user.friends.registred.collect do |friend|
-        friend.best_scores.where('level_id not in (?)', completed_levels).pluck(:level_id)
+        if completed_levels.count == 0
+          friend.best_scores.where('level_id not in (?)', completed_levels).pluck(:level_id)
+        else
+          friend.best_scores.pluck(:level_id)
+        end
       end.flatten
 
       occurrences   = friend_level_ids.inject(Hash.new(0)) { |h,v| h[v] += 1; h } # hash { level_id => occurences } like { 2227=>34, 2230=>26, 2229=>28, 2231=>25, 2233=>21, 2238=>19 }
       occurrences   = occurrences.to_a.sort_by { |x| x[1] }.reverse               # Convert hash to array and sort it by number of occurrences
-      occurrence_id = occurrences.take(occurrences.count / 10).sample[0]          # Take one occurrence from the top 1O
+      occurrence_id = occurrences.take(occurrences.count / 10 + 1).sample         # Take one occurrence from the top 1O
+
+      if not occurrence_id
+        return nil
+      else
+        occurrence_id = occurrence_id[0]
+      end
 
       selected_level = Level.where(:id => occurrence_id)
       selected_level.empty? ? nil : selected_level.first
@@ -108,8 +141,18 @@ class Level < ActiveRecord::Base
   end
 
   # Get count of unique scores for this level
-  def unique_friends_scores_count(user)
+  def friends_scores_count(user)
     self.best_scores.where(:user_id => user.friends.registred + [user.id]).count
+  end
+
+  def friends_scores_names(user)
+    self.best_scores.where(:user_id => user.friends.registred + [user.id])
+                    .collect { |score| score.user.name }
+  end
+
+  def all_scores_names
+    self.best_scores.where('user_id IS NOT NULL')
+                    .collect { |score| score.user.name }
   end
 
   # generate an image of the level in /public/images/levels
