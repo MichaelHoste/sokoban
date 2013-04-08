@@ -1,7 +1,7 @@
 <% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture : 'default_user.gif' )%>
 <% user_link = (level_user_link.user_id ? level_user_link.user.f_link : '#') %>
 
-<% is_friend = current_user && level_user_link.user_id ? current_user.friends.registred.pluck('users.id').include?(level_user_link.user.id) : false %>
+<% is_friend = current_user && level_user_link.user_id ? current_user.friends.registered.pluck('users.id').include?(level_user_link.user.id) : false %>
 
 <div class="score-item tips" data-id="<%= level_user_link.user ? level_user_link.user.id : '' %>" data-f_id="<%= level_user_link.user.f_id if level_user_link.user %>" data-is-friend="<%= is_friend %>" title="<%= level_user_link.user ? "#{level_user_link.user.total_won_levels} levels completed" : "Anonymous score" %>" data-score-worse="<%= level_user_link.worse %>">
   <div class="score-picture">

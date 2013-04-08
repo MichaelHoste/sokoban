@@ -4,7 +4,7 @@ class AddTotalWonLevelsToUsers < ActiveRecord::Migration
 
     User.reset_column_information
 
-    User.registred.all.each do |user|
+    User.registered.all.each do |user|
       user.update_attributes!({ :total_won_levels => user.pack_user_links.collect(&:won_levels_count).sum })
     end
   end

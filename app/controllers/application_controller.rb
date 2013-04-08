@@ -37,11 +37,11 @@ class ApplicationController < ActionController::Base
   end
 
   def stats
-    @total_users   = User.registred.count
-    @total_friends = User.not_registred.count
+    @total_users   = User.registered.count
+    @total_friends = User.not_registered.count
     @total_scores  = LevelUserLink.count
     @best_scores   = LevelUserLink.where(:best_level_user_score => true).count
-    @last_users    = User.registred.order('updated_at DESC').limit(10)
+    @last_users    = User.registered.order('updated_at DESC').limit(10)
     @last_scores   = LevelUserLink.unscoped.order('created_at DESC').limit(100)
     render 'layouts/stats', :layout => false
   end

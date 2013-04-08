@@ -38,11 +38,11 @@ class User < ActiveRecord::Base
 
   # Scopes
 
-  def self.registred
+  def self.registered
     where('email IS NOT NULL')
   end
 
-  def self.not_registred
+  def self.not_registered
     where('email IS NULL')
   end
 
@@ -79,14 +79,14 @@ class User < ActiveRecord::Base
     user = User.where(:f_id => profile['id'])
     if not user.empty?
       user = user.first
-      new_registred_user = (not user.email) ? true : false
+      new_registered_user = (not user.email) ? true : false
       user.attributes = user_hash
     else
-      new_registred_user = true
+      new_registered_user = true
       user = User.new(user_hash)
     end
 
-    if new_registred_user
+    if new_registered_user
       # Subscription to mailing list
       mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
       mimi.csv_import("email, first name, last name, full name, gender, locale\n" +
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  def registred?
+  def registered?
     self.email != nil
   end
 
@@ -157,42 +157,42 @@ class User < ActiveRecord::Base
 
   # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to one pack)
   def subscribed_friends(pack)
-    friends = self.friends.registred.all
+    friends = self.friends.registered.all
     join_users_to_pack_user_links_and_sort(friends, pack)
   end
 
   # list of subscribed friends, user INCLUDED, sorted by won levels (relative to one pack)
   def subscribed_friends_and_me(pack)
-    friends = self.friends.registred.all + [self]
+    friends = self.friends.registered.all + [self]
     join_users_to_pack_user_links_and_sort(friends, pack)
   end
 
   # n random popular friends
-  # algo to maximize the selection of the people (registred or not) with a lot of registred friends
-  # statisticaly we will select half the time a registred friend
+  # algo to maximize the selection of the people (registered or not) with a lot of registered friends
+  # statisticaly we will select half the time a registered friend
   def popular_friends(n)
-    registred_friends     = self.friends.registred.all
-    not_registred_friends = self.friends.not_registred.order('friends_count DESC').limit(50).all
+    registered_friends     = self.friends.registered.all
+    not_registered_friends = self.friends.not_registered.order('friends_count DESC').limit(50).all
     popular_friends = []
 
-    # array of friends of registred and not registred friends
+    # array of friends of registered and not registered friends
     # [3, 55, 34, ...] means that first friend has 3 friends, second friend has 55 friends etc.
-    friends_of_rf  = registred_friends.collect { |friend| friend.friends_count }
-    friends_of_nrf = not_registred_friends.collect { |friend| friend.friends_count }
+    friends_of_rf  = registered_friends.collect { |friend| friend.friends_count }
+    friends_of_nrf = not_registered_friends.collect { |friend| friend.friends_count }
 
-    # sum of the array of friends of registred and not registred friends
+    # sum of the array of friends of registered and not registered friends
     # (in an array so we can later pass it by reference and get updated)
     sum_friends_of_rf  = [friends_of_rf.sum]
     sum_friends_of_nrf = [friends_of_nrf.sum]
 
     while popular_friends.size < n and (sum_friends_of_rf[0] != 0 or sum_friends_of_nrf[0] != 0)
       choice = rand(1..6)
-      # select a registred popular friend
+      # select a registered popular friend
       if choice == 1 and sum_friends_of_rf[0] != 0
-        popular_friends << select_one_user(registred_friends, friends_of_rf, sum_friends_of_rf)
-      # select an not registred popular friend
+        popular_friends << select_one_user(registered_friends, friends_of_rf, sum_friends_of_rf)
+      # select an not registered popular friend
       elsif choice.in? [2, 3, 4, 5, 6] and sum_friends_of_nrf[0] != 0
-        popular_friends << select_one_user(not_registred_friends, friends_of_nrf, sum_friends_of_nrf)
+        popular_friends << select_one_user(not_registered_friends, friends_of_nrf, sum_friends_of_nrf)
       end
     end
 
@@ -201,9 +201,9 @@ class User < ActiveRecord::Base
 
   private
 
-  # update friends count (friends that are on the database : registred or not)
+  # update friends count (friends that are on the database : registered or not)
   def update_friends_count
-    # registred user of not registred user
+    # registered user of not registered user
     if self.email
       self.friends_count = self.friends.count
     else

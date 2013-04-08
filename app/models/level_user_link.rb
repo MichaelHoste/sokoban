@@ -104,7 +104,7 @@ class LevelUserLink < ActiveRecord::Base
       end
 
       friends_lower_scores = self.level.best_scores
-                                       .where(:user_id => self.user.friends.registred.pluck('users.id'))
+                                       .where(:user_id => self.user.friends.registered.pluck('users.id'))
                                        .where('pushes > :p or (pushes = :p and moves > :m)',
                                               :p => self.pushes, :m => self.moves)
 
@@ -163,7 +163,7 @@ class LevelUserLink < ActiveRecord::Base
   end
 
   def ladder_friends(num_of_scores)
-    ladder = self.level.best_scores.where(:user_id => self.user.friends.registred + [self.user_id]).all
+    ladder = self.level.best_scores.where(:user_id => self.user.friends.registered + [self.user_id]).all
     limited_ladder(ladder, num_of_scores)
   end
 

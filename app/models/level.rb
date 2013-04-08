@@ -78,7 +78,7 @@ class Level < ActiveRecord::Base
   def self.friends_random(user)
     if user
       completed_levels = user.best_scores.pluck(:level_id)
-      friend_level_ids = user.friends.registred.collect do |friend|
+      friend_level_ids = user.friends.registered.collect do |friend|
         if completed_levels.count == 0
           friend.best_scores.where('level_id not in (?)', completed_levels).pluck(:level_id)
         else
@@ -142,11 +142,11 @@ class Level < ActiveRecord::Base
 
   # Get count of unique scores for this level
   def friends_scores_count(user)
-    self.best_scores.where(:user_id => user.friends.registred + [user.id]).count
+    self.best_scores.where(:user_id => user.friends.registered + [user.id]).count
   end
 
   def friends_scores_names(user)
-    self.best_scores.where(:user_id => user.friends.registred + [user.id])
+    self.best_scores.where(:user_id => user.friends.registered + [user.id])
                     .collect { |score| score.user.name }
   end
 
@@ -196,7 +196,7 @@ class Level < ActiveRecord::Base
   end
 
   def best_friends_scores(user, count)
-    scores = user ? self.best_scores.where(:user_id => user.friends.registred.pluck('users.id') + [user.id]).limit(count) : []
+    scores = user ? self.best_scores.where(:user_id => user.friends.registered.pluck('users.id') + [user.id]).limit(count) : []
     LevelUserLink.tag_worse_scores_than_user(scores, user ? user.id : 0)
   end
 end
