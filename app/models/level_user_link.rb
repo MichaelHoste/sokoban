@@ -91,44 +91,71 @@ class LevelUserLink < ActiveRecord::Base
 
   # App notifications : https://developers.facebook.com/docs/concepts/notifications/
   def notify_friends
-    if Rails.env.production? and self.user
+    if self.user
+      # Get old best score (if any)
       best_score = self.user.best_scores.where(:level_id => self.level_id)
       if best_score.empty?
         old_best_score = []
       else
         old_best_score = self.user.scores.where(:level_id => self.level_id)
-                                         .where('pushes >= :p or (pushes = :p and moves >= :m)',
-                                                :p => best_score.first.pushes, :m => best_score.first.moves)
                                          .where('created_at < ?', best_score.first.created_at)
                                          .order('pushes ASC, moves ASC, created_at DESC')
       end
 
+      # Get list lower or equal scores (friends !)
       friends_lower_scores = self.level.best_scores
                                        .where(:user_id => self.user.friends.registered.pluck('users.id'))
-                                       .where('pushes > :p or (pushes = :p and moves > :m)',
+                                       .where('pushes >= :p or (pushes = :p and moves >= :m)',
                                               :p => self.pushes, :m => self.moves)
 
+      # Get list of friends to notify (Better score or equality score)
       if old_best_score.empty?
-        friends_to_notify = friends_lower_scores.collect { |score| score.user }
+        friends_to_notify_better   = friends_lower_scores.collect { |score| score.user }
+        friends_to_notify_equality = friends_lower_scores.where('pushes = :p and moves = :m',
+                                                                :p => self.pushes,
+                                                                :m => self.moves)
+                                                         .collect { |score| score.user }
       else
-        friends_to_notify = friends_lower_scores.where('pushes < :p or (pushes = :p and moves < :m)',
-                                                       :p => old_best_score.first.pushes,
-                                                       :m => old_best_score.first.moves)
-                                                .collect { |score| score.user }
+        friends_to_notify_better   = friends_lower_scores.where('pushes < :p or (pushes = :p and moves < :m)',
+                                                                :p => old_best_score.first.pushes,
+                                                                :m => old_best_score.first.moves)
+                                                         .collect { |score| score.user }
+        friends_to_notify_equality = friends_lower_scores.where('pushes < :p or (pushes = :p and moves < :m)',
+                                                                :p => old_best_score.first.pushes,
+                                                                :m => old_best_score.first.moves)
+                                                         .where('pushes = :p and moves = :m',
+                                                                :p => self.pushes,
+                                                                :m => self.moves)
+                                                         .collect { |score| score.user }
       end
+      friends_to_notify_better = friends_to_notify_better - friends_to_notify_equality
 
-      oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
-      access_token = oauth.get_app_access_token
-      graph        = Koala::Facebook::API.new(access_token)
+      puts("FRIENDS TO NOTIFY BETTER : #{friends_to_notify_better.collect(&:name).join(', ') }")
+      puts("FRIENDS TO NOTIFY EQUALITY : #{friends_to_notify_equality.collect(&:name).join(', ') }")
 
-      friends_to_notify.each do |friend|
-        Rails.logger.info("FRIEND : #{friend.name}")
-        begin
-          graph.put_connections(friend.f_id, "notifications",
-                                :template => "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
-                                :href     => "?level_id=#{self.level.id}")
-        rescue
-          Rails.logger.info("NOTIFICATION FAILED FOR #{friend.name}")
+      if Rails.env.production?
+        oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
+        access_token = oauth.get_app_access_token
+        graph        = Koala::Facebook::API.new(access_token)
+
+        friends_to_notify_better.each do |friend|
+          begin
+            graph.put_connections(friend.f_id, "notifications",
+                                  :template => "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!",
+                                  :href     => "?level_id=#{self.level.id}")
+          rescue
+            Rails.logger.info("NOTIFICATION FAILED FOR BETTER #{friend.name}")
+          end
+        end
+
+        friends_to_notify_equality.each do |friend|
+          begin
+            graph.put_connections(friend.f_id, "notifications",
+                                  :template => "@[#{self.user.f_id}] just solved '#{self.level.name}' with the same score as you, get revenge!",
+                                  :href     => "?level_id=#{self.level.id}")
+          rescue
+            Rails.logger.info("NOTIFICATION FAILED FOR EQUALITY #{friend.name}")
+          end
         end
       end
     end
