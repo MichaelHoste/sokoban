@@ -497,23 +497,31 @@ body {
 							border: 1px solid #C9C9C9;
 							border-radius: 3px;
 							color: #7B7B7B;
-							font-size: 13px;
+							font-size: 12px;
 							font-weight: bold;
-							height: 27px;
-							line-height: 27px;
+							height: 26px;
+							line-height: 26px;
 							margin-bottom: 3px;
-							padding: 0 18px;
+							padding: 0 27px;
 						}
 						#game-won .game-actions li.game-action-retry a {
 							background-position: -100px -250px;
 							padding-left: 40px;
 						}
 						#game-won .game-actions li.game-action-next {
-							margin-top:6px;
+							margin-top:5px;
 						}
 						#game-won .game-actions li.game-action-next a {
-							background-position: 100% -300px;
+							background-position: 100% -301px;
 							padding-right: 40px;
+						}
+						#game-won .game-actions li.game-action-challenge {
+							margin-top:5px;
+						}
+						#game-won .game-actions li.game-action-challenge a {
+							background-position: -100px -149px;
+							padding-right: 0px;
+							padding-left: 31px;
 						}
 
 	#game #current-score {
@@ -555,10 +563,10 @@ body {
 	#game-won #next-level-canvas {
 		border:1px solid #C9C9C9;
 		float:left;
-		width:89px;
-		height:109px;
-		margin-left:20px;
-		margin-top:10px;
+		width:99px;
+		height:81px;
+		margin-left:11px;
+		margin-top:8px;
 	}
 
 	#game-won #this-level-canvas:hover, #game-won #next-level-canvas:hover {

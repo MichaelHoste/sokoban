@@ -6,7 +6,10 @@ $ ->
       $("#cboxClose").hide()
       create_thumb('next-level')
       create_thumb('this-level')
-      $('#game-position').html($('#game-preload').html())
+
+      draw = ->
+        $('#game-position').html($('#game-preload').html())
+      setTimeout(draw, 100)
     )
 
   window.colorbox_facebook = ->

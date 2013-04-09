@@ -4,6 +4,14 @@ redirect_to_facebook_login_if_not_logged = ->
   else
     $.fn.colorbox.close()
 
+reload_colorbox_random_level = ->
+  $(document).bind('cbox_closed', ->
+    window.colorbox_random_level()
+    $(document).unbind('cbox_closed')
+  )
+  window.hide_all_tipsy()
+  $.fn.colorbox.close()
+
 $ ->
   # Click on 'next' on "welcome"
   $('#welcome .button-next').on('click', ->
@@ -66,6 +74,11 @@ $ ->
     false
   )
 
+  $('.game-action-challenge').on('click', ->
+    reload_colorbox_random_level()
+    false
+  )
+
   $('#random-level-canvas').on('click', ->
     level_name = $(this).parent().attr('data-level-name')
     pack_name  = $(this).parent().attr('data-pack-name')
@@ -73,12 +86,8 @@ $ ->
   )
 
   $('#random-level .reload-button').on('click', ->
-    $(document).bind('cbox_closed', ->
-      window.colorbox_random_level()
-      $(document).unbind('cbox_closed')
-    )
-    window.hide_all_tipsy()
-    $.fn.colorbox.close()
+    reload_colorbox_random_level()
+    false
   )
 
   pusher_move = (dir) ->

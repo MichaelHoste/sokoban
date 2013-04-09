@@ -40,8 +40,9 @@
       </div>
 
       <ul class="game-actions">
-        <li class="game-action-retry" title="Retry this level : <%= @level.name %>"><a href="#">Retry</a></li>
-        <li class="game-action-next" title="Go to next level : <%= @next_level.name %>"><a href="#">Next</a></li>
+        <li class="game-action-retry"     title="Retry this level : <%= @level.name %>"><a href="#">Retry</a></li>
+        <li class="game-action-next"      title="Go to next level : <%= @next_level.name %>"><a href="#">Next</a></li>
+        <li class="game-action-challenge" title="Can you solve this level?"><a href="#">Challenge</a></li>
       </ul>
 
       <div class="next-level" data-level-name="<%= @next_level.name %>" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>">
