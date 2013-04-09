@@ -6,7 +6,9 @@ $ ->
       $("#cboxClose").hide()
       create_thumb('next-level')
       create_thumb('this-level')
-      #$('#game-position').html($('#game-preload').html())
+
+      if LSM_Slot # LSM_Slot is not defined if adblock is enabled causing javascript error
+        $('#game-position').html($('#game-preload').html())
     )
 
   window.colorbox_facebook = ->
