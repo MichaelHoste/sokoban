@@ -79,7 +79,7 @@ class Level < ActiveRecord::Base
     if user
       completed_levels = user.best_scores.pluck(:level_id)
       friend_level_ids = user.friends.registered.collect do |friend|
-        if completed_levels.count == 0
+        if completed_levels.count != 0
           friend.best_scores.where('level_id not in (?)', completed_levels).pluck(:level_id)
         else
           friend.best_scores.pluck(:level_id)
