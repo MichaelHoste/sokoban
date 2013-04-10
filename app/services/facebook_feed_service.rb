@@ -20,7 +20,12 @@ module FacebookFeedService
 
     # publish on feed
     page = Koala::Facebook::API.new(page_access_token)
-    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed', :message => "I am writing on a page wall!")
+    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed', :message     => "Can you solve this level?",
+                                                          :link        => "http://sokoban.be" + app.pack_level_path(level.pack.name, level.name),
+                                                          :name        => "#{level.name}",
+                                                          :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
+                                                          :picture     => level.thumb,
+                                                          :type        => "sokoban_game:level")
   end
 end
 
