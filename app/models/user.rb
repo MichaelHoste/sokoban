@@ -227,7 +227,7 @@ class User < ActiveRecord::Base
   # extend short token (2 hours) to long expiration token (min 60 days).
   # Usefull to use the admin user to post on facebook fan page
   # cf. https://developers.facebook.com/roadmap/offline-access-removal/
-  def extended_token(token)
+  def self.extended_token(token)
     url = "https://graph.facebook.com/oauth/access_token?client_id=#{ENV['FACEBOOK_APP_ID']}&client_secret=#{ENV['FACEBOOK_APP_SECRET']}&grant_type=fb_exchange_token&fb_exchange_token=#{token}"
     url = URI.parse(url)
     https = Net::HTTP.new(url.host, url.port)
