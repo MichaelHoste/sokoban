@@ -108,17 +108,21 @@ class User < ActiveRecord::Base
     self.email != nil
   end
 
+  def is_admin?
+    self.f_id == ENV['FACEBOOK_ADMIN_ID']
+  end
+
   # Ask facebook if this user likes the facebook fan page of the application
   # return true or false
   def request_like_fan_page?
-    oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
+    oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
     access_token = oauth.get_app_access_token
     graph        = Koala::Facebook::API.new(access_token)
-    data         = graph.get_connections(self.f_id, "likes/#{ENV['FACEBOOK_FAN_PAGE']}")
+    data         = graph.get_connections(self.f_id, "likes/#{ENV['FACEBOOK_PAGE_ID']}")
 
     found = false
     data.each do |like|
-      found = true if like['id'] == "#{ENV['FACEBOOK_FAN_PAGE']}"
+      found = true if like['id'] == "#{ENV['FACEBOOK_PAGE_ID']}"
     end
     return found
   end

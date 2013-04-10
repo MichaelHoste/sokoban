@@ -126,7 +126,7 @@ class LevelUserLink < ActiveRecord::Base
     puts("FRIENDS TO NOTIFY EQUALITY : #{friends_to_notify_equality.collect(&:name).join(', ') }")
 
     if Rails.env.production?
-      oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'])
+      oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
       access_token = oauth.get_app_access_token
       graph        = Koala::Facebook::API.new(access_token)
 
