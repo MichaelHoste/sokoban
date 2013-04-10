@@ -19,7 +19,7 @@ Sokojax::Application.routes.draw do
       get :show_controls
 
       get :show_facebook_page
-
+      get :show_invite_friends
       get :show_random_level
 
       post :show_next_level
@@ -32,6 +32,7 @@ Sokojax::Application.routes.draw do
     member do
       get :popular_friends
       get :is_like_facebook_page # question
+      post :update_send_invitations_at # user just invited some friends
     end
   end
 

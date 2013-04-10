@@ -39,6 +39,11 @@ $ ->
       $("#cboxClose").hide()
     )
 
+  window.colorbox_invite_friends = ->
+    $.colorbox({href:'/workflows/show_invite_friends/', top:'100px', height:'440px', width:'500px', overlayClose: false, escKey: false }, ->
+      $("#cboxClose").hide()
+    )
+
   window.colorbox_random_level = ->
     $.colorbox({href:'/workflows/show_random_level/', top:'70px', height:'510px', width:'500px' }, ->
       $("#cboxClose").hide()
@@ -55,6 +60,7 @@ $ ->
   bind_tipsy = ->
     $('.tips').tipsy({live: true, fade: true, opacity: 0.8 })
     $('.tips-left').tipsy({live: true, gravity: 'e', fade: true, opacity: 0.8})
+    $('.tips-direct').tipsy({live: true, opacity: 0.8})
 
   window.hide_all_tipsy = ->
     $('.tipsy').remove()
@@ -155,4 +161,5 @@ $ ->
 
   # window.colorbox_next_level('Novoban', 'Be ban 10', 141)
   # window.colorbox_facebook_page()
+  # window.colorbox_invite_friends()
 

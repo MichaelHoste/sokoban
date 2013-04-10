@@ -53,7 +53,8 @@ bind_banner = ->
   )
 
   $('#add-more-friends').live('click', ->
-    window.facebook_send_recursive_app_request()
+    #window.facebook_send_recursive_app_request()
+    window.colorbox_invite_friends()
     return false
   )
 

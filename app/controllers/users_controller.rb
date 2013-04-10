@@ -11,4 +11,10 @@ class UsersController < ApplicationController
     @user.save!
     render :json => { :like => @user.like_fan_page }
   end
+
+  def update_send_invitations_at
+    @user = User.find(params[:id])
+    @user.update_attributes!({ :send_invitations_at => Time.now })
+    render :json => {}
+  end
 end

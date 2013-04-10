@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130407130510) do
+ActiveRecord::Schema.define(:version => 20130410154108) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(:version => 20130407130510) do
     t.string   "picture"
     t.string   "gender"
     t.string   "locale"
-    t.integer  "f_id",               :limit => 8
+    t.integer  "f_id",                :limit => 8
     t.string   "f_token"
     t.string   "f_first_name"
     t.string   "f_middle_name"
@@ -122,12 +122,13 @@ ActiveRecord::Schema.define(:version => 20130407130510) do
     t.boolean  "f_verified"
     t.boolean  "f_expires"
     t.datetime "f_expires_at"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
-    t.integer  "friends_count",                   :default => 0,     :null => false
-    t.integer  "total_won_levels",                :default => 0,     :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
+    t.integer  "friends_count",                    :default => 0,                     :null => false
+    t.integer  "total_won_levels",                 :default => 0,                     :null => false
     t.datetime "friends_updated_at"
-    t.boolean  "like_fan_page",                   :default => false
+    t.datetime "send_invitations_at",              :default => '2013-03-11 00:00:00'
+    t.boolean  "like_fan_page",                    :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

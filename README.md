@@ -10,7 +10,7 @@ DEMO
 
 Try it here : http://www.sokoban.be
 
-![Image](https://github.com/MichaelHoste/sokoban/raw/master/_html/sokoban.png)
+![Image](https://github.com/MichaelHoste/sokoban/raw/master/public/images/sokoban.png)
 
 TO DO
 -----

@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
 
   # Constants
 
-  DAYS_BEFORE_UPDATING_FRIENDS = 5
+  DAYS_BEFORE_UPDATING_FRIENDS        = 5
+  DAYS_WITHOUT_ADS_IF_FRIENDS_INVITED = 3
+  DAYS_WITHOUT_FRIENDS_INVITE_POPUP   = 30
 
   # Attributes
   attr_protected :created_at, :updated_at
@@ -197,6 +199,14 @@ class User < ActiveRecord::Base
     end
 
     return popular_friends
+  end
+
+  def display_advertisement?
+    Time.now >= self.send_invitations_at + DAYS_WITHOUT_ADS_IF_FRIENDS_INVITED.days.to_i
+  end
+
+  def display_friends_invite_popup?
+    Time.now >= self.send_invitations_at + DAYS_WITHOUT_FRIENDS_INVITE_POPUP.days.to_i
   end
 
   private

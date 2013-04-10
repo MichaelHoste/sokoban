@@ -10,15 +10,17 @@
 <% end %>
 
 <div id="game-preload" style="display:none">
-  <script type="text/javascript">
-    //<![CDATA[
-      if(!(typeof LSM_Slot == 'undefined')) {
-        LSM_Slot({
-          adkey: '<%= adkey %>',
-          ad_size: '300x250',
-          slot: '<%= slot %>'
-        });
-      };
-    //]]>
-  </script>
+  <% if current_user and current_user.display_advertisement? %>
+    <script type="text/javascript">
+      //<![CDATA[
+        if(!(typeof LSM_Slot == 'undefined')) {
+          LSM_Slot({
+            adkey: '<%= adkey %>',
+            ad_size: '300x250',
+            slot: '<%= slot %>'
+          });
+        };
+      //]]>
+    </script>
+  <% end %>
 </div>

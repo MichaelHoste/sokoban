@@ -277,6 +277,81 @@
   }
 }
 
+#invite-friends
+{
+  sup
+  {
+    font-size:10px;
+    vertical-align:7px;
+  }
+
+  .sub-title
+  {
+    margin-top:15px;
+  }
+
+  .friends
+  {
+    margin-top:30px;
+
+    img
+    {
+      width:30px;
+      cursor:pointer;
+    }
+
+    .top, .bottom
+    {
+      height:66px;
+    }
+
+    .left, .right
+    {
+      width:98px;
+      height:99px;
+      float:left;
+    }
+
+    .friend-button
+    {
+      @extend .button_off;
+      @extend .border_box;
+      margin-top:5px;
+      margin-bottom:8px;
+      margin-left:8px;
+      margin-right:8px;
+      width:260px;
+      height:86px;
+      float:left;
+      padding-top:32px;
+      padding-left:0px;
+      padding-right:0px;
+      text-align:center;
+      font-weight:bold;
+      color:#333;
+      -webkit-border-radius:2px;
+      border-radius:2px;
+      cursor:pointer;
+      -webkit-box-shadow: 0px 0px 10px $dark;
+      -moz-box-shadow: 0px 0px 10px $dark;
+      box-shadow: 0px 0px 10px $dark;
+
+      i
+      {
+        font-size:25px;
+        vertical-align:-8px;
+        line-height:29px;
+        padding-right:7px;
+      }
+    }
+
+    .friend-button:hover
+    {
+      @extend .button_on;
+    }
+  }
+}
+
 #cboxLoadedContent
 {
   /*background: #fff url('/assets/header-bkg.png') repeat-x;*/

@@ -12,6 +12,44 @@ reload_colorbox_random_level = ->
   window.hide_all_tipsy()
   $.fn.colorbox.close()
 
+bind_invite_friends = ->
+  # Click on 'later' on 'invite-friends'
+  $('#invite-friends .button-next').on('click', ->
+    window.hide_all_tipsy()
+    $.fn.colorbox.close()
+    false
+  )
+
+  # Click on a friend thumb
+  $('#invite-friends .friends img').on('click', ->
+    window.facebook_send_app_request($(this).attr('data-f_id'), [])
+  )
+
+  # Click on the big invite button
+  $('#invite-friends .friend-button').on('click', ->
+    window.facebook_send_recursive_app_request()
+  )
+
+# 1/3 facebook fan page (if any)
+# 1/3 invite friends (if user don't have a 30 days derogation)
+# 1/9 random level
+random_social_popup = ->
+  random = Math.floor((Math.random()*3)+1) # number between 1 and 3
+  logged = $("#menus .fb_logged").length
+  console.log("random : #{random}")
+
+  if random == 1
+    if (logged and $("#menus .fb_logged").attr('data-like-facebook-page') == 'false') or !logged
+      setTimeout(window.colorbox_facebook_page, 1500)
+  else if random == 2
+    if logged and $("#menus .fb_logged").attr('data-display-invite-popup') == 'true'
+      setTimeout(window.colorbox_invite_friends, 1500)
+  else
+    random2 = Math.floor((Math.random()*3)+1)
+    console.log("random2 : #{random2}")
+    if random2 == 1
+      setTimeout(window.colorbox_random_level, 1500)
+
 $ ->
   # Click on 'next' on "welcome"
   $('#welcome .button-next').on('click', ->
@@ -42,7 +80,7 @@ $ ->
     false
   )
 
-  # Hover the next-level image
+  # Click on the next level
   $('#next-level-canvas, .game-action-next').on('click', ->
     # change the level (the '.is-selected' level is chosen)
     window.hide_all_tipsy()
@@ -62,10 +100,12 @@ $ ->
     # change the url and save related state (pack and level)
     window.push_this_state()
 
+    random_social_popup()
+
     false
   )
 
-  # Hover the next-level image
+  # Click on retry level
   $('#this-level-canvas, .game-action-retry').on('click', ->
     # change the level (the '.is-selected' level is chosen)
     window.hide_all_tipsy()
@@ -89,6 +129,8 @@ $ ->
     reload_colorbox_random_level()
     false
   )
+
+  bind_invite_friends()
 
   pusher_move = (dir) ->
     $('#controls .pusher .middle img').attr('src', '/images/themes/classic/floor64.png')

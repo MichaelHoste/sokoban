@@ -2,11 +2,11 @@ class WorkflowsController < ApplicationController
   def show_welcome
     cookies[:already_read_the_welcome_message] = { :value => "1",
                                                    :expires => 7.days.from_now }
-    render 'show_welcome', :layout => false
+    render :layout => false
   end
 
   def show_controls
-    render 'show_controls', :layout => false
+    render :layout => false
   end
 
   def show_rules
@@ -17,20 +17,25 @@ class WorkflowsController < ApplicationController
     @grid2 = @level.inline_grid_with_floor.gsub('$', 's').gsub('.', '*').gsub('@', 's')
     @grid2['s**'] = '@**'
 
-    render 'show_rules', :layout => false
+    render :layout => false
   end
 
   def show_challenges_and_packs
-    render 'show_challenges_and_packs', :layout => false
+    render :layout => false
   end
 
   def show_facebook_page
-    render 'show_facebook_page', :layout => false
+    render :layout => false
+  end
+
+  def show_invite_friends
+    @friends = current_user.friends.not_registered.order('friends_count DESC').take(80)
+    render :layout => false
   end
 
   def show_random_level
     @level = Level.random(current_user)
-    render 'show_random_level', :layout => false
+    render :layout => false
   end
 
   def show_next_level
@@ -45,6 +50,6 @@ class WorkflowsController < ApplicationController
 
     @next_level = @level.next_level
 
-    render 'show_next_level', :layout => false
+    render :layout => false
   end
 end
