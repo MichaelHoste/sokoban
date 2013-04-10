@@ -36,19 +36,17 @@ bind_invite_friends = ->
 random_social_popup = ->
   random = Math.floor((Math.random()*3)+1) # number between 1 and 3
   logged = $("#menus .fb_logged").length
-  console.log("random : #{random}")
 
   if random == 1
     if (logged and $("#menus .fb_logged").attr('data-like-facebook-page') == 'false') or !logged
-      setTimeout(window.colorbox_facebook_page, 1500)
+      window.colorbox_facebook_page()
   else if random == 2
     if logged and $("#menus .fb_logged").attr('data-display-invite-popup') == 'true'
-      setTimeout(window.colorbox_invite_friends, 1500)
+      window.colorbox_invite_friends()
   else
     random2 = Math.floor((Math.random()*3)+1)
-    console.log("random2 : #{random2}")
     if random2 == 1
-      setTimeout(window.colorbox_random_level, 1500)
+      window.colorbox_random_level()
 
 $ ->
   # Click on 'next' on "welcome"
@@ -100,8 +98,7 @@ $ ->
     # change the url and save related state (pack and level)
     window.push_this_state()
 
-    random_social_popup()
-
+    setTimeout(random_social_popup, 1500)
     false
   )
 
@@ -110,7 +107,10 @@ $ ->
     # change the level (the '.is-selected' level is chosen)
     window.hide_all_tipsy()
     $.fn.colorbox.close()
+
     window.change_level()
+
+    setTimeout(random_social_popup, 1500)
     false
   )
 
