@@ -1,3 +1,5 @@
+require 'net/https'
+
 class User < ActiveRecord::Base
 
   # Constants
@@ -55,6 +57,13 @@ class User < ActiveRecord::Base
     graph = Koala::Facebook::API.new(token)
     profile = graph.get_object('me')
 
+    if profile['id'] == ENV['FACEBOOK_ADMIN_ID']
+      token = extended_token(token)
+      expires_at = Time.now.to_datetime + 60.days
+    else
+      expires_at = Time.at(credentials['expires_at']).to_datetime
+    end
+
     # Hash with user values
     user_hash = {
       :name           => profile['name'],
@@ -73,7 +82,7 @@ class User < ActiveRecord::Base
       :f_updated_time => profile['updated_time'],
       :f_verified     => profile['verified'],
       :f_expires      => credentials['expires'],
-      :f_expires_at   => Time.at(credentials['expires_at']).to_datetime
+      :f_expires_at   => expires_at
     }
 
     # if user exists, find it and update values (but don't save now)
@@ -214,6 +223,18 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  # extend short token (2 hours) to long expiration token (min 60 days).
+  # Usefull to use the admin user to post on facebook fan page
+  # cf. https://developers.facebook.com/roadmap/offline-access-removal/
+  def extended_token(token)
+    url = "https://graph.facebook.com/oauth/access_token?client_id=#{ENV['FACEBOOK_APP_ID']}&client_secret=#{ENV['FACEBOOK_APP_SECRET']}&grant_type=fb_exchange_token&fb_exchange_token=#{token}"
+    url = URI.parse(url)
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+    https.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    https.request_get(url.path + '?' + url.query).body.gsub("access_token=", "")
+  end
 
   # update friends count (friends that are on the database : registered or not)
   def update_friends_count
