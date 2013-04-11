@@ -24,4 +24,4 @@ TO DO
 License
 -----
 
-Jax is released under the MIT license.
+Sokoban is released under the MIT license.

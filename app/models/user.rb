@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    self.f_id == ENV['FACEBOOK_ADMIN_ID']
+    self.f_id == ENV['FACEBOOK_ADMIN_ID'].to_i
   end
 
   # Ask facebook if this user likes the facebook fan page of the application
