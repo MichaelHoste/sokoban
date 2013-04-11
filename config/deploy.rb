@@ -104,7 +104,9 @@ namespace :deploy do
   task :restart do
     deploy.stop
     deploy.start
-    FacebookFeedService.delayed_publish_random_level
+
+    # Launch delayed job for publish feed
+    run("cd #{deploy_to}/current && bundle exec rake app:facebook_feed_delayed_job RAILS_ENV=#{rails_env}")
   end
 end
 

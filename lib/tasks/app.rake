@@ -77,6 +77,10 @@ namespace :app  do
       compile_coffee_to_js()
     end
   end
+
+  task :facebook_feed_delayed_job => :environment do
+    FacebookFeedService.delayed_publish_random_level
+  end
 end
 
 def new_tab(name, commands)
