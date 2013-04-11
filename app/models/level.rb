@@ -53,25 +53,27 @@ class Level < ActiveRecord::Base
     level
   end
 
-  def self.complexity_random(user = nil)
+  # scope = scope of the randomness (if scope = 10 then only 10 to 100 first levels are preselected)
+  def self.complexity_random(user = nil, scope = 10)
     if user and user.best_scores.pluck(:level_id).count != 0
       levels = Level.where('id not in (?)', user.best_scores.pluck(:level_id))
     else
       levels = Level
     end
 
-    limit = rand(1..10) * 10 # More chance to get first easiest levels
+    limit = rand(1..10) * scope # More chance to get first easiest levels
     levels.order('complexity ASC').limit(limit).sample
   end
 
-  def self.users_random(user = nil)
+  # scope = scope of the randomness (if scope = 10 then only 10 to 100 first levels are preselected)
+  def self.users_random(user = nil, scope = 10)
     if user and user.best_scores.pluck(:level_id).count != 0
       levels = Level.where('id not in (?)', user.best_scores.pluck(:level_id))
     else
       levels = Level
     end
 
-    limit = rand(1..10) * 10 # More chance to get first easiest levels
+    limit = rand(1..10) * scope # More chance to get first easiest levels
     levels.order('won_count DESC').limit(limit).sample
   end
 

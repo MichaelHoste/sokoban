@@ -4,8 +4,13 @@
   <div id="menu-levels">
     <div id="packs" data-pack-name="<%= @pack.name %>">
       <select>
+        <% pack_user_links = current_user ? PackUserLink.where(:user_id => current_user.id).all : [] %>
         <% Pack.all.each do |pack| %>
-          <option value="<%= CGI::unescape(pack.name) %>" <%= 'selected="selected"' if pack.id == @pack.id %>><%= pack.name %></option>
+          <% pack_user_link     = pack_user_links.select { |p_u| p_u.pack_id == pack.id } %>
+          <% pack_success_count = pack_user_link.empty? ? 0 : pack_user_link.first.won_levels_count %>
+          <% pack_levels_count  = pack.levels_count %>
+          <% pack_success       = "[#{pack_success_count}/#{pack_levels_count}]" %>
+          <option value="<%= CGI::unescape(pack.name) %>" <%= 'selected="selected"' if pack.id == @pack.id %>><%= pack.name %> <%= pack_success %></option>
         <% end %>
       </select>
 

@@ -4,6 +4,13 @@
 #= require packs/show-invitation
 #= require packs/show-scores
 
+window.update_packs_select = ->
+  level_count   = $('#levels li').length
+  success_count = $('#levels li .s-icon-star').length
+
+  pack_name = $('#packs').attr('data-pack-name')
+  $('#packs select option:selected').text("#{pack_name} [#{success_count}/#{level_count}]")
+
 $ ->
   # Initialize webgl and load selected level
   window.context = new Jax.Context({renderers: []})

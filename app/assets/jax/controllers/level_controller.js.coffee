@@ -69,6 +69,9 @@ Jax.Controller.create "Level", ApplicationController,
   save_solution_if_any: (has_moved) ->
     if has_moved != 0
       if @level.is_won()
+        @freezed_game = true
+        @star_level()
+
         # load selected level
         pack_name = $('#packs').attr('data-pack-name')
         level_name = $('#levels').find('.is-selected').attr('data-level-name')
@@ -82,15 +85,13 @@ Jax.Controller.create "Level", ApplicationController,
         )
         .success((data, status, xhr) =>
           window.update_banner()
+          window.update_packs_select()
 
           if window.is_logged()
             window.colorbox_next_level(pack_name, level_name, data.score_id)
           else
             window.colorbox_facebook()
         )
-
-        @freezed_game = true
-        @star_level()
 
   highlight_deadlocks: (has_moved, has_deleted) ->
     if has_moved == 2 or has_deleted != 0

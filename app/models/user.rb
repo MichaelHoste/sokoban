@@ -272,9 +272,20 @@ class User < ActiveRecord::Base
 
   def join_users_to_pack_user_links_and_sort(friends, pack)
     friend_ids = friends.collect(&:id)
-    User.where(:id => friend_ids)
-        .select('users.*, pack_user_links.*')
-        .joins(:pack_user_links).where('pack_user_links.pack_id = ?', pack.id)
-        .sort {|x,y| y.won_levels_count <=> x.won_levels_count }
+    friends_in_the_pack = User.where(:id => friend_ids)
+                              .select('users.*, pack_user_links.*')
+                              .joins(:pack_user_links).where('pack_user_links.pack_id = ?', pack.id)
+                              .sort { |x,y| y.won_levels_count <=> x.won_levels_count }
+    friends_in_the_pack_ids = friends_in_the_pack.collect { |user| user.user_id }
+
+    friends_not_in_the_pack = []
+    friends.each do |friend|
+      if not friend.id.in? friends_in_the_pack_ids
+        friends_not_in_the_pack << friend
+      end
+    end
+
+    friends_not_in_the_pack.sort! { |x,y| y.total_won_levels <=> x.total_won_levels }
+    friends_in_the_pack + friends_not_in_the_pack
   end
 end
