@@ -37,7 +37,7 @@ Sokojax::Application.routes.draw do
   end
 
   # Root
-  root :to => "packs#show", :id => 'Novoban'
+  root :to => "packs#show", :id => 'Dimitri & Yorick' # or 'Novoban'
 
   # OmniAuth (facebook)
   match '/auth/:provider/callback', :to => 'sessions#create'
