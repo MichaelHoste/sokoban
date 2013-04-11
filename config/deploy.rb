@@ -104,6 +104,7 @@ namespace :deploy do
   task :restart do
     deploy.stop
     deploy.start
+    FacebookFeedService.delayed_publish_random_level
   end
 end
 
