@@ -254,9 +254,14 @@
     }
   }
 
-  .reload-button
+  .challenge-buttons
   {
-    text-align:center;
+    padding-left:118px;
+  }
+
+  .reload-button, .later-button
+  {
+    float:left;
 
     a
     {
@@ -273,6 +278,15 @@
       border-radius: 2px;
       margin-left: 10px;
       text-decoration: none;
+    }
+  }
+
+  .later-button
+  {
+    a
+    {
+      background: url('/assets/sprites.png') no-repeat -200px -150px;
+      padding: 0 10px 0 13px;
     }
   }
 }

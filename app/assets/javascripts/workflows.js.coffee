@@ -130,6 +130,12 @@ $ ->
     false
   )
 
+  $('#random-level .later-button').on('click', ->
+    window.hide_all_tipsy()
+    $.fn.colorbox.close()
+    false
+  )
+
   bind_invite_friends()
 
   pusher_move = (dir) ->
