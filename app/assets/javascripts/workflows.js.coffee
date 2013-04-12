@@ -44,9 +44,7 @@ random_social_popup = ->
     if logged and $("#menus .fb_logged").attr('data-display-invite-popup') == 'true'
       window.colorbox_invite_friends()
   else
-    random2 = Math.floor((Math.random()*3)+1)
-    if random2 == 1
-      window.colorbox_random_level()
+    window.colorbox_random_level()
 
 $ ->
   # Click on 'next' on "welcome"
@@ -98,7 +96,7 @@ $ ->
     # change the url and save related state (pack and level)
     window.push_this_state()
 
-    setTimeout(random_social_popup, 1500)
+    setTimeout(random_social_popup, 1000)
     false
   )
 
@@ -110,7 +108,7 @@ $ ->
 
     window.change_level()
 
-    setTimeout(random_social_popup, 1500)
+    setTimeout(random_social_popup, 1000)
     false
   )
 
