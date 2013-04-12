@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20130410154108) do
     t.integer  "friends_count",                    :default => 0,                     :null => false
     t.integer  "total_won_levels",                 :default => 0,                     :null => false
     t.datetime "friends_updated_at"
-    t.datetime "send_invitations_at",              :default => '2013-03-11 00:00:00'
+    t.datetime "send_invitations_at",              :default => '2013-03-13 00:00:00'
     t.boolean  "like_fan_page",                    :default => false
   end
 
