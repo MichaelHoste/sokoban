@@ -23,6 +23,42 @@ module FacebookFeedService
       level = Level.users_random(nil, 600)
     end
 
+    # publish on feed
+    count_won = level.best_scores.count
+    if count_won == 0
+      message = "Be the first to solve this level!"
+    elsif count_won == 1
+      message = "One person already solved this level. Can you do the same?"
+    else
+      message = "#{count_won} people already solved this level. Can you do the same?"
+    end
+
+    page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
+    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
+      { :message     => message,
+        :link        => "http://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+        :name        => "#{level.name}",
+        :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
+        :picture     => level.thumb,
+        :type        => "sokoban_game:level" })
+  end
+
+  def self.publish_level_count(count)
+    level = LevelUserLink.order('id DESC').first.level
+
+    message = "The users of Sokoban solved #{count} levels. Keep up the good work!"
+
+    page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
+    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
+      { :message     => message,
+        :link        => "http://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+        :name        => "Last level to get solved : #{level.name}",
+        :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
+        :picture     => level.thumb,
+        :type        => "sokoban_game:level" })
+  end
+
+  def self.get_page_access_token
     oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
 
     # Get pages accounts of administrator (token of administrator is extended : https://developers.facebook.com/roadmap/offline-access-removal/)
@@ -34,29 +70,11 @@ module FacebookFeedService
     page_access_token = ""
     accounts.each do |account|
       if account['id'] == ENV['FACEBOOK_PAGE_ID']
-        page_access_token = account['access_token']
-        break
+        return account['access_token']
       end
     end
 
-    # publish on feed
-    count_won = level.best_scores.count
-    if count_won == 0
-      message = "Be the first to solve this level!"
-    elsif count_won == 1
-      message = "One person already solved this level. Can you do the same?"
-    else
-      message = "#{count_won} people already solved this level. Can you do the same?"
-    end
-
-    page = Koala::Facebook::API.new(page_access_token)
-    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
-      { :message     => message,
-        :link        => "http://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
-        :name        => "#{level.name}",
-        :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
-        :picture     => level.thumb,
-        :type        => "sokoban_game:level" })
+    return nil
   end
 end
 

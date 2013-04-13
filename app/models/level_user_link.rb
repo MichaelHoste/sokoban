@@ -76,6 +76,10 @@ class LevelUserLink < ActiveRecord::Base
   def facebook_actions
     self.publish_on_facebook
     self.notify_friends
+
+    if Rails.env.production? and LevelUserLink.count % 500 == 0
+      FacebookFeedService.publish_level_count(LevelUserLink.count)
+    end
   end
 
   # publish the "user has completed the level" on open graph (facebook)
