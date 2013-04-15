@@ -105,9 +105,10 @@ body {
 	z-index: 1;
 }
 #limited-content #google-sense {
-	margin-top: -20px;
+	margin-top: -17px;
 	margin-bottom: 5px;
 	padding-left: 114px;
+	height: 93px;
 }
 #limited-banner {
 	width: 960px;
