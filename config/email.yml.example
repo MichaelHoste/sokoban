@@ -1,0 +1,25 @@
+production:
+  default_url_options:   domain.com
+  raise_delivery_errors: true
+  delivery_method:       smtp
+  smtp_settings:
+    user_name:            login
+    password:             password
+    domain:               domain.com
+    address:              smtp.sendgrid.net
+    port:                 587
+    authentification:     plain
+    enable_starttls_auto: true
+
+development:
+  default_url_options:   localhost:3000
+  raise_delivery_errors: true
+  delivery_method:       smtp
+  smtp_settings:
+    user_name:
+    password:
+    domain:               domain.com
+    address:              localhost
+    port:                 1025
+    authentification:
+    enable_starttls_auto:

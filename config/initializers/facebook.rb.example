@@ -1,2 +1,8 @@
-ENV['FACEBOOK_APP_ID']     = '11111111111111'
+ENV['FACEBOOK_APP_ID']     = '111111111111111'
 ENV['FACEBOOK_APP_SECRET'] = '1X1X1X1X1X1X1X1X1X1X1X1X1X1X1X1X1X1'
+ENV['FACEBOOK_SCOPE']      = 'email, publish_actions'
+ENV['FACEBOOK_PAGE_ID']    = '111111111111111'
+ENV['FACEBOOK_ADMIN_ID']   = '111111111' # f_id of the site administrator (for post on facebook page and stats)
+                                         # This user must have "manage_pages" and "publish_stream" rights on the application
+                                         # Go to https://developers.facebook.com/tools/explorer/ and Select "application_name"
+                                         # and then "get the access token" and then select the rights

@@ -1,0 +1,2 @@
+ENV['MADMIMI_EMAIL'] = 'mail@example.com'
+ENV['MADMIMI_KEY']   = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'

@@ -1,0 +1,19 @@
+development:
+  adapter: mysql2
+  host: localhost
+  username: development
+  password: development
+  encoding: utf8
+  database: sokoban
+  #pool: 10
+  #reconnect: true
+
+production:
+  adapter: mysql2
+  host: localhost
+  username: sokoban
+  password: aaaaaaaaa
+  encoding: utf8
+  database: sokoban
+  #pool: 10
+  #reconnect: true
