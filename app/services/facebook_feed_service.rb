@@ -62,7 +62,7 @@ module FacebookFeedService
     level = LevelUserLink.order('id DESC').first.level
 
     level_count = LevelUserLink.count
-    message = "Today, #{count} users are registered on Sokoban with an average of #{(level_count.to_f/count.to_f).round} levels solved by user!"
+    message = "#{count} users are registered on Sokoban with an average of #{(level_count.to_f/count.to_f).round} levels solved by user!"
 
     page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
     page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
