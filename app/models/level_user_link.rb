@@ -134,8 +134,8 @@ class LevelUserLink < ActiveRecord::Base
       access_token = oauth.get_app_access_token
       graph        = Koala::Facebook::API.new(access_token)
 
-      facebook_notify(friends_to_notify_better, 'better')
-      facebook_notify(friends_to_notify_equality, 'equality')
+      facebook_notify(graph, friends_to_notify_better, 'better')
+      facebook_notify(graph, friends_to_notify_equality, 'equality')
     end
   end
 
@@ -284,7 +284,7 @@ class LevelUserLink < ActiveRecord::Base
 
   private
 
-  def facebook_notify(users, type)
+  def facebook_notify(graph, users, type)
     if type == 'better'
       text = "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!"
     else

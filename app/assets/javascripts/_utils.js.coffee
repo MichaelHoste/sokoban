@@ -163,3 +163,14 @@ $ ->
   # window.colorbox_facebook_page()
   # window.colorbox_invite_friends()
 
+  window.test_all_levels = ->
+    pack_name  = $('#packs').attr('data-pack-name')
+    level_name = $('#levels').find('.is-selected').next().attr('data-level-name')
+
+    if "#{level_name}" == "undefined"
+      pack_name = $('#packs select option:selected').next().attr('value')
+      location.assign("/packs/#{pack_name}")
+    else
+      location.assign("/packs/#{pack_name}/levels/#{level_name}")
+
+  #window.test_all_levels()
