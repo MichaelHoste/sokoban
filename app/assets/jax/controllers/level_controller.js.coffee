@@ -72,13 +72,12 @@ Jax.Controller.create "Level", ApplicationController,
         # load selected level
         pack_name = $('#packs').attr('data-pack-name')
         level_name = $('#levels').find('.is-selected').attr('data-level-name')
-        token_tag = window.authenticity_token()
 
         $.post('/scores',
           pack_id:  pack_name
           level_id: level_name
           path:     @path.get_compressed_string_path()
-          authenticity_token: token_tag
+          authenticity_token: window.authenticity_token()
         )
         .success((data, status, xhr) =>
           window.update_banner()
@@ -106,8 +105,12 @@ Jax.Controller.create "Level", ApplicationController,
   # star selected level
   star_level: ->
     button = $('#levels').find('.is-selected .level-index').prev()
-    button.removeClass('s-icon-star-empty')
-    button.addClass('s-icon-star')
+    if not button.hasClass('s-icon-star')
+      button.removeClass('s-icon-star-empty')
+      button.addClass('s-icon-star')
+
+      global_success = parseInt($("#user-infos").attr('data-global-success'))
+      $("#user-infos").attr('data-global-success', global_success+1)
 
   update_counters: ->
     $('#current-score .score-pushes').text(@path.n_pushes)

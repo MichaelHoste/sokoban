@@ -27,7 +27,12 @@
       <% won_level_ids = @pack.won_level_ids(current_user) %>
       <% @pack.levels.each_with_index do |level, index| %>
         <% selected = (@level.name == level.name ? 'class="is-selected"' : '') %>
-        <li <%= selected.html_safe %> id="level-<%= level.id %>" data-level-id="<%= level.id %>" data-level-name="<%= level.name %>" data-level-grid="<%= level.inline_grid_with_floor %>" data-level-width="<%= level.width %>" data-level-height="<%= level.height %>" data-level-thumb="<%= level.thumb %>">
+        <li <%= selected.html_safe %> id="level-<%= level.id %>" data-level-id="<%= level.id %>"
+                                                                 data-level-name="<%= level.name %>"
+                                                                 data-level-grid="<%= level.inline_grid_with_floor %>"
+                                                                 data-level-width="<%= level.width %>"
+                                                                 data-level-height="<%= level.height %>"
+                                                                 data-level-thumb="<%= level.thumb %>">
           <% if won_level_ids.include?(level.id) %>
             <span class="star s-icon-star"></span>
           <% else %>
