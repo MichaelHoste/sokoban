@@ -110,7 +110,7 @@ class LevelUserLink < ActiveRecord::Base
     # Get list lower or equal scores (friends !)
     friends_lower_scores = self.level.best_scores
                                      .where(:user_id => self.user.friends.registered.pluck('users.id'))
-                                     .where('pushes >= :p or (pushes = :p and moves >= :m)',
+                                     .where('pushes > :p or (pushes = :p and moves >= :m)',
                                             :p => self.pushes, :m => self.moves)
 
     # If old best score, notify users between old best score and new score
