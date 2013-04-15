@@ -319,6 +319,9 @@ body {
 		float: left;
 		padding: 5px;
 		width: 210px;
+		height: 27px;
+		-webkit-appearance: menulist-button;
+		border: 1px solid #BBBBBB;
 	}
 	#menu-levels #packs .packs-button { float: right;}
 
