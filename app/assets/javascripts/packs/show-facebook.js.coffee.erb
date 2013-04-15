@@ -1,5 +1,5 @@
-$ ->
-  # connect to facebook
+# connect to facebook
+window.fbAsyncInit = ->
   FB.init(
     appId: '<%= ENV["FACEBOOK_APP_ID"] %>'
     status: true
@@ -8,6 +8,7 @@ $ ->
     frictionlessRequests: true
   )
 
+$ ->
   window.current_level_id = ->
     $('#levels').find('.is-selected').attr('data-level-id')
 

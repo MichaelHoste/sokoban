@@ -29,7 +29,6 @@
     <%#= javascript_include_tag 'jax/runtime' %>
     <%#= javascript_include_tag 'jax/controller-list' %>
     <%= javascript_include_tag 'application_end' %>
-    <script src="<%= request.protocol %>connect.facebook.net/en_US/all.js" type="text/javascript"></script>
 
     <%= csrf_meta_tags %>
 
@@ -39,8 +38,7 @@
 
   <% new_user = (not cookies[:already_read_the_welcome_message]) ? '1' : '0' %>
   <body data-new-user="<%= new_user %>">
-    <div id="fb-root"></div>
-    <%# render 'layouts/facebook_headers' %>
+    <%= render 'layouts/facebook_headers' %>
     <%= render 'layouts/googleplus_headers' %>
     <%= render 'layouts/advert_body' %>
 
