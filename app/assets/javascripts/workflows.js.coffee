@@ -42,7 +42,14 @@ random_social_popup = ->
       window.colorbox_facebook_page()
   else if random == 2
     if logged and $("#menus .fb_logged").attr('data-display-invite-popup') == 'true'
-      window.colorbox_invite_friends()
+      random2 = Math.floor((Math.random()*3)+1) # number between 1 and 3
+      if random2 == 1
+        window.colorbox_invite_friends()
+      else if random2 == 2
+        window.facebook_send_app_request()
+      else
+        window.facebook_send_app_request()
+        #window.facebook_send_invitation_message()
   else
     window.colorbox_random_level()
 
