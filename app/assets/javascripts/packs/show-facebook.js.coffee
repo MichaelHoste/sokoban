@@ -1,7 +1,8 @@
 # connect to facebook
 window.fbAsyncInit = ->
   FB.init(
-    appId: '<%= ENV["FACEBOOK_APP_ID"] %>'
+    appId: $('meta[property="fb:app_id"]').attr('content')
+    channelUrl: '//www.sokoban.be/channel.html'
     status: true
     xfbml: true
     cookie: true
