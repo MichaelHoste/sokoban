@@ -227,6 +227,16 @@ class User < ActiveRecord::Base
     Time.now >= self.send_invitations_at + DAYS_WITHOUT_FRIENDS_INVITE_POPUP.days.to_i
   end
 
+  # update friends count (friends that are on the database : registered or not)
+  def update_friends_count
+    # registered user of not registered user
+    if self.email
+      self.update_attributes!({ :friends_count => self.friends.count })
+    else
+      self.update_attributes!({ :friends_count => UserUserLink.where(:friend_id => self.f_id).count })
+    end
+  end
+
   private
 
   # extend short token (2 hours) to long expiration token (min 60 days).
@@ -239,16 +249,6 @@ class User < ActiveRecord::Base
     https.use_ssl = true
     https.verify_mode = OpenSSL::SSL::VERIFY_NONE
     https.request_get(url.path + '?' + url.query).body.gsub("access_token=", "")
-  end
-
-  # update friends count (friends that are on the database : registered or not)
-  def update_friends_count
-    # registered user of not registered user
-    if self.email
-      self.update_attributes!({ :friends_count => self.friends.count })
-    else
-      self.update_attributes!({ :friends_count => UserUserLink.where(:friend_id => self.f_id).count })
-    end
   end
 
   # select one random user depending on the common number of friends (the more friends, the more the chance to be selected)
