@@ -102,7 +102,7 @@ Jax.getGlobal()['Level'] = Jax.Model.create
 
     # create object
     if type != ' ' and not @objects[cols_number*m + n]
-      object = @context.canvas.image('/images/themes/classic/wall64.png', start.x, start.y, size, size)
+      object = @context.canvas.image('/images/themes/classic/wall64.png', Math.ceil(start.x), Math.ceil(start.y), size, size)
       @objects[cols_number*m + n] = object
     else if type != ' '
       object = @objects[cols_number*m + n]
