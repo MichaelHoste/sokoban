@@ -106,6 +106,10 @@ class User < ActiveRecord::Base
 
       # email to admin
       UserNotifier.delay.new_user(user.name, user.email)
+
+      if User.registered.count % 50 == 0
+        FacebookFeedService.publish_user_count(User.registered.count)
+      end
     end
 
     user.like_fan_page = user.request_like_fan_page?

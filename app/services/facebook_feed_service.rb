@@ -58,6 +58,22 @@ module FacebookFeedService
         :type        => "sokoban_game:level" })
   end
 
+  def self.publish_user_count(count)
+    level = LevelUserLink.order('id DESC').first.level
+
+    level_count = LevelUserLink.count
+    message = "Today, #{count} users are registered on Sokoban with an average of #{level_count.to_f/count.to_f} levels solved by user!"
+
+    page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
+    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
+      { :message     => message,
+        :link        => "http://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+        :name        => "Last level to get solved : #{level.name}",
+        :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
+        :picture     => level.thumb,
+        :type        => "sokoban_game:level" })
+  end
+
   def self.get_page_access_token
     oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
 
