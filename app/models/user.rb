@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
   validates :f_id, :uniqueness => true
 
   # Callbacks
-  before_save :update_friends_count
 
   # Scopes
 
@@ -113,6 +112,7 @@ class User < ActiveRecord::Base
     end
 
     user.like_fan_page = user.request_like_fan_page?
+    user.update_friends_count
 
     user
   end
@@ -160,6 +160,7 @@ class User < ActiveRecord::Base
     friends.each do |friend|
       user = User.find_or_create_by_f_id(friend['id'])
       user.update_attributes!({ :name => friend['name'] })
+      user.update_friends_count
       self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
     end
 
@@ -244,9 +245,9 @@ class User < ActiveRecord::Base
   def update_friends_count
     # registered user of not registered user
     if self.email
-      self.friends_count = self.friends.count
+      self.update_attributes!({ :friends_count => self.friends.count })
     else
-      self.friends_count = UserUserLink.where(:friend_id => self.f_id).count
+      self.update_attributes!({ :friends_count => UserUserLink.where(:friend_id => self.f_id).count })
     end
   end
 
