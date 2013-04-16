@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410154108) do
+ActiveRecord::Schema.define(:version => 20130416151519) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -95,10 +95,11 @@ ActiveRecord::Schema.define(:version => 20130410154108) do
   add_index "packs", ["name"], :name => "index_packs_on_name"
 
   create_table "user_user_links", :force => true do |t|
-    t.integer  "user_id",    :limit => 8
-    t.integer  "friend_id",  :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.integer  "user_id",     :limit => 8
+    t.integer  "friend_id",   :limit => 8
+    t.datetime "notified_at",              :default => '2013-03-17 00:00:00'
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
   end
 
   add_index "user_user_links", ["friend_id"], :name => "index_user_user_links_on_friend_id"
@@ -127,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20130410154108) do
     t.integer  "friends_count",                    :default => 0,                     :null => false
     t.integer  "total_won_levels",                 :default => 0,                     :null => false
     t.datetime "friends_updated_at"
-    t.datetime "send_invitations_at",              :default => '2013-03-13 00:00:00'
+    t.datetime "send_invitations_at",              :default => '2013-03-11 00:00:00'
     t.boolean  "like_fan_page",                    :default => false
   end
 

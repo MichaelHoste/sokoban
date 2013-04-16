@@ -126,8 +126,6 @@ class LevelUserLink < ActiveRecord::Base
                                                      .collect { |score| score.user }
     friends_to_notify_better = friends_to_notify_better - friends_to_notify_equality
 
-    puts("FRIENDS TO NOTIFY BETTER : #{friends_to_notify_better.collect(&:name).join(', ') }")
-    puts("FRIENDS TO NOTIFY EQUALITY : #{friends_to_notify_equality.collect(&:name).join(', ') }")
     Rails.logger.info("- FRIENDS TO NOTIFY BETTER : #{friends_to_notify_better.collect(&:name).join(', ') }")
     Rails.logger.info("- FRIENDS TO NOTIFY EQUALITY : #{friends_to_notify_equality.collect(&:name).join(', ') }")
 
@@ -294,12 +292,19 @@ class LevelUserLink < ActiveRecord::Base
     end
 
     users.each do |user|
-      begin
-        graph.put_connections(user.f_id, "notifications",
-                              :template => text,
-                              :href     => "?level_id=#{self.level.id}")
-      rescue
-        Rails.logger.info("NOTIFICATION FAILED FOR BETTER #{user.name}")
+      # self.user (score) send notif to user (beaten score) and we log the date
+      u_u = UserUserLink.find_by_user_id_and_friend_id(self.user.f_id, user.f_id)
+
+      # Only one 'equality' notification every 30 minutes but every 'better' notifications
+      if type == 'better' or (type == 'equality' and Time.now >= u_u.notified_at + 30.minutes.to_i)
+        begin
+          graph.put_connections(user.f_id, "notifications",
+                                :template => text,
+                                :href     => "?level_id=#{self.level.id}")
+          u_u.update_attributes!({ :notified_at => Time.now })
+        rescue
+          Rails.logger.info("NOTIFICATION FAILED FOR BETTER #{user.name}")
+        end
       end
     end
   end
