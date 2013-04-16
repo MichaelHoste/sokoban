@@ -210,7 +210,7 @@ class User < ActiveRecord::Base
       # select a registered popular friend
       if choice == 1 and sum_friends_of_rf[0] != 0
         popular_friends << select_one_user(registered_friends, friends_of_rf, sum_friends_of_rf)
-      # select an not registered popular friend
+      # select a not registered popular friend
       elsif choice.in? [2, 3, 4, 5, 6] and sum_friends_of_nrf[0] != 0
         popular_friends << select_one_user(not_registered_friends, friends_of_nrf, sum_friends_of_nrf)
       end

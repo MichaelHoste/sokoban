@@ -73,6 +73,13 @@ $ ->
   window.facebook_send_invitation_message = (to = "") ->
     window.facebook_send('Can you solve this Sokoban level?', to)
 
+  window.facebook_send_custom_invitation_message = ->
+    current_user_id = $("#user-infos").attr('data-id')
+    $.get("/users/#{current_user_id}/custom_invitation").success((data, status, xhr) ->
+      if data.f_id
+        window.facebook_send(data.message, data.f_id)
+    )
+
   window.facebook_send_to_feed = (to = "", pushes = -1, moves = -1) ->
     current_level_solved = $('#levels li.is-selected .s-icon-star').length
     if current_level_solved

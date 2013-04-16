@@ -31,7 +31,8 @@ Sokojax::Application.routes.draw do
   resources :users do
     member do
       get :popular_friends
-      get :is_like_facebook_page # question
+      get :is_like_facebook_page       # question
+      get :custom_invitation           # JSON with data for custom user invitation
       post :update_send_invitations_at # user just invited some friends
     end
   end
