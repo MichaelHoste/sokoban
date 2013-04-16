@@ -79,7 +79,7 @@ $ ->
     current_user_id = $("#user-infos").attr('data-id')
     $.get("/users/#{current_user_id}/custom_invitation").success((data, status, xhr) ->
       if data.f_id
-        window.facebook_send("test", data.f_id, data.message)
+        window.facebook_send(data.description, data.f_id, data.name)
     )
 
   window.facebook_send_to_feed = (to = "", pushes = -1, moves = -1) ->

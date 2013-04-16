@@ -1,20 +1,20 @@
 module FacebookInvitationService
   # return a json with
   #   * a popular non-registered user friend to user
-  #   * its name
-  #   * a custom message "x of your friends are here, come and join us!"
+  #   * a custom name "x friends are on Sokoban"
+  #   * a custom message "x and x and 3 more friends are here, come and join us!"
   def self.popular_invitation(user)
     Rails.logger.info("friends : #{user.friends.collect(&:name)}")
 
     if user.friends.not_registered.count == 0
-      return { :f_id => nil, :name => '', :message => '' }
+      return { :f_id => nil, :name => '', :description => '' }
     else
       friend = []
       i = 0
       while friend.empty? or friend.first.registered?
         friend = user.popular_friends(1)
         if i >= 20
-          return { :f_id => nil, :name => '', :message => '' }
+          return { :f_id => nil, :name => '', :description => '' }
         end
         i = i + 1
       end
@@ -34,12 +34,12 @@ module FacebookInvitationService
         list_of_friends = friend_friends.to_sentence(:last_word_connector => ' and ')
       else
         friend_friends  = friend_friends.insert(4, 'me')
-        list_of_friends = friend_friends.take(5).join(', ') + " and #{friend_friends.count - 5} other friends"
+        list_of_friends = friend_friends.take(5).join(', ') + " and #{friend_friends.count - 5} more friends"
       end
 
       return {
         :f_id    => friend.f_id,
-        :name    => friend.name,
+        :name    => "#{friend_friends.count} of your friends are on Sokoban",
         :message => "Come and join #{list_of_friends} on Sokoban. This addictive puzzle-game will blow your mind!"
       }
     end
