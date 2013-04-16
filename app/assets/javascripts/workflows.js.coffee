@@ -50,8 +50,7 @@ random_social_popup = ->
       else if random2 == 2
         window.facebook_send_app_request()
       else
-        window.facebook_send_app_request()
-        #window.facebook_send_custom_invitation_message()
+        window.facebook_send_custom_invitation_message()
   else
     window.colorbox_random_level()
 

@@ -40,7 +40,7 @@ module FacebookInvitationService
       return {
         :f_id    => friend.f_id,
         :name    => "#{friend_friends.count} of your friends are on Sokoban",
-        :message => "Come and join #{list_of_friends} on Sokoban. This addictive puzzle-game will blow your mind!"
+        :message => "Join #{list_of_friends} on Sokoban. This addictive puzzle-game will blow your mind!"
       }
     end
   end
