@@ -34,8 +34,7 @@ bind_invite_friends = ->
 # 1/3 invite friends (if user don't have a 30 days derogation)
   # -> 3 different ways of inviting friends
 # 1/3 random level
-
-random_social_popup = ->
+window.random_social_popup = ->
   random = Math.floor((Math.random()*3)+1) # number between 1 and 3
   logged = $("#menus .fb_logged").length
 
@@ -43,9 +42,9 @@ random_social_popup = ->
     if (logged and $("#menus .fb_logged").attr('data-like-facebook-page') == 'false') or !logged
       window.colorbox_facebook_page()
   else if random == 2
-    if logged and $("#menus .fb_logged").attr('data-display-invite-popup') == 'true'
+    if logged
       random2 = Math.floor((Math.random()*3)+1) # number between 1 and 3
-      if random2 == 1
+      if random2 == 1 and $("#menus .fb_logged").attr('data-display-invite-popup') == 'true'
         window.colorbox_invite_friends()
       else if random2 == 2
         window.facebook_send_app_request()

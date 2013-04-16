@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   DAYS_BEFORE_UPDATING_FRIENDS        = 5
   DAYS_WITHOUT_ADS_IF_FRIENDS_INVITED = 3
-  DAYS_WITHOUT_FRIENDS_INVITE_POPUP   = 30
+  DAYS_WITHOUT_FRIENDS_INVITE_POPUP   = 7
 
   # Attributes
   attr_protected :created_at, :updated_at
