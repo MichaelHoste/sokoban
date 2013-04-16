@@ -30,23 +30,29 @@ bind_invite_friends = ->
     window.facebook_send_recursive_app_request()
   )
 
-# 1/3 facebook fan page (if any)
-# 1/3 invite friends (if user don't have a 30 days derogation)
-  # -> 3 different ways of inviting friends
+# 1/3 facebook fan page or (1 times on 4) twitter (deactivated if facebook page is liked)
+# 1/3 invite friends (if user don't have a 7 days derogation)
+  # -> 4 different ways of inviting friends
 # 1/3 random level
 window.random_social_popup = ->
   random = Math.floor((Math.random()*3)+1) # number between 1 and 3
-  logged = $("#menus .fb_logged").length
+  logged = $('#menus .fb_logged').length
 
   if random == 1
-    if (logged and $("#menus .fb_logged").attr('data-like-facebook-page') == 'false') or !logged
-      window.colorbox_facebook_page()
+    if (logged and $('#menus .fb_logged').attr('data-like-facebook-page') == 'false') or !logged
+      random2 = Math.floor((Math.random()*3)+1) # number between 1 and 4
+      if random2 == 1
+        window.colorbox_twitter_page()
+      else
+        window.colorbox_facebook_page()
   else if random == 2
     if logged
-      random2 = Math.floor((Math.random()*3)+1) # number between 1 and 3
-      if random2 == 1 and $("#menus .fb_logged").attr('data-display-invite-popup') == 'true'
+      random2 = Math.floor((Math.random()*4)+1) # number between 1 and 4
+      if random2 == 1 and $('#menus .fb_logged').attr('data-display-invite-popup') == 'true'
         window.colorbox_invite_friends()
       else if random2 == 2
+        window.facebook_send_app_request_to_challenge_users()
+      else if random2 == 3
         window.facebook_send_app_request()
       else
         window.facebook_send_custom_invitation_message()
@@ -80,6 +86,12 @@ $ ->
   $('#facebook-page .button-next').on('click', ->
     window.update_like_facebook_page_value()
     redirect_to_facebook_login_if_not_logged()
+    false
+  )
+
+  # Click on 'next' on "twitter-page"
+  $('#twitter-page .button-next').on('click', ->
+    $.fn.colorbox.close()
     false
   )
 

@@ -28,6 +28,10 @@ class WorkflowsController < ApplicationController
     render :layout => false
   end
 
+  def show_twitter_page
+    render :layout => false
+  end
+
   def show_invite_friends
     @friends = current_user.friends.not_registered.order('friends_count DESC').take(80)
     render :layout => false

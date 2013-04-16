@@ -198,12 +198,26 @@
   }
 }
 
-#facebook-page
+#facebook-page, #twitter-page
 {
+  sup
+  {
+    font-size:10px;
+    vertical-align:7px;
+  }
+
   .facebook-box
   {
     margin-top:20px;
     margin-left:35px;
+  }
+
+  .twitter-page
+  {
+    margin-top:30px;
+    margin-bottom:30px;
+    text-align:center;
+    padding-left:90px
   }
 }
 

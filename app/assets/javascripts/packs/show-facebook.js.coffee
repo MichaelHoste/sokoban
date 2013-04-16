@@ -125,3 +125,8 @@ $ ->
 
     window.facebook_app_request('Play Sokoban with me!' , message, '', '', '', 1)
 
+  window.facebook_send_app_request_to_challenge_users = ->
+    f_ids = $('#invitations').find('.invite-item').map( ->
+      $(this).attr('data-f_id')
+    ).get().join()
+    window.facebook_send_app_request(f_ids, [])

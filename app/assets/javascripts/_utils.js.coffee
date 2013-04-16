@@ -39,6 +39,11 @@ $ ->
       $("#cboxClose").hide()
     )
 
+  window.colorbox_twitter_page = ->
+    $.colorbox({href:'/workflows/show_twitter_page/', top:'100px', height:'220px', width:'500px', overlayClose: false, escKey: false }, ->
+      $("#cboxClose").hide()
+    )
+
   window.colorbox_invite_friends = ->
     $.colorbox({href:'/workflows/show_invite_friends/', top:'100px', height:'440px', width:'500px', overlayClose: false, escKey: false }, ->
       $("#cboxClose").hide()
