@@ -22,12 +22,14 @@ $ ->
   window.current_url = ->
     "#{window.location.href}?level_id=#{window.current_level_id()}"
 
-  window.facebook_send = (description, to = "") ->
+  window.facebook_send = (description, to = "", name = window.current_level_name()) ->
     options =
       method:       'send'
       link:         window.current_url()
+      name:         name
       description:  description
       to:           to
+      picture:      window.current_level_thumb()
 
     FB.ui(options)
 
@@ -77,7 +79,7 @@ $ ->
     current_user_id = $("#user-infos").attr('data-id')
     $.get("/users/#{current_user_id}/custom_invitation").success((data, status, xhr) ->
       if data.f_id
-        window.facebook_send(data.message, data.f_id)
+        window.facebook_send("test", data.f_id, data.message)
     )
 
   window.facebook_send_to_feed = (to = "", pushes = -1, moves = -1) ->
