@@ -10,7 +10,7 @@ $ ->
 
   # send new message (challenge friend)
   $('#challenges').delegate('.invite-item', 'click', ->
-    window.send_app_request_to_challenge_users()
+    window.facebook_send_app_request_to_challenge_users()
     return false
   )
 
