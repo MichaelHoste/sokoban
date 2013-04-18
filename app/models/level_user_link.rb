@@ -126,8 +126,8 @@ class LevelUserLink < ActiveRecord::Base
                                                      .collect { |score| score.user }
     friends_to_notify_better = friends_to_notify_better - friends_to_notify_equality
 
-    Rails.logger.info("- FRIENDS TO NOTIFY BETTER : #{friends_to_notify_better.collect(&:name).join(', ') }")
-    Rails.logger.info("- FRIENDS TO NOTIFY EQUALITY : #{friends_to_notify_equality.collect(&:name).join(', ') }")
+    Rails.logger.info("FRIENDS TO NOTIFY BETTER : #{friends_to_notify_better.collect(&:name).join(', ') }")
+    Rails.logger.info("FRIENDS TO NOTIFY EQUALITY : #{friends_to_notify_equality.collect(&:name).join(', ') }")
 
     if Rails.env.production?
       oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])

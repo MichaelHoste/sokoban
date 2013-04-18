@@ -22,6 +22,18 @@ $ ->
   window.current_url = ->
     "#{window.location.href}?level_id=#{window.current_level_id()}"
 
+  update_send_invitations_at = ->
+    current_user_id = $("#user-infos").attr('data-id')
+    $.post("/users/#{current_user_id}/update_send_invitations_at",
+      authenticity_token: window.authenticity_token()
+    )
+
+  post_to_fb = (options) ->
+    FB.ui(options, (request) ->
+      if request != null # if not click on cancel
+        update_send_invitations_at()
+    )
+
   window.facebook_send = (description, to = "", name = window.current_level_name()) ->
     options =
       method:       'send'
@@ -31,13 +43,7 @@ $ ->
       to:           to
       picture:      window.current_level_thumb()
 
-    FB.ui(options)
-
-  update_send_invitations_at = ->
-    current_user_id = $("#user-infos").attr('data-id')
-    $.post("/users/#{current_user_id}/update_send_invitations_at",
-      authenticity_token: window.authenticity_token()
-    )
+    post_to_fb(options)
 
   # iteration > 0 if must be called recursively by batch of 50 friends (in the DOM)
   window.facebook_app_request = (title, message, to, filters = [], data = "", iteration = 0) ->
@@ -51,7 +57,7 @@ $ ->
       data:         data
 
     if iteration == 0 or not $("#fb-friends .batch-#{iteration+1}").length
-      FB.ui(options)
+      post_to_fb(options)
     else
       FB.ui(options, (request) ->
         if request != null # if click on cancel, no more recursive calls
@@ -70,7 +76,7 @@ $ ->
       description:  description
       to:           to
 
-    FB.ui(options)
+    post_to_fb(options)
 
   window.facebook_send_invitation_message = (to = "") ->
     window.facebook_send('Can you solve this Sokoban level?', to)

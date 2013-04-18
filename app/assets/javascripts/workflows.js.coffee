@@ -46,9 +46,9 @@ window.random_social_popup = ->
       else
         window.colorbox_facebook_page()
   else if random == 2
-    if logged
+    if logged and $('#menus .fb_logged').attr('data-display-invite-popup') == 'true'
       random2 = Math.floor((Math.random()*4)+1) # number between 1 and 4
-      if random2 == 1 and $('#menus .fb_logged').attr('data-display-invite-popup') == 'true'
+      if random2 == 1
         window.colorbox_invite_friends()
       else if random2 == 2
         window.facebook_send_app_request_to_challenge_users()
