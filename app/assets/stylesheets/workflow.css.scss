@@ -305,6 +305,98 @@
   }
 }
 
+#donation-page
+{
+  .content
+  {
+    margin-top:10px;
+    padding:10px;
+    font-size:13px;
+
+    a img
+    {
+      width:100px;
+      float:left;
+      margin-right:15px;
+    }
+  }
+
+  ul.list1
+  {
+    padding-left:5px;
+    margin-top:8px;
+    margin-left:118px;
+
+    li
+    {
+      display:list-item;
+      list-style-type:disc;
+      margin-left:18px;
+      padding-top:4px;
+    }
+  }
+
+  ul.list2
+  {
+    margin-top:8px;
+
+    li
+    {
+      display:list-item;
+      list-style-type:disc;
+      margin-left:18px;
+      padding-top:4px;
+    }
+  }
+
+  table
+  {
+    margin-top:20px;
+    border-top:1px solid #CCCCCC;
+
+    td
+    {
+      width:280px;
+      text-align:center;
+      padding-top:10px;
+    }
+
+    td.left
+    {
+      border-right:1px solid #CCCCCC;
+    }
+
+    .table-title
+    {
+      font-weight:bold;
+      font-size:14px;
+    }
+
+    .ways
+    {
+      text-align:left;
+      padding:10px;
+    }
+  }
+
+  a
+  {
+    text-decoration:none;
+    font-weight:bold;
+    color:black;
+  }
+
+  a:hover
+  {
+    color:blue;
+  }
+
+  .buttons
+  {
+    margin-top:0px;
+  }
+}
+
 #invite-friends
 {
   sup

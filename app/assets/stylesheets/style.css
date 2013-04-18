@@ -107,8 +107,15 @@ body {
 #limited-content #google-sense {
 	margin-top: -17px;
 	margin-bottom: 5px;
-	padding-left: 114px;
 	height: 93px;
+}
+#limited-content #pay-me-a-beer {
+	width: 227px;
+	height: 90px;
+	float: right;
+	margin-top: -17px;
+	margin-left: 5px;
+	cursor:pointer;
 }
 #limited-banner {
 	width: 960px;

@@ -44,3 +44,8 @@ $ ->
     window.colorbox_random_level()
     false
   )
+
+  $('#pay-me-a-beer').on('click', ->
+    window.colorbox_donation()
+    false
+  )

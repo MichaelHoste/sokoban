@@ -42,6 +42,10 @@ class WorkflowsController < ApplicationController
     render :layout => false
   end
 
+  def show_donation
+    render :layout => false
+  end
+
   def show_next_level
     @pack_name = params[:pack_name]
     @level_name = params[:level_name]

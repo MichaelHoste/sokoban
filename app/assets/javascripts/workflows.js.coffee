@@ -20,6 +20,12 @@ bind_invite_friends = ->
     false
   )
 
+  # Click on 'later' on 'donation-page'
+  $('#donation-page .button-next').on('click', ->
+    window.hide_all_tipsy()
+    $.fn.colorbox.close()
+  )
+
   # Click on a friend thumb
   $('#invite-friends .friends img').on('click', ->
     window.facebook_send_app_request($(this).attr('data-f_id'), [])

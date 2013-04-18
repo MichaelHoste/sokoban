@@ -56,6 +56,11 @@ $ ->
       create_thumb('random-level')
     )
 
+  window.colorbox_donation = ->
+    $.colorbox({href:'/workflows/show_donation/', top:'50px', height:'585px', width:'600px', overlayClose: false, escKey: false }, ->
+      $("#cboxClose").hide()
+    )
+
   window.is_logged = ->
     $('#menus .fb_logged').length
 

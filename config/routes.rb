@@ -22,6 +22,7 @@ Sokojax::Application.routes.draw do
       get :show_twitter_page
       get :show_invite_friends
       get :show_random_level
+      get :show_donation
 
       post :show_next_level
     end
