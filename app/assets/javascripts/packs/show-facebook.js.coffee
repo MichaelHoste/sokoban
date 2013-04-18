@@ -30,7 +30,7 @@ $ ->
 
   post_to_fb = (options) ->
     FB.ui(options, (request) ->
-      if request != null # if not click on cancel
+      if request != null and request != undefined # if not click on cancel
         update_send_invitations_at()
     )
 

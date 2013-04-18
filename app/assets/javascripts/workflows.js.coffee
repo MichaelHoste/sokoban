@@ -36,6 +36,27 @@ bind_invite_friends = ->
     window.facebook_send_recursive_app_request()
   )
 
+bind_donation_page = ->
+  $('#donation-page .wall').on('click', ->
+    window.facebook_send_to_feed($(this).attr('data-f_id'))
+    false
+  )
+
+  $('#donation-page .all').on('click', ->
+    window.facebook_send_recursive_app_request()
+    false
+  )
+
+  $('#donation-page .some').on('click', ->
+    window.facebook_send_app_request()
+    false
+  )
+
+  $('#donation-page .custom').on('click', ->
+    window.facebook_send_custom_invitation_message()
+    false
+  )
+
 # 1/3 facebook fan page or (1 times on 4) twitter (deactivated if facebook page is liked)
 # 1/3 invite friends (if user don't have a 7 days derogation)
   # -> 4 different ways of inviting friends
@@ -53,13 +74,15 @@ window.random_social_popup = ->
         window.colorbox_facebook_page()
   else if random == 2
     if logged and $('#menus .fb_logged').attr('data-display-invite-popup') == 'true'
-      random2 = Math.floor((Math.random()*4)+1) # number between 1 and 4
+      random2 = Math.floor((Math.random()*5)+1) # number between 1 and 4
       if random2 == 1
         window.colorbox_invite_friends()
       else if random2 == 2
         window.facebook_send_app_request_to_challenge_users()
       else if random2 == 3
         window.facebook_send_app_request()
+      else if random2 == 4
+        window.colorbox_donation()
       else
         window.facebook_send_custom_invitation_message()
   else
@@ -160,6 +183,7 @@ $ ->
   )
 
   bind_invite_friends()
+  bind_donation_page()
 
   pusher_move = (dir) ->
     $('#controls .pusher .middle img').attr('src', '/images/themes/classic/floor64.png')

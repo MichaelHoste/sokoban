@@ -359,6 +359,8 @@
       width:280px;
       text-align:center;
       padding-top:10px;
+      background-color: #F5F5F5;
+      border: 1px solid #CCCCCC;
     }
 
     td.left
@@ -376,6 +378,20 @@
     {
       text-align:left;
       padding:10px;
+    }
+  }
+
+  .ways
+  {
+    img
+    {
+      width:30px;
+    }
+
+    .wall, .all, .some, .custom
+    {
+      vertical-align:9px;
+      margin-left:6px
     }
   }
 
