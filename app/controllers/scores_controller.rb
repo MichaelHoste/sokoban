@@ -1,7 +1,7 @@
 class ScoresController < ApplicationController
   def create
-    @pack  = Pack.find_by_name(params[:pack_id])
-    @level = @pack.levels.find_by_name(params[:level_id])
+    @level = Level.find(params[:level_id])
+    @pack  = @level.pack
 
     @score = LevelUserLink.new(:user_id  => (current_user ? current_user.id : nil),
                                :level_id => @level.id)
@@ -24,8 +24,8 @@ class ScoresController < ApplicationController
 
   # Called in AJAX when level changes (similar to show in pack controller)
   def index
-    @pack = Pack.find_by_name(params[:pack_id])
-    @level = @pack.levels.find_by_name(params[:level_id])
+    @level = Level.find(params[:level_id])
+    @pack  = @level.pack
     @global_rows = params[:global_score_page].to_i*6
     @friend_rows = params[:friend_score_page].to_i*6
 
