@@ -70,7 +70,9 @@ Jax.Controller.create "Level", ApplicationController,
         @star_level()
 
         # load selected level
-        level_id = parseInt($('#levels').find('.is-selected').attr('data-level-id'))
+        level_id   = parseInt($('#levels').find('.is-selected').attr('data-level-id'))
+        pack_name  = $('#packs').attr('data-pack-name')
+        level_name = $('#levels').find('.is-selected').next().attr('data-level-name')
 
         $.post('/scores',
           level_id: level_id
