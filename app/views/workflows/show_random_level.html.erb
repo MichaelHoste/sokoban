@@ -9,8 +9,8 @@
                                                         data-level-grid   = "<%= @level.inline_grid_with_floor %>"
                                                         data-level-width  = "<%= @level.width %>"
                                                         data-level-height = "<%= @level.height %>"
-                                                        data-level-name   = "<%= @level.name %>"
-                                                        data-pack-name    = "<%= @level.pack.name %>">
+                                                        data-level-name   = "<%= u(@level.name) %>"
+                                                        data-pack-name    = "<%= u(@level.pack.name) %>">
     <div id="random-level-canvas">
     </div>
   </div>

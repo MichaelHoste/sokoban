@@ -1,9 +1,9 @@
 Sokojax::Application.routes.draw do
   mount Jax::Engine => "/jax" unless Rails.env == "production"
 
-  # Resources
-  resources :packs do
-    resources :levels
+  # Resources  =>  /.*/ to get the '.' in the names
+  resources :packs, :pack_id => /.*/ do
+    resources :levels, :id => /.*/
   end
 
   resources :levels do

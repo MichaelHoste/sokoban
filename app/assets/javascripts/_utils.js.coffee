@@ -183,4 +183,4 @@ $ ->
     else
       location.assign("/packs/#{pack_name}/levels/#{level_name}")
 
-  #window.test_all_levels()
+  window.test_all_levels()

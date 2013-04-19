@@ -35,7 +35,10 @@
 
       </div>
 
-      <div class="this-level tips" data-level-name="<%= @level.name %>" data-level-grid="<%= @level.inline_grid_with_floor %>" data-level-width="<%= @level.width %>" data-level-height="<%= @level.height %>">
+      <div class="this-level tips" data-level-name="<%= u(@level.name) %>"
+                                   data-level-grid="<%= @level.inline_grid_with_floor %>"
+                                   data-level-width="<%= @level.width %>"
+                                   data-level-height="<%= @level.height %>">
         <div id="this-level-canvas" class="tips" title="Retry this level : <%= @level.name %>"></div>
       </div>
 
@@ -45,7 +48,10 @@
         <li class="game-action-challenge" title="Can you solve this level?"><a href="#">Challenge</a></li>
       </ul>
 
-      <div class="next-level" data-level-name="<%= @next_level.name %>" data-level-grid="<%= @next_level.inline_grid_with_floor %>" data-level-width="<%= @next_level.width %>" data-level-height="<%= @next_level.height %>">
+      <div class="next-level" data-level-name="<%= u(@next_level.name) %>"
+                              data-level-grid="<%= @next_level.inline_grid_with_floor %>"
+                              data-level-width="<%= @next_level.width %>"
+                              data-level-height="<%= @next_level.height %>">
         <div id="next-level-canvas" class="tips" title="Go to next level : <%= @next_level.name %>"></div>
       </div>
     </div>

@@ -5,7 +5,7 @@
   <%= render 'layouts/google_adsense' %>
 
   <div id="menu-levels">
-    <div id="packs" data-pack-name="<%= @pack.name %>">
+    <div id="packs" data-pack-name="<%= u(@pack.name) %>">
       <select>
         <% pack_user_links = current_user ? PackUserLink.where(:user_id => current_user.id).all : [] %>
         <% Pack.all.each do |pack| %>
@@ -13,7 +13,7 @@
           <% pack_success_count = pack_user_link.empty? ? 0 : pack_user_link.first.won_levels_count %>
           <% pack_levels_count  = pack.levels_count %>
           <% pack_success       = "[#{pack_success_count}/#{pack_levels_count}]" %>
-          <option value="<%= CGI::unescape(pack.name) %>" <%= 'selected="selected"' if pack.id == @pack.id %>><%= pack.name %> <%= pack_success %></option>
+          <option value="<%= pack.name %>" <%= 'selected="selected"' if pack.id == @pack.id %>><%= pack.name %> <%= pack_success %></option>
         <% end %>
       </select>
 
@@ -28,7 +28,7 @@
       <% @pack.levels.each_with_index do |level, index| %>
         <% selected = (@level.name == level.name ? 'class="is-selected"' : '') %>
         <li <%= selected.html_safe %> id="level-<%= level.id %>" data-level-id="<%= level.id %>"
-                                                                 data-level-name="<%= level.name %>"
+                                                                 data-level-name="<%= u(level.name) %>"
                                                                  data-level-grid="<%= level.inline_grid_with_floor %>"
                                                                  data-level-width="<%= level.width %>"
                                                                  data-level-height="<%= level.height %>"

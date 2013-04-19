@@ -378,12 +378,14 @@ class window.LevelCore
   level_from_database: (pack_name, level_name) ->
     token_tag = window.authenticity_token()
 
-    jqxhr = $.ajax({
-              type: 'GET'
-              url:  "#{location.protocol}//#{location.host}/packs/#{pack_name}/levels/#{level_name}.json"
-              async:false
-              data: {authenticity_token: token_tag}
-            })
+    jqxhr = $.ajax(
+      type:  'GET'
+      url:   "#{location.protocol}//#{location.host}/packs/#{pack_name}/levels/#{level_name}"
+      async: false
+      data:
+        json:               true
+        authenticity_token: token_tag
+    )
 
     jqxhr.success((data, status, xhr) =>
       @pack_name = data.pack_name
