@@ -553,6 +553,19 @@ body {
 		top: 135px;
 		text-align: center;
 	}
+
+	#game #current-level-name {
+		position: relative;
+		margin-top: -40px;
+		text-align: center;
+		color: #888888;
+	}
+
+	#game #current-level-name a {
+		color: #888888;
+		text-decoration:none;
+	}
+
 		#game #current-score .score-pushes,
 		#game #current-score .score-moves {
 			margin: 10px 0 5px;

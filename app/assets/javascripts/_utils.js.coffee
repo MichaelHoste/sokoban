@@ -105,6 +105,9 @@ $ ->
     window.context.setupInputDevices()
     window.context.redirectTo("level/index")
 
+    real_name = $('#levels .is-selected').attr('data-level-real-name')
+    $('#current-level-name h2').html(real_name)
+
     # show scores related to the new level
     window.reload_scores()
     window.reload_invitations()

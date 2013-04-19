@@ -5,7 +5,9 @@
   <%= render 'layouts/google_adsense' %>
 
   <div id="menu-levels">
-    <div id="packs" data-pack-name="<%= u(@pack.name) %>" data-pack-id="<%= @pack.id %>">
+    <div id="packs" data-pack-name="<%= u(@pack.name) %>"
+                    data-pack-real-name="<%= @pack.name %>"
+                    data-pack-id="<%= @pack.id %>">
       <select>
         <% pack_user_links = current_user ? PackUserLink.where(:user_id => current_user.id).all : [] %>
         <% Pack.all.each do |pack| %>
@@ -32,7 +34,9 @@
                                                                  data-level-grid="<%= level.inline_grid_with_floor %>"
                                                                  data-level-width="<%= level.width %>"
                                                                  data-level-height="<%= level.height %>"
-                                                                 data-level-thumb="<%= level.thumb %>">
+                                                                 data-level-thumb="<%= level.thumb %>"
+                                                                 data-level-real-name="<%= level.name %>"
+                                                                 data-level-copyright="<%= level.copyright %>">
           <% if won_level_ids.include?(level.id) %>
             <span class="star s-icon-star"></span>
           <% else %>
