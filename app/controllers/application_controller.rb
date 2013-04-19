@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def banner
-    @pack = Pack.find_by_name(params[:pack_name])
+    @pack = Pack.find(params[:pack_id])
     render :partial => 'layouts/banner'
   end
 

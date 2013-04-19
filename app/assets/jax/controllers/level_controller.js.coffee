@@ -71,8 +71,6 @@ Jax.Controller.create "Level", ApplicationController,
 
         # load selected level
         level_id   = parseInt($('#levels').find('.is-selected').attr('data-level-id'))
-        pack_name  = $('#packs').attr('data-pack-name')
-        level_name = $('#levels').find('.is-selected').next().attr('data-level-name')
 
         $.post('/scores',
           level_id: level_id
@@ -84,7 +82,7 @@ Jax.Controller.create "Level", ApplicationController,
           window.update_packs_select()
 
           if window.is_logged()
-            window.colorbox_next_level(pack_name, level_name, data.score_id)
+            window.colorbox_next_level(level_id, data.score_id)
           else
             window.colorbox_facebook()
         )

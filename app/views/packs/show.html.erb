@@ -5,7 +5,7 @@
   <%= render 'layouts/google_adsense' %>
 
   <div id="menu-levels">
-    <div id="packs" data-pack-name="<%= u(@pack.name) %>">
+    <div id="packs" data-pack-name="<%= u(@pack.name) %>" data-pack-id="<%= @pack.id %>">
       <select>
         <% pack_user_links = current_user ? PackUserLink.where(:user_id => current_user.id).all : [] %>
         <% Pack.all.each do |pack| %>

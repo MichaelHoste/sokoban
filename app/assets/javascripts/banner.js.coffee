@@ -35,8 +35,8 @@ reposition_banner = ->
 
 # update banner with each user score and hidden levels string
 window.update_banner = ->
-  pack_name = $('#packs').attr('data-pack-name')
-  $.get('/banner', {pack_name: pack_name}).success((data, status, xhr) ->
+  pack_id = parseInt($('#packs').attr('data-pack-id'))
+  $.get('/banner', {pack_id: pack_id}).success((data, status, xhr) ->
     $('#limited-banner').html($(data).find('#limited-banner').html())
   )
 
