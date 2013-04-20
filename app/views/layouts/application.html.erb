@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# sokoban_game: http://ogp.me/ns/fb/sokoban_game#">
-    <title>Sokoban</title>
+    <title>Sokoban <%= @level ? "- #{@level.pack.name} - #{@level.name}" : "- Free and Social Puzzle Game" %></title>
     <meta charset="UTF-8" />
-    <meta name="description" content="Play Sokoban and Challenge your Friends" />
+    <meta name="description" content="<%= @level ? "#{@level.pack.description} (#{@level.pack.file_name}.slc - #{@level.pack.copyright} - #{@level.pack.email} - #{@level.pack.url})" : "Play Sokoban and Challenge your Friends" %>" />
     <meta name="author" content="Michaël Hoste">
     <meta name="keywords" content="sokoban, puzzle, game, levels, packs, challenge, friends, social" />
     <link rel="shortcut icon" href="/favicon.gif">

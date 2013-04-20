@@ -12,6 +12,7 @@
   </div>
 
   <div id="current-level-name">
-    <h2><a href="<%= pack_level_url(@pack.name, @level.name) %>"><%= @level.name %></a></h2>
+    <h2><a class="tips" href="<%= pack_level_url(@pack.name, @level.name) %>"
+                        title="<%= "#{@level.pack.description} (#{@level.pack.copyright})" %>"><%= @level.name %></a></h2>
   </div>
 </div>
