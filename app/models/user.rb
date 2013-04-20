@@ -228,7 +228,11 @@ class User < ActiveRecord::Base
   end
 
   def display_friends_invite_popup?
-    Time.now >= self.send_invitations_at + DAYS_WITHOUT_FRIENDS_INVITE_POPUP.days.to_i
+    if self.full_game
+      false
+    else
+      Time.now >= self.send_invitations_at + DAYS_WITHOUT_FRIENDS_INVITE_POPUP.days.to_i
+    end
   end
 
   # update friends count (friends that are on the database : registered or not)
