@@ -220,7 +220,11 @@ class User < ActiveRecord::Base
   end
 
   def display_advertisement?
-    Time.now >= self.send_invitations_at + DAYS_WITHOUT_ADS_IF_FRIENDS_INVITED.days.to_i
+    if self.full_game
+      false
+    else
+      Time.now >= self.send_invitations_at + DAYS_WITHOUT_ADS_IF_FRIENDS_INVITED.days.to_i
+    end
   end
 
   def display_friends_invite_popup?
