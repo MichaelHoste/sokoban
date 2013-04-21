@@ -128,10 +128,10 @@ class User < ActiveRecord::Base
   # Ask facebook if this user likes the facebook fan page of the application
   # return true or false
   def request_like_fan_page?
-    oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
-    access_token = oauth.get_app_access_token
-    graph        = Koala::Facebook::API.new(access_token)
-    data         = graph.get_connections(self.f_id, "likes/#{ENV['FACEBOOK_PAGE_ID']}")
+    Rails.logger.info("TOKEN : #{self.f_token}")
+    oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
+    graph = Koala::Facebook::API.new(self.f_token)
+    data  = graph.get_connections(self.f_id, "likes/#{ENV['FACEBOOK_PAGE_ID']}")
 
     found = false
     data.each do |like|
@@ -256,7 +256,9 @@ class User < ActiveRecord::Base
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     https.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    https.request_get(url.path + '?' + url.query).body.gsub("access_token=", "")
+
+    token = https.request_get(url.path + '?' + url.query).body
+    token.split('&').collect {|params| params.split('=')}.keep_if { |param| param.first == 'access_token' }.first.second
   end
 
   # select one random user depending on the common number of friends (the more friends, the more the chance to be selected)
