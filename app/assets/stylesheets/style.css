@@ -314,9 +314,27 @@ body {
 		cursor:pointer;
 	}
 
+
+#current-level-name {
+	position: absolute;
+	left: 376px;
+	top: 437px;
+	width: 573px;
+	text-align: center;
+	color: #888888;
+	z-index:2;
+}
+
+#current-level-name a {
+	color: #888888;
+	text-decoration:none;
+}
+
+
 /* ==================== Levels =================== */
 
 #menu-levels {
+	position: relative;
 	float: left;
 	width: 332px;
 }
@@ -390,7 +408,9 @@ body {
 			box-shadow: inset 0px 2px 2px 1px #c92d02;
 			background: #cf684c;
 		}
-
+			#levels li a {
+				text-decoration: none
+			}
 			#levels li span {
 				font-size: 18px;
 			}
@@ -552,18 +572,6 @@ body {
 		left: 10px;
 		top: 135px;
 		text-align: center;
-	}
-
-	#game #current-level-name {
-		position: relative;
-		margin-top: -40px;
-		text-align: center;
-		color: #888888;
-	}
-
-	#game #current-level-name a {
-		color: #888888;
-		text-decoration:none;
 	}
 
 		#game #current-score .score-pushes,

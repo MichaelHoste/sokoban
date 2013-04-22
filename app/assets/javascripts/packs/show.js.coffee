@@ -8,7 +8,7 @@ window.update_packs_select = ->
   level_count   = $('#levels li').length
   success_count = $('#levels li .s-icon-star').length
 
-  pack_name = $('#packs').attr('data-pack-name')
+  pack_name = $('#packs').attr('data-pack-real-name')
   $('#packs select option:selected').text("#{pack_name} [#{success_count}/#{level_count}]")
 
 $ ->
@@ -23,15 +23,17 @@ $ ->
   $('#levels').scrollTo(level_button, 1000, { easing:'swing', offset: -10 } )
 
   # Click on level (on packs/show)
-  $('#levels li').live('click', ->
-    $(this).parent().find(".is-selected").removeClass('is-selected')
-    $(this).addClass('is-selected')
+  $('#levels li, #levels li a').live('click', ->
+    $('#levels').find(".is-selected").removeClass('is-selected')
+    $(this).closest('li').addClass('is-selected')
 
     # change the level (the '.is-selected' level is chosen)
     window.change_level()
 
     # change the url and save related state (pack and level)
     window.push_this_state()
+
+    false
   )
 
   # Change level when select another level
