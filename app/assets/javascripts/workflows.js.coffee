@@ -155,8 +155,6 @@ $ ->
     $.fn.colorbox.close()
 
     window.change_level()
-
-    setTimeout(random_social_popup, 1000)
     false
   )
 

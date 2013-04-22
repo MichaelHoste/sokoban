@@ -4,8 +4,6 @@ module FacebookInvitationService
   #   * a custom name "x friends are on Sokoban"
   #   * a custom message "x and x and 3 more friends are here, come and join us!"
   def self.popular_invitation(user)
-    Rails.logger.info("friends : #{user.friends.collect(&:name)}")
-
     if user.friends.not_registered.count == 0
       return { :f_id => nil, :name => '', :description => '' }
     else
