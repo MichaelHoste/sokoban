@@ -1,7 +1,7 @@
 <% if current_user %>
   <div id="challenges">
     <div id="limited-challenges">
-      <h2 class="challenge-title">Challenges</h2>
+      <h4 class="challenge-title">Challenges</h4>
       <div id="invitations">
         <% unless current_user %>
           <%= link_to image_tag("facebook-connect-banner.gif"), '/auth/facebook' %>

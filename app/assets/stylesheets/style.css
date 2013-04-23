@@ -710,7 +710,7 @@ body {
 		width: 323px;
 		margin: 0 auto;
 	}
-		h2.challenge-title {
+		h4.challenge-title {
 			background: url('/assets/challenges-img.png') no-repeat;
 			text-indent: -9999px;
 			text-align: center;

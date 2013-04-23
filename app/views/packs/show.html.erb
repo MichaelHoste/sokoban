@@ -6,8 +6,8 @@
 
   <div id="menu-levels">
     <div id="current-level-name">
-      <h2><a class="tips" href="<%= pack_level_url(@pack.name, @level.name) %>"
-                          title="<%= "#{@level.pack.description} (#{@level.pack.copyright})" %>"><%= @level.name %></a></h2>
+      <h3><a class="tips" href="<%= pack_level_url(@pack.name, @level.name) %>"
+                          title="<%= "#{@level.pack.description} (#{@level.pack.copyright})" %>"><%= @level.name %></a></h3>
     </div>
 
     <div id="packs" data-pack-name="<%= u(@pack.name) %>"
@@ -20,7 +20,7 @@
           <% pack_success_count = pack_user_link.empty? ? 0 : pack_user_link.first.won_levels_count %>
           <% pack_levels_count  = pack.levels_count %>
           <% pack_success       = "[#{pack_success_count}/#{pack_levels_count}]" %>
-          <option value="<%= pack.name %>" <%= 'selected="selected"' if pack.id == @pack.id %>><%= pack.name %> <%= pack_success %></option>
+          <option value="<%= pack.name %>" <%= 'selected=selected' if pack.id == @pack.id %>><%= pack.name %> <%= pack_success %></option>
         <% end %>
       </select>
 
@@ -42,7 +42,7 @@
                                                                  data-level-thumb="<%= level.thumb %>"
                                                                  data-level-real-name="<%= level.name %>"
                                                                  data-level-copyright="<%= level.copyright %>">
-          <a href="<%= pack_level_path(@pack.name, level.name) %>" title="<%= level.name %>'" alt="<%= level.name %>'">
+          <a href="<%= pack_level_path(@pack.name, level.name) %>" title="<%= level.name %>">
             <% if won_level_ids.include?(level.id) %>
               <span class="star s-icon-star"></span>
             <% else %>
