@@ -36,7 +36,7 @@ module FacebookFeedService
     page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
     page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
       { :message     => message,
-        :link        => "http://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+        :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
         :name        => "Level of the day : #{level.name}",
         :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
         :picture     => level.thumb,
@@ -51,7 +51,7 @@ module FacebookFeedService
     page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
     page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
       { :message     => message,
-        :link        => "http://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+        :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
         :name        => "Last level to get solved : #{level.name}",
         :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
         :picture     => level.thumb,
@@ -67,7 +67,7 @@ module FacebookFeedService
     page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
     page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
       { :message     => message,
-        :link        => "http://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+        :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
         :name        => "Last level to get solved : #{level.name}",
         :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
         :picture     => level.thumb,
