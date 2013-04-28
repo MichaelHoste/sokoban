@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
       UserNotifier.delay.new_user(user.name, user.email)
 
       if (User.registered.count+1) % 50 == 0
-        FacebookFeedService.publish_user_count(User.registered.count)
+        FacebookFeedService.publish_user_count(User.registered.count+1)
       end
     end
 
