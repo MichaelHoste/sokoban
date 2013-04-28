@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_user
-
   before_filter :check_facebook
 
   def current_user
@@ -20,6 +19,9 @@ class ApplicationController < ActionController::Base
         @level = Level.find(params[:level_id])                                  # if redirected by notification
       end
       render 'layouts/canvas_redirect', :layout => false                        # canvas redirect to facebook oauth (register or log user)
+    elsif params[:level_id]
+      @level = Level.find(params[:level_id])
+      redirect_to pack_level_path(@level.pack.name, @level.name)
     end
   end
 
