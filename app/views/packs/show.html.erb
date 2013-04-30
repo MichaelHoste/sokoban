@@ -5,10 +5,15 @@
   <%= render 'layouts/google_adsense' %>
 
   <div id="menu-levels">
-    <div id="current-level-name">
-      <h3><a class="tips" href="<%= pack_level_url(@pack.name, @level.name) %>"
-                          title="<%= "#{@level.pack.description} (#{@level.pack.copyright})" %>"><%= @level.name %></a></h3>
+    <div id="current-level-name" itemscope itemtype="http://schema.org/Thing">
+      <a href="<%= pack_level_url(@pack.name, @level.name) %>" itemprop="url">
+        <h3 itemprop="name"><%= @level.name %></h3>
+      </a>
     </div>
+    <div id="current-level-description" itemprop="description">
+      <%= "#{@level.pack.description} (#{@level.pack.copyright})" %>
+    </div>
+    <img id="current-level-image" itemprop="image" src="<%= @level.thumb %>"/>
 
     <div id="packs" data-pack-name="<%= u(@pack.name) %>"
                     data-pack-real-name="<%= @pack.name %>"

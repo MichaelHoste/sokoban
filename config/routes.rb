@@ -48,10 +48,8 @@ Sokojax::Application.routes.draw do
   get   '/login',                   :to => 'sessions#new'
   get   '/logout',                  :to => 'sessions#destroy'
 
-  get   '/banner',                  :to => 'application#banner'
-
-  get   '/privacy_policy',          :to => 'application#privacy_policy'
-  get   '/terms_of_service',        :to => 'application#terms_of_service'
-
-  get   '/stats',                   :to => 'application#stats'
+  get   '/banner',                  :to => 'pages#banner'
+  get   '/privacy_policy',          :to => 'pages#privacy_policy'
+  get   '/terms_of_service',        :to => 'pages#terms_of_service'
+  get   '/stats',                   :to => 'pages#stats'
 end

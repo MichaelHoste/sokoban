@@ -121,7 +121,7 @@ class User < ActiveRecord::Base
     self.email != nil
   end
 
-  def is_admin?
+  def admin?
     self.f_id == ENV['FACEBOOK_ADMIN_ID'].to_i
   end
 

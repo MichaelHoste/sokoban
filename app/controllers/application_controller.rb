@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include AuthorizationFilters
+
   protect_from_forgery
 
   helper_method :current_user
@@ -23,28 +25,5 @@ class ApplicationController < ActionController::Base
       @level = Level.find(params[:level_id])
       redirect_to pack_level_path(@level.pack.name, @level.name)
     end
-  end
-
-  def banner
-    @pack = Pack.find(params[:pack_id])
-    render :partial => 'layouts/banner'
-  end
-
-  def privacy_policy
-    render 'layouts/privacy_policy', :layout => false
-  end
-
-  def terms_of_service
-    render 'layouts/terms_of_service', :layout => false
-  end
-
-  def stats
-    @total_users   = User.registered.count
-    @total_friends = User.not_registered.count
-    @total_scores  = LevelUserLink.count
-    @best_scores   = LevelUserLink.where(:best_level_user_score => true).count
-    @last_users    = User.registered.order('updated_at DESC').limit(10)
-    @last_scores   = LevelUserLink.unscoped.order('created_at DESC').limit(100)
-    render 'layouts/stats', :layout => false
   end
 end

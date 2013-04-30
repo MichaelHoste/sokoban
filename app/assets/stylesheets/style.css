@@ -330,6 +330,28 @@ body {
 	text-decoration:none;
 }
 
+#current-level-description {
+	position: absolute;
+	left: 470px;
+	top: 458px;
+	width: 373px;
+	text-align: center;
+	color: #888888;
+	z-index:2;
+	border:1px solid;
+	background-color:white;
+	padding:3px;
+
+	-webkit-box-shadow: 0px 2px 2px 1px #cacaca;
+	box-shadow: 0px 2px 2px 1px #cacaca;
+	-webkit-border-radius: 6px;
+	border-radius: 8px;
+}
+
+#current-level-image {
+	display:none;
+}
+
 
 /* ==================== Levels =================== */
 
