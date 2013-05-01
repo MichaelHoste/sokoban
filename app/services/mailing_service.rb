@@ -12,7 +12,7 @@ module MailingService
       recent_scores = user.scores.where('created_at > ?', Time.now - 2.days)
 
       if recent_scores.empty?
-        #UserNotifier.delay.weekly_notification(user.id)
+        UserNotifier.delay.weekly_notification(user.id)
         UserNotifier.delay.weekly_notification(user.id, true)
         user.update_attributes!({ :next_mailing_at => Time.now + 7.days + rand(-12..12).hours })
       else
