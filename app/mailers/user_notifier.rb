@@ -23,11 +23,11 @@ class UserNotifier < ActionMailer::Base
 
     if @friend_names.count == 0
       if @all_names.count == 0
-        @text = "Can you solve the level '#{@level.name}'?"
+        @text = "Can you solve this level?"
       elsif @all_names.count == 1
-        @text = "Level '#{@level.name}' has been solved by one person"
+        @text = "This level has been solved by one person"
       else
-        @text = "Level '#{@level.name}' has been solved by #{@all_names.count} people"
+        @text = "This level has been solved by #{@all_names.count} people"
       end
     else
       if @friend_names.count <= 4
@@ -36,6 +36,8 @@ class UserNotifier < ActionMailer::Base
         @text = @friend_names.take(4).join(', ') + " and #{@friend_names.count - 4} of your friends solved this level"
       end
     end
+
+    @top_users = User.registered.order('total_won_levels DESC').limit(10)
 
     mail(:to      => @user.email,
          :subject => @text)
