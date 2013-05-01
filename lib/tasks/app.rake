@@ -81,6 +81,10 @@ namespace :app  do
   task :facebook_feed_delayed_job => :environment do
     FacebookFeedService.delayed_publish_random_level
   end
+
+  task :send_mailing_delayed_job do
+    MailingService.delayed_send_mailing
+  end
 end
 
 def new_tab(name, commands)

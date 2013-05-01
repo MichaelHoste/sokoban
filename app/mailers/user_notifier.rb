@@ -11,7 +11,7 @@ class UserNotifier < ActionMailer::Base
          :subject => "[Sokoban] New Registration : #{user_name}")
   end
 
-  def weekly_notification(user_id)
+  def weekly_notification(user_id, to_admin = false)
     @user  = User.find(user_id)
     @level = Level.friends_random(@user)
     if not @level
@@ -39,7 +39,7 @@ class UserNotifier < ActionMailer::Base
 
     @top_users = User.registered.order('total_won_levels DESC').limit(10)
 
-    mail(:to      => @user.email,
+    mail(:to      => to_admin ? 'michael.hoste@gmail.com' : @user.email,
          :subject => @text)
   end
 end

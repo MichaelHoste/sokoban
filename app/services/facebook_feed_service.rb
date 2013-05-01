@@ -2,20 +2,20 @@ module FacebookFeedService
   def self.delayed_publish_random_level
     jobs = Delayed::Job.where(:queue => 'publish_random_level')
 
-    if jobs.count > 1
+    if jobs.count >= 2
       jobs.destroy_all
       jobs = []
     end
 
     if not jobs.empty?
-      FacebookFeedService.delay(:run_at => jobs.first.run_at, :queue => 'publish_random_level').publish_random_level
+      FacebookFeedService.delay(:run_at => jobs.first.run_at, :queue => 'publish_random_level').publish_random_level(true)
       jobs.first.destroy
     else
-      FacebookFeedService.delay(:run_at => rand(18..24).hours.from_now, :queue => 'publish_random_level').publish_random_level
+      FacebookFeedService.delay(:run_at => rand(18..24).hours.from_now, :queue => 'publish_random_level').publish_random_level(true)
     end
   end
 
-  def self.publish_random_level
+  def self.publish_random_level(repeat = false)
     number = rand(1..2)
     if number == 1
       level = Level.complexity_random(nil, 600)
@@ -41,6 +41,10 @@ module FacebookFeedService
         :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
         :picture     => level.thumb,
         :type        => "sokoban_game:level" })
+
+    if repeat
+      FacebookFeedService.delayed_publish_random_level
+    end
   end
 
   def self.publish_level_count(count)
