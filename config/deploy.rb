@@ -109,7 +109,7 @@ namespace :deploy do
     run("cd #{latest_release} && bundle exec rake app:facebook_feed_delayed_job RAILS_ENV=#{rails_env}")
 
     # Launch delayed job for sending (weekly) mailing list
-    grun("cd #{latest_release} && bundle exec rake app:send_mailing_delayed_job RAILS_ENV=#{rails_env}")
+    run("cd #{latest_release} && bundle exec rake app:send_mailing_delayed_job RAILS_ENV=#{rails_env}")
   end
 end
 
