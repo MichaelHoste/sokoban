@@ -32,10 +32,11 @@ Sokojax::Application.routes.draw do
 
   resources :users do
     member do
-      get :popular_friends
-      get :is_like_facebook_page       # question
-      get :custom_invitation           # JSON with data for custom user invitation
-      post :update_send_invitations_at # user just invited some friends
+      get  :popular_friends
+      get  :is_like_facebook_page       # question
+      get  :custom_invitation           # JSON with data for custom user invitation
+      post :update_send_invitations_at  # user just invited some friends
+      get  :unsubscribe_from_mailing    # remove user from mailing list (remove from madmimi)
     end
   end
 

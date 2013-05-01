@@ -101,12 +101,12 @@ class User < ActiveRecord::Base
       mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
       mimi.csv_import("email, first name, last name, full name, gender, locale\n" +
                       "#{user.email}, #{user.f_first_name}, #{user.f_last_name}, #{user.name}, #{user.gender}, #{user.locale}")
-      mimi.add_to_list(user.email, 'Sokoban')
+      mimi.add_to_list(user.email, ENV['MADMIMI_LIST'])
 
       # email to admin
       UserNotifier.delay.new_user(user.name, user.email)
 
-      if (User.registered.count+1) % 50 == 0
+      if (User.registered.count+1) % 100 == 0
         FacebookFeedService.publish_user_count(User.registered.count+1)
       end
     end
@@ -243,6 +243,12 @@ class User < ActiveRecord::Base
     else
       self.update_attributes!({ :friends_count => UserUserLink.where(:friend_id => self.f_id).count })
     end
+  end
+
+  def unsubscribe_from_mailing
+    mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
+    mimi.remove_from_list(self.email, ENV['MADMIMI_LIST'])
+    self.update_attributes!({ :mailing_unsubscribe => true })
   end
 
   private

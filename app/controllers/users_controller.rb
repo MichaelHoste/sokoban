@@ -22,6 +22,13 @@ class UsersController < ApplicationController
     render :json => FacebookInvitationService.popular_invitation(@user)
   end
 
+  def unsubscribe_from_mailing
+    if @user.created_at.to_i.to_s == params[:check]
+      @user.unsubscribe_from_mailing
+      render :text => "We successfully unsubscribed your email (#{@user.email}) from the mailing list."
+    end
+  end
+
   # Methods
 
   protected

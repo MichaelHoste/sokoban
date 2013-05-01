@@ -47,7 +47,7 @@
                   <td align="left" style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
                     <div style="float:left;margin-bottom:15px;margin-left:0;margin-right:20px;margin-top:4px;padding:0;text-align:center">
                       <a href="<%= pack_level_url(@level.pack.name, @level.name) %>" style="color:#3693cc!important;text-decoration:none" target="_blank">
-                        <img src="<%= @level.thumb %>" alt="Miniature du niveau" style="border:0;margin-bottom:9px" width="250">
+                        <img src="<%= @level.thumb %>" alt="Miniature du niveau" style="border:0;margin-bottom:12px" width="250">
                         <span style="text-align:center;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top;padding-top:10px;font-weight:bold">
                           Click here to solve it!
                         </span>
@@ -95,7 +95,7 @@
                   <p style="text-align:center;font-weight:bold;color:#222222!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
                     Top 10 users
                   </p>
-                  <table style="margin-left:30px">
+                  <table style="margin-left:30px;margin-bottom:15px">
                     <% @top_users.each do |user| %>
                       <tr>
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
@@ -213,7 +213,7 @@
           <span>This email was sent to <a style="color:#999999!important;font-family:Helvetica;font-size:13px;text-decoration:underline">michael.hoste@gmail.com</a>. </span>
           <span>To ensure that you continue receiving our emails, please add us to your address book or safe list.</span>
           <br>
-          <a href="https://go.madmimi.com/opt_out?pact=404030578431882572&amp;fe=1&amp;amx=3975722765" style="color:#999999!important;font-family:Helvetica;font-size:13px;font-weight:bold;text-decoration:underline" target="_blank">Unsubscribe</a>
+          <a href="https://sokoban.be/users/<%= @user.id %>/unsubscribe_from_mailing?check=<%= @user.created_at.to_i %>" style="color:#999999!important;font-family:Helvetica;font-size:13px;font-weight:bold;text-decoration:underline" target="_blank">Unsubscribe</a>
         </td>
       </tr>
       </tbody>

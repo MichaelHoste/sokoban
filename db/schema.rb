@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420095148) do
+ActiveRecord::Schema.define(:version => 20130501141951) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20130420095148) do
     t.string   "gender"
     t.string   "locale"
     t.integer  "f_id",                :limit => 8
-    t.string   "f_token"
+    t.text     "f_token"
     t.string   "f_first_name"
     t.string   "f_middle_name"
     t.string   "f_last_name"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20130420095148) do
     t.datetime "send_invitations_at",              :default => '2013-03-11 00:00:00'
     t.boolean  "like_fan_page",                    :default => false
     t.boolean  "full_game",                        :default => false
+    t.boolean  "mailing_unsubscribe",              :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

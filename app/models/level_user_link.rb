@@ -77,7 +77,7 @@ class LevelUserLink < ActiveRecord::Base
     self.publish_on_facebook
     self.notify_friends
 
-    if Rails.env.production? and LevelUserLink.count % 500 == 0
+    if Rails.env.production? and LevelUserLink.count % 1000 == 0
       FacebookFeedService.publish_level_count(LevelUserLink.count)
     end
   end
