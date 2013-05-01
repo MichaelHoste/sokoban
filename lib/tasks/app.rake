@@ -82,7 +82,7 @@ namespace :app  do
     FacebookFeedService.delayed_publish_random_level
   end
 
-  task :send_mailing_delayed_job do
+  task :send_mailing_delayed_job => :environment do
     MailingService.delayed_send_mailing
   end
 end
