@@ -15,12 +15,13 @@ module MailingService
         #UserNotifier.delay.weekly_notification(user.id)
         UserNotifier.delay.weekly_notification(user.id, true)
         user.update_attributes!({ :next_mailing_at => Time.now + 7.days + rand(-12..12).hours })
-        if repeat
-          MailingService.delayed_send_mailing
-        end
       else
         user.update_attributes!({ :next_mailing_at => Time.now + rand(20..32).hours })
       end
+    end
+
+    if repeat
+      MailingService.delayed_send_mailing
     end
   end
 end
