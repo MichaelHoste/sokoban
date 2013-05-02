@@ -79,7 +79,15 @@ namespace :app  do
   end
 
   task :facebook_feed_delayed_job => :environment do
-    FacebookFeedService.delayed_publish_random_level
+    publish_jobs = Delayed::Job.where(:queue => 'publish_random_level')
+    if publish_jobs.empty?
+      FacebookFeedService.delayed_publish_random_level
+    else
+      run_at = publish_jobs.first.run_at
+      publish_jobs.destroy_all
+      FacebookFeedService.delay(:run_at => run_at, :queue => 'publish_random_level').publish_random_level(true)
+    else
+    end
   end
 
   task :send_mailing_delayed_job => :environment do
