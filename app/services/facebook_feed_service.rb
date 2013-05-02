@@ -42,7 +42,7 @@ module FacebookFeedService
           :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
           :picture     => level.thumb,
           :type        => "sokoban_game:level" })
-    rescue OAuthException => e
+    rescue Koala::Facebook::APIError => e
       Rails.logger.info("PUBLISH RANDOM LEVEL FAILED (but was published anyway ?)")
     end
 
@@ -65,7 +65,7 @@ module FacebookFeedService
           :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
           :picture     => level.thumb,
           :type        => "sokoban_game:level" })
-    rescue OAuthException => e
+    rescue Koala::Facebook::APIError => e
       Rails.logger.info("PUBLISH LEVEL COUNT FAILED (but was published anyway ?)")
     end
   end
@@ -85,7 +85,7 @@ module FacebookFeedService
           :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
           :picture     => level.thumb,
           :type        => "sokoban_game:level" })
-    rescue OAuthException => e
+    rescue Koala::Facebook::APIError => e
       Rails.logger.info("PUBLISH USER COUNT FAILED (but was published anyway ?)")
     end
   end

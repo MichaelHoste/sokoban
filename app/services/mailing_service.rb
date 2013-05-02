@@ -1,4 +1,5 @@
 module MailingService
+  # Automatic mailing (every 7 days unless the user was active less than 48hours ago)
   def self.delayed_send_mailing
     Delayed::Job.where(:queue => 'send_mailing').destroy_all
     MailingService.delay(:run_at => Time.now + 10.minutes, :queue => 'send_mailing').send_mailing(true)
