@@ -86,7 +86,6 @@ namespace :app  do
       run_at = publish_jobs.first.run_at
       publish_jobs.destroy_all
       FacebookFeedService.delay(:run_at => run_at, :queue => 'publish_random_level').publish_random_level(true)
-    else
     end
   end
 
