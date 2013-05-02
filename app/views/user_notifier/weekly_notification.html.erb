@@ -59,7 +59,10 @@
                 </table>
                 <div style="margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
                   <p style="color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
-                     Sokoban is a <strong style="font-style:normal;font-weight:bold">free puzzle-game</strong> where a level is solved when you've pushed all the boxes on their goals.
+                    Hi <%= @user.f_first_name %>,
+                  </p>
+                  <p style="color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
+                    Sokoban is a <strong style="font-style:normal;font-weight:bold">free puzzle-game</strong> where a level is solved when you've pushed all the boxes on their goals.
                   </p>
                   <p style="color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
                     <a href="http://sokoban.be" style="color:#3693cc!important;text-decoration:underline" target="_blank">sokoban.be</a> puts together <strong style="font-style:normal;font-weight:bold"><%= Level.count %> levels</strong> from the very simple ones to the really complex ones.
@@ -210,7 +213,7 @@
       <tbody>
       <tr>
         <td style="color:#999999!important;font-family:Helvetica;font-size:13px;padding:8px!important">
-          <span>This email was sent to <a style="color:#999999!important;font-family:Helvetica;font-size:13px;text-decoration:underline">michael.hoste@gmail.com</a>. </span>
+          <span>This email was sent to <a style="color:#999999!important;font-family:Helvetica;font-size:13px;text-decoration:underline"><%= @user.email %></a>. </span>
           <span>To ensure that you continue receiving our emails, please add us to your address book or safe list.</span>
           <br>
           <a href="https://sokoban.be/users/<%= @user.id %>/unsubscribe_from_mailing?check=<%= @user.created_at.to_i %>" style="color:#999999!important;font-family:Helvetica;font-size:13px;font-weight:bold;text-decoration:underline" target="_blank">Unsubscribe</a>
