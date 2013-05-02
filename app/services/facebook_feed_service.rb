@@ -1,18 +1,7 @@
 module FacebookFeedService
   def self.delayed_publish_random_level
-    jobs = Delayed::Job.where(:queue => 'publish_random_level')
-
-    if jobs.count >= 2
-      jobs.destroy_all
-      jobs = []
-    end
-
-    if not jobs.empty?
-      FacebookFeedService.delay(:run_at => jobs.first.run_at, :queue => 'publish_random_level').publish_random_level(true)
-      jobs.first.destroy
-    else
-      FacebookFeedService.delay(:run_at => rand(18..24).hours.from_now, :queue => 'publish_random_level').publish_random_level(true)
-    end
+    Delayed::Job.where(:queue => 'publish_random_level').destroy_all
+    FacebookFeedService.delay(:run_at => rand(18..24).hours.from_now, :queue => 'publish_random_level').publish_random_level(true)
   end
 
   def self.publish_random_level(repeat = false)

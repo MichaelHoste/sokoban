@@ -85,11 +85,15 @@ class LevelUserLink < ActiveRecord::Base
   # publish the "user has completed the level" on open graph (facebook)
   def publish_on_facebook
     if Rails.env.production? and self.user
-      graph = Koala::Facebook::API.new(self.user.f_token)
-      graph.put_connections("me", "sokoban_game:complete",
-                            :level  => URI.escape("https://sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}"),
-                            :pushes => self.pushes,
-                            :moves  => self.moves)
+      begin
+        graph = Koala::Facebook::API.new(self.user.f_token)
+        graph.put_connections("me", "sokoban_game:complete",
+                              :level  => URI.escape("https://sokoban.be/packs/#{self.level.pack.name}/levels/#{self.level.name}"),
+                              :pushes => self.pushes,
+                              :moves  => self.moves)
+      rescue Koala::Facebook::APIError => e
+        Rails.logger.info("PUBLISH ON FACEBOOK FAILED (but was published anyway ?)")
+      end
     end
   end
 
