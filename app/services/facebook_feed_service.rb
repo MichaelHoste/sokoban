@@ -33,14 +33,18 @@ module FacebookFeedService
       message = "#{count_won} people already solved this level. Can you do the same?"
     end
 
-    page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
-    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
-      { :message     => message,
-        :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
-        :name        => "Level of the day : #{level.name}",
-        :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
-        :picture     => level.thumb,
-        :type        => "sokoban_game:level" })
+    begin
+      page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
+      page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
+        { :message     => message,
+          :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+          :name        => "Level of the day : #{level.name}",
+          :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
+          :picture     => level.thumb,
+          :type        => "sokoban_game:level" })
+    rescue OAuthException => e
+      Rails.logger.info("PUBLISH RANDOM LEVEL FAILED (but was published anyway ?)")
+    end
 
     if repeat
       FacebookFeedService.delayed_publish_random_level
@@ -52,14 +56,18 @@ module FacebookFeedService
 
     message = "The users of Sokoban solved #{count} levels. Keep up the good work!"
 
-    page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
-    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
-      { :message     => message,
-        :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
-        :name        => "Last level to get solved : #{level.name}",
-        :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
-        :picture     => level.thumb,
-        :type        => "sokoban_game:level" })
+    begin
+      page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
+      page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
+        { :message     => message,
+          :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+          :name        => "Last level to get solved : #{level.name}",
+          :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
+          :picture     => level.thumb,
+          :type        => "sokoban_game:level" })
+    rescue OAuthException => e
+      Rails.logger.info("PUBLISH LEVEL COUNT FAILED (but was published anyway ?)")
+    end
   end
 
   def self.publish_user_count(count)
@@ -68,14 +76,18 @@ module FacebookFeedService
     level_count = LevelUserLink.count
     message = "#{count} users are registered on Sokoban with an average of #{(level_count.to_f/count.to_f).round} levels solved by user!"
 
-    page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
-    page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
-      { :message     => message,
-        :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
-        :name        => "Last level to get solved : #{level.name}",
-        :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
-        :picture     => level.thumb,
-        :type        => "sokoban_game:level" })
+    begin
+      page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
+      page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
+        { :message     => message,
+          :link        => "https://sokoban.be" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+          :name        => "Last level to get solved : #{level.name}",
+          :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
+          :picture     => level.thumb,
+          :type        => "sokoban_game:level" })
+    rescue OAuthException => e
+      Rails.logger.info("PUBLISH USER COUNT FAILED (but was published anyway ?)")
+    end
   end
 
   def self.get_page_access_token
