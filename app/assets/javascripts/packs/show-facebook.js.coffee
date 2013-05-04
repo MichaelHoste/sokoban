@@ -14,7 +14,7 @@ $ ->
     $('#levels').find('.is-selected').attr('data-level-id')
 
   window.current_level_name = ->
-    $('#levels').find('.is-selected').attr('data-level-name')
+    $('#levels').find('.is-selected').attr('data-level-real-name')
 
   window.current_level_thumb = ->
     $('#levels').find('.is-selected').attr('data-level-thumb')
