@@ -292,7 +292,7 @@ class LevelUserLink < ActiveRecord::Base
     if type == 'better'
       text = "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!"
     else
-      text = "@[#{self.user.f_id}] just solved '#{self.level.name}' with the same score as you, get revenge!"
+      text = "@[#{self.user.f_id}] just solved '#{self.level.name}' with the same score as you."
     end
 
     users.each do |user|
