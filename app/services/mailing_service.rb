@@ -6,6 +6,8 @@ module MailingService
   end
 
   def self.send_mailing(repeat = false)
+    MailingService.sync_with_mapmimi
+
     MailingService.users_to_mail_now.each do |user|
       UserNotifier.delay.weekly_notification(user.id)
       UserNotifier.delay.weekly_notification(user.id, true)
