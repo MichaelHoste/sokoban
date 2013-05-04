@@ -17,6 +17,7 @@ gem 'madmimi'
 gem 'delayed_job_active_record'
 gem 'daemons' # for delayed job
 gem 'sitemap_generator'
+gem 'httparty'
 
 # Gems used only for assets and not required
 # in production environments by default.
