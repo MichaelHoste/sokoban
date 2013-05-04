@@ -20,7 +20,7 @@ $ ->
     $('#levels').find('.is-selected').attr('data-level-thumb')
 
   window.current_url = ->
-    "#{window.location.href}/levels/#{window.current_level_id()}"
+    "https://sokoban.be/levels/#{window.current_level_id()}"
 
   update_send_invitations_at = ->
     current_user_id = $("#user-infos").attr('data-id')
