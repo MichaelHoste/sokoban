@@ -96,11 +96,60 @@
               <td style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0" width="554">
                 <div style="margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
                   <p style="text-align:center;font-weight:bold;color:#222222!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
-                    Top 10 users
+                    Friends ranking (<%= @top_friends_position %>/<%= @top_friends.count %>)
                   </p>
                   <table style="margin-left:30px;margin-bottom:15px">
-                    <% @top_users.each do |user| %>
+                    <% @top_friends.each_with_index do |user, i| %>
                       <tr>
+                        <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
+                          <%= i+1 %>
+                        </td>
+                        <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
+                          <img src="<%= user.profile_picture %>"/>
+                        </td>
+                        <td style="width:220px;padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
+                          <%= user.name %>
+                        </td>
+                        <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
+                          <span style="font-weight:bold"><%= user.total_won_levels %></span> solved levels
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+            </table>
+          </div>
+          <div style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
+            <table style="border-collapse:collapse;border-spacing:0;margin:auto" width="554">
+            <tbody>
+            <tr>
+              <td style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0" width="554">
+                <div style="margin-bottom:1.1em;margin-left:auto;margin-right:auto;margin-top:0;padding:0;padding-top:0px;text-align:center">
+                  <img src="http://sokoban.be/assets/divider.png" alt="***" style="border:0">
+                </div>
+              </td>
+            </tr>
+            </tbody>
+            </table>
+          </div>
+          <div style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
+            <table style="border-collapse:collapse;border-spacing:0;margin:auto" width="554">
+            <tbody>
+            <tr>
+              <td style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0" width="554">
+                <div style="margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
+                  <p style="text-align:center;font-weight:bold;color:#222222!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
+                    Global ranking (<%= @top_users_position %>/<%= User.registered.count %>)
+                  </p>
+                  <table style="margin-left:30px;margin-bottom:15px">
+                    <% @top_users.each_with_index do |user, i| %>
+                      <tr>
+                        <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
+                          <%= i+1 %>
+                        </td>
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
                           <img src="<%= user.profile_picture %>"/>
                         </td>
