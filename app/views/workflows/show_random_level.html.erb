@@ -17,8 +17,8 @@
 
   <div id="completed-friends">
     <div id="completed-friends-in">
-      <% friend_names = @level.friends_scores_names(current_user) if current_user %>
-      <% all_names    = @level.all_scores_names %>
+      <% friend_names = @level.friends_scores_names(current_user).shuffle if current_user %>
+      <% all_names    = @level.all_scores_names.shuffle %>
 
       <% if not current_user or friend_names.count == 0 %>
         <% if all_names.count == 0 %>

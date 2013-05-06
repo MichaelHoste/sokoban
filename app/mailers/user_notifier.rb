@@ -18,8 +18,8 @@ class UserNotifier < ActionMailer::Base
       @level = Level.random(@user)
     end
 
-    @friend_names = @level.friends_scores_names(@user)
-    @all_names    = @level.all_scores_names
+    @friend_names = @level.friends_scores_names(@user).shuffle
+    @all_names    = @level.all_scores_names.shuffle
 
     if @friend_names.count == 0
       if @all_names.count == 0
