@@ -8,7 +8,7 @@ Sokoban ('warehouse keeper' in Japanese) is a type of transport puzzle, in which
 Official website
 -----
 
-Here : http://sokoban.be
+Here : http://sokoban-game.com
 
 Or here (Facebook app) : https://apps.facebook.com/sokoban_game/
 

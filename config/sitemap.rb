@@ -1,6 +1,6 @@
 # regenerate sitemap with 'rake sitemap:refresh'
 
-SitemapGenerator::Sitemap.default_host = "https://www.sokoban.be"
+SitemapGenerator::Sitemap.default_host = "https://www.sokoban-game.com"
 
 SitemapGenerator::Sitemap.create do
   add '/privacy_policy'

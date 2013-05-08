@@ -1,13 +1,13 @@
 # encoding: utf-8
 
 class UserNotifier < ActionMailer::Base
-  default :from => "\"Sokoban\" <contact@sokoban.be>"
+  default :from => "\"Sokoban\" <contact@sokoban-game.com>"
 
   def new_user(user_name, user_email)
     @user_name  = user_name
     @user_email = user_email
 
-    mail(:to      => 'contact@sokoban.be',
+    mail(:to      => 'contact@sokoban-game.com',
          :subject => "[Sokoban] New Registration : #{user_name}")
   end
 

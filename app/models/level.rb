@@ -189,7 +189,7 @@ class Level < ActiveRecord::Base
   end
 
   def thumb
-    "https://sokoban.be/images/levels/#{self.id}.png"
+    "https://sokoban-game.com/images/levels/#{self.id}.png"
   end
 
   def best_global_scores(user, count)

@@ -110,6 +110,9 @@ namespace :deploy do
 
     # Launch delayed job for sending (weekly) mailing list
     run("cd #{latest_release} && bundle exec rake app:send_mailing_delayed_job RAILS_ENV=#{rails_env}")
+
+    # Regeneration of sitemap
+    run("cd #{latest_release} && bundle exec rake sitemap:refresh RAILS_ENV=#{rails_env}")
   end
 end
 

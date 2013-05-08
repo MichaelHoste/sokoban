@@ -2,7 +2,7 @@
 window.fbAsyncInit = ->
   FB.init(
     appId: $('meta[property="fb:app_id"]').attr('content')
-    channelUrl: '//sokoban.be/channel.html'
+    channelUrl: '//sokoban-game.com/channel.html'
     status: true
     xfbml: true
     cookie: true
@@ -20,7 +20,7 @@ $ ->
     $('#levels').find('.is-selected').attr('data-level-thumb')
 
   window.current_url = ->
-    "https://sokoban.be/levels/#{window.current_level_id()}"
+    "https://sokoban-game.com/levels/#{window.current_level_id()}"
 
   update_send_invitations_at = ->
     current_user_id = $("#user-infos").attr('data-id')
