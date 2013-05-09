@@ -10,7 +10,6 @@ module MailingService
 
     MailingService.users_to_mail_now.each do |user|
       UserNotifier.delay.weekly_notification(user.id)
-      UserNotifier.delay.weekly_notification(user.id, true)
       user.update_attributes!({ :next_mailing_at => Time.now + 7.days + rand(-12..12).hours })
     end
 
