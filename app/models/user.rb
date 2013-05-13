@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
                       "#{user.email}, #{user.f_first_name}, #{user.f_last_name}, #{user.name}, #{user.gender}, #{user.locale}")
       mimi.add_to_list(user.email, ENV['MADMIMI_LIST'])
 
-      # set next mailing
+      user.update_attributes!({ :registered_at   => Time.now })
       user.update_attributes!({ :next_mailing_at => Time.now + 7.days })
 
       # email to admin

@@ -83,8 +83,7 @@ body {
 .footer {
 	overflow: hidden;
 	margin: 25px 0 0;
-	height: 20px;
-	background: url('/assets/footer-bkg.png') repeat-x;
+	background: url('/assets/footer-bkg.png') repeat;
 	font-size: 12px;
 	text-align: center;
 	color: #7b7b7b;

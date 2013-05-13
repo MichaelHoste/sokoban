@@ -1,9 +1,18 @@
+<html>
+<body>
+
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
 <div id="limited-content">
   <strong>Users</strong> : <%= @total_users %> (<%= @total_friends %> amis)
+
+  <%= line_chart User.registered.group_by_week(:registered_at).count %>
 
   <br/><br/>
 
   <strong>Completed Levels</strong> : <%= @best_scores %> / <%= @total_scores %>
+
+  <%= line_chart LevelUserLink.group_by_week(:created_at).count %>
 
   <br/><br/>
 
@@ -47,3 +56,5 @@
 
   <br/><br/>
 </div>
+</body>
+</html>

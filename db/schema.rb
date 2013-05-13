@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501145607) do
+ActiveRecord::Schema.define(:version => 20130513203101) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20130501145607) do
     t.string   "gender"
     t.string   "locale"
     t.integer  "f_id",                :limit => 8
-    t.text     "f_token"
+    t.string   "f_token"
     t.string   "f_first_name"
     t.string   "f_middle_name"
     t.string   "f_last_name"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20130501145607) do
     t.datetime "f_expires_at"
     t.datetime "created_at",                                                          :null => false
     t.datetime "updated_at",                                                          :null => false
+    t.datetime "registered_at"
     t.integer  "friends_count",                    :default => 0,                     :null => false
     t.integer  "total_won_levels",                 :default => 0,                     :null => false
     t.datetime "friends_updated_at"
@@ -132,11 +133,12 @@ ActiveRecord::Schema.define(:version => 20130501145607) do
     t.boolean  "like_fan_page",                    :default => false
     t.boolean  "full_game",                        :default => false
     t.boolean  "mailing_unsubscribe",              :default => false
-    t.datetime "next_mailing_at",                  :default => '2013-04-21 17:01:28'
+    t.datetime "next_mailing_at",                  :default => '2013-04-21 19:40:40'
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["f_id"], :name => "index_users_on_f_id", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name"
+  add_index "users", ["registered_at"], :name => "index_users_on_registered_at"
 
 end

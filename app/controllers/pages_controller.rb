@@ -20,7 +20,7 @@ class PagesController < ApplicationController
     @total_friends = User.not_registered.count
     @total_scores  = LevelUserLink.count
     @best_scores   = LevelUserLink.where(:best_level_user_score => true).count
-    @last_users    = LevelUserLink.order('created_at DESC').limit(200).collect { |l_u| l_u.user }.compact.uniq.take(20)
+    @last_users    = LevelUserLink.order('created_at DESC').limit(1000).collect { |l_u| l_u.user }.compact.uniq.take(20)
     @last_scores   = LevelUserLink.order('created_at DESC').limit(100)
     render 'layouts/stats', :layout => false
   end
