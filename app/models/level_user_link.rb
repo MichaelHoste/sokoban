@@ -149,7 +149,7 @@ class LevelUserLink < ActiveRecord::Base
     self.user.update_attributes!({ :total_won_levels => self.user.pack_user_links.collect(&:won_levels_count).sum }) if self.user
 
     # delayed
-    self.level.delay.update_attributes!({ :won_count => self.level.best_scores.where('level_user_links.user_id IS NOT NULL').count })
+    self.level.delay.update_attributes!({ :won_count => self.level.best_scores.count })
   end
 
   # Tag (only) the best score (best_level_user_score = true) for each level/user combo
