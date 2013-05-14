@@ -106,6 +106,9 @@ class User < ActiveRecord::Base
       user.update_attributes!({ :registered_at   => Time.now })
       user.update_attributes!({ :next_mailing_at => Time.now + 7.days })
 
+      # Facebook bug : sometimes the email is empty !
+      user.email = "#{user.f_username}@facebook.com" if not user.email or user.email.empty?
+
       # email to admin
       UserNotifier.delay.new_user(user.name, user.email)
 
