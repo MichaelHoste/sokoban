@@ -82,8 +82,8 @@ namespace :deploy do
     deploy.migrate
 
     # Export / Restart foreman
-    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init --app #{application} --log #{deploy_to}/shared/log --user #{user} --procfile Procfile.production --concurrency #{foreman_concurrency}"
-    run "sudo service #{application} start || sudo service #{application} restart"
+    run "cd #{deploy_to}/current && #{sudo} bundle exec foreman export upstart /etc/init --app #{application} --log #{deploy_to}/shared/log --user #{user} --procfile Procfile.production --concurrency #{foreman_concurrency}"
+    run "#{sudo} service #{application} start || #{sudo} service #{application} restart"
   end
 
   task :stop do
