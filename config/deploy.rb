@@ -19,7 +19,7 @@ set :application, "sokoban"
 set :repository,  "git://github.com/MichaelHoste/#{application}.git"
 set :user,        "deploy"
 set :deploy_to,   "/home/#{user}/apps/#{application}"
-set :use_sudo, false
+set :use_sudo,    false
 
 set :scm,  :git
 ssh_options[:forward_agent] = true # use the same ssh keys as my computer for git checkout
@@ -38,7 +38,7 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 # role :db,  "your slave db-server here"
 
 # Foreman settings
-set :foreman_sudo,        'sudo -i -u deploy'  # Set to `rvmsudo` if you're using RVM
+set :foreman_sudo,        "#{sudo} -i -u deploy"  # Set to `rvmsudo` if you're using RVM
 set :foreman_concurrency, 'web=1,worker=2'
 
 set :keep_releases, 5
@@ -82,8 +82,8 @@ namespace :deploy do
     deploy.migrate
 
     # Export / Restart foreman
-    run "cd #{deploy_to}/current && #{sudo} bundle exec foreman export upstart /etc/init --app #{application} --log #{deploy_to}/shared/log --user #{user} --procfile Procfile.production --concurrency #{foreman_concurrency}"
-    run "#{sudo} service #{application} start || #{sudo} service #{application} restart"
+    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init --app #{application} --log #{deploy_to}/shared/log --user #{user} --procfile Procfile.production --concurrency #{foreman_concurrency}"
+    run "#{sudo} service #{application} start || #{g} service #{application} restart"
   end
 
   task :stop do
