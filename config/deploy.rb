@@ -44,7 +44,7 @@ set :foreman_options, {
   :app         => application,
   :log         => "#{deploy_to}/shared/log",
   :user        => user,
-  :procfile    => 'Procfile.production'
+  :procfile    => 'Procfile.production',
   :concurrency => "web=1,worker=2"
 }
 
