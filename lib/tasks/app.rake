@@ -46,15 +46,11 @@ namespace :app  do
 
       compile_coffee_to_js()
 
-      # Delayed_jobs
-      new_tab('Delayed_Jobs', ["cd #{Dir.pwd}",
-                               "bundle exec rake jobs:work"])
-
       # Empty shell
       new_tab('Shell', ["cd #{Dir.pwd}", "clear"])
 
       # Launch server
-      system('bundle exec rails s')
+      system('foreman start -f Procfile.development')
     end
   end
 

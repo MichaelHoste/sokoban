@@ -1,5 +1,5 @@
-require "bundler/capistrano"
-require "delayed/recipes"
+require 'bundler/capistrano'
+require 'foreman/capistrano'
 
 # Comment when first "cap deploy" (gem is not present yet and "bundle" is made after this)
 set :whenever_command, 'bundle exec whenever'
@@ -37,15 +37,19 @@ role :app, "188.165.255.96"                          # This may be the same as y
 role :db,  "188.165.255.96", :primary => true        # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
+# Foreman settings
+set :foreman_sudo, 'sudo'               # Set to `rvmsudo` if you're using RVM
+set :foreman_upstart_path, '/etc/init/' # Set to `/etc/init/` if you don't have a sites folder
+set :foreman_options, {
+  :app         => application,
+  :log         => "#{deploy_to}/shared/log",
+  :user        => user,
+  :procfile    => 'Procfile.production'
+  :concurrency => "web=1,worker=2"
+}
+
 set :keep_releases, 5
 after "deploy:restart", "deploy:cleanup"
-
-# delayed jobs
-set :delayed_job_args,  "-n 2"       # 2 delayed jobs (lot of works for pictures when new user)
-set :rails_env,         "production" # for delayed jobs
-after "deploy:stop",    "delayed_job:stop"
-after "deploy:start",   "delayed_job:start"
-after "deploy:restart", "delayed_job:restart"
 
 before "deploy:assets:precompile" do
   # Database
@@ -85,8 +89,8 @@ namespace :deploy do
     deploy.migrate
 
     # Unicorn configuration
-    unicorn_config_path = "#{deploy_to}/current/config/unicorn.rb"
-    run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_config_path} -E production -D"
+    foreman.export
+    foreman.restart
   end
 
   task :stop do

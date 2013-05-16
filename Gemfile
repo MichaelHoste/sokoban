@@ -12,15 +12,18 @@ gem 'json'
 gem 'omniauth-facebook', '1.4.0' # because of this in 1.4.1 : https://github.com/mkdynamic/omniauth-facebook/issues/73
 gem 'koala'
 gem 'nokogiri'
-gem 'capistrano'
 gem 'madmimi'
 gem 'delayed_job_active_record'
 gem 'daemons' # for delayed job
 gem 'sitemap_generator'
 gem 'httparty'
-gem 'foreman'
 
-# graphs
+# Deployement
+gem 'capistrano'
+gem 'foreman'
+gem 'capistrano-foreman'
+
+# Graphs
 gem 'groupdate'
 gem 'chartkick'
 
