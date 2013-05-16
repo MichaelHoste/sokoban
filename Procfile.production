@@ -1,5 +1,2 @@
-debug:  bundle exec echo "DEBUG" >> /tmp/upstart_debug
-debug2: bundle exec echo $PATH >> /tmp/upstart_debug
-debug3: bundle exec echo `ruby --version` >> /tmp/upstart_debug
 web:    bundle exec unicorn -c $APP_PATH/config/unicorn.rb -E production -D
 worker: bundle exec rake jobs:work
