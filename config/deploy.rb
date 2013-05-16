@@ -38,7 +38,7 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 # role :db,  "your slave db-server here"
 
 # Foreman settings
-set :foreman_sudo, 'sudo'               # Set to `rvmsudo` if you're using RVM
+set :foreman_sudo, 'sudo -i -u deploy'  # Set to `rvmsudo` if you're using RVM
 set :foreman_upstart_path, '/etc/init/' # Set to `/etc/init/` if you don't have a sites folder
 set :foreman_options, {
   :app         => application,
