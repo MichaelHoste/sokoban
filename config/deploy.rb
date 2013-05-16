@@ -38,8 +38,8 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 # role :db,  "your slave db-server here"
 
 # Foreman settings
-set :foreman_sudo, 'sudo -i -u deploy'  # Set to `rvmsudo` if you're using RVM
-set :foreman_concurrency, "web=1,worker=2"
+set :foreman_sudo,        'sudo -i -u deploy'  # Set to `rvmsudo` if you're using RVM
+set :foreman_concurrency, 'web=1,worker=2'
 
 set :keep_releases, 5
 after "deploy:restart", "deploy:cleanup"
@@ -82,7 +82,7 @@ namespace :deploy do
     deploy.migrate
 
     # Export / Restart foreman
-    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init #{format options} --app #{application} --log #{deploy_to}/shared/log --user #{user} --procfile Procfile.production --concurrency #{foreman_concurrency}"
+    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init --app #{application} --log #{deploy_to}/shared/log --user #{user} --procfile Procfile.production --concurrency #{foreman_concurrency}"
     run "sudo service #{application} start || sudo service #{application} restart"
   end
 
