@@ -54,6 +54,24 @@ before "deploy:assets:precompile" do
   run "ln -s #{deploy_to}/shared/config/email.yml #{latest_release}/config/email.yml;true"
 end
 
+namespace :foreman do
+  task :export, :roles => :app do
+    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{deploy_to}/shared/log -f Procfile.production -e env.production -c #{foreman_concurrency}"
+  end
+
+  task :start, :roles => :app do
+    "#{sudo} start #{application}"
+  end
+
+  task :stop, :roles => :app do
+    "#{sudo} stop #{application}"
+  end
+
+  task :restart, :roles => :app do
+    run "#{sudo} start #{application} || sudo restart #{application}"
+  end
+end
+
 namespace :deploy do
   task :start do
     # Thumbs of levels (generated when needed)
@@ -82,25 +100,8 @@ namespace :deploy do
     deploy.migrate
 
     # Export / Restart foreman
-    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init --app #{application} --log #{deploy_to}/shared/log --user #{user} --procfile Procfile.production --concurrency #{foreman_concurrency}"
-    run "#{sudo} service #{application} start || #{sudo} service #{application} restart"
-  end
-
-  task :stop do
-    unicorn_pid = "#{deploy_to}/shared/pids/unicorn.pid"
-    if 'true' ==  capture("if [ -e #{unicorn_pid} ]; then echo 'true'; fi").strip
-      run "kill -s QUIT `cat #{unicorn_pid}`;true"
-    end
-  end
-
-  task :kill do
-    unicorn_pid = "#{deploy_to}/shared/pids/unicorn.pid"
-    run "kill `cat #{unicorn_pid}`;true"
-  end
-
-  task :restart do
-    deploy.stop
-    deploy.start
+    foreman.export
+    foreman.restart
 
     # Launch delayed job for publish feed
     run("cd #{latest_release} && bundle exec rake app:facebook_feed_delayed_job RAILS_ENV=#{rails_env}")
@@ -110,6 +111,14 @@ namespace :deploy do
 
     # Regeneration of sitemap
     run("cd #{latest_release} && bundle exec rake sitemap:refresh RAILS_ENV=#{rails_env}")
+  end
+
+  task :stop do
+    foreman.stop
+  end
+
+  task :restart do
+    foreman.restart
   end
 end
 
