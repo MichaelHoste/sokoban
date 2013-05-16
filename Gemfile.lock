@@ -43,7 +43,6 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
-    capistrano-foreman (0.0.3)
     chartkick (0.0.3)
       railties (>= 3.1)
     childprocess (0.3.6)
@@ -246,7 +245,6 @@ DEPENDENCIES
   airbrake
   backup
   capistrano
-  capistrano-foreman
   chartkick
   coffee-rails (~> 3.2.1)
   daemons

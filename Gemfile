@@ -21,7 +21,6 @@ gem 'httparty'
 # Deployement
 gem 'capistrano'
 gem 'foreman'
-gem 'capistrano-foreman'
 
 # Graphs
 gem 'groupdate'
