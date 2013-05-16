@@ -78,7 +78,7 @@ body {
 	width:40px;
 }
 #content {
-	padding: 25px 0 0 0;
+	padding: 18px 0 0 0;
 }
 .footer {
 	overflow: hidden;
@@ -104,15 +104,14 @@ body {
 	z-index: 1;
 }
 #limited-content #google-sense {
-	margin-top: -17px;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 	height: 93px;
 }
 #limited-content #pay-me-a-beer {
 	width: 227px;
 	height: 90px;
 	float: right;
-	margin-top: -17px;
+	margin-bottom: 15px;
 	margin-left: 5px;
 	cursor:pointer;
 }
