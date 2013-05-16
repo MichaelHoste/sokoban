@@ -38,7 +38,7 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 # role :db,  "your slave db-server here"
 
 # Foreman settings
-set :foreman_sudo,        "#{sudo} env PATH=$PATH"  # Set to `rvmsudo` if you're using RVM
+set :foreman_sudo,        "#{sudo}"  # Set to `rvmsudo` if you're using RVM
 set :foreman_concurrency, 'web=1,worker=2'
 
 set :keep_releases, 5
@@ -55,19 +55,19 @@ before "deploy:assets:precompile" do
 end
 
 namespace :foreman do
-  task :export, :roles => :app do
-    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{deploy_to}/shared/log -f Procfile.production -e env.production -c #{foreman_concurrency}"
+  task :export do
+    run "cd #{deploy_to}/current && #{sudo} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{deploy_to}/shared/log -f Procfile.production -e env.production -c #{foreman_concurrency}"
   end
 
-  task :start, :roles => :app do
+  task :start do
     "#{sudo} start #{application}"
   end
 
-  task :stop, :roles => :app do
+  task :stop do
     "#{sudo} stop #{application}"
   end
 
-  task :restart, :roles => :app do
+  task :restart do
     run "#{sudo} start #{application} || sudo restart #{application}"
   end
 end
@@ -118,7 +118,8 @@ namespace :deploy do
   end
 
   task :restart do
-    foreman.restart
+    deploy.stop
+    deploy.start
   end
 end
 
