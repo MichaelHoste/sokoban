@@ -1,5 +1,4 @@
 require 'bundler/capistrano'
-require 'foreman/capistrano'
 
 # Comment when first "cap deploy" (gem is not present yet and "bundle" is made after this)
 set :whenever_command, 'bundle exec whenever'
