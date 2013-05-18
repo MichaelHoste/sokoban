@@ -38,7 +38,7 @@ role :db,  "188.165.255.96", :primary => true        # This is where Rails migra
 
 # Foreman settings
 set :foreman_sudo,        "#{sudo} env PATH=$PATH"  # Set to `rvmsudo` if you're using RVM
-set :foreman_concurrency, 'web=1,worker=2'
+set :foreman_concurrency, '-c web=1,worker=2'
 
 set :keep_releases, 5
 after "deploy:restart", "deploy:cleanup"
@@ -55,7 +55,7 @@ end
 
 namespace :foreman do
   task :export do
-    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{deploy_to}/shared/log -f Procfile.production -e env.production -c #{foreman_concurrency}"
+    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{deploy_to}/shared/log -f Procfile.production -e env.production #{foreman_concurrency}"
   end
 
   task :start do
