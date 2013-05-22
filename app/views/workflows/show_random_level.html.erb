@@ -2,15 +2,15 @@
 
 <div id="random-level">
   <div class="title">
-    Can you solve this level?
+    <%= _("Can you solve this level?") %>
   </div>
 
-  <div class="random-level tips" title="Try this level" data-id           = "<%= @level.id %>"
-                                                        data-level-grid   = "<%= @level.inline_grid_with_floor %>"
-                                                        data-level-width  = "<%= @level.width %>"
-                                                        data-level-height = "<%= @level.height %>"
-                                                        data-level-name   = "<%= u(@level.name) %>"
-                                                        data-pack-name    = "<%= u(@level.pack.name) %>">
+  <div class="random-level tips" title="<%= _("Try this level") %>" data-id           = "<%= @level.id %>"
+                                                                    data-level-grid   = "<%= @level.inline_grid_with_floor %>"
+                                                                    data-level-width  = "<%= @level.width %>"
+                                                                    data-level-height = "<%= @level.height %>"
+                                                                    data-level-name   = "<%= u(@level.name) %>"
+                                                                    data-pack-name    = "<%= u(@level.pack.name) %>">
     <div id="random-level-canvas">
     </div>
   </div>
@@ -22,17 +22,24 @@
 
       <% if not current_user or friend_names.count == 0 %>
         <% if all_names.count == 0 %>
-          This level has not yet been solved.
+          <%= _("This level has not yet been solved.") %>
         <% elsif all_names.count == 1 %>
-          This level has been solved by <span class="tips" title="<%= all_names.to_sentence(:last_word_connector => ' and ') %>">one person</span>.
+          <%= _('This level has been solved by <span class="tips" title="%{list_of_people}">one person</span>.' %
+                { :list_of_people => all_names.to_sentence } ) %>
         <% else %>
-          This level has been solved by <span class="tips" title="<%= all_names.to_sentence(:last_word_connector => ' and ') %>"><%= all_names.count %> people</span>.
+          <%= _('This level has been solved by <span class="tips" title="%{list_of_people}">%{count_of_people} people</span>.' %
+                { :list_of_people  => all_names.to_sentence,
+                  :count_of_people => all_names.count } ) %>
         <% end %>
       <% else %>
         <% if friend_names.count <= 5 %>
-          This level has been solved by <%= friend_names.to_sentence(:last_word_connector => ' and ') %>.
+          <%= _("This level has been solved by %{list_of_people}" %
+                { :list_of_people => friend_names.to_sentence } ) %>
         <% else %>
-          This level has been solved by <%= friend_names.take(5).join(', ') %> and <span class="tips" title="<%= friend_names.drop(5).to_sentence(:last_word_connector => ' and ') %>"><%= friend_names.count - 5 %> other friends</span>.
+          <%= _('This level has been solved by %{list_of_people} and <span class="tips" title="%{list_of_more_people}">%{count_of_people} other friends</span>.' %
+                { :list_of_people      => friend_names.take(5).join(', '),
+                  :list_of_more_people => friend_names.drop(5).to_sentence,
+                  :count_of_people     => friend_names.count - 5 } ) %>
         <% end %>
       <% end %>
     </div>
@@ -40,11 +47,11 @@
 
   <div class="challenge-buttons">
     <div class="reload-button">
-      <a href="#">Another Challenge</a>
+      <a href="#"><%= _("Another Challenge") %></a>
     </div>
 
     <div class="later-button">
-      <a href="#">Later</a>
+      <a href="#"><%= _("Later") %></a>
     </div>
   </div>
 </div>

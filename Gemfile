@@ -26,6 +26,13 @@ gem 'foreman'
 gem 'groupdate'
 gem 'chartkick'
 
+# Translation
+gem 'gettext_i18n_rails'
+
+gem 'jquery-rails'
+gem 'therubyracer'  # Exec js code in ruby
+gem 'libv8'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -34,15 +41,15 @@ group :assets do
   gem 'uglifier',     '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-gem 'therubyracer'  # Exec js code in ruby
-gem 'libv8'
-
 # Development tools
 group :development do
   gem 'thin'
   gem 'quiet_assets'
   gem 'query_reviewer'
+
+  # translation
+  gem 'gettext',     :require => false # use "brew link --force gettext" to link to gettext on MacOS (brew was afraid to link)
+  gem 'ruby_parser', :require => false
 end
 
 # Production/deployment tools

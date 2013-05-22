@@ -2,33 +2,33 @@
 
 <div id="invite-friends">
   <div class="title">
-    Play with friends!
+    <%= _("Play with friends!") %>
   </div>
 
   <div class="sub-title">
-    Playing with friends provides a better experience, but only <span style="font-weight:bold"><%= current_user.friends.registered.count %></span> of your friends are on Sokoban!
+    <%= _("Playing with friends provides a better experience, but only <span style=\"font-weight:bold\">%{num}</span> of your friends are on Sokoban!" % { :num => current_user.friends.registered.count }) %>
   </div>
 
   <div class="friends">
     <div class="top">
       <% @friends.take(28).each do |friend| %>
-        <img class="tips-direct" title="Invite <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
+        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
       <% end %>
     </div>
 
     <div class="left">
       <% @friends.drop(28).take(9).each do |friend| %>
-        <img class="tips-direct" title="Invite <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
+        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
       <% end %>
     </div>
 
     <div class="friend-button">
-      <i class="icon-group icon-large"></i> INVITE MY FRIENDS<sup>1</sup>
+      <i class="icon-group icon-large"></i> <%= _("INVITE MY FRIENDS") %><sup>1</sup>
     </div>
 
     <div class="right">
       <% @friends.drop(37).take(9).each do |friend| %>
-        <img class="tips-direct" title="Invite <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
+        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
       <% end %>
     </div>
 
@@ -36,18 +36,18 @@
 
     <div class="bottom">
       <% @friends.drop(46).take(28).each do |friend| %>
-        <img class="tips-direct" title="Invite <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
+        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
       <% end %>
     </div>
   </div>
 
   <div class="buttons">
     <ul>
-      <li class="button-next"><i class="icon-forward"></i>&nbsp;Later</li>
+      <li class="button-next"><i class="icon-forward"></i>&nbsp;<%= _("Later") %></li>
     </ul>
     <span>
       <sup>1</sup>
-      No more ads and no more invitation popups during 7 days.
+      <%= _("No more ads and no more invitation popups during 7 days.") %>
     </span>
     <div style="clear:both"></div>
   </div>

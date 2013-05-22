@@ -11,11 +11,11 @@
     <%= link_to level_user_link.user_name, user_link, :title => level_user_link.user_name %>
   </div>
   <div class="score-pushes">
-    <p><strong><%= level_user_link.pushes %></strong> pushes (<%= level_user_link.moves %>)</p>
+    <p><strong><%= level_user_link.pushes %></strong> <%= _("pushes") %> (<%= level_user_link.moves %>)</p>
   </div>
   <div class="brag">
     <span class="brag-button">
-      <i class="icon-bullhorn"></i>&nbsp;&nbsp;Brag!
+      <i class="icon-bullhorn"></i>&nbsp;&nbsp;<%= _("Brag!") %>
     </span>
   </div>
 </div>

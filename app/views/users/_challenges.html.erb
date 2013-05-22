@@ -1,7 +1,7 @@
 <% if current_user %>
   <div id="challenges">
     <div id="limited-challenges">
-      <h4 class="challenge-title">Challenges</h4>
+      <h4 class="challenge-title"><%= _("Challenges") %></h4>
       <div id="invitations">
         <% unless current_user %>
           <%= link_to image_tag("facebook-connect-banner.gif"), '/auth/facebook' %>
@@ -9,7 +9,7 @@
         <%# AJAX ! 'users/popular_friends' %>
       </div>
       <div id="invitations-more">
-        More users to challenge
+        <%= _("More users to challenge") %>
       </div>
     </div>
   </div>

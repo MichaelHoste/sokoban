@@ -27,19 +27,19 @@
 
         <li>
           <a href="#">
-            <%= image_tag 'add_friend.png', :id => 'add-one-friend', :class => 'tips popup', :title => 'Challenge one friend on this level' %>
+            <%= image_tag 'add_friend.png', :id => 'add-one-friend', :class => 'tips popup', :title => _('Challenge one friend on this level') %>
           </a>
         </li>
 
         <li>
           <a href="#">
-            <%= image_tag 'add_friends.png', :id => 'add-more-friends', :class => 'tips popup', :title => 'Invite more friends' %>
+            <%= image_tag 'add_friends.png', :id => 'add-more-friends', :class => 'tips popup', :title => _('Invite more friends') %>
           </a>
         </li>
 
         <li>
           <a href="#">
-            <%= image_tag 'add_wall.png', :id => 'share-on-wall', :class => 'tips popup', :title => 'Share the current level on your Facebook feed' %>
+            <%= image_tag 'add_wall.png', :id => 'share-on-wall', :class => 'tips popup', :title => _('Share the current level on your Facebook feed') %>
           </a>
         </li>
       </ul>
@@ -54,16 +54,16 @@
         <div class="user-stars-pack">
           <span class="star icon-star"></span>
           <span class="num">...</span>
-          <span>In this pack</span>
+          <span><%= _("In this pack") %></span>
         </div>
         <div class="user-stars-total">
           <span class="star icon-star"></span>
           <span class="num">...</span>
-          <span>Total</span>
+          <span><%= _("Total") %></span>
         </div>
       </div>
       <div class="user-challenge-this">
-        <a href="#">Click to challenge on this level</a>
+        <a href="#"><%= _("Click to challenge on this level") %></a>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@
 
   <div id="banner">
     <div id="limited-banner" class="banner-text">
-      <h2>Play Sokoban and Challenge your Friends</h2>
+      <h2><%= _("Play Sokoban and Challenge your Friends") %></h2>
     </div>
   </div>
 

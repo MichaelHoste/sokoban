@@ -1,14 +1,14 @@
-<%= link_to "Terms of Service", '/terms_of_service' %>
+<%= link_to _("Terms of Service"), '/terms_of_service' %>
 |
-<%= link_to "Privacy Policy", '/privacy_policy' %>
+<%= link_to _("Privacy Policy"), '/privacy_policy' %>
 |
-<%= link_to "Packs & Levels Copyright", '/packs' %>
+<%= link_to _("Packs & Levels Copyright"), '/packs' %>
 |
 <% if current_user and current_user.admin? %>
-  <%= link_to "Stats", '/stats' %>
+  <%= link_to _("Stats"), '/stats' %>
   |
 <% end %>
-<%= link_to "Contact us", 'mailto:contact@sokoban-game.com' %>
+<%= link_to _("Contact us"), 'mailto:contact@sokoban-game.com' %>
 
 <br/><br/>
 

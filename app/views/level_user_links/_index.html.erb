@@ -1,7 +1,7 @@
 <% if not @pushes_scores_friends.empty? %>
   <div id="friends">
     <div class="scores-title">
-      Friends
+      <%= _("Friends") %>
     </div>
     <div id="score-friends">
       <%= render @pushes_scores_friends %>
@@ -21,7 +21,7 @@
 
 <div id="all">
   <div class="scores-title">
-    All
+    <%= _("All") %>
   </div>
   <div id="score-all">
     <%= render @pushes_scores %>

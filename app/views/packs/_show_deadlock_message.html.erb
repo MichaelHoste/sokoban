@@ -1,8 +1,8 @@
 <div id="deadlock">
   <div id="deadlock-message">
-    A <a class="tips" href="http://www.sokobano.de/wiki/index.php?title=Deadlocks" title="Click for more informations about Sokoban deadlocks">deadlock</a> has been found
+    <%= _('A <a class="tips" href="http://www.sokobano.de/wiki/index.php?title=Deadlocks" title="Click for more informations about Sokoban deadlocks">deadlock</a> has been found') %>
   </div>
   <div id="deadlock-press-d">
-    <span>Press <%= image_tag "key_d.png" %> to cancel the last move</span>
+    <span><%= _('Press %{d} to cancel the last move' % { :d => image_tag("key_d.png") }) %></span>
   </div>
 </div>

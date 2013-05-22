@@ -2,50 +2,50 @@
 
 <div id="limited-content">
 
-  <h1>List of Sokoban levels</h1>
+  <h1><%= _("List of Sokoban levels") %></h1>
 
   <% @packs.each do |pack| %>
     <br/><br/>
     <div>
       <table>
         <tr>
-          <td><strong>Name</strong></td>
+          <td><strong><%= _("Name") %></strong></td>
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td><h2><%= pack.name %></h2></td>
         </tr>
         <tr>
-          <td>Filename</td>
+          <td><%= _("Filename") %></td>
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td><%= pack.file_name %>.slc</td>
         </tr>
         <tr>
-          <td>Description</td>
+          <td><%= _("Description") %></td>
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td><%= pack.description %></td>
         </tr>
         <tr>
-          <td>Email</td>
+          <td><%= _("Email") %></td>
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td><%= pack.email %></td>
         </tr>
         <tr>
-          <td>Url</td>
+          <td><%= _("Url") %></td>
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td><a href="<%= pack.url %>"><%= pack.url %></a></td>
         </tr>
         <tr>
-          <td>Copyright</td>
+          <td><%= _("Copyright") %></td>
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td><%= pack.copyright %></td>
         </tr>
         <tr>
-          <td>Levels</td>
+          <td><%= _("Levels") %></td>
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td>
             <% pack.levels.each_with_index do |level, index| %>
               <strong><h3><%= link_to level.name, pack_level_path(pack.name, level.name) %></h3></strong>
               <% if level.copyright.present? %>
-                (copyright : <%= level.copyright %>)
+                (<%= _("copyright: ") %> <%= level.copyright %>)
               <% end %>
               <br/>
             <% end %>

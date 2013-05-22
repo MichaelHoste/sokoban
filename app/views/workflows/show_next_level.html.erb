@@ -3,14 +3,14 @@
 <div id="game-won">
   <div class="game-won-in">
     <div class="game-won-in-left">
-      <h3>Level successfully completed!</h3>
+      <h3><%= _("Level successfully completed!") %></h3>
       <div id="final-score" class="score">
-        <div class="score-pushes"> <span class="num"><%= @score.pushes %></span><br/>pushes</div>
-        <div class="score-moves"> <span class="num"><%= @score.moves %></span><br/>moves</div>
+        <div class="score-pushes"> <span class="num"><%= @score.pushes %></span><br/><%= _("pushes") %></div>
+        <div class="score-moves"> <span class="num"><%= @score.moves %></span><br/><%= _("moves") %></div>
       </div>
 
       <% @ladder.each do |score| %>
-        <div class="final-score-item tips-left" data-id="<%= score.user ? score.user.id : '' %>" data-f_id="<%= score.user ? score.user.f_id : '' %>" title="<%= "#{score.user.total_won_levels} levels completed" %>" data-score-worse="<%= score.worse %>">
+        <div class="final-score-item tips-left" data-id="<%= score.user ? score.user.id : '' %>" data-f_id="<%= score.user ? score.user.f_id : '' %>" title="<%= "#{score.user.total_won_levels} <%= _("levels completed") %>" %>" data-score-worse="<%= score.worse %>">
           <div class="score-position"><%= score.position %></div>
           <div class="score-picture">
             <%= link_to image_tag(score.user.profile_picture, :width => '50px'), score.user.f_link %>
@@ -19,11 +19,11 @@
             <%= link_to score.user.name, score.user.f_link, :title => score.user.name %>
           </div>
           <div class="score-pushes">
-            <p><strong><%= score.pushes %></strong> pushes (<%= score.moves %>)</p>
+            <p><strong><%= score.pushes %></strong> <%= _("pushes") %> (<%= score.moves %>)</p>
           </div>
           <div class="brag">
             <span class="brag-button">
-              <i class="icon-bullhorn"></i>&nbsp;&nbsp;Brag!
+              <i class="icon-bullhorn"></i>&nbsp;&nbsp;<%= _("Brag!") %>
             </span>
           </div>
         </div>
@@ -39,32 +39,32 @@
                                    data-level-grid="<%= @level.inline_grid_with_floor %>"
                                    data-level-width="<%= @level.width %>"
                                    data-level-height="<%= @level.height %>">
-        <div id="this-level-canvas" class="tips" title="Retry this level : <%= @level.name %>"></div>
+        <div id="this-level-canvas" class="tips" title="<%= _("Retry this level") %> : <%= @level.name %>"></div>
       </div>
 
       <ul class="game-actions">
-        <li class="game-action-retry"     title="Retry this level : <%= @level.name %>"><a href="#">Retry</a></li>
-        <li class="game-action-next"      title="Go to next level : <%= @next_level.name %>"><a href="#">Next</a></li>
-        <li class="game-action-challenge" title="Can you solve this level?"><a href="#">Challenge</a></li>
+        <li class="game-action-retry"     title="<%= _("Retry this level:") %> <%= @level.name %>"><a href="#"><%= _("Retry") %></a></li>
+        <li class="game-action-next"      title="<%= _("Go to next level:") %> <%= @next_level.name %>"><a href="#"><%= _("Next") %></a></li>
+        <li class="game-action-challenge" title="<%=_ ("Can you solve this level?") %>"><a href="#"><%= _("Challenge") %></a></li>
       </ul>
 
       <div class="next-level" data-level-name="<%= u(@next_level.name) %>"
                               data-level-grid="<%= @next_level.inline_grid_with_floor %>"
                               data-level-width="<%= @next_level.width %>"
                               data-level-height="<%= @next_level.height %>">
-        <div id="next-level-canvas" class="tips" title="Go to next level : <%= @next_level.name %>"></div>
+        <div id="next-level-canvas" class="tips" title="<%= _("Go to next level:") %> <%= @next_level.name %>"></div>
       </div>
     </div>
 
     <div style="clear:both">
     </div>
 
-    <div id="share-on-fb" class="tips" title="I just solved this Sokoban level with <%= @score.pushes %> pushes and <%= @score.moves %> moves and I bet that you can't!">
+    <div id="share-on-fb" class="tips" title="<%= _("I just solved this Sokoban level with %{pushes} pushes and %{moves} moves and I bet that you can't!" % { :pushes => @score.pushes, :moves => @score.moves }) %>">
       <div class="share-bullhorn">
         <i class="icon-bullhorn"></i>
       </div>
       <div class="share-text">
-        <span>BRAG YOUR FRIENDS!</span>
+        <span><%= _("BRAG YOUR FRIENDS!") %></span>
       </div>
     </div>
 

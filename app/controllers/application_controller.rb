@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_user
+
+  before_filter :set_gettext_locale
   before_filter :check_facebook
 
   def current_user

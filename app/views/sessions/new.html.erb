@@ -5,12 +5,12 @@
     <div class="session-connect">
       <%= link_to image_tag("facebook-connect.jpg"), '/auth/facebook' %>
     </div>
-    
+
     <div class="session-text">
-      <span class="session-text-title">Login with Facebook</span>
+      <span class="session-text-title"><%= _("Login with Facebook") %></span>
       <%= render :template => 'sessions/_login_advantages' %>
     </div>
-    
+
     <div style="clear:both"></div>
   </div>
 

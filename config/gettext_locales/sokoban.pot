@@ -1,0 +1,304 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: version 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-22 16:15+0200\n"
+"PO-Revision-Date: 2013-05-21 16:18+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+msgid "(7 days without ads / popups)"
+msgstr ""
+
+msgid "A <a class=\"tips\" href=\"http://www.sokobano.de/wiki/index.php?title=Deadlocks\" title=\"Click for more informations about Sokoban deadlocks\">deadlock</a> has been found"
+msgstr ""
+
+msgid "A beer only cost 2€ at <a href=\"https://www.facebook.com/pages/La-Paile-dOr/137863449611682\">my favorite bar</a>."
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Another Challenge"
+msgstr ""
+
+msgid "BRAG YOUR FRIENDS!"
+msgstr ""
+
+msgid "Brag!"
+msgstr ""
+
+msgid "Can you solve this level?"
+msgstr ""
+
+msgid "Careful, these are VERY complicated rules !"
+msgstr ""
+
+msgid "Challenge"
+msgstr ""
+
+msgid "Challenge one friend on this level"
+msgstr ""
+
+msgid "Challenges"
+msgstr ""
+
+msgid "Click to challenge on this level"
+msgstr ""
+
+msgid "Contact us"
+msgstr ""
+
+msgid "Controls"
+msgstr ""
+
+msgid "Copyright"
+msgstr ""
+
+msgid "Custom friend invitation"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Facebook connection failed (access not granted)"
+msgstr ""
+
+msgid "Filename"
+msgstr ""
+
+msgid "Follow"
+msgstr ""
+
+msgid "Follow us on Twitter"
+msgstr ""
+
+msgid "Fork me on GitHub"
+msgstr ""
+
+msgid "Free and Social Puzzle Game"
+msgstr ""
+
+msgid "Friends"
+msgstr ""
+
+msgid "Go to next level:"
+msgstr ""
+
+msgid "Hi, I'm <a href=\"https://www.facebook.com/michael.hoste\">Michaël Hoste</a>, a guy from Belgium who likes to play Sokoban."
+msgstr ""
+
+msgid "I also like to drink beers ! (I'm from Belgium, remember?)"
+msgstr ""
+
+msgid "I just solved this Sokoban level with %{pushes} pushes and %{moves} moves and I bet that you can't!"
+msgstr ""
+
+msgid "I like it so much that:"
+msgstr ""
+
+msgid "I like to move it move it !"
+msgstr ""
+
+msgid "I've created this <a href=\"https://github.com/MichaelHoste/sokoban\">OPEN-SOURCE</a> (<a href=\"http://en.wikipedia.org/wiki/MIT_License\">MIT License</a>) game on my spare time.</li>"
+msgstr ""
+
+msgid "I've written a <a href=\"http://www.opengl.fr/memoire/Memoire/Memoire.pdf\">Master Thesis</a> on the subject (french)</li>"
+msgstr ""
+
+msgid "INVITE MY FRIENDS"
+msgstr ""
+
+msgid "If you like our page, this window will never popup again."
+msgstr ""
+
+msgid "If you want to support me, and get rid of the advertisements, there are 2 solutions:"
+msgstr ""
+
+msgid "In this pack"
+msgstr ""
+
+msgid "Invite"
+msgstr ""
+
+msgid "Invite all your friends"
+msgstr ""
+
+msgid "Invite more friends"
+msgstr ""
+
+msgid "Invite some friends"
+msgstr ""
+
+msgid "Invite some of your friends"
+msgstr ""
+
+msgid "Later"
+msgstr ""
+
+msgid "Level successfully completed!"
+msgstr ""
+
+msgid "Levels"
+msgstr ""
+
+msgid "Like our Facebook page"
+msgstr ""
+
+msgid "List of Sokoban levels"
+msgstr ""
+
+msgid "Login with Facebook"
+msgstr ""
+
+msgid "More users to challenge"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "No more ads and no more invitation popups during 7 days."
+msgstr ""
+
+msgid "No more ads, no more invitation popups"
+msgstr ""
+
+msgid "Offer me a beer!"
+msgstr ""
+
+msgid "PLAY SOKOBAN AND CHALLENGE YOUR FRIENDS"
+msgstr ""
+
+msgid "Packs & Levels Copyright"
+msgstr ""
+
+msgid "Play Sokoban and Challenge your Friends"
+msgstr ""
+
+msgid "Play with friends!"
+msgstr ""
+
+msgid "Playing with friends provides a better experience, but only <span style=\"font-weight:bold\">%{num}</span> of your friends are on Sokoban!"
+msgstr ""
+
+msgid "Post on your wall"
+msgstr ""
+
+msgid "Press %{d} to cancel the last move"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Retry this level"
+msgstr ""
+
+msgid "Retry this level:"
+msgstr ""
+
+msgid "Rules"
+msgstr ""
+
+msgid "Several ways:"
+msgstr ""
+
+msgid "Share the current level on your Facebook feed"
+msgstr ""
+
+msgid "Sokoban (倉庫番) is Japanese for <em>warehouse keeper</em>."
+msgstr ""
+
+msgid "Sorry, your browser doesn't support the &lt;canvas/&gt; tag. Please come back with a newer browser."
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Stats"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "The Sokoban can only push one box at a time and is not able to pull them. A level is won when each box is on a goal."
+msgstr ""
+
+msgid "The addictive Puzzle-Game made Social"
+msgstr ""
+
+msgid "This level has been solved by %{list_of_people}"
+msgstr ""
+
+msgid "This level has been solved by %{list_of_people} and <span class=\"tips\" title=\"%{list_of_more_people}\">%{count_of_people} other friends</span>."
+msgstr ""
+
+msgid "This level has been solved by <span class=\"tips\" title=\"%{list_of_people}\">%{count_of_people} people</span>."
+msgstr ""
+
+msgid "This level has been solved by <span class=\"tips\" title=\"%{list_of_people}\">one person</span>."
+msgstr ""
+
+msgid "This level has not yet been solved."
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Try this level"
+msgstr ""
+
+msgid "Unlock the Full Game"
+msgstr ""
+
+msgid "Url"
+msgstr ""
+
+msgid "Use the arrow keys to move the Sokoban one step <em>up</em>, <em>down</em>, <em>left</em> or <em>right</em>."
+msgstr ""
+
+msgid "Want to reward my work ? Just pay me a beer (full game without ads)"
+msgstr ""
+
+msgid "Welcome to Sokoban"
+msgstr ""
+
+msgid "copyright: "
+msgstr ""
+
+msgid "moves"
+msgstr ""
+
+msgid "pushes"
+msgstr ""
+
+msgid "sokoban, pushes, moves, brag, puzzle, game, levels, packs, challenge, friends, social"
+msgstr ""
+
+msgid "to compare your scores with your friends."
+msgstr ""
+
+msgid "to save your best scores."
+msgstr ""
+
+msgid "to save your progression."
+msgstr ""
