@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
     graph = Koala::Facebook::API.new(token)
     profile = graph.get_object('me')
 
+    # Admin get an extended token for the fan page publications
     if profile['id'] == ENV['FACEBOOK_ADMIN_ID']
       token = extended_token(token)
       expires_at = Time.now.to_datetime + 60.days
@@ -109,12 +110,13 @@ class User < ActiveRecord::Base
       # email to admin
       UserNotifier.delay.new_user(user.name, user.email)
 
+      # Post status on facebook page if %100
       if (User.registered.count+1) % 100 == 0
         FacebookFeedService.publish_user_count(User.registered.count+1)
       end
     end
 
-    # Facebook bug : sometimes the email is empty !
+    # Facebook bug : sometimes the email is empty => investigate !
     user.email = "#{user.f_username}@facebook.com" if not user.email or user.email.empty?
 
     user.like_fan_page = user.request_like_fan_page?

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-22 16:15+0200\n"
+"POT-Creation-Date: 2013-05-23 15:21+0200\n"
 "PO-Revision-Date: 2013-05-21 16:18+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 msgid "(7 days without ads / popups)"
+msgstr ""
+
+msgid "(no more ads / popups)"
 msgstr ""
 
 msgid "A <a class=\"tips\" href=\"http://www.sokobano.de/wiki/index.php?title=Deadlocks\" title=\"Click for more informations about Sokoban deadlocks\">deadlock</a> has been found"
@@ -240,7 +243,7 @@ msgstr ""
 msgid "Terms of Service"
 msgstr ""
 
-msgid "The Sokoban can only push one box at a time and is not able to pull them. A level is won when each box is on a goal."
+msgid "The Sokoban can only push one box at a time and is not able to pull them. A level is solved when each box is on a goal."
 msgstr ""
 
 msgid "The addictive Puzzle-Game made Social"

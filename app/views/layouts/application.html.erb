@@ -6,6 +6,7 @@
     <meta name="description" content="<%= @level ? "#{@level.pack.description} (#{@level.pack.file_name}.slc - #{@level.pack.copyright} - #{@level.pack.email} - #{@level.pack.url})" : "Sokoban is a puzzle-game in which the player pushes boxes around in a warehouse, trying to get them to storage locations." %>" />
     <meta name="author" content="Michaël Hoste">
     <meta name="keywords" content="<%= _("sokoban, pushes, moves, brag, puzzle, game, levels, packs, challenge, friends, social") %>" />
+    <meta name="referrer" content="always">
     <link rel="shortcut icon" href="/favicon.gif">
 
     <% if @level %>
@@ -36,7 +37,7 @@
     <%= render 'layouts/advert_head' %>
   </head>
 
-  <% new_user = (not cookies[:already_read_the_welcome_message]) ? '1' : '0' %>
+  <% new_user = cookies[:already_read_the_welcome_message] ? '0' : '1' %>
   <body data-new-user="<%= new_user %>">
     <%= render 'layouts/facebook_headers' %>
     <%# render 'layouts/googleplus_headers' %>

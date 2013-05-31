@@ -3,12 +3,10 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
-msgstr ""
-"Project-Id-Version: version 0.0.1\n"
+msgstr "Project-Id-Version: version 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-22 16:15+0200\n"
+"POT-Creation-Date: 2013-05-23 15:21+0200\n"
 "PO-Revision-Date: 2013-05-21 16:18+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,286 +17,290 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 msgid "(7 days without ads / popups)"
-msgstr ""
+msgstr "(7 jours sans publicités / popups)"
+
+msgid "(no more ads / popups)"
+msgstr "(plus jamais de pubs / popups)"
 
 msgid "A <a class=\"tips\" href=\"http://www.sokobano.de/wiki/index.php?title=Deadlocks\" title=\"Click for more informations about Sokoban deadlocks\">deadlock</a> has been found"
-msgstr ""
+msgstr "Un <span class=\"tips\" title=\"un état du jeu qui ne peut aboutir à aucune solution\">deadlock</span> a été trouvé"
 
 msgid "A beer only cost 2€ at <a href=\"https://www.facebook.com/pages/La-Paile-dOr/137863449611682\">my favorite bar</a>."
-msgstr ""
+msgstr "Une bière coûte seulement 2€ dans <a href=\"https://www.facebook.com/pages/La-Paile-dOr/137863449611682\">mon bar préféré</a>."
 
 msgid "All"
-msgstr ""
+msgstr "Tous"
 
 msgid "Another Challenge"
-msgstr ""
+msgstr "Autre Défi"
 
 msgid "BRAG YOUR FRIENDS!"
-msgstr ""
+msgstr "DÉFIE TES AMIS !"
 
 msgid "Brag!"
-msgstr ""
+msgstr "Défie !"
 
 msgid "Can you solve this level?"
-msgstr ""
+msgstr "Peux-tu résoudre ce niveau ?"
 
 msgid "Careful, these are VERY complicated rules !"
-msgstr ""
+msgstr "Attention, les règles sont très compliquées !"
 
 msgid "Challenge"
-msgstr ""
+msgstr "Défi"
 
 msgid "Challenge one friend on this level"
-msgstr ""
+msgstr "Défie un ami sur ce niveau"
 
 msgid "Challenges"
-msgstr ""
+msgstr "Défis"
 
 msgid "Click to challenge on this level"
-msgstr ""
+msgstr "Clique pour défier sur ce niveau"
 
 msgid "Contact us"
-msgstr ""
+msgstr "Contactez-nous"
 
 msgid "Controls"
-msgstr ""
+msgstr "Contrôles"
 
 msgid "Copyright"
-msgstr ""
+msgstr "Copyright"
 
 msgid "Custom friend invitation"
-msgstr ""
+msgstr "Invitation d'ami personnalisée"
 
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 msgid "Facebook connection failed (access not granted)"
-msgstr ""
+msgstr "La connexion Facebook a échoué (accès refusé)"
 
 msgid "Filename"
-msgstr ""
+msgstr "Nom du fichier"
 
 msgid "Follow"
-msgstr ""
+msgstr "Suivre"
 
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Suis-nous sur Twitter"
 
 msgid "Fork me on GitHub"
-msgstr ""
+msgstr "Fork-moi sur Github"
 
 msgid "Free and Social Puzzle Game"
-msgstr ""
+msgstr "Jeu de réflexion gratuit et social"
 
 msgid "Friends"
-msgstr ""
+msgstr "Amis"
 
 msgid "Go to next level:"
-msgstr ""
+msgstr "Aller au niveau suivant :"
 
 msgid "Hi, I'm <a href=\"https://www.facebook.com/michael.hoste\">Michaël Hoste</a>, a guy from Belgium who likes to play Sokoban."
-msgstr ""
+msgstr "Bonjour, je suis <a href=\"https://www.facebook.com/michael.hoste\">Michaël Hoste</a>, un Belge qui aime bien jouer à Sokoban."
 
 msgid "I also like to drink beers ! (I'm from Belgium, remember?)"
-msgstr ""
+msgstr "J'aime aussi boire des bières ! (Je suis Belge, tu te souviens ?)"
 
 msgid "I just solved this Sokoban level with %{pushes} pushes and %{moves} moves and I bet that you can't!"
-msgstr ""
+msgstr "Je viens de résoudre ce niveau de Sokoban avec %{pushes} poussées et %{moves} mouvements et je parie que tu n'est pas capable d'en faire pareil \n"
+"!"
 
 msgid "I like it so much that:"
-msgstr ""
+msgstr "J'aime tellement ça que :"
 
 msgid "I like to move it move it !"
-msgstr ""
+msgstr "I like to move it move it !"
 
 msgid "I've created this <a href=\"https://github.com/MichaelHoste/sokoban\">OPEN-SOURCE</a> (<a href=\"http://en.wikipedia.org/wiki/MIT_License\">MIT License</a>) game on my spare time.</li>"
-msgstr ""
+msgstr "J'ai créé ce jeu <a href=\"https://github.com/MichaelHoste/sokoban\">OPEN-SOURCE</a> (<a href=\"http://en.wikipedia.org/wiki/MIT_License\">MIT License</a>) sur mon temps libre.</li>"
 
 msgid "I've written a <a href=\"http://www.opengl.fr/memoire/Memoire/Memoire.pdf\">Master Thesis</a> on the subject (french)</li>"
-msgstr ""
+msgstr "J'ai écrit un <a href=\"http://www.opengl.fr/memoire/Memoire/Memoire.pdf\">Mémoire Universitaire</a> à ce sujet</li>"
 
 msgid "INVITE MY FRIENDS"
-msgstr ""
+msgstr "INVITER MES AMIS"
 
 msgid "If you like our page, this window will never popup again."
-msgstr ""
+msgstr "Si tu aimes cette page, ce popup n'apparaîtra plus jamais."
 
 msgid "If you want to support me, and get rid of the advertisements, there are 2 solutions:"
-msgstr ""
+msgstr "Si tu veux soutenir Sokoban, et te débarrasser des publicités, 2 solutions s'offrent à toi :"
 
 msgid "In this pack"
-msgstr ""
+msgstr "Dans ce pack"
 
 msgid "Invite"
-msgstr ""
+msgstr "Inviter"
 
 msgid "Invite all your friends"
-msgstr ""
+msgstr "Invite tous tes amis"
 
 msgid "Invite more friends"
-msgstr ""
+msgstr "Invite plus d'amis"
 
 msgid "Invite some friends"
-msgstr ""
+msgstr "Invite des amis"
 
 msgid "Invite some of your friends"
-msgstr ""
+msgstr "Invite certains de tes amis"
 
 msgid "Later"
-msgstr ""
+msgstr "Plus tard"
 
 msgid "Level successfully completed!"
-msgstr ""
+msgstr "Niveau correctement résolu !"
 
 msgid "Levels"
-msgstr ""
+msgstr "Niveaux"
 
 msgid "Like our Facebook page"
-msgstr ""
+msgstr "Rejoins notre page Facebook"
 
 msgid "List of Sokoban levels"
-msgstr ""
+msgstr "Liste des niveaux de Sokoban"
 
 msgid "Login with Facebook"
-msgstr ""
+msgstr "Se connecter avec Facebook"
 
 msgid "More users to challenge"
-msgstr ""
+msgstr "Plus d'utilisateurs à défier"
 
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 msgid "Next"
-msgstr ""
+msgstr "Suivant"
 
 msgid "No more ads and no more invitation popups during 7 days."
-msgstr ""
+msgstr "Plus de publicités ni de popups d'invitations pendant 7 jours."
 
 msgid "No more ads, no more invitation popups"
-msgstr ""
+msgstr "Plus jamais de publicités ni de popups d'invitations."
 
 msgid "Offer me a beer!"
-msgstr ""
+msgstr "Offre-moi une bière!"
 
 msgid "PLAY SOKOBAN AND CHALLENGE YOUR FRIENDS"
-msgstr ""
+msgstr "JOUE A SOKOBAN ET DÉFIE TES AMIS"
 
 msgid "Packs & Levels Copyright"
-msgstr ""
+msgstr "Copyright des packs & niveaux"
 
 msgid "Play Sokoban and Challenge your Friends"
-msgstr ""
+msgstr "Joue à Sokoban et défie tes amis"
 
 msgid "Play with friends!"
-msgstr ""
+msgstr "Joue avec tes amis !"
 
 msgid "Playing with friends provides a better experience, but only <span style=\"font-weight:bold\">%{num}</span> of your friends are on Sokoban!"
-msgstr ""
+msgstr "Il est plus agréable de jouer avec des amis, mais seulement <span style=\"font-weight:bold\">%{num}</span> de tes amis sont sur Sokoban !"
 
 msgid "Post on your wall"
-msgstr ""
+msgstr "Publie sur ton mur"
 
 msgid "Press %{d} to cancel the last move"
-msgstr ""
+msgstr "Appuie sur %{d} pour annuler le dernier mouvement"
 
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politique de confidentialité"
 
 msgid "Retry"
-msgstr ""
+msgstr "Réessayer"
 
 msgid "Retry this level"
-msgstr ""
+msgstr "Réessayer ce niveau"
 
 msgid "Retry this level:"
-msgstr ""
+msgstr "Réessayer de niveau :"
 
 msgid "Rules"
-msgstr ""
+msgstr "Règles"
 
 msgid "Several ways:"
-msgstr ""
+msgstr "Plusieurs moyens :"
 
 msgid "Share the current level on your Facebook feed"
-msgstr ""
+msgstr "Partage le niveau en cours sur ta page Facebook"
 
 msgid "Sokoban (倉庫番) is Japanese for <em>warehouse keeper</em>."
-msgstr ""
+msgstr "Sokoban (倉庫番) est le mot japonais de <em>gardien d'entrepôt</em>."
 
 msgid "Sorry, your browser doesn't support the &lt;canvas/&gt; tag. Please come back with a newer browser."
-msgstr ""
+msgstr "Désolé, votre navigateur ne supporte pas le tag &lt;canvas/&gt;. Merci d'utiliser un autre navigateur."
 
 msgid "Start"
-msgstr ""
+msgstr "Démarrer"
 
 msgid "Stats"
-msgstr ""
+msgstr "Stats"
 
 msgid "Terms of Service"
-msgstr ""
+msgstr "Conditions d'utilisation"
 
-msgid "The Sokoban can only push one box at a time and is not able to pull them. A level is won when each box is on a goal."
-msgstr ""
+msgid "The Sokoban can only push one box at a time and is not able to pull them. A level is solved when each box is on a goal."
+msgstr "Le personnage peut uniquement pousser une caisse à la fois et n'est pas autorisé à en tirer. Un niveau est résolu quand chaque caisse se trouve sur sa zone de rangement."
 
 msgid "The addictive Puzzle-Game made Social"
-msgstr ""
+msgstr "Le jeu de réflexion en mode social"
 
 msgid "This level has been solved by %{list_of_people}"
-msgstr ""
+msgstr "Ce niveau a été résolu par %{list_of_people}"
 
 msgid "This level has been solved by %{list_of_people} and <span class=\"tips\" title=\"%{list_of_more_people}\">%{count_of_people} other friends</span>."
-msgstr ""
+msgstr "Ce niveau a été résolu par %{list_of_people} et <span class=\"tips\" title=\"%{list_of_more_people}\">%{count_of_people} autres amis</span>."
 
 msgid "This level has been solved by <span class=\"tips\" title=\"%{list_of_people}\">%{count_of_people} people</span>."
-msgstr ""
+msgstr "Ce niveau a été résolu par <span class=\"tips\" title=\"%{list_of_people}\">%{count_of_people} personnes</span>."
 
 msgid "This level has been solved by <span class=\"tips\" title=\"%{list_of_people}\">one person</span>."
-msgstr ""
+msgstr "Ce niveau a été résolu par <span class=\"tips\" title=\"%{list_of_people}\">une personne</span>."
 
 msgid "This level has not yet been solved."
-msgstr ""
+msgstr "Ce niveau n'a jamais été résolu."
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "Try this level"
-msgstr ""
+msgstr "Tente de résoudre ce niveau"
 
 msgid "Unlock the Full Game"
-msgstr ""
+msgstr "Débloque le jeu complet"
 
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 msgid "Use the arrow keys to move the Sokoban one step <em>up</em>, <em>down</em>, <em>left</em> or <em>right</em>."
-msgstr ""
+msgstr "Utilise les flèches directionnelles pour déplacer le pousseur d'une case <em>en haut</em>, <em>en bas</em>, <em>à gauche</em> ou <em>à droite</em>."
 
 msgid "Want to reward my work ? Just pay me a beer (full game without ads)"
-msgstr ""
+msgstr "Tu veux soutenir mon travail ? Offre-moi simplement une petite bière pour le jeu complet sans publicités."
 
 msgid "Welcome to Sokoban"
-msgstr ""
+msgstr "Bienvenue sur Sokoban"
 
 msgid "copyright: "
-msgstr ""
+msgstr "copyright : "
 
 msgid "moves"
-msgstr ""
+msgstr "mouvements"
 
 msgid "pushes"
-msgstr ""
+msgstr "poussées"
 
 msgid "sokoban, pushes, moves, brag, puzzle, game, levels, packs, challenge, friends, social"
-msgstr ""
+msgstr "sokoban, poussées, mouvements, défier, puzzle, jeu, niveaux, packs, défis, challenge, amis, social"
 
 msgid "to compare your scores with your friends."
-msgstr ""
+msgstr "pour comparer tes scores avec ceux de tes amis."
 
 msgid "to save your best scores."
-msgstr ""
+msgstr "pour enregistrer tes meilleurs scores."
 
 msgid "to save your progression."
-msgstr ""
+msgstr "pour enregistrer ta progression."

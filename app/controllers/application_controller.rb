@@ -28,4 +28,11 @@ class ApplicationController < ActionController::Base
       redirect_to pack_level_path(@level.pack.name, @level.name)
     end
   end
+
+  private
+
+  # delete this method when reverting to the default behaviour
+  def set_gettext_locale
+    session[:locale] = FastGettext.set_locale('en')
+  end
 end
