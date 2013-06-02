@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_filter :find_user, :except => ['index']
 
   def index
-    @ladder = current_user.ladder
+    if current_user
+      @ladder = current_user.ladder
+    else
+      @ladder = User.find(1).ladder # Only general datas are used
+    end
   end
 
   # HTML Templates

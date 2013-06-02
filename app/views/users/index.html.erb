@@ -2,18 +2,20 @@
 
 <div id="limited-content">
 
-  <div id="ranking-buttons">
-    <a href="<%= friends_ranking_path %>">Friends</a>
-    <a href="<%= rankings_path %>">Global</a>
-  </div>
+  <% if current_user %>
+    <div id="ranking-buttons">
+      <a href="<%= friends_ranking_path %>"><%= _('Friends') %></a>
+      <a href="<%= rankings_path %>"><%= _('Global') %></a>
+    </div>
 
-  <div style="clear:both">
-  </div>
+    <div style="clear:both">
+    </div>
+  <% end %>
 
   <table id="ladder">
     <% list = params[:type] == 'global' ? @ladder[:top_users] : @ladder[:top_friends] %>
     <% list.each_with_index do |user, i| %>
-      <tr class="<%= 'selected' if user.id == current_user.id %>">
+      <tr class="<%= 'selected' if current_user and user.id == current_user.id %>">
         <td class="num">
           <%= i+1 %>
         </td>
@@ -24,7 +26,7 @@
           <%= user.name %>
         </td>
         <td class="score">
-          <span><%= user.total_won_levels %></span> solved levels
+          <%= _("<span>%{num}</span> solved levels" % { :num => user.total_won_levels }) %>
         </td>
       </tr>
     <% end %>
