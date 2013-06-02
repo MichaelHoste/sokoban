@@ -37,11 +37,7 @@ class UserNotifier < ActionMailer::Base
       end
     end
 
-    @top_friends = (@user.friends.registered.all + [@user]).sort_by(&:total_won_levels).reverse
-    @top_users   = User.registered.order('total_won_levels DESC').limit(10)
-
-    @top_friends_position = @user.friends.registered.where('total_won_levels > ?', @user.total_won_levels).count + 1
-    @top_users_position   = User.registered.where('total_won_levels > ?', @user.total_won_levels).count + 1
+    @ladder = @user.ladder
 
     mail(:to      => @user.email,
          :subject => @text)

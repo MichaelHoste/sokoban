@@ -1,11 +1,19 @@
 class UsersController < ApplicationController
 
-  before_filter :find_user
+  before_filter :find_user, :except => ['index']
+
+  def index
+    @ladder = current_user.ladder
+  end
+
+  # HTML Templates
 
   def popular_friends
     @popular_friends = @user.popular_friends(6)
     render 'popular_friends', :layout => false
   end
+
+  # JSON
 
   def is_like_facebook_page
     @user.like_fan_page = @user.request_like_fan_page?
@@ -28,8 +36,6 @@ class UsersController < ApplicationController
       render :text => "We successfully unsubscribed your email (#{@user.email}) from the mailing list."
     end
   end
-
-  # Methods
 
   protected
 

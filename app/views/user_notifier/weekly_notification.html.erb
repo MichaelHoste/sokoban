@@ -96,10 +96,10 @@
               <td style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0" width="554">
                 <div style="margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
                   <p style="text-align:center;font-weight:bold;color:#222222!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
-                    Friends ranking (<%= @top_friends_position %>/<%= @top_friends.count %>)
+                    Friends ranking (<%= @ladder[:top_friends_position] %>/<%= @ladder[:top_friends].count %>)
                   </p>
                   <table style="margin-left:30px;margin-bottom:15px">
-                    <% @top_friends.each_with_index do |user, i| %>
+                    <% @ladder[:top_friends].each_with_index do |user, i| %>
                       <tr style="<%= 'background-color:#d7e8f0' if user.id == @user.id %>">
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
                           <%= i+1 %>
@@ -142,10 +142,10 @@
               <td style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0" width="554">
                 <div style="margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
                   <p style="text-align:center;font-weight:bold;color:#222222!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
-                    Global ranking (<%= @top_users_position %>/<%= User.registered.count %>)
+                    Global ranking (<%= @ladder[:top_users_position] %>/<%= User.registered.count %>)
                   </p>
                   <table style="margin-left:30px;margin-bottom:15px">
-                    <% @top_users.each_with_index do |user, i| %>
+                    <% @ladder[:top_users].limit(10).each_with_index do |user, i| %>
                       <tr style="<%= 'background-color:#d7e8f0' if user.id == @user.id %>">
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
                           <%= i+1 %>

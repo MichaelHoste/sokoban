@@ -1,4 +1,26 @@
-<% if current_user %>
+<% if params[:controller] == 'users' and params[:action] == 'index' %>
+
+  <div id="banner">
+    <div id="limited-banner" class="banner-text">
+      <h2>
+        <% if params[:type] == 'global' %>
+          <%= _("Global ranking") %>  : <%= @ladder[:top_users_position] %> / <%= User.registered.count %>
+        <% else %>
+          <%= _("Friends ranking") %> : <%= @ladder[:top_friends_position] %> / <%= @ladder[:top_friends].count %>
+        <% end %>
+      </h2>
+    </div>
+  </div>
+
+<% elsif not current_user %>
+
+  <div id="banner">
+    <div id="limited-banner" class="banner-text">
+      <h2><%= _("Play Sokoban and Challenge your Friends") %></h2>
+    </div>
+  </div>
+
+<% else %>
 
   <div id="banner" class="banner-friends">
     <div id="limited-banner">
@@ -65,14 +87,6 @@
       <div class="user-challenge-this">
         <a href="#"><%= _("Click to challenge on this level") %></a>
       </div>
-    </div>
-  </div>
-
-<% else %>
-
-  <div id="banner">
-    <div id="limited-banner" class="banner-text">
-      <h2><%= _("Play Sokoban and Challenge your Friends") %></h2>
     </div>
   </div>
 

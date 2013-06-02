@@ -1,0 +1,94 @@
+@import "utils.css.scss";
+
+#ranking-buttons
+{
+  text-align:center;
+  margin-top:12px;
+  margin-bottom:30px;
+
+  a
+  {
+    background: #fbfbfb;
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    padding:10px;
+    padding-left:16px;
+    padding-right:16px;
+    text-align:center;
+    margin-left:4px;
+    margin-right:4px;
+    text-decoration:none;
+    color:inherit;
+  }
+
+  a:hover
+  {
+    background-color:#d7e8f0;
+  }
+}
+
+table#ladder
+{
+  margin-left:12%;
+  margin-right:12%;
+  width:76%;
+
+  tr
+  {
+    /*cursor:pointer;*/
+  }
+
+  tr.selected
+  {
+    background-color:#e4e4e4;
+  }
+
+  tr:hover, tr.selected:hover
+  {
+    background-color:#d7e8f0;
+  }
+
+  td
+  {
+    vertical-align: middle;
+    padding-left:10px;
+    padding-right:10px;
+    color:#555555;
+    font-size:15px;
+    line-height:1.5em;
+  }
+
+  td.num
+  {
+    width:20px;
+  }
+
+  td.picture
+  {
+    width:60px;
+    font-size:0px;
+    line-height:0px;
+  }
+
+  td.name
+  {
+
+  }
+
+  td.score
+  {
+    width:150px;
+
+    span
+    {
+      font-weight:bold;
+    }
+  }
+
+  img
+  {
+    margin-top:3px;
+    margin-bottom:3px;
+  }
+}

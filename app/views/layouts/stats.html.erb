@@ -9,7 +9,7 @@
   <%= line_chart User.registered.where('registered_at > ?', Time.new(2013, 3))
                                 .group_by_week(:registered_at).count %>
 
-  <%= line_chart User.registered.where('registered_at > ?', Time.new(2013, 3))
+  <%# line_chart User.registered.where('registered_at > ?', Time.new(2013, 3))
                                 .group_by_day(:registered_at).count %>
 
   <br/><br/>
@@ -19,7 +19,7 @@
   <%= line_chart LevelUserLink.where('created_at > ?', Time.new(2013, 3))
                               .group_by_week(:created_at).count %>
 
-  <%= line_chart LevelUserLink.where('created_at > ?', Time.new(2013, 3))
+  <%# line_chart LevelUserLink.where('created_at > ?', Time.new(2013, 3))
                               .group_by_day(:created_at).count %>
 
   <br/><br/>

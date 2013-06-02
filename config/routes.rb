@@ -40,6 +40,9 @@ Sokojax::Application.routes.draw do
     end
   end
 
+  get '/rankings',        :to => 'users#index', :type => 'global',  :as => :rankings
+  get '/friends_ranking', :to => 'users#index', :type => 'friends', :as => :friends_ranking
+
   # Root
   root :to => "packs#show", :id => 'Dimitri & Yorick' # or 'Novoban'
 
