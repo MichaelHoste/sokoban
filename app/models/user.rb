@@ -259,11 +259,16 @@ class User < ActiveRecord::Base
     self.update_attributes!({ :mailing_unsubscribe => true })
   end
 
-  def ladder
-    { :top_friends          => (self.friends.registered.all + [self]).sort_by(&:total_won_levels).reverse,
-      :top_users            => User.registered.order('total_won_levels DESC').limit(50),
-      :top_friends_position => self.friends.registered.where('total_won_levels > ?', self.total_won_levels).count + 1,
+  def ladder_positions
+    { :top_friends_position => self.friends.registered.where('total_won_levels > ?', self.total_won_levels).count + 1,
       :top_users_position   => User.registered.where('total_won_levels > ?', self.total_won_levels).count + 1 }
+  end
+
+  def ladder
+    self.ladder_positions.merge({
+      :top_friends          => (self.friends.registered.all + [self]).sort_by(&:total_won_levels).reverse,
+      :top_users            => User.registered.order('total_won_levels DESC').limit(50)
+    })
   end
 
   private

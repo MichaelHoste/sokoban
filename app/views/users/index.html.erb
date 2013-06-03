@@ -3,9 +3,12 @@
 <div id="limited-content">
 
   <% if current_user %>
+    <% friends_selected = params[:type] == 'friends' ? 'selected' : '' %>
+    <% global_selected  = params[:type] == 'global'  ? 'selected' : '' %>
+
     <div id="ranking-buttons">
-      <a href="<%= friends_ranking_path %>"><%= _('Friends') %></a>
-      <a href="<%= rankings_path %>"><%= _('Global') %></a>
+      <a class="<%= friends_selected %>" href="<%= friends_ranking_path %>"><%= _('Friends') %></a>
+      <a class="<%= global_selected %>" href="<%= rankings_path %>"><%= _('Global') %></a>
     </div>
 
     <div style="clear:both">

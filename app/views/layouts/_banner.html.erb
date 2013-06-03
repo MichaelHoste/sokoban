@@ -3,10 +3,14 @@
   <div id="banner">
     <div id="limited-banner" class="banner-text">
       <h2>
-        <% if params[:type] == 'global' %>
-          <%= _("Global ranking") %>  : <%= @ladder[:top_users_position] %> / <%= User.registered.count %>
+        <% if not current_user %>
+          <%= _("Global Ranking : %{user_num} users solved %{level_num} levels" % { :user_num => User.registered.count, :level_num => LevelUserLink.count }) %>
         <% else %>
-          <%= _("Friends ranking") %> : <%= @ladder[:top_friends_position] %> / <%= @ladder[:top_friends].count %>
+          <% if params[:type] == 'global' %>
+            <%= _("Global Ranking") %>  : <%= @ladder[:top_users_position] %> / <%= User.registered.count %>
+          <% else %>
+            <%= _("Friends Ranking") %> : <%= @ladder[:top_friends_position] %> / <%= @ladder[:top_friends].count %>
+          <% end %>
         <% end %>
       </h2>
     </div>

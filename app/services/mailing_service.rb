@@ -22,7 +22,7 @@ module MailingService
     mail_users = User.registered.where(:mailing_unsubscribe => false)
                                 .where('next_mailing_at < ?', Time.now)
 
-    # Reject if not in the madmimi list
+    # Reject from list if not in the madmimi list
     mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
     mail_users = mail_users.keep_if do |user|
       lists = mimi.memberships(user.email)
@@ -38,9 +38,14 @@ module MailingService
       end
     end
 
-    # Reject if user solved a level in the last 2 days.
+    # Reject from list if user solved a level in the last 2 days (too soon)
     mail_users = mail_users.keep_if do |user|
       user.scores.where('created_at > ?', Time.now - 2.days).empty?
+    end
+
+    # Reject from list if user didn't solve a level in the last 3 months (bad mail or user didn't care)
+    mail_users = mail_users.delete_if do |user|
+      user.scores.where('created_at > ?', Time.now - 3.months).empty?
     end
 
     mail_users

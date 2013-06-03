@@ -244,6 +244,7 @@ body {
 		/*height: 34px;*/
 	}
 	#limited-header #menus .fb_login { padding-top: 5px;}
+	#limited-header #menus .ranking-menu { padding-top: 3px;}
 	#limited-header #menus .rules-menu { padding-top: 3px;}
 
 	#limited-header #menus .fb_login div {
@@ -266,6 +267,9 @@ body {
 	}
 	#limited-header #menus .fb_login div:hover {
 		cursor:pointer;
+	}
+	#limited-header #menus .fb_logged {
+		margin-left:10px;
 	}
 	#limited-header #menus .fb_logged div {
 		height: 34px;
@@ -296,6 +300,26 @@ body {
 			width: 30px;
 			height: 30px;
 		}
+
+	#limited-header #menus .ranking-menu div {
+		background: url('/assets/sprites.png') no-repeat -200px -100px;
+		border: 1px solid #c9c9c9;
+		height: 27px;
+		line-height: 28px;
+		padding: 0 12px 0 12px;
+		font-size: 12px;
+		font-weight: bold;
+		color: #333;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		margin-left: 10px;
+		cursor:pointer;
+	}
+
+	#limited-header #menus .ranking-menu a {
+		text-decoration:none;
+		color:inherit;
+	}
 
 	#limited-header #menus .rules-menu div {
 		background: url('/assets/sprites.png') no-repeat -100px -100px;
