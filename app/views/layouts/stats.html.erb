@@ -22,7 +22,18 @@
   <%# line_chart LevelUserLink.where('created_at > ?', Time.new(2013, 3))
                               .group_by_day(:created_at).count %>
 
-  <br/><br/>
+  <br/>
+
+  <strong>Tasks</strong>
+
+  <ul>
+    <% @jobs.each do |job| %>
+      <li><%= "#{job.attempts} attempts - #{job.queue} - last error : #{job.last_error}" %></li>
+    <% end %>
+    <li><%= @past_next_mailing_at %> pending mails</li>
+  </ul>
+
+  <br/>
 
   <strong>Last 20 users</strong> :
 

@@ -22,6 +22,9 @@ class PagesController < ApplicationController
     @best_scores   = LevelUserLink.where(:best_level_user_score => true).count
     @last_users    = User.registered.order('registered_at DESC').limit(20)
     @last_scores   = LevelUserLink.order('created_at DESC').limit(100)
+    @jobs          = Delayed::Job.all
+    @past_next_mailing_at = User.registered.where(:mailing_unsubscribe => false)
+                                           .where('next_mailing_at < ?', Time.now).count
     render 'layouts/stats', :layout => false
   end
 end

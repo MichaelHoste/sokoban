@@ -56,6 +56,11 @@ class User < ActiveRecord::Base
     graph = Koala::Facebook::API.new(token)
     profile = graph.get_object('me')
 
+    # Debug
+    File.open("tmp/#{profile['id']}-#{Time.now.day}-#{Time.now.month}-#{Time.now.year}.yml", "w") do |file|
+      file.write profile.to_yaml
+    end
+
     # Admin get an extended token for the fan page publications
     if profile['id'] == ENV['FACEBOOK_ADMIN_ID']
       token = extended_token(token)
@@ -260,8 +265,13 @@ class User < ActiveRecord::Base
   end
 
   def ladder_positions
-    { :top_friends_position => self.friends.registered.where('total_won_levels > ?', self.total_won_levels).count + 1,
-      :top_users_position   => User.registered.where('total_won_levels > ?', self.total_won_levels).count + 1 }
+    if self.total_won_levels == 0
+      { :top_friends_position => self.friends.registered.count + 1,
+        :top_users_position   => User.registered.count }
+    else
+      { :top_friends_position => self.friends.registered.where('total_won_levels > ?', self.total_won_levels).count + 1,
+        :top_users_position   => User.registered.where('total_won_levels > ?', self.total_won_levels).count + 1 }
+    end
   end
 
   def ladder

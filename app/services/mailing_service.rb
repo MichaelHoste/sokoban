@@ -70,7 +70,8 @@ module MailingService
     # if suppress mail in mapmimi and not in bdd, add it
     mails_to_unsubscribe_to_bdd = mapmimi_suppressed_mails - bdd_suppressed_mails
     mails_to_unsubscribe_to_bdd.each do |mail|
-      User.where(:email => mail).try(:first).update_attributes!({ :mailing_unsubscribe => true })
+      user = User.where(:email => mail).try(:first)
+      user.update_attributes!({ :mailing_unsubscribe => true }) if user
     end
   end
 
