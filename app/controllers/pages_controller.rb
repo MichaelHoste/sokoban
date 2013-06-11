@@ -26,8 +26,8 @@ class PagesController < ApplicationController
     @past_next_mailing_at = User.registered.where(:mailing_unsubscribe => false)
                                            .where('next_mailing_at < ?', Time.now).count
     @mails_by_week =
-      User.registered.where(:mailing_unsubscribe => false).collect do |user|
-        user.scores.where('created_at > ?', Time.now - MailingService::TIME_BEFORE_INACTIVE).empty?
+      User.registered.where(:mailing_unsubscribe => false).keep_if do |user|
+        user.scores.where('created_at > ?', Time.now - MailingService::TIME_BEFORE_INACTIVE).any?
       end.count
 
     render 'layouts/stats', :layout => false
