@@ -1,4 +1,7 @@
 module MailingService
+  TOO_SOON             = 2.days
+  TIME_BEFORE_INACTIVE = 3.months
+
   # Automatic mailing (every 7 days unless the user was active less than 48hours ago)
   def self.delayed_send_mailing
     Delayed::Job.where(:queue => 'send_mailing').destroy_all
@@ -38,14 +41,14 @@ module MailingService
       end
     end
 
-    # Reject from list if user solved a level in the last 2 days (too soon)
+    # Reject from list if user solved a level too soon
     mail_users = mail_users.keep_if do |user|
-      user.scores.where('created_at > ?', Time.now - 2.days).empty?
+      user.scores.where('created_at > ?', Time.now - TOO_SOON).empty?
     end
 
     # Reject from list if user didn't solve a level in the last 3 months (bad mail or user didn't care)
     mail_users = mail_users.delete_if do |user|
-      user.scores.where('created_at > ?', Time.now - 3.months).empty?
+      user.scores.where('created_at > ?', Time.now - TIME_BEFORE_INACTIVE).empty?
     end
 
     mail_users
