@@ -1,11 +1,12 @@
 module MailingService
   TOO_SOON             = 2.days
   TIME_BEFORE_INACTIVE = 3.months
+  JOB_DELAY            = 6.hours
 
   # Automatic mailing (every 7 days unless the user was active less than 48hours ago)
   def self.delayed_send_mailing
     Delayed::Job.where(:queue => 'send_mailing').destroy_all
-    MailingService.delay(:run_at => Time.now + 30.minutes, :queue => 'send_mailing').send_mailing(true)
+    MailingService.delay(:run_at => Time.now + JOB_DELAY, :queue => 'send_mailing').send_mailing(true)
   end
 
   def self.send_mailing(repeat = false)
@@ -21,23 +22,25 @@ module MailingService
     end
   end
 
-  def self.users_to_mail_now
+  def self.users_to_mail_now(use_madmimi = true)
     mail_users = User.registered.where(:mailing_unsubscribe => false)
                                 .where('next_mailing_at < ?', Time.now)
 
     # Reject from list if not in the madmimi list
-    mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
-    mail_users = mail_users.keep_if do |user|
-      lists = mimi.memberships(user.email)
-      if lists['lists']
-        lists = lists['lists']['list']
-        if lists.is_a? Array
-          lists.collect { |list| list['name'] }.include? ENV['MADMIMI_LIST']
+    if use_madmimi
+      mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
+      mail_users = mail_users.keep_if do |user|
+        lists = mimi.memberships(user.email)
+        if lists['lists']
+          lists = lists['lists']['list']
+          if lists.is_a? Array
+            lists.collect { |list| list['name'] }.include? ENV['MADMIMI_LIST']
+          else
+            lists['name'] == ENV['MADMIMI_LIST']
+          end
         else
-          lists['name'] == ENV['MADMIMI_LIST']
+          false
         end
-      else
-        false
       end
     end
 
@@ -60,7 +63,7 @@ module MailingService
     mapmimi_mails            = MailingService.mapmimi_mails
     mapmimi_suppressed_mails = MailingService.mapmimi_suppressed_mails
 
-    # if mail in bdd  and not in mapmimi, add it
+    # if mail in bdd and not in mapmimi, add it
     mails_to_add_to_mapmimi = bdd_mails - mapmimi_mails - mapmimi_suppressed_mails
     mails_to_add_to_mapmimi.each do |mail|
       user = User.where(:email => mail).first

@@ -23,8 +23,8 @@ class PagesController < ApplicationController
     @last_users    = User.registered.order('registered_at DESC').limit(20)
     @last_scores   = LevelUserLink.order('created_at DESC').limit(100)
     @jobs          = Delayed::Job.all
-    @past_next_mailing_at = User.registered.where(:mailing_unsubscribe => false)
-                                           .where('next_mailing_at < ?', Time.now).count
+
+    @past_next_mailing_at = MailingService.users_to_mail_now(false).count
     @mails_by_week =
       User.registered.where(:mailing_unsubscribe => false).keep_if do |user|
         user.scores.where('created_at > ?', Time.now - MailingService::TIME_BEFORE_INACTIVE).any?
