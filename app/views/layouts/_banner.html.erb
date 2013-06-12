@@ -16,6 +16,16 @@
     </div>
   </div>
 
+<% elsif params[:controller] == 'users' and params[:action] == 'show' %>
+
+<div id="banner">
+  <div id="limited-banner" class="banner-text">
+    <h2>
+      <%= @user.name %>
+    </h2>
+  </div>
+</div>
+
 <% elsif not current_user %>
 
   <div id="banner">
@@ -36,7 +46,7 @@
           <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(15) %>
           <% subscribed_friends_and_me.each do |friend| %>
             <li>
-              <a href="#">
+              <a href="<%= user_path(friend) %>">
                 <%= image_tag friend.profile_picture, 'data-f_id' => friend.f_id, :class => 'facebook-friends' %>
 
                 <span style="display:none" data-user-id="<%= friend['user_id'] ? friend.user_id : friend.id %>"

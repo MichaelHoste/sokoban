@@ -17,6 +17,7 @@ gem 'delayed_job_active_record'
 gem 'daemons' # for delayed job
 gem 'sitemap_generator'
 gem 'httparty'
+gem 'friendly_id'
 
 # Deployement
 gem 'capistrano'

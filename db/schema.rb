@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513203101) do
+ActiveRecord::Schema.define(:version => 20130612135748) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -134,11 +134,13 @@ ActiveRecord::Schema.define(:version => 20130513203101) do
     t.boolean  "full_game",                        :default => false
     t.boolean  "mailing_unsubscribe",              :default => false
     t.datetime "next_mailing_at",                  :default => '2013-04-21 19:40:40'
+    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["f_id"], :name => "index_users_on_f_id", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["registered_at"], :name => "index_users_on_registered_at"
+  add_index "users", ["slug"], :name => "index_users_on_slug"
 
 end

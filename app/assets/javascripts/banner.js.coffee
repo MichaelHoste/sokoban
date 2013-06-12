@@ -41,10 +41,10 @@ window.update_banner = ->
   )
 
 bind_banner = ->
-  $('#limited-banner').delegate('img.facebook-friends', 'click', ->
-    window.facebook_send_to_feed($(this).attr('data-f_id'))
-    return false
-  )
+  #$('#limited-banner').delegate('img.facebook-friends', 'click', ->
+  #  window.facebook_send_to_feed($(this).attr('data-f_id'))
+  #  return false
+  #)
 
   $('#add-one-friend').live('click', ->
     window.facebook_send_custom_invitation_message()

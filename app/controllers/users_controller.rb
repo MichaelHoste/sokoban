@@ -2,6 +2,9 @@ class UsersController < ApplicationController
 
   before_filter :find_user, :except => ['index']
 
+  def show
+  end
+
   def index
     if current_user
       @ladder = current_user.ladder
