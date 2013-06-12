@@ -4,7 +4,7 @@ class PacksController < ApplicationController
   end
 
   def show
-    @pack = Pack.find_by_name(params[:id])
+    @pack = Pack.find(params[:id])
     @level = @pack.levels.first
 
     # Take first two rows of friends and public scores

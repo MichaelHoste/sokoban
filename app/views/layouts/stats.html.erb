@@ -69,7 +69,7 @@
         |
         <%= when_in_the_past(score.created_at) %>
         |
-        <%= link_to "#{score.level.pack.name} / #{score.level.name}", "/packs/#{URI.escape(score.level.pack.name)}/levels/#{URI.escape(score.level.name)}" %>
+        <%= link_to "#{score.level.pack.name} / #{score.level.name}", pack_level_path(score.level.pack, score.level) %>
       </div>
     <% end %>
   </div>

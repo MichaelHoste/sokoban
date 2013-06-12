@@ -9,7 +9,7 @@
       <tbody>
       <tr>
         <td style="margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
-          <a href="<%= pack_level_url(@level.pack.name, @level.name) %>" style="color:#3693cc!important" target="_blank">
+          <a href="<%= pack_level_url(@level.pack, @level) %>" style="color:#3693cc!important" target="_blank">
           <img src="http://www.sokoban-game.com/assets/banner.png" height="110" alt="banner" style="border:0" width="590">
           </a>
         </td>
@@ -46,7 +46,7 @@
                 <tr>
                   <td align="left" style="clear:both;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;padding:0">
                     <div style="float:left;margin-bottom:15px;margin-left:0;margin-right:20px;margin-top:4px;padding:0;text-align:center">
-                      <a href="<%= pack_level_url(@level.pack.name, @level.name) %>" style="color:#3693cc!important;text-decoration:none" target="_blank">
+                      <a href="<%= pack_level_url(@level.pack, @level) %>" style="color:#3693cc!important;text-decoration:none" target="_blank">
                         <img src="<%= @level.thumb %>" alt="Miniature du niveau" style="border:0;margin-bottom:12px" width="250">
                         <span style="text-align:center;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top;padding-top:10px;font-weight:bold">
                           Click here to solve it!

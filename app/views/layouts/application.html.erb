@@ -12,7 +12,7 @@
     <% if @level %>
       <meta property="fb:app_id"               content="<%= ENV['FACEBOOK_APP_ID'] %>" />
       <meta property="og:type"                 content="sokoban_game:level" />
-      <meta property="og:url"                  content="<%= pack_level_url(@level.pack.name, @level.name)%>" />
+      <meta property="og:url"                  content="<%= pack_level_url(@level.pack, @level) %>" />
       <meta property="og:title"                content="<%= @level.name %>" />
       <meta property="og:description"          content="Pack : <%= @level.pack.name.gsub(/\n/," ").gsub(/\r/," ") %> | <%= @level.pack.description.gsub(/\n/," ").gsub(/\r/," ") %>" />
       <meta property="og:image"                content="<%= @level.thumb %>" />

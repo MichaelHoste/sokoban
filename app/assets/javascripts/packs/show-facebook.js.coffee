@@ -14,13 +14,15 @@ $ ->
     $('#levels').find('.is-selected').attr('data-level-id')
 
   window.current_level_name = ->
-    $('#levels').find('.is-selected').attr('data-level-real-name')
+    $('#levels').find('.is-selected').attr('data-level-name')
 
   window.current_level_thumb = ->
     $('#levels').find('.is-selected').attr('data-level-thumb')
 
   window.current_url = ->
-    "https://sokoban-game.com/levels/#{window.current_level_id()}"
+    pack_slug  = $('#packs').attr('data-pack-slug')
+    level_slug = $('#levels').find('.is-selected').attr('data-level-slug')
+    "https://sokoban-game.com/packs/#{pack_slug}/levels/#{level_slug}"
 
   update_send_invitations_at = ->
     current_user_id = $("#user-infos").attr('data-id')

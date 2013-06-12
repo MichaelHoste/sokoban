@@ -26,11 +26,11 @@ module FacebookFeedService
       page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
       page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
         { :message     => message,
-          :link        => "https://sokoban-game.com" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+          :link        => "https://sokoban-game.com" +  Rails.application.routes.url_helpers.pack_level_path(level.pack, level),
           :name        => "Level of the day : #{level.name}",
           :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
           :picture     => level.thumb,
-          :type        => "sokoban_game:level" })
+          :type        => "sokoban_game:level" }) if Rails.env.production?
     rescue Koala::Facebook::APIError => e
       Rails.logger.info("PUBLISH RANDOM LEVEL FAILED (but was published anyway ?)")
     end
@@ -49,11 +49,11 @@ module FacebookFeedService
       page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
       page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
         { :message     => message,
-          :link        => "https://sokoban-game.com" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+          :link        => "https://sokoban-game.com" +  Rails.application.routes.url_helpers.pack_level_path(level.pack, level),
           :name        => "Last level to get solved : #{level.name}",
           :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
           :picture     => level.thumb,
-          :type        => "sokoban_game:level" })
+          :type        => "sokoban_game:level" }) if Rails.env.production?
     rescue Koala::Facebook::APIError => e
       Rails.logger.info("PUBLISH LEVEL COUNT FAILED (but was published anyway ?)")
     end
@@ -69,11 +69,11 @@ module FacebookFeedService
       page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)
       page.put_connections(ENV['FACEBOOK_PAGE_ID'], 'feed',
         { :message     => message,
-          :link        => "https://sokoban-game.com" +  Rails.application.routes.url_helpers.pack_level_path(level.pack.name, level.name),
+          :link        => "https://sokoban-game.com" +  Rails.application.routes.url_helpers.pack_level_path(level.pack, level),
           :name        => "Last level to get solved : #{level.name}",
           :description => "Pack : #{level.pack.name.gsub(/\n/," ").gsub(/\r/," ")} | #{level.pack.description.gsub(/\n/," ").gsub(/\r/," ")}",
           :picture     => level.thumb,
-          :type        => "sokoban_game:level" })
+          :type        => "sokoban_game:level" }) if Rails.env.production?
     rescue Koala::Facebook::APIError => e
       Rails.logger.info("PUBLISH USER COUNT FAILED (but was published anyway ?)")
     end

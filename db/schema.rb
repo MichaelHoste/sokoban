@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612135748) do
+ActiveRecord::Schema.define(:version => 20130612144242) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -62,11 +62,13 @@ ActiveRecord::Schema.define(:version => 20130612135748) do
     t.integer  "complexity",      :default => 0
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.string   "slug"
   end
 
   add_index "levels", ["complexity"], :name => "index_levels_on_complexity"
   add_index "levels", ["name"], :name => "index_levels_on_name"
   add_index "levels", ["pack_id"], :name => "index_levels_on_pack_id"
+  add_index "levels", ["slug"], :name => "index_levels_on_slug"
   add_index "levels", ["won_count"], :name => "index_levels_on_won_count"
 
   create_table "pack_user_links", :force => true do |t|
@@ -90,9 +92,11 @@ ActiveRecord::Schema.define(:version => 20130612135748) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.integer  "levels_count", :default => 0
+    t.string   "slug"
   end
 
   add_index "packs", ["name"], :name => "index_packs_on_name"
+  add_index "packs", ["slug"], :name => "index_packs_on_slug"
 
   create_table "user_user_links", :force => true do |t|
     t.integer  "user_id",     :limit => 8

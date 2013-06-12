@@ -6,7 +6,7 @@
 
   <div id="menu-levels">
     <div id="current-level-name" itemscope itemtype="http://schema.org/Thing">
-      <a href="<%= pack_level_url(@pack.name, @level.name) %>" itemprop="url">
+      <a href="<%= pack_level_url(@pack, @level) %>" itemprop="url">
         <h3 itemprop="name"><%= @level.name %></h3>
       </a>
     </div>
@@ -15,8 +15,8 @@
     </div>
     <img id="current-level-image" itemprop="image" src="<%= @level.thumb %>"/>
 
-    <div id="packs" data-pack-name="<%= u(@pack.name) %>"
-                    data-pack-real-name="<%= @pack.name %>"
+    <div id="packs" data-pack-slug="<%= @pack.slug %>"
+                    data-pack-name="<%= @pack.name %>"
                     data-pack-id="<%= @pack.id %>">
       <select>
         <% pack_user_links = current_user ? PackUserLink.where(:user_id => current_user.id).all : [] %>
@@ -25,7 +25,7 @@
           <% pack_success_count = pack_user_link.empty? ? 0 : pack_user_link.first.won_levels_count %>
           <% pack_levels_count  = pack.levels_count %>
           <% pack_success       = "[#{pack_success_count}/#{pack_levels_count}]" %>
-          <option value="<%= pack.name %>" <%= 'selected=selected' if pack.id == @pack.id %>><%= pack.name %> <%= pack_success %></option>
+          <option value="<%= pack.slug %>" <%= 'selected=selected' if pack.id == @pack.id %>><%= pack.name %> <%= pack_success %></option>
         <% end %>
       </select>
 
@@ -40,14 +40,14 @@
       <% @pack.levels.each_with_index do |level, index| %>
         <% selected = (@level.name == level.name ? 'class="is-selected"' : '') %>
         <li <%= selected.html_safe %> id="level-<%= level.id %>" data-level-id="<%= level.id %>"
-                                                                 data-level-name="<%= u(level.name) %>"
+                                                                 data-level-slug="<%= level.slug %>"
                                                                  data-level-grid="<%= level.inline_grid_with_floor %>"
                                                                  data-level-width="<%= level.width %>"
                                                                  data-level-height="<%= level.height %>"
                                                                  data-level-thumb="<%= level.thumb %>"
-                                                                 data-level-real-name="<%= level.name %>"
+                                                                 data-level-name="<%= level.name %>"
                                                                  data-level-copyright="<%= level.copyright %>">
-          <a href="<%= pack_level_path(@pack.name, level.name) %>" title="<%= level.name %>">
+          <a href="<%= pack_level_path(@pack, level) %>" title="<%= level.name %>">
             <% if won_level_ids.include?(level.id) %>
               <span class="star s-icon-star"></span>
             <% else %>

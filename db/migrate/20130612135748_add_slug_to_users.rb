@@ -5,6 +5,8 @@ class AddSlugToUsers < ActiveRecord::Migration
 
     User.reset_column_information
 
-    User.find_each(&:save)
+    User.all.each do |user|
+      user.save!
+    end
   end
 end

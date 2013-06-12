@@ -1,15 +1,6 @@
 Sokojax::Application.routes.draw do
-  mount Jax::Engine => "/jax" unless Rails.env == "production"
-
-  # Resources  =>  /.*/ to get the '.' in the names
-  resources :packs, :pack_id => /.*/ do
-    resources :levels, :id => /.*/
-  end
-
-  resources :levels do
-    collection do
-      get :random
-    end
+  resources :packs do
+    resources :levels
   end
 
   resources :workflows do
@@ -44,7 +35,7 @@ Sokojax::Application.routes.draw do
   get '/friends_ranking', :to => 'users#index', :type => 'friends', :as => :friends_ranking
 
   # Root
-  root :to => "packs#show", :id => 'Dimitri & Yorick' # or 'Novoban'
+  root :to => "packs#show", :id => 'dimitri-yorick' # or 'Novoban'
 
   # OmniAuth (facebook)
   match '/auth/:provider/callback', :to => 'sessions#create'

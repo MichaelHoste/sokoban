@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 
       if params[:level_id]
         level = Level.find(params[:level_id])
-        redirect_to pack_level_path(level.pack.name, level.name)
+        redirect_to pack_level_path(level.pack, level)
       else
         redirect_to :root
       end

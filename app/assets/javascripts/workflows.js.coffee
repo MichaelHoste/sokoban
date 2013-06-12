@@ -164,8 +164,8 @@ $ ->
   )
 
   $('#random-level-canvas').on('click', ->
-    level_name = $(this).parent().attr('data-level-name')
-    pack_name  = $(this).parent().attr('data-pack-name')
+    level_name = $(this).parent().attr('data-level-slug')
+    pack_name  = $(this).parent().attr('data-pack-slug')
     location.assign("/packs/#{pack_name}/levels/#{level_name}")
   )
 

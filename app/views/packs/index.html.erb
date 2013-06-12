@@ -43,7 +43,7 @@
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td>
             <% pack.levels.each_with_index do |level, index| %>
-              <strong><h3><%= link_to level.name, pack_level_path(pack.name, level.name) %></h3></strong>
+              <strong><h3><%= link_to level.name, pack_level_path(pack, level) %></h3></strong>
               <% if level.copyright.present? %>
                 (<%= _("copyright: ") %> <%= level.copyright %>)
               <% end %>

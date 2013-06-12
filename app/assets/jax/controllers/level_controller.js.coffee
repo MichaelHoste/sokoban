@@ -1,8 +1,8 @@
 Jax.Controller.create "Level", ApplicationController,
   index: ->
     # get the names of the pack and level
-    pack_name = $('#packs').attr('data-pack-name')
-    level_name = $('#levels').find('.is-selected').attr('data-level-name')
+    pack_name = $('#packs').attr('data-pack-slug')
+    level_name = $('#levels').find('.is-selected').attr('data-level-slug')
 
     # create level
     @level = Level.find "actual"

@@ -7,6 +7,10 @@ SitemapGenerator::Sitemap.create do
   add '/terms_of_service'
 
   Level.all.each do |level|
-    add pack_level_path(level.pack.name, level.name)
+    add pack_level_path(level.pack, level)
+  end
+
+  User.registered.each do |user|
+    add user_path(user)
   end
 end
