@@ -120,6 +120,19 @@ namespace :deploy do
     deploy.stop
     deploy.start
   end
+
+  # CLONE PRODUCTION TO DEVELOPMENT : "cap deploy:clone_to_development"
+  task :clone_to_development do
+    config_dev = YAML::load(File.read('config/database.yml'))['development']
+    config_pro = YAML::load(File.read('config/database.yml'))['production']
+
+    # DB dump
+    run "mysqldump -u #{config_pro['username']} -p#{config_pro['password']} #{config_pro['database']} | gzip -9 > /home/deploy/sokoban_dump.sql.gz"
+    get '/home/deploy/sokoban_dump.sql.gz', 'tmp/sokoban_dump.sql.gz'
+    run_locally "gunzip tmp/sokoban_dump.sql.gz"
+    run_locally "mysql -u #{config_dev['username']} -p#{config_dev['password']} #{config_dev['database']} < tmp/sokoban_dump.sql"
+    run_locally "rm tmp/sokoban_dump.sql"
+  end
 end
 
 after 'deploy:setup' do

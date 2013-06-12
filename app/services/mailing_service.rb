@@ -10,15 +10,17 @@ module MailingService
   end
 
   def self.send_mailing(repeat = false)
-    MailingService.sync_with_mapmimi
+    if Rails.env.production?
+      MailingService.sync_with_mapmimi
 
-    MailingService.users_to_mail_now.each do |user|
-      UserNotifier.delay.weekly_notification(user.id)
-      user.update_attributes!({ :next_mailing_at => Time.now + 7.days + rand(-12..12).hours })
-    end
+      MailingService.users_to_mail_now.each do |user|
+        UserNotifier.delay.weekly_notification(user.id)
+        user.update_attributes!({ :next_mailing_at => Time.now + 7.days + rand(-12..12).hours })
+      end
 
-    if repeat
-      MailingService.delayed_send_mailing
+      if repeat
+        MailingService.delayed_send_mailing
+      end
     end
   end
 
