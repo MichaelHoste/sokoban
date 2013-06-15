@@ -22,12 +22,10 @@ class User < ActiveRecord::Base
            :through => :user_user_links
 
   has_many :scores,
-           :class_name => 'LevelUserLink',
-           :order      => 'pushes ASC, moves ASC, created_at DESC'
+           :class_name => 'LevelUserLink'
 
   has_many :best_scores,
            :class_name => 'LevelUserLink',
-           :order      => 'pushes ASC, moves ASC, created_at DESC',
            :conditions => { :best_level_user_score => true }
 
   has_many :levels,

@@ -4,7 +4,12 @@ class UsersController < ApplicationController
 
   def show
     level_ids = @user.best_scores.order('created_at DESC').limit(60).pluck(:level_id)
-    @levels = Level.find(level_ids)
+
+    # Preserve order of level_ids with "find"
+    # http://stackoverflow.com/questions/1680627/activerecord-findarray-of-ids-preserving-order
+    unsorted_levels = Level.find(level_ids)
+    @levels = level_ids.inject([]){|res, val| res << unsorted_levels.detect {|u| u.id == val}}
+
     @friends = @user.friends.registered.order('total_won_levels DESC')
   end
 
