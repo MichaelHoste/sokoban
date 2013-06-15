@@ -40,6 +40,7 @@ $ ->
     options =
       method:       'send'
       link:         window.current_url()
+      redirect_uri: window.current_url()
       name:         name
       description:  description
       to:           to
