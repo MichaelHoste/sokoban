@@ -15,7 +15,7 @@ $ ->
     window.reload_scores(friend_page, global_page)
   )
 
-  $('#scores').delegate('.score-item', 'click', ->
+  $('#scores').delegate('.score-item .brag', 'click', ->
     if $(this).attr('data-is-friend') == 'true'
       window.facebook_send_to_feed_in_ladder($(this).attr('data-f_id'),
                                              $(this).attr('data-score-worse') == "true")
