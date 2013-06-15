@@ -51,6 +51,7 @@
 
                 <span style="display:none" data-user-id="<%= friend['user_id'] ? friend.user_id : friend.id %>"
                                            data-user-name="<%= friend.name %>"
+                                           data-user-gender="<%= friend.gender %>"
                                            data-local-success="<%= friend['won_levels_count'] ? friend.won_levels_count : 0 %>"
                                            data-global-success="<%= friend.total_won_levels %>">
                   <% # won levels ids of current pack OR every won levels id %>
@@ -99,7 +100,8 @@
         </div>
       </div>
       <div class="user-challenge-this">
-        <a href="#"><%= _("Click to challenge on this level") %></a>
+        <%= link_to _("CLICK TO SEE HIS SCORES"), '#', 'data-male'   => _("CLICK TO SEE HIS SCORES"),
+                                                       'data-female' => _("CLICK TO SEE HER SCORES") %>
       </div>
     </div>
   </div>

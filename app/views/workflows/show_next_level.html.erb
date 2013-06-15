@@ -10,7 +10,7 @@
       </div>
 
       <% @ladder.each do |score| %>
-        <div class="final-score-item tips-left" data-id="<%= score.user ? score.user.id : '' %>" data-f_id="<%= score.user ? score.user.f_id : '' %>" title="<%= _("%{num} levels completed" % { :num => score.user.total_won_levels }) %>" data-score-worse="<%= score.worse %>">
+        <div class="final-score-item tips-left" data-id="<%= score.user ? score.user.id : '' %>" data-f_id="<%= score.user ? score.user.f_id : '' %>" title="<%= _("%{num} solved levels" % { :num => score.user.total_won_levels }) %>" data-score-worse="<%= score.worse %>">
           <div class="score-position"><%= score.position %></div>
           <div class="score-picture">
             <%= link_to image_tag(score.user.profile_picture, :width => '50px'), score.user.f_link %>

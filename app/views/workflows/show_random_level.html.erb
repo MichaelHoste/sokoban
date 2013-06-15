@@ -5,12 +5,7 @@
     <%= _("Can you solve this level?") %>
   </div>
 
-  <div class="random-level tips" title="<%= _("Try this level") %>" data-id           = "<%= @level.id %>"
-                                                                    data-level-grid   = "<%= @level.inline_grid_with_floor %>"
-                                                                    data-level-width  = "<%= @level.width %>"
-                                                                    data-level-height = "<%= @level.height %>"
-                                                                    data-level-slug   = "<%= @level.slug %>"
-                                                                    data-pack-slug    = "<%= @level.pack.slug %>">
+  <div class="random-level tips" title="<%= _("Try this level") %>" <%= level_datas(@level) %>>
     <div id="random-level-canvas">
     </div>
   </div>

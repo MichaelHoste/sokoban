@@ -3,6 +3,9 @@ show_user_infos = (span) ->
   user_name            = span.attr('data-user-name')
   local_success_count  = span.attr('data-local-success')
   global_success_count = span.attr('data-global-success')
+  user_gender          = span.attr('data-user-gender')
+  invitation_text      = $('#user-hover .user-challenge-this a').attr("data-#{user_gender}")
+  invitation_link      = span.parent().attr('href')
 
   user_picture = span.prev()
   user_hover = $('#user-hover')
@@ -15,6 +18,8 @@ show_user_infos = (span) ->
   user_hover.find('.user-name').html(user_name)
   user_hover.find('.user-stars-pack .num').html(local_success_count)
   user_hover.find('.user-stars-total .num').html(global_success_count)
+  user_hover.find('.user-challenge-this a').html(invitation_text)
+  user_hover.find('.user-challenge-this a').attr('href', invitation_link)
 
   user_hover.fadeIn()
 

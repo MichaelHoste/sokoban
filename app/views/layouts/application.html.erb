@@ -38,7 +38,7 @@
   </head>
 
   <% new_user = cookies[:already_read_the_welcome_message] ? '0' : '1' %>
-  <body data-new-user="<%= new_user %>">
+  <body id="<%= "#{params[:controller]}-#{params[:action]}" %>" data-new-user="<%= new_user %>">
     <%= render 'layouts/facebook_headers' %>
     <%# render 'layouts/googleplus_headers' %>
     <%= render 'layouts/advert_body' %>

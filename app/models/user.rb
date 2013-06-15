@@ -187,8 +187,9 @@ class User < ActiveRecord::Base
     self.update_attributes!({ :friends_updated_at => Time.now })
   end
 
-  def profile_picture
-    "https://graph.facebook.com/#{self.f_id}/picture?type=square"
+  def profile_picture(size = "square")
+    arg = (size.is_a? Integer) ? "width=#{size}" : "type=#{size}"
+    "https://graph.facebook.com/#{self.f_id}/picture?#{arg}"
   end
 
   # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to one pack)

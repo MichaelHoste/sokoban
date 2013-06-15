@@ -24,10 +24,10 @@
                                                      data-registered-friends="<%= current_user.friends.registered.count %>"
                                                      data-display-invite-popup="<%= current_user.display_friends_invite_popup? %>">
             <div>
-              <span class="fb_img">
+              <a class="fb_img" href="<%= user_path(current_user) %>">
                 <%= image_tag current_user.profile_picture, :title => current_user.name %>
-              </span>
-              <span><%= current_user.name %></span>
+              </a>
+              <a href="<%= user_path(current_user) %>"><%= current_user.name %></a>
             </div>
           </li>
         <% else %>

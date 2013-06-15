@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   before_filter :find_user, :except => ['index']
 
   def show
+    level_ids = @user.best_scores.order('created_at DESC').limit(60).pluck(:level_id)
+    @levels = Level.find(level_ids)
+    @friends = @user.friends.registered.order('total_won_levels DESC')
   end
 
   def index

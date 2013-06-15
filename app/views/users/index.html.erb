@@ -23,7 +23,7 @@
           <%= i+1 %>
         </td>
         <td class="picture">
-          <img src="<%= user.profile_picture %>"/>
+          <%= link_to image_tag(user.profile_picture), user_path(user), :alt => user.name %>
         </td>
         <td class="name">
           <%= user.name %>

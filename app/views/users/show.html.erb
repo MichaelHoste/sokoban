@@ -1,0 +1,27 @@
+<%= javascript_include_tag 'users/show' %>
+
+<div id="limited-content">
+  <div id="left-side">
+    <%= link_to image_tag(@user.profile_picture(300), :class => 'profile'), @user.f_link %>
+
+    <div class="friends">
+      <% @friends.each do |user| %>
+        <%= link_to image_tag(user.profile_picture), user_path(user), :class => 'tips-users', :title => "#{user.name} - #{user.total_won_levels} levels", :alt => user.name %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="right-side">
+    <% @levels.each do |level| %>
+      <a href="<%= pack_level_path(level.pack, level) %>">
+        <div class="level level-<%= level.id %> tips-levels" title="<%= level.name %>" <%= level_datas(level) %>>
+          <div id="level-<%= level.id %>-canvas">
+          </div>
+        </div>
+      </a>
+    <% end %>
+  </div>
+
+  <div style="clear:both">
+  </div>
+</div>

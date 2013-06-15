@@ -41,7 +41,7 @@
   <div>
     <% @last_users.each do |user| %>
       <div>
-        <%= link_to image_tag(user.profile_picture, :width => '25px', :class => 'tips', :title => "#{user.name} - #{user.total_won_levels}"), user.f_link %>
+        <%= link_to image_tag(user.profile_picture, :width => '25px', :class => 'tips', :title => "#{user.name} - #{user.total_won_levels}"), user_path(user) %>
         |
         <%= user.name %>
         |
@@ -59,7 +59,7 @@
   <div>
     <% @last_scores.each do |score| %>
       <% user_picture = (score.user_id ? score.user.profile_picture : 'default_user.gif' )%>
-      <% user_link = (score.user_id ? score.user.f_link : '#') %>
+      <% user_link = (score.user_id ? user_path(score.user) : '#') %>
       <% won_levels = score.user ? score.user.total_won_levels : 0 %>
 
       <div>
