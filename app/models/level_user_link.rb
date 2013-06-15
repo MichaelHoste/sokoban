@@ -95,7 +95,7 @@ class LevelUserLink < ActiveRecord::Base
       begin
         graph = Koala::Facebook::API.new(self.user.f_token)
         graph.put_connections("me", "sokoban_game:complete",
-                              :level  => pack_level_url(self.level.pack, self.level, :host => EMAIL['default_url_options']),
+                              :level  => pack_level_url(self.level.pack, self.level, :host => "sokoban-game.com"),
                               :pushes => self.pushes,
                               :moves  => self.moves)
       rescue Koala::Facebook::APIError => e
