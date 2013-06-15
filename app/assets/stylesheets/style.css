@@ -868,6 +868,9 @@ body {
 			padding-bottom:4px;
 			cursor:pointer;
 		}
+		.score-item-a {
+			color:inherit;
+		}
 		.invite-item:hover,
 		.score-item:hover {
 			background: #d7e8f0;

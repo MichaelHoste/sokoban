@@ -61,6 +61,12 @@ class LevelUserLink < ActiveRecord::Base
     generate_pushes_and_moves()
   end
 
+  # Scopes
+
+  def self.best_before
+    order('pushes ASC, moves ASC, created_at DESC')
+  end
+
   # Class Methods
 
   def self.tag_worse_scores_than_user(array_of_scores, user_id)
@@ -89,7 +95,7 @@ class LevelUserLink < ActiveRecord::Base
       begin
         graph = Koala::Facebook::API.new(self.user.f_token)
         graph.put_connections("me", "sokoban_game:complete",
-                              :level  => pack_level_url(self.level.pack, self.level),
+                              :level  => pack_level_url(self.level.pack, self.level, :host => EMAIL['default_url_options']),
                               :pushes => self.pushes,
                               :moves  => self.moves)
       rescue Koala::Facebook::APIError => e
