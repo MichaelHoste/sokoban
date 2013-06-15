@@ -28,6 +28,7 @@ class ValidatePath < ActiveModel::Validator
 end
 
 class LevelUserLink < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
 
   # Constants
 
