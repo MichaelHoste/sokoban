@@ -4,6 +4,21 @@
   <div id="left-side">
     <%= link_to image_tag(@user.profile_picture(300), :class => 'profile'), @user.f_link %>
 
+    <table class="stats">
+      <tr>
+        <td class="first"><%= _('Levels solved') %></td>
+        <td class="second"><%= @user.total_won_levels %></td>
+      </tr>
+      <tr>
+        <td class="first"><%= _("Friends ranking") %></td>
+        <td class="second"><%= @ladder[:top_friends_position] %> on <%= @ladder[:top_friends].count %></td>
+      </tr>
+      <tr>
+        <td class="first"><%= _("Global ranking") %></td>
+        <td class="second"><%= @ladder[:top_users_position] %> on <%= User.registered.count %></td>
+      </tr>
+    </table>
+
     <div class="friends">
       <% @friends.each do |user| %>
         <%= link_to image_tag(user.profile_picture), user_path(user), :class => 'tips-users', :title => "#{user.name} - #{user.total_won_levels} levels", :alt => user.name %>

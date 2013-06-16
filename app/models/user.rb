@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
       user.update_attributes!({ :next_mailing_at => Time.now + 7.days })
 
       # email to admin
-      UserNotifier.delay.new_user(user.name, user.email)
+      UserNotifier.delay.new_user(user.id)
 
       # Post status on facebook page if %100
       if (User.registered.count+1) % 100 == 0
@@ -328,7 +328,7 @@ class User < ActiveRecord::Base
     friends_in_the_pack = User.where(:id => friend_ids)
                               .select('users.*, pack_user_links.*')
                               .joins(:pack_user_links).where('pack_user_links.pack_id = ?', pack.id)
-                              .sort { |x,y| y.won_levels_count <=> x.won_levels_count }
+                              .sort { |x,y| [y.won_levels_count, y.total_won_levels] <=> [x.won_levels_count, x.total_won_levels] }
     friends_in_the_pack_ids = friends_in_the_pack.collect { |user| user.user_id }
 
     friends_not_in_the_pack = []

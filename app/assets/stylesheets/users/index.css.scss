@@ -84,7 +84,12 @@ table#ladder
 
   td.name
   {
-
+    a
+    {
+      color:inherit;
+      font-weight:bold;
+      text-decoration:none;
+    }
   }
 
   td.score

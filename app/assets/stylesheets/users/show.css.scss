@@ -1,4 +1,4 @@
-#users-show
+#users-show, #users-levels_to_solve, #users-scores_to_improve
 {
   #left-side
   {
@@ -10,6 +10,26 @@
     img.profile
     {
       width:274px;
+    }
+
+    .stats
+    {
+      width:100%;
+      margin-top:6px;
+
+      td.first
+      {
+        padding:3px;
+        font-weight:bold;
+        width:116px;
+      }
+
+
+      td.second
+      {
+        font-size:15px;
+        text-align:right;
+      }
     }
 
     .friends

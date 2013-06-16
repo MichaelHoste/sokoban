@@ -3,12 +3,11 @@
 class UserNotifier < ActionMailer::Base
   default :from => "\"Sokoban\" <contact@sokoban-game.com>"
 
-  def new_user(user_name, user_email)
-    @user_name  = user_name
-    @user_email = user_email
+  def new_user(user_id)
+    @user = User.find(user_id)
 
     mail(:to      => 'contact@sokoban-game.com',
-         :subject => "[Sokoban] New Registration : #{user_name}")
+         :subject => "[Sokoban] New Registration : #{@user.name}")
   end
 
   def weekly_notification(user_id)

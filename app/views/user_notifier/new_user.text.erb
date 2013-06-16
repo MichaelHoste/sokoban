@@ -1,1 +1,3 @@
-<%= @user_name %> (<%= @user_email %>) vient de s'inscrire sur Sokoban.
+<%= @user.name %> (<%= @user.email %>) vient de s'inscrire sur Sokoban.
+
+Sa page personnelle : <%= user_url(@user) %>

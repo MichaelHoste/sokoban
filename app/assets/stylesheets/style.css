@@ -243,7 +243,10 @@ body {
 		vertical-align: top;
 		/*height: 34px;*/
 	}
-	#limited-header #menus .fb_login { padding-top: 5px;}
+	#limited-header #menus .fb_login {
+		padding-top: 5px;
+		margin-left:10px;
+	}
 	#limited-header #menus .ranking-menu { padding-top: 3px;}
 	#limited-header #menus .rules-menu { padding-top: 3px;}
 

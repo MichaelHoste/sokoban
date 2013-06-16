@@ -26,7 +26,7 @@
           <%= link_to image_tag(user.profile_picture), user_path(user), :alt => user.name %>
         </td>
         <td class="name">
-          <%= user.name %>
+          <%= link_to user.name, user_path(user) %>
         </td>
         <td class="score">
           <%= _("<span>%{num}</span> solved levels" % { :num => user.total_won_levels }) %>

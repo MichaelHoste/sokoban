@@ -7,17 +7,20 @@
 
     <div id="menus">
       <ul>
-        <% if current_user %>
-
-          <% @ladder_positions = current_user.ladder_positions %>
-          <li class="ranking-menu">
-            <div>
-              <a href="<%= rankings_path %>">
+        <li class="ranking-menu">
+          <div>
+            <a href="<%= rankings_path %>">
+              <% if current_user %>
+                <% @ladder_positions = current_user.ladder_positions %>
                 <%= @ladder_positions[:top_users_position] %> / <%= User.registered.count %>
-              </a>
-            </div>
-          </li>
+              <% else %>
+                <%= _('Rankings') %>
+              <% end %>
+            </a>
+          </div>
+        </li>
 
+        <% if current_user %>
           <li class="name fb_logged" id="user-infos" data-id="<%= current_user.id %>"
                                                      data-global-success="<%= current_user.total_won_levels %>"
                                                      data-like-facebook-page="<%= current_user.like_fan_page %>"

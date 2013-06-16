@@ -16,15 +16,15 @@
     </div>
   </div>
 
-<% elsif params[:controller] == 'users' and params[:action] == 'show' %>
+<% elsif params[:controller] == 'users' and params[:action].in? %w(show levels_to_solve scores_to_improve) %>
 
-<div id="banner">
-  <div id="limited-banner" class="banner-text">
-    <h2>
-      <%= @user.name %>
-    </h2>
+  <div id="banner">
+    <div id="limited-banner" class="banner-text">
+      <h2>
+        <%= @user.name %>
+      </h2>
+    </div>
   </div>
-</div>
 
 <% elsif not current_user %>
 

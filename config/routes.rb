@@ -28,6 +28,8 @@ Sokojax::Application.routes.draw do
       get  :custom_invitation           # JSON with data for custom user invitation
       post :update_send_invitations_at  # user just invited some friends
       get  :unsubscribe_from_mailing    # remove user from mailing list (remove from madmimi)
+      get  :levels_to_solve
+      get  :scores_to_improve
     end
   end
 
