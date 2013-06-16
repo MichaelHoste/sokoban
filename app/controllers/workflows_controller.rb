@@ -47,7 +47,7 @@ class WorkflowsController < ApplicationController
   end
 
   def show_next_level
-    @level = Level.find(params[:level_id])
+    @level = Level.find_by_id(params[:level_id])
     @pack  = @level.pack
 
     @score = LevelUserLink.find(params[:score_id])
