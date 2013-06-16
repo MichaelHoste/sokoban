@@ -24,6 +24,10 @@
 
   <br/>
 
+  <strong>Solved levels by day of the week</strong>
+
+  <%= column_chart LevelUserLink.group_by_day_of_week(:created_at).count %>
+
   <strong>Tasks</strong>
 
   <ul>

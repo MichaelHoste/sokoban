@@ -179,12 +179,12 @@ class LevelUserLink < ActiveRecord::Base
   end
 
   def ladder_friends(num_of_scores)
-    ladder = self.level.best_scores.where(:user_id => self.user.friends.registered + [self.user_id]).all
+    ladder = self.level.best_scores.where(:user_id => self.user.friends.registered + [self.user_id]).best_before.all
     limited_ladder(ladder, num_of_scores)
   end
 
   def ladder(num_of_scores)
-    ladder = self.level.best_scores.where('user_id IS NOT NULL').all
+    ladder = self.level.best_scores.where('user_id IS NOT NULL').best_before.all
     limited_ladder(ladder, num_of_scores)
   end
 
