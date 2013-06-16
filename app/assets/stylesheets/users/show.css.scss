@@ -1,4 +1,4 @@
-#users-show, #users-levels_to_solve, #users-scores_to_improve
+#users-latest_levels, #users-levels_to_solve, #users-scores_to_improve
 {
   #left-side
   {
@@ -15,11 +15,11 @@
     .stats
     {
       width:100%;
-      margin-top:6px;
+      margin-top:8px;
 
       td.first
       {
-        padding:3px;
+        padding:2px;
         font-weight:bold;
         width:116px;
       }
@@ -49,6 +49,32 @@
     float:left;
     width:654px;
     margin-left:20px;
+
+    #tabs
+    {
+      border-bottom:1px solid #CCCCCC;
+      margin-top:11px;
+      margin-bottom:10px;
+
+      .tab
+      {
+        float:left;
+        padding:18px;
+        padding-top:5px;
+        padding-bottom:6px;
+
+        a
+        {
+          color:inherit;
+          text-decoration:none;
+        }
+      }
+
+      .active
+      {
+        font-weight:bold;
+      }
+    }
 
     .level
     {

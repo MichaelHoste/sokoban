@@ -73,6 +73,7 @@ $ ->
     $('.tips-direct').tipsy({live: true, opacity: 0.8})
     $('.tips-levels').tipsy({live: true, gravity: 'n', opacity: 0.8, offset:-20})
     $('.tips-users').tipsy({live: true, gravity: 'n', opacity: 0.8, offset:-5})
+    $('.tips-top').tipsy({live: true, gravity: 's', opacity: 0.8})
 
   window.hide_all_tipsy = ->
     $('.tipsy').remove()
