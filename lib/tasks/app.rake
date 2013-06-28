@@ -1,8 +1,7 @@
-# compile coffee file that will be loaded by the server in javascript
-# to reuse the level methods in ruby
-
 require 'coffee-rails'
 
+# compile coffee file that will be loaded by the server in javascript
+# to reuse the level methods in ruby
 def compile_coffee_to_js
   files = ['level_core', 'path_core', 'deadlock_core']
   files.each do |file|

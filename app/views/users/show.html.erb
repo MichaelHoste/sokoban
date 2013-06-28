@@ -2,7 +2,7 @@
 
 <div id="limited-content">
   <div id="left-side">
-    <%= link_to image_tag(@user.profile_picture(300), :class => 'profile'), @user.f_link %>
+    <%= link_to image_tag(@user.profile_picture(274), :class => 'profile', :alt => @user.name, :title => @user.name), @user.f_link %>
 
     <table class="stats">
       <tr>
