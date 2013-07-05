@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: http://sokoban-game.com/sitemap_index.xml.gz
+Sitemap: https://sokoban-game.com/sitemap_index.xml.gz

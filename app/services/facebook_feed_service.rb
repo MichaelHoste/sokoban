@@ -1,7 +1,7 @@
 module FacebookFeedService
   def self.delayed_publish_random_level
     Delayed::Job.where(:queue => 'publish_random_level').destroy_all
-    FacebookFeedService.delay(:run_at => rand(18..24).hours.from_now, :queue => 'publish_random_level').publish_random_level(true)
+    FacebookFeedService.delay(:run_at => rand(24..48).hours.from_now, :queue => 'publish_random_level').publish_random_level(true)
   end
 
   def self.publish_random_level(repeat = false)
@@ -43,7 +43,14 @@ module FacebookFeedService
   def self.publish_level_count(count)
     level = LevelUserLink.order('id DESC').first.level
 
-    message = "The users of Sokoban solved #{count} levels. Keep up the good work!"
+    random = rand(3)
+    if random == 0
+      message = "The users of Sokoban solved #{count} levels. Keep up the good work!"
+    elsif random == 1
+      message = "You already solved #{count} levels. Thank you all !"
+    else
+      message = "You already solved #{count} levels !"
+    end
 
     begin
       page = Koala::Facebook::API.new(FacebookFeedService.get_page_access_token)

@@ -1,22 +1,23 @@
 class UsersController < ApplicationController
 
-  before_filter :require_user, :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
+  before_filter :require_user, :only   => ['levels_to_solve', 'scores_to_improve']
   before_filter :find_user,    :except => ['index']
   before_filter :get_ladder,   :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
   before_filter :get_friends,  :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
 
   def show
     if (not current_user) or current_user.id == @user.id
-      redirect_to latest_levels_user_path(@user)
+      @ladder  = get_ladder
+      @friends = get_friends
+      @levels  = latests
+      render 'show'
     else
       redirect_to levels_to_solve_user_path(@user)
     end
   end
 
   def latest_levels
-    level_ids = @user.best_scores.order('created_at DESC').pluck(:level_id)
-    @levels   = find_levels_and_preserve_order(level_ids).take(60)
-
+    @levels = latests
     render 'show'
   end
 
@@ -116,5 +117,10 @@ class UsersController < ApplicationController
   def find_levels_and_preserve_order(level_ids)
     unsorted_levels = Level.find(level_ids)
     level_ids.inject([]){|res, val| res << unsorted_levels.detect {|u| u.id == val}}
+  end
+
+  def latests
+    level_ids = @user.best_scores.order('created_at DESC').pluck(:level_id)
+    find_levels_and_preserve_order(level_ids).take(60)
   end
 end

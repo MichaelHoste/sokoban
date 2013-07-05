@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
 
       # Post status on facebook page if %100
       if (User.registered.count+1) % 100 == 0
-        FacebookFeedService.publish_user_count(User.registered.count+1)
+        FacebookFeedService.delay.publish_user_count(User.registered.count+1)
       end
     end
 
