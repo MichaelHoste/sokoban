@@ -9,4 +9,4 @@ $ ->
     pack_slug  = $('#packs').attr('data-pack-slug')
     level_slug = $('#levels').find('.is-selected').attr('data-level-slug')
 
-    History.pushState(null, "Sokoban - #{pack_real_name} - #{level_real_name}", "/packs/#{pack_slug}/levels/#{level_slug}")
+    History.pushState(null, "#{pack_real_name} - #{level_real_name}", "/packs/#{pack_slug}/levels/#{level_slug}")

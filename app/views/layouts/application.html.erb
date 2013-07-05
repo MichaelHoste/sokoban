@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" prefix="fb: http://www.facebook.com/2008/fbml">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# sokoban_game: http://ogp.me/ns/fb/sokoban_game#">
-    <title><%= @level ? "Sokoban - #{@level.pack.name} - #{@level.name}" : "Sokoban - " + _("Free and Social Puzzle Game") %></title>
+    <title>
+      <% if @level %>
+        <%= "#{@level.pack.name} - #{@level.name}" %>
+      <% elsif @user %>
+        <%= "#{@user.name} - #{@user.total_won_levels} " + _('levels solved') %>
+      <% else %>
+        <%= "Sokoban - " + _("Free and Social Puzzle Game") %>
+      <% end %>
+    </title>
     <meta charset="UTF-8" />
-    <meta name="description" content="<%= @level ? "#{@level.pack.description} (#{@level.pack.file_name}.slc - #{@level.pack.copyright} - #{@level.pack.email} - #{@level.pack.url})" : "Sokoban is a puzzle-game in which the player pushes boxes around in a warehouse, trying to get them to storage locations." %>" />
     <meta name="author" content="Michaël Hoste">
-    <meta name="keywords" content="<%= _("sokoban, pushes, moves, brag, puzzle, game, levels, packs, challenge, friends, social") %>" />
+
+    <% if @level %>
+      <% description = "#{@level.pack.description} (#{@level.pack.file_name}.slc - #{@level.pack.copyright} - #{@level.pack.email} - #{@level.pack.url})" %>
+    <% elsif @user %>
+      <% description = "Profile of #{@user.name} - #{@user.total_won_levels} " + _('levels solved') %>
+    <% else %>
+      <% description = "Sokoban is a puzzle-game in which the player pushes boxes around in a warehouse, trying to get them to storage locations." %>
+    <% end %>
+    <meta name="description" content="<%= description %>" />
+
+    <% if @level %>
+      <% add_keywords = "#{@level.name}, #{@level.pack.name}, " %>
+    <% elsif @user %>
+      <% add_keywords = "#{@user.name}, " %>
+    <% else %>
+      <% add_keywords = "" %>
+    <% end %>
+    <meta name="keywords" content="<%= add_keywords + _("sokoban, pushes, moves, brag, puzzle, game, levels, packs, challenge, friends, social") %>" />
     <meta name="referrer" content="always">
     <link rel="shortcut icon" href="/favicon.gif">
 
