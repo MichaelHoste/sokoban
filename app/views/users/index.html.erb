@@ -1,5 +1,13 @@
 <%= javascript_include_tag 'users/index' %>
 
+<% content_for :title, _('Friends Ranking') if params[:type] == 'friends' %>
+<% content_for :title, _('Global Ranking')  if params[:type] == 'global' %>
+
+<% content_for :description, _("%{user_num} users solved %{level_num} levels" % { :user_num => User.registered.count, :level_num => LevelUserLink.count }) %>
+
+<% content_for :keywords, _('friends, ranking') if params[:type] == 'friends' %>
+<% content_for :keywords, _('global, ranking')  if params[:type] == 'global' %>
+
 <div id="limited-content">
 
   <% if current_user %>

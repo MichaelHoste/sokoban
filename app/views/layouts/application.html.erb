@@ -2,7 +2,9 @@
 <html lang="en" prefix="fb: http://www.facebook.com/2008/fbml">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# sokoban_game: http://ogp.me/ns/fb/sokoban_game#">
     <title>
-      <% if @level %>
+      <% if yield(:title).present? %>
+        <%= yield(:title) %>
+      <% elsif @level %>
         <%= "#{@level.pack.name} - #{@level.name}" %>
       <% elsif @user %>
         <%= "#{@user.name} - #{@user.total_won_levels} " + _('levels solved') %>
@@ -13,7 +15,9 @@
     <meta charset="UTF-8" />
     <meta name="author" content="Michaël Hoste">
 
-    <% if @level %>
+    <% if yield(:title).present? %>
+      <% description = yield(:description) %>
+    <% elsif @level %>
       <% description = "#{@level.pack.description} (#{@level.pack.file_name}.slc - #{@level.pack.copyright} - #{@level.pack.email} - #{@level.pack.url})" %>
     <% elsif @user %>
       <% description = "Profile of #{@user.name} - #{@user.total_won_levels} " + _('levels solved') %>
@@ -22,7 +26,9 @@
     <% end %>
     <meta name="description" content="<%= description %>" />
 
-    <% if @level %>
+    <% if yield(:title).present? %>
+      <% add_keywords = yield(:keywords) + ', ' %>
+    <% elsif @level %>
       <% add_keywords = "#{@level.name}, #{@level.pack.name}, " %>
     <% elsif @user %>
       <% add_keywords = "#{@user.name}, " %>
