@@ -49,7 +49,7 @@
                       <a href="<%= pack_level_url(@level.pack, @level) %>" style="color:#3693cc!important;text-decoration:none" target="_blank">
                         <img src="<%= @level.thumb %>" alt="Miniature du niveau" style="border:0;margin-bottom:12px" width="250">
                         <span style="text-align:center;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top;padding-top:10px;font-weight:bold">
-                          Click here to solve it!
+                          Can you solve it too? Click here!
                         </span>
                       </a>
                     </div>
@@ -62,10 +62,7 @@
                     Hi <%= @user.f_first_name %>,
                   </p>
                   <p style="color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
-                    Sokoban is a <strong style="font-style:normal;font-weight:bold">free puzzle-game</strong> where a level is solved when you've pushed all the boxes on their goals.
-                  </p>
-                  <p style="color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
-                    <a href="http://sokoban-game.com" style="color:#3693cc!important;text-decoration:underline" target="_blank">sokoban-game.com</a> puts together <strong style="font-style:normal;font-weight:bold"><%= Level.count %> levels</strong> from the very simple ones to the really complex ones.
+                    <a href="http://sokoban-game.com" style="color:#3693cc!important;text-decoration:underline" target="_blank">sokoban-game.com</a> is a <strong style="font-style:normal;font-weight:bold">free puzzle-game</strong> where a level is solved when you've pushed all the boxes on their goals.
                   </p>
                   <p style="color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;margin-bottom:1.3em;margin-left:0;margin-right:0;margin-top:0;padding:0;padding-top:3px;vertical-align:top">
                     Currently, there are <strong style="font-style:normal;font-weight:bold"><%= User.registered.count %></strong> registered members on Sokoban and <strong style="font-style:normal;font-weight:bold"><%= LevelUserLink.count %></strong> levels have been solved. Keep doing the good work :-)
@@ -99,16 +96,20 @@
                     Friends ranking (<%= @ladder[:top_friends_position] %>/<%= @ladder[:top_friends].count %>)
                   </p>
                   <table style="margin-left:30px;margin-bottom:15px">
-                    <% @ladder[:top_friends].each_with_index do |user, i| %>
+                    <% @ladder[:top_friends].take(50).each_with_index do |user, i| %>
                       <tr style="<%= 'background-color:#d7e8f0' if user.id == @user.id %>">
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
                           <%= i+1 %>
                         </td>
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
-                          <img src="<%= user.profile_picture %>"/>
+                          <a href="<%= user_url(user) %>" style="color:#3693cc!important" target="_blank">
+                            <img src="<%= user.profile_picture %>"/>
+                          </a>
                         </td>
                         <td style="width:220px;padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
-                          <%= user.name %>
+                          <a href="<%= user_url(user) %>" style="color:#3693cc!important;text-decoration:none;font-weight:bold" target="_blank">
+                            <%= user.name %>
+                          </a>
                         </td>
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
                           <span style="font-weight:bold"><%= user.total_won_levels %></span> solved levels
@@ -151,10 +152,14 @@
                           <%= i+1 %>
                         </td>
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
-                          <img src="<%= user.profile_picture %>"/>
+                          <a href="<%= user_url(user) %>" style="color:#3693cc!important" target="_blank">
+                            <img src="<%= user.profile_picture %>"/>
+                          </a>
                         </td>
                         <td style="width:220px;padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
-                          <%= user.name %>
+                          <a href="<%= user_url(user) %>" style="color:#3693cc!important;text-decoration:none;font-weight:bold" target="_blank">
+                            <%= user.name %>
+                          </a>
                         </td>
                         <td style="padding-left:10px;padding-right:10px;color:#555555!important;font-family:Helvetica;font-size:15px;line-height:1.5em;">
                           <span style="font-weight:bold"><%= user.total_won_levels %></span> solved levels
