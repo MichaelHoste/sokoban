@@ -19,6 +19,9 @@ gem 'sitemap_generator'
 gem 'httparty'
 gem 'friendly_id'
 
+# Stats
+gem 'newrelic_rpm'
+
 # Deployement
 gem 'capistrano'
 gem 'foreman'
