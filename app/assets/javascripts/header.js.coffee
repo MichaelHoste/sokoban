@@ -4,7 +4,7 @@ $ ->
   )
 
   $('#menus .fb_login').on('click', ->
-    location.assign('/auth/facebook')
+    location.assign('/connect_facebook')
   )
 
   $('#menus .rules-menu').on('click', ->

@@ -41,6 +41,10 @@ Sokojax::Application.routes.draw do
   # Root
   root :to => "packs#show", :id => 'dimitri-yorick' # or 'Novoban'
 
+  # Redirect user back to the page before login
+  # http://forrst.com/posts/Redirect_a_user_back_to_the_current_page_after_a-R1q
+  get '/connect_facebook',          :to => 'sessions#connect_facebook'
+
   # OmniAuth (facebook)
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure',            :to => 'sessions#failure'

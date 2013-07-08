@@ -2,6 +2,15 @@ class SessionsController < ApplicationController
 
   skip_before_filter :check_facebook
 
+  def connect_facebook
+    if not current_user
+      session['referer'] = request.env["HTTP_REFERER"] || ''
+      redirect_to '/auth/facebook'
+    else
+      redirect_to :back
+    end
+  end
+
   def new
     if current_user
       redirect_to :root
@@ -29,6 +38,8 @@ class SessionsController < ApplicationController
       if params[:level_id]
         level = Level.find_by_id(params[:level_id])
         redirect_to pack_level_path(level.pack, level)
+      elsif session['referer'] and not session['referer'].empty?
+        redirect_to session['referer']
       else
         redirect_to :root
       end

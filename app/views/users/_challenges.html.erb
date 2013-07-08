@@ -4,7 +4,7 @@
       <h4 class="challenge-title"><%= _("Challenges") %></h4>
       <div id="invitations">
         <% unless current_user %>
-          <%= link_to image_tag("facebook-connect-banner.gif"), '/auth/facebook' %>
+          <%= link_to image_tag("facebook-connect-banner.gif"), '/connect_facebook' %>
         <% end %>
         <%# AJAX ! 'users/popular_friends' %>
       </div>
