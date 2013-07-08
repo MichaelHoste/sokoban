@@ -51,6 +51,10 @@ before "deploy:assets:precompile" do
   # Emails
   upload "config/email.yml", "#{deploy_to}/shared/config/email.yml"
   run "ln -s #{deploy_to}/shared/config/email.yml #{latest_release}/config/email.yml;true"
+
+  # NewRelic
+  upload "config/newrelic.yml", "#{deploy_to}/shared/config/newrelic.yml"
+  run "ln -s #{deploy_to}/shared/config/newrelic.yml #{latest_release}/config/newrelic.yml;true"
 end
 
 namespace :foreman do
