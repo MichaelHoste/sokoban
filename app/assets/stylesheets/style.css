@@ -250,7 +250,7 @@ body {
 	#limited-header #menus .ranking-menu { padding-top: 3px;}
 	#limited-header #menus .rules-menu { padding-top: 3px;}
 	#limited-header #menus .logout {
-		display:hidden;
+		display:none;
 		padding-top: 3px;
 	}
 
