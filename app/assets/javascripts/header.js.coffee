@@ -11,6 +11,7 @@ $ ->
   # http://blog.blakesimpson.co.uk/read/22-detect-if-page-is-within-facebook-iframe-or-not-javascript
   if window.name == ''
     $('#menus .logout').show()
+    $('#menus .logout').css('display', 'inline-block')
 
   # initialize and change theme
   window.theme = "classic"
