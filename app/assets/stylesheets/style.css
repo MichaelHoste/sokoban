@@ -251,7 +251,7 @@ body {
 	#limited-header #menus .rules-menu { padding-top: 3px;}
 	#limited-header #menus .logout {
 		display:none;
-		padding-top: 3px;
+		padding-top: 4px;
 	}
 
 	#limited-header #menus .fb-login div {
@@ -334,9 +334,9 @@ body {
 		background: url('/assets/sprites.png') no-repeat -170px -100px;
 		border: 1px solid #c9c9c9;
 		height: 27px;
-		line-height: 28px;
+		line-height: 26px;
 		padding: 0 5px 0 5px;
-		font-size: 12px;
+		font-size: 10px;
 		font-weight: bold;
 		color: #333;
 		-webkit-border-radius: 2px;
