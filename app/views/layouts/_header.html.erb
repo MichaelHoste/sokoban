@@ -34,7 +34,7 @@
             </div>
           </li>
         <% else %>
-          <li class="name fb_login">
+          <li class="name fb-login">
             <div>
               <a href="/connect_facebook"><%= _('Login with Facebook') %></a>
             </div>
@@ -45,6 +45,14 @@
         <li class="challenges-menu"><i class="icon-trophy"></i>&nbsp;Challenges</li>
         <li class="packs-menu is-selected"><i class="icon-star"></i>&nbsp;Packs</li>
         -->
+
+        <% if current_user and %>
+          <li class="logout">
+            <div>
+              <%= link_to _("Logout"), logout_path, :style => 'color:inherit;text-decoration:none' %>
+            </div>
+          </li>
+        <% end %>
 
         <li class="rules-menu">
           <div><%= _("Rules") %></div>

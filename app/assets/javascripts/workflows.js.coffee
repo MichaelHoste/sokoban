@@ -1,5 +1,5 @@
 redirect_to_facebook_login_if_not_logged = ->
-  if $('#menus .fb_login').length
+  if $('#menus .fb-login').length
     window.colorbox_facebook()
   else
     $.fn.colorbox.close()

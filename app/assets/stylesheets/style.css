@@ -243,14 +243,18 @@ body {
 		vertical-align: top;
 		/*height: 34px;*/
 	}
-	#limited-header #menus .fb_login {
+	#limited-header #menus .fb-login {
 		padding-top: 5px;
 		margin-left:10px;
 	}
 	#limited-header #menus .ranking-menu { padding-top: 3px;}
 	#limited-header #menus .rules-menu { padding-top: 3px;}
+	#limited-header #menus .logout {
+		display:hidden;
+		padding-top: 3px;
+	}
 
-	#limited-header #menus .fb_login div {
+	#limited-header #menus .fb-login div {
 		background: url('/assets/sprites.png') no-repeat -100px -200px;
 		border: 1px solid #506383;
 		height: 24px;
@@ -264,11 +268,11 @@ body {
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
 	}
-	#limited-header #menus .fb_login div a {
+	#limited-header #menus .fb-login div a {
 		color:white;
 		text-decoration: none;
 	}
-	#limited-header #menus .fb_login div:hover {
+	#limited-header #menus .fb-login div:hover {
 		cursor:pointer;
 	}
 	#limited-header #menus .fb_logged {
@@ -326,6 +330,21 @@ body {
 		color:inherit;
 	}
 
+	#limited-header #menus .logout div {
+		background: url('/assets/sprites.png') no-repeat -170px -100px;
+		border: 1px solid #c9c9c9;
+		height: 27px;
+		line-height: 28px;
+		padding: 0 5px 0 5px;
+		font-size: 12px;
+		font-weight: bold;
+		color: #333;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		margin-left: -5px;
+		cursor:pointer;
+	}
+
 	#limited-header #menus .rules-menu div {
 		background: url('/assets/sprites.png') no-repeat -100px -100px;
 		border: 1px solid #c9c9c9;
@@ -340,7 +359,6 @@ body {
 		margin-left: 10px;
 		cursor:pointer;
 	}
-
 
 #current-level-name {
 	position: absolute;
