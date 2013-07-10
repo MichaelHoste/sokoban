@@ -145,8 +145,8 @@ class LevelUserLink < ActiveRecord::Base
       access_token = oauth.get_app_access_token
       graph        = Koala::Facebook::API.new(access_token)
 
-      facebook_notify(graph, friends_to_notify_better, 'better')
-      facebook_notify(graph, friends_to_notify_equality, 'equality')
+      FacebookNotificationService.notify_best_score(self, graph, friends_to_notify_better, 'better')
+      FacebookNotificationService.notify_best_score(self, graph, friends_to_notify_equality, 'equality')
     end
   end
 
@@ -291,32 +291,5 @@ class LevelUserLink < ActiveRecord::Base
     end
 
     return user_score_index
-  end
-
-  private
-
-  def facebook_notify(graph, users, type)
-    if type == 'better'
-      text = "@[#{self.user.f_id}] has just beat your score on level '#{self.level.name}', get revenge!"
-    else
-      text = "@[#{self.user.f_id}] just solved '#{self.level.name}' with the same score as you."
-    end
-
-    users.each do |user|
-      # self.user (score) send notif to user (beaten score) and we log the date
-      u_u = UserUserLink.find_by_user_id_and_friend_id(self.user.f_id, user.f_id)
-
-      # Only one 'equality' notification every 30 minutes but every 'better' notifications
-      if type == 'better' or (type == 'equality' and Time.now >= u_u.notified_at + 30.minutes.to_i)
-        begin
-          graph.put_connections(user.f_id, "notifications",
-                                :template => text,
-                                :href     => "?level_id=#{self.level.id}")
-          u_u.update_attributes!({ :notified_at => Time.now })
-        rescue
-          Rails.logger.info("NOTIFICATION FAILED FOR BETTER #{user.name}")
-        end
-      end
-    end
   end
 end
