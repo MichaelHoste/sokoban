@@ -7,18 +7,13 @@
 
     <div id="menus">
       <ul>
-        <li class="ranking-menu">
-          <div>
-            <a href="<%= rankings_path %>">
-              <% if current_user %>
-                <% @ladder_positions = current_user.ladder_positions %>
-                <%= @ladder_positions[:top_users_position] %> / <%= User.registered.count %>
-              <% else %>
-                <%= _('Rankings') %>
-              <% end %>
-            </a>
-          </div>
-        </li>
+        <% if not current_user %>
+          <li class="ranking-menu">
+            <div>
+              <%= link_to _('Rankings'), rankings_path %>
+            </div>
+          </li>
+        <% end %>
 
         <% if current_user %>
           <li class="name fb_logged" id="user-infos" data-id="<%= current_user.id %>"
@@ -46,10 +41,11 @@
         <li class="packs-menu is-selected"><i class="icon-star"></i>&nbsp;Packs</li>
         -->
 
-        <% if current_user and %>
-          <li class="logout">
+        <% if current_user %>
+          <li class="ranking-position">
             <div>
-              <%= link_to _("Logout"), logout_path, :style => 'color:inherit;text-decoration:none' %>
+              <% @ladder_positions = current_user.ladder_positions %>
+              <%= link_to "#{@ladder_positions[:top_users_position]} / #{User.registered.count}", rankings_path %>
             </div>
           </li>
         <% end %>

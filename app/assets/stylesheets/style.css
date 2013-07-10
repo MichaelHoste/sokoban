@@ -249,8 +249,7 @@ body {
 	}
 	#limited-header #menus .ranking-menu { padding-top: 3px;}
 	#limited-header #menus .rules-menu { padding-top: 3px;}
-	#limited-header #menus .logout {
-		display:none;
+	#limited-header #menus .ranking-position {
 		padding-top: 4px;
 	}
 
@@ -330,7 +329,7 @@ body {
 		color:inherit;
 	}
 
-	#limited-header #menus .logout div {
+	#limited-header #menus .ranking-position div {
 		background: url('/assets/sprites.png') no-repeat -170px -100px;
 		border: 1px solid #c9c9c9;
 		height: 27px;
@@ -343,6 +342,11 @@ body {
 		border-radius: 2px;
 		margin-left: -5px;
 		cursor:pointer;
+	}
+
+	#limited-header #menus .ranking-position div a {
+		color:inherit;
+		text-decoration:none;
 	}
 
 	#limited-header #menus .rules-menu div {
