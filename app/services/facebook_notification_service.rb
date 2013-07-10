@@ -1,5 +1,5 @@
 module FacebookNotificationService
-  def self.notify_best_score(l_u, graph, users, type)
+  def self.notify_best_score(l_u, users, type)
     if type == 'better'
       text = "@[#{l_u.user.f_id}] has just beat your score on level '#{l_u.level.name}', get revenge!"
     else
