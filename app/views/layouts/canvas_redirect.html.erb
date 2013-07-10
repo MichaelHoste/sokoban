@@ -1,3 +1,11 @@
+<% if @level %>
+  <% redirection = "level_id=#{@level.id}" %>
+<% elsif @user %>
+  <% redirection = "user_id=#{@user.id}" %>
+<% else %>
+  <% redirection = "" %>
+<% end %>
+
 <script type = "text/javascript">
-  top.location.href='https://www.facebook.com/dialog/oauth?client_id=<%= ENV['FACEBOOK_APP_ID'] %>&scope=<%= ENV['FACEBOOK_SCOPE'] %>&redirect_uri=https://apps.facebook.com/sokoban_game/auth/facebook/callback?<%= "level_id=#{@level.id}" if @level %>'
+  top.location.href='https://www.facebook.com/dialog/oauth?client_id=<%= ENV['FACEBOOK_APP_ID'] %>&scope=<%= ENV['FACEBOOK_SCOPE'] %>&redirect_uri=https://apps.facebook.com/sokoban_game/auth/facebook/callback?<%= redirection %>'
 </script>"
