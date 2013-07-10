@@ -120,6 +120,11 @@ class User < ActiveRecord::Base
       if (User.registered.count+1) % 100 == 0
         FacebookFeedService.delay.publish_user_count(User.registered.count+1)
       end
+
+      # Notify registered friends about the new user
+      user.friends.registered.each do |friend|
+        FacebookNotificationService.delay.notify_registered_friend(friend.id, user.id)
+      end
     end
 
     # Facebook bug : sometimes the email is empty => investigate !
