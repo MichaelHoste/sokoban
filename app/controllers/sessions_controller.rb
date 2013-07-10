@@ -38,6 +38,9 @@ class SessionsController < ApplicationController
       if params[:level_id]
         level = Level.find_by_id(params[:level_id])
         redirect_to pack_level_path(level.pack, level)
+      elsif params[:user_id]
+        user = User.find_by_id(params[:user_id])
+        redirect_to user_path(user)
       elsif session['referer'] and not session['referer'].empty?
         redirect_to session['referer']
       else

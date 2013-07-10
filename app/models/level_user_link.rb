@@ -80,6 +80,7 @@ class LevelUserLink < ActiveRecord::Base
 
   # Methods
 
+  # delayed when called
   def facebook_actions
     self.publish_on_facebook
     self.notify_friends
@@ -140,14 +141,8 @@ class LevelUserLink < ActiveRecord::Base
     Rails.logger.info("FRIENDS TO NOTIFY BETTER : #{friends_to_notify_better.collect(&:name).join(', ') }")
     Rails.logger.info("FRIENDS TO NOTIFY EQUALITY : #{friends_to_notify_equality.collect(&:name).join(', ') }")
 
-    if Rails.env.production?
-      oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
-      access_token = oauth.get_app_access_token
-      graph        = Koala::Facebook::API.new(access_token)
-
-      FacebookNotificationService.notify_best_score(self, graph, friends_to_notify_better, 'better')
-      FacebookNotificationService.notify_best_score(self, graph, friends_to_notify_equality, 'equality')
-    end
+    FacebookNotificationService.notify_best_score(self, friends_to_notify_better, 'better')
+    FacebookNotificationService.notify_best_score(self, friends_to_notify_equality, 'equality')
   end
 
   def update_stats
