@@ -257,7 +257,7 @@ class User < ActiveRecord::Base
 
   # update friends count (friends that are on the database : registered or not)
   def update_friends_count
-    # registered user of not registered user
+    # registered user or not registered user
     if self.email
       self.update_attributes!({ :friends_count => self.friends.count })
     else

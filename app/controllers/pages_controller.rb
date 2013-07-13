@@ -20,6 +20,7 @@ class PagesController < ApplicationController
     @total_friends = User.not_registered.count
     @total_scores  = LevelUserLink.count
     @best_scores   = LevelUserLink.where(:best_level_user_score => true).count
+    @distribution  = User.registered.group('total_won_levels').count
     @last_users    = User.registered.order('registered_at DESC').limit(20)
     @last_scores   = LevelUserLink.order('created_at DESC').limit(100)
     @jobs          = Delayed::Job.all
