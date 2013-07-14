@@ -1,0 +1,26 @@
+<% if current_user and current_user.gender == 'male' %>
+  <% adkey = 'c9b' %>
+  <% slot  = 'slot62926' %>
+<% elsif current_user and current_user.gender == 'female' %>
+  <% adkey = '327' %>
+  <% slot  = 'slot62927' %>
+<% else %>
+  <% adkey = '042' %>
+  <% slot  = 'slot62928' %>
+<% end %>
+
+<div id="game-preload" style="display:none">
+  <% if current_user and current_user.display_advertisement? %>
+    <script type="text/javascript">
+      //<![CDATA[
+        if(!(typeof LSM_Slot == 'undefined')) {
+          LSM_Slot({
+            adkey: '<%= adkey %>',
+            ad_size: '300x250',
+            slot: '<%= slot %>'
+          });
+        };
+      //]]>
+    </script>
+  <% end %>
+</div>

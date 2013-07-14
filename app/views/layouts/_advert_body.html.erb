@@ -1,26 +1,15 @@
-<% if current_user and current_user.gender == 'male' %>
-  <% adkey = 'c9b' %>
-  <% slot  = 'slot62926' %>
-<% elsif current_user and current_user.gender == 'female' %>
-  <% adkey = '327' %>
-  <% slot  = 'slot62927' %>
-<% else %>
-  <% adkey = '042' %>
-  <% slot  = 'slot62928' %>
-<% end %>
+<% if current_user and current_user.display_advertisement? %>
+  <div id="header-notice" style="float:left;">
+    <% if false %>
+      <%= render 'layouts/advert_body_adsense' %>
+    <% else %>
+      <%= render 'layouts/advert_body_lifestreetmedia' %>
+    <% end %>
+  </div>
 
-<div id="game-preload" style="display:none">
-  <% if current_user and current_user.display_advertisement? %>
-    <script type="text/javascript">
-      //<![CDATA[
-        if(!(typeof LSM_Slot == 'undefined')) {
-          LSM_Slot({
-            adkey: '<%= adkey %>',
-            ad_size: '300x250',
-            slot: '<%= slot %>'
-          });
-        };
-      //]]>
-    </script>
-  <% end %>
-</div>
+  <div id="pay-me-a-beer" class="tips" title="<%= _("Want to reward my work ? Just pay me a beer (full game without ads)") %>">
+    <img src="/assets/full-game.gif"/>
+  </div>
+
+  <div style="clear:both"></div>
+<% end %>

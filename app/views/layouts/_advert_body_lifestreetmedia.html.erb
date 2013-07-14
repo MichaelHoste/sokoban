@@ -1,0 +1,22 @@
+<% if current_user and current_user.gender == 'male' %>
+  <% adkey = 'aa3' %>
+  <% slot  = 'slot71897' %>
+<% elsif current_user and current_user.gender == 'female' %>
+  <% adkey = 'd27' %>
+  <% slot  = 'slot71898' %>
+<% else %>
+  <% adkey = 'b87' %>
+  <% slot  = 'slot71899' %>
+<% end %>
+
+<script type="text/javascript">
+  //<![CDATA[
+    if(!(typeof LSM_Slot == 'undefined')) {
+      LSM_Slot({
+        adkey: '<%= adkey %>',
+        ad_size: '728x90',
+        slot: '<%= slot %>'
+      });
+    };
+  //]]>
+</script>
