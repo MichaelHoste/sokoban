@@ -18,7 +18,7 @@
     <% if yield(:title).present? %>
       <% description = yield(:description) %>
     <% elsif @level %>
-      <% description = "#{@level.pack.description} (#{@level.pack.file_name}.slc - #{@level.pack.copyright} - #{@level.pack.email} - #{@level.pack.url})" %>
+      <% description = "#{@level.pack.file_name}.slc | #{@level.name} (#{@level.pack.description}.slc - #{@level.pack.copyright} - #{@level.pack.email} - #{@level.pack.url})" %>
     <% elsif @user %>
       <% description = "Profile of #{@user.name} - #{@user.total_won_levels} " + _('levels solved') %>
     <% else %>
