@@ -3,6 +3,7 @@
 #= require packs/show-level-thumb
 #= require packs/show-invitation
 #= require packs/show-scores
+#= require packs/show-fullscreen
 
 window.update_packs_select = ->
   level_count   = $('#levels li').length
@@ -55,4 +56,3 @@ $ ->
   $('#current-level-name h3').on('mouseenter', -> $('#current-level-description').fadeIn())
   $('#current-level-name h3').on('mouseleave', -> $('#current-level-description').stop().fadeOut())
   $('#current-level-name h3').trigger('mouseleave') # Avoid the fact that the description was hidden in CSS (maybe SEO impact ?)
-
