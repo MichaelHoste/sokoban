@@ -58,7 +58,7 @@ body {
 
 .header {
 /*	overflow: hidden;*/
-	height: 85px;
+	height: 95px;
 	background: url('/assets/header-bkg.png') repeat-x;
 }
 
@@ -236,7 +236,7 @@ body {
 #limited-header #menus {
 	/*position:absolute;*/
 	float: right;
-	margin: 34px 0 0;
+	margin: 43px 0 0;
 }
 	#limited-header #menus li {
 		display: inline-block;

@@ -2,7 +2,7 @@
 
   <div id="banner">
     <div id="limited-banner" class="banner-text">
-      <h2>
+      <h3>
         <% if not current_user %>
           <%= _("Global Ranking : %{user_num} users solved %{level_num} levels" % { :user_num => User.registered.count, :level_num => LevelUserLink.count }) %>
         <% else %>
@@ -12,7 +12,7 @@
             <%= _("Friends Ranking") %> : <%= @ladder[:top_friends_position] %> / <%= @ladder[:top_friends].count %>
           <% end %>
         <% end %>
-      </h2>
+      </h3>
     </div>
   </div>
 
@@ -20,9 +20,9 @@
 
   <div id="banner">
     <div id="limited-banner" class="banner-text">
-      <h2>
+      <h3>
         <%= @user.name %>
-      </h2>
+      </h3>
     </div>
   </div>
 
@@ -30,7 +30,7 @@
 
   <div id="banner">
     <div id="limited-banner" class="banner-text">
-      <h2><%= _("Play Sokoban and Challenge your Friends") %></h2>
+      <h3><%= _("Play Sokoban and Challenge your Friends") %></h3>
     </div>
   </div>
 
