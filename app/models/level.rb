@@ -105,6 +105,13 @@ class Level < ActiveRecord::Base
     end
   end
 
+  # Preserve order of level_ids with "find"
+  # http://stackoverflow.com/questions/1680627/activerecord-findarray-of-ids-preserving-order
+  def self.find_and_preserve_order(level_ids)
+    unsorted_levels = Level.find(level_ids)
+    level_ids.inject([]){|res, val| res << unsorted_levels.detect {|u| u.id == val}}
+  end
+
   # Methods
 
   def inline_grid_with_floor

@@ -288,6 +288,42 @@ class User < ActiveRecord::Base
     })
   end
 
+  def latest_levels
+    level_ids = self.best_scores.order('created_at DESC').pluck(:level_id)
+    Level.find_and_preserve_order(level_ids)
+  end
+
+  # levels that "user" solved and not current_user
+  def levels_to_solve(user)
+    current_user_level_ids = self.best_scores.pluck(:level_id)
+    user_level_ids         = user.best_scores.pluck(:level_id)
+    level_ids              = user_level_ids - current_user_level_ids
+    Level.find(level_ids)
+  end
+
+  def scores_to_improve(user)
+    current_user_level_ids = self.best_scores.pluck(:level_id)
+    user_level_ids         = user.best_scores.pluck(:level_id)
+    common_level_ids       = user_level_ids & current_user_level_ids
+
+    current_user_scores = self.best_scores.where(:level_id => common_level_ids).order('level_id ASC').all
+    user_scores         = user.best_scores.where(:level_id => common_level_ids).order('level_id ASC').all
+
+    levels = []
+    scores = []
+    current_user_scores.each_with_index do |score, i|
+      if score.pushes > user_scores[i].pushes or (score.pushes == user_scores[i].pushes and score.moves > user_scores[i].moves)
+        levels << score.level
+        scores << { :current_user_pushes => score.pushes,
+                    :current_user_moves  => score.moves,
+                    :user_pushes         => user_scores[i].pushes,
+                    :user_moves          => user_scores[i].moves }
+      end
+    end
+
+    { :levels => levels, :scores => scores }
+  end
+
   private
 
   # extend short token (2 hours) to long expiration token (min 60 days).

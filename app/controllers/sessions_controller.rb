@@ -47,6 +47,14 @@ class SessionsController < ApplicationController
         redirect_to :root
       end
     else
+      error_message = @user.errors.full_messages.join(", ")
+      UserNotifier.delay.error_to_admin(error_message)
+      #Airbrake.notify(
+      #  :error_class   => "Special Error",
+      #  :error_message => "Special Error: #{e.message}",
+      #  :parameters    => params
+      #)
+
       render :text => "Facebook connection failed (user informations could not be saved)"
     end
   end

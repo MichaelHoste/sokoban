@@ -41,4 +41,11 @@ class UserNotifier < ActionMailer::Base
     mail(:to      => @user.email,
          :subject => @text)
   end
+
+  def error_to_admin(error_message)
+    @error_message = error_message
+
+    mail(:to      => 'contact@sokoban-game.com',
+         :subject => "[Sokoban] Error")
+  end
 end
