@@ -537,6 +537,20 @@ body {
 	width: 596px;
 	position: relative;
 }
+	#game .fullscreen {
+		position:absolute;
+		right:16px;
+		top:16px;
+		background:#f4f4f4 url('/assets/fullscreen.png');
+		width:32px;
+		height:32px;
+		z-index:1;
+		opacity:0.2;
+	}
+	#game .fullscreen:hover {
+		cursor:pointer;
+		opacity:0.6;
+	}
 	#game .game-out {
 		padding: 10px;
 		background: #FFF;
