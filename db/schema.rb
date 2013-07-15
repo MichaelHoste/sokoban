@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612144242) do
+ActiveRecord::Schema.define(:version => 20130714213006) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -99,11 +99,13 @@ ActiveRecord::Schema.define(:version => 20130612144242) do
   add_index "packs", ["slug"], :name => "index_packs_on_slug"
 
   create_table "user_user_links", :force => true do |t|
-    t.integer  "user_id",     :limit => 8
-    t.integer  "friend_id",   :limit => 8
-    t.datetime "notified_at",              :default => '2013-03-17 00:00:00'
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.integer  "user_id",                 :limit => 8
+    t.integer  "friend_id",               :limit => 8
+    t.datetime "notified_at",                          :default => '2013-03-17 00:00:00'
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
+    t.integer  "levels_to_solve_count",                :default => 0,                     :null => false
+    t.integer  "scores_to_improve_count",              :default => 0,                     :null => false
   end
 
   add_index "user_user_links", ["friend_id"], :name => "index_user_user_links_on_friend_id"

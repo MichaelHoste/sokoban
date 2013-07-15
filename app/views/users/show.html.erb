@@ -28,15 +28,21 @@
 
   <div id="right-side">
     <div id="tabs">
-      <% solve_active   = params[:action] == 'levels_to_solve' ? 'active' : '' %>
+      <% solve_active   = params[:action] == 'levels_to_solve'   ? 'active' : '' %>
       <% improve_active = params[:action] == 'scores_to_improve' ? 'active' : '' %>
-      <% latest_active  = params[:action] == 'latest_levels' ? 'active' : '' %>
+      <% latest_active  = params[:action] == 'latest_levels'     ? 'active' : '' %>
       <% if current_user and current_user.id != @user.id %>
         <div class="tab tips-top <%= solve_active %>" title="<%= _("Levels %{username} solved and not me" % { :username => @user.f_first_name }) %>">
           <%= link_to _("%{username} > Me" % { :username => @user.f_first_name }), levels_to_solve_user_path(@user) %>
+          <div class="number">
+            <%= UserUserLink.find_by_user_id_and_friend_id(current_user.f_id, @user.f_id).levels_to_solve_count %>
+          </div>
         </div>
         <div class="tab tips-top <%= improve_active %>" title="<%= _("Levels where %{username} did a better score than me" % { :username => @user.f_first_name }) %>">
           <%= link_to _("%{username} ~ Me" % { :username => @user.f_first_name }), scores_to_improve_user_path(@user) %>
+          <div class="number">
+            <%= UserUserLink.find_by_user_id_and_friend_id(current_user.f_id, @user.f_id).scores_to_improve_count %>
+          </div>
         </div>
       <% end %>
       <div class="tab tips-top <%= latest_active %>" title="<%= _("Latest levels solved by %{username}" % { :username => @user.f_first_name }) %>">

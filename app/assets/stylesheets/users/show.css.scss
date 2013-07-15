@@ -63,6 +63,21 @@
         padding-top:5px;
         padding-bottom:6px;
 
+        .number
+        {
+          font-size: 9px;
+          font-weight: bold;
+          padding: 1px;
+          padding-left: 3px;
+          padding-right: 3px;
+          color: white;
+          background-color: #EF4444;
+          border-radius: 5px 5px 5px 5px;
+          -moz-border-radius: 5px 5px 5px 5px;
+          -webkit-border-radius: 5px 5px 5px 5px;
+          text-align:center;
+        }
+
         a
         {
           color:inherit;

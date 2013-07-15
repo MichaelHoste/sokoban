@@ -44,6 +44,10 @@
       <ul id="users-top">
         <% if @pack %>
           <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(15) %>
+          <% u_u_links = UserUserLink.where(:user_id => current_user.f_id, :friend_id => subscribed_friends_and_me.collect(&:f_id)) %>
+          <% array_counts = u_u_links.collect { |u_u| [ u_u.friend_id, u_u.total_improve_count ] }.flatten %>
+          <% hash_counts  = Hash[*array_counts] %>
+
           <% subscribed_friends_and_me.each do |friend| %>
             <li>
               <a href="<%= user_path(friend) %>">
@@ -58,6 +62,11 @@
                   <%= friend['won_levels_list'] ? friend.won_levels_list : '' %>
                 </span>
               </a>
+              <% if current_user.f_id != friend.f_id %>
+                <div class="number">
+                  <%= hash_counts[friend.f_id] %>
+                </div>
+              <% end %>
             </li>
           <% end %>
         <% end %>

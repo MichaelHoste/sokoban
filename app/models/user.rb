@@ -301,6 +301,7 @@ class User < ActiveRecord::Base
     Level.find(level_ids)
   end
 
+  # levels that "user" solved better than current_user
   def scores_to_improve(user)
     current_user_level_ids = self.best_scores.pluck(:level_id)
     user_level_ids         = user.best_scores.pluck(:level_id)

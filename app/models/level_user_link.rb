@@ -146,11 +146,21 @@ class LevelUserLink < ActiveRecord::Base
   end
 
   def update_stats
+    # Tag user best score
     self.tag_best_score
-    PackUserLink.find_or_create_by_pack_id_and_user_id(self.level.pack_id, self.user_id).update_stats
-    self.user.update_attributes!({ :total_won_levels => self.user.pack_user_links.collect(&:won_levels_count).sum }) if self.user
 
-    # delayed
+    # Update user pack stats
+    PackUserLink.find_or_create_by_pack_id_and_user_id(self.level.pack_id, self.user_id).update_stats
+
+    if self.user
+      # Update user stats
+      self.user.update_attributes!({ :total_won_levels => self.user.pack_user_links.collect(&:won_levels_count).sum })
+
+      # Update user_user stats (levels to solve, scores to improve)
+      UserUserLink.delay.recompute_counts_for_user(self.user.id)
+    end
+
+    # Update level stats
     self.level.delay.update_attributes!({ :won_count => self.level.best_scores.count })
   end
 
