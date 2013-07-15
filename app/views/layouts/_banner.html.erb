@@ -62,7 +62,7 @@
                   <%= friend['won_levels_list'] ? friend.won_levels_list : '' %>
                 </span>
               </a>
-              <% if current_user.f_id != friend.f_id %>
+              <% if current_user.f_id != friend.f_id and hash_counts[friend.f_id] > 0 %>
                 <div class="number">
                   <%= hash_counts[friend.f_id] %>
                 </div>
