@@ -32,6 +32,7 @@ class SessionsController < ApplicationController
           @user.delay.build_friendships
         else
           @user.build_friendships
+          UserUserLink.recompute_counts_for_user(@user.id)
         end
       end
 
