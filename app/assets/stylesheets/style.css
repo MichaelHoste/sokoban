@@ -58,7 +58,7 @@ body {
 
 .header {
 /*	overflow: hidden;*/
-	height: 95px;
+	height: 97px;
 	background: url('/assets/header-bkg.png') repeat-x;
 }
 
@@ -96,7 +96,7 @@ body {
 	width:40px;
 }
 #content {
-	padding: 18px 0 0 0;
+	padding: 24px 0 0 0;
 }
 .footer {
 	overflow: hidden;
@@ -254,7 +254,7 @@ body {
 #limited-header #menus {
 	/*position:absolute;*/
 	float: right;
-	margin: 43px 0 0;
+	margin: 46px 0 0;
 }
 	#limited-header #menus li {
 		display: inline-block;
@@ -385,7 +385,7 @@ body {
 #limited-header #likes {
 	position: absolute;
 	left: 450px;
-	top: 51px;
+	top: 54px;
 }
 
 #current-level-name {
