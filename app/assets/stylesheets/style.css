@@ -382,6 +382,12 @@ body {
 		cursor:pointer;
 	}
 
+#limited-header #likes {
+	position: absolute;
+	left: 450px;
+	top: 51px;
+}
+
 #current-level-name {
 	position: absolute;
 	left: 376px;
