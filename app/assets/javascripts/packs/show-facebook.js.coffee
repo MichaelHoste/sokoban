@@ -1,15 +1,15 @@
-# connect to facebook
-window.fbAsyncInit = ->
-  FB.init(
-    appId: $('meta[property="fb:app_id"]').attr('content')
-    channelUrl: '//sokoban-game.com/channel.html'
-    status: true
-    xfbml: true
-    cookie: true
-    frictionlessRequests: true
-  )
-
 $ ->
+  # connect to facebook
+  window.fbAsyncInit = ->
+    FB.init(
+      appId: $('meta[property="fb:app_id"]').attr('content')
+      channelUrl: '//sokoban-game.com/channel.html'
+      status: true
+      xfbml: true
+      cookie: true
+      frictionlessRequests: true
+    )
+
   window.current_level_id = ->
     $('#levels').find('.is-selected').attr('data-level-id')
 
@@ -139,3 +139,5 @@ $ ->
       $(this).attr('data-f_id')
     ).get().join()
     window.facebook_send_app_request(f_ids, [])
+
+  window.fbAsyncInit()
