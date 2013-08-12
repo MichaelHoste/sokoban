@@ -16,7 +16,7 @@ window.update_packs_select = ->
 $ ->
   if $("#packs-show, #levels-show").length
     # Initialize selected level
-    level_controller = new LevelController()
+    window.level_controller = new LevelController()
 
     # Scroll the left menu to the selected level
     level_button = $('#levels .is-selected')

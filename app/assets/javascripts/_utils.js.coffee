@@ -101,7 +101,7 @@ $ ->
 
   window.change_level = ->
     # Initialize selected level
-    level_controller = new LevelController()
+    window.level_controller = new LevelController()
 
     real_name = $('#levels .is-selected').attr('data-level-name')
     $('#current-level-name h3').html(real_name)

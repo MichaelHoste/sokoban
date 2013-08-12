@@ -72,7 +72,7 @@ class window.LevelController
         @star_level()
 
         # load selected level
-        level_id   = parseInt($('#levels').find('.is-selected').attr('data-level-id'))
+        level_id = parseInt($('#levels').find('.is-selected').attr('data-level-id'))
 
         $.post('/scores',
           level_id: level_id
@@ -98,8 +98,6 @@ class window.LevelController
 
       # "there is a deadlock" div
       if deadlocked_positions.length != 0
-        console.log(@level)
-        console.log(deadlocked_positions)
         $('#deadlock').fadeIn(1000)
       else
         $('#deadlock').fadeOut(500)

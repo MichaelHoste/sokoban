@@ -50,10 +50,12 @@
       <meta property="sokoban_game:pack_name"  content="<%= @level.pack.name %>" />
     <% end %>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu:700' rel='stylesheet' type='text/css'>
-
+    <%= render 'layouts/google_analytics_headers' %>
     <%= render 'layouts/advert_head' %>
+    <%= render 'layouts/delayed_javascript' %>
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <link href='///fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu:700' rel='stylesheet' type='text/css'>
 
     <%= csrf_meta_tags %>
   </head>
@@ -75,9 +77,6 @@
     <footer class="footer">
       <%= render 'layouts/footer' %>
     </footer>
-
-    <%= render 'layouts/google_analytics_headers' %>
-    <%= render 'layouts/delayed_javascript' %>
   </body>
 </html>
 
