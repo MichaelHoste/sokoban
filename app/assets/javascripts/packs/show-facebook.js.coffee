@@ -36,6 +36,8 @@ $ ->
         update_send_invitations_at()
     )
 
+  # TODO : send doesn't use "name", "description" and "picture" anymore and only use
+  #        the informations on OpenGraph
   window.facebook_send = (description, to = "", name = window.current_level_name()) ->
     options =
       method:       'send'
