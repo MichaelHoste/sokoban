@@ -1,15 +1,13 @@
-Jax.Controller.create "Level", ApplicationController,
-  index: ->
+class window.LevelController
+
+  constructor: ->
     # get the names of the pack and level
     pack_name = $('#packs').attr('data-pack-slug')
     level_name = $('#levels').find('.is-selected').attr('data-level-slug')
 
     # create level
-    @level = Level.find "actual"
+    @level = new Level()
     @level.create(pack_name, level_name)
-
-    # add level to the world
-    @world.addObject @level
 
     # Initalize path
     @path = new PathCore()
@@ -23,7 +21,10 @@ Jax.Controller.create "Level", ApplicationController,
     # the game is not freezed (keyboard arrows can be used)
     @freezed_game = false
 
-  update: (timechange) ->
+    # Initialize keyboard
+    $(document).on('keydown', (event) =>
+      @key_pressed(event)
+    )
 
   key_pressed: (event) ->
     has_moved = 0
@@ -34,12 +35,13 @@ Jax.Controller.create "Level", ApplicationController,
       return false
 
     move_letter = ' '
-    switch event.keyCode
-      when KeyEvent.DOM_VK_UP    then move_letter = 'u'
-      when KeyEvent.DOM_VK_DOWN  then move_letter = 'd'
-      when KeyEvent.DOM_VK_LEFT  then move_letter = 'l'
-      when KeyEvent.DOM_VK_RIGHT then move_letter = 'r'
-      when KeyEvent.DOM_VK_D     then has_deleted = @level.delete_last_move(@path)
+    switch(event.which || event.keyCode)
+      when 38  then move_letter = 'u'  # up
+      when 40  then move_letter = 'd'  # down
+      when 37  then move_letter = 'l'  # left
+      when 39  then move_letter = 'r'  # right
+      when 100 then has_deleted = @level.delete_last_move(@path) # d
+      when 68  then has_deleted = @level.delete_last_move(@path) # D
 
     # move
     has_moved = @level.move(move_letter)

@@ -95,18 +95,13 @@ $ ->
       level_height = $(this).attr('data-level-height')
       level_canvas = "#{class_name}-canvas"
 
-      thumb = Level.find "actual"
+      thumb = new Level()
       thumb.create(pack_name, level_name, level_line, level_width, level_height, level_canvas)
     )
 
   window.change_level = ->
-    # FIXME window.context.redirectTo must be sufficient and faster !
-    # but it seems to have a memory leak somewhere (Jax or me ?)
-    window.context.dispose()
-    window.context = new Jax.Context({renderers: []})
-    window.context.canvas = document.body
-    window.context.setupInputDevices()
-    window.context.redirectTo("level/index")
+    # Initialize selected level
+    level_controller = new LevelController()
 
     real_name = $('#levels .is-selected').attr('data-level-name')
     $('#current-level-name h3').html(real_name)

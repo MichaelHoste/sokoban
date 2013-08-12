@@ -2,10 +2,10 @@
   Level display methods
 ###
 
-Jax.getGlobal()['Level'] = Jax.Model.create
+class window.Level
 
   # Constructor
-  after_initialize: ->
+  constructor: ->
     @objects = [] # list of objects to be displayed
     @level_core = new LevelCore()
 

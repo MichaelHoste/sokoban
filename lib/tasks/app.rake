@@ -8,7 +8,7 @@ def compile_coffee_to_js
     if File.exist?("lib/assets/#{file}.js")
       File.delete("lib/assets/#{file}.js")
     end
-    compile_file_coffee_to_js("app/assets/jax/models/#{file}.js.coffee", "lib/assets/#{file}.js")
+    compile_file_coffee_to_js("app/assets/javascripts/game/models/#{file}.js.coffee", "lib/assets/#{file}.js")
   end
 end
 

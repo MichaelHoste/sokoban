@@ -13,11 +13,8 @@ window.update_packs_select = ->
   $('#packs select option:selected').text("#{pack_name} [#{success_count}/#{level_count}]")
 
 $ ->
-  # Initialize webgl and load selected level
-  window.context = new Jax.Context({renderers: []})
-  window.context.canvas = document.body
-  window.context.setupInputDevices()
-  window.context.redirectTo('level/index')
+  # Initialize selected level
+  level_controller = new LevelController()
 
   # Scroll the left menu to the selected level
   level_button = $('#levels .is-selected')
