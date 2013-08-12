@@ -49,4 +49,3 @@ $ ->
 
     $('#current-level-name h3').on('mouseenter', -> $('#current-level-description').fadeIn())
     $('#current-level-name h3').on('mouseleave', -> $('#current-level-description').stop().fadeOut())
-    $('#current-level-name h3').trigger('mouseleave') # Avoid the fact that the description was hidden in CSS (maybe SEO impact ?)

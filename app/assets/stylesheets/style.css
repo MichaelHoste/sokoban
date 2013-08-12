@@ -407,6 +407,7 @@ body {
 }
 
 #current-level-description {
+	display:none;
 	position: absolute;
 	left: 470px;
 	top: 458px;
