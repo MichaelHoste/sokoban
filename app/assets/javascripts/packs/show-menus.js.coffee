@@ -7,8 +7,9 @@ display_stars = ->
       $(span).removeClass('s-icon-star-empty')
       $(span).addClass('s-icon-star')
 
-    load_level_id = $("#user-infos").attr('data-level-id')
-    $("#level-#{load_level_id}").addClass('is-selected')
+  if $("#menus")
+    load_level_id = $("#menus").attr('data-level-id')
+    $("#level-#{load_level_id}").addClass('is-selected') if $("#level-#{load_level_id}").length
 
 $ ->
   display_stars()

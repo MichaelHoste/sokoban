@@ -1,4 +1,6 @@
-<%= javascript_include_tag 'users/show' %>
+<% content_for :custom_js do %>
+  <%= javascript_include_tag 'users/show' %>
+<% end %>
 
 <div id="limited-content">
   <div id="left-side">

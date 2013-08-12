@@ -51,7 +51,6 @@
     <% end %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag 'application' %>
     <%= render 'layouts/advert_head' %>
 
     <link href='<%= request.protocol %>fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css' />
@@ -79,5 +78,8 @@
     </footer>
 
     <%= render 'layouts/google_analytics_headers' %>
+
+    <%= javascript_include_tag 'application' %>
+    <%= yield(:custom_js) %>
   </body>
 </html>

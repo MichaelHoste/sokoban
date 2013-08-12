@@ -6,7 +6,7 @@
       <h2>Free, Online and Social Puzzle Game</h2>
     </div>
 
-    <div id="menus">
+    <div id="menus" data-level-id="<%= @level.id if @level %>">
       <ul>
         <% if not current_user %>
           <li class="ranking-menu">
@@ -22,7 +22,6 @@
                                                      data-like-facebook-page="<%= current_user.like_fan_page %>"
                                                      data-registered-friends="<%= current_user.friends.registered.count %>"
                                                      data-display-invite-popup="<%= current_user.display_friends_invite_popup? %>"
-                                                     data-level-id="<%= @level.id if @level %>"
                                                      data-won-levels-list="<%= PackUserLink.find_by_pack_id_and_user_id(@pack.id, current_user.id).try(:won_levels_list) if @pack %>">
             <div>
               <a class="fb_img" href="<%= user_path(current_user) %>">
