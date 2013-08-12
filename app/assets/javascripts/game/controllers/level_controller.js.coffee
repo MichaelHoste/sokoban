@@ -22,6 +22,7 @@ class window.LevelController
     @freezed_game = false
 
     # Initialize keyboard
+    $(document).off('keydown')
     $(document).on('keydown', (event) =>
       @key_pressed(event)
     )
