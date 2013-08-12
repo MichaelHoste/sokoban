@@ -98,6 +98,8 @@ class window.LevelController
 
       # "there is a deadlock" div
       if deadlocked_positions.length != 0
+        console.log(@level)
+        console.log(deadlocked_positions)
         $('#deadlock').fadeIn(1000)
       else
         $('#deadlock').fadeOut(500)
