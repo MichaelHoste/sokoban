@@ -56,6 +56,7 @@ GEM
     connection_pool (0.9.3)
     crack (0.3.2)
     daemons (1.1.9)
+    dalli (2.6.4)
     delayed_job (3.0.3)
       activesupport (~> 3.0)
     delayed_job_active_record (0.3.2)
@@ -226,6 +227,7 @@ DEPENDENCIES
   chartkick
   coffee-rails (~> 3.2.1)
   daemons
+  dalli
   delayed_job_active_record
   dropbox-sdk
   foreman
@@ -236,6 +238,7 @@ DEPENDENCIES
   httparty
   jquery-rails
   json
+  kgio
   koala
   libv8
   madmimi

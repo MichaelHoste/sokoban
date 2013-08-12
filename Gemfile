@@ -31,6 +31,10 @@ gem 'chartkick'
 # Translation
 gem 'gettext_i18n_rails'
 
+# Cache
+gem 'dalli'
+gem 'kgio' # 20-30% boost for memcached
+
 gem 'jquery-rails'
 gem 'therubyracer'  # Exec js code in ruby
 gem 'libv8'
