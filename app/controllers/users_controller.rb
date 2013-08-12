@@ -13,7 +13,13 @@ class UsersController < ApplicationController
       @levels  = @user.latest_levels.take(60)
       render 'show'
     else
-      redirect_to levels_to_solve_user_path(@user)
+      if current_user.levels_to_solve(@user).count > 0
+        redirect_to levels_to_solve_user_path(@user)
+      elsif current_user.scores_to_improve(@user)[:levels].count > 0
+        redirect_to scores_to_improve_user_path(@user)
+      else
+        redirect_to latest_levels_user_path(@user)
+      end
     end
   end
 

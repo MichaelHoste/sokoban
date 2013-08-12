@@ -65,6 +65,12 @@
         </div>
       </a>
     <% end %>
+
+    <% if @levels.empty? %>
+      <div class="empty-list">
+        <%= _('No levels in this category') %>
+      </div>
+    <% end %>
   </div>
 
   <div style="clear:both">
