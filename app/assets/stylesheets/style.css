@@ -251,6 +251,9 @@ body {
 		text-shadow: 0px 1px 1px #fff;
 		filter: dropshadow(color=#fff, offx=0, offy=1);
 	}
+	#title h2 {
+		margin-top:-6px;
+	}
 #limited-header #menus {
 	/*position:absolute;*/
 	float: right;

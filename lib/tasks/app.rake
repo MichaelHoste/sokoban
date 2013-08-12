@@ -87,6 +87,12 @@ namespace :app  do
   task :send_mailing_delayed_job => :environment do
     MailingService.delayed_send_mailing
   end
+
+  task :flush_cache => :environment do
+    Pack.all.each do |pack|
+      expire_fragment @pack
+    end
+  end
 end
 
 def new_tab(name, commands)

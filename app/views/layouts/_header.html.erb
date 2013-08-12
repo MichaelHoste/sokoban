@@ -3,7 +3,7 @@
 
     <div id="title">
       <h1><%= link_to 'Sokoban', :root %></h1>
-      <h2 style="margin-top:-6px">Free, Online and Social Puzzle Game</h2>
+      <h2>Free, Online and Social Puzzle Game</h2>
     </div>
 
     <div id="menus">
@@ -21,7 +21,8 @@
                                                      data-global-success="<%= current_user.total_won_levels %>"
                                                      data-like-facebook-page="<%= current_user.like_fan_page %>"
                                                      data-registered-friends="<%= current_user.friends.registered.count %>"
-                                                     data-display-invite-popup="<%= current_user.display_friends_invite_popup? %>">
+                                                     data-display-invite-popup="<%= current_user.display_friends_invite_popup? %>"
+                                                     data-won-levels-list="<%= PackUserLink.find_by_pack_id_and_user_id(@pack.id, current_user.id).try(:won_levels_list) %>">
             <div>
               <a class="fb_img" href="<%= user_path(current_user) %>">
                 <%= image_tag current_user.profile_picture, :title => current_user.name %>

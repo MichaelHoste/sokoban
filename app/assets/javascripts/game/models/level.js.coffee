@@ -120,20 +120,17 @@ class window.Level
     if type == letter and object.attr('src') != "/images/themes/#{window.theme}/#{texture}64.png"
       object.attr('src', "/images/themes/#{window.theme}/#{texture}64.png")
 
-  unload: (world) ->
-    # delete each square of the level
-    for i in [0..@level_core.cols_number*@level_core.rows_number-1]
-      if @objects[i]
-        @objects[i].dispose()
-        delete @objects[i]
-    delete @objects
-
-    # delete associated level_core
-    delete @level_core.grid
-    delete @level_core
-
-    # remove level from the world
-    world.removeObject @__unique_id
+#  unload: ->
+#    # delete each square of the level
+#    for i in [0..@level_core.cols_number*@level_core.rows_number-1]
+#      if @objects[i]
+#        @objects[i].dispose()
+#        delete @objects[i]
+#    delete @objects
+#
+#    # delete associated level_core
+#    delete @level_core.grid
+#    delete @level_core
 
   cols_number: ->
     @level_core.cols_number

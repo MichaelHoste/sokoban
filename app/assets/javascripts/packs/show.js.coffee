@@ -4,6 +4,7 @@
 #= require packs/show-invitation
 #= require packs/show-scores
 #= require packs/show-fullscreen
+#= require packs/show-menus
 
 window.update_packs_select = ->
   level_count   = $('#levels li').length
@@ -42,11 +43,6 @@ $ ->
 
   $('#packs .packs-button a').on('click', ->
     window.colorbox_random_level()
-    false
-  )
-
-  $('#pay-me-a-beer').on('click', ->
-    window.colorbox_donation()
     false
   )
 
