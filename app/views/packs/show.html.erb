@@ -37,16 +37,10 @@
 
     <% cache @pack do %>
       <ul id="levels" class="levels">
-        <%# won_level_ids = @pack.won_level_ids(current_user) %>
         <% @pack.levels.each_with_index do |level, index| %>
-          <% selected = (@level.name == level.name ? 'class="is-selected"' : '') %>
-          <li <%= selected.html_safe %> id="level-<%= level.id %>" <%= level_datas(level) %>>
+          <li id="level-<%= level.id %>" <%= level_datas(level) %>>
             <a href="<%= pack_level_path(@pack, level) %>" title="<%= level.name %>">
-              <% if false #won_level_ids.include?(level.id) %>
-                <span class="star s-icon-star"></span>
-              <% else %>
-                <span class="star s-icon-star-empty"></span>
-              <% end %>
+              <span class="star s-icon-star-empty"></span>
               <span class="level-index"><%= index+1 %></span>
             </a>
           </li>

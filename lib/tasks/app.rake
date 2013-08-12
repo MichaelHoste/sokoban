@@ -89,9 +89,7 @@ namespace :app  do
   end
 
   task :flush_cache => :environment do
-    Pack.all.each do |pack|
-      expire_fragment @pack
-    end
+    Rails.cache.clear
   end
 end
 

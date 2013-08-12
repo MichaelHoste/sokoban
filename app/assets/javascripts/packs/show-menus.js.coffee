@@ -7,5 +7,8 @@ display_stars = ->
       $(span).removeClass('s-icon-star-empty')
       $(span).addClass('s-icon-star')
 
+    load_level_id = $("#user-infos").attr('data-level-id')
+    $("#level-#{load_level_id}").addClass('is-selected')
+
 $ ->
   display_stars()
