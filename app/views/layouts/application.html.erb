@@ -53,9 +53,6 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= render 'layouts/advert_head' %>
 
-    <link href='<%= request.protocol %>fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css' />
-    <link href="<%= request.protocol %>fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet" type="text/css">
-
     <%= csrf_meta_tags %>
   </head>
 
@@ -78,25 +75,21 @@
     </footer>
 
     <%= render 'layouts/google_analytics_headers' %>
+    <%= render 'layouts/delayed_javascript' %>
 
     <script type="text/javascript">
-
-     // Add a script element as a child of the body
-     function downloadJSAtOnload() {
-       var element = document.createElement("script");
-       element.src = "<%= javascript_path 'application' %>";
-       document.body.appendChild(element);
-     }
-
-     // Check for browser support of event handling capability
-     if (window.addEventListener)
-       window.addEventListener("load", downloadJSAtOnload, false);
-     else if (window.attachEvent)
-       window.attachEvent("onload", downloadJSAtOnload);
-     else window.onload = downloadJSAtOnload;
-
-    </script>
-
-    <%= yield(:custom_js) %>
+      WebFontConfig = {
+        google: { families: [ 'Droid+Sans:400,700:latin', 'Ubuntu:700:latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })(); </script>
   </body>
 </html>
+

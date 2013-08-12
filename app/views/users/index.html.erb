@@ -1,7 +1,3 @@
-<% content_for :custom_js do %>
-  <%= javascript_include_tag 'users/index' %>
-<% end %>
-
 <% content_for :title, _('Friends Ranking') if params[:type] == 'friends' %>
 <% content_for :title, _('Global Ranking')  if params[:type] == 'global' %>
 

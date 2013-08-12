@@ -5,3 +5,4 @@
 //= require header
 //= require banner
 //= require packs/show
+//= require_tree ./users
