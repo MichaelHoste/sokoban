@@ -102,7 +102,7 @@ class window.Level
 
     # create object
     if type != ' ' and not @objects[cols_number*m + n]
-      object = @context.canvas.image('/images/themes/classic/wall64.png', Math.ceil(start.x), Math.ceil(start.y), size, size)
+      object = @context.canvas.image('/assets/themes/classic/wall64.png', Math.ceil(start.x), Math.ceil(start.y), size, size)
       @objects[cols_number*m + n] = object
     else if type != ' '
       object = @objects[cols_number*m + n]
@@ -117,8 +117,8 @@ class window.Level
     @refresh(object, type, '+', 'pushergoal')
 
   refresh: (object, type, letter, texture) ->
-    if type == letter and object.attr('src') != "/images/themes/#{window.theme}/#{texture}64.png"
-      object.attr('src', "/images/themes/#{window.theme}/#{texture}64.png")
+    if type == letter and object.attr('src') != "/assets/themes/#{window.theme}/#{texture}64.png"
+      object.attr('src', "/assets/themes/#{window.theme}/#{texture}64.png")
 
 #  unload: ->
 #    # delete each square of the level

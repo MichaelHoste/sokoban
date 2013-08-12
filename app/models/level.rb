@@ -182,7 +182,7 @@ class Level < ActiveRecord::Base
         row = row.gsub('+', 'pushergoal64:png ')
         row = row.gsub(':', '.')
 
-        `cd public/images/themes/classic;convert #{row} +append ../../levels/row_#{index+1}.png`
+        `cd app/assets/images/themes/classic;convert #{row} +append ../../levels/row_#{index+1}.png`
       end
 
       command = ""
