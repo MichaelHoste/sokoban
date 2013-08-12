@@ -1,7 +1,7 @@
 Sokoban
 =======
 
-Social implementation of Sokoban using Jax (http://guides.jaxgl.com/) and RaphaelJS (http://raphaeljs.com/)
+Social implementation of Sokoban using RaphaelJS (http://raphaeljs.com/)
 
 Sokoban ('warehouse keeper' in Japanese) is a type of transport puzzle, in which the player pushes boxes or crates around in a warehouse, trying to get them to storage locations.
 

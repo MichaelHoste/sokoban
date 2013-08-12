@@ -51,16 +51,12 @@
     <% end %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag 'application' %>
 
     <link href='<%= request.protocol %>fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css' />
     <link href="<%= request.protocol %>fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet" type="text/css">
 
-    <%= javascript_include_tag 'application' %>
-
     <%= csrf_meta_tags %>
-
-    <%= render 'layouts/google_analytics_headers' %>
-    <%= render 'layouts/advert_head' %>
   </head>
 
   <% new_user = cookies[:already_read_the_welcome_message] ? '0' : '1' %>
@@ -80,5 +76,8 @@
     <footer class="footer">
       <%= render 'layouts/footer' %>
     </footer>
+
+    <%= render 'layouts/google_analytics_headers' %>
+    <%= render 'layouts/advert_head' %>
   </body>
 </html>
