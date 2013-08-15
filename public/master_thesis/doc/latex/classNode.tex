@@ -1,0 +1,251 @@
+\section{Node Class Reference}
+\label{classNode}\index{Node@{Node}}
+Lowest representation of a node. Only contain pusher zone and boxes zone.  
+
+
+{\tt \#include $<$Node.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Node} (const Solver $\ast${\bf solver})
+\item 
+{\bf Node} (const Solver $\ast${\bf solver}, {\bf Zone} $\ast${\bf pusherZone}, {\bf Zone} $\ast${\bf boxesZone})
+\item 
+{\bf Node} (const {\bf Node} $\ast$otherNode)
+\item 
+{\bf $\sim$Node} ()
+\item 
+const Solver $\ast$ {\bf getSolver} (void) const 
+\item 
+{\bf Zone} $\ast$ {\bf getPusherZone} (void) const 
+\item 
+{\bf Zone} $\ast$ {\bf getBoxesZone} (void) const 
+\item 
+void {\bf setPusherZone} ({\bf Zone} $\ast${\bf pusherZone})
+\item 
+void {\bf setBoxesZone} ({\bf Zone} $\ast${\bf boxesZone})
+\item 
+bool {\bf isEgal} ({\bf Node} $\ast$otherNode) const 
+\item 
+bool {\bf isSolution} (void) const 
+\item 
+{\bf Node} $\ast$$\ast$ {\bf findChildren} (void) const 
+\item 
+Child $\ast$$\ast$ {\bf findMacroChildren} ({\bf Node} $\ast$$\ast$nodeList)
+\item 
+char $\ast$ {\bf listMovesFromAToB} (const int posA, const int posB) const 
+\item 
+int {\bf countMovesFromAToB} (const int posA, const int posB) const 
+\item 
+void {\bf print} (void) const 
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf dijkstraRec} (int $\ast$levelTab, const int startPos, const int colsNumber) const 
+\item 
+int $\ast$ {\bf computeCostOfGoals} ({\bf Node} $\ast$node)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+const Solver $\ast$ {\bf solver}
+\item 
+{\bf Zone} $\ast$ {\bf pusherZone}
+\item 
+{\bf Zone} $\ast$ {\bf boxesZone}
+\end{CompactItemize}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf Macro}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Lowest representation of a node. Only contain pusher zone and boxes zone. 
+
+This is the minimum representation of a level state. But this state cannot be used without the original level 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Node::Node (const Solver $\ast$ {\em solver})}\label{classNode_18da1ba0aa4ae3a68de1b2a50e4d46ce}
+
+
+Constructor for a empty node assigned to a solver \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em solver}]Assigned solver \end{description}
+\end{Desc}
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Node::Node (const Solver $\ast$ {\em solver}, {\bf Zone} $\ast$ {\em pusherZone}, {\bf Zone} $\ast$ {\em boxesZone})}\label{classNode_42084887a696848731462de80203b3d7}
+
+
+Constructor for a node with defined pusherZone and boxesZone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em solver}]Assigned solver \item[{\em pusherZone}]zone where pusher can move \item[{\em boxesZone}]zone of boxes positions \end{description}
+\end{Desc}
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Node::Node (const {\bf Node} $\ast$ {\em otherNode})}\label{classNode_3a5d189805a56b425ce85dac3ecf569e}
+
+
+Constructor for a node that's copy of another node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em otherNode}]other node we want to copy \end{description}
+\end{Desc}
+\index{Node@{Node}!~Node@{$\sim$Node}}
+\index{~Node@{$\sim$Node}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Node::$\sim$Node ()}\label{classNode_a0840c3cb5c7159be6d992adecd2097c}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{Node@{Node}!getSolver@{getSolver}}
+\index{getSolver@{getSolver}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const Solver$\ast$ Node::getSolver (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classNode_efc2b775577b323c9b727f4f1f05a991}
+
+
+Assigned solver \index{Node@{Node}!getPusherZone@{getPusherZone}}
+\index{getPusherZone@{getPusherZone}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone}$\ast$ Node::getPusherZone (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classNode_6e8ba21ef67fbe0012318900b7f210aa}
+
+
+\doxyref{Zone}{p.}{classZone} of possible pusher move \index{Node@{Node}!getBoxesZone@{getBoxesZone}}
+\index{getBoxesZone@{getBoxesZone}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone}$\ast$ Node::getBoxesZone (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classNode_a2984742e4312653e1403324f6be153c}
+
+
+\doxyref{Zone}{p.}{classZone} of boxes \index{Node@{Node}!setPusherZone@{setPusherZone}}
+\index{setPusherZone@{setPusherZone}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Node::setPusherZone ({\bf Zone} $\ast$ {\em pusherZone})\hspace{0.3cm}{\tt  [inline]}}\label{classNode_46510e71c4cbda1300948d375e188312}
+
+
+Assign pusher zone \index{Node@{Node}!setBoxesZone@{setBoxesZone}}
+\index{setBoxesZone@{setBoxesZone}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Node::setBoxesZone ({\bf Zone} $\ast$ {\em boxesZone})\hspace{0.3cm}{\tt  [inline]}}\label{classNode_0f5a7e37dd3cd17f91e8aa73962a769d}
+
+
+Assign boxes zone \index{Node@{Node}!isEgal@{isEgal}}
+\index{isEgal@{isEgal}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Node::isEgal ({\bf Node} $\ast$ {\em otherNode}) const}\label{classNode_6d3e8d8b4fba3b2405e69bccfb7e82ea}
+
+
+Test if this node is egal to another node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em otherNode}]Other node we want to compare to this \doxyref{Node}{p.}{classNode} object WARNING : 2 nodes must provide from the same level ! \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if node is the same, false if not \end{Desc}
+\index{Node@{Node}!isSolution@{isSolution}}
+\index{isSolution@{isSolution}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Node::isSolution (void) const}\label{classNode_cb1173c78f7b3b71b45c8281d341234a}
+
+
+Test if a node is a solution node for the associed level \begin{Desc}
+\item[Returns:]true if this node is solution, false if not \end{Desc}
+\index{Node@{Node}!findChildren@{findChildren}}
+\index{findChildren@{findChildren}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$$\ast$ Node::findChildren (void) const}\label{classNode_79458fe90f375dc6c23f316bf6f4c72f}
+
+
+Use this node to find all successor nodes. A successor node exists if it can be reached from the original node just by pushing a box. \begin{Desc}
+\item[Returns:]list of all successor nodes. Terminated by a NULL. \end{Desc}
+\index{Node@{Node}!findMacroChildren@{findMacroChildren}}
+\index{findMacroChildren@{findMacroChildren}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Child $\ast$$\ast$ Node::findMacroChildren ({\bf Node} $\ast$$\ast$ {\em nodeList})}\label{classNode_2bc13b438c902d39444d12c7f9670e0e}
+
+
+Use this node to find all macro successor nodes. A macro successor node exists if we can push a box on a goal directly, even if you have to do many pushes of the same box to make it. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nodeList}]list of direct successor previously found with findChildren. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]modified nodeList added with all macro pushes. Terminated by a NULL. 
+
+tab of number of pushes for all macro-pushes. \end{Desc}
+\index{Node@{Node}!listMovesFromAToB@{listMovesFromAToB}}
+\index{listMovesFromAToB@{listMovesFromAToB}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Node::listMovesFromAToB (const int {\em posA}, const int {\em posB}) const}\label{classNode_a730f2ec83d1d3d5224cb97cb127e1e7}
+
+
+This function use this node (box positions) to make the shortest way between position A and position B in the level and return list of moves used to do it. Be carreful, no box can be pushed on the way from A to B \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em posA}]starting position (level representation) \item[{\em posB}]ending position (level representation) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]list of moves to go from posA to posB terminated by '' \end{Desc}
+\index{Node@{Node}!countMovesFromAToB@{countMovesFromAToB}}
+\index{countMovesFromAToB@{countMovesFromAToB}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Node::countMovesFromAToB (const int {\em posA}, const int {\em posB}) const}\label{classNode_969627276733f88fc8740b0a54d82478}
+
+
+This function use this node (box positions) to make the shortest way between position A and position B in the level and return number of moves used to do it. Be carreful, no box can be pushed on the way from A to B \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em posA}]starting position (level representation) \item[{\em posB}]ending position (level representation) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]number of moves to go from posA to posB. \end{Desc}
+\index{Node@{Node}!print@{print}}
+\index{print@{print}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Node::print (void) const}\label{classNode_1ff239408f3d6f9e7d9e2b2f378b5150}
+
+
+Print node (level) state in the console \index{Node@{Node}!dijkstraRec@{dijkstraRec}}
+\index{dijkstraRec@{dijkstraRec}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Node::dijkstraRec (int $\ast$ {\em levelTab}, const int {\em startPos}, const int {\em colsNumber}) const\hspace{0.3cm}{\tt  [protected]}}\label{classNode_a4a48cf4b4d6698d255169b3ab8aae84}
+
+
+Recursive function based on Dijkstra algorithm. It fill a tab in with every informations about min distance between a cell and start pos. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em levelTab}]tab of values (init with -1 for walls and big numbers for every other cells) \item[{\em startPos}]start position to compute (level representation) \item[{\em colsNumber}]number of cols in this level \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]levelTab filled with every informations about min distances between a cell and start pos \end{Desc}
+\index{Node@{Node}!computeCostOfGoals@{computeCostOfGoals}}
+\index{computeCostOfGoals@{computeCostOfGoals}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ Node::computeCostOfGoals ({\bf Node} $\ast$ {\em node})\hspace{0.3cm}{\tt  [protected]}}\label{classNode_b2cdfdaa1da7b794bee11ac004575c28}
+
+
+Get cost of every goals for this node. A cost of a goal is the number of boxes or walls just next this goal. cost go from 0 to 4. 4 is a top priority goal \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]node to be tested \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]tab of cost of each goal \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{Node@{Node}!solver@{solver}}
+\index{solver@{solver}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const Solver$\ast$ {\bf Node::solver}\hspace{0.3cm}{\tt  [protected]}}\label{classNode_68847a1ead037b788c4c8d4495ea5f7b}
+
+
+Assigned solver \index{Node@{Node}!pusherZone@{pusherZone}}
+\index{pusherZone@{pusherZone}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone}$\ast$ {\bf Node::pusherZone}\hspace{0.3cm}{\tt  [protected]}}\label{classNode_c790ea0a62d0afd78353bb42ab213d93}
+
+
+Move zone of the pusher \index{Node@{Node}!boxesZone@{boxesZone}}
+\index{boxesZone@{boxesZone}!Node@{Node}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone}$\ast$ {\bf Node::boxesZone}\hspace{0.3cm}{\tt  [protected]}}\label{classNode_db218c8805a8f69e1b20e7fc07999d42}
+
+
+Position of boxes 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/Node.h\item 
+src/Solver/Node.cpp\end{CompactItemize}

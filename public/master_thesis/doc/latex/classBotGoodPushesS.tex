@@ -1,0 +1,58 @@
+\section{BotGoodPushesS Class Reference}
+\label{classBotGoodPushesS}\index{BotGoodPushesS@{BotGoodPushesS}}
+A$\ast$ search algorithm based on estimated remaining pushes number of the pusher. (f(x) = h(x)) Nodes with less pushes are explored first. this algorithm DOESN'T return best pushes solution of this level but only a good solution.  
+
+
+{\tt \#include $<$BotGoodPushesS.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual const char $\ast$ {\bf SOLVER\_\-NAME} ()
+\item 
+{\bf BotGoodPushesS} (Base $\ast$base, {\bf Level} $\ast$level, int maxNodeNumber, int maxRamSize, int openTableSize=870967, int closeTableSize=51827, int deadlockedBoxesSearch=2, bool onlyPushNumber=false)
+\item 
+virtual int {\bf g} ({\bf TreeNode} $\ast$treeNode, int pushCost) const 
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+A$\ast$ search algorithm based on estimated remaining pushes number of the pusher. (f(x) = h(x)) Nodes with less pushes are explored first. this algorithm DOESN'T return best pushes solution of this level but only a good solution. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotGoodPushesS@{BotGoodPushesS}!BotGoodPushesS@{BotGoodPushesS}}
+\index{BotGoodPushesS@{BotGoodPushesS}!BotGoodPushesS@{BotGoodPushesS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotGoodPushesS::BotGoodPushesS (Base $\ast$ {\em base}, {\bf Level} $\ast$ {\em level}, int {\em maxNodeNumber}, int {\em maxRamSize}, int {\em openTableSize} = {\tt 870967}, int {\em closeTableSize} = {\tt 51827}, int {\em deadlockedBoxesSearch} = {\tt 2}, bool {\em onlyPushNumber} = {\tt false})}\label{classBotGoodPushesS_b723cfdba245ba514d0ffd71f8448bca}
+
+
+Constructor for a solver of a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em level}]\doxyref{Level}{p.}{classLevel} to be used \item[{\em maxNodeNumber}]Limit number of nodes to explore \item[{\em maxRamSize}]Limit max ram size to allocate \item[{\em openTableSize}]size of Open Table to allocate (hashtable) \item[{\em closeTableSize}]size of Close Table to allocate (hashtable) \item[{\em deadlockedBoxesSearch}]number of boxes to use when testing every possible positions of deadlock \item[{\em onlyPushNumber}]only keep number of pushes in Stats object. don't generate solution \doxyref{Path}{p.}{classPath} (CPU saving for deadlocks and penalties) \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{BotGoodPushesS@{BotGoodPushesS}!SOLVER_NAME@{SOLVER\_\-NAME}}
+\index{SOLVER_NAME@{SOLVER\_\-NAME}!BotGoodPushesS@{BotGoodPushesS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual const char$\ast$ BotGoodPushesS::SOLVER\_\-NAME ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classBotGoodPushesS_cfe20fe668b0833a6534acd0b900e10f}
+
+
+Name of this solver \index{BotGoodPushesS@{BotGoodPushesS}!g@{g}}
+\index{g@{g}!BotGoodPushesS@{BotGoodPushesS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotGoodPushesS::g ({\bf TreeNode} $\ast$ {\em treeNode}, int {\em pushCost}) const\hspace{0.3cm}{\tt  [virtual]}}\label{classBotGoodPushesS_c71aad1f24224e3d78fd67d8fed3198f}
+
+
+In this solver, we use f(x)=h(x) and not f(x)=g(x)+h(x) so g(x) must be egal to 0. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]to be computed \item[{\em pushCost}]number of pushes from its parent (usefull for macro-pushes) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]always 0 \end{Desc}
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotGoodPushesS/BotGoodPushesS.h\item 
+src/Solver/BotGoodPushesS/BotGoodPushesS.cpp\end{CompactItemize}

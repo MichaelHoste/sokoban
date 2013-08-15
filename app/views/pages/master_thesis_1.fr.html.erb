@@ -1,186 +1,10 @@
-<!-- Text Class Preamble -->
-<style type="text/css">
-div.toc {
-margin: 2em 0em;
-border-style: solid;
-border-width: 2px 0px;
-padding: 1em 0em;
-}
-div.tochead { font-size: x-large; font-weight: bold; }
-div.lyxtoc-0 {
-margin: 2em 0em 0em 0em;
-font-size: xx-large;
-font-weight: bold;
-}
-div.lyxtoc-1 {
-margin: 1em 0em 0em 0em;
-font-size: x-large;
-font-weight: bold;
-}
-div.lyxtoc-2 {
-margin: 0em 0em 0em 1em;
-font-size: large;
-font-weight: normal;
-}
-div.lyxtoc-3 { margin: 0em 0em 0em 0.5em; font-size: medium; }
-div.lyxtoc-4 { margin: 0em 0em 0em 0.5em; }
-div.lyxtoc-5 { margin: 0em 0em 0em 0.5em; }
-div.lyxtoc-6 { margin: 0em 0em 0em 0.5em; }
-a.tocentry {
-text-decoration: none;
-color: black;
-}
-a.tocentry:visited { color: black; }
-a.tocarrow {
-font-weight: bold;
-text-decoration: none;
-color: #909090;
-}
-a.tocarrow:visited { color: #C0C0C0; }
-</style>
+<% content_for :master_chapter, _("Sokoban : Recherche de solutions optimales - Préambule") %>
 
-<!-- Preamble Snippets -->
-<style type="text/css">
-table { border: 1px solid black; display: inline-block; }
-td { border: 1px solid black; padding: 0.5ex; }
-</style>
-<style type="text/css">
-div.bibtexentry { margin-left: 2em; text-indent: -2em; }
-span.bibtexlabel:before{ content: "["; }
-span.bibtexlabel:after{ content: "] "; }
-</style>
+<div id="limited-content" class="master-thesis">
 
-<!-- Layout-provided Styles -->
-<style type='text/css'>
-h1.title {
-font-size: x-large;
-margin-bottom: 1ex;
-text-align: center;
-
-}
-div.author {
-font-size: large;
-margin-top: 1.3ex;
-margin-bottom: 0.7ex;
-text-align: center;
-
-}
-div.standard {
-margin-bottom: 2ex;
-font-size:18px;
-}
-h1.chapter {
-font-weight: bold;
-font-size: xx-large;
-margin-top: 4ex;
-margin-bottom: 0.8ex;
-text-align: left;
-
-}
-h2.section {
-font-weight: bold;
-font-size: x-large;
-margin-top: 1.3ex;
-margin-bottom: 0.7ex;
-text-align: left;
-
-}
-div.plain_layout {
-text-align: left;
-
-}
-ul.itemize {
-margin-top: 0.7ex;
-margin-bottom: 0.7ex;
-margin-left: 3ex;
-text-align: left;
-
-}
-h4.paragraph {
-font-weight: bold;
-font-size: medium;
-margin-top: 0.4ex;
-text-align: left;
-
-}
-h3.subsection {
-font-weight: bold;
-font-size: large;
-margin-top: 0.9ex;
-margin-bottom: 0.5ex;
-text-align: left;
-
-}
-ol.enumerate {
-margin-top: 0.7ex;
-margin-bottom: 0.7ex;
-margin-left: 3ex;
-text-align: left;
-
-}
-h4.subparagraph {
-font-weight: bold;
-font-size: medium;
-margin-top: 0.4ex;
-margin-left: 2ex;
-text-align: left;
-
-}
-div.float {
-border: 2px solid black;
-text-align: center;
-}
-div.float-caption {
-text-align: center;
-border: 2px solid black;
-padding: 1ex;
-margin: 1ex;
-}
-div.Boxed {
-border: solid thick black;
-padding: 0.5ex;
-}
-span.foot_label {
-vertical-align: super;
-font-size: smaller;
-font-weight: bold;
-text-decoration: underline;
-}
-div.foot {
-display: inline;
-font-size: small;
-font-weight: medium;
-font-family: serif;
-font-variant: normal;
-font-style: normal;
-}
-div.foot_inner { display: none; }
-div.foot:hover div.foot_inner {
-display: block;
-border: 1px double black;
-margin: 0em 1em;
-padding: 1em;
-}
-span.flex_url {
-font-family: monospace;
-}
-</style>
-
-<div id="limited-content" style="width:780px">
-
-
-
-<h1 class="title"><a id='magicparlabel-2129' />
-Jeu de Sokoban
-<br />
-
-Recherche de solutions optimales</h1>
-<div class="author"><a id='magicparlabel-2130' />
-Michaël Hoste</div>
-<div class="standard"><a id='magicparlabel-2131' />
-</div>
-<h1 class="chapter"><span class="chapter_label">Chapitre 1</span> <a id='magicparlabel-2137' />
-Remerciements</h1>
+<h1 class="chapter" style="margin-top:2ex">
+  <span class="chapter_label"></span> <a id='magicparlabel-2137' />
+Préambule</h1>
 <div class="standard"><a id='magicparlabel-2142' />
 <hr />
 
@@ -190,38 +14,54 @@ Remerciements</h1>
 </div>
 
 <div class="standard"><a id='magicparlabel-2163' />
-Je tiens avant tout à remercier Madame Véronique Bruyère d'avoir accepté le sujet de mémoire qui me tenait à cœur et de l'avoir suivi avec enthousiasme tout au long de l'année. Merci pour les nombreux conseils et suggestions qu'elle m'a apportés, entre autres lors de la rédaction.
+Sokoban est devenu une passion pour moi car il touche deux de mes personnalités : le joueur et le programmeur.
+
+<br/><br/>
+
+Jouer à Sokoban est fun et défier ses amis ajoute une couche de challenge. Mais là où ce jeu devient réellement addictif,
+c'est lorsqu'il s'agit d'implémenter des stratégies de détection de deadlocks et d'élaborer des algorithmes de prédiction
+de chemin le plus court. Là, le jeu prend une toute autre dimension et les règles se complexifient !
+
+<br/><br/>
+
+Le document retranscrit sur ce site est la version web du mémoire que j'ai rendu en 2003 pour l'obtention d'un
+Master en Informatique à <a href="http://www.umons.ac.be">l'Université de Mons (UMONS)</a> en Belgique. Afin
+d'éviter qu'il ne soit perdu au fond d'une bibliothèque universitaire, j'ai trouvé plus utile de le placer en
+marge du jeu <a href="https://sokoban-game.com">Sokoban-Game.com</a>.
+
+<br/><br/>
+
+Ce document est à destination du grand public, et j'ai fait mon possible pour qu'il soit compréhensible au plus grand
+nombre. J'espère que des joueurs passionnés prendront un certain plaisir à comprendre par quels moyens, plus subtils qu'il n'y parait,
+un ordinateur peur réussir à détecter les solutions "optimales" de niveaux de Sokoban.
+
+<br/><br/>
+
+<ul>
+  <li>* La version pdf du mémoire (français) : <a href="/master_thesis/sokoban_thesis_fr.pdf">sokoban_fr.pdf</a></li>
+  <li>* Le code du solveur (anglais) : <a href="/master_thesis/sokoban_solver.zip">sokoban_solver.zip</a></li>
+  <li>* La documentation du code (anglais) : <a href="/master_thesis/doc/html/index.html">documentation</a></li>
+</ul>
+
+<br/>
+
+N'hésitez pas à me contacter sur mon mail : <a href="mailto:contact@sokoban-game.com">contact@sokoban-game.com</a>
+
+<br/><br/>
+
+Bonne lecture !
+
+<br/><br/>
+
+<div style="text-align:right">
+Michaël Hoste
+</div>
+
 <br />
 
-</div>
 
-<div class="standard"><a id='magicparlabel-2164' />
-J'exprime aussi ma reconnaissance à Monsieur Tom Mens pour m'avoir autorisé à utiliser l'un de ses ordinateurs personnels et à Sylvain Degransart pour m'avoir créé un compte sur celui-ci. Les nombreux calculs que j'ai pu y effectuer m'ont permis de progresser plus vite et de détecter mes erreurs plus rapidement.
-<br />
 
-</div>
 
-<div class="standard"><a id='magicparlabel-2165' />
-Je montre également ma gratitude à Monsieur Delgrange et à Monsieur Pirlot pour avoir accepté d'être les rapporteurs de ce mémoire.
-<br />
-
-</div>
-
-<div class="standard"><a id='magicparlabel-2166' />
-Je remercie mes parents pour les nombreuses relectures, souvent difficiles, que je leur ai infligées tout au long de la rédaction de ce mémoire.
-<br />
-
-</div>
-
-<div class="standard"><a id='magicparlabel-2167' />
-Pour finir, je tiens à apporter une reconnaissance toute particulière à mon grand-père maternel, Làszlo Fodor qui, dès ma petite enfance, a su susciter mon intérêt pour de nombreux casse-têtes. Il a été le premier à mettre un Rubik's Cube entre mes mains. Le sujet de ce mémoire ne serait peut-être pas le même sans son influence.</div>
-
-<div class="standard"><a id='magicparlabel-2168' />
-<br />
-</div>
-
-<div class="standard"><a id='magicparlabel-2169' />
-</div>
 <div class='toc'><div class='tochead chapter'>Table des matières</div>
 
 <div class='lyxtoc-1'><a href='#magicparlabel-2137' class='tocentry'>Chapitre 1 Remerciements</a> <a href='#magicparlabel-2137' class='tocarrow'>&gt;</a></div>
@@ -422,6 +262,56 @@ Pour finir, je tiens à apporter une reconnaissance toute particulière à mon g
 
 <div class="standard"><a id='magicparlabel-2170' />
 </div>
+
+<!---
+
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 1</span> <a id='magicparlabel-2137' />
+Remerciements</h1>
+<div class="standard"><a id='magicparlabel-2142' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2143' />
+</div>
+
+<div class="standard"><a id='magicparlabel-2163' />
+Je tiens avant tout à remercier Madame Véronique Bruyère d'avoir accepté le sujet de mémoire qui me tenait à cœur et de l'avoir suivi avec enthousiasme tout au long de l'année. Merci pour les nombreux conseils et suggestions qu'elle m'a apportés, entre autres lors de la rédaction.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2164' />
+J'exprime aussi ma reconnaissance à Monsieur Tom Mens pour m'avoir autorisé à utiliser l'un de ses ordinateurs personnels et à Sylvain Degransart pour m'avoir créé un compte sur celui-ci. Les nombreux calculs que j'ai pu y effectuer m'ont permis de progresser plus vite et de détecter mes erreurs plus rapidement.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2165' />
+Je montre également ma gratitude à Monsieur Delgrange et à Monsieur Pirlot pour avoir accepté d'être les rapporteurs de ce mémoire.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2166' />
+Je remercie mes parents pour les nombreuses relectures, souvent difficiles, que je leur ai infligées tout au long de la rédaction de ce mémoire.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2167' />
+Pour finir, je tiens à apporter une reconnaissance toute particulière à mon grand-père maternel, Làszlo Fodor qui, dès ma petite enfance, a su susciter mon intérêt pour de nombreux casse-têtes. Il a été le premier à mettre un Rubik's Cube entre mes mains. Le sujet de ce mémoire ne serait peut-être pas le même sans son influence.</div>
+
+<div class="standard"><a id='magicparlabel-2168' />
+<br />
+</div>
+
+<div class="standard"><a id='magicparlabel-2169' />
+</div>
+
+
+
 <h1 class="chapter"><span class="chapter_label">Chapitre 2</span> <a id='magicparlabel-2193' />
 Introduction</h1>
 <div class="standard"><a id='magicparlabel-2194' />
@@ -7002,5 +6892,7 @@ Lors de la rédaction de ce mémoire, l'accent a été mis sur la description de
 
 <div class="standard"><a id='magicparlabel-4231' />
 </div>
+
+-->
 
 </div>

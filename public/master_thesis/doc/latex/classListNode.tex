@@ -1,0 +1,145 @@
+\section{ListNode Class Reference}
+\label{classListNode}\index{ListNode@{ListNode}}
+\doxyref{Node}{p.}{classNode} representation for chained lists.  
+
+
+{\tt \#include $<$ListNode.h$>$}
+
+Inheritance diagram for ListNode::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classListNode}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ListNode} ({\bf TreeNode} $\ast${\bf treeNode})
+\item 
+virtual {\bf $\sim$ListNode} ()
+\item 
+{\bf TreeNode} $\ast$ {\bf getTreeNode} (void) const 
+\item 
+{\bf ListNode} $\ast$ {\bf getNext} (void) const 
+\item 
+{\bf ListNode} $\ast$ {\bf getPrev} (void) const 
+\item 
+{\bf Node} $\ast$ {\bf getNode} (void) const 
+\item 
+void {\bf setNext} ({\bf ListNode} $\ast${\bf next})
+\item 
+void {\bf setPrev} ({\bf ListNode} $\ast${\bf prev})
+\item 
+void {\bf addBefore} ({\bf ListNode} $\ast$listNode)
+\item 
+void {\bf addAfter} ({\bf ListNode} $\ast$listNode)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf TreeNode} $\ast$ {\bf treeNode}
+\item 
+{\bf ListNode} $\ast$ {\bf next}
+\item 
+{\bf ListNode} $\ast$ {\bf prev}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\doxyref{Node}{p.}{classNode} representation for chained lists. 
+
+This \doxyref{ListNode}{p.}{classListNode} contain a \doxyref{TreeNode}{p.}{classTreeNode} with all information about its parent \doxyref{TreeNode}{p.}{classTreeNode} in the processing tree. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{ListNode@{ListNode}!ListNode@{ListNode}}
+\index{ListNode@{ListNode}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ListNode::ListNode ({\bf TreeNode} $\ast$ {\em treeNode})}\label{classListNode_3094fb3f7eb3bbcfcfb51b8b3f77e065}
+
+
+Constructor for empty node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treeNode to be stocked on this item \end{description}
+\end{Desc}
+\index{ListNode@{ListNode}!~ListNode@{$\sim$ListNode}}
+\index{~ListNode@{$\sim$ListNode}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ListNode::$\sim$ListNode ()\hspace{0.3cm}{\tt  [virtual]}}\label{classListNode_da75c8d715ac609cb7f4a17cac5d4658}
+
+
+Destructor No destruction of \doxyref{TreeNode}{p.}{classTreeNode} because it will be deleted in it's tree. If treeNode don't belong to a tree anymore when deleting this listNode, then delete it by hand. 
+
+\subsection{Member Function Documentation}
+\index{ListNode@{ListNode}!getTreeNode@{getTreeNode}}
+\index{getTreeNode@{getTreeNode}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode}$\ast$ ListNode::getTreeNode (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classListNode_cadc6e783704c3372fdcdeaa0cddb7a8}
+
+
+Content \doxyref{TreeNode}{p.}{classTreeNode} with informations about position in the processing tree \index{ListNode@{ListNode}!getNext@{getNext}}
+\index{getNext@{getNext}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode}$\ast$ ListNode::getNext (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classListNode_2c84a9fbd083b5472fb893c0e2a52fc4}
+
+
+next \doxyref{ListNode}{p.}{classListNode} \index{ListNode@{ListNode}!getPrev@{getPrev}}
+\index{getPrev@{getPrev}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode}$\ast$ ListNode::getPrev (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classListNode_11e82ca85e20a13bcc169165f197bc8d}
+
+
+previous \doxyref{ListNode}{p.}{classListNode} \index{ListNode@{ListNode}!getNode@{getNode}}
+\index{getNode@{getNode}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Node}$\ast$ ListNode::getNode (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classListNode_83c12c19b7b605c294e6cccbad409f0e}
+
+
+Content \doxyref{Node}{p.}{classNode} (only light representation of level) \index{ListNode@{ListNode}!setNext@{setNext}}
+\index{setNext@{setNext}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ListNode::setNext ({\bf ListNode} $\ast$ {\em next})\hspace{0.3cm}{\tt  [inline]}}\label{classListNode_3c27820cf91c91c8c6ffce90b848f316}
+
+
+Assign next \doxyref{ListNode}{p.}{classListNode} \index{ListNode@{ListNode}!setPrev@{setPrev}}
+\index{setPrev@{setPrev}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ListNode::setPrev ({\bf ListNode} $\ast$ {\em prev})\hspace{0.3cm}{\tt  [inline]}}\label{classListNode_e6402f5371159f63334c8f26ffeab40e}
+
+
+Assign previous \doxyref{ListNode}{p.}{classListNode} \index{ListNode@{ListNode}!addBefore@{addBefore}}
+\index{addBefore@{addBefore}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ListNode::addBefore ({\bf ListNode} $\ast$ {\em listNode})}\label{classListNode_3c18a683c61d6e750aab3bf042a1ac50}
+
+
+Add a listNode just before this node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]node to add before this node \end{description}
+\end{Desc}
+\index{ListNode@{ListNode}!addAfter@{addAfter}}
+\index{addAfter@{addAfter}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ListNode::addAfter ({\bf ListNode} $\ast$ {\em listNode})}\label{classListNode_747f265b7e4b0edef2bfbe1a1000dfdd}
+
+
+Add a listNode just before this node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]node to add after this node \end{description}
+\end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{ListNode@{ListNode}!treeNode@{treeNode}}
+\index{treeNode@{treeNode}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode}$\ast$ {\bf ListNode::treeNode}\hspace{0.3cm}{\tt  [protected]}}\label{classListNode_67d2ee26507aa9d63530e7c95e578a51}
+
+
+\doxyref{TreeNode}{p.}{classTreeNode} stocked on this item of the list \index{ListNode@{ListNode}!next@{next}}
+\index{next@{next}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode}$\ast$ {\bf ListNode::next}\hspace{0.3cm}{\tt  [protected]}}\label{classListNode_d78b392c2ddc25c3243d0c2f30692fb1}
+
+
+Next \doxyref{ListNode}{p.}{classListNode} of the list \index{ListNode@{ListNode}!prev@{prev}}
+\index{prev@{prev}!ListNode@{ListNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode}$\ast$ {\bf ListNode::prev}\hspace{0.3cm}{\tt  [protected]}}\label{classListNode_927c9ca1868a6f55ca5c7c2e3e6c0d62}
+
+
+Previous \doxyref{ListNode}{p.}{classListNode} of the list 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/ListNode.h\item 
+src/Solver/ListNode.cpp\end{CompactItemize}

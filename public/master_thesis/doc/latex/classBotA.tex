@@ -1,0 +1,355 @@
+\section{BotA Class Reference}
+\label{classBotA}\index{BotA@{BotA}}
+A implementation of A$\ast$ algorithm without specific function f(x) = g(x) + h(x) (this class must be derived).  
+
+
+{\tt \#include $<$BotA.h$>$}
+
+Inheritance diagram for BotA::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classBotA}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual const char $\ast$ {\bf SOLVER\_\-NAME} ()=0
+\item 
+{\bf BotA} (Base $\ast$base, {\bf Level} $\ast$level, int maxNodeNumber, int maxRamSize, int openTableSize, int closeTableSize, int {\bf costLimit}, int deadlockedBoxesSearch=2, bool onlyPushNumber=false, bool {\bf quickSearch}=false)
+\item 
+int {\bf getMinReject} (void) const 
+\item 
+int {\bf getCostLimit} (void) const 
+\item 
+int {\bf getQuickSearch} (void) const 
+\item 
+virtual int {\bf getSize} (void)
+\item 
+int {\bf getInitialCost} ()
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+virtual void {\bf process} ()
+\item 
+void {\bf saveMostUsedPositions} (int numberOfPos)
+\item 
+bool {\bf isDeadTreeNode} ({\bf TreeNode} $\ast$treeNode)
+\item 
+void {\bf deleteDeadTreeNode} ({\bf TreeNode} $\ast$treeNode)
+\item 
+bool {\bf workOnAlreadySearched} ({\bf TreeNode} $\ast$treeNode, int $\ast$counter)
+\item 
+{\bf TreeNode} $\ast$ {\bf firstTreeNode} (void)
+\item 
+Child $\ast$$\ast$ {\bf findPonderedChildren} ({\bf TreeNode} $\ast$treeNode)
+\item 
+virtual void {\bf addTreeNodeToCloseList} ({\bf TreeNode} $\ast$treeNode)
+\item 
+virtual void {\bf initHashTable} (void)
+\item 
+virtual void {\bf initCloseNodeList} (void)
+\item 
+virtual {\bf TreeNode} $\ast$ {\bf createTreeNode} ({\bf Node} $\ast$node, {\bf TreeNode} $\ast$parentTreeNode, int pushCost)
+\item 
+void {\bf moveTreeNode} ({\bf TreeNode} $\ast$treeNode, {\bf TreeNode} $\ast$newParent)
+\item 
+virtual int {\bf f} ({\bf TreeNode} $\ast$treeNode, int pushCost) const =0
+\item 
+virtual int {\bf g} ({\bf TreeNode} $\ast$treeNode, int pushCost) const =0
+\item 
+virtual int {\bf h} ({\bf TreeNode} $\ast$treeNode) const =0
+\item 
+virtual bool {\bf testSolution} ({\bf TreeNode} $\ast$treeNode)
+\item 
+virtual bool {\bf solutionNode} (const {\bf TreeNode} $\ast$treeNode) const 
+\item 
+int $\ast$ {\bf mostUsedPositions} (int number, bool withGoals)
+\item 
+int {\bf findMaxCellAndReplaceValue} (int $\ast$tab, int tabLength, bool withGoals)
+\item 
+virtual void {\bf printInfos} ({\bf TreeNode} $\ast$treeNode)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf costLimit}
+\item 
+int {\bf minReject}
+\item 
+bool {\bf quickSearch}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+A implementation of A$\ast$ algorithm without specific function f(x) = g(x) + h(x) (this class must be derived). 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotA@{BotA}!BotA@{BotA}}
+\index{BotA@{BotA}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotA::BotA (Base $\ast$ {\em base}, {\bf Level} $\ast$ {\em level}, int {\em maxNodeNumber}, int {\em maxRamSize}, int {\em openTableSize}, int {\em closeTableSize}, int {\em costLimit}, int {\em deadlockedBoxesSearch} = {\tt 2}, bool {\em onlyPushNumber} = {\tt false}, bool {\em quickSearch} = {\tt false})}\label{classBotA_9445dbf366ee48d823b3a14c8a2f2ccc}
+
+
+Constructor for a solver of a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em level}]\doxyref{Level}{p.}{classLevel} to be used \item[{\em maxNodeNumber}]Limit number of nodes to explore \item[{\em maxRamSize}]Limit max ram size to allocate \item[{\em openTableSize}]size of Open Table to allocate (hashtable) \item[{\em closeTableSize}]size of Close Table to allocate (hashtable) \item[{\em limit}]of accepted f(x). if costLimit = -1, costLimit = +infinity \item[{\em deadlockedBoxesSearch}]number of boxes to use when testing every possible positions of deadlock \item[{\em onlyPushNumber}]only keep number of pushes in Stats object. don't generate solution \doxyref{Path}{p.}{classPath} (CPU saving for deadlocks and penalties) \item[{\em quickSearch}]don't test penalties of every nodes before adding it on the tree \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{BotA@{BotA}!SOLVER_NAME@{SOLVER\_\-NAME}}
+\index{SOLVER_NAME@{SOLVER\_\-NAME}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual const char$\ast$ BotA::SOLVER\_\-NAME ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classBotA_ab85547e677baf43658369ab19a461c4}
+
+
+Name of this solver 
+
+Implemented in {\bf BotBestMovesS} \doxyref{}{p.}{classBotBestMovesS_c29b9292fd9d234d1d4e7c8ef4e36720}.\index{BotA@{BotA}!getMinReject@{getMinReject}}
+\index{getMinReject@{getMinReject}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA::getMinReject (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA_c2684957f288ca6d0bbe8df235e73d77}
+
+
+minReject \index{BotA@{BotA}!getCostLimit@{getCostLimit}}
+\index{getCostLimit@{getCostLimit}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA::getCostLimit (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA_f679b068a36cdf048dc69c03b0f0e673}
+
+
+limit of accepted f(x) \index{BotA@{BotA}!getQuickSearch@{getQuickSearch}}
+\index{getQuickSearch@{getQuickSearch}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA::getQuickSearch (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA_0f2306d676e3583d56cfb487f7a1ce51}
+
+
+quick search \index{BotA@{BotA}!getSize@{getSize}}
+\index{getSize@{getSize}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA::getSize (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA_d607c14485f9d5fa20fd30e30b6167a9}
+
+
+Return size in octets of the actual state of this solver \begin{Desc}
+\item[Returns:]size in octets of the actual state of this solver \end{Desc}
+\index{BotA@{BotA}!getInitialCost@{getInitialCost}}
+\index{getInitialCost@{getInitialCost}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA::getInitialCost ()}\label{classBotA_0cf8ff14953027a208fc9a4b4aa3e2a6}
+
+
+Get cost of first treeNode \begin{Desc}
+\item[Returns:]cost of first treeNode \end{Desc}
+\index{BotA@{BotA}!process@{process}}
+\index{process@{process}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA::process ()\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotA_e6a4b7fbc9556cebde69fb6645e33c5e}
+
+
+Try to resolve this level with a fixed max number of nodes or a fixed max number of ram size to allocate. (first to be reached) \index{BotA@{BotA}!saveMostUsedPositions@{saveMostUsedPositions}}
+\index{saveMostUsedPositions@{saveMostUsedPositions}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA::saveMostUsedPositions (int {\em numberOfPos})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_c261752475e178e7c24dc71971e7e052}
+
+
+If ram limit or node limit are reached, we save a list of sub-states of boxes where cells are most used by boxes in the tree. This list of sub-states will be tested before next solving of same level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em number}]of \char`\"{}top\char`\"{} cell positions we want to keep. If we take 15, we will have list of every sub-states of 1,2,3,4,5 and 6 boxes for 15 most used positions \end{description}
+\end{Desc}
+\index{BotA@{BotA}!isDeadTreeNode@{isDeadTreeNode}}
+\index{isDeadTreeNode@{isDeadTreeNode}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotA::isDeadTreeNode ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_13af1593d0bbd3232fa3402f93d9fffd}
+
+
+Test if a treenode is a dead branch (treenode and all children are in openTable) or not \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]node to be tested \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if treenode is a dead branch, false if not \end{Desc}
+\index{BotA@{BotA}!deleteDeadTreeNode@{deleteDeadTreeNode}}
+\index{deleteDeadTreeNode@{deleteDeadTreeNode}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA::deleteDeadTreeNode ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_0661c8a1282d795601a08cdcadecee23}
+
+
+delete a dead treenode from the tree and all its children. Also delete this node from openTable. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]node to be deleted \end{description}
+\end{Desc}
+\index{BotA@{BotA}!workOnAlreadySearched@{workOnAlreadySearched}}
+\index{workOnAlreadySearched@{workOnAlreadySearched}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotA::workOnAlreadySearched ({\bf TreeNode} $\ast$ {\em treeNode}, int $\ast$ {\em counter})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_2b98a2d6a402cac989295d0e61e41c3e}
+
+
+If this node is already searched, we look at the cost of stocked treeNode and move what it need to be moved to keep the lowest cost \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treenode we want to look if it's new or beter than anything existing \item[{\em counter}]counter of children of actual treeNode \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if it's already searched and doesn't need to be added. false if it's not already searched and we need to add it. \end{Desc}
+\index{BotA@{BotA}!firstTreeNode@{firstTreeNode}}
+\index{firstTreeNode@{firstTreeNode}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode} $\ast$ BotA::firstTreeNode (void)\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_e2f84fb58a1a2083ddedeb0aa1be8417}
+
+
+Get first treeNode from closeNodeList and delete it from the list \begin{Desc}
+\item[Returns:]first treeNode from closeNodeList \end{Desc}
+\index{BotA@{BotA}!findPonderedChildren@{findPonderedChildren}}
+\index{findPonderedChildren@{findPonderedChildren}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Child $\ast$$\ast$ BotA::findPonderedChildren ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_d28875b477b72a8828c974db207253a7}
+
+
+Get list of children from a treeNode and move this treenode from close list to open list. This function take macro children too. (children with many pushes to put a box on a goal in one step) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treeNode we want to find children \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]list of children (terminated by NULL) with list of cost (number of push) of every children. When it's not a macro push, it's always 1. \end{Desc}
+\index{BotA@{BotA}!addTreeNodeToCloseList@{addTreeNodeToCloseList}}
+\index{addTreeNodeToCloseList@{addTreeNodeToCloseList}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA::addTreeNodeToCloseList ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotA_e948f2346aaa4c84393d5ef0cfe0eb2f}
+
+
+Add a new \doxyref{TreeNode}{p.}{classTreeNode} to the waiting list at the right position. New Treenode is added TO THE CORRECT PLACE DEPENDING OF ITS COST (best-first search) \index{BotA@{BotA}!initHashTable@{initHashTable}}
+\index{initHashTable@{initHashTable}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA::initHashTable (void)\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotA_df50adec8741de89e6e15cba2354a85b}
+
+
+Initialize empty hashtables \index{BotA@{BotA}!initCloseNodeList@{initCloseNodeList}}
+\index{initCloseNodeList@{initCloseNodeList}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA::initCloseNodeList (void)\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotA_a5899fa5196b3e759df41295819a5172}
+
+
+Initialize empty waiting node list \index{BotA@{BotA}!createTreeNode@{createTreeNode}}
+\index{createTreeNode@{createTreeNode}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode} $\ast$ BotA::createTreeNode ({\bf Node} $\ast$ {\em node}, {\bf TreeNode} $\ast$ {\em parentTreeNode}, int {\em pushCost})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotA_1d03bd289e6c6f2425c29d8a8e0b3933}
+
+
+Create a \doxyref{TreeNode}{p.}{classTreeNode} from a node and its parent treeNode in the search tree (if he got one, else NULL) and assign a cost at it \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]\doxyref{Node}{p.}{classNode} we want to put in the new \doxyref{TreeNode}{p.}{classTreeNode} \item[{\em parentTreeNode}]Parent \doxyref{TreeNode}{p.}{classTreeNode} we want to attach to new \doxyref{TreeNode}{p.}{classTreeNode} \item[{\em pushCost}]number of pushes from its parent (usefull for macro-pushes) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a new \doxyref{TreeNode}{p.}{classTreeNode} that contains param \char`\"{}Node\char`\"{} and a definied cost \end{Desc}
+\index{BotA@{BotA}!moveTreeNode@{moveTreeNode}}
+\index{moveTreeNode@{moveTreeNode}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA::moveTreeNode ({\bf TreeNode} $\ast$ {\em treeNode}, {\bf TreeNode} $\ast$ {\em newParent})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_ad58285e1b3d2b39df61627f3b1be0bc}
+
+
+Move a treenode in the tree by split it from its parent and attach it to a new parent \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treenode we want to move in the tree \item[{\em newParent}]new parent for this treenode \end{description}
+\end{Desc}
+\index{BotA@{BotA}!f@{f}}
+\index{f@{f}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual int BotA::f ({\bf TreeNode} $\ast$ {\em treeNode}, int {\em pushCost}) const\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classBotA_7f064a1906ff8150a2326a8f9d73c2f7}
+
+
+Cost function to evaluate the cost of a treenode with its position in the tree (parent of treenode must be assigned before calling this function) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]to be computed \item[{\em pushCost}]number of pushes from its parent (usefull for macro-pushes) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost value of this node \end{Desc}
+\index{BotA@{BotA}!g@{g}}
+\index{g@{g}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual int BotA::g ({\bf TreeNode} $\ast$ {\em treeNode}, int {\em pushCost}) const\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classBotA_a1210833ae6accea9e659a2deb062a2a}
+
+
+Cost function to evaluate the cost of getting to this treeNode from the initial treenode (parent of treenode must be assigned before calling this function) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]to be computed \item[{\em pushCost}]number of pushes from its parent (usefull for macro-pushes) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]cost value from start to this node \end{Desc}
+\index{BotA@{BotA}!h@{h}}
+\index{h@{h}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual int BotA::h ({\bf TreeNode} $\ast$ {\em treeNode}) const\hspace{0.3cm}{\tt  [protected, pure virtual]}}\label{classBotA_c9d54cca141a1f1638a3482a616e9403}
+
+
+Cost function to evaluate the cost of admissibly estimated distance to a goal treenode from this treenode (parent of treenode must be assigned before calling this function) 
+
+Implemented in {\bf BotBestMovesS} \doxyref{}{p.}{classBotBestMovesS_737fff641aa19f3d89cf98cf87c6ba76}.\index{BotA@{BotA}!testSolution@{testSolution}}
+\index{testSolution@{testSolution}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotA::testSolution ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotA_36ac7cef4eb59696ca81ce1aee4f0131}
+
+
+Test if a treeNode is a solution node and create Stats object. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treenode we want to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if this treenode is a solution, false if not \end{Desc}
+\index{BotA@{BotA}!solutionNode@{solutionNode}}
+\index{solutionNode@{solutionNode}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotA::solutionNode (const {\bf TreeNode} $\ast$ {\em treeNode}) const\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotA_783294a958a9f517e653f7b3c00d0ebb}
+
+
+Test if a treenode is a solution treenode (based on h(x)=0 value) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]\doxyref{TreeNode}{p.}{classTreeNode} to tested \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if this node is solution (h(x) = 0), false if not \end{Desc}
+\index{BotA@{BotA}!mostUsedPositions@{mostUsedPositions}}
+\index{mostUsedPositions@{mostUsedPositions}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ BotA::mostUsedPositions (int {\em number}, bool {\em withGoals})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_32c08ab7a41550f6d59a9ccdd2f405dd}
+
+
+Find most used positions (boxes on them). Positions with goals or without goals. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em number}]number of most used positions we want to find \item[{\em withGoals}]true if we want to take care of goals, false if not \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]tab of \char`\"{}number\char`\"{} cells filled with most used positions. Be carefull, this tab can be ended with several -1 \char`\"{}number\char`\"{} is bigger than usefull cells \end{Desc}
+\index{BotA@{BotA}!findMaxCellAndReplaceValue@{findMaxCellAndReplaceValue}}
+\index{findMaxCellAndReplaceValue@{findMaxCellAndReplaceValue}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA::findMaxCellAndReplaceValue (int $\ast$ {\em tab}, int {\em tabLength}, bool {\em withGoals})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_5a136484ea281a4d12706c6e16576b89}
+
+
+find max cell of a tab, keep it, and replace it with -1 \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tab}]tab of values \item[{\em tabLength}]length of tab \item[{\em withGoals}]true if we want to take care of goals, false if not \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]max cell of the tab \end{Desc}
+\index{BotA@{BotA}!printInfos@{printInfos}}
+\index{printInfos@{printInfos}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA::printInfos ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotA_3639c29ef6ad542783101d7902432865}
+
+
+During solving, print usefull infos in the console \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treenode to draw \end{description}
+\end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{BotA@{BotA}!costLimit@{costLimit}}
+\index{costLimit@{costLimit}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotA::costLimit}\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_7af1b189a9fdad2493d37bfe95a88f01}
+
+
+limit of accepted f(x) \index{BotA@{BotA}!minReject@{minReject}}
+\index{minReject@{minReject}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotA::minReject}\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_ddbcca4ef824b0eec4c9e6b06bbcd3cd}
+
+
+minimum value of rejected f(x) for next iteration of IDA$\ast$. Maybe costLimit+1 but somethimes it's costLimit+2 or more \index{BotA@{BotA}!quickSearch@{quickSearch}}
+\index{quickSearch@{quickSearch}!BotA@{BotA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool {\bf BotA::quickSearch}\hspace{0.3cm}{\tt  [protected]}}\label{classBotA_0c3b3a1502633bce12a4c24c11bc94a8}
+
+
+Test penalties of every nodes 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotA/BotA.h\item 
+src/Solver/BotA/BotA.cpp\end{CompactItemize}

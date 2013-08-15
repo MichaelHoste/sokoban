@@ -1,0 +1,168 @@
+\section{HashTable Class Reference}
+\label{classHashTable}\index{HashTable@{HashTable}}
+Hash Table Class to store all level states.  
+
+
+{\tt \#include $<$HashTable.h$>$}
+
+Inheritance diagram for HashTable::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHashTable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf HashTable} (int {\bf length})
+\item 
+virtual {\bf $\sim$HashTable} ()
+\item 
+{\bf ChainedList} $\ast$const $\ast$const {\bf getTable} (void) const 
+\item 
+int {\bf getLength} (void) const 
+\item 
+int {\bf getItemNumber} (void) const 
+\item 
+void {\bf addItem} ({\bf TreeNode} $\ast$treeNode)
+\item 
+bool {\bf removeItem} (const {\bf Node} $\ast$node)
+\item 
+virtual bool {\bf isPresent} (const {\bf Node} $\ast$node) const 
+\item 
+{\bf TreeNode} $\ast$ {\bf getTreeNodeFromNode} (const {\bf Node} $\ast$node)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+int {\bf h} (const {\bf Node} $\ast$node) const 
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf ChainedList} $\ast$$\ast$ {\bf table}
+\item 
+int {\bf length}
+\item 
+int {\bf itemNumber}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Hash Table Class to store all level states. 
+
+This hash table is a tab of N \doxyref{ChainedList}{p.}{classChainedList} of \doxyref{TreeNode}{p.}{classTreeNode} (reuse of the processing tree pointer). when adding a \doxyref{TreeNode}{p.}{classTreeNode}, the \char`\"{}H\char`\"{} function is used to make a position in the tab from the node. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{HashTable@{HashTable}!HashTable@{HashTable}}
+\index{HashTable@{HashTable}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}HashTable::HashTable (int {\em length})}\label{classHashTable_43df4a83799c4af99ec07a16b354bbb0}
+
+
+Constructor \index{HashTable@{HashTable}!~HashTable@{$\sim$HashTable}}
+\index{~HashTable@{$\sim$HashTable}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}HashTable::$\sim$HashTable ()\hspace{0.3cm}{\tt  [virtual]}}\label{classHashTable_9ce5569bb945880cacb29aaba6f3e3f9}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{HashTable@{HashTable}!getTable@{getTable}}
+\index{getTable@{getTable}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ChainedList}$\ast$ const$\ast$ const HashTable::getTable (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classHashTable_fc8bb0f016829e3b3686caf8b78241a3}
+
+
+table of \char`\"{}length\char`\"{} chainedlist \index{HashTable@{HashTable}!getLength@{getLength}}
+\index{getLength@{getLength}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int HashTable::getLength (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classHashTable_c23c225e5b23bf616a8fc7b16c4e9582}
+
+
+length of table \index{HashTable@{HashTable}!getItemNumber@{getItemNumber}}
+\index{getItemNumber@{getItemNumber}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int HashTable::getItemNumber (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classHashTable_6fcecb1808a92d3aef69bbe578241314}
+
+
+number of items stocked in the hashtable \index{HashTable@{HashTable}!addItem@{addItem}}
+\index{addItem@{addItem}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void HashTable::addItem ({\bf TreeNode} $\ast$ {\em treeNode})}\label{classHashTable_9b6497cfeedd59f8327aa99d0bb35de2}
+
+
+Add an item into the table but don't test if it is already present \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treeNode pointer we want to add to the hashTable \end{description}
+\end{Desc}
+\index{HashTable@{HashTable}!removeItem@{removeItem}}
+\index{removeItem@{removeItem}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool HashTable::removeItem (const {\bf Node} $\ast$ {\em node})}\label{classHashTable_6701637e1a3bb03ba85b666dcc283190}
+
+
+Delete an item from the table (if this item if several times in the table, we delete it only one time). It delete only listNode but pointer to treeNode stay in the tree \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]\doxyref{Node}{p.}{classNode} we want to delete from the table \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if something was deleted, false if not \end{Desc}
+\index{HashTable@{HashTable}!isPresent@{isPresent}}
+\index{isPresent@{isPresent}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool HashTable::isPresent (const {\bf Node} $\ast$ {\em node}) const\hspace{0.3cm}{\tt  [virtual]}}\label{classHashTable_1a1b16b0cfd69e0771cb55fe802229eb}
+
+
+Test if an \doxyref{Node}{p.}{classNode} is already present into the hashTable \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]\doxyref{Node}{p.}{classNode} we want to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if the \doxyref{Node}{p.}{classNode} is present, false if not \end{Desc}
+
+
+Reimplemented in {\bf BotA\_\-HashTable} \doxyref{}{p.}{classBotA__HashTable_e6005e8a8ed9551f640ecd325a8165f8}.\index{HashTable@{HashTable}!getTreeNodeFromNode@{getTreeNodeFromNode}}
+\index{getTreeNodeFromNode@{getTreeNodeFromNode}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode} $\ast$ HashTable::getTreeNodeFromNode (const {\bf Node} $\ast$ {\em node})}\label{classHashTable_d21e933a903e865ca5a82b2938f357f8}
+
+
+Get a treenode pointer in hashtable from a node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]\doxyref{Node}{p.}{classNode} we want use to find treenode \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]treenode pointer to found node or NULL if node doesn't exist in hashtable \end{Desc}
+\index{HashTable@{HashTable}!h@{h}}
+\index{h@{h}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int HashTable::h (const {\bf Node} $\ast$ {\em node}) const\hspace{0.3cm}{\tt  [protected]}}\label{classHashTable_ac4876a25e566f3d22e691ea2f99e0cd}
+
+
+Hashing function that use a node to compute an index number for the tab \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]\doxyref{Node}{p.}{classNode} we want to compute \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]index number for the tab \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{HashTable@{HashTable}!table@{table}}
+\index{table@{table}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ChainedList}$\ast$$\ast$ {\bf HashTable::table}\hspace{0.3cm}{\tt  [protected]}}\label{classHashTable_4071126e173ebb8b71a8241713e290ed}
+
+
+Table of hashing \index{HashTable@{HashTable}!length@{length}}
+\index{length@{length}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf HashTable::length}\hspace{0.3cm}{\tt  [protected]}}\label{classHashTable_28d1b9720c344d5faf4da89c3a6a6041}
+
+
+Length of hashtable : number of cells \index{HashTable@{HashTable}!itemNumber@{itemNumber}}
+\index{itemNumber@{itemNumber}!HashTable@{HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf HashTable::itemNumber}\hspace{0.3cm}{\tt  [protected]}}\label{classHashTable_313d93108fd540454a433f9bba3c4fa3}
+
+
+Number of items in the table 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/HashTable.h\item 
+src/Solver/HashTable.cpp\end{CompactItemize}

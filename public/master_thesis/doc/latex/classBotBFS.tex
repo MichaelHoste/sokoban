@@ -1,0 +1,54 @@
+\section{BotBFS Class Reference}
+\label{classBotBFS}\index{BotBFS@{BotBFS}}
+Breadth-first search implementation of solver.  
+
+
+{\tt \#include $<$BotBFS.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual const char $\ast$ {\bf SOLVER\_\-NAME} ()
+\item 
+{\bf BotBFS} (Base $\ast$base, {\bf Level} $\ast$level, int maxNodeNumber, int maxRamSize, int openTableSize=870967, int closeTableSize=51827, int deadlockedBoxesSearch=2)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+virtual void {\bf addTreeNodeToCloseList} ({\bf TreeNode} $\ast$treeNode)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Breadth-first search implementation of solver. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotBFS@{BotBFS}!BotBFS@{BotBFS}}
+\index{BotBFS@{BotBFS}!BotBFS@{BotBFS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotBFS::BotBFS (Base $\ast$ {\em base}, {\bf Level} $\ast$ {\em level}, int {\em maxNodeNumber}, int {\em maxRamSize}, int {\em openTableSize} = {\tt 870967}, int {\em closeTableSize} = {\tt 51827}, int {\em deadlockedBoxesSearch} = {\tt 2})}\label{classBotBFS_d67f40fde0ae85805791ad6416bc7194}
+
+
+Constructor for a solver of a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em level}]\doxyref{Level}{p.}{classLevel} to be used \item[{\em maxNodeNumber}]Limit number of nodes to explore \item[{\em maxRamSize}]Limit max ram size to allocate \item[{\em openTableSize}]size of Open Table to allocate (hashtable) \item[{\em closeTableSize}]size of Close Table to allocate (hashtable) \item[{\em deadlockedBoxesSearch}]number of boxes to use when testing every possible positions of deadlock \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{BotBFS@{BotBFS}!SOLVER_NAME@{SOLVER\_\-NAME}}
+\index{SOLVER_NAME@{SOLVER\_\-NAME}!BotBFS@{BotBFS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual const char$\ast$ BotBFS::SOLVER\_\-NAME ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classBotBFS_761cad471c1c45b100386d3477e31913}
+
+
+Name of this solver \index{BotBFS@{BotBFS}!addTreeNodeToCloseList@{addTreeNodeToCloseList}}
+\index{addTreeNodeToCloseList@{addTreeNodeToCloseList}!BotBFS@{BotBFS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotBFS::addTreeNodeToCloseList ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotBFS_12fa4f2911a53db2fc65c1c68a3e54f4}
+
+
+Add a new \doxyref{TreeNode}{p.}{classTreeNode} to the waiting list at the right position. New Treenode is added TO THE END of the waiting list (breadth-first) 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotBFS/BotBFS.h\item 
+src/Solver/BotBFS/BotBFS.cpp\end{CompactItemize}

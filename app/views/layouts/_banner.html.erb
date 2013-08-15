@@ -23,6 +23,11 @@
   <% banner_class = 'banner-text' %>
   <% text = _("List of Packs & Copyright") %>
 
+<% elsif params[:controller] == 'pages' and params[:action] == 'master_thesis' %>
+
+  <% banner_class = 'banner-text' %>
+  <% text = _('Jeu de Sokoban : recherche de solutions optimales') %>
+
 <% elsif not current_user %>
 
   <% banner_class = 'banner-text' %>

@@ -1,0 +1,172 @@
+\section{Util Class Reference}
+\label{classUtil}\index{Util@{Util}}
+Utility class only with static method.  
+
+
+{\tt \#include $<$Util.h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static char $\ast$ {\bf cutText} (const char $\ast$text, const int length)
+\item 
+static char {\bf toUpper} (const char letter)
+\item 
+static char {\bf toLower} (const char letter)
+\item 
+static char $\ast$ {\bf stringToLower} (const char $\ast$string)
+\item 
+static int {\bf numberLength} (const int number)
+\item 
+static char {\bf nDecimal} (const int number, const int n)
+\item 
+static bool {\bf isDecimal} (const char a)
+\item 
+static char $\ast$ {\bf generateRep} (char $\ast$$\ast$reps)
+\item 
+static void {\bf createRep} (char $\ast$$\ast$reps)
+\item 
+static bool {\bf isThisFileExists} (char $\ast$file)
+\item 
+static bool {\bf isThisRepExists} (char $\ast$rep)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Utility class only with static method. 
+
+\subsection{Member Function Documentation}
+\index{Util@{Util}!cutText@{cutText}}
+\index{cutText@{cutText}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Util::cutText (const char $\ast$ {\em text}, const int {\em length})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_6543bcf3b48e29daf7ce8583ce12f2e4}
+
+
+Fonction used to cut and clean text and make it ready to draw \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em text}]text to be cut \item[{\em length}]max length of the new text \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]text cut to (max) length chars and cleaned \end{Desc}
+\index{Util@{Util}!toUpper@{toUpper}}
+\index{toUpper@{toUpper}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char Util::toUpper (const char {\em letter})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_714ac4b097bb9b71c100a600558df93e}
+
+
+Capitalize one char \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em letter}]char to capitalize \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]capitalized char \end{Desc}
+\index{Util@{Util}!toLower@{toLower}}
+\index{toLower@{toLower}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char Util::toLower (const char {\em letter})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_38a875276038938a12f54c446e3ebb52}
+
+
+Capitalize one char \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em letter}]char to UnCapitalize \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]uncapitalized char \end{Desc}
+\index{Util@{Util}!stringToLower@{stringToLower}}
+\index{stringToLower@{stringToLower}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Util::stringToLower (const char $\ast$ {\em string})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_3cd22741e64b45f2f68aff09679b9f87}
+
+
+Uncapitalize one string \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em string}]string to UnCapitalize \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]uncapitalized string \end{Desc}
+\index{Util@{Util}!numberLength@{numberLength}}
+\index{numberLength@{numberLength}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Util::numberLength (const int {\em number})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_c40d5d12d6feae02fc04b36aafa4d803}
+
+
+Number of decimals in this number \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em number}]number to search in \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]number of of decimals \end{Desc}
+\index{Util@{Util}!nDecimal@{nDecimal}}
+\index{nDecimal@{nDecimal}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char Util::nDecimal (const int {\em number}, const int {\em n})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_a837bc2354e998a7ff9429bbdf6b2eb4}
+
+
+Take the Nst decimal in the number \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em number}]number to search in \item[{\em n}]number of decimal to return \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]caracter of the Nst decimal of number \end{Desc}
+\index{Util@{Util}!isDecimal@{isDecimal}}
+\index{isDecimal@{isDecimal}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Util::isDecimal (const char {\em a})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_80a8dedaa94e2901a271a304cf665ef0}
+
+
+Is it a decimal (between 0 and 9) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a}]caracter to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if \char`\"{}a\char`\"{} is a decimal. false if not. \end{Desc}
+\index{Util@{Util}!generateRep@{generateRep}}
+\index{generateRep@{generateRep}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Util::generateRep (char $\ast$$\ast$ {\em reps})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_449426a320a40a270f6d107f2f6add88}
+
+
+Generate a one line fileName from a list of repertory Ex : if reps is \char`\"{}file\char`\"{}$|$\char`\"{}name\char`\"{}$|$\char`\"{}michael.pdf\char`\"{}, then a string with \char`\"{}file/name/michael.pdf\char`\"{} will be created. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em rep}]repertories to test. Ends with NUL \end{description}
+\end{Desc}
+\index{Util@{Util}!createRep@{createRep}}
+\index{createRep@{createRep}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Util::createRep (char $\ast$$\ast$ {\em reps})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_bc971ff30f2665d749c4986a952f30e8}
+
+
+Create a local repertory made by a list of strings. Ex : if reps is \char`\"{}file\char`\"{}$|$\char`\"{}name\char`\"{}$|$\char`\"{}michael\char`\"{}, then a repertory \char`\"{}file/name/michael/\char`\"{} will be created \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em rep}]repertories to test. Ends with NULL \end{description}
+\end{Desc}
+\index{Util@{Util}!isThisFileExists@{isThisFileExists}}
+\index{isThisFileExists@{isThisFileExists}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Util::isThisFileExists (char $\ast$ {\em file})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_891989bed9b632c0dc28834b8787bd9f}
+
+
+Is this file exists ? \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em file}]file to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if it exists, false if not \end{Desc}
+\index{Util@{Util}!isThisRepExists@{isThisRepExists}}
+\index{isThisRepExists@{isThisRepExists}!Util@{Util}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Util::isThisRepExists (char $\ast$ {\em rep})\hspace{0.3cm}{\tt  [static]}}\label{classUtil_5e4c6ac30a41e8533bd7fc223d6e4a67}
+
+
+Is this repertory exists ? \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em rep}]repertory to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if it exists, false if not \end{Desc}
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Util.h\item 
+src/Util.cpp\end{CompactItemize}

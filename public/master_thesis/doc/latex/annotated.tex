@@ -1,0 +1,29 @@
+\section{ISokoban Class List}
+Here are the classes, structs, unions and interfaces with brief descriptions:\begin{CompactList}
+\item\contentsline{section}{{\bf BotA} (A implementation of A$\ast$ algorithm without specific function f(x) = g(x) + h(x) (this class must be derived) )}{\pageref{classBotA}}{}
+\item\contentsline{section}{{\bf BotA\_\-ChainedList} (A specific version of \doxyref{ChainedList}{p.}{classChainedList} to use specific listNodes with heapStackCell values (only used with closeNodeList) )}{\pageref{classBotA__ChainedList}}{}
+\item\contentsline{section}{{\bf BotA\_\-HashTable} (A version of \doxyref{HashTable}{p.}{classHashTable} specific to closeNodeList in heap stack With it, we can get or change heapStackCell value of a specific node in the hashtable )}{\pageref{classBotA__HashTable}}{}
+\item\contentsline{section}{{\bf BotA\_\-HeapStack} (A Heap Stack of TreeNodes. It can work like a chainedList to sort TreeNodes in order of cost. Smallest is always root treeNode of stack )}{\pageref{classBotA__HeapStack}}{}
+\item\contentsline{section}{{\bf BotA\_\-ListNode} (A version of \doxyref{ListNode}{p.}{classListNode} with \char`\"{}f\char`\"{} and \char`\"{}g\char`\"{} getters where f(x)=g(x)+h(x). It's used to make the A$\ast$ solver )}{\pageref{classBotA__ListNode}}{}
+\item\contentsline{section}{{\bf BotA\_\-ListNode2} (A version of \doxyref{ListNode}{p.}{classListNode} with \char`\"{}f\char`\"{} and \char`\"{}g\char`\"{} getters where f(x)=g(x)+h(x). It's used to make the A$\ast$ solver WARNING : this second version of \doxyref{ListNode}{p.}{classListNode} is dedicated to close hashtable and use one more variable : \char`\"{}heapStackCell\char`\"{}. heapStackCell is the number of cell treeNode of this Listnode is currently in )}{\pageref{classBotA__ListNode2}}{}
+\item\contentsline{section}{{\bf BotBestMovesS} (A$\ast$ algorithm based on moves number of the pusher. Nodes with less moves are explored first. WARNING : this algorithm doesn't return best moves solution of this level but only a good solution. This is because a state representation of the level doesn't keep exact pusher position but only a pusher zone. This solver will work efficiently (but with a lot of extra work) only if we make level representation with boxes position (zone) and exact pusher position (integer) )}{\pageref{classBotBestMovesS}}{}
+\item\contentsline{section}{{\bf BotBestPushesS\_\-Penalties} (Management of cost penalties. Try to detect every sub-states that causes a penalty to the initial cost )}{\pageref{classBotBestPushesS__Penalties}}{}
+\item\contentsline{section}{{\bf BotBFS} (Breadth-first search implementation of solver )}{\pageref{classBotBFS}}{}
+\item\contentsline{section}{{\bf BotDFS} (Depth-first search implementation of solver )}{\pageref{classBotDFS}}{}
+\item\contentsline{section}{{\bf BotGoodPushesS} (A$\ast$ search algorithm based on estimated remaining pushes number of the pusher. (f(x) = h(x)) Nodes with less pushes are explored first. this algorithm DOESN'T return best pushes solution of this level but only a good solution )}{\pageref{classBotGoodPushesS}}{}
+\item\contentsline{section}{{\bf BotIDA} (IDA$\ast$ algorithm based on best pushes number )}{\pageref{classBotIDA}}{}
+\item\contentsline{section}{{\bf CellList} (Dijkstra algorithm used to see what goals a box can reach and with how many pushes it could )}{\pageref{classCellList}}{}
+\item\contentsline{section}{{\bf ChainedList} (Main Double Chained List of ListNodes class )}{\pageref{classChainedList}}{}
+\item\contentsline{section}{{\bf Data} (Datas relative to game context )}{\pageref{classData}}{}
+\item\contentsline{section}{{\bf HashTable} (Hash Table Class to store all level states )}{\pageref{classHashTable}}{}
+\item\contentsline{section}{{\bf Level} (Class containing a level and every functions about it )}{\pageref{classLevel}}{}
+\item\contentsline{section}{{\bf ListNode} (\doxyref{Node}{p.}{classNode} representation for chained lists )}{\pageref{classListNode}}{}
+\item\contentsline{section}{{\bf Node} (Lowest representation of a node. Only contain pusher zone and boxes zone )}{\pageref{classNode}}{}
+\item\contentsline{section}{{\bf Node::Macro} }{\pageref{classNode_1_1Macro}}{}
+\item\contentsline{section}{{\bf Pack} (Class used to store a (xml) pack of levels )}{\pageref{classPack}}{}
+\item\contentsline{section}{{\bf Path} (Class usefull to represent a way to move in a level )}{\pageref{classPath}}{}
+\item\contentsline{section}{{\bf StringList} (Management of Lists made of strings )}{\pageref{classStringList}}{}
+\item\contentsline{section}{{\bf TreeNode} (Improved node representation for trees )}{\pageref{classTreeNode}}{}
+\item\contentsline{section}{{\bf Util} (Utility class only with static method )}{\pageref{classUtil}}{}
+\item\contentsline{section}{{\bf Zone} (Binary representation of positions in a level )}{\pageref{classZone}}{}
+\end{CompactList}

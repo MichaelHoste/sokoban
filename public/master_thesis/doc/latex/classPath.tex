@@ -1,0 +1,234 @@
+\section{Path Class Reference}
+\label{classPath}\index{Path@{Path}}
+Class usefull to represent a way to move in a level.  
+
+
+{\tt \#include $<$Path.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Path} (Base $\ast${\bf base})
+\item 
+{\bf Path} (Base $\ast${\bf base}, const char $\ast$path, const int mode)
+\item 
+{\bf Path} (Base $\ast${\bf base}, const {\bf Path} $\ast$source)
+\item 
+{\bf $\sim$Path} ()
+\item 
+int {\bf getNPushes} (void) const 
+\item 
+int {\bf getNMoves} (void) const 
+\item 
+const char $\ast$ {\bf getMoves} (void) const 
+\item 
+char {\bf getLastMove} (void) const 
+\item 
+void {\bf addMove} (const char direction)
+\item 
+void {\bf addPush} (const char direction)
+\item 
+void {\bf addDisplacement} (const char direction)
+\item 
+void {\bf deleteLastMove} (void)
+\item 
+void {\bf print} (void) const 
+\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static char $\ast$ {\bf compressPath} (const char $\ast$path)
+\item 
+static char $\ast$ {\bf uncompressPath} (const char $\ast$path)
+\end{CompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{CompactItemize}
+\item 
+static bool {\bf isValidDirection} (const char direction)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+Base $\ast$ {\bf base}
+\item 
+int {\bf nPushes}
+\item 
+int {\bf nMoves}
+\item 
+char $\ast$ {\bf moves}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Class usefull to represent a way to move in a level. 
+
+Pushes are represented by upper case and moves by lower case In files, this is writed in COMPRESSED mode, but in this class, it's UNCOMPRESSED for rapidity and flexibility. In compressed mode, when many moves in one direction, letters are prefixed by numbers.
+
+example uncompressed mode : rrrllUUUUUruLLLdlluRRRRdr
+
+example compressed mode : 3r2l5Uru3Ld2lu4Rdr 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Path@{Path}!Path@{Path}}
+\index{Path@{Path}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Path::Path (Base $\ast$ {\em base})}\label{classPath_65eccf88c5e670906256b4b74a85ec6d}
+
+
+Constructor for a empty path \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \end{description}
+\end{Desc}
+\index{Path@{Path}!Path@{Path}}
+\index{Path@{Path}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Path::Path (Base $\ast$ {\em base}, const char $\ast$ {\em path}, const int {\em mode})}\label{classPath_092abfc95b612873cbc1feb27b7075dc}
+
+
+Constructor with use of a compressed or uncompressed path to start \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em path}]Compressed or uncompressed path we use to create this object. It's copied and not directly used. \item[{\em mode}]Path::COMPRESSED or Path::UNCOMPRESSED. It depends of \char`\"{}path\char`\"{} style. \end{description}
+\end{Desc}
+\index{Path@{Path}!Path@{Path}}
+\index{Path@{Path}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Path::Path (Base $\ast$ {\em base}, const {\bf Path} $\ast$ {\em source})}\label{classPath_ebb9baac215b371e89aba0a8f67d9edf}
+
+
+Constructor to copy another path in this object \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em source}]Another path to be copied in this object. It's copied and not directly used. \end{description}
+\end{Desc}
+\index{Path@{Path}!~Path@{$\sim$Path}}
+\index{~Path@{$\sim$Path}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Path::$\sim$Path ()}\label{classPath_141da9ff89c85e0ba410b5a73864c267}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{Path@{Path}!getNPushes@{getNPushes}}
+\index{getNPushes@{getNPushes}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Path::getNPushes (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPath_f7fd12fc6bacef4589ed6d8b67451e09}
+
+
+number of pushes \index{Path@{Path}!getNMoves@{getNMoves}}
+\index{getNMoves@{getNMoves}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Path::getNMoves (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPath_d29f1f3e1ca0bc2cab41edb9252edde7}
+
+
+number of moves \index{Path@{Path}!getMoves@{getMoves}}
+\index{getMoves@{getMoves}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Path::getMoves (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPath_41dfd561afd9f04fc6f40972d14a6874}
+
+
+list of moves \index{Path@{Path}!getLastMove@{getLastMove}}
+\index{getLastMove@{getLastMove}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char Path::getLastMove (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPath_06167e7c9176cc1f46043724e4f08c40}
+
+
+direction of last move (l,r,u,d,L,R,U,D) or 'E' if last move does'nt exist \index{Path@{Path}!addMove@{addMove}}
+\index{addMove@{addMove}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Path::addMove (const char {\em direction})}\label{classPath_4f7206735beb8634adb509c46434baf8}
+
+
+Add move in a direction \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em direction}]direction where the pusher move \end{description}
+\end{Desc}
+\index{Path@{Path}!addPush@{addPush}}
+\index{addPush@{addPush}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Path::addPush (const char {\em direction})}\label{classPath_ef938e903cc77c0d5ac28e86d54530e6}
+
+
+Add push in a direction \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em direction}]direction where pusher push a box \end{description}
+\end{Desc}
+\index{Path@{Path}!addDisplacement@{addDisplacement}}
+\index{addDisplacement@{addDisplacement}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Path::addDisplacement (const char {\em direction})}\label{classPath_57d5eeb94308f98165b882769f174a53}
+
+
+Add displacement in a direction. push or move is automatically assigned following of the case of direction \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em direction}]direction where pusher push a box \end{description}
+\end{Desc}
+\index{Path@{Path}!deleteLastMove@{deleteLastMove}}
+\index{deleteLastMove@{deleteLastMove}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Path::deleteLastMove (void)}\label{classPath_8a8c820d523b325b7a7c6cd3bf520b85}
+
+
+Delete last move \index{Path@{Path}!print@{print}}
+\index{print@{print}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Path::print (void) const}\label{classPath_b0a785676da270f13d5446915bfe4f40}
+
+
+Print path of this object \index{Path@{Path}!compressPath@{compressPath}}
+\index{compressPath@{compressPath}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Path::compressPath (const char $\ast$ {\em path})\hspace{0.3cm}{\tt  [static]}}\label{classPath_6d1292829656d07b4bf81c5cf672ad38}
+
+
+Compress a path (see description of \doxyref{Path}{p.}{classPath} class) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em path}]uncompressed path \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]compressed path \end{Desc}
+\index{Path@{Path}!uncompressPath@{uncompressPath}}
+\index{uncompressPath@{uncompressPath}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Path::uncompressPath (const char $\ast$ {\em path})\hspace{0.3cm}{\tt  [static]}}\label{classPath_d1622fd253abca97897d7752742121ff}
+
+
+Uncompress a path (see description of \doxyref{Path}{p.}{classPath} class) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em path}]compressed path \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]uncompressed path \end{Desc}
+\index{Path@{Path}!isValidDirection@{isValidDirection}}
+\index{isValidDirection@{isValidDirection}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Path::isValidDirection (const char {\em direction})\hspace{0.3cm}{\tt  [inline, static, protected]}}\label{classPath_7f1a201c8439b6937f8f6c501e5ff22c}
+
+
+Is a direction valid (u,d,r,l,U,D,R,L) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em direction}]direction to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if valid, false if not \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{Path@{Path}!base@{base}}
+\index{base@{base}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Base$\ast$ {\bf Path::base}\hspace{0.3cm}{\tt  [protected]}}\label{classPath_1be615cbf94866fca99492720a40a2bf}
+
+
+Main class of the game \index{Path@{Path}!nPushes@{nPushes}}
+\index{nPushes@{nPushes}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Path::nPushes}\hspace{0.3cm}{\tt  [protected]}}\label{classPath_870010c507fb888c3c775698ef325a1f}
+
+
+Number of pushes \index{Path@{Path}!nMoves@{nMoves}}
+\index{nMoves@{nMoves}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Path::nMoves}\hspace{0.3cm}{\tt  [protected]}}\label{classPath_b8e5d6877c3968adbfbe00797a324e55}
+
+
+Number of moves \index{Path@{Path}!moves@{moves}}
+\index{moves@{moves}!Path@{Path}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf Path::moves}\hspace{0.3cm}{\tt  [protected]}}\label{classPath_9b9ce3379439b175cbb8b88ab4a69c31}
+
+
+UNCOMPRESSED List of moves 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Path.h\item 
+src/Path.cpp\end{CompactItemize}

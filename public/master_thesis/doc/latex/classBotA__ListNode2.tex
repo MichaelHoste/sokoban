@@ -1,0 +1,103 @@
+\section{BotA\_\-ListNode2 Class Reference}
+\label{classBotA__ListNode2}\index{BotA_ListNode2@{BotA\_\-ListNode2}}
+A version of \doxyref{ListNode}{p.}{classListNode} with \char`\"{}f\char`\"{} and \char`\"{}g\char`\"{} getters where f(x)=g(x)+h(x). It's used to make the A$\ast$ solver WARNING : this second version of \doxyref{ListNode}{p.}{classListNode} is dedicated to close hashtable and use one more variable : \char`\"{}heapStackCell\char`\"{}. heapStackCell is the number of cell treeNode of this Listnode is currently in.  
+
+
+{\tt \#include $<$BotA\_\-ListNode2.h$>$}
+
+Inheritance diagram for BotA\_\-ListNode2::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classBotA__ListNode2}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf BotA\_\-ListNode2} ({\bf TreeNode} $\ast${\bf treeNode})
+\item 
+{\bf BotA\_\-ListNode2} ({\bf TreeNode} $\ast${\bf treeNode}, int {\bf heapStackCell})
+\item 
+int {\bf getF} (void) const 
+\item 
+int {\bf getG} (void) const 
+\item 
+int {\bf getH} (void) const 
+\item 
+int {\bf getHeapStackCell} (void) const 
+\item 
+void {\bf setHeapStackCell} (int {\bf heapStackCell})
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf heapStackCell}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+A version of \doxyref{ListNode}{p.}{classListNode} with \char`\"{}f\char`\"{} and \char`\"{}g\char`\"{} getters where f(x)=g(x)+h(x). It's used to make the A$\ast$ solver WARNING : this second version of \doxyref{ListNode}{p.}{classListNode} is dedicated to close hashtable and use one more variable : \char`\"{}heapStackCell\char`\"{}. heapStackCell is the number of cell treeNode of this Listnode is currently in. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotA_ListNode2@{BotA\_\-ListNode2}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\index{BotA_ListNode2@{BotA\_\-ListNode2}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotA\_\-ListNode2::BotA\_\-ListNode2 ({\bf TreeNode} $\ast$ {\em treeNode})}\label{classBotA__ListNode2_744f419bf670aa28bd55e51908984175}
+
+
+Constructor for new node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treeNode to be stocked on this item \end{description}
+\end{Desc}
+\index{BotA_ListNode2@{BotA\_\-ListNode2}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\index{BotA_ListNode2@{BotA\_\-ListNode2}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotA\_\-ListNode2::BotA\_\-ListNode2 ({\bf TreeNode} $\ast$ {\em treeNode}, int {\em heapStackCell})}\label{classBotA__ListNode2_4ad9b6c38517f87bff4a47f4da0f518b}
+
+
+Constructor for new node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treeNode to be stocked on this item \item[{\em heapStackCell}]Number of cell this treeNode is on heap stack \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{BotA_ListNode2@{BotA\_\-ListNode2}!getF@{getF}}
+\index{getF@{getF}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-ListNode2::getF (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA__ListNode2_47be9d3348d65e5398d0cd21a2a5bf7e}
+
+
+f(x) value \index{BotA_ListNode2@{BotA\_\-ListNode2}!getG@{getG}}
+\index{getG@{getG}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-ListNode2::getG (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA__ListNode2_6954ebea0a96ff87724081f061cbcc8c}
+
+
+g(x) value \index{BotA_ListNode2@{BotA\_\-ListNode2}!getH@{getH}}
+\index{getH@{getH}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-ListNode2::getH (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA__ListNode2_e36ff05e3724c201c1a78d69f5f0f50d}
+
+
+h(x) value \index{BotA_ListNode2@{BotA\_\-ListNode2}!getHeapStackCell@{getHeapStackCell}}
+\index{getHeapStackCell@{getHeapStackCell}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-ListNode2::getHeapStackCell (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA__ListNode2_91b67f8b4eeb63cf63786b10e9f7c45b}
+
+
+heapStackCell value \index{BotA_ListNode2@{BotA\_\-ListNode2}!setHeapStackCell@{setHeapStackCell}}
+\index{setHeapStackCell@{setHeapStackCell}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA\_\-ListNode2::setHeapStackCell (int {\em heapStackCell})\hspace{0.3cm}{\tt  [inline]}}\label{classBotA__ListNode2_64d192ed333dfe207bec84c28e8b6bf3}
+
+
+Set heapStackCell value 
+
+\subsection{Member Data Documentation}
+\index{BotA_ListNode2@{BotA\_\-ListNode2}!heapStackCell@{heapStackCell}}
+\index{heapStackCell@{heapStackCell}!BotA_ListNode2@{BotA\_\-ListNode2}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotA\_\-ListNode2::heapStackCell}\hspace{0.3cm}{\tt  [protected]}}\label{classBotA__ListNode2_7d599584e366ba21c4afb894acabec62}
+
+
+Number of cell treeNode is currently in 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotA/BotA\_\-ListNode2.h\item 
+src/Solver/BotA/BotA\_\-ListNode2.cpp\end{CompactItemize}

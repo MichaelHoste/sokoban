@@ -1,0 +1,54 @@
+\section{BotDFS Class Reference}
+\label{classBotDFS}\index{BotDFS@{BotDFS}}
+Depth-first search implementation of solver.  
+
+
+{\tt \#include $<$BotDFS.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual const char $\ast$ {\bf SOLVER\_\-NAME} ()
+\item 
+{\bf BotDFS} (Base $\ast$base, {\bf Level} $\ast$level, int maxNodeNumber, int maxRamSize, int openTableSize=870967, int closeTableSize=51827, int deadlockedBoxesSearch=2)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+virtual void {\bf addTreeNodeToCloseList} ({\bf TreeNode} $\ast$treeNode)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Depth-first search implementation of solver. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotDFS@{BotDFS}!BotDFS@{BotDFS}}
+\index{BotDFS@{BotDFS}!BotDFS@{BotDFS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotDFS::BotDFS (Base $\ast$ {\em base}, {\bf Level} $\ast$ {\em level}, int {\em maxNodeNumber}, int {\em maxRamSize}, int {\em openTableSize} = {\tt 870967}, int {\em closeTableSize} = {\tt 51827}, int {\em deadlockedBoxesSearch} = {\tt 2})}\label{classBotDFS_9047cb17f47c0d90f4e1eaae9d0401b0}
+
+
+Constructor for a solver of a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em level}]\doxyref{Level}{p.}{classLevel} to be used \item[{\em maxNodeNumber}]Limit number of nodes to explore \item[{\em maxRamSize}]Limit max ram size to allocate \item[{\em openTableSize}]size of Open Table to allocate (hashtable) \item[{\em closeTableSize}]size of Close Table to allocate (hashtable) \item[{\em deadlockedBoxesSearch}]number of boxes to use when testing every possible positions of deadlock \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{BotDFS@{BotDFS}!SOLVER_NAME@{SOLVER\_\-NAME}}
+\index{SOLVER_NAME@{SOLVER\_\-NAME}!BotDFS@{BotDFS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual const char$\ast$ BotDFS::SOLVER\_\-NAME ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classBotDFS_8bb0ff00db8f43b37f202db9b8beda54}
+
+
+Name of this solver \index{BotDFS@{BotDFS}!addTreeNodeToCloseList@{addTreeNodeToCloseList}}
+\index{addTreeNodeToCloseList@{addTreeNodeToCloseList}!BotDFS@{BotDFS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotDFS::addTreeNodeToCloseList ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classBotDFS_3afca922876fc779342869706e7e6e18}
+
+
+Add a new \doxyref{TreeNode}{p.}{classTreeNode} to the waiting list at the right position. New Treenode is added TO THE BEGINNING of the waiting list (depth-first) 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotDFS/BotDFS.h\item 
+src/Solver/BotDFS/BotDFS.cpp\end{CompactItemize}

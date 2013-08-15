@@ -1,0 +1,211 @@
+\section{TreeNode Class Reference}
+\label{classTreeNode}\index{TreeNode@{TreeNode}}
+Improved node representation for trees.  
+
+
+{\tt \#include $<$TreeNode.h$>$}
+
+Inherited by BotA\_\-TreeNode.
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf TreeNode} ({\bf Node} $\ast${\bf node})
+\item 
+{\bf $\sim$TreeNode} ()
+\item 
+{\bf Node} $\ast$ {\bf getNode} (void) const 
+\item 
+{\bf TreeNode} $\ast$ {\bf getParent} (void) const 
+\item 
+{\bf TreeNode} $\ast$$\ast$ {\bf getChildren} (void) const 
+\item 
+int {\bf getChildrenNumber} (void) const 
+\item 
+void {\bf setParent} ({\bf TreeNode} $\ast${\bf parent})
+\item 
+void {\bf setChildren} ({\bf TreeNode} $\ast$$\ast${\bf children})
+\item 
+void {\bf setChildrenNumber} (int number)
+\item 
+void {\bf addChild} ({\bf TreeNode} $\ast$newChild)
+\item 
+int {\bf getPusherPrePosition} (void) const 
+\item 
+int {\bf getPusherPosition} (void) const 
+\item 
+int {\bf getPushedBoxPrePosition} (void) const 
+\item 
+int {\bf getPushedBoxPostPosition} (void) const 
+\item 
+int $\ast$ {\bf listOfPusherPositions} (void)
+\item 
+{\bf Path} $\ast$ {\bf getPath} (void)
+\item 
+int $\ast$ {\bf computeTreeBoxStats} (int $\ast$statsTab=NULL) const 
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Node} $\ast$ {\bf node}
+\item 
+{\bf TreeNode} $\ast$ {\bf parent}
+\item 
+{\bf TreeNode} $\ast$$\ast$ {\bf children}
+\item 
+int {\bf childrenNumber}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Improved node representation for trees. 
+
+This is the kind of nodes to be used with trees 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{TreeNode@{TreeNode}!TreeNode@{TreeNode}}
+\index{TreeNode@{TreeNode}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TreeNode::TreeNode ({\bf Node} $\ast$ {\em node})}\label{classTreeNode_faa95b5f5b707bf144780f4bd19cc45d}
+
+
+Constructor for empty node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]\doxyref{Node}{p.}{classNode} to be stocked on this item \end{description}
+\end{Desc}
+\index{TreeNode@{TreeNode}!~TreeNode@{$\sim$TreeNode}}
+\index{~TreeNode@{$\sim$TreeNode}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TreeNode::$\sim$TreeNode ()}\label{classTreeNode_138449d182c342d032c78e7037afc151}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{TreeNode@{TreeNode}!getNode@{getNode}}
+\index{getNode@{getNode}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Node}$\ast$ TreeNode::getNode (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classTreeNode_c551f47b1bc04a1b3ed7d86b3ff76150}
+
+
+Content node \index{TreeNode@{TreeNode}!getParent@{getParent}}
+\index{getParent@{getParent}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode}$\ast$ TreeNode::getParent (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classTreeNode_00ab2781ab9dec833b2554d17e478bbd}
+
+
+parent \doxyref{TreeNode}{p.}{classTreeNode} \index{TreeNode@{TreeNode}!getChildren@{getChildren}}
+\index{getChildren@{getChildren}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode}$\ast$$\ast$ TreeNode::getChildren (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classTreeNode_144d4ca2836aa012f640700dab775c05}
+
+
+tab of children TreeNodes \index{TreeNode@{TreeNode}!getChildrenNumber@{getChildrenNumber}}
+\index{getChildrenNumber@{getChildrenNumber}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int TreeNode::getChildrenNumber (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classTreeNode_d39f6700a46b5401e12fffaa976c0e9b}
+
+
+number of children of this \doxyref{TreeNode}{p.}{classTreeNode} \index{TreeNode@{TreeNode}!setParent@{setParent}}
+\index{setParent@{setParent}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void TreeNode::setParent ({\bf TreeNode} $\ast$ {\em parent})\hspace{0.3cm}{\tt  [inline]}}\label{classTreeNode_e19c26feb50ff57f5e1105ac1f1ebbe7}
+
+
+Assign parent treeNode \index{TreeNode@{TreeNode}!setChildren@{setChildren}}
+\index{setChildren@{setChildren}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void TreeNode::setChildren ({\bf TreeNode} $\ast$$\ast$ {\em children})\hspace{0.3cm}{\tt  [inline]}}\label{classTreeNode_1cfa1af14a1449cb111bfd386bd986f1}
+
+
+Assign tab of children TreeNodes \index{TreeNode@{TreeNode}!setChildrenNumber@{setChildrenNumber}}
+\index{setChildrenNumber@{setChildrenNumber}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void TreeNode::setChildrenNumber (int {\em number})\hspace{0.3cm}{\tt  [inline]}}\label{classTreeNode_5e2ec156853e8ed33cf8aec044a120f3}
+
+
+Set children numbers \index{TreeNode@{TreeNode}!addChild@{addChild}}
+\index{addChild@{addChild}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void TreeNode::addChild ({\bf TreeNode} $\ast$ {\em newChild})}\label{classTreeNode_a9c89e648016a7143383bc8fae476b28}
+
+
+Add a child node to this node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em newChild}]New child \doxyref{Node}{p.}{classNode} to add to this node \end{description}
+\end{Desc}
+\index{TreeNode@{TreeNode}!getPusherPrePosition@{getPusherPrePosition}}
+\index{getPusherPrePosition@{getPusherPrePosition}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int TreeNode::getPusherPrePosition (void) const}\label{classTreeNode_ddc9a818aab9989d1cb05020826d8a55}
+
+
+Get the \char`\"{}pre\char`\"{} pusher position of this node (cell just before he pushes a box) \begin{Desc}
+\item[Returns:]\char`\"{}pre\char`\"{} pusher position (level representation) of this node. return -1 if no pusher preposition (no parent node) \end{Desc}
+\index{TreeNode@{TreeNode}!getPusherPosition@{getPusherPosition}}
+\index{getPusherPosition@{getPusherPosition}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int TreeNode::getPusherPosition (void) const}\label{classTreeNode_057ca53c67b7e9e06aeb1c08e694601f}
+
+
+Get the pusher position of this node (just after he pushes a box) \begin{Desc}
+\item[Returns:]pusher position (level representation) of this node. \end{Desc}
+\index{TreeNode@{TreeNode}!getPushedBoxPrePosition@{getPushedBoxPrePosition}}
+\index{getPushedBoxPrePosition@{getPushedBoxPrePosition}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int TreeNode::getPushedBoxPrePosition (void) const}\label{classTreeNode_6c188a97ae204f3cfa1776de8f120edd}
+
+
+Get the pushed box pre-position (position of box before it moves) \begin{Desc}
+\item[Returns:]pushed box pre-position (level representation) of this node. return -1 if no pushed box (no parent node) \end{Desc}
+\index{TreeNode@{TreeNode}!getPushedBoxPostPosition@{getPushedBoxPostPosition}}
+\index{getPushedBoxPostPosition@{getPushedBoxPostPosition}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int TreeNode::getPushedBoxPostPosition (void) const}\label{classTreeNode_5a58283c669a97d78e9b614d65c9952f}
+
+
+Get the pushed box post-position (position of box after it moves) \begin{Desc}
+\item[Returns:]pushed box post-position (level representation) of this node. return -1 if no pushed box (no parent node) \end{Desc}
+\index{TreeNode@{TreeNode}!listOfPusherPositions@{listOfPusherPositions}}
+\index{listOfPusherPositions@{listOfPusherPositions}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ TreeNode::listOfPusherPositions (void)}\label{classTreeNode_9e350ee4c530c733dabf54e00814b42c}
+
+
+Return a list of all successive positions of pusher from start treeNode to this node \begin{Desc}
+\item[Returns:]list of all successive positions (level representation) of pusher from start treeNode to this node and terminated by \char`\"{}-1\char`\"{} \end{Desc}
+\index{TreeNode@{TreeNode}!getPath@{getPath}}
+\index{getPath@{getPath}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Path} $\ast$ TreeNode::getPath (void)}\label{classTreeNode_bd52f02d0df87cba8c489f417433a561}
+
+
+Return path from root of the tree to this treeNode. \begin{Desc}
+\item[Returns:]List of moves (\doxyref{Path}{p.}{classPath}) the pusher must do to get this state of level from the root node \end{Desc}
+\index{TreeNode@{TreeNode}!computeTreeBoxStats@{computeTreeBoxStats}}
+\index{computeTreeBoxStats@{computeTreeBoxStats}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ TreeNode::computeTreeBoxStats (int $\ast$ {\em statsTab} = {\tt NULL}) const}\label{classTreeNode_c34ffb29d8582ea48109ffe1473b8fdd}
+
+
+Compute total num of boxes of this branch for each cell \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em statsTab}]must be NULL (usefull to iterative call) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]tab of length cells (where length is number of positions where pusher can move) with in each cell total number of box at this position in this branch. \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{TreeNode@{TreeNode}!node@{node}}
+\index{node@{node}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Node}$\ast$ {\bf TreeNode::node}\hspace{0.3cm}{\tt  [protected]}}\label{classTreeNode_5ab1199f15b0862bc4bd199fe33786f4}
+
+
+content node of this item in the tree \index{TreeNode@{TreeNode}!parent@{parent}}
+\index{parent@{parent}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode}$\ast$ {\bf TreeNode::parent}\hspace{0.3cm}{\tt  [protected]}}\label{classTreeNode_77ccf52dc11528bf6cff26e9fa857fce}
+
+
+parent \doxyref{ListNode}{p.}{classListNode} of the tree \index{TreeNode@{TreeNode}!children@{children}}
+\index{children@{children}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TreeNode}$\ast$$\ast$ {\bf TreeNode::children}\hspace{0.3cm}{\tt  [protected]}}\label{classTreeNode_12df2f339ab1d109aa0fe21067258ff1}
+
+
+List of children of the tree \index{TreeNode@{TreeNode}!childrenNumber@{childrenNumber}}
+\index{childrenNumber@{childrenNumber}!TreeNode@{TreeNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf TreeNode::childrenNumber}\hspace{0.3cm}{\tt  [protected]}}\label{classTreeNode_bf6e4fe5b27c179bf8fa290d82e517af}
+
+
+Number of children in the tree 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/TreeNode.h\item 
+src/Solver/TreeNode.cpp\end{CompactItemize}

@@ -1,0 +1,185 @@
+\section{ChainedList Class Reference}
+\label{classChainedList}\index{ChainedList@{ChainedList}}
+Main Double Chained List of ListNodes class.  
+
+
+{\tt \#include $<$ChainedList.h$>$}
+
+Inheritance diagram for ChainedList::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classChainedList}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ChainedList} ()
+\item 
+virtual {\bf $\sim$ChainedList} ()
+\item 
+virtual {\bf ListNode} $\ast$ {\bf getFirstItem} (void) const 
+\item 
+{\bf ListNode} $\ast$ {\bf getLastItem} (void) const 
+\item 
+int {\bf getLength} (void) const 
+\item 
+void {\bf setFirstItem} ({\bf ListNode} $\ast$item)
+\item 
+void {\bf setLastItem} ({\bf ListNode} $\ast$item)
+\item 
+void {\bf setLength} (int {\bf length})
+\item 
+virtual void {\bf addFirstItem} ({\bf TreeNode} $\ast$item)
+\item 
+virtual void {\bf addLastItem} ({\bf TreeNode} $\ast$item)
+\item 
+virtual void {\bf deleteFirstItem} (void)
+\item 
+virtual void {\bf deleteLastItem} (void)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+virtual {\bf ListNode} $\ast$ {\bf createListNode} ({\bf TreeNode} $\ast$treeNode)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf ListNode} $\ast$ {\bf firstItem}
+\item 
+{\bf ListNode} $\ast$ {\bf lastItem}
+\item 
+int {\bf length}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Main Double Chained List of ListNodes class. 
+
+This class contains informations about number of items in the list and first and last ListNodes. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{ChainedList@{ChainedList}!ChainedList@{ChainedList}}
+\index{ChainedList@{ChainedList}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ChainedList::ChainedList ()}\label{classChainedList_db2f3a88c5443d6f60bed8aa99b48f12}
+
+
+Constructor of an empty chained list \index{ChainedList@{ChainedList}!~ChainedList@{$\sim$ChainedList}}
+\index{~ChainedList@{$\sim$ChainedList}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ChainedList::$\sim$ChainedList ()\hspace{0.3cm}{\tt  [virtual]}}\label{classChainedList_d01c2cd292e344e9ab28ecae01cf03f4}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{ChainedList@{ChainedList}!getFirstItem@{getFirstItem}}
+\index{getFirstItem@{getFirstItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ListNode}$\ast$ ChainedList::getFirstItem (void) const\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classChainedList_fb20aaef36ab32d23a35bb0c909715b2}
+
+
+start item of the list 
+
+Reimplemented in {\bf BotA\_\-HeapStack} \doxyref{}{p.}{classBotA__HeapStack_ebe93c0a849f73fa773e24ffc0aa16e8}.\index{ChainedList@{ChainedList}!getLastItem@{getLastItem}}
+\index{getLastItem@{getLastItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode}$\ast$ ChainedList::getLastItem (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classChainedList_7a72e6df9bc5461d328292c7d4284b34}
+
+
+last item of the list \index{ChainedList@{ChainedList}!getLength@{getLength}}
+\index{getLength@{getLength}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int ChainedList::getLength (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classChainedList_8cf0661ee6c0e0f6259cd2e487fe94ce}
+
+
+length of the list 
+
+Reimplemented in {\bf BotA\_\-HeapStack} \doxyref{}{p.}{classBotA__HeapStack_6d9feab2ffbaad17131a7151b308d051}.\index{ChainedList@{ChainedList}!setFirstItem@{setFirstItem}}
+\index{setFirstItem@{setFirstItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ChainedList::setFirstItem ({\bf ListNode} $\ast$ {\em item})\hspace{0.3cm}{\tt  [inline]}}\label{classChainedList_bcb3603d39cb01bb997162af2fad0b74}
+
+
+start item of the list \index{ChainedList@{ChainedList}!setLastItem@{setLastItem}}
+\index{setLastItem@{setLastItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ChainedList::setLastItem ({\bf ListNode} $\ast$ {\em item})\hspace{0.3cm}{\tt  [inline]}}\label{classChainedList_aec0f918b6873a59cc03eb4168dd5a45}
+
+
+last item of the list \index{ChainedList@{ChainedList}!setLength@{setLength}}
+\index{setLength@{setLength}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ChainedList::setLength (int {\em length})\hspace{0.3cm}{\tt  [inline]}}\label{classChainedList_64447d0e2c5ef2bdc2a0cfa0182b7294}
+
+
+length of the list \index{ChainedList@{ChainedList}!addFirstItem@{addFirstItem}}
+\index{addFirstItem@{addFirstItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ChainedList::addFirstItem ({\bf TreeNode} $\ast$ {\em item})\hspace{0.3cm}{\tt  [virtual]}}\label{classChainedList_52ad982ab220ad0eea5513180f434db2}
+
+
+Add an item to the end of the chainedlist \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em item}]Item to add \end{description}
+\end{Desc}
+
+
+Reimplemented in {\bf BotA\_\-HeapStack} \doxyref{}{p.}{classBotA__HeapStack_7ab05ef7a0237229c5973e95cfcefc1c}.\index{ChainedList@{ChainedList}!addLastItem@{addLastItem}}
+\index{addLastItem@{addLastItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ChainedList::addLastItem ({\bf TreeNode} $\ast$ {\em item})\hspace{0.3cm}{\tt  [virtual]}}\label{classChainedList_92aa990058d417146bc43beed16c90f6}
+
+
+Add an item to the end of the chainedlist \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em item}]Item to add \end{description}
+\end{Desc}
+
+
+Reimplemented in {\bf BotA\_\-HeapStack} \doxyref{}{p.}{classBotA__HeapStack_aef3826b63645c27d10e7f673211fe94}.\index{ChainedList@{ChainedList}!deleteFirstItem@{deleteFirstItem}}
+\index{deleteFirstItem@{deleteFirstItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ChainedList::deleteFirstItem (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classChainedList_01dc3f81d3a912ec2455734cdf2d1e46}
+
+
+Delete first item of the list 
+
+Reimplemented in {\bf BotA\_\-HeapStack} \doxyref{}{p.}{classBotA__HeapStack_798de6d8fe135f04a2d76a36eff147cd}.\index{ChainedList@{ChainedList}!deleteLastItem@{deleteLastItem}}
+\index{deleteLastItem@{deleteLastItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ChainedList::deleteLastItem (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classChainedList_de017c8ad7cbfc4d347473bf303b1da2}
+
+
+Delete last item of the list 
+
+Reimplemented in {\bf BotA\_\-HeapStack} \doxyref{}{p.}{classBotA__HeapStack_3d787006c437d954881f2c3833b6190b}.\index{ChainedList@{ChainedList}!createListNode@{createListNode}}
+\index{createListNode@{createListNode}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode} $\ast$ ChainedList::createListNode ({\bf TreeNode} $\ast$ {\em treeNode})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classChainedList_fa807d5bcc23ab479f10a3771fb22735}
+
+
+Create an \doxyref{ListNode}{p.}{classListNode} containing a treeNode \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]\doxyref{TreeNode}{p.}{classTreeNode} to store in this \doxyref{ListNode}{p.}{classListNode} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]New \doxyref{ListNode}{p.}{classListNode} filled with the treeNode argument \end{Desc}
+
+
+Reimplemented in {\bf BotA\_\-ChainedList} \doxyref{}{p.}{classBotA__ChainedList_0d0aa702abdd01801e3262ba55ed9315}.
+
+\subsection{Member Data Documentation}
+\index{ChainedList@{ChainedList}!firstItem@{firstItem}}
+\index{firstItem@{firstItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode}$\ast$ {\bf ChainedList::firstItem}\hspace{0.3cm}{\tt  [protected]}}\label{classChainedList_c096cb50bfcdea95385bbd40bd0a7461}
+
+
+first item pointer of the list \index{ChainedList@{ChainedList}!lastItem@{lastItem}}
+\index{lastItem@{lastItem}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode}$\ast$ {\bf ChainedList::lastItem}\hspace{0.3cm}{\tt  [protected]}}\label{classChainedList_466990a24511a304e69551fea36e017c}
+
+
+last item pointer of the list \index{ChainedList@{ChainedList}!length@{length}}
+\index{length@{length}!ChainedList@{ChainedList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf ChainedList::length}\hspace{0.3cm}{\tt  [protected]}}\label{classChainedList_928bfe07dba537fd73937f1c0b369530}
+
+
+length of the list 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/ChainedList.h\item 
+src/Solver/ChainedList.cpp\end{CompactItemize}

@@ -1,0 +1,211 @@
+\section{Data Class Reference}
+\label{classData}\index{Data@{Data}}
+Datas relative to game context.  
+
+
+{\tt \#include $<$Data.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Data} (Base $\ast${\bf base}, int argc, char $\ast$const $\ast$const argv)
+\item 
+{\bf $\sim$Data} ()
+\item 
+{\bf StringList} $\ast$ {\bf getPackNameList} (void) const 
+\item 
+{\bf StringList} $\ast$ {\bf getPlayerNameList} (void) const 
+\item 
+int {\bf getSelectedPackNameId} (void) const 
+\item 
+int {\bf getSelectedPlayerNameId} (void) const 
+\item 
+char {\bf getScreenMode} (void) const 
+\item 
+int {\bf getWidth} (void) const 
+\item 
+int {\bf getHeight} (void) const 
+\item 
+const char $\ast$ {\bf getResolution} (void) const 
+\item 
+const char $\ast$ {\bf getLanguage} (void) const 
+\item 
+bool {\bf getSound} (void) const 
+\item 
+bool {\bf getMusic} (void) const 
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+Base $\ast$ {\bf base}
+\item 
+{\bf StringList} $\ast$ {\bf packNameList}
+\item 
+{\bf StringList} $\ast$ {\bf playerNameList}
+\item 
+int {\bf selectedPackNameId}
+\item 
+int {\bf selectedPlayerNameId}
+\item 
+char {\bf screenMode}
+\item 
+int {\bf width}
+\item 
+int {\bf height}
+\item 
+char $\ast$ {\bf resolution}
+\item 
+char $\ast$ {\bf language}
+\item 
+bool {\bf sound}
+\item 
+bool {\bf music}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Datas relative to game context. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Data@{Data}!Data@{Data}}
+\index{Data@{Data}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Data::Data (Base $\ast$ {\em base}, int {\em argc}, char $\ast$const $\ast$const  {\em argv})}\label{classData_e75d903f8aa84549e555d73733e2e3ea}
+
+
+Constructor for game datas. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em argc}]number of arguments \item[{\em argv}]param starting params These are like this : ./sokoban \char`\"{}pseudo\char`\"{} -t \char`\"{}widthxheight\char`\"{} \char`\"{}fr\char`\"{} sound music t : w for windowed mode, f for fullscreen mode sound : 1=on 0=false music : 1=on 0=false example : ./sokoban \char`\"{}michael\char`\"{} -f \char`\"{}800x600\char`\"{} \char`\"{}fr\char`\"{} 1 1 \end{description}
+\end{Desc}
+\index{Data@{Data}!~Data@{$\sim$Data}}
+\index{~Data@{$\sim$Data}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Data::$\sim$Data ()}\label{classData_ab31956423290f0d62dcca47ab4d16dd}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{Data@{Data}!getPackNameList@{getPackNameList}}
+\index{getPackNameList@{getPackNameList}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf StringList}$\ast$ Data::getPackNameList (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_975b98cc0209ec1e70af24c41ce06965}
+
+
+list of pack names \index{Data@{Data}!getPlayerNameList@{getPlayerNameList}}
+\index{getPlayerNameList@{getPlayerNameList}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf StringList}$\ast$ Data::getPlayerNameList (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_376cf46edec1f0e63f8a054497147e25}
+
+
+list of player names \index{Data@{Data}!getSelectedPackNameId@{getSelectedPackNameId}}
+\index{getSelectedPackNameId@{getSelectedPackNameId}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Data::getSelectedPackNameId (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_e86dd62d9fff6483bc5898f1f9f5030a}
+
+
+id of selected pack in the list \index{Data@{Data}!getSelectedPlayerNameId@{getSelectedPlayerNameId}}
+\index{getSelectedPlayerNameId@{getSelectedPlayerNameId}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Data::getSelectedPlayerNameId (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_e6655adbecaddaf9efc0e62bf3bcd69f}
+
+
+id of selected player in the list \index{Data@{Data}!getScreenMode@{getScreenMode}}
+\index{getScreenMode@{getScreenMode}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char Data::getScreenMode (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_ee69054ed9720f8950b9ab8357a4bc6a}
+
+
+Screen mode (windowed : w, fullscreen : f) \index{Data@{Data}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Data::getWidth (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_438bd9ad59a687ffcadf55a749e79d3d}
+
+
+width of screen \index{Data@{Data}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Data::getHeight (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_26a94cc923971d4af5fdaa33c8202b31}
+
+
+height of screen \index{Data@{Data}!getResolution@{getResolution}}
+\index{getResolution@{getResolution}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Data::getResolution (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_8c2685ee4b1d3a0f478a9c36b77ae6cb}
+
+
+resolution of type \char`\"{}widthxheight\char`\"{} \index{Data@{Data}!getLanguage@{getLanguage}}
+\index{getLanguage@{getLanguage}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Data::getLanguage (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_e8352ffb87b12000ffdadcb138439b32}
+
+
+language (\char`\"{}fr\char`\"{}, \char`\"{}en\char`\"{},..) \index{Data@{Data}!getSound@{getSound}}
+\index{getSound@{getSound}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Data::getSound (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_8e4a4fcd24d72ff76ee4fe64c9e96e7f}
+
+
+true if sound is on, false if sound is off \index{Data@{Data}!getMusic@{getMusic}}
+\index{getMusic@{getMusic}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Data::getMusic (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classData_8c6b482b7456abbff4c55435a764d211}
+
+
+true if music is on, false if music is off 
+
+\subsection{Member Data Documentation}
+\index{Data@{Data}!base@{base}}
+\index{base@{base}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Base$\ast$ {\bf Data::base}\hspace{0.3cm}{\tt  [protected]}}\label{classData_3efc74fa4d74e869b3de1216a478093a}
+
+
+Main class of the game \index{Data@{Data}!packNameList@{packNameList}}
+\index{packNameList@{packNameList}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf StringList}$\ast$ {\bf Data::packNameList}\hspace{0.3cm}{\tt  [protected]}}\label{classData_78e54e3ad4aa42193d305bcfef7c914e}
+
+
+List of all available packs \index{Data@{Data}!playerNameList@{playerNameList}}
+\index{playerNameList@{playerNameList}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf StringList}$\ast$ {\bf Data::playerNameList}\hspace{0.3cm}{\tt  [protected]}}\label{classData_105f17586075d436b1ca8cc5347573c4}
+
+
+List of all available players \index{Data@{Data}!selectedPackNameId@{selectedPackNameId}}
+\index{selectedPackNameId@{selectedPackNameId}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Data::selectedPackNameId}\hspace{0.3cm}{\tt  [protected]}}\label{classData_410fcdeb835be0020ecde93a37be1ea3}
+
+
+Id of selected pack on the list \index{Data@{Data}!selectedPlayerNameId@{selectedPlayerNameId}}
+\index{selectedPlayerNameId@{selectedPlayerNameId}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Data::selectedPlayerNameId}\hspace{0.3cm}{\tt  [protected]}}\label{classData_f85b58b98b1d1c0b7cd8728ae0df0230}
+
+
+Id of selected player on the list \index{Data@{Data}!screenMode@{screenMode}}
+\index{screenMode@{screenMode}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf Data::screenMode}\hspace{0.3cm}{\tt  [protected]}}\label{classData_3ec26a33251799b0ef2d5761701f6bc2}
+
+
+f for fullscreen mode, w for windowed mode \index{Data@{Data}!width@{width}}
+\index{width@{width}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Data::width}\hspace{0.3cm}{\tt  [protected]}}\label{classData_af3b89fcc4f2e12a58949b2658e24708}
+
+
+Width of window \index{Data@{Data}!height@{height}}
+\index{height@{height}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Data::height}\hspace{0.3cm}{\tt  [protected]}}\label{classData_15b7471f8a89645cd371ac2b4ec639d2}
+
+
+Height of window \index{Data@{Data}!resolution@{resolution}}
+\index{resolution@{resolution}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf Data::resolution}\hspace{0.3cm}{\tt  [protected]}}\label{classData_3f1eedb27daa3de5cef9ec122e45b4bd}
+
+
+Resolution on this shape : \char`\"{}widthxheight\char`\"{} \index{Data@{Data}!language@{language}}
+\index{language@{language}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf Data::language}\hspace{0.3cm}{\tt  [protected]}}\label{classData_d887f480e9b65529a8cf5e758e2629ed}
+
+
+language of the game \char`\"{}fr\char`\"{}, \char`\"{}en\char`\"{}, ... \index{Data@{Data}!sound@{sound}}
+\index{sound@{sound}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Data::sound}\hspace{0.3cm}{\tt  [protected]}}\label{classData_1c495f77d4d32410c20567660b1a664c}
+
+
+True if you want sound, false if you don't \index{Data@{Data}!music@{music}}
+\index{music@{music}!Data@{Data}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Data::music}\hspace{0.3cm}{\tt  [protected]}}\label{classData_b08de3d1253a66a37ae6764c53dcf113}
+
+
+True if you want music, false if you don't 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Data.h\item 
+src/Data.cpp\end{CompactItemize}

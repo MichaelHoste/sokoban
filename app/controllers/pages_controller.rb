@@ -16,6 +16,9 @@ class PagesController < ApplicationController
   end
 
   def master_thesis
+    page = params[:page] ? params[:page].to_i : 1
+
+    render "master_thesis_#{page}.fr"
   end
 
   def stats

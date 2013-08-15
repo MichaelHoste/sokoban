@@ -1,0 +1,243 @@
+\section{BotA\_\-HeapStack Class Reference}
+\label{classBotA__HeapStack}\index{BotA_HeapStack@{BotA\_\-HeapStack}}
+A Heap Stack of TreeNodes. It can work like a chainedList to sort TreeNodes in order of cost. Smallest is always root treeNode of stack.  
+
+
+{\tt \#include $<$BotA\_\-HeapStack.h$>$}
+
+Inheritance diagram for BotA\_\-HeapStack::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classBotA__HeapStack}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf BotA\_\-HeapStack} ()
+\item 
+virtual {\bf $\sim$BotA\_\-HeapStack} ()
+\item 
+BotA\_\-TreeNode $\ast$$\ast$ {\bf getTreeNodeTab} (void) const 
+\item 
+int {\bf getTabLength} (void) const 
+\item 
+int {\bf getLength} (void) const 
+\item 
+void {\bf addItem} ({\bf TreeNode} $\ast$item)
+\item 
+virtual void {\bf deleteFirstItem} (void)
+\item 
+virtual {\bf ListNode} $\ast$ {\bf getFirstItem} (void) const 
+\item 
+virtual bool {\bf isSmaller} (int cell1, int cell2) const 
+\item 
+void {\bf repositionCell} (int cell)
+\item 
+virtual void {\bf addFirstItem} ({\bf TreeNode} $\ast$item)
+\item 
+virtual void {\bf addLastItem} ({\bf TreeNode} $\ast$item)
+\item 
+virtual void {\bf deleteLastItem} (void)
+\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static const int {\bf TAB\_\-MEMORY\_\-STEP} = 1000
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf minHeapify} (int cell)
+\item 
+int {\bf parent} (int cell)
+\item 
+int {\bf leftChild} (int cell)
+\item 
+int {\bf rightChild} (int cell)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+BotA\_\-TreeNode $\ast$$\ast$ {\bf treeNodeTab}
+\item 
+int {\bf tabLength}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+A Heap Stack of TreeNodes. It can work like a chainedList to sort TreeNodes in order of cost. Smallest is always root treeNode of stack. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotA\_\-HeapStack::BotA\_\-HeapStack ()}\label{classBotA__HeapStack_17543e44fa4f8a08750b100f29f49238}
+
+
+Constructor of an empty chained list \index{BotA_HeapStack@{BotA\_\-HeapStack}!~BotA_HeapStack@{$\sim$BotA\_\-HeapStack}}
+\index{~BotA_HeapStack@{$\sim$BotA\_\-HeapStack}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotA\_\-HeapStack::$\sim$BotA\_\-HeapStack ()\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA__HeapStack_232e70d9e3caffb6bff404544d4d1c43}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!getTreeNodeTab@{getTreeNodeTab}}
+\index{getTreeNodeTab@{getTreeNodeTab}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotA\_\-TreeNode$\ast$$\ast$ BotA\_\-HeapStack::getTreeNodeTab (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA__HeapStack_7739ac56fed46ceadd88ab11dc701a17}
+
+
+table of treenodes \index{BotA_HeapStack@{BotA\_\-HeapStack}!getTabLength@{getTabLength}}
+\index{getTabLength@{getTabLength}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-HeapStack::getTabLength (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA__HeapStack_44c289e02963fb3ebc0c02d433f5910c}
+
+
+length of treenode table (not number of items but number of cells) \index{BotA_HeapStack@{BotA\_\-HeapStack}!getLength@{getLength}}
+\index{getLength@{getLength}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-HeapStack::getLength (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotA__HeapStack_6d9feab2ffbaad17131a7151b308d051}
+
+
+number of items in table 
+
+Reimplemented from {\bf ChainedList} \doxyref{}{p.}{classChainedList_8cf0661ee6c0e0f6259cd2e487fe94ce}.\index{BotA_HeapStack@{BotA\_\-HeapStack}!addItem@{addItem}}
+\index{addItem@{addItem}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA\_\-HeapStack::addItem ({\bf TreeNode} $\ast$ {\em item})}\label{classBotA__HeapStack_9c84241a6a1d5a1a0dadea6c25b8ec68}
+
+
+Add an item into the stack depending of the value of its cost. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em item}]\doxyref{TreeNode}{p.}{classTreeNode} to add to the stack \end{description}
+\end{Desc}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!deleteFirstItem@{deleteFirstItem}}
+\index{deleteFirstItem@{deleteFirstItem}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA\_\-HeapStack::deleteFirstItem (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA__HeapStack_798de6d8fe135f04a2d76a36eff147cd}
+
+
+Delete first item of the stack and 
+
+Reimplemented from {\bf ChainedList} \doxyref{}{p.}{classChainedList_01dc3f81d3a912ec2455734cdf2d1e46}.\index{BotA_HeapStack@{BotA\_\-HeapStack}!getFirstItem@{getFirstItem}}
+\index{getFirstItem@{getFirstItem}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ListNode} $\ast$ BotA\_\-HeapStack::getFirstItem (void) const\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA__HeapStack_ebe93c0a849f73fa773e24ffc0aa16e8}
+
+
+root item of the stack in a \doxyref{ListNode}{p.}{classListNode} for compatibilty with solver 
+
+Reimplemented from {\bf ChainedList} \doxyref{}{p.}{classChainedList_fb20aaef36ab32d23a35bb0c909715b2}.\index{BotA_HeapStack@{BotA\_\-HeapStack}!isSmaller@{isSmaller}}
+\index{isSmaller@{isSmaller}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotA\_\-HeapStack::isSmaller (int {\em cell1}, int {\em cell2}) const\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA__HeapStack_2b59d857afbee3c2eedd6bb516e12942}
+
+
+Test cost of 2 treenodes position in treeNodeTab \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cell1}]first cell position to test \item[{\em cell2}]second cell position to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if cost of treeNodeTab[cell1] is smaller than cost of treeNodeTab[cell2] \end{Desc}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!repositionCell@{repositionCell}}
+\index{repositionCell@{repositionCell}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA\_\-HeapStack::repositionCell (int {\em cell})}\label{classBotA__HeapStack_95f898c1e623d6a9456ea51bca4d7e10}
+
+
+Re-position a cell of the tab (node in the heap stack) at this right position depending of its new lesser value than before \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cell}]cell we want to re-position depending of its new lesser value \end{description}
+\end{Desc}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!addFirstItem@{addFirstItem}}
+\index{addFirstItem@{addFirstItem}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA\_\-HeapStack::addFirstItem ({\bf TreeNode} $\ast$ {\em item})\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA__HeapStack_7ab05ef7a0237229c5973e95cfcefc1c}
+
+
+Unused functions with Heap Stack search 
+
+Reimplemented from {\bf ChainedList} \doxyref{}{p.}{classChainedList_52ad982ab220ad0eea5513180f434db2}.\index{BotA_HeapStack@{BotA\_\-HeapStack}!addLastItem@{addLastItem}}
+\index{addLastItem@{addLastItem}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA\_\-HeapStack::addLastItem ({\bf TreeNode} $\ast$ {\em item})\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA__HeapStack_aef3826b63645c27d10e7f673211fe94}
+
+
+Add an item to the end of the chainedlist \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em item}]Item to add \end{description}
+\end{Desc}
+
+
+Reimplemented from {\bf ChainedList} \doxyref{}{p.}{classChainedList_92aa990058d417146bc43beed16c90f6}.\index{BotA_HeapStack@{BotA\_\-HeapStack}!deleteLastItem@{deleteLastItem}}
+\index{deleteLastItem@{deleteLastItem}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA\_\-HeapStack::deleteLastItem (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA__HeapStack_3d787006c437d954881f2c3833b6190b}
+
+
+Delete last item of the list 
+
+Reimplemented from {\bf ChainedList} \doxyref{}{p.}{classChainedList_de017c8ad7cbfc4d347473bf303b1da2}.\index{BotA_HeapStack@{BotA\_\-HeapStack}!minHeapify@{minHeapify}}
+\index{minHeapify@{minHeapify}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotA\_\-HeapStack::minHeapify (int {\em cell})\hspace{0.3cm}{\tt  [protected]}}\label{classBotA__HeapStack_71026f74850281d6435dc071448057af}
+
+
+Put a cell of the tab (node in the heap Stack) at its right position depending of its value (move down the tree if necessary but never up) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cell}]cell we want to move if necessary \end{description}
+\end{Desc}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!parent@{parent}}
+\index{parent@{parent}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-HeapStack::parent (int {\em cell})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classBotA__HeapStack_3920a89f0d98aeadfcf2f540f2148838}
+
+
+Get parent node of a cell of the tab \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cell}]cell we want to find parent \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]num of parent cell in tab \end{Desc}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!leftChild@{leftChild}}
+\index{leftChild@{leftChild}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-HeapStack::leftChild (int {\em cell})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classBotA__HeapStack_869d79be31cdb2f69b77b97af6d88482}
+
+
+Get left child node of a cell of the tab \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cell}]cell we want to find left child node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]num of left child cell in tab \end{Desc}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!rightChild@{rightChild}}
+\index{rightChild@{rightChild}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-HeapStack::rightChild (int {\em cell})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classBotA__HeapStack_cb75b4e244ac2c48253b0c53885477b0}
+
+
+Get right child node of a cell of the tab \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cell}]cell we want to find right child node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]num of right child cell in tab \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{BotA_HeapStack@{BotA\_\-HeapStack}!treeNodeTab@{treeNodeTab}}
+\index{treeNodeTab@{treeNodeTab}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotA\_\-TreeNode$\ast$$\ast$ {\bf BotA\_\-HeapStack::treeNodeTab}\hspace{0.3cm}{\tt  [protected]}}\label{classBotA__HeapStack_1fe52f81088565146a0dde5e5b949d47}
+
+
+Tab of (closed) treenodes sorted by heap stack (see implementation of heap stack to know why we use a tab and not a tree). \index{BotA_HeapStack@{BotA\_\-HeapStack}!tabLength@{tabLength}}
+\index{tabLength@{tabLength}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotA\_\-HeapStack::tabLength}\hspace{0.3cm}{\tt  [protected]}}\label{classBotA__HeapStack_d43c3f89411288466a3eda349689b028}
+
+
+Length of the treeNode tab \index{BotA_HeapStack@{BotA\_\-HeapStack}!TAB_MEMORY_STEP@{TAB\_\-MEMORY\_\-STEP}}
+\index{TAB_MEMORY_STEP@{TAB\_\-MEMORY\_\-STEP}!BotA_HeapStack@{BotA\_\-HeapStack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const int {\bf BotA\_\-HeapStack::TAB\_\-MEMORY\_\-STEP} = 1000\hspace{0.3cm}{\tt  [static]}}\label{classBotA__HeapStack_8f2f4081317b23e52b0be851dba07965}
+
+
+alloc and dealloc step of tab 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotA/BotA\_\-HeapStack.h\item 
+src/Solver/BotA/BotA\_\-HeapStack.cpp\end{CompactItemize}

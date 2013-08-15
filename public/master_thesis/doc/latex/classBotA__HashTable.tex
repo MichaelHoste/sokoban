@@ -1,0 +1,87 @@
+\section{BotA\_\-HashTable Class Reference}
+\label{classBotA__HashTable}\index{BotA_HashTable@{BotA\_\-HashTable}}
+A version of \doxyref{HashTable}{p.}{classHashTable} specific to closeNodeList in heap stack With it, we can get or change heapStackCell value of a specific node in the hashtable.  
+
+
+{\tt \#include $<$BotA\_\-HashTable.h$>$}
+
+Inheritance diagram for BotA\_\-HashTable::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classBotA__HashTable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf BotA\_\-HashTable} (int {\bf length})
+\item 
+virtual bool {\bf isPresent} (const {\bf Node} $\ast$node) const 
+\item 
+int {\bf getHeapStackCell} (const {\bf Node} $\ast$node)
+\item 
+bool {\bf changeHeapStackCell} (const {\bf Node} $\ast$node, const int newHeapStackCell)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+A version of \doxyref{HashTable}{p.}{classHashTable} specific to closeNodeList in heap stack With it, we can get or change heapStackCell value of a specific node in the hashtable. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotA_HashTable@{BotA\_\-HashTable}!BotA_HashTable@{BotA\_\-HashTable}}
+\index{BotA_HashTable@{BotA\_\-HashTable}!BotA_HashTable@{BotA\_\-HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotA\_\-HashTable::BotA\_\-HashTable (int {\em length})}\label{classBotA__HashTable_3e205cf3099dc18a978f6c17b6fdd276}
+
+
+Constructor for new node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treeNode}]treeNode to be stocked on this item \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{BotA_HashTable@{BotA\_\-HashTable}!isPresent@{isPresent}}
+\index{isPresent@{isPresent}!BotA_HashTable@{BotA\_\-HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotA\_\-HashTable::isPresent (const {\bf Node} $\ast$ {\em node}) const\hspace{0.3cm}{\tt  [virtual]}}\label{classBotA__HashTable_e6005e8a8ed9551f640ecd325a8165f8}
+
+
+Test if an \doxyref{Node}{p.}{classNode} is already present into the hashTable \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]\doxyref{Node}{p.}{classNode} we want to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]value of treenode (f(x)) is present, -1 if not \end{Desc}
+
+
+Reimplemented from {\bf HashTable} \doxyref{}{p.}{classHashTable_1a1b16b0cfd69e0771cb55fe802229eb}.\index{BotA_HashTable@{BotA\_\-HashTable}!getHeapStackCell@{getHeapStackCell}}
+\index{getHeapStackCell@{getHeapStackCell}!BotA_HashTable@{BotA\_\-HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotA\_\-HashTable::getHeapStackCell (const {\bf Node} $\ast$ {\em node})}\label{classBotA__HashTable_65499c783b7e18477c2091d4d690a955}
+
+
+Get the heapStackCell value (cell number of node in the heapStack) from a node in the hashTable \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]node we want to get value \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]heapStackCell value of the node or -1 if value is not in the hashTable. \end{Desc}
+\index{BotA_HashTable@{BotA\_\-HashTable}!changeHeapStackCell@{changeHeapStackCell}}
+\index{changeHeapStackCell@{changeHeapStackCell}!BotA_HashTable@{BotA\_\-HashTable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotA\_\-HashTable::changeHeapStackCell (const {\bf Node} $\ast$ {\em node}, const int {\em newHeapStackCell})}\label{classBotA__HashTable_8c1cd848959157f7f9998c89a6f97780}
+
+
+change the heapStackCell value (cell number of node in the heapStack) from a \doxyref{Node}{p.}{classNode} in the hashTable \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]node we want to change value \item[{\em newHeapStackCell}]new heap stack cell to assign to this node \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if value is changed, false if no node like this in the hashtable \end{Desc}
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotA/BotA\_\-HashTable.h\item 
+src/Solver/BotA/BotA\_\-HashTable.cpp\end{CompactItemize}

@@ -1,0 +1,317 @@
+\section{Pack Class Reference}
+\label{classPack}\index{Pack@{Pack}}
+Class used to store a (xml) pack of levels.  
+
+
+{\tt \#include $<$Pack.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Pack} (Base $\ast${\bf base})
+\item 
+{\bf Pack} (Base $\ast${\bf base}, const char $\ast$xmlPackFile, const char $\ast${\bf player})
+\item 
+{\bf $\sim$Pack} ()
+\item 
+const char $\ast$ {\bf getFileName} (void) const 
+\item 
+const char $\ast$ {\bf getTitle} (void) const 
+\item 
+const char $\ast$ {\bf getDescription} (void) const 
+\item 
+const char $\ast$ {\bf getCopyright} (void) const 
+\item 
+const char $\ast$ {\bf getEmail} (void) const 
+\item 
+const char $\ast$ {\bf getUrl} (void) const 
+\item 
+int {\bf getMaxRowsNumber} (void) const 
+\item 
+int {\bf getMaxColsNumber} (void) const 
+\item 
+{\bf Level} $\ast$const $\ast$const {\bf getLevelList} (void) const 
+\item 
+int {\bf getN} (void) const 
+\item 
+int {\bf getNSuccess} (void) const 
+\item 
+void {\bf print} (const char $\ast${\bf fileName}) const 
+\item 
+void {\bf print} (void) const 
+\item 
+void {\bf xmlSavePath} (void) const 
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf xmlLoad} (const char $\ast$xmlPackFile, const char $\ast${\bf player})
+\item 
+xmlNodePtr $\ast$ {\bf xmlLoadLevels} (xmlDocPtr $\ast$tree, const char $\ast$xmlPackFile)
+\item 
+xmlNodePtr $\ast$ {\bf xmlLoadPath} (xmlDocPtr $\ast$tree, const char $\ast${\bf player}, const char $\ast$xmlPackFile)
+\item 
+void {\bf printInFile} (const char $\ast${\bf fileName}) const 
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+Base $\ast$ {\bf base}
+\item 
+char {\bf fileName} [33]
+\item 
+char {\bf player} [33]
+\item 
+char {\bf title} [65]
+\item 
+char {\bf description} [513]
+\item 
+char {\bf copyright} [65]
+\item 
+char {\bf email} [65]
+\item 
+char {\bf url} [129]
+\item 
+int {\bf maxRowsNumber}
+\item 
+int {\bf maxColsNumber}
+\item 
+{\bf Level} $\ast$$\ast$ {\bf levelList}
+\item 
+int {\bf n}
+\item 
+int {\bf nSuccess}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Class used to store a (xml) pack of levels. 
+
+Scores (Paths) associed with these levels are loaded from an external (xml too) file and are relative to loggued player (param to constructor) 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Pack@{Pack}!Pack@{Pack}}
+\index{Pack@{Pack}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Pack::Pack (Base $\ast$ {\em base})}\label{classPack_3160052a36fb984a2bbdef88a890bbb5}
+
+
+Constructor for a empty pack \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \end{description}
+\end{Desc}
+\index{Pack@{Pack}!Pack@{Pack}}
+\index{Pack@{Pack}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Pack::Pack (Base $\ast$ {\em base}, const char $\ast$ {\em xmlPackFile}, const char $\ast$ {\em player})}\label{classPack_344de883e5366bea4e658b9b2091a3ea}
+
+
+Constructor for a pack from xml files. One for levels, one for paths (solutions/high scores) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em xmlPackFile}]name of the xml file containing a pack of levels situated in data/levels/ \item[{\em player}]name of loggued player (to know paths to load) \end{description}
+\end{Desc}
+\index{Pack@{Pack}!~Pack@{$\sim$Pack}}
+\index{~Pack@{$\sim$Pack}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Pack::$\sim$Pack ()}\label{classPack_466f437fb0f9deac378aa60f9637baee}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{Pack@{Pack}!getFileName@{getFileName}}
+\index{getFileName@{getFileName}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Pack::getFileName (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_33bbca165c6f75f07f723efac7c129bc}
+
+
+name of loaded xml file \index{Pack@{Pack}!getTitle@{getTitle}}
+\index{getTitle@{getTitle}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Pack::getTitle (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_02237c558dd96fd2b47785f4d5586a87}
+
+
+title of the pack \index{Pack@{Pack}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Pack::getDescription (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_42a519ae289e10ec5553d2bb0d9fc539}
+
+
+Description of pack \index{Pack@{Pack}!getCopyright@{getCopyright}}
+\index{getCopyright@{getCopyright}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Pack::getCopyright (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_6962e2af68918b3518d8cb905dfea4c5}
+
+
+Copyright of pack \index{Pack@{Pack}!getEmail@{getEmail}}
+\index{getEmail@{getEmail}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Pack::getEmail (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_ff645ae0e0ede27e1ec70689166220c8}
+
+
+Email of pack \index{Pack@{Pack}!getUrl@{getUrl}}
+\index{getUrl@{getUrl}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Pack::getUrl (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_57a2df77d2378bdff8c009ec899370cc}
+
+
+Url of pack \index{Pack@{Pack}!getMaxRowsNumber@{getMaxRowsNumber}}
+\index{getMaxRowsNumber@{getMaxRowsNumber}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Pack::getMaxRowsNumber (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_b20837563ca73a969f835efcada3a3c3}
+
+
+max RowsNumber of all loaded levels \index{Pack@{Pack}!getMaxColsNumber@{getMaxColsNumber}}
+\index{getMaxColsNumber@{getMaxColsNumber}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Pack::getMaxColsNumber (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_93f088d4417fca1c62a1d0e232f31663}
+
+
+max ColsNumber of all loaded levels \index{Pack@{Pack}!getLevelList@{getLevelList}}
+\index{getLevelList@{getLevelList}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Level}$\ast$ const$\ast$ const Pack::getLevelList (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_c51a012d73f889da5690a4e0a2c47090}
+
+
+tab of \char`\"{}n\char`\"{} \doxyref{Level}{p.}{classLevel} pointers \index{Pack@{Pack}!getN@{getN}}
+\index{getN@{getN}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Pack::getN (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_e2af8bf120d1e7dfeac776094c690c8f}
+
+
+Number of levels in this pack \index{Pack@{Pack}!getNSuccess@{getNSuccess}}
+\index{getNSuccess@{getNSuccess}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Pack::getNSuccess (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classPack_62c006c15d03b945ba61563729251703}
+
+
+Number of successfull levels in this pack \index{Pack@{Pack}!print@{print}}
+\index{print@{print}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Pack::print (const char $\ast$ {\em fileName}) const}\label{classPack_05963106a1c7e318f97aa78bd3e2aa19}
+
+
+Print pack of levels in text mode in a file. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fileName}]name of the file we want to print in. \end{description}
+\end{Desc}
+\index{Pack@{Pack}!print@{print}}
+\index{print@{print}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Pack::print (void) const}\label{classPack_a3e21b032e6b530c5a22c377594c327f}
+
+
+Print pack of levels in standard output \index{Pack@{Pack}!xmlSavePath@{xmlSavePath}}
+\index{xmlSavePath@{xmlSavePath}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Pack::xmlSavePath (void) const}\label{classPack_56bd1769b4478614a2dfe62e526b1fc8}
+
+
+Save every paths of every levels in data/profiles/\char`\"{}player\char`\"{}/\char`\"{}pack\char`\"{}.sol \index{Pack@{Pack}!xmlLoad@{xmlLoad}}
+\index{xmlLoad@{xmlLoad}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Pack::xmlLoad (const char $\ast$ {\em xmlPackFile}, const char $\ast$ {\em player})\hspace{0.3cm}{\tt  [protected]}}\label{classPack_de3d93107f002a3f160ed870ac761b1e}
+
+
+Open a XML File containing a pack of levels and initialise this object with levels in it \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em xmlPackFile}]XML file (with extension) we want to load in path data/levels/ \item[{\em player}]Player we want to load score associated with these levels \end{description}
+\end{Desc}
+\index{Pack@{Pack}!xmlLoadLevels@{xmlLoadLevels}}
+\index{xmlLoadLevels@{xmlLoadLevels}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}xmlNodePtr $\ast$ Pack::xmlLoadLevels (xmlDocPtr $\ast$ {\em tree}, const char $\ast$ {\em xmlPackFile})\hspace{0.3cm}{\tt  [protected]}}\label{classPack_fae542b60d593a7b876b9ed5da93b790}
+
+
+Create a tree based on a pack xml file and gets nodes related with levels \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em xmlPackFile}]XML file (with extension) we want to load in path data/levels/ \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]tree Tree opened (we return for suppression after work on nodes) 
+
+list of level nodes (terminated with a NULL node) in xml file \end{Desc}
+\index{Pack@{Pack}!xmlLoadPath@{xmlLoadPath}}
+\index{xmlLoadPath@{xmlLoadPath}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}xmlNodePtr $\ast$ Pack::xmlLoadPath (xmlDocPtr $\ast$ {\em tree}, const char $\ast$ {\em player}, const char $\ast$ {\em xmlPackFile})\hspace{0.3cm}{\tt  [protected]}}\label{classPack_e13af60ba64b088c7446b0420e619bf8}
+
+
+Create a tree based on a player xml file and gets nodes related with paths \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em player}]Player we want to load score associated with these levels \item[{\em xmlPackFile}]XML file (with extension) we want to load in path data/levels/ \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]tree Tree opened (we return for suppression after work on nodes) 
+
+list of path nodes (terminated with a NULL node) in xml file \end{Desc}
+\index{Pack@{Pack}!printInFile@{printInFile}}
+\index{printInFile@{printInFile}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Pack::printInFile (const char $\ast$ {\em fileName}) const\hspace{0.3cm}{\tt  [protected]}}\label{classPack_ae0c337520f8f7201357777a5d3c28ed}
+
+
+Print pack of levels in text mode in a file or in the shell. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em fileName}]name of the file we want to print in. If NULL, then it will be print on screen (standard output) \end{description}
+\end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{Pack@{Pack}!base@{base}}
+\index{base@{base}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Base$\ast$ {\bf Pack::base}\hspace{0.3cm}{\tt  [protected]}}\label{classPack_52c22a4115e2d25e5950bd263557fd85}
+
+
+Main class of the game \index{Pack@{Pack}!fileName@{fileName}}
+\index{fileName@{fileName}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf Pack::fileName}[33]\hspace{0.3cm}{\tt  [protected]}}\label{classPack_170427e78c276b98ff32602dbf71b2ec}
+
+
+Name of loaded file \index{Pack@{Pack}!player@{player}}
+\index{player@{player}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf Pack::player}[33]\hspace{0.3cm}{\tt  [protected]}}\label{classPack_8291d51e05264921e57dfb2e1deef4c6}
+
+
+Name of player who load pack \index{Pack@{Pack}!title@{title}}
+\index{title@{title}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf Pack::title}[65]\hspace{0.3cm}{\tt  [protected]}}\label{classPack_313cef310f77e2fe5332071616de9674}
+
+
+title of pack \index{Pack@{Pack}!description@{description}}
+\index{description@{description}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf Pack::description}[513]\hspace{0.3cm}{\tt  [protected]}}\label{classPack_798afd9c44360522ed2423c5fe898b5f}
+
+
+Description of pack \index{Pack@{Pack}!copyright@{copyright}}
+\index{copyright@{copyright}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf Pack::copyright}[65]\hspace{0.3cm}{\tt  [protected]}}\label{classPack_5523d8b051d539e9e418181e4eddaa17}
+
+
+Copyright of pack \index{Pack@{Pack}!email@{email}}
+\index{email@{email}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf Pack::email}[65]\hspace{0.3cm}{\tt  [protected]}}\label{classPack_14d055abca4792efedb4779d14103a30}
+
+
+email of creator of pack \index{Pack@{Pack}!url@{url}}
+\index{url@{url}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf Pack::url}[129]\hspace{0.3cm}{\tt  [protected]}}\label{classPack_d16dac9aa9ac34eb5d949f766b10d32f}
+
+
+url of pack \index{Pack@{Pack}!maxRowsNumber@{maxRowsNumber}}
+\index{maxRowsNumber@{maxRowsNumber}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Pack::maxRowsNumber}\hspace{0.3cm}{\tt  [protected]}}\label{classPack_a83855038d58619c72d813f73d8b5e64}
+
+
+maximum number of rows \index{Pack@{Pack}!maxColsNumber@{maxColsNumber}}
+\index{maxColsNumber@{maxColsNumber}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Pack::maxColsNumber}\hspace{0.3cm}{\tt  [protected]}}\label{classPack_0f423632649a026597232319dcac6ac3}
+
+
+maximum number of cols \index{Pack@{Pack}!levelList@{levelList}}
+\index{levelList@{levelList}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Level}$\ast$$\ast$ {\bf Pack::levelList}\hspace{0.3cm}{\tt  [protected]}}\label{classPack_a4baf690941d6b3c5beec54cdf2babf1}
+
+
+List of n objects of \char`\"{}Level$\ast$\char`\"{} type \index{Pack@{Pack}!n@{n}}
+\index{n@{n}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Pack::n}\hspace{0.3cm}{\tt  [protected]}}\label{classPack_cf0d5164682b37d4051dcbd1229b8170}
+
+
+Number of levels in the pack \index{Pack@{Pack}!nSuccess@{nSuccess}}
+\index{nSuccess@{nSuccess}!Pack@{Pack}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Pack::nSuccess}\hspace{0.3cm}{\tt  [protected]}}\label{classPack_b46d8d7be9d5133b2709fd1fc49cc3ad}
+
+
+Number of levels successfully complete by loggued player 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Pack.h\item 
+src/Pack.cpp\end{CompactItemize}

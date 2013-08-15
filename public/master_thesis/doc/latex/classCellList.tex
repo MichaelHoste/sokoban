@@ -1,0 +1,17 @@
+\section{CellList Class Reference}
+\label{classCellList}\index{CellList@{CellList}}
+Dijkstra algorithm used to see what goals a box can reach and with how many pushes it could.  
+
+
+{\tt \#include $<$DijkstraBox.h$>$}
+
+
+
+\subsection{Detailed Description}
+Dijkstra algorithm used to see what goals a box can reach and with how many pushes it could. 
+
+This is a special representation of dijkstra because we want to keep possible positions of the pusher after each push. Each box position is represented by 4 nodes : left, up, right and down. Value in each node means \char`\"{}I can push this box in there by pushing it from left/up/right/down with a total of VALUE pushes\char`\"{} 
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+include/Solver/DijkstraBox.h\end{CompactItemize}

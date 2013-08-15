@@ -1,0 +1,68 @@
+\section{BotBestMovesS Class Reference}
+\label{classBotBestMovesS}\index{BotBestMovesS@{BotBestMovesS}}
+A$\ast$ algorithm based on moves number of the pusher. Nodes with less moves are explored first. WARNING : this algorithm doesn't return best moves solution of this level but only a good solution. This is because a state representation of the level doesn't keep exact pusher position but only a pusher zone. This solver will work efficiently (but with a lot of extra work) only if we make level representation with boxes position (zone) and exact pusher position (integer).  
+
+
+{\tt \#include $<$BotBestMovesS.h$>$}
+
+Inheritance diagram for BotBestMovesS::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classBotBestMovesS}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual const char $\ast$ {\bf SOLVER\_\-NAME} ()
+\item 
+{\bf BotBestMovesS} (Base $\ast$base, {\bf Level} $\ast$level, int maxNodeNumber, int maxRamSize, int openTableSize, int closeTableSize, int {\bf costLimit}, int deadlockedBoxesSearch=2)
+\item 
+virtual int {\bf f} ({\bf TreeNode} $\ast$treeNode) const 
+\item 
+virtual int {\bf h} ({\bf TreeNode} $\ast$treeNode) const 
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+A$\ast$ algorithm based on moves number of the pusher. Nodes with less moves are explored first. WARNING : this algorithm doesn't return best moves solution of this level but only a good solution. This is because a state representation of the level doesn't keep exact pusher position but only a pusher zone. This solver will work efficiently (but with a lot of extra work) only if we make level representation with boxes position (zone) and exact pusher position (integer). 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotBestMovesS@{BotBestMovesS}!BotBestMovesS@{BotBestMovesS}}
+\index{BotBestMovesS@{BotBestMovesS}!BotBestMovesS@{BotBestMovesS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotBestMovesS::BotBestMovesS (Base $\ast$ {\em base}, {\bf Level} $\ast$ {\em level}, int {\em maxNodeNumber}, int {\em maxRamSize}, int {\em openTableSize}, int {\em closeTableSize}, int {\em costLimit}, int {\em deadlockedBoxesSearch} = {\tt 2})}\label{classBotBestMovesS_4f949103618847e78611d02647293072}
+
+
+Constructor for a solver of a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em level}]\doxyref{Level}{p.}{classLevel} to be used \item[{\em maxNodeNumber}]Limit number of nodes to explore \item[{\em maxRamSize}]Limit max ram size to allocate \item[{\em openTableSize}]size of Open Table to allocate (hashtable) \item[{\em closeTableSize}]size of Close Table to allocate (hashtable) \item[{\em limit}]of accepted f(x). if costLimit = -1, costLimit = +infinity \item[{\em deadlockedBoxesSearch}]number of boxes to use when testing every possible positions of deadlock \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{BotBestMovesS@{BotBestMovesS}!SOLVER_NAME@{SOLVER\_\-NAME}}
+\index{SOLVER_NAME@{SOLVER\_\-NAME}!BotBestMovesS@{BotBestMovesS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}virtual const char$\ast$ BotBestMovesS::SOLVER\_\-NAME ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classBotBestMovesS_c29b9292fd9d234d1d4e7c8ef4e36720}
+
+
+Name of this solver 
+
+Implements {\bf BotA} \doxyref{}{p.}{classBotA_ab85547e677baf43658369ab19a461c4}.\index{BotBestMovesS@{BotBestMovesS}!f@{f}}
+\index{f@{f}!BotBestMovesS@{BotBestMovesS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotBestMovesS::f ({\bf TreeNode} $\ast$ {\em treeNode}) const\hspace{0.3cm}{\tt  [virtual]}}\label{classBotBestMovesS_e30409d7af027a14505718843653893c}
+
+
+Cost function to evaluate the cost of a treenode with its position in the tree (parent of treenode must be assigned before calling this function) this cost function will compute number of moves from the start until this node. So we can search min moves number first WARNING : not finished yet, to be really efficient, h(x) must be definied \index{BotBestMovesS@{BotBestMovesS}!h@{h}}
+\index{h@{h}!BotBestMovesS@{BotBestMovesS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotBestMovesS::h ({\bf TreeNode} $\ast$ {\em treeNode}) const\hspace{0.3cm}{\tt  [virtual]}}\label{classBotBestMovesS_737fff641aa19f3d89cf98cf87c6ba76}
+
+
+Cost function to evaluate the cost of admissibly estimated distance to a goal treenode from this treenode (parent of treenode must be assigned before calling this function) 
+
+Implements {\bf BotA} \doxyref{}{p.}{classBotA_c9d54cca141a1f1638a3482a616e9403}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotBestMovesS/BotBestMovesS.h\item 
+src/Solver/BotBestMovesS/BotBestMovesS.cpp\end{CompactItemize}

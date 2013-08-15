@@ -1,0 +1,334 @@
+\section{BotBestPushesS\_\-Penalties Class Reference}
+\label{classBotBestPushesS__Penalties}\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+Management of cost penalties. Try to detect every sub-states that causes a penalty to the initial cost.  
+
+
+{\tt \#include $<$BotBestPushesS\_\-Penalties.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf BotBestPushesS\_\-Penalties} (Solver $\ast${\bf solver})
+\item 
+{\bf $\sim$BotBestPushesS\_\-Penalties} ()
+\item 
+Solver $\ast$ {\bf getSolver} (void) const 
+\item 
+{\bf Node} $\ast$$\ast$$\ast$ {\bf getPenaltiesNodeList} (void) const 
+\item 
+{\bf Level} $\ast$ {\bf getEmptyLevel} (void) const 
+\item 
+int {\bf getPenaltyOfTreeNode} ({\bf TreeNode} $\ast$treenode) const 
+\item 
+bool {\bf penaltiesListTest} (int $\ast$tab, int tabLength, int $\ast$nodeLimit=NULL, int pusherLevelPos=-1)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf addToPNodes} ({\bf Node} $\ast$newPenalizedNode, int penalty, int numOfBoxes)
+\item 
+void {\bf orderList} (int index) const 
+\item 
+void {\bf initPenaltiesList} (int numberOfBoxes)
+\item 
+void {\bf createPenaltiesList} (int numberOfBoxes)
+\item 
+void {\bf savePenaltiesList} ()
+\item 
+void {\bf loadPenaltiesList} (char $\ast$fileName, int numberOfBoxes)
+\item 
+void {\bf increasePenaltiesListTest} (int positions, int $\ast$$\ast$tab, int $\ast$tabLength)
+\item 
+bool {\bf lastPenaltiesListTest} (int positions, int $\ast$tab, int tabLength)
+\item 
+int {\bf validNode} ({\bf Node} $\ast$node, int numOfBoxes, int prereq, int penaltyDown, int penaltyUp, bool quickValid=false, int maxNodes=INT\_\-MAX)
+\item 
+bool {\bf isUselessPenalty} ({\bf Level} $\ast$l)
+\item 
+bool {\bf ramLimitReached} (char $\ast$message) const 
+\item 
+bool {\bf notResolved} (char $\ast$message) const 
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+Base $\ast$ {\bf base}
+\item 
+Solver $\ast$ {\bf solver}
+\item 
+{\bf Node} $\ast$$\ast$$\ast$ {\bf pNodes}
+\item 
+int $\ast$$\ast$ {\bf pValues}
+\item 
+int {\bf pLength}
+\item 
+int $\ast$ {\bf pListLengths}
+\item 
+int $\ast$ {\bf penaltiesTestTab}
+\item 
+int {\bf penaltiesTestTabLength}
+\item 
+{\bf Level} $\ast$ {\bf emptyLevel}
+\item 
+const {\bf Level} $\ast$ {\bf level}
+\item 
+const {\bf Zone} $\ast$ {\bf goalZone}
+\item 
+const int $\ast$ {\bf zoneToLevelPos}
+\item 
+const int {\bf zoneToLevelPosLength}
+\item 
+const int $\ast$ {\bf levelToZonePos}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Management of cost penalties. Try to detect every sub-states that causes a penalty to the initial cost. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotBestPushesS\_\-Penalties::BotBestPushesS\_\-Penalties (Solver $\ast$ {\em solver})}\label{classBotBestPushesS__Penalties_b345805a63cbceda613e165078957656}
+
+
+Constructor \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!~BotBestPushesS_Penalties@{$\sim$BotBestPushesS\_\-Penalties}}
+\index{~BotBestPushesS_Penalties@{$\sim$BotBestPushesS\_\-Penalties}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotBestPushesS\_\-Penalties::$\sim$BotBestPushesS\_\-Penalties ()}\label{classBotBestPushesS__Penalties_614eae0576c5f40d2ec7a7f51a094007}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!getSolver@{getSolver}}
+\index{getSolver@{getSolver}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Solver$\ast$ BotBestPushesS\_\-Penalties::getSolver (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotBestPushesS__Penalties_4547d90bdcebfa631a963248e2b99484}
+
+
+Assigned solver \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!getPenaltiesNodeList@{getPenaltiesNodeList}}
+\index{getPenaltiesNodeList@{getPenaltiesNodeList}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Node}$\ast$$\ast$$\ast$ BotBestPushesS\_\-Penalties::getPenaltiesNodeList (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotBestPushesS__Penalties_44f975a0809c00979cca14a97de85617}
+
+
+list of penalties sub-states \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!getEmptyLevel@{getEmptyLevel}}
+\index{getEmptyLevel@{getEmptyLevel}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Level}$\ast$ BotBestPushesS\_\-Penalties::getEmptyLevel (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotBestPushesS__Penalties_6356f0affd2660d0686252b3e517f754}
+
+
+level with no boxes or pusher \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!getPenaltyOfTreeNode@{getPenaltyOfTreeNode}}
+\index{getPenaltyOfTreeNode@{getPenaltyOfTreeNode}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotBestPushesS\_\-Penalties::getPenaltyOfTreeNode ({\bf TreeNode} $\ast$ {\em treenode}) const}\label{classBotBestPushesS__Penalties_e161b0463e18d7aaa973cca455396330}
+
+
+Get this treenode penalty \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em treenode}]treenode to be tested \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]penalty of this treenode \end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!penaltiesListTest@{penaltiesListTest}}
+\index{penaltiesListTest@{penaltiesListTest}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotBestPushesS\_\-Penalties::penaltiesListTest (int $\ast$ {\em tab}, int {\em tabLength}, int $\ast$ {\em nodeLimit} = {\tt NULL}, int {\em pusherLevelPos} = {\tt -1})}\label{classBotBestPushesS__Penalties_db1dfb47ce2f502722029407b22c16f6}
+
+
+Test the actual sub-node (defined in memory) by creating a temporary level and testing it with every possible pusherZone. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em tab}]tab of cell positions to test \item[{\em tabLength}]length of tab \item[{\em nodeLimit}]limit of nodes we will use to test. Will be decrease by number of really used nodes \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if solver exceed max ram value, false if not. \end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!addToPNodes@{addToPNodes}}
+\index{addToPNodes@{addToPNodes}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotBestPushesS\_\-Penalties::addToPNodes ({\bf Node} $\ast$ {\em newPenalizedNode}, int {\em penalty}, int {\em numOfBoxes})\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_bf9353aefcff92af8849b07be22943cb}
+
+
+Add a node and its penalty to list of penalized nodes \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em newPenalizedNode}]node to add \item[{\em penalty}]penalty associed to this node \item[{\em numOfBoxes}]number of boxes in this node \end{description}
+\end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!orderList@{orderList}}
+\index{orderList@{orderList}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotBestPushesS\_\-Penalties::orderList (int {\em index}) const\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_dfba65e77bf7e3e5b075007ebeaf7e55}
+
+
+Sort one nodes list in order of penalty of each node \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em index}]index of pNodes (and pValues) cells we want to sort \end{description}
+\end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!initPenaltiesList@{initPenaltiesList}}
+\index{initPenaltiesList@{initPenaltiesList}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotBestPushesS\_\-Penalties::initPenaltiesList (int {\em numberOfBoxes})\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_d6f650bca266f98a83ad6128d4176b5a}
+
+
+Initialize list of penalized sub-nodes in memory. Load it from file if already generated and generate (and store) it if not. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em numberOfBoxes}]number of boxes to put in a level before testing. If every sub-node of \char`\"{}n\char`\"{} boxes is generated, it means every penalties of \char`\"{}n\char`\"{} boxes will be stopped. \end{description}
+\end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!createPenaltiesList@{createPenaltiesList}}
+\index{createPenaltiesList@{createPenaltiesList}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotBestPushesS\_\-Penalties::createPenaltiesList (int {\em numberOfBoxes})\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_ee0b88eecb8daed538c914e6f00c8b7b}
+
+
+Generate list of penalized sub-nodes in memory and save it in a file. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em numberOfBoxes}]number of boxes to put in a level before testing. If every sub-node of \char`\"{}n\char`\"{} boxes is generated, it means every penalties of \char`\"{}n\char`\"{} boxes will be stopped. \end{description}
+\end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!savePenaltiesList@{savePenaltiesList}}
+\index{savePenaltiesList@{savePenaltiesList}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotBestPushesS\_\-Penalties::savePenaltiesList ()\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_6b351f8ac06b8150beceeab378b43a45}
+
+
+Save list of penalized sub-nodes from memory to a file \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!loadPenaltiesList@{loadPenaltiesList}}
+\index{loadPenaltiesList@{loadPenaltiesList}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotBestPushesS\_\-Penalties::loadPenaltiesList (char $\ast$ {\em fileName}, int {\em numberOfBoxes})\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_34446fc4f0df66d9633be3be3e2bcaec}
+
+
+Load list of penalized sub-nodes from a file to memory \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em file}]file we want to read from \item[{\em numberOfBoxes}]maximum number of boxes in nodes we want to load. \end{description}
+\end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!increasePenaltiesListTest@{increasePenaltiesListTest}}
+\index{increasePenaltiesListTest@{increasePenaltiesListTest}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotBestPushesS\_\-Penalties::increasePenaltiesListTest (int {\em positions}, int $\ast$$\ast$ {\em tab}, int $\ast$ {\em tabLength})\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_f38f841e453f608578cb61c28b74a692}
+
+
+To test every sub-nodes, we start by testing every boxes positions with only a box. Then we test every boxes positions with 2 boxes, and 3, ... We need to increase positions of boxes in a tab. With 1 box : 1,2,3, ... With 2 boxes : 1,2 $|$ 1,3 $|$ 1,4 $|$ ... $|$ 1,N $|$ 2,3 $|$ 2,4 $|$ ... $|$ N-1,N ... This function increase boxes positions with M boxes and N positions in the level. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em positions}]number of positions we want to increase \item[{\em tab}]pointer to tab with all positions \item[{\em tabLength}]pointer to length of tab \end{description}
+\end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!lastPenaltiesListTest@{lastPenaltiesListTest}}
+\index{lastPenaltiesListTest@{lastPenaltiesListTest}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotBestPushesS\_\-Penalties::lastPenaltiesListTest (int {\em positions}, int $\ast$ {\em tab}, int {\em tabLength})\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_7e26b7072bd434da74e2edbc5bd8b9db}
+
+
+To test every sub-nodes, we start by testing every boxes positions with only a box. Then we test every boxes positions with 2 boxes, and 3, ... We need to increase positions of boxes in a tab. With 1 box : 1,2,3, ... With 2 boxes : 1,2 $|$ 1,3 $|$ 1,4 $|$ ... $|$ 1,N $|$ 2,3 $|$ 2,4 $|$ ... $|$ N-1,N ... This function tell us when positions are last positions of a specific number of boxes. (for 1 box : N, for 2 boxes : N-1,N, for 3 boxes : N-2,N-1,N) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em positions}]number of positions we want to increase \item[{\em tab}]pointer to tab with all positions \item[{\em tabLength}]pointer to length of tab \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if last boxes positions, false if not \end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!validNode@{validNode}}
+\index{validNode@{validNode}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotBestPushesS\_\-Penalties::validNode ({\bf Node} $\ast$ {\em node}, int {\em numOfBoxes}, int {\em prereq}, int {\em penaltyDown}, int {\em penaltyUp}, bool {\em quickValid} = {\tt false}, int {\em maxNodes} = {\tt INT\_\-MAX})\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_73fd09c4c25277a370a9acdabbc2f0d9}
+
+
+Test if node penalty if valid for each sub-group of goals If no, this penalty is not a valid penalty because it can break optimality of solution \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em node}]node to test \item[{\em numOfBoxes}]number of boxes in this node \item[{\em prereq}]penalties search already done (num of boxes tested) \item[{\em penaltyDown}]penalty already given to this node. New penalty can only be above this value \item[{\em penaltyUp}]penalty we want to confirm. Real penalty can only be under this value \item[{\em quickValid}]true if valid is done quickly (not test of all goals configurations). It's quick but it can also be non optimal \item[{\em maxNodes}]maximum nodes to use to valid \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]valid penalty (if 0, penalty is not valid). if -1, max nodes is reached during validation \end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!isUselessPenalty@{isUselessPenalty}}
+\index{isUselessPenalty@{isUselessPenalty}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotBestPushesS\_\-Penalties::isUselessPenalty ({\bf Level} $\ast$ {\em l})\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_7e542f0d454f2604533c868f4c42f50e}
+
+
+If, in a level, the pusher in surrounded by boxes or walls, then it's not usefull to test its penalty \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em l}]level we want to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if this a penalty test is useless on this level, false if not \end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!ramLimitReached@{ramLimitReached}}
+\index{ramLimitReached@{ramLimitReached}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotBestPushesS\_\-Penalties::ramLimitReached (char $\ast$ {\em message}) const\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_411a7cbfa085787bb6b78fb1405ef327}
+
+
+test a return message from a solver. \begin{Desc}
+\item[Returns:]true if message says \char`\"{}Impossible to solve : Ram Limit or Max Nodes Limit reached\char`\"{}, false if not \end{Desc}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!notResolved@{notResolved}}
+\index{notResolved@{notResolved}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotBestPushesS\_\-Penalties::notResolved (char $\ast$ {\em message}) const\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_e89ec8f9c9612526cb5dc2032c0a1456}
+
+
+test a return message from a solver. \begin{Desc}
+\item[Returns:]true if message says \char`\"{}Impossible to solve : No more nodes in waiting list\char`\"{} or \char`\"{}Impossible to solve : first node has no child\char`\"{}, false if not \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!base@{base}}
+\index{base@{base}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Base$\ast$ {\bf BotBestPushesS\_\-Penalties::base}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_5c1ba1fca72dfe56875446d5657188f4}
+
+
+Main class of the game \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!solver@{solver}}
+\index{solver@{solver}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Solver$\ast$ {\bf BotBestPushesS\_\-Penalties::solver}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_5ebe6be6d785039908e4d7a04cd12903}
+
+
+deadlock object belang to this solver \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!pNodes@{pNodes}}
+\index{pNodes@{pNodes}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Node}$\ast$$\ast$$\ast$ {\bf BotBestPushesS\_\-Penalties::pNodes}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_3bc0c9d112ab2b3468ffa72349eec98e}
+
+
+List of node representations of penalties sub-nodes. Sorted by number of boxes by sub-nodes. pNodes[i][j] is the (j)th sub-state with (i+1) boxes \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!pValues@{pValues}}
+\index{pValues@{pValues}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int$\ast$$\ast$ {\bf BotBestPushesS\_\-Penalties::pValues}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_8fb981df6d117480191f633e44e8276c}
+
+
+penalties values of sub-nodes pValues[i][j] is the (j)th sub-state with (i+1) boxes \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!pLength@{pLength}}
+\index{pLength@{pLength}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotBestPushesS\_\-Penalties::pLength}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_53c9af17afaf34c5c1e0537677067b69}
+
+
+Length of pNodes \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!pListLengths@{pListLengths}}
+\index{pListLengths@{pListLengths}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf BotBestPushesS\_\-Penalties::pListLengths}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_6817225e3b44c1760edf1632540e545a}
+
+
+length of each list of pNodes and pValues \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!penaltiesTestTab@{penaltiesTestTab}}
+\index{penaltiesTestTab@{penaltiesTestTab}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf BotBestPushesS\_\-Penalties::penaltiesTestTab}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_5b110a5ece34728efed715cbbe525ad9}
+
+
+Tab of current boxes positions in penalties test \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!penaltiesTestTabLength@{penaltiesTestTabLength}}
+\index{penaltiesTestTabLength@{penaltiesTestTabLength}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotBestPushesS\_\-Penalties::penaltiesTestTabLength}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_c2a3587554029a971904d5b506c78c8f}
+
+
+Length of deadlockTestTab \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!emptyLevel@{emptyLevel}}
+\index{emptyLevel@{emptyLevel}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Level}$\ast$ {\bf BotBestPushesS\_\-Penalties::emptyLevel}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_fbc8a1a3da4ab7aabd968096833a5a8d}
+
+
+\doxyref{Level}{p.}{classLevel} with no boxes or pusher \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!level@{level}}
+\index{level@{level}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const {\bf Level}$\ast$ {\bf BotBestPushesS\_\-Penalties::level}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_4079d744ae6e9b79b8ce1d22dd884011}
+
+
+Initial level we want to solve \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!goalZone@{goalZone}}
+\index{goalZone@{goalZone}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const {\bf Zone}$\ast$ {\bf BotBestPushesS\_\-Penalties::goalZone}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_4cf6ddfe290d1c5cb0d2d4bc38acfdc0}
+
+
+\doxyref{Zone}{p.}{classZone} representation of all goals in this level \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!zoneToLevelPos@{zoneToLevelPos}}
+\index{zoneToLevelPos@{zoneToLevelPos}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const int$\ast$ {\bf BotBestPushesS\_\-Penalties::zoneToLevelPos}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_0bb55dcbc77f91b4035f073172eeecba}
+
+
+translation table between new positions in zone and old positions in level \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!zoneToLevelPosLength@{zoneToLevelPosLength}}
+\index{zoneToLevelPosLength@{zoneToLevelPosLength}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const int {\bf BotBestPushesS\_\-Penalties::zoneToLevelPosLength}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_57c56658519cd88e4d07ca57f2a8571f}
+
+
+Length of translation table \index{BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}!levelToZonePos@{levelToZonePos}}
+\index{levelToZonePos@{levelToZonePos}!BotBestPushesS_Penalties@{BotBestPushesS\_\-Penalties}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const int$\ast$ {\bf BotBestPushesS\_\-Penalties::levelToZonePos}\hspace{0.3cm}{\tt  [protected]}}\label{classBotBestPushesS__Penalties_d50db76e64b6de44d0add9a7fd966b7a}
+
+
+translation table between old positions in level and new positions in zone 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotBestPushesS/BotBestPushesS\_\-Penalties.h\item 
+src/Solver/BotBestPushesS/BotBestPushesS\_\-Penalties.cpp\end{CompactItemize}

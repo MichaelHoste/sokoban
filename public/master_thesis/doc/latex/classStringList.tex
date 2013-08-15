@@ -1,0 +1,232 @@
+\section{StringList Class Reference}
+\label{classStringList}\index{StringList@{StringList}}
+Management of Lists made of strings.  
+
+
+{\tt \#include $<$StringList.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf StringList} (Base $\ast${\bf base})
+\item 
+{\bf StringList} (Base $\ast${\bf base}, const char $\ast$$\ast${\bf list})
+\item 
+{\bf StringList} (Base $\ast${\bf base}, const {\bf StringList} $\ast${\bf list})
+\item 
+{\bf StringList} (Base $\ast${\bf base}, const char $\ast$directory)
+\item 
+{\bf $\sim$StringList} ()
+\item 
+char $\ast$const $\ast$const {\bf getList} (void) const 
+\item 
+int {\bf getLength} (void) const 
+\item 
+void {\bf addString} (const char $\ast$string)
+\item 
+void {\bf removeString} (const char $\ast$string)
+\item 
+const char $\ast$ {\bf getString} (int id)
+\item 
+bool {\bf isPresent} (const char $\ast$string) const 
+\item 
+void {\bf print} (void) const 
+\item 
+int {\bf getStringId} (const char $\ast$string) const 
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+char $\ast$$\ast$ {\bf fileListing} (const char $\ast$directory) const 
+\item 
+void {\bf insertList} (char const $\ast$const $\ast${\bf list})
+\item 
+void {\bf orderList} (void)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+Base $\ast$ {\bf base}
+\item 
+char $\ast$$\ast$ {\bf list}
+\item 
+int {\bf length}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Management of Lists made of strings. 
+
+Lists are ordred by alphabetical order and don't contain 2 same strings 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{StringList@{StringList}!StringList@{StringList}}
+\index{StringList@{StringList}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}StringList::StringList (Base $\ast$ {\em base})}\label{classStringList_27f3450aa281ab6706add0ae491a8fd5}
+
+
+Constructor for a empty list \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \end{description}
+\end{Desc}
+\index{StringList@{StringList}!StringList@{StringList}}
+\index{StringList@{StringList}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}StringList::StringList (Base $\ast$ {\em base}, const char $\ast$$\ast$ {\em list})}\label{classStringList_ec444aa29d2d78ce55bfe8af926aef6f}
+
+
+Constructor for a list based on a tab of strings \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em list}]List of string. Last string of list must be \char`\"{}.\char`\"{} \end{description}
+\end{Desc}
+\index{StringList@{StringList}!StringList@{StringList}}
+\index{StringList@{StringList}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}StringList::StringList (Base $\ast$ {\em base}, const {\bf StringList} $\ast$ {\em list})}\label{classStringList_126961fc65cb9023e637b71a03c12a5b}
+
+
+Constructor for a list copied from another list \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em list}]Another list of string \end{description}
+\end{Desc}
+\index{StringList@{StringList}!StringList@{StringList}}
+\index{StringList@{StringList}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}StringList::StringList (Base $\ast$ {\em base}, const char $\ast$ {\em directory})}\label{classStringList_d41afc751a07197d64f74bb9e4e7a9f0}
+
+
+Constructor for a list of files contained in a directory \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em repertory}]repertory we want to list \end{description}
+\end{Desc}
+\index{StringList@{StringList}!~StringList@{$\sim$StringList}}
+\index{~StringList@{$\sim$StringList}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}StringList::$\sim$StringList ()}\label{classStringList_578ccde3ffad1066142964a8f63b609e}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{StringList@{StringList}!getList@{getList}}
+\index{getList@{getList}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ const$\ast$ const StringList::getList (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classStringList_4f1002c2e4fc168a4acefb9000cca8a0}
+
+
+Id of this level \index{StringList@{StringList}!getLength@{getLength}}
+\index{getLength@{getLength}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int StringList::getLength (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classStringList_f4806ee157e0a2f5c657be3cdffa8411}
+
+
+Name of this level \index{StringList@{StringList}!addString@{addString}}
+\index{addString@{addString}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void StringList::addString (const char $\ast$ {\em string})}\label{classStringList_a09c31af8eed07163aa82f148bed18a5}
+
+
+Add a element to the list. If this element already exist in the list, it will not be added \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em string}]element to add to the list \end{description}
+\end{Desc}
+\index{StringList@{StringList}!removeString@{removeString}}
+\index{removeString@{removeString}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void StringList::removeString (const char $\ast$ {\em string})}\label{classStringList_93cbcea629bc4e90b64053df0c081bc1}
+
+
+Remove a element (string) from this list \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em string}]element to remove from the list \end{description}
+\end{Desc}
+\index{StringList@{StringList}!getString@{getString}}
+\index{getString@{getString}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ StringList::getString (int {\em id})}\label{classStringList_b4302e82856c098ef417bb7e368b4905}
+
+
+Get a element from the list \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em id}]Number of the element to get (starting with 0) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]string number \char`\"{}id\char`\"{} from the list \end{Desc}
+\index{StringList@{StringList}!isPresent@{isPresent}}
+\index{isPresent@{isPresent}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool StringList::isPresent (const char $\ast$ {\em string}) const}\label{classStringList_9aab3032d69d1b6fa92c8490cbd516eb}
+
+
+Is this string present in this list ? Case is not used. So \char`\"{}hello\char`\"{} and \char`\"{}HeLlO\char`\"{} are the same \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em string}]string to test \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if present, false if not \end{Desc}
+\index{StringList@{StringList}!print@{print}}
+\index{print@{print}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void StringList::print (void) const}\label{classStringList_5935a5cf7dd3792c0f53de6b4c8cc56e}
+
+
+Print list on standard output \index{StringList@{StringList}!getStringId@{getStringId}}
+\index{getStringId@{getStringId}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int StringList::getStringId (const char $\ast$ {\em string}) const}\label{classStringList_e07361dc2b7266323eb2e3f5f326b471}
+
+
+Get position of a string on the list \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em string}]string we want to find position \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]position of the string or -1 if not present \end{Desc}
+\index{StringList@{StringList}!fileListing@{fileListing}}
+\index{fileListing@{fileListing}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$$\ast$ StringList::fileListing (const char $\ast$ {\em directory}) const\hspace{0.3cm}{\tt  [protected]}}\label{classStringList_0b29c0588b3e902d2c621e4d8ac749e7}
+
+
+List every files in the repertory \char`\"{}rep\char`\"{} \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em directory}]Repertory where we want to list files \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]tab of string where last string is \char`\"{}.\char`\"{} \end{Desc}
+\index{StringList@{StringList}!insertList@{insertList}}
+\index{insertList@{insertList}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void StringList::insertList (char const $\ast$const $\ast$ {\em list})\hspace{0.3cm}{\tt  [protected]}}\label{classStringList_77d8eb8324bbb4c49a215793325ad299}
+
+
+Insert tab of string in this object \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]tab of string terminated with string \char`\"{}.\char`\"{} \end{description}
+\end{Desc}
+\index{StringList@{StringList}!orderList@{orderList}}
+\index{orderList@{orderList}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void StringList::orderList (void)\hspace{0.3cm}{\tt  [protected]}}\label{classStringList_03a8b099db83f072e4a1f3bf413ad00d}
+
+
+Order this list of string alphabetically 
+
+\subsection{Member Data Documentation}
+\index{StringList@{StringList}!base@{base}}
+\index{base@{base}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Base$\ast$ {\bf StringList::base}\hspace{0.3cm}{\tt  [protected]}}\label{classStringList_bcabb0a7b618780433bfaf127aecd8d6}
+
+
+Main class of the game \index{StringList@{StringList}!list@{list}}
+\index{list@{list}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$$\ast$ {\bf StringList::list}\hspace{0.3cm}{\tt  [protected]}}\label{classStringList_5e21265228e4833abd1beed2af452647}
+
+
+Tab of strings. Final string is a \char`\"{}.\char`\"{} \index{StringList@{StringList}!length@{length}}
+\index{length@{length}!StringList@{StringList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf StringList::length}\hspace{0.3cm}{\tt  [protected]}}\label{classStringList_8d7fc2f13c6044b760f00e2ced19c6bc}
+
+
+Length of the string list 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/StringList.h\item 
+src/StringList.cpp\end{CompactItemize}

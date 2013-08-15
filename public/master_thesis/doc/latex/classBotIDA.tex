@@ -1,0 +1,284 @@
+\section{BotIDA Class Reference}
+\label{classBotIDA}\index{BotIDA@{BotIDA}}
+IDA$\ast$ algorithm based on best pushes number.  
+
+
+{\tt \#include $<$BotIDA.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf BotIDA} (Base $\ast${\bf base}, {\bf Level} $\ast${\bf level}, int {\bf maxNodeNumber}, int {\bf maxRamSize}, int openTableSize=870967, int closeTableSize=51827, int {\bf deadlockedBoxesSearch}=2, bool {\bf onlyPushNumber}=false, bool {\bf quickSearch}=false)
+\item 
+virtual {\bf $\sim$BotIDA} ()
+\item 
+Base $\ast$ {\bf getBase} (void) const 
+\item 
+const {\bf Level} $\ast$ {\bf getLevel} (void) const 
+\item 
+const int {\bf getNodeNumber} (void) const 
+\item 
+const int {\bf getMaxNodeNumber} (void) const 
+\item 
+const int {\bf getMaxRamSize} (void) const 
+\item 
+const Stats $\ast$ {\bf getStats} (void) const 
+\item 
+void {\bf resolve} (void)
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf OPENTABLE\_\-SIZE}
+\item 
+int {\bf CLOSETABLE\_\-SIZE}
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+bool {\bf notLimited} (char $\ast$message) const 
+\item 
+bool {\bf notFinished} (char $\ast$message) const 
+\item 
+bool {\bf solutionFound} (char $\ast$message) const 
+\item 
+void {\bf saveSolution} (Solver $\ast$solver)
+\item 
+bool {\bf alreadySolved} ()
+\item 
+int {\bf initInitialCost} ()
+\item 
+int {\bf createInitialCost} ()
+\item 
+int {\bf loadInitialCost} (char $\ast$fileName)
+\item 
+void {\bf saveInitialCost} (int cost)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+Base $\ast$ {\bf base}
+\item 
+{\bf Level} $\ast$ {\bf level}
+\item 
+int {\bf nodeNumber}
+\item 
+int {\bf maxNodeNumber}
+\item 
+int {\bf maxRamSize}
+\item 
+int {\bf deadlockedBoxesSearch}
+\item 
+bool {\bf onlyPushNumber}
+\item 
+bool {\bf quickSearch}
+\item 
+Stats $\ast$ {\bf stats}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+IDA$\ast$ algorithm based on best pushes number. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BotIDA@{BotIDA}!BotIDA@{BotIDA}}
+\index{BotIDA@{BotIDA}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotIDA::BotIDA (Base $\ast$ {\em base}, {\bf Level} $\ast$ {\em level}, int {\em maxNodeNumber}, int {\em maxRamSize}, int {\em openTableSize} = {\tt 870967}, int {\em closeTableSize} = {\tt 51827}, int {\em deadlockedBoxesSearch} = {\tt 2}, bool {\em onlyPushNumber} = {\tt false}, bool {\em quickSearch} = {\tt false})}\label{classBotIDA_135ad4c78649b0ac29fcf04e1c7ab176}
+
+
+Constructor for a solver of a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em base}]main class of the game \item[{\em level}]\doxyref{Level}{p.}{classLevel} to be used \item[{\em maxNodeNumber}]Limit number of nodes to explore \item[{\em maxRamSize}]Limit max ram size to allocate \item[{\em openTableSize}]size of Open Table to allocate (hashtable) \item[{\em closeTableSize}]size of Close Table to allocate (hashtable) \item[{\em limit}]of accepted f(x). if costLimit = -1, costLimit = +infinity \item[{\em deadlockedBoxesSearch}]number of boxes to use when testing every possible positions of deadlock \item[{\em onlyPushNumber}]only keep number of pushes in Stats object. don't generate solution \doxyref{Path}{p.}{classPath} (CPU saving for deadlocks and penalties) \item[{\em quickSearch}]don't test penalties of every nodes before adding it on the tree \end{description}
+\end{Desc}
+\index{BotIDA@{BotIDA}!~BotIDA@{$\sim$BotIDA}}
+\index{~BotIDA@{$\sim$BotIDA}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}BotIDA::$\sim$BotIDA ()\hspace{0.3cm}{\tt  [virtual]}}\label{classBotIDA_c6bdc03c34baa5ccbe9908aad6daec29}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{BotIDA@{BotIDA}!getBase@{getBase}}
+\index{getBase@{getBase}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Base$\ast$ BotIDA::getBase (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotIDA_6f3eb9f9d2a851b4531b979222da7dc2}
+
+
+Main class of the game \index{BotIDA@{BotIDA}!getLevel@{getLevel}}
+\index{getLevel@{getLevel}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const {\bf Level}$\ast$ BotIDA::getLevel (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotIDA_42942d768ccbe7a2fa09b618349753a0}
+
+
+\doxyref{Level}{p.}{classLevel} assigned to solver \index{BotIDA@{BotIDA}!getNodeNumber@{getNodeNumber}}
+\index{getNodeNumber@{getNodeNumber}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const int BotIDA::getNodeNumber (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotIDA_8b2f778666d41522fea586bfe942b551}
+
+
+nodeNumber \index{BotIDA@{BotIDA}!getMaxNodeNumber@{getMaxNodeNumber}}
+\index{getMaxNodeNumber@{getMaxNodeNumber}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const int BotIDA::getMaxNodeNumber (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotIDA_a6de6c643886a74a180489e0394136b8}
+
+
+maximum \doxyref{Node}{p.}{classNode} Number \index{BotIDA@{BotIDA}!getMaxRamSize@{getMaxRamSize}}
+\index{getMaxRamSize@{getMaxRamSize}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const int BotIDA::getMaxRamSize (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotIDA_3319e1c754b776703f5ec4f090962ea7}
+
+
+maximum ram size \index{BotIDA@{BotIDA}!getStats@{getStats}}
+\index{getStats@{getStats}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const Stats$\ast$ BotIDA::getStats (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classBotIDA_e7b8dd247539f235ef742063e9b55210}
+
+
+stats of this level \index{BotIDA@{BotIDA}!resolve@{resolve}}
+\index{resolve@{resolve}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotIDA::resolve (void)}\label{classBotIDA_4f3cc571bb603d2d7487db21cb1606e5}
+
+
+Start to resolve with parameters given to constructor \index{BotIDA@{BotIDA}!notLimited@{notLimited}}
+\index{notLimited@{notLimited}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotIDA::notLimited (char $\ast$ {\em message}) const\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_68af61458cf8e943d47c6e462e8e6e93}
+
+
+Test if message say solution is not found because not enough ram or nodeNumber limited \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em message}]message of previous solving \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if message say \char`\"{}not limited\char`\"{} \end{Desc}
+\index{BotIDA@{BotIDA}!notFinished@{notFinished}}
+\index{notFinished@{notFinished}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotIDA::notFinished (char $\ast$ {\em message}) const\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_93d4621fcdb45d49162d05827d8de8f9}
+
+
+Test if message say solution is found or max limit reached \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em message}]message of previous solving \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if message say solution is not found and limit not reached \end{Desc}
+\index{BotIDA@{BotIDA}!solutionFound@{solutionFound}}
+\index{solutionFound@{solutionFound}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotIDA::solutionFound (char $\ast$ {\em message}) const\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_22a66104895895cb160c1601a0e4d22b}
+
+
+Test if message say solution is found \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em message}]message of previous solving \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if message say solution is found \end{Desc}
+\index{BotIDA@{BotIDA}!saveSolution@{saveSolution}}
+\index{saveSolution@{saveSolution}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotIDA::saveSolution (Solver $\ast$ {\em solver})\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_4684756dd37d00ec7f66763376c7c35c}
+
+
+Save solution of this solver iteration \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em solver}]solver with solution \end{description}
+\end{Desc}
+\index{BotIDA@{BotIDA}!alreadySolved@{alreadySolved}}
+\index{alreadySolved@{alreadySolved}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool BotIDA::alreadySolved ()\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_9c046efffa6d14471d4f05548a1394a0}
+
+
+Test if a file named \char`\"{}IDASolution.dat\char`\"{} exists in the level repertory \begin{Desc}
+\item[Returns:]true if a file already exists (so, level is solved), false if not \end{Desc}
+\index{BotIDA@{BotIDA}!initInitialCost@{initInitialCost}}
+\index{initInitialCost@{initInitialCost}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotIDA::initInitialCost ()\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_84c8b45a703818136c33fa5e6b047a63}
+
+
+Initialize correct iteration cost of IDA$\ast$ from a file or directly generated. \begin{Desc}
+\item[Returns:]initial cost \end{Desc}
+\index{BotIDA@{BotIDA}!createInitialCost@{createInitialCost}}
+\index{createInitialCost@{createInitialCost}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotIDA::createInitialCost ()\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_79d2bd005c173041db752ab9893243dd}
+
+
+Generate correct iteration cost of IDA$\ast$ \begin{Desc}
+\item[Returns:]initial cost \end{Desc}
+\index{BotIDA@{BotIDA}!loadInitialCost@{loadInitialCost}}
+\index{loadInitialCost@{loadInitialCost}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int BotIDA::loadInitialCost (char $\ast$ {\em fileName})\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_9564492b5db9fb4e3a9090468eac44a6}
+
+
+Load correct iteration cost of IDA$\ast$ from a file \begin{Desc}
+\item[Returns:]initial cost \end{Desc}
+\index{BotIDA@{BotIDA}!saveInitialCost@{saveInitialCost}}
+\index{saveInitialCost@{saveInitialCost}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void BotIDA::saveInitialCost (int {\em cost})\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_7a0cb1a79b56beec61db704abd1dcf6c}
+
+
+Save last iteration cost of IDA$\ast$ to a file \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cost}]cost \end{description}
+\end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{BotIDA@{BotIDA}!base@{base}}
+\index{base@{base}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Base$\ast$ {\bf BotIDA::base}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_d2b2a574926d5c24bf9dfc19780c60b9}
+
+
+Main class of the game \index{BotIDA@{BotIDA}!level@{level}}
+\index{level@{level}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Level}$\ast$ {\bf BotIDA::level}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_5bdcd0165505beefbbc501b656990a6e}
+
+
+Initial level we want to solve \index{BotIDA@{BotIDA}!nodeNumber@{nodeNumber}}
+\index{nodeNumber@{nodeNumber}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotIDA::nodeNumber}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_1f35d9dff22c37f1fcc11fbd5f308e76}
+
+
+Number of explored nodes \index{BotIDA@{BotIDA}!maxNodeNumber@{maxNodeNumber}}
+\index{maxNodeNumber@{maxNodeNumber}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotIDA::maxNodeNumber}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_9ca512906d5b558a3da547ab6a5bfc0d}
+
+
+Max number of explored nodes \index{BotIDA@{BotIDA}!maxRamSize@{maxRamSize}}
+\index{maxRamSize@{maxRamSize}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotIDA::maxRamSize}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_e783bc037edf59476c58b7268b27a0ec}
+
+
+Max allowed ram size \index{BotIDA@{BotIDA}!deadlockedBoxesSearch@{deadlockedBoxesSearch}}
+\index{deadlockedBoxesSearch@{deadlockedBoxesSearch}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotIDA::deadlockedBoxesSearch}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_064bf882a9e50206a7790ca8b54984d1}
+
+
+number of boxes to use when testing every possible positions of deadlock \index{BotIDA@{BotIDA}!onlyPushNumber@{onlyPushNumber}}
+\index{onlyPushNumber@{onlyPushNumber}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool {\bf BotIDA::onlyPushNumber}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_cb252dd7246bd22dbffe030b7698558d}
+
+
+Only get push number but not the path \index{BotIDA@{BotIDA}!quickSearch@{quickSearch}}
+\index{quickSearch@{quickSearch}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool {\bf BotIDA::quickSearch}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_54ef95f326b53cfc0315e1b8cc3996c6}
+
+
+Test penalties of every nodes \index{BotIDA@{BotIDA}!stats@{stats}}
+\index{stats@{stats}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Stats$\ast$ {\bf BotIDA::stats}\hspace{0.3cm}{\tt  [protected]}}\label{classBotIDA_d305aedfdd12fdbf0380bb059b1dc731}
+
+
+Stats of this solving \index{BotIDA@{BotIDA}!OPENTABLE_SIZE@{OPENTABLE\_\-SIZE}}
+\index{OPENTABLE_SIZE@{OPENTABLE\_\-SIZE}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotIDA::OPENTABLE\_\-SIZE}}\label{classBotIDA_bb135ddfcf11efe8796ac4420727cf5a}
+
+
+Name of this solver Size of hashtable \index{BotIDA@{BotIDA}!CLOSETABLE_SIZE@{CLOSETABLE\_\-SIZE}}
+\index{CLOSETABLE_SIZE@{CLOSETABLE\_\-SIZE}!BotIDA@{BotIDA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf BotIDA::CLOSETABLE\_\-SIZE}}\label{classBotIDA_60036c8adfe602aae310dc5455a0dc85}
+
+
+Size of hashtable 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/BotIDA/BotIDA.h\item 
+src/Solver/BotIDA/BotIDA.cpp\end{CompactItemize}

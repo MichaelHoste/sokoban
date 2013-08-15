@@ -1,0 +1,491 @@
+\section{Zone Class Reference}
+\label{classZone}\index{Zone@{Zone}}
+Binary representation of positions in a level.  
+
+
+{\tt \#include $<$Zone.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Zone} (const {\bf Zone} $\ast${\bf zone})
+\item 
+{\bf Zone} (FILE $\ast$file, int numberOfPositions)
+\item 
+{\bf Zone} (int numberOfPositions)
+\item 
+{\bf Zone} (const {\bf Zone} $\ast$zone1, const {\bf Zone} $\ast$zone2, int operation)
+\item 
+{\bf Zone} (const {\bf Level} $\ast$level, const int $\ast$levelToZonePos, const int $\ast$zoneToLevelPos, const int {\bf length}, const int operation)
+\item 
+{\bf Zone} (const {\bf Zone} $\ast$boxes, const int startPos, const int $\ast$levelToZonePos, int colsNumber)
+\item 
+{\bf $\sim$Zone} ()
+\item 
+int {\bf getLength} (void) const 
+\item 
+const unsigned int $\ast$ {\bf getZoneTab} (void) const 
+\item 
+int {\bf getNumberCell} (void) const 
+\item 
+void {\bf print} (void) const 
+\item 
+void {\bf print} (const {\bf Level} $\ast$level, const int $\ast$levelToZonePos) const 
+\item 
+int {\bf readPos} (const int pos) const 
+\item 
+void {\bf write1ToPos} (const int pos) const 
+\item 
+void {\bf write0ToPos} (const int pos) const 
+\item 
+bool {\bf isEgal} (const {\bf Zone} $\ast$otherZone) const 
+\item 
+bool {\bf isFullOf0} () const 
+\item 
+bool {\bf isFullOf1} () const 
+\item 
+bool {\bf isIncludedIn} (const {\bf Zone} $\ast$anotherZone) const 
+\item 
+int {\bf getNumberOf1} () const 
+\item 
+{\bf Zone} $\ast$ {\bf applyOrWith} ({\bf Zone} $\ast$otherZone)
+\item 
+{\bf Zone} $\ast$ {\bf applyAndWith} ({\bf Zone} $\ast$otherZone)
+\item 
+{\bf Zone} $\ast$ {\bf applyXorWith} ({\bf Zone} $\ast$otherZone)
+\item 
+{\bf Zone} $\ast$ {\bf applyNot} ()
+\item 
+{\bf Zone} $\ast$ {\bf applyMinusWith} ({\bf Zone} $\ast$otherZone)
+\item 
+void {\bf saveInFile} (FILE $\ast$file)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf makeBoxesZone} (const {\bf Level} $\ast$level, const int $\ast$zoneToLevelPos)
+\item 
+void {\bf makePusherZone} (const {\bf Level} $\ast$level, const int $\ast$levelToZonePos, const int $\ast$zoneToLevelPos)
+\item 
+void {\bf recursiveMakePusherZone} (const {\bf Zone} $\ast$boxes, const int startPos, const int $\ast$levelToZonePos, const int colsNumber)
+\item 
+void {\bf makeDeadlockZone} (const {\bf Level} $\ast$level, const int $\ast$levelToZonePos, const int $\ast$zoneToLevelPos)
+\item 
+void {\bf makeCornerDeadlockZone} (const {\bf Level} $\ast$level, const int $\ast$zoneToLevelPos)
+\item 
+void {\bf makeLineDeadlockZone} (const {\bf Level} $\ast$level, const int $\ast$levelToZonePos, const int $\ast$zoneToLevelPos)
+\item 
+void {\bf makeGoalZone} (const {\bf Level} $\ast$level, const int $\ast$zoneToLevelPos)
+\item 
+void {\bf makeORZone} (const {\bf Zone} $\ast$zone1, const {\bf Zone} $\ast$zone2)
+\item 
+void {\bf makeANDZone} (const {\bf Zone} $\ast$zone1, const {\bf Zone} $\ast$zone2)
+\item 
+void {\bf makeXORZone} (const {\bf Zone} $\ast$zone1, const {\bf Zone} $\ast$zone2)
+\item 
+void {\bf makeNOTZone} (const {\bf Zone} $\ast$zone1)
+\item 
+void {\bf copyZone} (const {\bf Zone} $\ast$source)
+\item 
+bool {\bf isInCorner} (const {\bf Level} $\ast$level, const int pos) const 
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+unsigned int $\ast$ {\bf zone}
+\item 
+int {\bf length}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Binary representation of positions in a level. 
+
+Can be used to represent boxes zone, pusher move zone, deadlocks zone or goals zone.
+
+\doxyref{Zone}{p.}{classZone} is stocked in a unsigned integer tab (unsigned int = 2 or 4 bits depending of the CPU). Each \char`\"{}usefull\char`\"{} cell of the level (see zoneToLevelPos from solver) corresponds to 1 bit. If this bit is \char`\"{}1\char`\"{} then there is a \char`\"{}box/possible move/deadlock/goal\char`\"{} on this position depending of the wanted action.
+
+Boxes zone representation : 1 if there is a box in this zone position, 0 if not Goals zone representation : 1 if there is a goal in this zone position, 0 if not Deadlock zone representation : 1 if there is a deadlock when a box is in this zone position, 0 if not Pusher move zone representation : 1 if pusher can move on this position OR if this is a box position just next a place where pusher can move, 0 if not 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Zone@{Zone}!Zone@{Zone}}
+\index{Zone@{Zone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Zone::Zone (const {\bf Zone} $\ast$ {\em zone})}\label{classZone_595bc54882b6d94f0a1184bf848b7174}
+
+
+Constructor for a zone copied from an existing zone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em zone}]zone we want to copy \end{description}
+\end{Desc}
+\index{Zone@{Zone}!Zone@{Zone}}
+\index{Zone@{Zone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Zone::Zone (FILE $\ast$ {\em file}, int {\em numberOfPositions})}\label{classZone_600ce64469f1cbf58d620f5f7dd773cc}
+
+
+Constructor to create a zone from a opened file \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em file}]handle to opened file \item[{\em numberOfPositions}]number of needed positions to store this zone \end{description}
+\end{Desc}
+\index{Zone@{Zone}!Zone@{Zone}}
+\index{Zone@{Zone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Zone::Zone (int {\em numberOfPositions})}\label{classZone_e9bb45c3f260c213b013b72871113291}
+
+
+Constructor to create a zone with a certain number of free positions \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em numberOfPositions}]number of needed positions to store this zone \end{description}
+\end{Desc}
+\index{Zone@{Zone}!Zone@{Zone}}
+\index{Zone@{Zone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Zone::Zone (const {\bf Zone} $\ast$ {\em zone1}, const {\bf Zone} $\ast$ {\em zone2}, int {\em operation})}\label{classZone_d35bffbeee3126416d7fbbdb5619388f}
+
+
+Constructor for a zone based on a binary operation on others zones \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em zone1}]first zone in binary operation \item[{\em zone2}]second zone in binary operation \item[{\em operation}]Kind of binary operation you want to make : Zone::USE\_\-OR new zone will be the result of an OR operation between zone1 and zone2 Zone::USE\_\-AND new zone will be the result of an AND operation between zone1 and zone2 Zone::USE\_\-XOR new zone will be the result of an XOR operation between zone1 and zone2 Zone::USE NOT new zone will be the result of an NOT operation apply on zone1. zone2 is not used in this case and can be NULL. \end{description}
+\end{Desc}
+\index{Zone@{Zone}!Zone@{Zone}}
+\index{Zone@{Zone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Zone::Zone (const {\bf Level} $\ast$ {\em level}, const int $\ast$ {\em levelToZonePos}, const int $\ast$ {\em zoneToLevelPos}, const int {\em length}, const int {\em operation})}\label{classZone_9a4680b877cc4a286be9a334fe43db0b}
+
+
+Constructor for a zone based on a level state \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]original level we want to make zones from it \item[{\em levelToZonePos}]link between real positions and zone positions \item[{\em zoneToLevelPos}]link between zone positions and real positions in the level \item[{\em length}]Number of cells in zoneToLevelPos (number of bits needed) \item[{\em operation}]Kind of zone we want to make : Zone::PROCESS\_\-BOXES if we want to save positions of boxes in the zone Zone::PROCESS\_\-PUSHER if we want to save possibilities of move of the pusher Zone::PROCESS\_\-DEADLOCK if we want to save every places where a deadlock appears if a box is on it. Zone::PROCESS\_\-GOAL if we want to save every goal places \end{description}
+\end{Desc}
+\index{Zone@{Zone}!Zone@{Zone}}
+\index{Zone@{Zone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Zone::Zone (const {\bf Zone} $\ast$ {\em boxes}, const int {\em startPos}, const int $\ast$ {\em levelToZonePos}, int {\em colsNumber})}\label{classZone_20b850b82ac29274369b2a614f92252d}
+
+
+Constructor for pusher zone based on a boxes zone and a starting position \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em boxes}]Boxes zone of the level we want to make pusher zone \item[{\em startPos}]Starting position of the pusher (level representation) \item[{\em levelToZonePos}]Link between real positions and zone positions \item[{\em colsNumber}]Number of cols in level \end{description}
+\end{Desc}
+\index{Zone@{Zone}!~Zone@{$\sim$Zone}}
+\index{~Zone@{$\sim$Zone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Zone::$\sim$Zone ()}\label{classZone_562607cb5c4120a9316c5e967a5c610b}
+
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{Zone@{Zone}!getLength@{getLength}}
+\index{getLength@{getLength}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Zone::getLength (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classZone_2b0535a445f055b07182053a03cb138e}
+
+
+Number of positions in the zone \index{Zone@{Zone}!getZoneTab@{getZoneTab}}
+\index{getZoneTab@{getZoneTab}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const unsigned int$\ast$ Zone::getZoneTab (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classZone_3597b21ed9b3e28d5a21125424b5ba8a}
+
+
+Binary representation of the zone \index{Zone@{Zone}!getNumberCell@{getNumberCell}}
+\index{getNumberCell@{getNumberCell}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Zone::getNumberCell (void) const\hspace{0.3cm}{\tt  [inline]}}\label{classZone_bc147f33c3c106fab7d5667e33c3ba50}
+
+
+Calculate number of cells usefull to represent this zone \index{Zone@{Zone}!print@{print}}
+\index{print@{print}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::print (void) const}\label{classZone_5948d6ad11329da7f6c6d48fbe9cb167}
+
+
+Print a zone in integer and binary mode \index{Zone@{Zone}!print@{print}}
+\index{print@{print}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::print (const {\bf Level} $\ast$ {\em level}, const int $\ast$ {\em levelToZonePos}) const}\label{classZone_0908e4e69df5d99cfd369e3ce5f31d60}
+
+
+Print a zone in its level form \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]original level corresponding to the zone \item[{\em levelToZonePos}]Translation table between level and zone \end{description}
+\end{Desc}
+\index{Zone@{Zone}!readPos@{readPos}}
+\index{readPos@{readPos}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Zone::readPos (const int {\em pos}) const\hspace{0.3cm}{\tt  [inline]}}\label{classZone_117f797fa5b56658f581dca46eb3d21a}
+
+
+Read position \char`\"{}pos\char`\"{} of the zone and return 1 or 0 depending of the bit state at this position \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]Position we want to read 0 $<$= pos $<$ NumberCell()$\ast$sizeof(unsigned int) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]bit value or -1 if invalid pos \end{Desc}
+\index{Zone@{Zone}!write1ToPos@{write1ToPos}}
+\index{write1ToPos@{write1ToPos}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::write1ToPos (const int {\em pos}) const}\label{classZone_3079c66162f087db9f10cb3c0a97df2b}
+
+
+Set binary number '1' in the position \char`\"{}pos\char`\"{} of the zone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]Position where we want to set 1 0 $<$= pos $<$ NumberCell()$\ast$sizeof(unsigned int) \end{description}
+\end{Desc}
+\index{Zone@{Zone}!write0ToPos@{write0ToPos}}
+\index{write0ToPos@{write0ToPos}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::write0ToPos (const int {\em pos}) const}\label{classZone_b469d85326ac9096a5501a0d30f36c5c}
+
+
+Set binary number '0' in the position \char`\"{}pos\char`\"{} of the zone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]Position where we want to set 1 0 $<$= pos $<$ NumberCell()$\ast$sizeof(unsigned int) \end{description}
+\end{Desc}
+\index{Zone@{Zone}!isEgal@{isEgal}}
+\index{isEgal@{isEgal}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Zone::isEgal (const {\bf Zone} $\ast$ {\em otherZone}) const}\label{classZone_e46007fdce2e005a70f1e3870c8ff69e}
+
+
+Test if this zone is egal to another zone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em otherZone}]Other zone we want to compare to this \doxyref{Zone}{p.}{classZone} object WARNING : 2 zones must have same lengths ! \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if zone is the same, false if not \end{Desc}
+\index{Zone@{Zone}!isFullOf0@{isFullOf0}}
+\index{isFullOf0@{isFullOf0}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Zone::isFullOf0 () const}\label{classZone_714a59595d312aaa57231f2ec2aa89cf}
+
+
+Test if a zone is full of 0 : every bits (and so cells) are egal to 0 \begin{Desc}
+\item[Returns:]true if zone is full of 0 \end{Desc}
+\index{Zone@{Zone}!isFullOf1@{isFullOf1}}
+\index{isFullOf1@{isFullOf1}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Zone::isFullOf1 () const}\label{classZone_671a3b79c2b97088ec6e1a65f5016243}
+
+
+Test if a zone is full of 1 : every bits are egal to 1 \begin{Desc}
+\item[Returns:]true if zone is full of 1 \end{Desc}
+\index{Zone@{Zone}!isIncludedIn@{isIncludedIn}}
+\index{isIncludedIn@{isIncludedIn}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Zone::isIncludedIn (const {\bf Zone} $\ast$ {\em anotherZone}) const}\label{classZone_1397ccb01645be99161cff98e84fbbe9}
+
+
+Test if a zone is included in another zone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em anotherZone}]zone where this zone is included or not \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if it's included, false if not \end{Desc}
+\index{Zone@{Zone}!getNumberOf1@{getNumberOf1}}
+\index{getNumberOf1@{getNumberOf1}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int Zone::getNumberOf1 () const}\label{classZone_1ce708721d3ee07141bbac29f9fe4fb2}
+
+
+Return number of 1 in this zone \begin{Desc}
+\item[Returns:]number of 1 in this zone \end{Desc}
+\index{Zone@{Zone}!applyOrWith@{applyOrWith}}
+\index{applyOrWith@{applyOrWith}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone} $\ast$ Zone::applyOrWith ({\bf Zone} $\ast$ {\em otherZone})}\label{classZone_3530e38a0a99204d4a7c56936974c7cc}
+
+
+Make a zone representation resulting of a binary operation OR between this zone and the other zone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em otherZone}]\doxyref{Zone}{p.}{classZone} to make binary operation with \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]resulting zone (this zone that's actually modified) \end{Desc}
+\index{Zone@{Zone}!applyAndWith@{applyAndWith}}
+\index{applyAndWith@{applyAndWith}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone} $\ast$ Zone::applyAndWith ({\bf Zone} $\ast$ {\em otherZone})}\label{classZone_7ac8ed17918caf44163a0bc10ff0b51c}
+
+
+Make a zone representation resulting of a binary operation AND between this zone and the other zone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em otherZone}]\doxyref{Zone}{p.}{classZone} to make binary operation with \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]resulting zone (this zone that's actually modified) \end{Desc}
+\index{Zone@{Zone}!applyXorWith@{applyXorWith}}
+\index{applyXorWith@{applyXorWith}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone} $\ast$ Zone::applyXorWith ({\bf Zone} $\ast$ {\em otherZone})}\label{classZone_0cc9a0b7231c6d44724415b8ed2b841f}
+
+
+Make a zone representation resulting of a binary operation XOR between this zone and the other zone \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em otherZone}]\doxyref{Zone}{p.}{classZone} to make binary operation with \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]resulting zone (this zone that's actually modified) \end{Desc}
+\index{Zone@{Zone}!applyNot@{applyNot}}
+\index{applyNot@{applyNot}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone} $\ast$ Zone::applyNot ()}\label{classZone_687b4ecfa7991810cce547b47c35cc27}
+
+
+Make a zone representation resulting of a binary operation XOR between this zone and the other zone \begin{Desc}
+\item[Returns:]resulting zone (this zone that's actually modified) \end{Desc}
+\index{Zone@{Zone}!applyMinusWith@{applyMinusWith}}
+\index{applyMinusWith@{applyMinusWith}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Zone} $\ast$ Zone::applyMinusWith ({\bf Zone} $\ast$ {\em otherZone})}\label{classZone_3ca3269a31ce68ec94062c6ca19ac7f1}
+
+
+Make a zone representation resulting of a MINUS binary operation between this zone and the other zone \begin{Desc}
+\item[Returns:]resulting zone (this zone that's actually modified) \end{Desc}
+\index{Zone@{Zone}!saveInFile@{saveInFile}}
+\index{saveInFile@{saveInFile}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::saveInFile (FILE $\ast$ {\em file})}\label{classZone_2b4a1a4ff0653ae2af7cf1180d78b014}
+
+
+Save this zone directly into a file \index{Zone@{Zone}!makeBoxesZone@{makeBoxesZone}}
+\index{makeBoxesZone@{makeBoxesZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeBoxesZone (const {\bf Level} $\ast$ {\em level}, const int $\ast$ {\em zoneToLevelPos})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_5fb388d64ff0d460cbbc582d1c084d75}
+
+
+Make a zone representation of boxes positions in a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]\doxyref{Level}{p.}{classLevel} we want to make zone \item[{\em zoneToLevelPos}]Link between zone positions and real positions in the level \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makePusherZone@{makePusherZone}}
+\index{makePusherZone@{makePusherZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makePusherZone (const {\bf Level} $\ast$ {\em level}, const int $\ast$ {\em levelToZonePos}, const int $\ast$ {\em zoneToLevelPos})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_23384b0021ff0df9b35a418741f6c81e}
+
+
+Make a zone representation of pusher possible moves in a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]\doxyref{Level}{p.}{classLevel} we want to make zone \item[{\em levelToZonePos}]Link between level positions and zone positions \item[{\em zoneToLevelPos}]Link between zone positions and real positions in the level \end{description}
+\end{Desc}
+\index{Zone@{Zone}!recursiveMakePusherZone@{recursiveMakePusherZone}}
+\index{recursiveMakePusherZone@{recursiveMakePusherZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::recursiveMakePusherZone (const {\bf Zone} $\ast$ {\em boxes}, const int {\em startPos}, const int $\ast$ {\em levelToZonePos}, const int {\em colsNumber})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_7a3c83e3ed7422ea767fc93e9d1ee4e4}
+
+
+Recursively make a zone representation of pusher possible moves in a level \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em boxes}]\doxyref{Zone}{p.}{classZone} representation of boxes in this level \item[{\em startPos}]Starting position (level representation) of the pusher \item[{\em levelToZonePos}]Link between level positions and zone positions \item[{\em colsNumber}]Number of cols in level \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makeDeadlockZone@{makeDeadlockZone}}
+\index{makeDeadlockZone@{makeDeadlockZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeDeadlockZone (const {\bf Level} $\ast$ {\em level}, const int $\ast$ {\em levelToZonePos}, const int $\ast$ {\em zoneToLevelPos})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_4e9fdbc9daab3bbda6d8c9b75a2fd04d}
+
+
+Make a zone representation of places where deadlocks appear if a box is on it \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]\doxyref{Level}{p.}{classLevel} we want to make zone \item[{\em levelToZonePos}]Link between level positions and zone positions \item[{\em zoneToLevelPos}]Link between zone positions and real positions in the level \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makeCornerDeadlockZone@{makeCornerDeadlockZone}}
+\index{makeCornerDeadlockZone@{makeCornerDeadlockZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeCornerDeadlockZone (const {\bf Level} $\ast$ {\em level}, const int $\ast$ {\em zoneToLevelPos})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_0a3508a2f32543d96a1e3f134ab8a292}
+
+
+This function add corner deadlocks to deadlock zone. This happened when there is a box in a corner made by walls \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]\doxyref{Level}{p.}{classLevel} we want to make zone \item[{\em zoneToLevelPos}]Link between zone positions and real positions in the level \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makeLineDeadlockZone@{makeLineDeadlockZone}}
+\index{makeLineDeadlockZone@{makeLineDeadlockZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeLineDeadlockZone (const {\bf Level} $\ast$ {\em level}, const int $\ast$ {\em levelToZonePos}, const int $\ast$ {\em zoneToLevelPos})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_dd0a47a68ad20ef2d04c149275c00a36}
+
+
+This function add line deadlocks to deadlock zone. This happened when there is a box next a wall and no way to remove it (escape move) You must apply this function AFTER the use of function makeCornerDeadlockZone because we need corner positions. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]\doxyref{Level}{p.}{classLevel} we want to make zone \item[{\em levelToZonePos}]Link between level positions and zone positions \item[{\em zoneToLevelPos}]Link between zone positions and real positions in the level \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makeGoalZone@{makeGoalZone}}
+\index{makeGoalZone@{makeGoalZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeGoalZone (const {\bf Level} $\ast$ {\em level}, const int $\ast$ {\em zoneToLevelPos})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_391e4c1403bc1fceb4c1a95babe00c94}
+
+
+Make a zone representation of goal places \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]\doxyref{Level}{p.}{classLevel} we want to make zone \item[{\em zoneToLevelPos}]Link between zone positions and real positions in the level \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makeORZone@{makeORZone}}
+\index{makeORZone@{makeORZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeORZone (const {\bf Zone} $\ast$ {\em zone1}, const {\bf Zone} $\ast$ {\em zone2})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_48bfbd3e0c36b1bb368f847371990c54}
+
+
+Make a zone representation resulting of a binary operation OR \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em zone1}]first zone in binary operation \item[{\em zone2}]second zone in binary operation \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makeANDZone@{makeANDZone}}
+\index{makeANDZone@{makeANDZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeANDZone (const {\bf Zone} $\ast$ {\em zone1}, const {\bf Zone} $\ast$ {\em zone2})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_8038d1df3cbedcba1a876ace75f98d93}
+
+
+Make a zone representation resulting of a binary operation AND \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em zone1}]first zone in binary operation \item[{\em zone2}]second zone in binary operation \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makeXORZone@{makeXORZone}}
+\index{makeXORZone@{makeXORZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeXORZone (const {\bf Zone} $\ast$ {\em zone1}, const {\bf Zone} $\ast$ {\em zone2})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_122eefc299c4a3dcf2946ad7a45e6141}
+
+
+Make a zone representation resulting of a binary operation XOR \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em zone1}]first zone in binary operation \item[{\em zone2}]second zone in binary operation \end{description}
+\end{Desc}
+\index{Zone@{Zone}!makeNOTZone@{makeNOTZone}}
+\index{makeNOTZone@{makeNOTZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::makeNOTZone (const {\bf Zone} $\ast$ {\em zone1})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_f2833e539189382deaec4b17f04c9127}
+
+
+Make a zone representation resulting of a binary operation NOT \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em zone1}]first zone in binary operation \end{description}
+\end{Desc}
+\index{Zone@{Zone}!copyZone@{copyZone}}
+\index{copyZone@{copyZone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Zone::copyZone (const {\bf Zone} $\ast$ {\em source})\hspace{0.3cm}{\tt  [protected]}}\label{classZone_01ede35498a56be07a4de1fe216a41fe}
+
+
+Copy other zone in this object. Used by constructor. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em source}]zone to be copied in this object. \end{description}
+\end{Desc}
+\index{Zone@{Zone}!isInCorner@{isInCorner}}
+\index{isInCorner@{isInCorner}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Zone::isInCorner (const {\bf Level} $\ast$ {\em level}, const int {\em pos}) const\hspace{0.3cm}{\tt  [protected]}}\label{classZone_9fd32f0f497111930ed662def90986f5}
+
+
+return true if position is in a corner of level (corner with 2 walls) \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]\doxyref{Level}{p.}{classLevel} we want to test \item[{\em pos}]Position we want to test in the level \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if pos is in a corner of level, return false if not \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\index{Zone@{Zone}!zone@{zone}}
+\index{zone@{zone}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ {\bf Zone::zone}\hspace{0.3cm}{\tt  [protected]}}\label{classZone_bdd6e8deebb81352f9c7c6bb4674bfe4}
+
+
+binary representation of the zone \index{Zone@{Zone}!length@{length}}
+\index{length@{length}!Zone@{Zone}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Zone::length}\hspace{0.3cm}{\tt  [protected]}}\label{classZone_ee37b1a515e2ddd892f8611e0cb023f0}
+
+
+Number of positions in the zone 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+include/Solver/Zone.h\item 
+src/Solver/Zone.cpp\end{CompactItemize}
