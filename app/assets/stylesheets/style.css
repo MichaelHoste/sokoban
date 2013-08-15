@@ -133,7 +133,7 @@ body {
 	margin-left: 5px;
 	cursor:pointer;
 }
-#limited-content.master-thesis {
+body#pages-master_thesis #limited-content {
 	width:780px
 }
 #limited-banner {

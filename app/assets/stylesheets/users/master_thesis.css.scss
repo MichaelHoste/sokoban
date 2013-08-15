@@ -1,10 +1,8 @@
-#master_thesis{
+body#pages-master_thesis {
   div.toc {
-    margin: 2em 0em;
     border-style: solid;
     border-width: 1px 0px;
-    border-bottom:0px;
-    padding: 1em 0em;
+    border:0px;
   }
   div.tochead {
     font-size: x-large; font-weight: bold;
@@ -89,7 +87,7 @@
   h1.chapter {
     font-weight: bold;
     font-size: xx-large;
-    margin-top: 4ex;
+    margin-top: 2ex;
     margin-bottom: 0.8ex;
     text-align: left;
   }

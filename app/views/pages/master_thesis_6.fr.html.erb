@@ -1,0 +1,333 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 4</span> <a id='magicparlabel-2311' />
+Résolution</h1>
+<div class="standard"><a id='magicparlabel-2312' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2313' />
+</div>
+
+<div class="standard"><a id='magicparlabel-2318' />
+Sokoban est un problème de type <em>Single-Agent</em>. C'est-à-dire qu'un seul <em>agent</em> peut faire évoluer le jeu en permettant le passage d'un état à un autre. Dans le Sokoban, celui-ci est le pousseur. Ce type de problème n'est pas nouveau et des méthodes existent déjà pour transiter d'un état à un autre afin d'atteindre un état solution. Ces méthodes impliquent un <em>arbre de recherche</em> comme nous le verrons dans la Section <a href="#sec_Arbre_de_recherche">4.1</a>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2319' />
+Les méthodes existantes sont cependant très générales et peu efficaces dans le cas du Sokoban. En effet, elles devront être adaptées aux particularités de ce problème précis sans quoi nous n'obtiendrons que peu de résultats. La Section <a href="#sec___tat_de_l_art">4.2</a> détaille comment des études menées par différentes Universités ont déjà grandement amélioré les méthodes existantes.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2320' />
+Les méthodes Single-Agent et certaines des améliorations propres au Sokoban seront intégrées dans ce mémoire. Devant la quantité de techniques qui existent, un choix a dû être effectué pour sélectionner celles qui semblaient les plus prometteuses. De plus, certaines évolutions et alternatives seront proposées. Les décisions prises quant à ces techniques sont détaillées dans la Section <a href="#sec_Objectifs">4.3</a>.</div>
+<h2 class="section"><span class="section_label">4.1</span> <a id='magicparlabel-2321' />
+<a id="sec_Arbre_de_recherche" />
+Arbre de recherche</h2>
+<div class="standard"><a id='magicparlabel-2322' />
+Comme expliqué précédemment, la méthode de base pour résoudre un problème de Sokoban est la même que pour la plupart des problèmes de type Single-Agent. Il convient de commencer par définir un état initial. Cet <em>état initial</em> reprend la position du pousseur et celles des caisses dans le niveau. À partir de cet état et en respectant les règles du jeu, nous regardons toutes les transitions possibles vers de nouveaux états. Cette procédure est répétée récursivement pour tous les états et un <em>arbre de recherche</em> est ainsi construit. Lorsqu'un état est solution, il suffit de remonter dans l'arbre pour trouver le chemin menant de la racine à la solution.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2323' />
+Afin de limiter la taille de l'arbre de recherche, ce ne sont pas les mouvements du pousseur qui sont pris en compte mais les poussées des caisses. Les transitions entre un état et ses fils correspondent donc chaque fois à une succession de mouvements suivie d'une poussée comme indiqué sur la Figure <a href="#fig_Arbre_repr__sentant_les">4.1</a>. Cette couche d'abstraction nous permet d'arriver plus vite à un état solution mais ne nous garantit pas l'obtention de la solution optimale en terme de <em>mouvements</em>, seulement celle en terme de <em>poussées</em>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2324' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2328' />
+<img style='width:70%;' src='assets/master_thesis/20_Users_michael_Desktop_memoire_images_arbre_arbre.png' alt='image: 20_Users_michael_Desktop_memoire_images_arbre_arbre.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-2329' />
+<div class='float-caption float-caption-figure'>Figure 4.1:<div class="plain_layout"><a id='magicparlabel-2333' />
+<a id="fig_Arbre_repr__sentant_les" />
+Arbre représentant les poussées possibles d'un état</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-2334' />
+Nous avons vu qu'un état est représenté par la position du pousseur et des caisses. Les positions des murs et des goals ne sont pas stockées avec l'état car elles ne varient pas. Étant donné l'abstraction du nombre de mouvements du pousseur, nous pouvons généraliser la définition d'un état par :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-2335' />
+La position des caisses.</li>
+<li class="itemize_item"><a id='magicparlabel-2336' />
+Les positions qui peuvent être atteintes par le pousseur sans devoir pousser de caisses.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-2337' />
+On parle alors d'<em>état généralisé</em>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2338' />
+La position exacte du pousseur importe peu. Tant qu'il reste dans un ensemble de positions atteignables sans la moindre poussée, les futures poussées possibles à partir de cet état seront les mêmes. En généralisant la position du pousseur de la sorte, nous évitons de multiplier dans notre arbre les états qui ont des descendances identiques. Nous réduisons ainsi les branches potentielles à explorer. La Figure <a href="#fig_pusherzone">4.2</a> montre bien qu'un seul état généralisé correspond simultanément à plusieurs états sans perdre d'information et donc l'optimalité de la solution.</div>
+
+<div class="standard"><a id='magicparlabel-2339' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2343' />
+<img style='width:70%;' src='assets/master_thesis/21_Users_michael_Desktop_memoire_images_arbre_pusherzone.png' alt='image: 21_Users_michael_Desktop_memoire_images_arbre_pusherzone.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-2344' />
+<div class='float-caption float-caption-figure'>Figure 4.2:<div class="plain_layout"><a id='magicparlabel-2348' />
+<a id="fig_pusherzone" />
+L'état généralisé (en haut) correspond à un ensemble de 4 états (en bas). Peu importe l'état utilisé, les descendants seront identiques.</div>
+</div></div>
+</div>
+
+<h2 class="section"><span class="section_label">4.2</span> <a id='magicparlabel-2349' />
+<a id="sec___tat_de_l_art" />
+État de l'art</h2>
+<div class="standard"><a id='magicparlabel-2350' />
+Depuis l'apparition de Sokoban, celui-ci a été le sujet de nombreuses recherches qui ont conduit à la conception de <em>solveurs</em>. L'efficacité de ces solveurs est à chaque fois mise à l'épreuve sur le même ensemble de 90 niveaux. Cet ensemble regroupe les 50 niveaux de la première version de SokobanOriginalHighScore (<a href='#LyXCite-OriginalHighScore'>Pas d'année</a>) ainsi que 40 niveaux postérieursExtraHighScore (<a href='#LyXCite-ExtraHighScore'>Pas d'année</a>) dont la paternité semble appartenir à <em>Joseph L Traub</em>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2351' />
+Si un solveur réussit à résoudre plus de niveaux qu'un autre, cela ne signifie pas qu'il est <em>globalement</em> meilleur. En effet, notre ensemble de tests ne représente qu'une infime partie de l'ensemble des niveaux existants ou potentiels. Il constitue néanmoins une bonne base pour estimer l'efficacité d'un nouveau solveur.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2352' />
+La suite de ce chapitre détaille les avancées des solveurs les plus prometteurs de ces dernières années. Certaines notions abordées pourront paraître obscures pour un lecteur non averti. Qu'il se rassure, elles seront détaillées dans la suite de ce document.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2353' />
+Rolling Stone
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2354' />
+Le solveur <em>Rolling Stone</em> est certainement celui qui est le plus documenté à ce jour. Il provient de l'Université d'Alberta, Canada. Des recherches y ont été faites entre 1997 et 2001 et il en résulte une Thèse écrite par <em>Andreas Junghanns</em>Junghanns (<a href='#LyXCite-931399'>1999</a>) et de nombreuses publications d'articles sur des méthodes testées et plus ou moins efficaces. L'utilisation d'une méthode intelligente de parcours de l'arbre de recherche (IDA*) permet d'assurer l'optimalité de la solution en terme de poussées d'un niveau. De plus, de nombreuses méthodes de détection de deadlocks et de pénalités sont utilisées et réduisent considérablement la taille de l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2359' />
+Ces techniques, associées à une quantité d'optimisations, permettent à Rolling Stone, programmé en C, d'obtenir les solutions optimales de 57 niveaux sur les 90 testés.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2360' />
+Talking Stone
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2361' />
+Le solveur <em>Talking Stone</em> est plus récent et date de 2006. Il a été créé par <em>François Van Lishout</em> à l'Université de Liège, Belgique, dans le cadre d'un DEA en Sciences AppliquéesVan Lishout (<a href='#LyXCite-VL06'>2006</a>). Une nouvelle approche <em>Multi-Agent</em> est utilisée dans le but de faire interagir les éléments principaux du jeu – les caisses – entre-eux avec un objectif commun. <em>F. Van Lishout</em> est parvenu à trouver un algorithme permettant de résoudre les niveaux lorsque ceux-ci appartiennent à une certaine sous-classe prédéfinie. L'idée principale est qu'un niveau appartient à cette sous-classe si on peut trouver une association caisses-goals permettant de mettre, tour à tour, chaque caisse sur son goal. Cette méthode a cependant très vite montré ses limites car un seul niveau a ainsi pu être résolu.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2362' />
+L'évolution proposée est d'appliquer un parcours IDA* de l'arbre de recherche à la manière de Rolling Stone afin de trouver un état qui pourrait répondre aux conditions de la sous-classe. Grâce à cette amélioration, le solveur permet de résoudre 9 des 90 niveaux de base mais en utilisant très peu d'optimisations proposées par Rolling Stone. Un autre avantage est qu'il permet d'utiliser moins d'espace mémoire pour trouver une solution. Talking Stone est programmé en Scheme.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2363' />
+Talking Stone (2)
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2364' />
+Un autre solveur est apparu l'année suivante à Liège, toujours en Scheme et reprenant les principes de base de Talking Stone. Il a été créé par <em>Jean-Noël Demaret</em> dans le cadre de sa Deuxième LicenceDemaret (<a href='#LyXCite-DEM07'>2007</a>) et reprend l'approche Multi-Agent en l'améliorant et en insérant des optimisations propres au Sokoban. Il concrétise l'intérêt de l'approche de Talking Stone en résolvant 54 niveaux tout en laissant une légère marge de progression.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2365' />
+Son fonctionnement consiste en l'utilisation de 3 agents :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-2366' />
+Le premier détermine l'ordonnancement des goals en analysant la situation de jeu initiale.</li>
+<li class="itemize_item"><a id='magicparlabel-2367' />
+Le deuxième a pour objectif de placer les caisses sur les goals dans l'ordre défini par l'ordonnancement.</li>
+<li class="itemize_item"><a id='magicparlabel-2368' />
+Le troisième est responsable de la résolution d'un sous-problème consistant à placer une caisse sur son goal.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-2369' />
+Etant donné que cette façon de procéder repose sur un ordonnancement des goals qui dépend d'une certaine heuristique, les solutions trouvées seront souvent non-optimales. De quelques poussées à plusieurs dizaines de poussées supplémentaires pour résoudre certains niveaux, tel est le prix à payer pour trouver une solution. La rapidité du solveur pour en trouver une est néanmoins un atout indéniable.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2370' />
+Sokoban Automatic Solver
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2371' />
+Le solveur <em>Sokoban Automatic Solver</em> est certainement celui qui est le plus puissant à ce jour. Il est toujours en développement et sa première version semble dater de 2003. Malheureusement, il est non documenté et son code n'est pas disponible. Il est créé par le Japonais <em>Ken'ichiro Takahashi </em>et la version 7.2.2 de janvier 2008Takahashi (<a href='#LyXCite-AutomaticSolver'>Pas d'année</a>) permet de résoudre 86 des 90 problèmes proposés, ce qui est réellement impressionnant<em>.</em> Les solutions trouvées ne sont pas optimales ce qui laisse supposer qu'il utilise des heuristiques très précises pour réduire la taille de l'arbre de recherche.</div>
+<h2 class="section"><span class="section_label">4.3</span> <a id='magicparlabel-2372' />
+<a id="sec_Objectifs" />
+Contributions</h2>
+<div class="standard"><a id='magicparlabel-2373' />
+Aborder la conception d'un solveur n'est pas une chose aisée. Le domaine est vaste et a déjà été le sujet de nombreuses recherches. Pour éviter de se contenter de ce qui a déjà été trouvé, il est important de se poser régulièrement la question &ldquo;<em>quelle fonctionnalité puis-je ajouter pour essayer d'obtenir de meilleurs résultats ? </em>&rdquo; ou &ldquo;<em>comment puis-je améliorer un aspect déjà existant</em> ?&rdquo;. De plus, un tri doit être fait parmi les méthodes existantes car toutes les implémenter laisserait peu de temps pour des innovations personnelles.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2374' />
+Cette section présente les choix qui ont été faits dans le cadre de notre solveur ainsi que les nouvelles fonctionnalités et améliorations proposées.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2375' />
+Optimalité des solutions
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2376' />
+Avant même de commencer à concevoir un solveur, il convient de faire certains choix qui conditionneront les méthodes utilisées durant tout le développement. Un aspect mis en évidence par la précédente section concerne l'optimalité des solutions.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2377' />
+Les recherches menées à l'Université d'Alberta ont toujours respecté l'optimalité des solutions en évitant de supprimer des branches de l'arbre de recherche qui pourraient éventuellement contenir la solution optimale. À l'inverse, à l'Université de Liège, l'optimalité n'était pas une contrainte et de puissantes heuristiques ont pu être utilisées pour accélérer la découverte d'une bonne solution mais qui ne sera pas nécessairement optimale.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2378' />
+Nous avons fait le choix de respecter l'optimalité des solutions. Les techniques les plus avancées que nous utiliserons proviendront donc, principalement, de ce qui a été fait dans le cadre de Rolling Stone. Cependant, certaines techniques générales qui interviennent lors de la construction de l'arbre de recherche sont communes à toutes les recherches. C'est le cas des doublons et des deadlocks. Nous en parlerons de manière approfondie dans les chapitres suivants.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2379' />
+Si l'optimalité des solutions a autant d'importance à nos yeux, c'est avant tout parce qu'il est plus facile de passer d'un solveur optimal à un solveur non-optimal, en ajoutant certaines heuristiques, que l'inverse. De plus, parmi les solveurs dont les recherches ont été publiées, c'est malgré tout celui qui conserve l'optimalité qui obtient le plus de solutions.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2380' />
+Une autre raison à ne pas perdre de vue est que la mémoire vive était, il y a quelques années, une limitation qui poussait les programmeurs à réduire la taille de l'arbre de recherche. De nos jours, avec seulement 700mo de ram allouées, il est possible de travailler avec un arbre de recherche de plus de 5 millions de nœuds<div class="foot"><span class="foot_label">1</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-2384' />
+Selon notre implémentation du solveur et avec des niveaux de tailles moyennes</div>
+</div></div>. Un tel arbre devrait nous permettre de trouver les solutions optimales d'une bonne partie des niveaux de tailles et difficultés raisonnables. Bien entendu, travailler dans le cadre de solutions optimales ne signifie pas que nous ne devons pas tenter de réduire la taille de l'arbre de recherche. Les méthodes utilisées, cependant, ne supprimeront que les branches dont on peut affirmer qu'elles n'aboutiront pas à une solution optimale.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2385' />
+Zone
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2386' />
+Une <em>zone</em> est une technique qui consiste à représenter un ensemble de positions dans le niveau. Le concept de zone est apparu très tôt dans l'élaboration de notre solveur. Initialement prévu pour alléger l'espace de stockage de l'arbre de recherche, en utilisant des bits pour stocker les positions des caisses, il a très vite montré son efficacité dans bon nombre de situations. Il permet, entre autres, de trouver toutes les caisses que le pousseur peut déplacer dans un état en seulement quelques opérations sur des entiers. Étant donné que ces optimisations concernent les aspects les plus élémentaires d'un solveur, et donc les plus courants, elles s'avèrent très efficaces dans la pratique. Le concept de zone sera développé dans la Section <a href="#sec_Zone">5.5</a>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2387' />
+De plus, les zones permettent de représenter tous les ensembles de positions de la même manière et avec les mêmes outils. Ces ensembles de positions peuvent concerner les caisses, les goals, les positions du pousseur et bien d'autres situations que nous verrons plus tard. Cette façon uniforme de procéder permet une certaine abstraction qui permet de mieux cerner certains problèmes rencontrés.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2388' />
+Deadlock
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2389' />
+Concrètement, un deadlock est un état dont on peut affirmer, par l'une ou l'autre méthode (<em>cf.</em> Chapitre <a href="#cha_Deadlocks">8</a>), qu'il ne mènera pas à une solution. En d'autres mots, cet état est la racine d'un sous-arbre de l'arbre de recherche qu'il faut éviter de créer, au risque de faire croître inutilement la taille de l'arbre et augmenter le temps de résolution du problème.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2390' />
+Un certain nombre de techniques efficaces ont été implémentées à partir de méthodes décrites dans la Section <a href="#sec___tat_de_l_art">4.2</a>. Nous avons ajouté à celles-ci une nouvelle méthode permettant d'étendre la notion de deadlock à celle de <em>deadlock zone</em>. Cette méthode découle d'observations effectuées lors de l'utilisation du solveur sur certains niveaux et est décrite dans la Section <a href="#sub_Deadlock_Zone">8.2.2</a>.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2391' />
+Tables de coût et pénalités
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2392' />
+Une des méthodes les plus efficaces pour accélérer la recherche de solutions optimales consiste à estimer le nombre de poussées restantes pour qu'un état aboutisse à un état solution. Plus l'estimation est précise et plus les chances d'arriver rapidement à une solution augmentent. Afin d'estimer au mieux cette valeur, deux outils s'offrent à nous :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-2393' />
+les <em>tables des coûts</em> qui définissent, pour chaque position d'un niveau, le nombre de poussées nécessaires pour pousser une caisse se trouvant sur cette position vers chacune des autres positions.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-2394' />
+Les <em>pénalités</em> que l'on peut assigner à certains sous-ensembles de caisses qui se gênent mutuellement pour arriver à une solution. Il faut donc infliger un coût supplémentaire, et donc une pénalité, à tous les états qui comprennent ce sous-ensemble.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-2395' />
+Bien que ces outils ont déjà été utilisés dans de précédents travaux, un soin tout particulier a été apporté quant à leur implémentation. Plus les coûts et pénalités seront précis et plus le solveur sera performant. Nous avons laissé peu de place à l'approximation et nombre de cas particuliers ont été envisagés.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2396' />
+Pré-traitement / Post-traitement
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2397' />
+Nous définissons le <em>pré-traitement</em> par le travail effectué par le solveur sur un niveau <strong>avant</strong> de commencer à construire l'arbre de recherche. Le <em>post-traitement</em>, à l'opposé, est le travail effectué par le solveur sur un niveau <strong>après </strong>la construction de l'arbre de recherche. Ces techniques, idéalement, recherchent des résultats intermédiaires et les enregistrent dans un fichier. Ce fichier sera ensuite chargé lors de la prochaine utilisation du solveur et utilisé pour accélérer l'obtention de résultats.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2398' />
+Dans les précédentes recherches de la Section <a href="#sec___tat_de_l_art">4.2</a>, il semble n'y avoir eu que quelques cas de pré-traitement, notamment dans le cadre de l'utilisation de <em>Deadlock Tables</em> dans Junghanns (<a href='#LyXCite-931399'>1999</a>). Peut-être étaient-ils passés sous silence mais utilisés dans la pratique. Peut-être également que l'une des contraintes était de pouvoir recalculer les informations utiles <em>à la volée</em>. Quoi qu'il en soit, nous pensons que ces techniques sont intéressantes car <em>facultatives</em> et <em>persistantes</em>. Facultatives car il est possible d'utiliser le solveur sans utiliser de pré-traitement ni de post-traitement. Persistantes car une fois un traitement effectué, il peut être chargé instantanément lors d'une prochaine utilisation du solveur et être utilisé tel quel ou complété. </div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2399' />
+Langage de programmation
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2400' />
+Par le passé, les principaux solveurs ont été programmés en <em>C</em> (Université d'Alberta) et en <em>Scheme</em> (Université de Liège). Le langage C possède la particularité d'être de bas niveau, proche de la machine et très rapide. Le langage Scheme, au contraire, se situe à un plus haut niveau et met l'emphase sur les avantages de la programmation fonctionnelle. Ce dernier choix est judicieux pour la construction d'arbres car très porté sur l'utilisation de listes, et celles-ci sont fréquentes dans ce domaine.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2401' />
+Nous avons fait le choix de travailler en <em>C++</em>. Ce choix est avant tout motivé par la vitesse d'exécution de celui-ci. En effet, c'est d'un solveur dont il s'agit et la vitesse d'exécution joue donc un rôle crucial. Le C++, par rapport au C, est un rien plus lent mais comprend le paradigme objet qui est une avancée certaine en terme de facilité de programmation et de réutilisation. Le Java, qui est également orienté objet, a très vite été rejeté à cause de sa lenteur provoquée par la machine virtuelle ainsi que sa gestion aléatoire et peu flexible de la mémoire.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2402' />
+Le seul avantage apporté par Java aurait été sa portabilité. Ce n'est pas un problème car notre implémentation en C++ a été prévue pour être compilée<div class="foot"><span class="foot_label">2</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-2406' />
+avec le compilateur <em>G++</em> provenant de la <em>GNU Compiler Collection (GCC)</em></div>
+</div></div> et fonctionner correctement sur les différentes plates-formes que sont Linux, MacOS et Windows.
+<br />
+
+</div>
+
+</div>

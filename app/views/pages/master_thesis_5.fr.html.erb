@@ -1,0 +1,213 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 3</span> <a id='magicparlabel-2207' />
+Le Sokoban</h1>
+<div class="standard"><a id='magicparlabel-2208' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2209' />
+</div>
+<h2 class="section"><span class="section_label">3.1</span> <a id='magicparlabel-2214' />
+Historique</h2>
+<div class="standard"><a id='magicparlabel-2215' />
+Sokoban, <em>gardien d'entrepôt</em> en français, est un jeu vidéo de réflexion originaire du Japon et datant du début des années 80. Selon des sources diversesSoHistory (<a href='#LyXCite-SoHistory'>Pas d'année</a>); WikiSokoban (<a href='#LyXCite-WikiSokoban'>Pas d'année</a>), il a été créé par <em>Hiroyuki Imabayashi</em> et édité par <em>Thinking Rabbit</em> qui en détient aujourd'hui tous les droits. Le jeu doit sa popularité à des règles très simples mais qui permettent néanmoins une très grande complexité. De fait, certains niveaux sont très difficiles à résoudre par l'homme et même par la machine.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2216' />
+Il possèdait initialement une cinquantaine de niveaux mais une véritable communauté s'est créée et des milliers d'autres sont maintenant disponibles sur Internet. De même, des dizaines d'adaptations ou d'évolutions du jeu existent sur presque tous les supports et avec des graphismes plus ou moins évolués.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2217' />
+Sokoban est un sujet particulièrement intéressant dans les domaines de la <em>complexité</em> et de l'<em>intelligence artificielle</em>. Son <em>facteur de branchement</em>, le nombre de choix possibles pour le joueur à un moment du jeu, est comparable à celui des échecs. Le nombre de décisions à prendre pour réussir à trouver une solution est relativement élevé. Un humain arrive cependant à trouver des heuristiques performantes pour un problème donné, ce qui lui permet d'arriver plus vite à une solution.</div>
+
+<div class="standard"><a id='magicparlabel-2218' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2222' />
+<img style='width:40%;' src='assets/master_thesis/0_Users_michael_Desktop_memoire_images_sokobanOriginal.jpg' alt='image: 0_Users_michael_Desktop_memoire_images_sokobanOriginal.jpg' />
+ &nbsp;&nbsp;&nbsp;&nbsp;<img style='width:40%;' src='assets/master_thesis/1_Users_michael_Desktop_memoire_images_sokobanOriginal.gif' alt='image: 1_Users_michael_Desktop_memoire_images_sokobanOriginal.gif' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-2223' />
+<div class='float-caption float-caption-figure'>Figure 3.1:<div class="plain_layout"><a id='magicparlabel-2227' />
+Première version de Sokoban compatible avec les PC d'IBM (1984)</div>
+</div></div>
+
+<div class="plain_layout"><a id='magicparlabel-2228' />
+</div>
+</div>
+
+<h2 class="section"><span class="section_label">3.2</span> <a id='magicparlabel-2229' />
+Règles</h2>
+<div class="standard"><a id='magicparlabel-2230' />
+La Figure <a href="#fig_Premier_niveau_du">3.2</a> correspond à la représentation d'un <em>niveau</em> de Sokoban.</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-2231' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-2235' />
+<strong>niveau</strong> : position de départ de tous les éléments constituant un problème.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-2236' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2240' />
+<img style='width:75%;' src='assets/master_thesis/2_Users_michael_Desktop_memoire_images_premier.png' alt='image: 2_Users_michael_Desktop_memoire_images_premier.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-2241' />
+<div class='float-caption float-caption-figure'>Figure 3.2:<div class="plain_layout"><a id='magicparlabel-2245' />
+<a id="fig_Premier_niveau_du" />
+Premier niveau de Sokoban</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-2246' />
+Chaque niveau est représenté sous forme d'une grille contenant les éléments suivants :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-2251' />
+<img style='width:3mm; height:3mm;' src='assets/master_thesis/3_Users_michael_Desktop_memoire_images_pusher.png' alt='image: 3_Users_michael_Desktop_memoire_images_pusher.png' />
+ Un <em>pousseur</em>. Le gardien d'entrepôt.</li>
+<li class="itemize_item"><a id='magicparlabel-2252' />
+<img style='width:3mm; height:3mm;' src='assets/master_thesis/4_Users_michael_Desktop_memoire_images_wall.png' alt='image: 4_Users_michael_Desktop_memoire_images_wall.png' />
+ Des <em>murs</em>.</li>
+<li class="itemize_item"><a id='magicparlabel-2253' />
+<img style='width:3mm; height:3mm;' src='assets/master_thesis/5_Users_michael_Desktop_memoire_images_box.png' alt='image: 5_Users_michael_Desktop_memoire_images_box.png' />
+ Une ou des <em>caisses</em>.</li>
+<li class="itemize_item"><a id='magicparlabel-2254' />
+<img style='width:3mm; height:3mm;' src='assets/master_thesis/6_Users_michael_Desktop_memoire_images_goal.png' alt='image: 6_Users_michael_Desktop_memoire_images_goal.png' />
+ Un ou des <em>goals</em> (au moins autant que de caisses).</li>
+<li class="itemize_item"><a id='magicparlabel-2255' />
+<img style='width:3mm; height:3mm;' src='assets/master_thesis/7_Users_michael_Desktop_memoire_images_ground.png' alt='image: 7_Users_michael_Desktop_memoire_images_ground.png' />
+ Le <em>sol</em>.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-2256' />
+Le joueur dirige le pousseur. Celui-ci peut se déplacer sur les quatre positions qui lui sont directement voisines : haut, bas, gauche et droite. Il peut <em>pousser</em> des caisses mais uniquement une à la fois. </div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-2257' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-2261' />
+<strong>poussée</strong> : déplacement d'une caisse par le pousseur.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-2262' />
+Une poussée se produit si le pousseur se trouve à côté d'une caisse, s'il se dirige dans sa direction et si la position derrière la caisse n'est pas occupée par un mur ni par une autre caisse. Lorsqu'une poussée est effectuée, le pousseur et la caisse se déplacent, en même temps, d'une position.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2263' />
+Si deux caisses voisines sont alignées sur un même axe, le pousseur ne pourra pas les pousser sur cet axe. Les murs délimitent l'aire de jeu. Ni le pousseur ni les caisses ne peuvent les franchir. Le but du jeu est de réussir à positionner toutes les caisses sur des goals. La difficulté réside dans le fait qu'il est impossible pour le pousseur de <em>tirer</em> une caisse.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2264' />
+Si toutes les caisses se situent sur des goals, alors le niveau est réussi et le chemin utilisé par le pousseur est <em>solution</em> du niveau. Il est important de signaler que tous les niveaux doivent posséder au moins une solution.</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-2265' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-2269' />
+<strong>solution</strong> : succession des déplacements du pousseur permettant de positionner toutes les caisses sur des goals. La solution d'un niveau est rarement unique.</div>
+
+<div class="plain_layout"><a id='magicparlabel-2270' />
+<strong>solution optimale en terme de mouvements</strong> : solution minimisant le nombre de déplacements du pousseur.</div>
+
+<div class="plain_layout"><a id='magicparlabel-2271' />
+<strong>solution optimale en terme de poussées</strong> : solution minimisant le nombre de<em> </em>poussées</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-2272' />
+La solution optimale en terme de mouvements est souvent différente de la solution optimale en terme de poussées. Certains sites Internet comme <em>sokobano.de </em>regroupent les meilleures solutions connues (mouvements et poussées) pour pratiquement tous les niveaux existants.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2273' />
+Dans ce document, la référence à l'une des positions de l'aire de jeu se fera toujours à l'aide du croisement entre la ligne et la colonne de la position concernée (<em>i.e.</em> la position du pousseur est <em>I12</em> sur la Figure <a href="#fig_Premier_niveau_du">3.2</a>).</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-2274' />
+Exemple de solution optimale
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-2275' />
+Etant donné le niveau représenté sur la Figure <a href="#fig_Niveau_simpliste">3.3</a>, la liste des <em>états</em> intermédiaires qui mènent à la solution optimale, en terme de mouvements et de poussées, est visible sur la Figure <a href="#fig_Niveau_simpliste_etats">3.4</a>. Il y a plusieurs façons de représenter une solution. Celle adoptée dans ce document consiste à se placer du point de vue du pousseur et d'indiquer ses directions<div class="foot"><span class="foot_label">1</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-2279' />
+en anglais : <strong>L</strong>eft,<strong> R</strong>ight, <strong>U</strong>p, <strong>D</strong>own</div>
+</div></div> successives par des lettres minuscules s'il ne pousse pas de caisse ou majuscules s'il en pousse une. Si plusieurs mouvements ont lieu dans la même direction. La lettre est préfixée par son nombre d'occurences. Dans notre exemple, la solution est <em>Ld2l2urDldR</em> et s'établit en <em>11</em> mouvements et <em>3</em> poussées.</div>
+
+<div class="standard"><a id='magicparlabel-2280' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2284' />
+<img style='width:25%;' src='assets/master_thesis/8_Users_michael_Desktop_memoire_images_solution_screenshot0023.png' alt='image: 8_Users_michael_Desktop_memoire_images_solution_screenshot0023.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-2285' />
+<div class='float-caption float-caption-figure'>Figure 3.3:<div class="plain_layout"><a id='magicparlabel-2289' />
+<a id="fig_Niveau_simpliste" />
+Niveau simpliste</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-2290' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2294' />
+<img style='width:13%;' src='assets/master_thesis/8_Users_michael_Desktop_memoire_images_solution_screenshot0023.png' alt='image: 8_Users_michael_Desktop_memoire_images_solution_screenshot0023.png' />
+ <img style='width:13%;' src='assets/master_thesis/9_Users_michael_Desktop_memoire_images_solution_screenshot0024.png' alt='image: 9_Users_michael_Desktop_memoire_images_solution_screenshot0024.png' />
+ <img style='width:13%;' src='assets/master_thesis/10_Users_michael_Desktop_memoire_images_solution_screenshot0025.png' alt='image: 10_Users_michael_Desktop_memoire_images_solution_screenshot0025.png' />
+ <img style='width:13%;' src='assets/master_thesis/11_Users_michael_Desktop_memoire_images_solution_screenshot0026.png' alt='image: 11_Users_michael_Desktop_memoire_images_solution_screenshot0026.png' />
+ <img style='width:13%;' src='assets/master_thesis/12_Users_michael_Desktop_memoire_images_solution_screenshot0027.png' alt='image: 12_Users_michael_Desktop_memoire_images_solution_screenshot0027.png' />
+ <img style='width:13%;' src='assets/master_thesis/13_Users_michael_Desktop_memoire_images_solution_screenshot0028.png' alt='image: 13_Users_michael_Desktop_memoire_images_solution_screenshot0028.png' />
+ </div>
+
+<div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2295' />
+<img style='width:13%;' src='assets/master_thesis/14_Users_michael_Desktop_memoire_images_solution_screenshot0029.png' alt='image: 14_Users_michael_Desktop_memoire_images_solution_screenshot0029.png' />
+ <img style='width:13%;' src='assets/master_thesis/15_Users_michael_Desktop_memoire_images_solution_screenshot0030.png' alt='image: 15_Users_michael_Desktop_memoire_images_solution_screenshot0030.png' />
+ <img style='width:13%;' src='assets/master_thesis/16_Users_michael_Desktop_memoire_images_solution_screenshot0031.png' alt='image: 16_Users_michael_Desktop_memoire_images_solution_screenshot0031.png' />
+ <img style='width:13%;' src='assets/master_thesis/17_Users_michael_Desktop_memoire_images_solution_screenshot0032.png' alt='image: 17_Users_michael_Desktop_memoire_images_solution_screenshot0032.png' />
+ <img style='width:13%;' src='assets/master_thesis/18_Users_michael_Desktop_memoire_images_solution_screenshot0033.png' alt='image: 18_Users_michael_Desktop_memoire_images_solution_screenshot0033.png' />
+ <img style='width:13%;' src='assets/master_thesis/19_Users_michael_Desktop_memoire_images_solution_screenshot0034.png' alt='image: 19_Users_michael_Desktop_memoire_images_solution_screenshot0034.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-2296' />
+<div class='float-caption float-caption-figure'>Figure 3.4:<div class="plain_layout"><a id='magicparlabel-2300' />
+<a id="fig_Niveau_simpliste_etats" />
+Liste des états intermédiaires</div>
+</div></div>
+</div>
+
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-2301' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-2305' />
+<strong>état</strong> : position du pousseur et des caisses atteinte à partir d'un certain nombre de mouvements du pousseur dans un niveau. Contrairement à un niveau, un état n'a pas toujours de solution. On dit alors que l'état est un <em>deadlock</em>.</div>
+
+<div class="plain_layout"><a id='magicparlabel-2306' />
+<strong>état solution </strong>: état dans lequel toutes les caisses sont sur des goals.</div>
+
+<div class="plain_layout"><a id='magicparlabel-2307' />
+<strong>deadlock</strong> (impasse) : état à partir duquel il est impossible de trouver un <em>état solution</em>.</div>
+</div></strong></div>
+<h2 class="section"><span class="section_label">3.3</span> <a id='magicparlabel-2308' />
+Complexité</h2>
+<div class="standard"><a id='magicparlabel-2309' />
+Il a été démontré en 1995 par <em>Dorit Dor et Uri Zwick</em>Dor et Zwick (<a href='#LyXCite-dor_sokoban'>Pas d'année</a>) que le problème de décision correspondant au Sokoban était <em>NP-difficile</em>. C'est-à-dire que Sokoban fait partie de la classe des problèmes décidables par une machine de Turing non déterministe en temps polynomial.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2310' />
+Deux ans plus tard, en 1997, des travaux réalisés par <em>Joseph Culberson</em>Culberson (<a href='#LyXCite-culbersonculbersonsokoban'>Pas d'année</a>) ont démontré que le problème de décision était <em>PSPACE-complet</em>. Il appartient donc à la classe <em>PSPACE</em> et est <em>PSPACE-difficile</em>. C'est-à-dire qu'il est au moins aussi difficile que tous les problèmes de la classe <em>PSPACE</em> qui représente les problèmes décidables par une machine de Turing déterministe en espace polynomial par rapport à la taille de sa donnée.
+</div>
+
+</div>

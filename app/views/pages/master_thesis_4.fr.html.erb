@@ -1,0 +1,54 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 2</span> <a id='magicparlabel-2193' />
+Introduction</h1>
+<div class="standard"><a id='magicparlabel-2194' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2195' />
+</div>
+
+<div class="standard"><a id='magicparlabel-2200' />
+Un problème de planification est défini par un environnement composé d'objets mouvants et d'obstacles. Dans ce type de problème, nous partons d'une configuration initiale des objets et l'objectif est d'aboutir à une configuration finale en respectant les contraintes du système.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2201' />
+Le jeu de Sokoban, qui représente un cas typique de problème de planification, est un jeu vidéo vieux de près de 30 ans qui est réputé pour ses règles simples et sa relative difficulté. Il possède encore un certain prestige chez les joueurs et dans le milieu scientifique. Dans ce problème, un agent a pour objectif de pousser, à partir d'une configuration initiale, toutes les caisses présentes sur des goals en respectant les règles du jeu. La configuration finale sera donc celle pour laquelle toutes les caisses sont positionnées sur des goals. Le jeu possède plusieurs milliers de niveaux très variés et donc autant de configurations initiales différentes.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2202' />
+Le but de ce mémoire est de réussir à créer un programme permettant de trouver le chemin emprunté par l'agent pour positionner, à partir d'une certaine configuration, toutes les caisses sur les goals.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2203' />
+Le sujet du Sokoban a déjà été abordé dans de nombreuses recherches très poussées. Celles-ci n'avaient pas toutes les mêmes ambitions car certaines essayaient de trouver le plus de solutions possibles alors que d'autres privilégiaient l'obtention de solutions optimales, plus difficiles à trouver et donc moins nombreuses. Les mécanismes intrinsèques qui interviennent diffèrent selon les choix effectués.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2204' />
+Actuellement, le meilleur programme s'appliquant sur des niveaux de Sokoban s'appelle <em>Sokoban Automatic Solver</em> et permet de résoudre 86 niveaux sur un total de 90 proposés. Les solutions trouvées ne sont cependant pas optimales et les techniques utilisées par le programme ne sont pas du tout documentées. <em>Rolling Stone</em>, un autre programme beaucoup mieux documenté, permet de résoudre 57 niveaux sur 90. Contrairement à Sokoban Automatic Solver, celui-ci trouve des solutions optimales. Ce mémoire va principalement s'inspirer des mécanismes utilisés dans ce programme.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2205' />
+L'objectif de ce mémoire est d'utiliser les techniques existantes pour trouver les solutions optimales des niveaux de Sokoban. Celles-ci seront améliorées quand l'occasion se présentera et certaines nouvelles méthodes, plus ou moins utiles, seront également intégrées.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-2206' />
+Le développement de ce sujet se fait en plusieurs grandes parties. La première introduit certaines notions nécessaires pour bien comprendre le fonctionnement du jeu ainsi que les méthodes utilisées pour résoudre les niveaux. Le concept très important d'<em>arbre de recherche</em> y est présenté. Une deuxième grande partie concerne les différents parcours applicables sur l'arbre de recherche. Le parcours IDA*, qui se montre très performant dans notre cas, est détaillé. Les chapitres suivants traitent des estimations, deadlocks et pénalités qui sont trois méthodes permettant de réduire efficacement la taille de l'arbre de recherche. Nous terminons par le pré-traitement et le post-traitement qui permettent de rechercher des résultats intermédiaires qui s'appliqueront sur la prochaine construction de l'arbre de recherche.
+</div>
+
+</div>
+
