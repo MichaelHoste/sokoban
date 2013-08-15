@@ -1,20 +1,14 @@
 <div id="limited-content">
 
-  <h1><%= _("List of Sokoban levels") %></h1>
-
   <% @packs.each do |pack| %>
-    <br/><br/>
-    <div>
+    <h2 style="font-weight:bold;display:inline"><%= pack.name %></h2>  / <%= pack.levels_count %> levels
+
+    <div style="margin-top:10px;margin-bottom:30px">
       <table>
-        <tr>
-          <td><strong><%= _("Name") %></strong></td>
-          <td style="padding-left:10px;padding-right:10px">:</td>
-          <td><h2><%= pack.name %></h2></td>
-        </tr>
         <tr>
           <td><%= _("Filename") %></td>
           <td style="padding-left:10px;padding-right:10px">:</td>
-          <td><%= pack.file_name %>.slc</td>
+          <td><%= link_to "#{pack.file_name}.slc", download_pack_path(pack) %></td>
         </tr>
         <tr>
           <td><%= _("Description") %></td>
@@ -36,20 +30,6 @@
           <td style="padding-left:10px;padding-right:10px">:</td>
           <td><%= pack.copyright %></td>
         </tr>
-        <tr>
-          <td><%= _("Levels") %></td>
-          <td style="padding-left:10px;padding-right:10px">:</td>
-          <td>
-            <% pack.levels.each_with_index do |level, index| %>
-              <strong><h3><%= link_to level.name, pack_level_path(pack, level) %></h3></strong>
-              <% if level.copyright.present? %>
-                (<%= _("copyright: ") %> <%= level.copyright %>)
-              <% end %>
-              <br/>
-            <% end %>
-          </td>
-        </tr>
-
       </table>
     </div>
   <% end %>

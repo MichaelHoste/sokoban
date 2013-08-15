@@ -2,7 +2,7 @@ $ ->
   window.colorbox_next_level = (level_id, score_id) ->
     token_tag = window.authenticity_token()
 
-    $.colorbox({ href:'/workflows/show_next_level/', data:{ level_id:level_id, score_id:score_id, authenticity_token:token_tag }, top:'50px', height:'602px', width:'570px', overlayClose: false, escKey: false }, ->
+    $.colorbox({ href:'/workflows/show_next_level/', data:{ level_id:level_id, score_id:score_id, authenticity_token:token_tag }, top:'90px', height:'510px', width:'570px', overlayClose: false, escKey: false }, ->
       $("#cboxClose").hide()
       create_thumb('next-level')
       create_thumb('this-level')

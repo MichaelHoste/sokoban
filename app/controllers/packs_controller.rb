@@ -12,4 +12,10 @@ class PacksController < ApplicationController
     @pushes_scores         = @level.best_global_scores(current_user, 6)
     @pushes_scores_friends = @level.best_friends_scores(current_user, 6)
   end
+
+  def download
+    @pack = Pack.find(params[:id])
+    send_file "lib/assets/levels/#{@pack.file_name}.slc",
+              :type => 'text/xml'
+  end
 end

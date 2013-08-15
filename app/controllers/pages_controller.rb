@@ -15,6 +15,9 @@ class PagesController < ApplicationController
     render 'layouts/terms_of_service', :layout => false
   end
 
+  def master_thesis
+  end
+
   def stats
     @total_users   = User.registered.count
     @total_friends = User.not_registered.count

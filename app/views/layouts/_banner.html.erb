@@ -1,43 +1,47 @@
+
 <% if params[:controller] == 'users' and params[:action] == 'index' %>
 
-  <div id="banner">
-    <div id="limited-banner" class="banner-text">
-      <h3>
-        <% if not current_user %>
-          <%= _("Global Ranking : %{user_num} users solved %{level_num} levels" % { :user_num => User.registered.count, :level_num => LevelUserLink.count }) %>
-        <% else %>
-          <% if params[:type] == 'global' %>
-            <%= _("Global Ranking") %>  : <%= @ladder[:top_users_position] %> / <%= User.registered.count %>
-          <% else %>
-            <%= _("Friends Ranking") %> : <%= @ladder[:top_friends_position] %> / <%= @ladder[:top_friends].count %>
-          <% end %>
-        <% end %>
-      </h3>
-    </div>
-  </div>
+  <% banner_class = 'banner-text' %>
+
+  <% if not current_user %>
+    <% text = _("Global Ranking : %{user_num} users solved %{level_num} levels" % { :user_num => User.registered.count, :level_num => LevelUserLink.count }) %>
+  <% else %>
+    <% if params[:type] == 'global' %>
+      <% text = _("Global Ranking") + ' : ' +  @ladder[:top_users_position].to_s + ' / ' + User.registered.count.to_s %>
+    <% else %>
+      <% text = _("Friends Ranking") + ' : ' + @ladder[:top_friends_position].to_s + ' / ' + @ladder[:top_friends].count.to_s %>
+    <% end %>
+  <% end %>
 
 <% elsif params[:controller] == 'users' and params[:action].in? %w(show latest_levels levels_to_solve scores_to_improve) %>
 
-  <div id="banner">
-    <div id="limited-banner" class="banner-text">
-      <h3>
-        <%= @user.name %>
-      </h3>
-    </div>
-  </div>
+  <% banner_class = 'banner-text' %>
+  <% text = @user.name %>
+
+<% elsif params[:controller] == 'packs' and params[:action] == 'index' %>
+
+  <% banner_class = 'banner-text' %>
+  <% text = _("List of Packs & Copyright") %>
 
 <% elsif not current_user %>
 
-  <div id="banner">
-    <div id="limited-banner" class="banner-text">
-      <h3><%= _("Play Sokoban and Challenge your Friends") %></h3>
-    </div>
-  </div>
+  <% banner_class = 'banner-text' %>
+  <% text = _("Play Sokoban and Challenge your Friends") %>
 
 <% else %>
 
-  <div id="banner" class="banner-friends">
-    <div id="limited-banner">
+  <% banner_class = 'banner-friends' %>
+
+<% end %>
+
+
+<div id="banner" class="<%= banner_class %>">
+  <div id="limited-banner">
+    <% if banner_class == 'banner-text' %>
+
+      <h3><%= text %></h3>
+
+    <% elsif banner_class == 'banner-friends' %>
 
       <%= render 'layouts/fb_friend_ids' %>
 
@@ -90,9 +94,11 @@
         </li>
       </ul>
 
-    </div>
+    <% end %>
   </div>
+</div>
 
+<% if banner_class == 'banner-friends' %>
   <div id="user-hover">
     <div class="user-hover-in">
       <div class="user-name">...</div>
@@ -114,5 +120,5 @@
       </div>
     </div>
   </div>
-
 <% end %>
+

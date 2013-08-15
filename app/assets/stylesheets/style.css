@@ -140,7 +140,7 @@ body {
 	z-index: 50;
 }
 /**/
-#limited-banner.banner-text {
+#banner.banner-text #limited-banner {
 	font-family: "heroregular", Arial, Helvetica, sans-serif;
 	font-size: 30px;
 	text-align: center;
@@ -601,7 +601,7 @@ body {
 		}
 		#game-won .game-won-in {
 			position: relative;
-			height:548px;
+			height:456px;
 			background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
 			overflow:hidden;
 			padding-top:14px;
@@ -753,6 +753,7 @@ body {
 			}
 
   #game-won #share-on-fb {
+  	display:none;
   	background-color:#3b5998;
   	width:502px;
   	height:93px;

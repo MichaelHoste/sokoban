@@ -1,6 +1,10 @@
 Sokojax::Application.routes.draw do
   resources :packs do
     resources :levels
+
+    member do
+      get :download
+    end
   end
 
   resources :workflows do
@@ -55,4 +59,5 @@ Sokojax::Application.routes.draw do
   get   '/privacy_policy',          :to => 'pages#privacy_policy'
   get   '/terms_of_service',        :to => 'pages#terms_of_service'
   get   '/stats',                   :to => 'pages#stats'
+  get   '/master_thesis',           :to => 'pages#master_thesis'
 end
