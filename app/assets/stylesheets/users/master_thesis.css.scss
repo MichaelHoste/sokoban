@@ -1,16 +1,13 @@
 body#pages-master_thesis {
-  #limited-content, #limited-header {
+  #limited-content, #limited-header, #limited-banner {
     width:780px
   }
-
   header {
     height:110px;
   }
-
   #menus .rules-menu, #menus .ranking-position, #menus .name, #menus .ranking-menu  {
     display:none;
   }
-
   #menus .play-menu div {
     font-size:16px;
     background: url('/assets/sprites.png') no-repeat -200px -403px;
@@ -18,7 +15,6 @@ body#pages-master_thesis {
     line-height: 32px;
     padding: 0 16px 0 16px;
   }
-
   #banner.banner-text {
     background:none;
     background-color:#d1d1d1;
@@ -141,9 +137,6 @@ body#pages-master_thesis {
   div.plain_layout {
     text-align: left;
   }
-  .float-caption .plain_layout {
-    text-align:center;
-  }
   ul.itemize {
     margin-top: 0.7ex;
     margin-bottom: 0.7ex;
@@ -177,24 +170,46 @@ body#pages-master_thesis {
     text-align: left;
   }
   div.float {
-    border: 2px solid black;
+    border: 0px;
     text-align: center;
   }
   div.float-caption {
     text-align: center;
-    border: 2px solid black;
     padding: 1ex;
     margin: 1ex;
+    margin-top:15px;
+  }
+  div.float-caption > a {
+    font-weight:bold;
+  }
+  .float-caption .plain_layout {
+    display:inline;
+    text-align:center;
+  }
+  div.float-figure {
+    margin-top:5px;
+    margin-bottom:5px;
+    padding-top:10px;
+    padding-bottom:10px;
   }
   div.Boxed {
-    border: solid thick black;
-    padding: 0.5ex;
+    background-color:#FDFDFD;
+    margin:auto;
+    border: 2px solid #555555;
+    padding: 1ex;
+    margin-top:25px;
+    margin-bottom:25px;
   }
   span.foot_label {
     vertical-align: super;
-    font-size: smaller;
+    font-size: 16px;
     font-weight: bold;
-    text-decoration: underline;
+    cursor:pointer;
+    border:1px solid #555555;
+    color:blue;
+    padding:3px;
+    margin-left:3px;
+    background-color:white;
   }
   div.foot {
     display: inline;
@@ -206,14 +221,41 @@ body#pages-master_thesis {
   }
   div.foot_inner {
     display: none;
+    background-color:white;
+    font-size:16px;
   }
   div.foot:hover div.foot_inner {
     display: block;
-    border: 1px double black;
+    border: 1px solid #555555;
     margin: 0em 1em;
     padding: 1em;
   }
   span.flex_url {
     font-family: monospace;
   }
+  ul.itemize {
+    list-style: disc;
+    font-size:18px;
+    padding-bottom:15px;
+    margin-top:5px;
+    margin-bottom:5px;
+
+    li {
+      padding-top:4px;
+      padding-bottom:4px;
+    }
+  }
+
+  .standard em, .itemize em, .Boxed em {
+    font-style:italic;
+  }
+
+  .standard strong, .itemize strong, .Boxed strong {
+    font-weight:bold;
+  }
+
+  .standard strong .Boxed {
+    font-weight:normal;
+  }
+
 }
