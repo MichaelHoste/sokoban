@@ -20,6 +20,46 @@ Le fonctionnement principal du solveur est détaillé dans l'Algorithme 1. L'imp
 
 </div>
 
+
+<table class="algorithm">
+  <tr>
+    <td class="algo-title">
+      <strong>Algorithme 1</strong> Algorithme Principal
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Entrée :</strong> <em>niveau</em> : le niveau dont on cherche une solution
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Sortie :</strong> <em>chemin</em> : le chemin du pousseur vers cette solution
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre>
+01:   initialisation(niveau)
+02:   <strong>tant que</strong> nonresolu <strong>faire</strong>
+03:       noeud ← premierNoeudDeListe()
+04:       resolu ← estSolution(noeud)
+05:       enfants ← chercheEnfants(noeud)
+06:       <strong>tant que</strong> enfant dans enfants <strong>faire</strong>
+07:           <strong>si</strong> non dejaExistant(enfant) et non deadlock(enfant) <strong>alors</strong>
+08:               ajouteDansArbre(enfant)
+09:               ajouteDansListe(enfant)
+10:           <strong>sinon</strong>
+11:               supprime(enfant)
+12:           <strong>fin si</strong>
+13:       <strong>fin tant que</strong>
+14:   <strong>fin tant que</strong>
+15:   <strong>retourner</strong> recupereChemin(noeud)</pre>
+    </td>
+  </tr>
+</table>
+
+
 <div class="standard"><a id='magicparlabel-2418' />
 </div>
 
@@ -29,53 +69,43 @@ Voici quelques explications sur les fonctions utilisées :
 
 </div>
 
-<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-2453' />
-<em>initialisation(niveau)</em> : avant de pouvoir créer l'arbre de recherche, nous avons besoin d'initialiser plusieurs éléments dont l'état initial : celui pour lequel la disposition des caisses correspond exactement à celle du niveau. Cet état sera inséré dans la liste d'attente en tout premier lieu afin d'être introduit comme racine de l'arbre de recherche. Les autres initialisations correspondent aux structures de données qui seront utiles par la suite telles que les tables de hachage, les zones de deadlocks ou les zones de goals.
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-2453' /><em>initialisation(niveau)</em> : avant de pouvoir créer l'arbre de recherche, nous avons besoin d'initialiser plusieurs éléments dont l'état initial : celui pour lequel la disposition des caisses correspond exactement à celle du niveau. Cet état sera inséré dans la liste d'attente en tout premier lieu afin d'être introduit comme racine de l'arbre de recherche. Les autres initialisations correspondent aux structures de données qui seront utiles par la suite telles que les tables de hachage, les zones de deadlocks ou les zones de goals.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2454' />
-<em>premierNoeudDeListe()</em> : Récupère le premier <em>nœud</em> (et donc un état, <em>cf</em>. Section <a href="#sub_Noeud">5.3</a>) de la liste d'attente.
+<li class="itemize_item"><a id='magicparlabel-2454' /><em>premierNoeudDeListe()</em> : Récupère le premier <em>nœud</em> (et donc un état, <em>cf</em>. Section <a href="#sub_Noeud">5.3</a>) de la liste d'attente.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2455' />
-<em>estSolution(noeud)</em> : Teste si l'état contenu dans le nœud est solution en vérifiant que toutes les caisses se trouvent sur des goals.
+<li class="itemize_item"><a id='magicparlabel-2455' /><em>estSolution(noeud)</em> : Teste si l'état contenu dans le nœud est solution en vérifiant que toutes les caisses se trouvent sur des goals.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2456' />
-<em>chercheEnfants(noeud)</em> : à partir d'un nœud, retourne la liste des nœuds considérés comme enfants, c'est-à-dire à une poussée de l'état contenu dans le nœud tel que représenté sur la Figure <a href="#fig_Arbre_repr__sentant_les">4.1</a>.
+<li class="itemize_item"><a id='magicparlabel-2456' /><em>chercheEnfants(noeud)</em> : à partir d'un nœud, retourne la liste des nœuds considérés comme enfants, c'est-à-dire à une poussée de l'état contenu dans le nœud tel que représenté sur la Figure <a href="#fig_Arbre_repr__sentant_les">4.1</a>.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2457' />
-<em>dejaExistant(noeud) </em>: indique si un nœud existe déjà dans l'arbre de recherche.
+<li class="itemize_item"><a id='magicparlabel-2457' /><em>dejaExistant(noeud) </em>: indique si un nœud existe déjà dans l'arbre de recherche.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2458' />
-<em>deadlock(noeud)</em> : indique si l'état contenu dans le nœud est un deadlock et donc provoque une impasse dans l'arbre de recherche.
+<li class="itemize_item"><a id='magicparlabel-2458' /><em>deadlock(noeud)</em> : indique si l'état contenu dans le nœud est un deadlock et donc provoque une impasse dans l'arbre de recherche.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2459' />
-<em>ajouteDansArbre(noeud)</em> : ajoute un nœud à sa place dans l'arbre de recherche.
+<li class="itemize_item"><a id='magicparlabel-2459' /><em>ajouteDansArbre(noeud)</em> : ajoute un nœud à sa place dans l'arbre de recherche.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2460' />
-<em>ajouteDansListe(noeud)</em> : ajoute un nœud dans la liste d'attente. De l'endroit où le nœud sera ajouté dépendra la méthode de création de l'arbre de recherche.
+<li class="itemize_item"><a id='magicparlabel-2460' /><em>ajouteDansListe(noeud)</em> : ajoute un nœud dans la liste d'attente. De l'endroit où le nœud sera ajouté dépendra la méthode de création de l'arbre de recherche.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2461' />
-<em>supprime(noeud)</em> : supprime un nœud. Il ne sera conservé ni dans l'arbre de recherche, ni dans la liste d'attente ou la table de hachage.
+<li class="itemize_item"><a id='magicparlabel-2461' /><em>supprime(noeud)</em> : supprime un nœud. Il ne sera conservé ni dans l'arbre de recherche, ni dans la liste d'attente ou la table de hachage.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-2462' />
-<em>recupereChemin(noeud)</em> : à partir du nœud solution, permet de remonter vers la racine de l'arbre de recherche en évoluant de père en père. Cela permet de déduire, via un algorithme non-trivial, le chemin solution emprunté par le pousseur à partir de la racine.</li>
+<li class="itemize_item"><a id='magicparlabel-2462' /><em>recupereChemin(noeud)</em> : à partir du nœud solution, permet de remonter vers la racine de l'arbre de recherche en évoluant de père en père. Cela permet de déduire, via un algorithme non-trivial, le chemin solution emprunté par le pousseur à partir de la racine.</li>
 </ul>
 <h2 class="section"><span class="section_label">5.2</span> <a id='magicparlabel-2463' />
 <a id="sec___tat" />
@@ -205,7 +235,8 @@ Dans la pratique, il existe d'autres ensembles que nous manipulerons, entre autr
 </div>
 
 <div class="standard"><a id='magicparlabel-2514' />
-Les zones ne peuvent représenter que les positions qui se situent à l'intérieur d'un niveau par rapport aux murs. En d'autres mots, les positions sur lesquelles le pousseur et les caisses peuvent évoluer. La Figure <a href="#fig_Liste_des_cases">5.3</a> représente l'ensemble des positions <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+Les zones ne peuvent représenter que les positions qui se situent à l'intérieur d'un niveau par rapport aux murs. En d'autres mots, les positions sur lesquelles le pousseur et les caisses peuvent évoluer. La Figure <a href="#fig_Liste_des_cases">5.3</a> représente l'ensemble des positions
+<math display="block">
  <mrow>
   <mrow>{
    <msub>
@@ -249,7 +280,7 @@ Liste des positions représentées par une zone</div>
 Sur base de ce niveau, nous pouvons définir :</div>
 
 <ul class="itemize"><li class="itemize_item"><a id='magicparlabel-2529' />
-La zone des caisses : <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+La zone des caisses : <math display="block">
  <mrow>
   <mrow>{
    <msub>
@@ -424,13 +455,11 @@ Selon notre définition des zones, il n'est pas possible d'y inclure de mur car 
 
 </div>
 
-<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-2543' />
-Le <em>positionnement absolu</em> : il permet de couvrir toutes les positions d'un niveau sans exception. Chaque position est référencée par l'intersection entre une ligne (lettre) et une colonne (nombre). Cette méthode permet de situer les éléments fixes d'un niveau comme le murs ou les positions extérieures.
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-2543' />Le <em>positionnement absolu</em> : il permet de couvrir toutes les positions d'un niveau sans exception. Chaque position est référencée par l'intersection entre une ligne (lettre) et une colonne (nombre). Cette méthode permet de situer les éléments fixes d'un niveau comme le murs ou les positions extérieures.
 <br />
 
 </li>
-<li class="enumerate_item"><a id='magicparlabel-2544' />
-Le<em> positionnement relatif à la zone</em> : il permet de couvrir les positions comprises dans la zone. Il sera utilisé pour situer les éléments dans une zone tels que les caisses ou les positions du pousseur. Cette méthode est essentiellement utilisée dans les interactions avec un état.
+<li class="enumerate_item"><a id='magicparlabel-2544' />Le<em> positionnement relatif à la zone</em> : il permet de couvrir les positions comprises dans la zone. Il sera utilisé pour situer les éléments dans une zone tels que les caisses ou les positions du pousseur. Cette méthode est essentiellement utilisée dans les interactions avec un état.
 <br />
 
 </li>
@@ -1037,14 +1066,14 @@ La table de hachage a été testée de manière intensive (<em>cf.</em> Tableau 
 
 
 
-<table><tbody><tr><td align='center' valign='middle'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2796' />
+<table class="table-center"><tbody><tr><td align='center' valign='middle'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2796' />
 <math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow><mi>m</mi>
  </mrow></math></div>
 </td>
 
 <td align='center' valign='middle'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-2799' />
-Nombre de cellules contenant <math xmlns="http://www.w3.org/1998/Math/MathML">
+Nombre de cellules<br/>contenant <math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow><mi>m</mi>
  </mrow></math> états</div>
 </td>

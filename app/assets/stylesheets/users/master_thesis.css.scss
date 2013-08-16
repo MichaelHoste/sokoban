@@ -137,7 +137,7 @@ body#pages-master_thesis {
   div.plain_layout {
     text-align: left;
   }
-  ul.itemize {
+  ul.itemize, ol.enumerate {
     margin-top: 0.7ex;
     margin-bottom: 0.7ex;
     margin-left: 3ex;
@@ -233,7 +233,7 @@ body#pages-master_thesis {
   span.flex_url {
     font-family: monospace;
   }
-  ul.itemize {
+  ul.itemize, ol.enumerate {
     list-style: disc;
     font-size:18px;
     padding-bottom:15px;
@@ -241,16 +241,16 @@ body#pages-master_thesis {
     margin-bottom:5px;
 
     li {
-      padding-top:4px;
-      padding-bottom:4px;
+      padding-top:6px;
+      padding-bottom:6px;
     }
   }
 
-  .standard em, .itemize em, .Boxed em {
+  .standard em, .itemize em, .enumerate em, .Boxed em {
     font-style:italic;
   }
 
-  .standard strong, .itemize strong, .Boxed strong {
+  .standard strong, .itemize strong, .enumerate strong, .Boxed strong {
     font-weight:bold;
   }
 
@@ -258,4 +258,36 @@ body#pages-master_thesis {
     font-weight:normal;
   }
 
+  table.algorithm {
+    margin:auto;
+    border:0px;
+    font-size:16px;
+    border-bottom:1px solid #555555;
+
+    .algo-title {
+      border-top:1px solid #555555;
+      border-bottom:1px solid #555555;
+    }
+
+    td {
+      border:0px;
+    }
+
+    strong {
+      font-weight:bold;
+    }
+
+    pre {
+      font-family: "'Courier', monospace";
+    }
+  }
+
+  math {
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+
+  table.table-center td .plain_layout {
+    text-align:center;
+  }
 }

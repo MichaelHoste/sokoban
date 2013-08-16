@@ -139,7 +139,6 @@ Fonctionnement</h4>
 <strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3109' />
 <strong>tas </strong>: structure de données contenant des éléments triés dans un arbre binaire. Le tas possède la possibilité d'ajouter une donnée, de retirer la donnée minimale et de repositionner une donnée dans l'arbre binaire en fonction de son coût.</div>
 </div></strong>
-<br />
 
 </div>
 
@@ -190,8 +189,7 @@ Pour représenter l'arbre binaire d'un tas sous forme d'un tableau <em>T, </em>i
 
 </div>
 
-<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3126' />
-<math xmlns="http://www.w3.org/1998/Math/MathML">
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3126' /><math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>P</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mo form='prefix' fence='true' stretchy='true' symmetric='true'>lfloor</mo>
    <mrow><mi>i</mi><mo>/</mo><mn>2</mn>
@@ -201,8 +199,7 @@ Pour représenter l'arbre binaire d'un tas sous forme d'un tableau <em>T, </em>i
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-3127' />
-<math xmlns="http://www.w3.org/1998/Math/MathML">
+<li class="itemize_item"><a id='magicparlabel-3127' /><math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>F</mi><mi>i</mi><mi>l</mi><mi>s</mi><mi>G</mi><mi>a</mi><mi>u</mi><mi>c</mi><mi>h</mi><mi>e</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>2</mn><mo>*</mo><mi>i</mi>
   </mrow>
@@ -210,8 +207,7 @@ Pour représenter l'arbre binaire d'un tas sous forme d'un tableau <em>T, </em>i
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-3128' />
-<math xmlns="http://www.w3.org/1998/Math/MathML">
+<li class="itemize_item"><a id='magicparlabel-3128' /><math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>F</mi><mi>i</mi><mi>l</mi><mi>s</mi><mi>D</mi><mi>r</mi><mi>o</mi><mi>i</mi><mi>t</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>2</mn><mo>*</mo><mi>i</mi><mo>+</mo><mn>1</mn>
   </mrow>
@@ -226,8 +222,7 @@ Voici les possibilités d'utilisation d'un tas et les complexités correspondant
 
 </div>
 
-<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3134' />
-Insertion triée (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3134' />Insertion triée (<math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
    <mrow><mo> log </mo><mi>n</mi>
@@ -237,8 +232,7 @@ Insertion triée (<math xmlns="http://www.w3.org/1998/Math/MathML">
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-3135' />
-Extraction (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<li class="itemize_item"><a id='magicparlabel-3135' />Extraction (<math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
    <mrow><mo> log </mo><mi>n</mi>
@@ -274,6 +268,78 @@ Les deux fonctions les plus importantes du tas sont celles que nous avons déjà
 
 <div class="standard"><a id='magicparlabel-3139' />
 </div>
+
+<table class="algorithm">
+  <tr>
+    <td class="algo-title">
+      <strong>Algorithme 2</strong> repositionneHaut(T, cell)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Entrées :</strong><br/>
+      <em>T</em> : le tableau correspondent à l'arbre binaire.<br/>
+      <em>cell</em> : la cellule dont la valeur a diminué et qu'il faut repositionner vers le haut.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Sortie :</strong> le tas pour lequel le noeud contenu dans la cellule est correctement replacé
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre>
+01:   <strong>tant que</strong> cell > 1 et estPlusPetit(T[Parent(cell)], T[cell]) <strong>faire</strong>
+02:       echanger T[cell] ↔ T[Parent(cell)]
+03:       cell ← Parent(cell)
+04:   <strong>fin tant que</strong>
+05:   <strong>retourner</strong> T</pre>
+    </td>
+  </tr>
+</table>
+
+<br/><br/><br/>
+
+<table class="algorithm">
+  <tr>
+    <td class="algo-title">
+      <strong>Algorithme 3</strong> repositionneBas(T, cell)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Entrées :</strong><br/>
+      <em>T</em> : le tableau correspondent à l'arbre binaire.<br/>
+      <em>cell</em> : la cellule dont la valeur a augmenté et qu'il faut repositionner vers le bas.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Sortie :</strong> le tas pour lequel le noeud contenu dans la cellule est correctement replacé
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre>
+01:   g ← filsGauche(cell)
+02:   d ← filsDroit(cell)
+03:   <strong>si</strong> g ≤ taille(T) <strong>et</strong> estPlusPetit(T[g], T[cell]) <strong>alors</strong>
+04:       lePlusPetit ← g
+05:   <strong>sinon</strong>
+06:       lePlusPetit ← cell
+07:   <strong>fin si</strong>
+08:   <strong>si</strong> d ≤ taille(T) <strong>et</strong> estPlusPetit(T[d], T[lePlusPetit]) <strong>alors</strong>
+09:       lePlusPetit ← d
+10:   <strong>fin si</strong>
+11:   <strong>si</strong> lePlusPetit ≠ cell <strong>alors</strong>
+12:       echanger T[cell] ↔ T[lePlusPetit]
+13:       repositionneBas(T, lePlusPetit)
+14:   <strong>fin si</strong>
+15:   <strong>retourner</strong> T</pre>
+    </td>
+  </tr>
+</table>
 
 <div class="standard"><a id='magicparlabel-3159' />
 </div>
