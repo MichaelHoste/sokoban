@@ -1,0 +1,188 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 13</span> <a id='magicparlabel-4054' />
+Résultats</h1>
+<div class="standard"><a id='magicparlabel-4055' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4056' />
+</div>
+
+<div class="standard"><a id='magicparlabel-4061' />
+Ce chapitre présente les résultats de l'exécution de notre solveur <em>bestPushes</em> sur les 90 niveaux originaux de Sokoban. Ceux-ci constituent une bonne base de tests commune à la plupart des solveurs existants.</div>
+<h2 class="section"><span class="section_label">13.1</span> <a id='magicparlabel-4062' />
+Généralités</h2>
+<div class="standard"><a id='magicparlabel-4063' />
+Dans ce mémoire, nous avons présenté un nombre conséquent de méthodes diverses et complémentaires. Tester chaque combinaison de ces méthodes sur les 90 niveaux se serait avéré long et fastidieux. Il faut en effet compter plusieurs heures pour un bon pré-traitement ainsi que plusieurs heures pour la résolution en elle-même. C'est pourquoi nous n'indiquons que les derniers résultats qui ont été obtenus avec l'utilisation de toutes les méthodes présentées.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4064' />
+Pour plus d'information sur les répercussions de chaque méthode sur le parcours effectué ainsi que sur la taille de l'arbre, il est conseillé de se référer àJunghanns (<a href='#LyXCite-931399'>1999</a>) qui comprend de nombreux tests à ce sujet.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4065' />
+De manière générale, les méthodes les plus significatives sont :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-4070' />
+<strong>La détection des doublons</strong> à l'aide de la table de hachage. Elle permet d'éviter les sous-arbres identiques et les cycles dans l'arbre.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4071' />
+<strong>Les parcours A* et IDA*</strong> qui améliorent grandement l'efficacité du parcours de l'arbre par rapport aux parcours en largeur et en profondeur. L'utilisation des méthodes les plus performantes pour calculer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> influe beaucoup sur la taille de l'arbre.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4072' />
+<strong>Les différentes méthodes de deadlock</strong> qui réduisent considérablement la taille de l'arbre de recherche.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4073' />
+<strong>La recherche passive et active de sous-états pénalisés</strong> pour affiner la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-4074' />
+Chaque amélioration citée permet d'utiliser de moins en moins de nœuds pour trouver la solution optimale d'un niveau.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4075' />
+À titre d'exemple, pour être résolu, le niveau 4 nécessite environ :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-4080' />
+<strong>4000000 nœuds</strong> à l'aide du parcours en largeur et de la méthode des doublons.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4081' />
+<strong>600000 nœuds</strong> avec le parcours IDA* et les deadlocks simples.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4082' />
+<strong>200000 nœuds</strong> avec la recherche passive de deadlocks de 3 caisses.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4083' />
+<strong>1500 nœuds</strong> avec la recherche passive de pénalités de 3 caisses.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4084' />
+<strong>106 nœuds</strong> avec la recherche active de pénalités et l'utilisation des macro-poussées.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-4085' />
+Toutes les méthodes sont complémentaires les unes des autres. Si l'une d'entre elles n'est pas activée, les résultats se montreront nettement moins bons.</div>
+<h2 class="section"><span class="section_label">13.2</span> <a id='magicparlabel-4086' />
+Tableau des résultats</h2>
+<div class="standard"><a id='magicparlabel-4087' />
+Le tableau des résultats reprend plusieurs données pour chacun des niveaux.
+<br />
+
+</div>
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-4092' />
+Le <strong>nombre de poussées de la meilleure solution existante</strong> provient deOriginalHighScore (<a href='#LyXCite-OriginalHighScore'>Pas d'année</a>) etExtraHighScore (<a href='#LyXCite-ExtraHighScore'>Pas d'année</a>). Son optimalité n'est pas garantie mais elle a de grandes chances de l'être.
+<br />
+
+</li>
+<li class="enumerate_item"><a id='magicparlabel-4093' />
+Le <strong>pré-processing</strong> représente le nombre de caisses utilisées lors de la recherche des sous-états pénalisés. Si le chiffre est 3, cela signifie que tous les sous-états pénalisés de 3 caisses et moins ont été trouvés avant de résoudre le niveau.
+<br />
+
+</li>
+<li class="enumerate_item"><a id='magicparlabel-4094' />
+<strong>L'itération IDA* en cours (<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>)</strong> contient la dernière itération du parcours IDA* atteinte par le solveur.
+<br />
+
+</li>
+<li class="enumerate_item"><a id='magicparlabel-4095' />
+<strong>Le nombre de poussées/mouvements de la solution trouvée</strong>. Les solveurs bestPushes et Rolling Stone trouvent la solution optimale. Le solveur Talking Stone (2) créé par <em>Jean-Noël Demaret</em> trouve une <em>bonne</em> solution qui sera rarement optimale.
+<br />
+
+</li>
+<li class="enumerate_item"><a id='magicparlabel-4096' />
+<strong>Les nœuds explorés<em> </em></strong>correspondent aux nombres de nœuds de l'arbre de recherche qui ont été explorés, lors de la dernière itération d'IDA*, avant de trouver une solution.
+<br />
+
+</li>
+</ol>
+<div class="standard"><a id='magicparlabel-4097' />
+Deux variantes de notre solveur ont été créées et utilisées :</div>
+<h4 class="subparagraph"><span class="subparagraph_label"></span> <a id='magicparlabel-4102' />
+Le parcours lent</h4>
+<div class="standard"><a id='magicparlabel-4103' />
+C'est le parcours qui est le plus puissant. Une recherche active de pénalités sera appliquée sur la dernière caisse poussée de chaque état rencontré dans l'arbre de recherche. Le but étant de pouvoir détecter un maximum de sous-états pénalisés. L'arbre de recherche s'en trouvera fort réduit mais, en contrepartie, le parcours sera très lent.</div>
+<h4 class="subparagraph"><span class="subparagraph_label"></span> <a id='magicparlabel-4104' />
+Le parcours rapide</h4>
+<div class="standard"><a id='magicparlabel-4105' />
+C'est un parcours qui est moins puissant mais qui avance plus vite. Une recherche active ne sera appliquée que tous les 100000 états rencontrés dans l'arbre de recherche. Celle-ci s'appliquera sur toutes les caisses de l'état. Cette précaution doit permettre de détecter les plus grosses pénalités à moindre coût.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4106' />
+Il est aussi possible d'utiliser un parcours lent pendant quelques milliers de nœuds pour détecter le plus de sous-états pénalisés possibles pour ensuite utiliser un parcours rapide qui bénéficiera de ceux-ci.</div>
+
+<div class="standard"><a id='magicparlabel-4107' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-4111' />
+<img style='width:100%;' src='assets/master_thesis/82_Users_michael_Desktop_memoire_images_resultats1.png' alt='image: 82_Users_michael_Desktop_memoire_images_resultats1.png' />
+</div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-4112' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-4116' />
+<img style='width:100%;' src='assets/master_thesis/83_Users_michael_Desktop_memoire_images_resultats2.png' alt='image: 83_Users_michael_Desktop_memoire_images_resultats2.png' />
+</div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-4117' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-4121' />
+<img style='width:100%;' src='assets/master_thesis/84_Users_michael_Desktop_memoire_images_resultats3.png' alt='image: 84_Users_michael_Desktop_memoire_images_resultats3.png' />
+</div>
+</div>
+
+</div>

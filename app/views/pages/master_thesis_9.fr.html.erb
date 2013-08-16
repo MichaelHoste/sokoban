@@ -1,0 +1,1533 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 7</span> <a id='magicparlabel-3375' />
+<a id="cha_Estimation" />
+Estimation</h1>
+<div class="standard"><a id='magicparlabel-3376' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3377' />
+</div>
+
+<div class="standard"><a id='magicparlabel-3382' />
+Nous avons vu dans le cadre du parcours A*, et par extension IDA*, que l'efficacité du parcours dépendait de la précision de l'estimation de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> est un nœud de l'arbre de recherche. Estimer correctement le nombre de poussées restantes pour trouver une solution à partir d'un état de l'arbre de recherche est une opération très difficile. Le plus dur est certainement de ne jamais surestimer la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. Si, lors de la résolution, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi> &exist; </mi><mi>n</mi><mspace width="6px" /><mspace width="6px" /><mi>t</mi><mi>q</mi><mspace width="6px" /><mspace width="6px" /><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>&gt;</mo>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, le parcours A* ne garantit plus l'obtention de la solution optimale.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3383' />
+Le parcours A* peut aboutir à une solution optimale avec une estimation peu précise. Cependant, ce n'est qu'avec une très bonne estimation qu'il montre sa réelle efficacité. Il est bon de se rappeler que si <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, c'est-à-dire si l'estimation est parfaite, le parcours dans l'arbre de recherche irait directement de la racine vers la solution.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3384' />
+Pour trouver la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, l'idée principale est d'estimer le nombre de poussées nécessaires pour placer chaque caisse de l'état sur un goal. Le problème doit alors être décomposé en deux parties.
+<br />
+
+</div>
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3385' />
+Calculer le plus précisément possible le nombre de poussées requises pour placer une caisse sur chacun des goals. Nous appellerons cela l' <em>estimation d'une caisse</em>.</li>
+<li class="enumerate_item"><a id='magicparlabel-3386' />
+Diriger les caisses présentes dans un état vers les goals de manière à trouver l<em>' estimation totale de l'état</em> la plus juste possible. Il faut s'aider des estimations des caisses et il est important de continuer à minorer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.</li>
+</ol>
+<h2 class="section"><span class="section_label">7.1</span> <a id='magicparlabel-3387' />
+Estimation d'une caisse</h2>
+<div class="standard"><a id='magicparlabel-3388' />
+Il y a différentes façons de calculer l'<em>estimation d'une caisse</em>. Plus l'estimation sera précise et plus la taille de l'arbre de recherche aura tendance à diminuer. La méthode la plus simple, la <em>taxi-distance</em> est de loin la plus approximative. La méthode la plus précise, qui prend en compte les positions successives du pousseur, est aussi la plus coûteuse et demande l'application d'un algorithme assez lourd basé sur celui de Dijkstra.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3389' />
+Comme nous le verrons dans le Chapitre <a href="#cha_Pr___traitement">10</a>, le temps de calcul de l'estimation des caisses n'est pas un problème majeur. Ceci est lié au fait que le calcul n'est réalisé qu'une seule fois par niveau. Par la suite, les résultats seront réutilisables à l'infini. Il est donc préférable d'utiliser les méthodes les plus précises même si elles s'avèrent souvent plus lentes.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3390' />
+Chaque état contient des caisses sur des emplacements différents. Celles-ci peuvent potentiellement occuper toutes les positions internes d'un niveau (<em>cf.</em> Figure <a href="#fig_Liste_des_cases">5.3</a>). Nous allons construire une matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> carrée <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>N</mi><mo> &times; </mo><mi>N</mi>
+  </mrow>
+ </mrow></math>, où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>N</mi>
+ </mrow></math> est le nombre de positions internes, et dans laquelle la cellule <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>M</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>i</mi><mo>,</mo><mi>j</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mn>1</mn><mo> &le; </mo><mi>i</mi><mo>,</mo><mi>j</mi><mo> &le; </mo><mi>N</mi>
+  </mrow>
+ </mrow></math> contiendra le nombre de poussées requises pour déplacer une caisse située sur la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> vers la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>j</mi>
+ </mrow></math>. Cette matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> sera aussi appelée <em>la table des estimations.</em>
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3391' />
+En théorie, nous n'avons besoin que des estimations des caisses vers les différents goals. Dans la pratique il est intéressant de généraliser pour trouver les estimations des caisses vers toutes les positions. Ces informations nous seront utiles dans la suite pour, par exemple, le calcul des macro-poussées (<em>cf</em>. Section <a href="#sec_Macro_pouss__es">12.1</a>). De plus, avec l'algorithme de Dijkstra, connaître les estimations des caisses vers les goals ou vers l'ensemble des autres positions nécessite, à peu de choses près, la même quantité de calculs.</div>
+<h3 class="subsection"><span class="subsection_label">7.1.1</span> <a id='magicparlabel-3392' />
+Taxi-distance</h3>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3393' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3397' />
+<strong>taxi-distance</strong> : distance entre deux vecteurs telle que celle-ci est la somme de la valeur absolue des écarts entre chaque coordonnée des vecteurs. exemple : si <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>A</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mi>a</mi><mo>,</mo><mi>b</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>B</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mi>c</mi><mo>,</mo><mi>d</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mo> &isin; </mo>
+ </mrow></math> <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msup>
+   <mrow>
+    <mstyle mathvariant='bold'><mi>R</mi>
+    </mstyle>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msup>
+ </mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>t</mi><mi>a</mi><mi>x</mi><mi>i</mi><mi>D</mi><mi>i</mi><mi>s</mi><mi>t</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mi>A</mi><mo>,</mo><mi>B</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mo>|</mo><mi>a</mi><mo>-</mo><mi>c</mi><mo>|</mo><mo>+</mo><mo>|</mo><mi>b</mi><mo>-</mo><mi>d</mi><mo>|</mo>
+  </mrow>
+ </mrow></math>.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3398' />
+La <em>taxi-distance</em>, aussi appelée <em>Distance de Manhattan</em>, doit son nom à la distance que doivent effectuer les taxis de Manhattan pour joindre deux points dans la ville. Étant donné la structure de Manhattan qui est composée de quartiers rectangulaires et alignés, la distance réellement parcourue par un taxi correspondra à notre définition et non à la distance euclidienne. La Figure <a href="#fig_manhattan">7.1</a> montre que, quel que soit le chemin emprunté par le taxi dans Manhattan, la longueur totale vaudra 8 longueurs de blocs et correspondra à la taxi-distance.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3399' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3403' />
+<img style='width:45%;' src='assets/master_thesis/39_Users_michael_Desktop_memoire_images_distance_manhattan.png' alt='image: 39_Users_michael_Desktop_memoire_images_distance_manhattan.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3404' />
+<div class='float-caption float-caption-figure'>Figure 7.1:<div class="plain_layout"><a id='magicparlabel-3408' />
+<a id="fig_manhattan" />
+Illustration de la taxi-distance. Le taxi en bas à droite doit rejoindre le point en haut à gauche</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3409' />
+Les déplacements du pousseur et des caisses, dans le jeu de Sokoban s'apparentent aux déplacements d'un taxi new-yorkais. La taxi-distance est donc une méthode simple s'appliquant au Sokoban pour mesurer la distance entre deux points de l'aire de jeu.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3410' />
+La Figure <a href="#fig_taxi_distance">7.2</a> représente la taxi-distance entre la caisse se situant sur la position <em>F5</em> et l'ensemble des autres positions joignables.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3411' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3415' />
+<img style='width:42%;' src='assets/master_thesis/40_Users_michael_Desktop_memoire_images_distance_taxi.png' alt='image: 40_Users_michael_Desktop_memoire_images_distance_taxi.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3416' />
+<div class='float-caption float-caption-figure'>Figure 7.2:<div class="plain_layout"><a id='magicparlabel-3420' />
+<a id="fig_taxi_distance" />
+Estimations de la caisse obtenues par la méthode de la taxi-distance</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3421' />
+Comme la taxi-distance représente le chemin le plus court entre un point <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>A</mi>
+ </mrow></math> et un point <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>B</mi>
+ </mrow></math> si aucun obstacle n'est dans le chemin, il parait clair que cette estimation conservera toujours la propriété d'admissibilité du parcours A*. Les obstacles (caisses et murs) qui pourraient gêner le déplacement de la caisse ne pourraient qu'augmenter la valeur obtenue par la taxi-distance.</div>
+<h3 class="subsection"><span class="subsection_label">7.1.2</span> <a id='magicparlabel-3422' />
+Distance réelle</h3>
+<div class="standard"><a id='magicparlabel-3423' />
+La <em>distance réelle</em> représente la distance obtenue pour mettre une caisse sur un goal à l'aide de l'application de l'<em>algorithme de Dijkstra</em> .</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3428' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3432' />
+<strong>algorithme de Dijkstra</strong> : algorithme permettant de trouver le plus court chemin entre deux sommets d'un graphe connexe pour lequel les arêtes/arcs ont un poids positif ou nul.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3433' />
+Un niveau de Sokoban peut toujours être transformé en graphe connexe. Celui-ci sera utilisé pour appliquer l'algorithme de Dijkstra sur les caisses et trouver les distances les plus courtes entre celles-ci et les goals.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3434' />
+Le graphe connexe créé correspond aux déplacements possibles des caisses. Soit <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>p</mi>
+    </mrow>
+    <mrow><mn>1</mn>
+    </mrow>
+   </msub><mo>,</mo>
+   <msub>
+    <mrow><mi>p</mi>
+    </mrow>
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>p</mi>
+   </mrow>
+   <mrow><mn>3</mn>
+   </mrow>
+  </msub>
+ </mrow></math>, trois positions alignées dans un niveau, les conditions requises pour qu'une caisse située en <strong><math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>p</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msub>
+ </mrow></math> </strong>puisse bouger en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>p</mi>
+   </mrow>
+   <mrow><mn>3</mn>
+   </mrow>
+  </msub>
+ </mrow></math> sont les suivantes :
+<br />
+
+</div>
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3435' />
+La position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>p</mi>
+   </mrow>
+   <mrow><mn>1</mn>
+   </mrow>
+  </msub>
+ </mrow></math> ne doit être ni un mur, ni une caisse. Elle correspond à l'emplacement du pousseur avant la poussée.</li>
+<li class="enumerate_item"><a id='magicparlabel-3436' />
+La position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>p</mi>
+   </mrow>
+   <mrow><mn>3</mn>
+   </mrow>
+  </msub>
+ </mrow></math> ne doit être ni un mur, ni une caisse. Elle correspond à l'emplacement de la caisse après la poussée.
+<br />
+
+</li>
+</ol>
+<div class="standard"><a id='magicparlabel-3437' />
+La Figure <a href="#fig_dijkstra1noeuds">7.3</a> représente le graphe connexe utilisé pour calculer l'estimation de la caisse <em>F5 </em>ainsi que le niveau qui comprend les estimations obtenues de la sorte. Sachant que chaque arc du graphe possède un poids unitaire, il est facile d'y appliquer directement l'algorithme de Dijkstra. L'objectif est de trouver le chemin minimal permettant de pousser la caisse <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>s</mi>
+   </mrow>
+   <mrow><mn>0</mn>
+   </mrow>
+  </msub>
+ </mrow></math> vers les trois goals <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>s</mi>
+    </mrow>
+    <mrow><mn>1</mn>
+    </mrow>
+   </msub><mo>,</mo>
+   <msub>
+    <mrow><mi>s</mi>
+    </mrow>
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>s</mi>
+   </mrow>
+   <mrow><mn>3</mn>
+   </mrow>
+  </msub>
+ </mrow></math>, et par la même occasion, les chemins minimaux de la caisse vers toutes les autres positions.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3438' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3442' />
+<img style='width:38%;' src='assets/master_thesis/41_Users_michael_Desktop_memoire_images_distance_dijkstra1noeud.png' alt='image: 41_Users_michael_Desktop_memoire_images_distance_dijkstra1noeud.png' />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style='width:42%;' src='assets/master_thesis/42_Users_michael_Desktop_memoire_images_distance_dijkstra1.png' alt='image: 42_Users_michael_Desktop_memoire_images_distance_dijkstra1.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3443' />
+<div class='float-caption float-caption-figure'>Figure 7.3:<div class="plain_layout"><a id='magicparlabel-3447' />
+<a id="fig_dijkstra1noeuds" />
+Graphe connexe et estimation de la caisse obtenue, via l'algorithme de Dijkstra, dans le niveau correspondant </div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3448' />
+En comparant l'estimation obtenue par l'algorithme de Dijkstra avec celle obtenue par la taxi-distance, on peut déjà remarquer une augmentation des valeurs de certaines positions. L'estimation pour joindre le goal situé sur la position <em>D5</em> passe de 2 à 4. La propriété d'admissibilité est conservée car, en aucun cas, un chemin plus court que celui de l'algorithme de Dijkstra ne pourra être trouvé.</div>
+<h3 class="subsection"><span class="subsection_label">7.1.3</span> <a id='magicparlabel-3449' />
+<a id="sub_Distance_r__elle_avec" />
+Distance réelle avec gestion du pousseur</h3>
+<div class="standard"><a id='magicparlabel-3450' />
+Dans la section précédente, la méthode que nous avons utilisée pour construire le graphe connexe possède un défaut majeur : elle ne prend pas en compte la position du pousseur lors des déplacements successifs des caisses. Ce manquement peut mener à négliger une partie des poussées nécessaires pour positionner une caisse sur un goal.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3451' />
+À titre d'exemple, sur la Figure <a href="#fig_dijkstra1noeuds">7.3</a>, après une poussée de <em>E4</em> vers <em>D4</em>, le pousseur se trouvera sur la position <em>E4</em>. Par la suite, il n'aura pas la possibilité de déplacer la caisse sur la position <em>D5</em>, contrairement à ce qui est indiqué dans le graphe.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3452' />
+Deux solutions sont envisageables pour calculer les estimations des caisses en prenant en compte les positions successives du pousseur : l'application d'un <em>parcours en largeur</em> et la <em>création améliorée du graphe connexe</em>.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3453' />
+Parcours en largeur
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3454' />
+Dans le but de réutiliser des fonctionnalités qui ont déjà été implémentées, cette méthode passe par la création d'un niveau temporaire comprenant une seule caisse et un seul goal. Sur ce niveau, un parcours en largeur sera appliqué tel qu'il a été décrit dans la Section <a href="#sec_Parcours_en_largeur">6.1</a>. Celui-ci permet de trouver la solution optimale d'un niveau. Le nombre de poussées de la solution optimale servira donc d'estimation pour déplacer une caisse de la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> vers la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>j</mi>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3455' />
+Cette méthode peut rapidement être mise en place à partir du parcours en largeur déjà existant. La complexité pourrait néanmoins poser un problème.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3456' />
+Sachant que :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3461' />
+Le parcours en largeur est de complexité <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <msup>
+    <mrow><mi>b</mi>
+    </mrow>
+    <mrow><mi>d</mi>
+    </mrow>
+   </msup><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>b</mi>
+ </mrow></math> est le facteur de branchement et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>d</mi>
+ </mrow></math> la profondeur de l'arbre de recherche. Notons que la profondeur de l'arbre dépend indirectement de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math>, le nombre de positions internes du niveau.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3462' />
+Il faut appliquer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msup>
+   <mrow><mi>n</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msup>
+ </mrow></math> parcours en largeur pour calculer l'entièreté de la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math>, où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> est le nombre de positions internes.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3463' />
+La quantité de calculs va exploser pour certains niveaux qui possèdent plusieurs centaines de positions. Même si cette situation se présente peu dans nos 90 niveaux de test, il vaut mieux trouver une méthode moins coûteuse afin de pouvoir l'utiliser dans un plus grand nombre de cas.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3464' />
+Création améliorée du graphe connexe
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3465' />
+Tout en conservant l'utilisation de l'algorithme de Dijkstra, nous créons un graphe connexe en y intégrant l'information de la position du pousseur. Pour atteindre cet objectif, la première chose à faire est de multiplier les sommets dans le graphe. Chaque position interne du niveau est représentée par, au maximum, quatre sommets.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3466' />
+Les quatre sommets qui représentent une position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> sont les suivants :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3471' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>S</mi>
+   </mrow>
+   <mrow>
+    <msub>
+     <mrow><mi>i</mi>
+     </mrow>
+     <mrow>
+      <mrow><mi>d</mi><mi>r</mi><mi>o</mi><mi>i</mi><mi>t</mi><mi>e</mi>
+      </mrow>
+     </mrow>
+    </msub>
+   </mrow>
+  </msub>
+ </mrow></math> : la caisse se situe sur la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> et vient de <strong>droite</strong>.</li>
+<li class="itemize_item"><a id='magicparlabel-3472' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>S</mi>
+   </mrow>
+   <mrow>
+    <msub>
+     <mrow><mi>i</mi>
+     </mrow>
+     <mrow>
+      <mrow><mi>g</mi><mi>a</mi><mi>u</mi><mi>c</mi><mi>h</mi><mi>e</mi>
+      </mrow>
+     </mrow>
+    </msub>
+   </mrow>
+  </msub>
+ </mrow></math>: la caisse se situe sur la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> et vient de <strong>gauche</strong>.</li>
+<li class="itemize_item"><a id='magicparlabel-3473' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>S</mi>
+   </mrow>
+   <mrow>
+    <msub>
+     <mrow><mi>i</mi>
+     </mrow>
+     <mrow>
+      <mrow><mi>h</mi><mi>a</mi><mi>u</mi><mi>t</mi>
+      </mrow>
+     </mrow>
+    </msub>
+   </mrow>
+  </msub>
+ </mrow></math>: la caisse se situe sur la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> et vient du <strong>haut</strong>.</li>
+<li class="itemize_item"><a id='magicparlabel-3474' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>S</mi>
+   </mrow>
+   <mrow>
+    <msub>
+     <mrow><mi>i</mi>
+     </mrow>
+     <mrow>
+      <mrow><mi>b</mi><mi>a</mi><mi>s</mi>
+      </mrow>
+     </mrow>
+    </msub>
+   </mrow>
+  </msub>
+ </mrow></math>: la caisse se situe sur la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> et vient du <strong>bas</strong>.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3475' />
+Implicitement, la provenance de la caisse indique la position du pousseur. Celui-ci se situe sur l'emplacement précédent de la caisse et possède une certaine liberté de mouvements (la zone du pousseur). Lorsqu'il est impossible pour une caisse de joindre une position par une certaine direction, le sommet correspondant à cette direction n'est pas utilisé dans le graphe.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3476' />
+Un arc <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+  <mrow>
+   <msub>
+    <mrow><mi>S</mi>
+    </mrow>
+    <mrow>
+     <msub>
+      <mrow><mi>i</mi>
+      </mrow>
+      <mrow>
+       <mrow><mi>d</mi><mi>r</mi><mi>o</mi><mi>i</mi><mi>t</mi><mi>e</mi>
+       </mrow>
+      </mrow>
+     </msub>
+    </mrow>
+   </msub><mo>,</mo>
+   <msub>
+    <mrow><mi>S</mi>
+    </mrow>
+    <mrow>
+     <msub>
+      <mrow><mi>j</mi>
+      </mrow>
+      <mrow>
+       <mrow><mi>h</mi><mi>a</mi><mi>u</mi><mi>t</mi>
+       </mrow>
+      </mrow>
+     </msub>
+    </mrow>
+   </msub>
+  </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+ </mrow></math>, où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>S</mi>
+   </mrow>
+   <mrow>
+    <msub>
+     <mrow><mi>i</mi>
+     </mrow>
+     <mrow>
+      <mrow><mi>d</mi><mi>r</mi><mi>o</mi><mi>i</mi><mi>t</mi><mi>e</mi>
+      </mrow>
+     </mrow>
+    </msub>
+   </mrow>
+  </msub>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>S</mi>
+   </mrow>
+   <mrow>
+    <msub>
+     <mrow><mi>j</mi>
+     </mrow>
+     <mrow>
+      <mrow><mi>h</mi><mi>a</mi><mi>u</mi><mi>t</mi>
+      </mrow>
+     </mrow>
+    </msub>
+   </mrow>
+  </msub>
+ </mrow></math> sont deux sommets du graphe connexe, signifie que &ldquo;<em>Si la caisse est venue par la droite sur la position i, alors le pousseur est capable de pousser la caisse vers le bas sur la position j&rdquo;</em>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3477' />
+Les arcs dans le graphe relient toujours deux sommets qui correspondent à des positions voisines. Deux sommets qui correspondent à la même position ou à des positions non voisines ne sont donc jamais reliés entre eux.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3478' />
+La Figure <a href="#fig_dijkstra2noeuds">7.4</a> représente le graphe connexe amélioré obtenu en procédant comme indiqué. Pour une meilleure lisibilité, les sommets qui correspondent à une même position sont entourés par des cercles plus clairs. Ceux-ci ne sont pas à prendre en considération dans le graphe connexe. Même si le graphe connexe semble peu lisible à première vue, il est possible de transiter d'un sommet à l'autre en partant de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>s</mi>
+   </mrow>
+   <mrow><mn>0</mn>
+   </mrow>
+  </msub>
+ </mrow></math> pour arriver à l'un des goals. L'important est de remarquer que le chemin emprunté sera plus long que sur la Figure <a href="#fig_dijkstra1noeuds">7.3</a> car les contraintes imposées par la position du pousseur ne permettent pas toujours le déplacement voulu.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3479' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3483' />
+<img style='width:75%;' src='assets/master_thesis/43_Users_michael_Desktop_memoire_images_distance_dijkstranoeud2fin.png' alt='image: 43_Users_michael_Desktop_memoire_images_distance_dijkstranoeud2fin.png' />
+ </div>
+
+<div class="plain_layout"><a id='magicparlabel-3484' />
+<div class='float-caption float-caption-figure'>Figure 7.4:<div class="plain_layout"><a id='magicparlabel-3488' />
+<a id="fig_dijkstra2noeuds" />
+Graphe connexe amélioré et estimations des caisses obtenues dans le niveau correspondant via l'algorithme de Dijkstra.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3489' />
+Lorsque plusieurs sommets représentent une position de départ, l'algorithme de Dijkstra est appliqué sur chacun de ces sommets et la plus petite valeur obtenue est conservée. Ceci afin d'éviter une surestimation éventuelle de la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>x</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> dans des cas particuliers. Lorsque plusieurs sommets représentent une position d'arrivée, celui qui possède la valeur la plus petite sera conservé.</div>
+<h4 class="subparagraph"><span class="subparagraph_label"></span> <a id='magicparlabel-3490' />
+Implémentation
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3491' />
+La construction du graphe se fait à l'aide de quatre tableaux <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>G</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>d</mi><mi>r</mi><mi>o</mi><mi>i</mi><mi>t</mi><mi>e</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>,</mo>
+   <msub>
+    <mrow><mi>G</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>g</mi><mi>a</mi><mi>u</mi><mi>c</mi><mi>h</mi><mi>e</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>,</mo>
+   <msub>
+    <mrow><mi>G</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>h</mi><mi>a</mi><mi>u</mi><mi>t</mi>
+     </mrow>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>G</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>b</mi><mi>a</mi><mi>s</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>. Chaque case de ces tableaux correspond à une position dans le niveau. Chaque tableau correspond à l'un des 4 sommets de la position. <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>G</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>b</mi><mi>a</mi><mi>s</mi>
+     </mrow>
+    </mrow>
+   </msub><mo form='prefix' fence='true' stretchy='true' symmetric='true'>[</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>]</mo>
+  </mrow>
+ </mrow></math> représentera donc le sommet <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>S</mi>
+   </mrow>
+   <mrow>
+    <msub>
+     <mrow><mi>i</mi>
+     </mrow>
+     <mrow>
+      <mrow><mi>b</mi><mi>a</mi><mi>s</mi>
+      </mrow>
+     </mrow>
+    </msub>
+   </mrow>
+  </msub>
+ </mrow></math> de notre graphe. L'algorithme de Dijkstra est adapté à cette structure particulière. Lorsque l'algorithme a terminé de s'exécuter sur les 4 tableaux, il suffit de récupérer la valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>m</mi><mi>i</mi><mi>n</mi>{
+   <msub>
+    <mrow><mi>G</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>d</mi><mi>r</mi><mi>o</mi><mi>i</mi><mi>t</mi><mi>e</mi>
+     </mrow>
+    </mrow>
+   </msub><mo form='prefix' fence='true' stretchy='true' symmetric='true'>[</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>]</mo><mo>,</mo>
+   <msub>
+    <mrow><mi>G</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>g</mi><mi>a</mi><mi>u</mi><mi>c</mi><mi>h</mi><mi>e</mi>
+     </mrow>
+    </mrow>
+   </msub><mo form='prefix' fence='true' stretchy='true' symmetric='true'>[</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>]</mo><mo>,</mo>
+   <msub>
+    <mrow><mi>G</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>h</mi><mi>a</mi><mi>u</mi><mi>t</mi>
+     </mrow>
+    </mrow>
+   </msub><mo form='prefix' fence='true' stretchy='true' symmetric='true'>[</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>]</mo><mo>,</mo>
+   <msub>
+    <mrow><mi>G</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>b</mi><mi>a</mi><mi>s</mi>
+     </mrow>
+    </mrow>
+   </msub><mo form='prefix' fence='true' stretchy='true' symmetric='true'>[</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>]</mo>}
+  </mrow>
+ </mrow></math> pour obtenir l'estimation de la caisse vers la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math>.</div>
+<h4 class="subparagraph"><span class="subparagraph_label"></span> <a id='magicparlabel-3492' />
+Complexité
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3493' />
+L'algorithme de Dijkstra s'appuie sur l'utilisation d'une liste des sommets à traiter. Dans notre cas, il s'applique toujours sur des graphes connexes dont les arcs ont des poids unitaires. L'utilisation d'une file permet donc de toujours conserver le sommet de poids le plus faible en tête de liste. Avec une fonction d'extraction en complexité <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mn>1</mn><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, la complexité de l'algorithme est en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mi>S</mi><mo>+</mo><mi>A</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>S</mi>
+ </mrow></math> représente le nombre de sommets et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>A</mi>
+ </mrow></math> représente le nombre d'arcs. Sachant qu'il y a, au plus, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mn>4</mn><mi>n</mi>
+  </mrow>
+ </mrow></math> sommets<div class="foot"><span class="foot_label">1</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-3497' />
+Chaque position est représentée par, au plus, 4 sommets.</div>
+</div></div> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mn>16</mn><mi>n</mi>
+  </mrow>
+ </mrow></math> arcs<div class="foot"><span class="foot_label">2</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-3501' />
+Chaque sommet est le point de départ de, au plus, 4 arcs.</div>
+</div></div>, où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> est le nombre de positions internes du niveau, la complexité peut s'écrire <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mn>4</mn><mi>n</mi><mo>+</mo><mn>16</mn><mi>n</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mn>20</mn><mi>n</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. La complexité de l'algorithme de Dijkstra est donc linéaire sur le nombre de positions internes au niveau.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3502' />
+Le parcours en largeur proposait de remplir l'entièreté de la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msup>
+   <mrow><mi>n</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msup>
+ </mrow></math> parcours. La solution basée sur Dijkstra permet de la remplir en seulement <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> itérations de l'algorithme. En effet, l'algorithme de Dijkstra permet de calculer les estimations de <em>toutes</em> les positions à partir d'une position de départ, contrairement au parcours en largeur qui ne permettait de calculer l'estimation de la caisse que vers une seule position à la fois. Il est donc possible de remplir une ligne de la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> en une seule itération de Dijkstra.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3503' />
+Conclusion
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3504' />
+Si <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> est le nombre de positions internes du niveau :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3509' />
+Le parcours en largeur propose de calculer les estimations de toutes les positions internes à l'aide de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msup>
+   <mrow><mi>n</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msup>
+ </mrow></math> itérations d'un algorithme en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <msup>
+    <mrow><mi>b</mi>
+    </mrow>
+    <mrow><mi>d</mi>
+    </mrow>
+   </msup><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>d</mi>
+ </mrow></math>, la profondeur de l'arbre de recherche, dépend indirectement de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math>. La solution propose donc un temps exponentiel.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3510' />
+L'algorithme de Dijkstra, appliqué sur un graphe connexe amélioré, permet de calculer les estimations de toutes les positions internes avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> itérations de l'algorithme qui est en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. La solution propose donc une complexité quadratique <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <msup>
+    <mrow><mi>n</mi>
+    </mrow>
+    <mrow><mn>2</mn>
+    </mrow>
+   </msup><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3511' />
+Comme les deux solutions permettent de compléter la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> avec les mêmes valeurs, il est préférable d'utiliser l'algorithme de Dijkstra qui possède une complexité moindre.</div>
+<h2 class="section"><span class="section_label">7.2</span> <a id='magicparlabel-3512' />
+Estimation totale</h2>
+<div class="standard"><a id='magicparlabel-3513' />
+L'<em>estimation totale</em> consiste à additionner intelligemment les estimations des caisses vers les goals pour trouver la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> la plus juste possible, tout en continuant à minorer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3514' />
+La section précédente permet de construire une matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> de taille <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>N</mi><mo> &times; </mo><mi>N</mi>
+  </mrow>
+ </mrow></math> dans laquelle une case <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>M</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>i</mi><mo>,</mo><mi>j</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>, où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mn>1</mn><mo> &le; </mo><mi>i</mi><mo>,</mo><mi>j</mi><mo> &le; </mo><mi>N</mi>
+  </mrow>
+ </mrow></math>, contient le nombre de poussées requises pour déplacer une caisse située sur la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> vers la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>j</mi>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3515' />
+Pour trouver la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> est un nœud de l'arbre de recherche, il faut commencer par récupérer un sous-ensemble de la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> correspondant aux positions des caisses et des goals présents dans le nœud actuel. L'objectif est donc de construire une matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>O</mi>
+ </mrow></math> de taille <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>C</mi><mo> &times; </mo><mi>G</mi>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>C</mi>
+ </mrow></math> est le nombre de caisses et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>G</mi>
+ </mrow></math> est le nombre de goals avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>C</mi><mo> &le; </mo><mi>G</mi>
+  </mrow>
+ </mrow></math>. La case <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>O</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>i</mi><mo>,</mo><mi>j</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>, où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mn>1</mn><mo> &le; </mo><mi>i</mi><mo> &le; </mo><mi>C</mi>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mn>1</mn><mo> &le; </mo><mi>j</mi><mo> &le; </mo><mi>G</mi>
+  </mrow>
+ </mrow></math>, contient le nombre de poussées requises pour déplacer la <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msup>
+   <mrow><mi>i</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>e</mi><mi>m</mi><mi>e</mi>
+    </mrow>
+   </mrow>
+  </msup>
+ </mrow></math> caisse vers le <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msup>
+   <mrow><mi>j</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>e</mi><mi>m</mi><mi>e</mi>
+    </mrow>
+   </mrow>
+  </msup>
+ </mrow></math>goal.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3516' />
+La Figure <a href="#fig_matrice_O">7.5</a> représente un nœud ainsi que la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>O</mi>
+ </mrow></math> correspondante. Pour être fidèle à la réalité, la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> utilisée pour créer la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>O</mi>
+ </mrow></math> a été générée à l'aide de la méthode de la Section <a href="#sub_Distance_r__elle_avec">7.1.3</a> impliquant Dijkstra et le graphe amélioré. L'intersection entre la ligne <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msub>
+ </mrow></math> et la colonne <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>3</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> contient l'estimation requise pour positionner la caisse <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msub>
+ </mrow></math> sur le goal <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>g</mi>
+   </mrow>
+   <mrow><mn>3</mn>
+   </mrow>
+  </msub>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3517' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3521' />
+<img style='width:65%;' src='assets/master_thesis/44_Users_michael_Desktop_memoire_images_distance_modelebon2.png' alt='image: 44_Users_michael_Desktop_memoire_images_distance_modelebon2.png' />
+ </div>
+
+<div class="plain_layout"><a id='magicparlabel-3522' />
+<div class='float-caption float-caption-figure'>Figure 7.5:<div class="plain_layout"><a id='magicparlabel-3526' />
+<a id="fig_matrice_O" />
+nœud (état) de l'arbre de recherche et la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>O</mi>
+ </mrow></math> associée.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3527' />
+Il est possible que certaines intersections contiennent la valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mo>+</mo><mi> &infin; </mi>
+  </mrow>
+ </mrow></math>. C'est le cas lorsqu'une caisse ne peut pas atteindre un certain goal car elle se situe sur une position particulière comme un bord ou un coin. Par exemple, sur notre niveau de test, si une caisse se trouvait sur la position <em>F8</em>, elle ne pourrait se diriger que vers <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math>. Ses estimations pour joindre les autres goals <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>1</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>3</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> seraient assignées à <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mo>+</mo><mi> &infin; </mi>
+  </mrow>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3528' />
+L'objectif de cette section consiste à trouver une association caisses-goals permettant de maximiser l'estimation totale. La difficulté réside dans le fait qu'il faut continuer à borner inférieurement <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> pour que la valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> soit admissible.
+<br />
+
+</div>
+<h3 class="subsection"><span class="subsection_label">7.2.1</span> <a id='magicparlabel-3529' />
+Goal le plus proche</h3>
+<div class="standard"><a id='magicparlabel-3530' />
+La solution la plus simple, mais également la moins efficace, consiste à associer chaque caisse à son goal le plus proche. Dans notre exemple, cela conduit à associer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>1</mn>
+   </mrow>
+  </msub>
+ </mrow></math>avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msub>
+ </mrow></math> avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>3</mn>
+   </mrow>
+  </msub>
+ </mrow></math> avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>3</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> pour un total de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>=</mo><mn>8</mn>
+  </mrow>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3531' />
+Il est à souligner que, dans cette solution, deux caisses ont pour destination le même goal, ce qui s'avère impossible dans la pratique. Cette façon de procéder conserve la propriété d'admissibilité car les caisses se dirigent toujours vers le goal le plus proche, ce qui ne peut que minimiser ou égaler la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.</div>
+<h3 class="subsection"><span class="subsection_label">7.2.2</span> <a id='magicparlabel-3532' />
+<a id="sub_Goal_le_plus" />
+Goal le plus proche avec réservation</h3>
+<div class="standard"><a id='magicparlabel-3533' />
+Cette méthode améliore la précédente et permet d'éviter l'utilisation indésirable d'un même goal par plusieurs caisses. Elle permet de bloquer un goal lorsque celui-ci devient, pour la première fois, la destination de l'une des caisses. Les caisses restantes ont alors moins de possibilités de déplacements.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3534' />
+L'application de cette méthode sur notre exemple (<em>cf.</em> Figure <a href="#fig_matrice_O">7.5</a>) conduit à associer :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3539' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>1</mn>
+   </mrow>
+  </msub>
+ </mrow></math> avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> (goal 2 bloqué).</li>
+<li class="itemize_item"><a id='magicparlabel-3540' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msub>
+ </mrow></math> avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>3</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> (goal 3 bloqué).</li>
+<li class="itemize_item"><a id='magicparlabel-3541' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>3</mn>
+   </mrow>
+  </msub>
+ </mrow></math> avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi>
+   <msub><mrow />
+    <mrow><mn>1</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> .
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3542' />
+Ce qui nous mène à un total de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>3</mn><mo>+</mo><mn>4</mn><mo>+</mo><mn>8</mn><mo>=</mo><mn>15</mn>
+  </mrow>
+ </mrow></math>. Le problème de cette méthode est que le goal associé à la dernière caisse lui est imposé. Avec parfois une estimation excessive.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3543' />
+Cette méthode ne conserve pas la propriété d'admissibilité car il existe des états pour lesquels <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>&gt;</mo>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. L'un de ces états est illustré sur la Figure <a href="#fig_contreexemple">7.6</a>. Dans celui-ci, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>9</mn>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>11</mn>
+  </mrow>
+ </mrow></math>. Ceci est dû au fait que, pour minimiser l'estimation totale, il est plus intéressant de déplacer la caisse <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>c</mi>
+   </mrow>
+   <mrow><mn>1</mn>
+   </mrow>
+  </msub>
+ </mrow></math> vers le goal le plus éloigné (<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>g</mi>
+   </mrow>
+   <mrow><mn>2</mn>
+   </mrow>
+  </msub>
+ </mrow></math>) que vers le goal le plus proche (<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>g</mi>
+   </mrow>
+   <mrow><mn>1</mn>
+   </mrow>
+  </msub>
+ </mrow></math>).
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3544' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3548' />
+<img style='width:65%;' src='assets/master_thesis/45_Users_michael_Desktop_memoire_images_distance_contreexemple.png' alt='image: 45_Users_michael_Desktop_memoire_images_distance_contreexemple.png' />
+ </div>
+
+<div class="plain_layout"><a id='magicparlabel-3549' />
+<div class='float-caption float-caption-figure'>Figure 7.6:<div class="plain_layout"><a id='magicparlabel-3553' />
+<a id="fig_contreexemple" />
+nœud (état) de l'arbre de recherche et la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>O</mi>
+ </mrow></math> associée.</div>
+</div></div>
+</div>
+
+<h3 class="subsection"><span class="subsection_label">7.2.3</span> <a id='magicparlabel-3554' />
+<a id="sub_hongrois" />
+Association caisses-goals minimisant l'estimation totale</h3>
+<div class="standard"><a id='magicparlabel-3555' />
+Pour que la méthode puisse donner des résultats admissibles, il faut qu'elle soit capable de trouver une association entre les caisses et les goals, à l'aide de la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>O</mi>
+ </mrow></math>, de manière à minimiser l'estimation totale. La matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>O</mi>
+ </mrow></math>, qui contient les estimations des caisses vers chacun des goals, peut être représentée dans un graphe biparti tel qu'illustré sur la Figure <a href="#fig_graphe_biparti">7.7</a>. Chaque arête du graphe biparti possède un poids. L'arête qui relie la caisse <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> au goal <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>j</mi>
+ </mrow></math> possède le poids relatif à la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>O</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>i</mi><mo>,</mo><mi>j</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> de la matrice.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3559' />
+<img style='width:35%;' src='assets/master_thesis/46_Users_michael_Desktop_memoire_images_distance_biparti2.png' alt='image: 46_Users_michael_Desktop_memoire_images_distance_biparti2.png' />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style='width:35%;' src='assets/master_thesis/47_Users_michael_Desktop_memoire_images_distance_biparti3.png' alt='image: 47_Users_michael_Desktop_memoire_images_distance_biparti3.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3560' />
+<div class='float-caption float-caption-figure'>Figure 7.7:<div class="plain_layout"><a id='magicparlabel-3564' />
+<a id="fig_graphe_biparti" />
+Graphe biparti représentant la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>O</mi>
+ </mrow></math> et une éventuelle couverture de poids minimum.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3565' />
+Remarquons que nous obtenons là un problème typique d'assignation dans un graphe biparti complet pondéré. Le but est de trouver la couverture de poids minimum (<em>minimum weighted bipartite matching</em>) permettant de pousser chaque caisse sur son goal. Pour cette opération, un algorithme se présente à nous : la <em>méthode Hongroise</em>. Gardons à l'esprit que cet algorithme est en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mi>n</mi><mo>³</mo>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> représente le nombre de caissesFrank (<a href='#LyXCite-Munkres'>Pas d'année</a>). La puissance demandée pour ce traitement, à chaque nœud de l'arbre de recherche, représente une partie très gourmante de notre solveur.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3566' />
+Implémentation
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3567' />
+Pour ne pas devoir réimplémenter la méthode Hongroise à partir de rien, une version C++ existanteWeaver (<a href='#LyXCite-MunkresCode'>Pas d'année</a>), déjà déboguée et optimisée, a été intégrée à notre solveur. Nos données ont été adaptées pour correspondre aux contraintes des fonctions existantes.</div>
+<h2 class="section"><span class="section_label">7.3</span> <a id='magicparlabel-3568' />
+Méthodes utilisées</h2>
+<div class="standard"><a id='magicparlabel-3569' />
+Trois méthodes ont été présentées pour calculer l'estimation d'une caisse et trois méthodes ont été présentées pour calculer l'estimation totale. En théorie il y a donc neuf possibilités d'associations entre ces méthodes comme illustré sur la Figure <a href="#fig_association">7.8</a>. Dans la pratique, on peut directement éliminer la méthode de la Section <a href="#sub_Goal_le_plus">7.2.2</a> du goal le plus proche avec réservation car elle ne respecte pas la propriété d'admissibilité du parcours A*. Si une solution est trouvée, il ne sera donc pas possible d'affirmer que celle-ci est optimale.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3573' />
+<img style='width:65%;' src='assets/master_thesis/48_Users_michael_Desktop_memoire_images_distance_association.png' alt='image: 48_Users_michael_Desktop_memoire_images_distance_association.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3574' />
+<div class='float-caption float-caption-figure'>Figure 7.8:<div class="plain_layout"><a id='magicparlabel-3578' />
+<a id="fig_association" />
+Associations de méthodes possibles pour calculer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math></div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3579' />
+Des six associations restantes possibles et qui sont admissibles, il est préférable de prendre celle qui maximise l'estimation de manière à être le plus proche de la valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. Comme le démontre la Figure <a href="#fig_evolution">7.9</a>, c'est l'algorithme de Dijkstra avec graphe amélioré qui majore le plus l'estimation d'une caisse vers chacune des positions. C'est donc la méthode qui s'avère la plus efficace. Rien d'étonnant à cela, c'est la méthode qui prend en compte le plus de contraintes, dont la position du pousseur.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3580' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3584' />
+<img style='width:80%;' src='assets/master_thesis/49_Users_michael_Desktop_memoire_images_distance_evolution.png' alt='image: 49_Users_michael_Desktop_memoire_images_distance_evolution.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3585' />
+<div class='float-caption float-caption-figure'>Figure 7.9:<div class="plain_layout"><a id='magicparlabel-3589' />
+<a id="fig_evolution" />
+Différences des estimations d'une caisse vers toutes les positions, en fonction des méthodes appliquées</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3590' />
+La méthode Hongroise, qui permet de trouver l'association entre les caisses et les goals qui minimise l'estimation totale, s'avère la plus coûteuse. Elle possède une complexité en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <msup>
+    <mrow><mi>n</mi>
+    </mrow>
+    <mrow><mn>3</mn>
+    </mrow>
+   </msup><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> est le nombre de caisses. Les estimations totales qu'elle obtient sont cependant nettement plus précises que celles obtenues par la méthode des goals les plus proches.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3591' />
+Pour calculer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, nous allons donc trouver les estimations de chacune des positions (la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math>) par la méthode de <em>la distance réelle avec gestion du pousseur</em>. Ensuite, nous calculerons l'estimation totale à l'aide de l'<em>association caisses-goals minimisant l'estimation totale</em>.
+</div>
+
+</div>

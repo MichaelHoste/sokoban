@@ -38,11 +38,6 @@
           </li>
         <% end %>
 
-        <!---
-        <li class="challenges-menu"><i class="icon-trophy"></i>&nbsp;Challenges</li>
-        <li class="packs-menu is-selected"><i class="icon-star"></i>&nbsp;Packs</li>
-        -->
-
         <% if current_user %>
           <li class="ranking-position">
             <div>
@@ -55,6 +50,12 @@
         <li class="rules-menu">
           <div><%= _("Rules") %></div>
         </li>
+
+        <% if params[:controller] == 'pages' and params[:action] == 'master_thesis' %>
+          <li class="play-menu">
+            <div><%= _('Play Sokoban') %></div>
+          </li>
+        <% end %>
       </ul>
     </div>
 

@@ -133,9 +133,6 @@ body {
 	margin-left: 5px;
 	cursor:pointer;
 }
-body#pages-master_thesis #limited-content {
-	width:780px
-}
 #limited-banner {
 	width: 960px;
 	margin: 0 auto;
@@ -333,7 +330,7 @@ body#pages-master_thesis #limited-content {
 			height: 30px;
 		}
 
-	#limited-header #menus .ranking-menu div {
+	#limited-header #menus .ranking-menu div, #limited-header #menus .play-menu div {
 		background: url('/assets/sprites.png') no-repeat -200px -100px;
 		border: 1px solid #c9c9c9;
 		height: 27px;

@@ -1,0 +1,141 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 11</span> <a id='magicparlabel-3981' />
+<a id="cha_Post_traitement" />
+Post-traitement</h1>
+<div class="standard"><a id='magicparlabel-3982' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3983' />
+</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3988' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3992' />
+<strong>post-traitement</strong> : travail effectué par le solveur sur un niveau après avoir construit et parcouru l'arbre de recherche sans trouver de solution.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3993' />
+Le <em>post-traitement</em> d'un niveau permet d'analyser l'arbre de recherche à la fin d'un parcours qui n'a pas mené à une solution à cause d'un dépassement de la mémoire allouée ou du nombre de nœuds maximum autorisé. Analyser l'arbre de recherche permet de trouver des informations ou des indices sur ce qui peut encore être amélioré.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3994' />
+De nouveau, le post-traitement est facultatif, une certaine quantité d'informations va être déduite de l'arbre de recherche mais rien n'oblige l'utilisateur à les utiliser lors du redémarrage du solveur sur le niveau.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3995' />
+Les post-traitements concernent deux aspects de la résolution des niveaux : l'<em>itération du parcours IDA*</em> et les <em>pénalités probables</em> qui se trouvent dans l'arbre de recherche.</div>
+<h2 class="section"><span class="section_label">11.1</span> <a id='magicparlabel-3996' />
+Itération du parcours IDA*</h2>
+<div class="standard"><a id='magicparlabel-3997' />
+Nous avons vu dans la Section <a href="#sec_Parcours_IDA_">6.5</a> que le parcours IDA* procédait à plusieurs itérations du parcours A*, avec une valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> progressive, dans le but de limiter au mieux les efforts de chaque itération. Il arrive parfois que des millions de nœuds soient nécessaires pour qu'une itération de A* se termine entièrement sans trouver de solution pour un certain <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>. Celui-ci va alors être incrémenté pour l'itération suivante du parcours A*.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3998' />
+Afin d'éviter de recommencer toutes les itérations du parcours A* à chaque exécution du solveur sur un niveau, la valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> est enregistrée dans un fichier à chaque incrémentation de sa valeur. Il est ainsi possible de reprendre la résolution d'un niveau à la dernière itération rencontrée, ce qui peut faire gagner beaucoup de temps. Il sera alors possible d'affirmer : &ldquo;<em>le niveau n'a pas de solution dont le nombre de poussées est en deçà de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>&rdquo;.</em></div>
+<h2 class="section"><span class="section_label">11.2</span> <a id='magicparlabel-3999' />
+Pénalités probables</h2>
+<div class="standard"><a id='magicparlabel-4000' />
+En analysant l'arbre de recherche, il est possible de mettre en évidence certains sous-états dont une <em>pénalité non-détectée est probable</em>. Ce sont généralement les sous-états qui apparaissent le plus souvent dans l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4001' />
+Prenons le cas extrême où un sous-état de 4 caisses provoque un deadlock, et donc une pénalité infinie qui n'est pas détectée. Dans le sous-arbre créé à partir de la dernière poussée formant le deadlock, les 4 caisses resteront immobiles alors que toutes les autres continueront de bouger. Selon nos observations, un tel sous-arbre va souvent contenir plusieurs milliers de nœuds avant d'être abandonné au profit d'un autre plus prometteur.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4002' />
+Tous les nœuds de ce sous-arbre contiendront 4 caisses sur les mêmes positions. Si nous pouvions détecter tous les sous-états qui sont <em>figés </em>dans l'arbre de recherche et tester leurs pénalités, plusieurs sous-arbres pourraient être évités. C'est ce que nous avons essayé de mettre en place à l'aide de méthodes simples.</div>
+<h3 class="subsection"><span class="subsection_label">11.2.1</span> <a id='magicparlabel-4003' />
+Positions fréquentes</h3>
+<div class="standard"><a id='magicparlabel-4004' />
+Lorsqu'un parcours est terminé sans qu'une solution ne soit trouvée, un petit algorithme récursif va parcourir tous les nœuds de l'arbre de recherche et enregistrer le nombre de caisses positionnées sur chaque position du niveau.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4005' />
+À l'aide du nombre total de caisses sur chaque position, on va établir deux classements :
+<br />
+
+</div>
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-4010' />
+Les 15 positions les plus utilisées, excepté les positions qui correspondent aux goals.</li>
+<li class="enumerate_item"><a id='magicparlabel-4011' />
+Les 15 positions les plus utilisées, toutes positions confondues.
+<br />
+
+</li>
+</ol>
+<div class="standard"><a id='magicparlabel-4012' />
+Le premier classement est créé afin de ne pas tenir compte des caisses placées sur un goal qui se situe un coin. Ces positions sont peu intéressantes dans la recherche de sous-états pénalisés. Elles ne bougent pas dans un certain sous-arbre mais ne sont pas nécessairement considérées comme des indications d'une pénalité à découvrir.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4013' />
+Si nous ne prenons que les 15 positions les plus utilisées, c'est uniquement par compromis entre temps de calcul et nombre de sous-états pénalisés qu'il sera possible de trouver.</div>
+<h3 class="subsection"><span class="subsection_label">11.2.2</span> <a id='magicparlabel-4014' />
+Sous-états probablement pénalisés</h3>
+<div class="standard"><a id='magicparlabel-4015' />
+En utilisant les deux classements de positions obtenus dans la section précédente, nous allons créer une liste de tous les sous-états à tester de 1 à 6 caisses pour lesquels les caisses se trouvent toutes sur l'une des 15 positions. Les sous-états de 1 à 3 caisses ne seront pas recréés s'ils ont déjà été testés lors du pré-traitement.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4016' />
+Ces deux listes comprennent des sous-états qui ont de fortes chances d'être pénalisés. Chaque sous-état sera enregistré dans un fichier. Si rien n'est précisé lors de la prochaine exécution du solveur sur le niveau, chaque sous-état contenu dans le fichier sera testé en pré-traitement et donc, avant le nouveau parcours de l'arbre de recherche.
+</div>
+
+</div>

@@ -1,0 +1,88 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 15</span> <a id='magicparlabel-4186' />
+Conclusion</h1>
+<div class="standard"><a id='magicparlabel-4187' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4188' />
+</div>
+
+<div class="standard"><a id='magicparlabel-4193' />
+Le but de ce mémoire était de créer un programme qui permettait de rechercher et de trouver les solutions optimales de niveaux de Sokoban. Grâce à l'implémentation de nombreuses méthodes provenant de précédentes recherches et à l'intégration de nouvelles fonctionnalités, nous pouvons dire que cet objectif est atteint. À ce jour, notre solveur a réussi à trouver 20 solutions optimales à partir des 90 niveaux originaux que nous avons testés.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4194' />
+L'implémentation en C++ d'un ensemble de méthodes existantes concernant le parcours, les deadlocks ou les pénalités a été l'un des gros enjeux de ce mémoire. Il a en plus été possible d'intégrer des nouvelles méthodes personnelles à celles existantes. Les nouvelles fonctionnalités les plus pertinentes concernent les deadlock zones, les deadlocks en Z, l'amélioration de l'estimation d'un niveau à l'aide d'un graphe connexe sophistiqué et, d'une manière plus générale, le concept des zones et des traitements binaires.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4195' />
+Après autant de travail, il peut paraître déconcertant de n'obtenir qu'une vingtaine de solutions optimales. Ce faible taux de résultats est en partie dû à un manque de temps de calcul. En effet, entre la dernière version stable du solveur et la date de remise du mémoire, il n'y a eu que quelques semaines. Celles-ci ont dû être mises à profit pour pré-traîter au mieux les niveaux et essayer de les résoudre. Le pré-traitement a occupé une grande partie de ce temps n'en laissant que peu pour la résolution. Nul doute qu'avec plus de temps, d'autres résultats auraient pu être obtenus. De fait, alors que certains niveaux n'ont été testés que quelques minutes, ceux pour lesquels la recherche a été la plus poussée n'ont pas été testés au delà de quelques centaines de milliers de nœuds : ce qui équivaut à moins de 100Mo de ram. Une marge de progression est donc possible.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4196' />
+Il peut être intéressant de considérer l'ensemble des sous-états pénalisés trouvés pour chaque niveau comme des résultats intermédiaires de ce mémoire. En effet, ce sont des résultats utiles qui pourraient éventuellement être réutilisés par d'autres solveurs.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4197' />
+Il y a un point pour lequel notre solveur n'a pas à rougir : le nombre de nœuds parcourus lorsqu'une solution est trouvée. Dans notre tableau de résultats, il est en effet très fréquent que notre arbre de recherche contienne moins de nœuds que celui de Rolling Stone lorsqu'une solution est trouvée. Cette différence provient sûrement de notre méthode des macro-poussées qui privilégie les poussées vers les positions les plus intéressantes.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4198' />
+Les évolutions de notre solveur sont possibles dans deux directions différentes. La première consiste à ajouter et améliorer les méthodes qui conservent l'optimalité des solutions. La deuxième consiste à ajouter des heuristiques très puissantes, telles que celles présentées par <em>Jean-Noël Demaret</em> dans Talking Stone (2)Demaret (<a href='#LyXCite-DEM07'>2007</a>), sur chaque état exploré de notre arbre de recherche. En ajoutant de bonnes heuristiques à l'efficacité du parcours décrit dans ce mémoire, il est fort probable que le nombre de solutions non-optimales trouvées soit assez important.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4199' />
+Lors de la rédaction de ce mémoire, l'accent a été mis sur la description des méthodes à l'aide d'exemples illustrés et en évitant d'insérer trop de pseudo-code pour ne pas alourdir la lecture. Pour plus de détails quant à l'implémentation de certaines méthodes, je vous suggère de vous référer au code et aux nombreuses pages de documentation générées à partir de celui-ci. Ces documents se trouvent sur le support numérique accompagnant ce mémoire ainsi que sur <span class="flex_url">http://www.opengl.fr/memoire/</span>.</div>
+
+<div class="standard"><a id='magicparlabel-4204' />
+</div>
+
+<div class="standard"><a id='magicparlabel-4210' />
+</div>
+
+<div class="standard"><a id='magicparlabel-4230' />
+<h2 class='bibtex'>Références</h2><div class='bibtex'><div class='bibtexentry'><a id='LyXCite-culbersonculbersonsokoban' />
+<span class='bibtexlabel'>Culberson Pas d'année</span><span class='bibtexinfo'><span class="bib-author">Joseph Culberson</span>, "<span class="bib-title">Sokoban is PSPACE-complete</span>".</span></div>
+<div class='bibtexentry'><a id='LyXCite-DEM07' />
+<span class='bibtexlabel'>Demaret 2007</span><span class='bibtexinfo'><span class="bib-author">Demaret, Jean-Noël</span>, "<span class="bib-title">L'intelligence artificielle et les jeux : cas du Sokoban</span>" (<span class="bib-year">2007</span>).</span></div>
+<div class='bibtexentry'><a id='LyXCite-dor_sokoban' />
+<span class='bibtexlabel'>Dor et Zwick Pas d'année</span><span class='bibtexinfo'><span class="bib-author">Dorit Dor and Uri Zwick</span>, "<span class="bib-title">SOKOBAN and other motion planning problems (Extended Abstract)</span>".</span></div>
+<div class='bibtexentry'><a id='LyXCite-ExtraHighScore' />
+<span class='bibtexlabel'>ExtraHighScore Pas d'année</span><span class='bibtexinfo'>"<span class="bib-title">Extra - sokoban highscore table</span>".</span></div>
+<div class='bibtexentry'><a id='LyXCite-Munkres' />
+<span class='bibtexlabel'>Frank Pas d'année</span><span class='bibtexinfo'><span class="bib-author">Andras Frank</span>, "<span class="bib-title">Bipartite Matching and the Hungarian Method</span>".</span></div>
+<div class='bibtexentry'><a id='LyXCite-931399' />
+<span class='bibtexlabel'>Junghanns 1999</span><span class='bibtexinfo'><span class="bib-author">Andreas Junghanns</span>, "<span class="bib-title">Pushing the limits: new developments in single-agent search</span>", <span class="bib-publisher">University of Alberta</span> (<span class="bib-year">1999</span>).</span></div>
+<div class='bibtexentry'><a id='LyXCite-OriginalHighScore' />
+<span class='bibtexlabel'>OriginalHighScore Pas d'année</span><span class='bibtexinfo'>"<span class="bib-title">Original - sokoban highscore table</span>".</span></div>
+<div class='bibtexentry'><a id='LyXCite-SoHistory' />
+<span class='bibtexlabel'>SoHistory Pas d'année</span><span class='bibtexinfo'>"<span class="bib-title">Sokoban History</span>".</span></div>
+<div class='bibtexentry'><a id='LyXCite-AutomaticSolver' />
+<span class='bibtexlabel'>Takahashi Pas d'année</span><span class='bibtexinfo'><span class="bib-author">Ken'ichiro Takahashi</span>, "<span class="bib-title">Sokoban Automatic Solver</span>".</span></div>
+<div class='bibtexentry'><a id='LyXCite-VL06' />
+<span class='bibtexlabel'>Van Lishout 2006</span><span class='bibtexinfo'><span class="bib-author">Van Lishout, François</span>, "<span class="bib-title">Single-Player Games: Introduction To A New Solving Method</span>" (<span class="bib-year">2006</span>).</span></div>
+<div class='bibtexentry'><a id='LyXCite-MunkresCode' />
+<span class='bibtexlabel'>Weaver Pas d'année</span><span class='bibtexinfo'><span class="bib-author">John Weaver</span>, "<span class="bib-title">Munkres Code V2</span>".</span></div>
+<div class='bibtexentry'><a id='LyXCite-WikiSokoban' />
+<span class='bibtexlabel'>WikiSokoban Pas d'année</span><span class='bibtexinfo'>"<span class="bib-title">Sokoban</span>".</span></div>
+</div></div>
+
+<div class="standard"><a id='magicparlabel-4231' />
+</div>
+
+</div>

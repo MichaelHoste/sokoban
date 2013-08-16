@@ -1,0 +1,1062 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 6</span> <a id='magicparlabel-3034' />
+Parcours</h1>
+<div class="standard"><a id='magicparlabel-3035' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3036' />
+</div>
+
+<div class="standard"><a id='magicparlabel-3041' />
+Nous avons vu dans la Section <a href="#sec_Arbre_de_recherche">4.1</a> que la résolution d'un problème de Sokoban nécessitait la construction d'un arbre de recherche. Le moment est venu de décrire les différentes façons de construire cet arbre. Chacune des méthodes proposées possède ses avantages et inconvénients et diffère essentiellement des autres par l'ordre dans lequel les nœuds dans la liste d'attente seront placés dans l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3042' />
+Pour illustrer ces différents parcours, nous allons utiliser l'arbre de recherche de la Figure <a href="#fig_arbre_general">6.1</a>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3043' />
+Dans les exemples qui vont suivre, nous allons utiliser différents algorithmes pour parcourir l'arbre de recherche illustré. Il faut cependant noter que, dans le cadre de notre solveur, nous ne parcourons pas un arbre de recherche qui existe déjà. Dans les faits, nous parcourons un arbre créé dynamiquement selon des règles prédéfinies : création des états fils, détection des deadlocks, des doublons, &hellip; Les idées principales restent néanmoins les mêmes dans les deux cas.</div>
+
+<div class="standard"><a id='magicparlabel-3044' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3048' />
+<img style='width:85%;' src='assets/master_thesis/32_Users_michael_Desktop_memoire_images_parcours_arbre_complet.png' alt='image: 32_Users_michael_Desktop_memoire_images_parcours_arbre_complet.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3049' />
+<div class='float-caption float-caption-figure'>Figure 6.1:<div class="plain_layout"><a id='magicparlabel-3053' />
+<a id="fig_arbre_general" />
+Arbre que nous allons parcourir à l'aide d'algorithmes différents</div>
+</div></div>
+</div>
+
+<h2 class="section"><span class="section_label">6.1</span> <a id='magicparlabel-3054' />
+<a id="sec_Parcours_en_largeur" />
+Parcours en largeur</h2>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3055' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3059' />
+<strong>parcours en largeur</strong> : <em>Breadth-First Search (BFS)</em> en anglais, traite en priorité les nœuds voisins situés sur un même niveau de l'arbre de recherche. Quand un certain niveau est terminé, il descend au niveau suivant et continue de procéder de cette manière.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3060' />
+Le <em>parcours en largeur </em>utilise une liste d'attente <em>FIFO</em> (First In, First Out), c'est-à-dire une file, pour traiter les nœuds en attente. De cette façon, les nœuds arrivés en premier dans la liste d'attente seront placés en priorité dans l'arbre de recherche. Étant donné que l'Algorithme 1 utilise toujours le premier nœud de la liste pour le placer dans l'arbre de recherche, la fonction <em>ajouteDansListe(noeud)</em> va insérer chaque nouveau nœud <strong>à la fin</strong> de la liste chaînée tel qu'illustré sur la Figure <a href="#fig_parcours_largeur">6.2</a>.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3064' />
+<img style='width:50%;' src='assets/master_thesis/33_Users_michael_Desktop_memoire_images_parcours_largeur.png' alt='image: 33_Users_michael_Desktop_memoire_images_parcours_largeur.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3065' />
+<div class='float-caption float-caption-figure'>Figure 6.2:<div class="plain_layout"><a id='magicparlabel-3069' />
+<a id="fig_parcours_largeur" />
+Parcours en largeur</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3070' />
+Le parcours en largeur explore en priorité les nœuds les plus hauts de l'arbre de recherche. Du fait que dans notre solveur, chaque saut d'un nœud à un autre corresponde à une seule poussée, nous pouvons en déduire que l'optimalité en terme de poussées de la solution sera atteinte. Sur la Figure <a href="#fig_arbre_general">6.1</a>, nous pouvons voir deux nœuds qui contiennent des états solutions. L'une des deux solutions est optimale avec 2 poussées (nœud 8) et l'autre ne l'est pas avec 3 poussées (nœud 12). Avec le parcours en largeur, la solution qui sera trouvée la première sera bien celle qui est optimale.</div>
+<h2 class="section"><span class="section_label">6.2</span> <a id='magicparlabel-3071' />
+Parcours en profondeur</h2>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3072' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3076' />
+<strong>parcours en profondeur</strong> : <em>Depth-First Search (DFS)</em> en anglais, traite en priorité les nœuds situés en profondeur dans l'arbre de recherche.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3077' />
+Le <em>parcours en profondeur</em> utilise une liste d'attente <em>LIFO</em> (Last In, First Out), c'est-à-dire une pile, pour traiter les nœuds en attente. De cette façon, les nœuds arrivés en dernier dans la liste d'attente seront placés en priorité dans l'arbre de recherche, privilégiant ainsi les nœuds plus profonds. Étant donné que l'Algorithme 1 utilise toujours le premier nœud de la liste pour le placer dans l'arbre de recherche, la fonction <em>ajouteDansListe(noeud)</em> va insérer chaque nouveau nœud <strong>au début</strong> de la liste chaînée tel qu'illustré sur la Figure <a href="#fig_parcours_profondeur">6.3</a>.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3081' />
+<img style='width:35%;' src='assets/master_thesis/34_Users_michael_Desktop_memoire_images_parcours_longueur.png' alt='image: 34_Users_michael_Desktop_memoire_images_parcours_longueur.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3082' />
+<div class='float-caption float-caption-figure'>Figure 6.3:<div class="plain_layout"><a id='magicparlabel-3086' />
+<a id="fig_parcours_profondeur" />
+Parcours en profondeur</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3087' />
+Le parcours en profondeur explore en priorité les nœuds les plus profonds de l'arbre de recherche. Certains nœuds situés au niveau <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>p</mi>
+ </mrow></math> seront ainsi explorés avant que tous les nœuds situés au niveau <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>p</mi><mo>-</mo><mn>1</mn>
+  </mrow>
+ </mrow></math> ne le soient. Une solution non-optimale pourrait donc être trouvée avant la solution optimale. Une telle situation est illustrée avec la Figure <a href="#fig_arbre_general">6.1</a>. Si un parcours en profondeur était appliqué sur l'arbre de recherche, le premier nœud solution trouvé serait le 12. Le problème est qu'un autre nœud non exploré, le 8, contient une meilleure solution.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3088' />
+Le parcours en profondeur, contrairement à celui en largeur, ne trouve donc pas la solution optimale sauf si on le laisse explorer tout l'arbre. Il a néanmoins l'avantage de souvent trouver plus vite une bonne solution à un problème de Sokoban. Les solutions ont plus de chance de se trouver dans les nœuds les plus profonds de l'arbre.</div>
+<h2 class="section"><span class="section_label">6.3</span> <a id='magicparlabel-3089' />
+Parcours informé</h2>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3090' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3094' />
+<strong>parcours informé</strong> : <em>Best-First Search </em>en anglais, a pour principe d'assigner un coût à chaque nœud de l'arbre de recherche. Ce coût correspond à la priorité du nœud pour son insertion dans l'arbre.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3095' />
+Le coût peut être basé sur des propriétés de l'état en lui-même ou sur sa position au sein de l'arbre de recherche. La liste d'attente sera triée en fonction de ces coûts, par exemple en positionnant les nœuds dont les coûts sont les plus faibles en tête de liste. Lorsqu'un nouveau nœud est traité, il n'est pas systématiquement inséré en tête ou fin de liste comme c'était le cas auparavant mais à l'endroit exact de la liste qui correspond à son coût. Le parcours de l'arbre de recherche sera alors défini par l'heuristique utilisée pour définir le coût d'un nœud.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3096' />
+L'intérêt d'une telle méthode est que, si les heuristiques sont assez puissantes, il sera possible de construire un arbre de recherche en traitant en priorité les nœuds les plus susceptibles de mener à une solution. Les autres nœuds, moins utiles, seront rejetés en fin de liste. Son plus grand inconvénient est que les heuristiques pourraient éventuellement rejeter une solution, optimale ou non, en estimant à tort que l'état analysé n'est pas digne d'intérêt.</div>
+<h3 class="subsection"><span class="subsection_label">6.3.1</span> <a id='magicparlabel-3097' />
+<a id="sub_Tas" />
+Tas</h3>
+<div class="standard"><a id='magicparlabel-3098' />
+Si un parcours informé est utilisé en lieu et place d'un parcours en largeur ou en profondeur, il devient nécessaire de changer la structure de la liste d'attente. En effet, une liste doublement chaînée montre ses limites dès que l'insertion triée devient indispensable. Avec une liste chaînée, il n'y a pas d'alternative possible au parcours de toute la liste pour trouver l'emplacement exact où insérer le nouveau nœud, ce qui implique une complexité en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3099' />
+Le <em>tas</em> semble être une bonne alternative à la liste chaînée. Celui-ci permet une opération d'insertion triée plus souple que celle utilisable dans le cadre d'une liste. Le fonctionnement et l'implémentation proposés d'un tas proviennent de <em>Introduction to Algorithms</em> .</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3104' />
+Fonctionnement</h4>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3105' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3109' />
+<strong>tas </strong>: structure de données contenant des éléments triés dans un arbre binaire. Le tas possède la possibilité d'ajouter une donnée, de retirer la donnée minimale et de repositionner une donnée dans l'arbre binaire en fonction de son coût.</div>
+</div></strong>
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3110' />
+Le tas est représenté sous la forme d'un <em>arbre binaire</em>. Il faut différencier l'arbre binaire utilisé pour le tas de l'arbre de recherche qui sert de transition entre les états, ce sont deux arbres dont les rôles sont bien distincts.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3111' />
+Si l'arbre binaire contient <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>p</mi>
+ </mrow></math> niveaux, alors celui-ci doit être complet sur ses <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>p</mi><mo>-</mo><mn>1</mn>
+  </mrow>
+ </mrow></math> premiers niveaux et le dernier doit être rempli de gauche à droite. Un des aspects les plus pratiques d'un tas est qu'il peut être stocké dans un tableau <em>T </em>tel qu'illustré sur la Figure <a href="#fig_Tas">6.4</a>. L'arbre binaire correspondant au tas doit respecter un certain ordre dans ses éléments : si <em>A</em> et <em>B</em> sont deux nœuds de l'arbre binaire tels que <em>A</em> est le père de <em>B</em>, alors <em><math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>c</mi><mi>o</mi><mi>u</mi><mi>t</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>A</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math><math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mo> &le; </mo><mi>c</mi><mi>o</mi><mi>u</mi><mi>t</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>B</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.</em>
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3115' />
+<img style='width:70%;' src='assets/master_thesis/35_Users_michael_Desktop_memoire_images_tas.png' alt='image: 35_Users_michael_Desktop_memoire_images_tas.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3116' />
+<div class='float-caption float-caption-figure'>Figure 6.4:<div class="plain_layout"><a id='magicparlabel-3120' />
+<a id="fig_Tas" />
+Tas représenté dans un arbre binaire et tableau correspondant</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3121' />
+Pour représenter l'arbre binaire d'un tas sous forme d'un tableau <em>T, </em>il suffit d'utiliser certaines relations entre ses cellules. En posant <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> une cellule de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>T</mi>
+ </mrow></math>, les relations suivantes définissent les positions des cellules qui correspondent à son père et à ses deux fils dans l'arbre binaire :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3126' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>P</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mo form='prefix' fence='true' stretchy='true' symmetric='true'>lfloor</mo>
+   <mrow><mi>i</mi><mo>/</mo><mn>2</mn>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>rfloor</mo>
+  </mrow>
+ </mrow></math>
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3127' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>F</mi><mi>i</mi><mi>l</mi><mi>s</mi><mi>G</mi><mi>a</mi><mi>u</mi><mi>c</mi><mi>h</mi><mi>e</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>2</mn><mo>*</mo><mi>i</mi>
+  </mrow>
+ </mrow></math>
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3128' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>F</mi><mi>i</mi><mi>l</mi><mi>s</mi><mi>D</mi><mi>r</mi><mi>o</mi><mi>i</mi><mi>t</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>i</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>2</mn><mo>*</mo><mi>i</mi><mo>+</mo><mn>1</mn>
+  </mrow>
+ </mrow></math>
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3129' />
+Voici les possibilités d'utilisation d'un tas et les complexités correspondantes :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3134' />
+Insertion triée (<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mo> log </mo><mi>n</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>) : insère un nœud dans le tas en fonction de son coût. L'insertion se fait en ajoutant un nœud à la fin du tas et en le <strong>remontant</strong> jusqu'à la position adéquate à l'aide de la fonction <em>repositionneHaut(T, cell)</em>.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3135' />
+Extraction (<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mo> log </mo><mi>n</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>) : récupére et supprime le premier nœud du tas, celui dont le coût est le plus petit. La suppression du premier nœud du tas s'effectue en remplaçant le premier nœud par le dernier et en <strong>redescendant</strong> celui-ci dans le tas jusqu'à la position adéquate à l'aide de la fonction <em>repositionneBas(T, cell)</em>.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3136' />
+Incontestablement, l'insertion est plus rapide avec un tas qu'avec une liste chaînée car la complexité dans le pire des cas passe de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> à <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo>
+   <mrow><mo> log </mo><mi>n</mi>
+   </mrow><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. L'extraction, au contraire, devient maintenant dépendante du nombre d'éléments stockés, ce qui n'était pas le cas auparavant. Avec une liste chaînée, il suffisait de déconnecter le premier élément de la liste et de déplacer le pointeur de tête.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3137' />
+Implémentation
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3138' />
+Les deux fonctions les plus importantes du tas sont celles que nous avons déjà mentionnées : <em>repositionneHaut(T, cell)</em> (<em>cf. </em>Algorithme 2) et <em>repositionneBas(T, cell)</em> (<em>cf. </em>Algorithme 3). Celles-ci permettent de réorganiser l'arbre binaire respectivement après l'insertion d'un nœud ou la suppression du nœud minimum. Ils permettent aussi, entre autres, de repositionner dans l'arbre binaire un nœud dont le coût aurait été modifié. Cette fonctionnalité aura toute son importance dans le cadre du chapitre suivant : le parcours A*.</div>
+
+<div class="standard"><a id='magicparlabel-3139' />
+</div>
+
+<div class="standard"><a id='magicparlabel-3159' />
+</div>
+<h2 class="section"><span class="section_label">6.4</span> <a id='magicparlabel-3189' />
+Parcours A*</h2>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3190' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3194' />
+<strong>parcours A* </strong>: Parcours informé dans lequel nous définissons le coût d'un nœud par <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>+</mo><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3195' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est la distance déjà parcourue par le nœud <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math>. C'est-à-dire le coût du meilleur chemin, dans l'arbre de recherche, entre le nœud racine et le nœud <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math>.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3196' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est l'estimation de la distance restante à parcourir à partir du nœud <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> pour trouver le nœud solution. <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo> &le; </mo>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est la distance exacte entre le nœud <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> et le nœud solution. L'estimation doit donc être minorante de la distance réelle.</li>
+</ul>
+</div></strong></div>
+<h3 class="subsection"><span class="subsection_label">6.4.1</span> <a id='magicparlabel-3197' />
+Fonctionnement</h3>
+<div class="standard"><a id='magicparlabel-3198' />
+<em>Le parcours A*</em> permet de favoriser les nœuds les plus prometteurs : ceux qui n'ont pas encore parcouru une longue distance et pour lesquels la distance restante devrait être la plus faible.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3199' />
+Dans le cas du Sokoban, le coût représente le nombre de poussées. Le passage entre un nœud parent et un nœud enfant correspond à une unique poussée. <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est donc facile à calculer et représente la profondeur du nœud dans l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3200' />
+Le théorème d'admissibilité  affirme que pour un arbre de recherche <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi> &delta; </mi>
+ </mrow></math> tel que :
+<br />
+
+</div>
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3209' />
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi> &delta; </mi>
+ </mrow></math> contient un nœud solution.</li>
+<li class="enumerate_item"><a id='magicparlabel-3210' />
+Le nombre de fils d'un nœud quelconque est fini.</li>
+<li class="enumerate_item"><a id='magicparlabel-3211' />
+Il existe un minorant strictement positif de l'ensemble des coûts des arcs.
+<br />
+
+</li>
+</ol>
+<div class="standard"><a id='magicparlabel-3212' />
+alors :
+<br />
+
+</div>
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3217' />
+Les algorithmes de types A* appliqués à <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi> &delta; </mi>
+ </mrow></math> se terminent.</li>
+<li class="enumerate_item"><a id='magicparlabel-3218' />
+Un chemin joignant la racine à un nœud solution est trouvé.</li>
+<li class="enumerate_item"><a id='magicparlabel-3219' />
+Le chemin découvert est un chemin de coût minimal dans l'arbre de recherche, entre la racine et l'ensemble des nœuds solutions.
+<br />
+
+</li>
+</ol>
+<div class="standard"><a id='magicparlabel-3220' />
+Ce théorème signifie donc que, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi> &forall; </mi><mi>n</mi>
+  </mrow>
+ </mrow></math> un nœud de l'arbre de recherche, si <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est une heuristique admissible et donc minorante de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, la solution trouvée sera optimale en terme de poussées.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3221' />
+Si l'estimation de la distance restante était parfaite avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, le parcours A* irait directement de la racine vers le meilleur nœud solution sans s'égarer. Dans les faits, malheureusement, une estimation parfaite est extrèmement difficile à réaliser. La meilleure solution est de multiplier les techniques pour approcher au mieux la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.</div>
+<h3 class="subsection"><span class="subsection_label">6.4.2</span> <a id='magicparlabel-3222' />
+Implémentation</h3>
+<div class="standard"><a id='magicparlabel-3223' />
+Lors du parcours, il a été prévu dans la Section <a href="#sec_Doublons">5.6</a> de rejeter un état si celui-ci est déjà présent dans l'arbre de recherche. Dans le cas du parcours A*, afin de garder l'optimalité des solutions, il ne suffit plus de rejeter tous les doublons. En effet, deux états identiques peuvent se trouver à deux profondeurs différentes de l'arbre de recherche et possèder deux valeurs différentes pour <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math><div class="foot"><span class="foot_label">1</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-3227' />
+La valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> ne varie pas en fonction de la position dans l'arbre de recherche d'un même état</div>
+</div></div> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> est le nœud contenant l'état. Si le nœud dont la valeur est la plus petite, et donc la meilleure, est traité en deuxième lors du parcours, il sera considéré comme doublon et rejeté à tort. Le risque est que ce nœud mène justement à la solution optimale, qui sera alors perdue.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3228' />
+Des manipulations supplémentaires sont donc ajoutées pour, dans le cas de doublons, toujours conserver le nœud dont le coût est le plus bas et réorganiser l'arbre de recherche en fonction. Comme ces manipulations diffèrent en fonction de la présence, ou non, du nœud dans la liste d'attente, un moyen a dû être trouvé pour discerner ces deux types de nœuds.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3229' />
+La table de hachage est dédoublée. La première, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>T</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>o</mi><mi>u</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>t</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>, est utilisée pour stocker les <em>états ouverts</em> et la seconde, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>T</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>f</mi><mi>e</mi><mi>r</mi><mi>m</mi><mi>e</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>, pour stocker les <em>états fermés</em>. Il est ainsi possible, à partir de l'état contenu dans un nœud, de vérifier rapidement sa présence dans l'une ou l'autre table et d'agir en conséquence.</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3230' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3234' />
+<strong>nœud/état ouvert </strong>: nœud/état de l'arbre de recherche qui est dans la liste d'attente. Ses enfants doivent encore être trouvés.</div>
+
+<div class="plain_layout"><a id='magicparlabel-3235' />
+<strong>nœud/état fermé</strong> : nœud/état de l'arbre de recherche pour lequel tous les enfants, s'il en a, ont été trouvés et ajoutés à l'arbre.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3236' />
+Il est parfois indispensable de pouvoir accéder directement à l'un des nœuds de la liste d'attente. Le problème est qu'un tas ne permet pas de rechercher efficacement un élément parmi ceux qui sont stockés. La solution la plus simple consisterait à parcourir toutes les cases du tableau correspondant à l'arbre binaire du tas pour trouver celle recherchée. C'est aussi la solution la plus coûteuse car sa complexité serait en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> représente le nombre d'éléments stockés dans le tableau.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3237' />
+Une solution plus efficace, qui tire profit de la complexité moyenne en <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>O</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mn>1</mn><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> de la table de hachage, consiste à ajouter une nouvelle donnée à chaque élément de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>T</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>o</mi><mi>u</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>t</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> qui correspondrait à la position du nœud dans le tas. Cette donnée supplémentaire de la table de hachage devra être mise à jour à chaque manipulation du tas pour que sa valeur reste cohérente.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3238' />
+La fonction <em>dejaExistant(noeud)</em> de l'Algorithme 1, utilisée pour détecter les doublons, est modifiée pour mettre l'arbre de recherche à jour si un doublon s'avère meilleur qu'un nœud déjà présent. L'ancien nœud sera remplacé par le nouveau et les coûts des enfants déjà présents seront adaptés.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3239' />
+</div>
+
+<div class="standard"><a id='magicparlabel-3277' />
+L'Algorithme 4 décrit la méthode permettant de gérer efficacement les doublons de manière à conserver l'optimalité de la solution. La première constatation que l'on peut faire est que, dans le cas d'un nouveau nœud qui n'est pas doublon, le fonctionnement est identique à celui des autres parcours. C'est-à-dire que la présence du nœud est déclinée dans la fonction <em>dejaExistant(noeud) </em>et qu'il est ajouté normalement dans l'arbre de recherche sans travail supplémentaire.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3278' />
+Au contraire, dans le cas d'un nœud déjà présent dans l'arbre de recherche, qu'il soit ouvert ou fermé, des manipulations supplémentaires vont devoir être mises en application. Celles-ci se divisent en deux catégories :</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3279' />
+Le nouveau nœud est déjà présent dans l'arbre de recherche et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>n</mi><mi>o</mi><mi>e</mi><mi>u</mi><mi>d</mi><mi>P</mi><mi>r</mi><mi>e</mi><mi>s</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo> &isin; </mo>
+   <msub>
+    <mrow><mi>T</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>f</mi><mi>e</mi><mi>r</mi><mi>m</mi><mi>e</mi>
+     </mrow>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math>
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3280' />
+Le nœud présent dans l'arbre de recherche possède, potentiellement, des enfants. Le coût des enfants doit être adapté si la position dans l'arbre de leur ancêtre commun est modifiée. La partie de l'algorithme qui correspond à ce paragraphe est celle qui va de la ligne 2 à la ligne 8.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3281' />
+Si le coût du nouveau nœud est plus grand que celui du nœud présent, l'arbre de recherche n'est pas modifié. À l'opposé, si le coût du nouveau nœud est plus petit, et donc meilleur que celui du nœud déjà présent, on déplace le sous-arbre formé par le nœud présent à l'endroit du nouveau nœud. Les valeurs de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> de tout le sous-arbre sont ensuite réduites de la différence entre le coût de l'ancien nœud et le coût du nouveau nœud.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3282' />
+Voici quelques explications sur les fonctions utilisées :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3287' />
+<em>noeudFerme ← recupere(<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>T</mi>
+   <msub><mrow />
+    <mrow>
+     <mrow><mi>f</mi><mi>e</mi><mi>r</mi><mi>m</mi><mi>e</mi>
+     </mrow>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math>, noeud)</em> : si <em>noeud</em> existe dans la table de hachage <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>T</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>f</mi><mi>e</mi><mi>r</mi><mi>m</mi><mi>e</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>,<em> </em>la fonction retourne la référence vers sa position dans l'arbre de recherche. Si le nœud n'existe pas dans la table de hachage, la fonction <em>existe(noeudFerme)</em> retournera <em>faux</em>.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3288' />
+<em>attacheNoeud(noeudFerme, parent(noeud))</em> : attache<em> noeudFerme</em> au parent du nœud actuellement traité. L'objectif est de déplacer un sous-arbre entier de l'arbre de recherche à un endroit moins profond et donc relatif à un moindre coût.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3289' />
+<em>reduitCout(noeudFerme, cout(noeudFerme) − cout(noeud))</em> : réduit le coût du sous-arbre formé de <em>noeudFerme</em> de la différence de valeur, et donc de profondeur, qu'il y a entre l'ancienne position du sous-arbre et la nouvelle.</li>
+</ul>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3290' />
+Le nouveau nœud est déjà présent dans l'arbre de recherche et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>n</mi><mi>o</mi><mi>e</mi><mi>u</mi><mi>d</mi><mi>P</mi><mi>r</mi><mi>e</mi><mi>s</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo> &isin; </mo>
+   <msub>
+    <mrow><mi>T</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>o</mi><mi>u</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>t</mi>
+     </mrow>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math>
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3291' />
+Le nœud déjà présent dans l'arbre de recherche n'a pas encore d'enfants et est toujours en attente de traitement dans la liste d'attente (le tas). Si le coût du nœud change, il devra être replacé dans la liste d'attente en fonction de sa nouvelle priorité. La partie de l'algorithme qui correspond à ce paragraphe est celle qui va de la ligne 10 à la ligne 19.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3292' />
+Si le coût du nouveau nœud est plus grand que celui du nœud présent, l'arbre de recherche n'est pas modifié. À l'opposé, si le coût du nouveau nœud est plus petit, et donc meilleur que celui du nœud présent, on modifie la valeur du nœud présent et on l'accroche au père du nouveau nœud. Le nœud présent se situera donc à une position moins profonde de l'arbre. Pour terminer, la position dans le tas du nœud présent est révisée en fonction de son nouveau coût.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3293' />
+Voici quelques explications sur les fonctions utilisées :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3298' />
+<em>noeudOuvert ← recupere(<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>T</mi>
+   <msub><mrow />
+    <mrow>
+     <mrow><mi>o</mi><mi>u</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>t</mi>
+     </mrow>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math>, noeud)</em> : si <em>noeud</em> existe dans la table de hachage <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>T</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>o</mi><mi>u</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>t</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>,<em> </em>la fonction retourne la référence vers sa position dans l'arbre de recherche. Si le nœud n'existe pas dans la table de hachage, la fonction <em>existe(noeudOuvert)</em> retournera <em>faux</em>.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3299' />
+<em>cellule ← recupereCelluleTas(<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>T</mi>
+   <msub><mrow />
+    <mrow>
+     <mrow><mi>o</mi><mi>u</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>t</mi>
+     </mrow>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math>, noeud)</em> : grâce à la modification de la table de hachage des nœuds ouverts, il est maintenant possible d'accéder directement à la position d'un nœud dans le tableau correspondant à l'arbre binaire du tas.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3300' />
+<em>assigneCout(noeudOuvert, cout(noeud))</em> : assigne simplement un nouveau coût à un nœud. Comme le nœud est ouvert, il n'a pas encore d'enfants et il n'est donc pas nécessaire de s'en préoccuper.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3301' />
+<em>repositionneHaut(Tas, cellule)</em> : fonction décrite dans l'Algorithme 2. Permet de repositionner, vers le haut, un nœud dans le tas en fonction de son nouveau coût, qui est plus petit que l'ancien..
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3302' />
+<em>attacheNoeud(noeudOuvert, parent(noeud))</em> : attache<em> noeudOuvert</em> au parent du nœud actuellement traité. L'objectif est de déplacer le nœud à un endroit moins profond de l'arbre de recherche et donc relatif à un moindre coût.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3303' />
+Dans les deux cas, une fois l'arbre de recherche modifié, la fonction retournera <em>vrai</em> pour signaler que le nœud est un doublon. Tout le travail pour modifier l'arbre aura déjà été effectué en amont. Le nœud courant n'a donc plus besoin d'être inséré par la suite.</div>
+<h3 class="subsection"><span class="subsection_label">6.4.3</span> <a id='magicparlabel-3304' />
+<a id="sub_triA" />
+Priorité de la liste d'attente</h3>
+<div class="standard"><a id='magicparlabel-3305' />
+Le tas est organisé de façon à ce que les nœuds les plus prometteurs soient prioritaires. La méthode simple consiste à placer en tête de liste ceux pour lesquels le coût <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est le plus petit. Il est cependant possible d'affiner ce résultat. En cas d'égalité pour les valeurs de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, une deuxième condition portant sur les valeurs de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est ajoutée. Pour deux valeurs égales de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, la plus petite valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> sera prioritaire<div class="foot"><span class="foot_label">2</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-3309' />
+Comme <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>+</mo><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, prendre le plus petite valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> revient à prendre la plus grande valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> </div>
+</div></div> tel qu'illustré sur la Figure <a href="#fig_astar">6.5</a>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3310' />
+Trier le tas d'une façon différente consiste à adapter la fonction <em>estPlusPetit(noeud1, noeud2) </em>utilisée dans les Algorithmes 2 et 3. Cette fonction définit explicitement dans quelles conditions un nœud est plus petit, et donc possède une meilleur priorité, qu'un autre.</div>
+<h3 class="subsection"><span class="subsection_label">6.4.4</span> <a id='magicparlabel-3311' />
+Exemple </h3>
+<div class="standard"><a id='magicparlabel-3312' />
+La Figure <a href="#fig_astar">6.5</a> représente les différentes structures qui interviennent lors d'un parcours A*. Pour une lecture plus facile, la liste d'attente n'est pas représentée sous la forme d'un tas mais sous celle d'une liste chaînée triée. On voit que le parcours se dirige assez facilement vers le nœud solution 15 en évitant les autres nœuds dont le coût <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est plus élevé. Si aucune solution en 5 poussées n'était possible, le prochain nœud traité serait le premier de la liste d'attente et donc celui qui est le plus prometteur en 6 poussées.</div>
+
+<div class="standard"><a id='magicparlabel-3313' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3317' />
+<img style='width:85%;' src='assets/master_thesis/36_Users_michael_Desktop_memoire_images_parcours_Astar.png' alt='image: 36_Users_michael_Desktop_memoire_images_parcours_Astar.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3318' />
+<div class='float-caption float-caption-figure'>Figure 6.5:<div class="plain_layout"><a id='magicparlabel-3322' />
+<a id="fig_astar" />
+Parcours en profondeur</div>
+</div></div>
+</div>
+
+<h2 class="section"><span class="section_label">6.5</span> <a id='magicparlabel-3323' />
+<a id="sec_Parcours_IDA_" />
+Parcours IDA*</h2>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3324' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3328' />
+<strong>parcours IDA*</strong> : <em>Iterative Deepening A*</em> est entièrement basé sur l'algorithme A*. Il possède la particularité de fixer une valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> afin que tous les nœuds pour lesquels <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>&gt;</mo>
+   <msub>
+    <mrow><mi>f</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+     </mrow>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> soient directement rejetés. En incrémentant la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> à chaque itération de l'algorithme A*, le parcours IDA* finira par trouver la solution optimale.</div>
+</div></strong></div>
+<h3 class="subsection"><span class="subsection_label">6.5.1</span> <a id='magicparlabel-3329' />
+Fonctionnement</h3>
+<div class="standard"><a id='magicparlabel-3330' />
+Le<em> parcours IDA*</em> fonctionne sur base d'itérations successives du parcours A* pour lesquelles la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> est fixée dès le départ. Ainsi, nous pouvons imaginer que la première itération s'effectuera avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>f</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>=</mo><mn>1</mn>
+  </mrow>
+ </mrow></math>, la deuxième avec <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>f</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>=</mo><mn>2</mn>
+  </mrow>
+ </mrow></math> et ainsi de suite. Chaque itération va tester toutes les possibilités dont les coûts seront dans la limite précisée. Si aucun nœud solution n'est trouvé, le coût maximal sera incrémenté et le parcours A* sera relancé jusqu'à l'obtention d'une solution.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3331' />
+Cette façon de procéder permet aux différentes itérations du parcours A* de supprimer rapidement de l'arbre de recherche, les sous-arbres dont il sait déjà que les solutions potentielles ne se trouvent pas dans la limite précisée. Prenons par exemple le cas où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>f</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>=</mo><mn>10</mn>
+  </mrow>
+ </mrow></math>. À un endroit donné de l'arbre de recherche, nous obtenons un nœud pour lequel <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>2</mn>
+  </mrow>
+ </mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>9</mn>
+  </mrow>
+ </mrow></math> et donc <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>11</mn>
+  </mrow>
+ </mrow></math>. Nous pouvons rejeter ce nœud et par la même occasion tous ses enfants car, au mieux, la solution que l'on y trouvera s'effectuera en 11 poussées. Nous avons donc évité un parcours inutile seulement après les deux premières poussées.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3332' />
+La Figure <a href="#fig_parcours_ida">6.6</a> montre différentes itérations du parcours A*. Nous pouvons y voir que la solution optimale sera toujours trouvée la première (lors de l'itération pour laquelle <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>f</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>=</mo><mn>10</mn>
+  </mrow>
+ </mrow></math>). Des solutions moins bonnes pourraient être trouvées lors d'itérations suivantes.</div>
+
+<div class="standard"><a id='magicparlabel-3333' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3337' />
+<img style='width:40%;' src='assets/master_thesis/37_Users_michael_Desktop_memoire_images_IDA.png' alt='image: 37_Users_michael_Desktop_memoire_images_IDA.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3338' />
+<div class='float-caption float-caption-figure'>Figure 6.6:<div class="plain_layout"><a id='magicparlabel-3342' />
+<a id="fig_parcours_ida" />
+Les différentes itérations du parcours A*</div>
+</div></div>
+</div>
+
+<h3 class="subsection"><span class="subsection_label">6.5.2</span> <a id='magicparlabel-3343' />
+Avantages</h3>
+<div class="standard"><a id='magicparlabel-3344' />
+L'utilisation du parcours IDA* possède un double avantage :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3349' />
+La solution optimale sera trouvée avec un arbre de recherche plus petit et donc avec une utilisation moins importante de la mémoire. Cela est dû à la suppression de tous les nœuds pour lesquels le coût est plus grand que l'objectif <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> visé.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3350' />
+À la fin d'une itération du parcours A* pour laquelle <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>f</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>=</mo><mi>a</mi>
+  </mrow>
+ </mrow></math>, il y a deux possibilités :
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3351' />
+Soit une solution est trouvée et est optimale.</li>
+<li class="enumerate_item"><a id='magicparlabel-3352' />
+Soit aucune solution n'est trouvée mais il est possible d'affirmer que le nombre de poussées de la solution optimale sera <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mo>&gt;</mo><mi>a</mi>
+  </mrow>
+ </mrow></math>.</li>
+</ol>
+</li></ul>
+<h3 class="subsection"><span class="subsection_label">6.5.3</span> <a id='magicparlabel-3353' />
+Inconvénients</h3>
+<div class="standard"><a id='magicparlabel-3354' />
+L'inconvénient principal de ce parcours est qu'une même partie de l'arbre de recherche sera explorée plusieurs fois lors d'itérations successives du parcours A*. Ce n'est pas un problème majeur car, dans un arbre, la variation du nombre de nœuds d'une itération à une autre est souvent exponentielle. La dernière itération a donc, la plupart du temps, la propriété d'englober toutes les itérations précédentes en terme de temps de calcul.</div>
+
+<div class="standard"><a id='magicparlabel-3355' />
+</div>
+<h3 class="subsection"><span class="subsection_label">6.5.4</span> <a id='magicparlabel-3356' />
+Optimisations</h3>
+<div class="standard"><a id='magicparlabel-3357' />
+Deux optimisations ont été mises en place afin d'éviter d'incrémenter le coût en partant de 1 et uniquement par pas de 1.</div>
+<h4 class="subparagraph"><span class="subparagraph_label"></span> <a id='magicparlabel-3358' />
+Valeur initiale de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math></h4>
+<div class="standard"><a id='magicparlabel-3359' />
+L'état initial d'un problème possède un coût qui lui est propre. Il est inutile de commencer à appliquer le parcours A* sur cet état avec une limite plus basse que son coût. En effet, le premier nœud rencontré serait directement rejeté. La limite initiale à appliquer est donc le coût de l'état initial.</div>
+<h4 class="subparagraph"><span class="subparagraph_label"></span> <a id='magicparlabel-3360' />
+Incrémentation de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math></h4>
+<div class="standard"><a id='magicparlabel-3361' />
+Nous avons remarqué que l'évolution du coût a tendance à évoluer par pas de 2. En effet, si le pousseur est placé du mauvais côté pour pousser une caisse, il va d'abord devoir la pousser une première fois, la contourner, puis la repousser une deuxième fois (<em>cf</em>. Figure <a href="#fig_Ecart_entre_estimation">6.7</a>). L'estimation du coût est ainsi faussée de 2 poussées. Pour ne pas inutilement incrémenter la limite par pas de 1 si on peut progresser plus rapidement, nous allons garder en mémoire le nœud rejeté dont le coût est le plus petit. Par exemple si la limite actuelle est de 10 et qu'à la fin de l'itération, le coût le plus petit qui a été rejeté est 12, nous pourrons commencer l'itération suivante à 12.</div>
+
+<div class="standard"><a id='magicparlabel-3362' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3366' />
+<img style='width:35%;' src='assets/master_thesis/38_Users_michael_Desktop_memoire_images_cout.png' alt='image: 38_Users_michael_Desktop_memoire_images_cout.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3367' />
+<div class='float-caption float-caption-figure'>Figure 6.7:<div class="plain_layout"><a id='magicparlabel-3371' />
+<a id="fig_Ecart_entre_estimation" />
+L'écart entre <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est souvent de 2</div>
+</div></div>
+</div>
+
+<h3 class="subsection"><span class="subsection_label">6.5.5</span> <a id='magicparlabel-3372' />
+<a id="sub_triIDA" />
+Priorité de la liste d'attente</h3>
+<div class="standard"><a id='magicparlabel-3373' />
+Avec le parcours IDA* et contrairement au parcours A*, il est possible de trier la liste d'attente des nœuds uniquement par rapport à la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. En effet, étant donné que la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est majorée par <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>, la seule contrainte de priorité concerne le nombre de poussées restantes pour qu'un nœud mène à une solution.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3374' />
+Trier le tas d'une façon différente consiste à adapter la fonction <em>estPlusPetit(noeud1, noeud2) </em>utilisée dans les Algorithmes 2 et 3. Cette fonction définit explicitement dans quelles conditions un nœud est plus petit, et donc possède une meilleur priorité, qu'un autre.</div>
+
+</div>

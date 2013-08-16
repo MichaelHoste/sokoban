@@ -1,0 +1,91 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 10</span> <a id='magicparlabel-3952' />
+<a id="cha_Pr___traitement" />
+Pré-traitement</h1>
+<div class="standard"><a id='magicparlabel-3953' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3954' />
+</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3959' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3963' />
+<strong>pré-traitement</strong> : travail effectué par le solveur sur un niveau avant de commencer à construire l'arbre de recherche.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3964' />
+Le <em>pré-traitement</em> d'un niveau permet de rechercher une certaine quantité d'informations sur celui-ci avant même de commencer à parcourir l'arbre de recherche. C'est une préparation du niveau qui nous aidera à aller plus vite lors de sa résolution.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3965' />
+Tout l'intérêt du pré-traitement est qu'il est facultatif. C'est-à-dire qu'il est tout à fait possible d'utiliser le solveur sans pré-traitement, avec un petit pré-traitement ou encore en pré-traitant le niveau pendant plusieurs jours pour être sûr de récolter un maximum d'informations utiles.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3966' />
+Un autre intérêt est qu'il est tout à fait possible de continuer un pré-traitement exactement là où on l'a arrêté la dernière fois. Les informations récoltées sont persistantes et peuvent être réutilisées à l'infini. Plus le temps consacré sur chaque niveau sera important et plus le parcours de l'arbre de recherche aura des chances d'être performant.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3967' />
+Les pré-traitements concernent deux aspects de la résolution des niveaux que nous avons déjà vus : la<em> table des estimations</em> et les<em> pénalités.</em></div>
+<h2 class="section"><span class="section_label">10.1</span> <a id='magicparlabel-3968' />
+Table des estimations</h2>
+<div class="standard"><a id='magicparlabel-3969' />
+La <em>table des estimations</em> correspond à la matrice <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>M</mi>
+ </mrow></math> que nous avons construite lors du Chapitre <a href="#cha_Estimation">7</a>. Celle-ci nous permet de connaître l'estimation du coût nécessaire pour pousser une caisse de la position relative <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> vers la position relative <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>j</mi>
+ </mrow></math> d'un niveau.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3970' />
+Même si la génération de la table des estimations est relativement rapide, il est intéressant de la calculer une seule fois et de l'enregistrer. Ainsi, nous éviterons de nombreux calculs inutiles lors de prochains essais de résolution du niveau. De plus, tous les états et sous-états d'un niveau possèdent la même table des estimations, il ne sera donc pas nécessaire de la recalculer lors de l'application du solveur <em>bestPushes</em> sur les sous-états dont nous voulons tester la pénalité.</div>
+<h2 class="section"><span class="section_label">10.2</span> <a id='magicparlabel-3971' />
+Pénalités</h2>
+<div class="standard"><a id='magicparlabel-3972' />
+Les <em>pénalités</em> correspondent aux sous-états pénalisés du Chapitre <a href="#cha_P__nalit__">9</a>. En général, plus le solveur connait de pénalités avant de commencer à résoudre un niveau et moins l'arbre de recherche sera grand. La recherche passive de pénalités que nous avons vue dans la Section <a href="#sub_penalpassive">9.2.1</a> permet de détecter des pénalités avant même de construire l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3973' />
+L'intérêt du pré-traitement des pénalités est que si on recherche passivement tous les sous-états pénalisés de 3 caisses et moins, l'obtention de meilleures estimations <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> pour les nœuds de l'arbre de recherche est fort probable. Il est donc possible de lancer la résolution d'un niveau avec l'obligation de tester d'abord tous les sous-états de 3 caisses et moins.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3974' />
+Cette opération pourra prendre plusieurs heures<div class="foot"><span class="foot_label">1</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-3978' />
+sur un Pentium M 1.73Ghz avec 1Go de ram</div>
+</div></div> mais pourra être exécutée en plusieurs fois. En effet, la position des caisses du dernier sous-état testé sera sauvegardée et il sera donc possible de reprendre la recherche là où elle a été arrêtée.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3979' />
+Pour les niveaux les plus difficiles et si la puissance et le temps ne sont pas un problème, rien n'empêche l'utilisateur de continuer la recherche pour 4 caisses et plus. Chaque sous-état pénalisé supplémentaire permettra peut-être de supprimer de nombreux sous-arbres de l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3980' />
+Le fichier contenant les sous-états pénalisés est le même pour la recherche passive et la recherche active de pénalités. La recherche active va donc compléter les résultats obtenus par le pré-traitement lors du parcours de l'arbre de recherche.
+</div>
+
+</div>

@@ -1,0 +1,719 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 9</span> <a id='magicparlabel-3802' />
+<a id="cha_P__nalit__" />
+Pénalité</h1>
+<div class="standard"><a id='magicparlabel-3803' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3804' />
+</div>
+
+<div class="standard"><a id='magicparlabel-3809' />
+Ce chapitre décrit une technique utilisée pour affiner l'estimation <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> d'un nœud dans l'arbre de recherche. Pour rappel, plus l'estimation de la distance restante est proche de la distance réelle <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>, plus l'arbre de recherche sera petit et plus vite une solution optimale sera trouvée.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3810' />
+Les techniques développées dans le Chapitre <a href="#cha_Estimation">7</a> permettent d'obtenir une estimation <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> en fonction des positions des caisses et des goals dans le nœud. Rien dans ces techniques ne permet de mettre en évidence le surcoût occasionné lorsque plusieurs caisses se gênent mutuellement.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3811' />
+Le cas d'un sous-état contenant des caisses qui se gênent mutuellement, illustré sur la Figure <a href="#fig_penalite1">9.1</a>, n'est pourtant pas rare. À partir des méthodes d'estimation décrites précédemment, on obtient pour ce sous-état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>20</mn>
+  </mrow>
+ </mrow></math>. Dans les faits cependant, on voit directement que la caisse située sur la position absolue <em>H9</em> ne pourra pas être atteinte par le pousseur sans qu'il ne commence par pousser la caisse située en<em> H6</em> vers le bas. Ce mouvement supplémentaire donnera au final <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mn>22</mn>
+  </mrow>
+ </mrow></math>. La différence entre l'estimation et le coût réel est donc de 2.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3815' />
+<img style='width:65%;' src='assets/master_thesis/66_Users_michael_Desktop_memoire_images_penalite_penalite1.png' alt='image: 66_Users_michael_Desktop_memoire_images_penalite_penalite1.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3816' />
+<div class='float-caption float-caption-figure'>Figure 9.1:<div class="plain_layout"><a id='magicparlabel-3820' />
+<a id="fig_penalite1" />
+Sous-état d'un niveau qui provoque une pénalité de 2.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3821' />
+Cette différence entre coût estimé et coût réel du sous-état, que nous appellerons <em>pénalité d'un sous-état</em>, devra s'appliquer dans tous les états dans lesquels ce sous-état est inclus. La <em>pénalité déduite d'un état</em> <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>e</mi>
+ </mrow></math> comprend l'application des pénalités (<em>cf</em>. Section <a href="#sec_Application">9.4</a>) de tous les sous-états <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>s</mi>
+   <msub><mrow />
+    <mrow><mn>1</mn>
+    </mrow>
+   </msub><mo>,</mo><mspace width="6px" /><mi>s</mi>
+   <msub><mrow />
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub><mo>,</mo><mspace width="6px" />
+   <mi>&hellip;
+   </mi><mo>,</mo><mspace width="6px" /><mi>s</mi>
+   <msub><mrow />
+    <mrow><mi>n</mi>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> tels que <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>s</mi>
+   <msub><mrow />
+    <mrow><mn>1</mn>
+    </mrow>
+   </msub><mo> &isin; </mo><mi>e</mi><mo>,</mo><mspace width="6px" /><mi>s</mi>
+   <msub><mrow />
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub><mo> &isin; </mo><mi>e</mi><mo>,</mo><mspace width="6px" />
+   <mi>&hellip;
+   </mi><mo>,</mo><mspace width="6px" /><mi>s</mi>
+   <msub><mrow />
+    <mrow><mi>n</mi>
+    </mrow>
+   </msub><mo> &isin; </mo><mi>e</mi>
+  </mrow>
+ </mrow></math>. Contrairement à la pénalité d'un sous-état, la pénalité déduite d'un état n'est pas toujours la différence exacte entre le coût estimé et le coût réel, ce n'est qu'une meilleure approche de la valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math></div>
+<h2 class="section"><span class="section_label">9.1</span> <a id='magicparlabel-3822' />
+Définition</h2>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3823' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3827' />
+<strong>pénalité d'un (sous-)état</strong> : différence entre le coût estimé <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> et le coût réel <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> pour un certain (sous-)état.</div>
+
+<div class="plain_layout"><a id='magicparlabel-3828' />
+<strong>pénalité déduite d'un état </strong>: valeur ajoutée à l'estimation d'un état par l'application des pénalités des sous-états compris dans celui-ci. La pénalité déduite ne correspond pas toujours à la différence exacte entre le coût estimé et le coût réel.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3829' />
+À partir d'un niveau, nous allons donc essayer de trouver un maximum de sous-états qui contiennent des pénalités. Ceux-ci vont nous aider à trouver les pénalités déduites des états de l'arbre de recherche afin d'améliorer leurs estimations de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3830' />
+Cette technique est une généralisation de celle des deadlocks méthodiques (<em>cf</em>. Section <a href="#sub_Deadlock_m__thodique">8.2.3</a>). En effet, un sous-état qui provoque un deadlock peut être considéré comme un sous-état dont la pénalité est infinie. L'état qui comprend ce sous-état aura alors une pénalité déduite infinie et une valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mi> &infin; </mi>
+  </mrow>
+ </mrow></math>. Le coût du nœud contenant l'état va alors provoquer son rejet de l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3831' />
+L'objectif est de rechercher des pénalités de sous-états qui ne sont pas nulles et donc des sous-états pour lesquels <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+   <mrow>
+    <mrow><mo> &ssetmn; </mo>
+    </mrow><mo>=</mo>
+   </mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. Plus le nombre de sous-états trouvés sera grand et plus les coûts des nœuds de l'arbre de recherche auront la possibilité d'être précis.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3832' />
+Cette recherche de sous-états pénalisés n'est pas une chose aisée pour deux raisons :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3837' />
+Il faut trouver les sous-états qui apporteront une pénalité parmi un nombre très important de possibilités différentes. Nous verrons dans la Section <a href="#sec_Recherche">9.2</a> comment rechercher efficacement.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3838' />
+Il faut pouvoir affirmer que la différence entre l'estimation de la distance <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> du sous-état et sa distance réelle <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> s'applique bien pour positionner les caisses présentes sur tous les sous-ensembles possibles de goals. Nous verrons dans la Section <a href="#sec_Validation">9.3</a> comment une pénalité trouvée doit être validée avant de pouvoir être appliquée sur un état.</li>
+</ul>
+<h2 class="section"><span class="section_label">9.2</span> <a id='magicparlabel-3839' />
+<a id="sec_Recherche" />
+Recherche</h2>
+<div class="standard"><a id='magicparlabel-3840' />
+Tout comme la méthode des deadlocks méthodiques, la recherche de sous-états potentiellement pénalisés s'effectue de deux façons : <em>passivement</em> et <em>activement</em>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3841' />
+Pour vérifier qu'un sous-état provoque une pénalité, nous créons un niveau contenant les caisses du sous-état ainsi que tous les goals et nous appliquons le solveur <em>bestPushes</em> avec une limite <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>f</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>=</mo><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est l'estimation actuelle du sous-état testé. En appliquant un solveur optimal avec une limite fixée de poussées, nous avons deux possibilités :
+<br />
+
+</div>
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3842' />
+<strong>Une solution est trouvée</strong> : la limite <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> introduite correspond à la distance exacte entre le nœud initial et le nœud solution. L'estimation actuelle du sous-état correspond donc à la distance réelle. Aucune pénalité ne doit être assignée au sous-état.
+<br />
+
+</li>
+<li class="enumerate_item"><a id='magicparlabel-3843' />
+<strong>Aucune solution n'est trouvée</strong> : la limite <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> introduite est plus petite que la distance exacte entre l'état initial et le nœud solution. Cela signifie que l'estimation actuelle du sous-état ne correspond pas à la distance réelle. Selon le résultat de la validation (<em>cf</em>. Section <a href="#sec_Validation">9.3</a>), le sous-état va alors être pénalisé.</li>
+</ol>
+<h3 class="subsection"><span class="subsection_label">9.2.1</span> <a id='magicparlabel-3844' />
+<a id="sub_penalpassive" />
+Recherche passive</h3>
+<div class="standard"><a id='magicparlabel-3845' />
+La <em>recherche passive</em> consiste à créer, à partir d'un niveau, tous les états possibles de 1 caisse, 2 caisses, 3 caisses ou plus. Le solveur optimal <em>bestPushes</em> est ensuite exécuté sur chacun de ces états avec une limite <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>f</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>=</mo><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> où <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est l'estimation actuelle de l'état testé. Lorsqu'une pénalité est détectée et validée pour un état, celle-ci est alors enregistrée.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3846' />
+Pour tester tous les états possibles de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>c</mi>
+ </mrow></math> caisses dans un niveau qui comprend <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>p</mi>
+ </mrow></math> positions internes, il faut faire évoluer les caisses sur les positions selon les règles suivantes :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3847' />
+Au départ, Les caisses occupent les <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>c</mi>
+ </mrow></math> premières positions internes du niveau.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3848' />
+Pour créer chaque nouvel état, la technique consiste à avancer d'une position la caisse qui sait encore avancer et qui est sur la position la plus grande. Si une caisse avance sur la position <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>i</mi>
+ </mrow></math> et que <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>j</mi>
+ </mrow></math> autres caisses sont sur des positions plus grandes, celles-ci seront déplacées sur les positions <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo>,</mo><mi>i</mi><mo>+</mo><mn>2</mn><mo>,</mo>
+   <mi>&hellip;
+   </mi><mo>,</mo><mi>i</mi><mo>+</mo><mi>j</mi>
+  </mrow>
+ </mrow></math> avant le prochain déplacement.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3849' />
+La création de tous les états de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>c</mi>
+ </mrow></math> caisses s'arrête lorsque les positions <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>p</mi><mo>,</mo><mi>p</mi><mo>-</mo><mn>1</mn><mo>,</mo>
+   <mi>&hellip;
+   </mi><mo>,</mo><mi>p</mi><mo>-</mo><mi>c</mi>
+  </mrow>
+ </mrow></math> sont toutes occupées par des caisses.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3850' />
+Lorsque tous les états de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>c</mi>
+ </mrow></math> caisses ont été créés et testés, on incrémente le nombre de caisses jusqu'à la limite désirée et on recommence ces manipulations.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3851' />
+La zone des caisses de chaque état sera ainsi créée à partir des positions des caisses obtenues par ce procédé. Il faut ensuite chercher toutes les zones du pousseur possibles à partir de chaque zone des caisses. Pour chaque couple possible (<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>z</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>c</mi><mi>a</mi><mi>i</mi><mi>s</mi><mi>s</mi><mi>e</mi><mi>s</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>z</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>p</mi><mi>o</mi><mi>u</mi><mi>s</mi><mi>s</mi><mi>e</mi><mi>u</mi><mi>r</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>) tel qu'illustré sur la Figure <a href="#fig_passive">9.2</a>, un état sera créé et testé. La position du pousseur dans le niveau transmis au solveur <em>bestPushes</em> n'a que peu d'importance tant qu'elle se situe bien dans la zone du pousseur trouvée. Dans notre exemple, le pousseur se situe chaque fois sur la première position relative à la zone du pousseur à tester.</div>
+
+<div class="standard"><a id='magicparlabel-3852' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3856' />
+<img style='width:35%;' src='assets/master_thesis/67_Users_michael_Desktop_memoire_images_passive_screen1.png' alt='image: 67_Users_michael_Desktop_memoire_images_passive_screen1.png' />
+&nbsp;&nbsp;&nbsp;&nbsp;<img style='width:35%;' src='assets/master_thesis/68_Users_michael_Desktop_memoire_images_passive_screen2.png' alt='image: 68_Users_michael_Desktop_memoire_images_passive_screen2.png' />
+</div>
+
+<div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3857' />
+<img style='width:35%;' src='assets/master_thesis/69_Users_michael_Desktop_memoire_images_passive_screen3.png' alt='image: 69_Users_michael_Desktop_memoire_images_passive_screen3.png' />
+&nbsp;&nbsp;&nbsp;&nbsp;<img style='width:35%;' src='assets/master_thesis/70_Users_michael_Desktop_memoire_images_passive_screen4.png' alt='image: 70_Users_michael_Desktop_memoire_images_passive_screen4.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3858' />
+<div class='float-caption float-caption-figure'>Figure 9.2:<div class="plain_layout"><a id='magicparlabel-3862' />
+<a id="fig_passive" />
+États à tester à partir des positions relatives des caisses 12, 14 et 34.</div>
+</div></div>
+</div>
+
+<h3 class="subsection"><span class="subsection_label">9.2.2</span> <a id='magicparlabel-3863' />
+<a id="sub_penalactive" />
+Recherche active</h3>
+<div class="standard"><a id='magicparlabel-3864' />
+La <em>recherche active</em> part du principe que la recherche passive est trop générale car elle teste des sous-états sans pouvoir affirmer qu'ils seront présents dans l'arbre de recherche. La technique employée ici consiste à essayer de détecter des sous-états qui pourraient provoquer des pénalités dans chaque état rencontré dans l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3865' />
+Il serait trop optimiste de tester dans un temps raisonnable tous les sous-états pouvant être formés à partir des caisses présentes dans l'état. Nous allons devoir utiliser des techniques pour obtenir en un temps minimum les sous-états qui ont le plus de chances de mener à des pénalités. La méthode employée s'inspire fortement de celle des <em>Pattern Search </em>développée par <em>Andreas Junghanns</em>Junghanns (<a href='#LyXCite-931399'>1999</a>).
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3866' />
+Le fonctionnement consiste à utiliser la dernière caisse poussée de l'état en cours. La première chose à faire est de rechercher la pénalité du sous-état correspondant à cette unique caisse et à la position du pousseur. À partir de la solution du niveau utilisée pour chercher la pénalité, on récupère deux éléments : le <em>chemin du pousseur </em>et le <em>chemin des caisses</em>.</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3867' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3871' />
+<strong>chemin du pousseur</strong> : à partir d'un niveau et de sa solution sous forme d'une série de déplacements du pousseur, on récupère la liste des positions sur lesquelles le pousseur est passé. On récupère également l'ordre dans lequel il est passé sur celles-ci.</div>
+
+<div class="plain_layout"><a id='magicparlabel-3872' />
+<strong>chemin des caisses </strong>: à partir d'un niveau et de sa solution sous forme d'une série de déplacements du pousseur, on récupère la liste des positions sur lesquelles au moins une caisse est passée. On récupère également l'ordre dans lequel elles ont été occupées.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3873' />
+Ces deux chemins vont nous servir à décider quelle caisse sera la prochaine à ajouter à l'état dont on va rechercher la pénalité. Le principe est qu'on a plus de chance d'introduire une pénalité si on ajoute une caisse qui se trouve sur le chemin de la solution précédente.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3874' />
+Pour savoir quelle caisse ajouter à partir des deux chemins, la règle est la suivante :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3879' />
+On insère d'abord les caisses présentes dans l'état en cours et qui se trouvent sur la plus petite position du chemin des caisses.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-3880' />
+Lorsque toutes les caisses de l'état qui se trouvent sur le chemin des caisses ont été ajoutées, la caisse qui se trouve sur la plus petite position du chemin du pousseur sera à son tour ajoutée.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-3881' />
+Nous allons ainsi introduire de nouvelles caisses jusqu'à ce que l'une des trois conditions suivantes soit remplie :
+<br />
+
+</div>
+
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3882' />
+Une pénalité est trouvée et enregistrée.</li>
+<li class="enumerate_item"><a id='magicparlabel-3883' />
+Toutes les caisses de l'état qui se trouvent sur l'un des chemins ont été ajoutées.</li>
+<li class="enumerate_item"><a id='magicparlabel-3884' />
+La recherche active des sous-états pénalisés d'un état est limitée par une certaine quantité de nœuds. Si cette quantité est dépassée pour un certain état, on arrête la recherche de sous-états pénalisés.
+<br />
+
+</li>
+</ol>
+<div class="standard"><a id='magicparlabel-3885' />
+Pour illustrer cette méthode, nous avons repris l'exemple présenté dansJunghanns (<a href='#LyXCite-931399'>1999</a>) La Figure <a href="#fig_active1">9.3</a> correspond à une poussée. La recherche active va s'appliquer sur la caisse qui vient d'être poussée en créant plusieurs sous-états qui sont susceptibles de provoquer des pénalités comme illustré sur la Figure <a href="#fig_active2">9.4</a>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3886' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3890' />
+<img style='width:35%;' src='assets/master_thesis/71_Users_michael_Desktop_memoire_images_active_avant.png' alt='image: 71_Users_michael_Desktop_memoire_images_active_avant.png' />
+&nbsp;&nbsp;&nbsp;&nbsp;<img style='width:35%;' src='assets/master_thesis/72_Users_michael_Desktop_memoire_images_active_apres.png' alt='image: 72_Users_michael_Desktop_memoire_images_active_apres.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3891' />
+<div class='float-caption float-caption-figure'>Figure 9.3:<div class="plain_layout"><a id='magicparlabel-3895' />
+<a id="fig_active1" />
+État de l'arbre de recherche avant et après une poussée.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3896' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3900' />
+<img style='width:35%;' src='assets/master_thesis/73_Users_michael_Desktop_memoire_images_active_1.png' alt='image: 73_Users_michael_Desktop_memoire_images_active_1.png' />
+&nbsp;&nbsp;&nbsp;&nbsp;<img style='width:35%;' src='assets/master_thesis/74_Users_michael_Desktop_memoire_images_active_2.png' alt='image: 74_Users_michael_Desktop_memoire_images_active_2.png' />
+</div>
+
+<div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3901' />
+<img style='width:35%;' src='assets/master_thesis/75_Users_michael_Desktop_memoire_images_active_3.png' alt='image: 75_Users_michael_Desktop_memoire_images_active_3.png' />
+&nbsp;&nbsp;&nbsp;&nbsp;<img style='width:35%;' src='assets/master_thesis/76_Users_michael_Desktop_memoire_images_active_4.png' alt='image: 76_Users_michael_Desktop_memoire_images_active_4.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3902' />
+<div class='float-caption float-caption-figure'>Figure 9.4:<div class="plain_layout"><a id='magicparlabel-3906' />
+<a id="fig_active2" />
+Sous-états créés à partir de la dernière poussée et de la recherche active. Ils pourraient éventuellement être pénalisés.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3907' />
+</div>
+
+<div class="standard"><a id='magicparlabel-3908' />
+Le chemin des caisses récupéré à partir de la solution du sous-état représenté en haut à gauche de la Figure <a href="#fig_active2">9.4</a> passe par les positions absolues <em>C6</em>, <em>C5</em>, <em>C4</em>, <em>C3</em>. On ajoute donc la caisse située sur la position <em>C5</em> dans le sous-état suivant. Pour le troisième sous-état représenté, on utilise le chemin du pousseur car aucune caisse ne se trouve plus sur le chemin des caisses.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3909' />
+Le dernier sous-état est considéré comme un deadlock et possède donc une pénalité infinie. La recherche active s'arrête pour cet état (qui sera rejeté) et le sous-état pénalisé est enregistré. Celui-ci servira à déduire les pénalités d'autres états qui pourront être rencontrés dans la suite de l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3910' />
+Nous pouvons remarquer que seulement trois des quatre caisses présentes dans le dernier sous-état provoquent un deadlock. La plus petite situation provoquant la pénalité sera recherchée lors de la validation qui est détaillée dans le chapitre suivant.</div>
+<h2 class="section"><span class="section_label">9.3</span> <a id='magicparlabel-3911' />
+<a id="sec_Validation" />
+Validation</h2>
+<div class="standard"><a id='magicparlabel-3912' />
+La pénalité d'un sous-état doit pouvoir s'appliquer quel que soit le sous-ensemble de goals utilisé par les caisses. Si un sous-état possède une pénalité qui ne s'applique pas quel que soit le sous-ensemble de goals utilisé, cela signifie qu'il y a au moins une possibilité d'association caisses-goals pour que la pénalité provoque une majoration de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3913' />
+Sur l'exemple de la Figure <a href="#fig_validationse">9.5</a>, on remarque que la différence entre le coût réel et le coût estimé est de 1. Une pénalité de 1 devrait donc être assignée à ce sous-état. Cependant, il existe un sous-ensemble de goals pour lequel l'estimation correspond bien au coût réel. Dans ce cas, la pénalité n'est pas validée car elle va majorer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> si la solution comprend les trois caisses positionnées sur les goals <em>F14</em>, <em>F15</em> et <em>K14</em>.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3917' />
+<img style='width:35%;' src='assets/master_thesis/77_Users_michael_Desktop_memoire_images_penalite_validation.png' alt='image: 77_Users_michael_Desktop_memoire_images_penalite_validation.png' />
+&nbsp;&nbsp;&nbsp;&nbsp;<img style='width:35%;' src='assets/master_thesis/78_Users_michael_Desktop_memoire_images_penalite_validation2.png' alt='image: 78_Users_michael_Desktop_memoire_images_penalite_validation2.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3918' />
+<div class='float-caption float-caption-figure'>Figure 9.5:<div class="plain_layout"><a id='magicparlabel-3922' />
+<a id="fig_validationse" />
+Sous-état dont la pénalité devrait valoir 1. Celle-ci n'est pas validée à cause de l'un des sous-ensembles de goals pour lequel la pénalité ne s'applique pas.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3923' />
+Si <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msup>
+    <mrow><mi>h</mi>
+    </mrow>
+    <mrow><mo>*</mo>
+    </mrow>
+   </msup><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est majoré pour un nœud de l'arbre, cela signifie que nous risquons de perdre l'optimalité de la solution. Pour éviter ce cas précis, chaque sous-état pénalisé doit être testé pour voir si il s'applique bien à tous les sous-ensembles de goals.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3924' />
+Dès que plus de trois caisses sont comprises dans un sous-état, le nombre de sous-ensembles de goals à tester risque d'être très grand. Nous ne testerons pas tous les sous-ensembles de goals mais uniquement une partie qui se veut représentative. Pour ce faire, pour valider un sous-état de 3 caisses dans un niveau qui contient 10 goals, nous allons tester les pénalités avec les sous-ensembles de goals suivants : (1,2,3), (4,5,6), (7,8,9), (8,9,10). Remarquons que le dernier sous-ensemble est en partie redondant afin de tester toutes les positions des goals.</div>
+<h3 class="subsection"><span class="subsection_label">9.3.1</span> <a id='magicparlabel-3925' />
+Sous-état pénalisé minimum</h3>
+<div class="standard"><a id='magicparlabel-3926' />
+Il peut arriver qu'un sous-état pénalisé contienne plus de caisses que nécessaire pour que la pénalité s'applique (<em>cf. </em>4ème état de la Figure <a href="#fig_active2">9.4</a>). Il faut donc trouver le <em>sous-état pénalisé minimum</em>, c'est-à-dire le sous-état qui comprend le moins de caisses tout en provoquant la même pénalité. Pour y arriver, pour chaque état de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>c</mi>
+ </mrow></math> caisses qui est validé, nous allons tester les pénalités de tous les sous-états de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>n</mi><mo>-</mo><mn>1</mn>
+  </mrow>
+ </mrow></math> caisses. Par récursivité, tous les sous-états qui provoquent une pénalité seront trouvés.</div>
+<h2 class="section"><span class="section_label">9.4</span> <a id='magicparlabel-3927' />
+<a id="sec_Application" />
+Application</h2>
+<div class="standard"><a id='magicparlabel-3928' />
+Pour déduire la pénalité d'un état de l'arbre de recherche, nous commençons par regrouper tous les sous-états pénalisés qui sont inclus dans celui-ci. Il n'est pas possible d'appliquer directement toutes les pénalités trouvées. En effet, celles-ci sont parfois relatives aux mêmes caisses qui ne peuvent pas être réutilisées plusieurs fois. Il faut donc trouver l'ensemble des sous-états pénalisés compris dans l'état qui maximisera la pénalité déduite sans utiliser deux fois une même caisse.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3929' />
+La méthode utilisée consiste à classer tous les sous-états pénalisés en fonction du nombre de caisses qu'ils contiennent en utilisant une liste par nombre de caisses. Ensuite, chaque liste sera triée par ordre décroissant de pénalité pour obtenir une organisation comme celle illustrée sur la Figure <a href="#fig_sousetatspenalises">9.6</a>.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3933' />
+<img style='width:45%;' src='assets/master_thesis/79_Users_michael_Desktop_memoire_images_penalite_table.png' alt='image: 79_Users_michael_Desktop_memoire_images_penalite_table.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3934' />
+<div class='float-caption float-caption-figure'>Figure 9.6:<div class="plain_layout"><a id='magicparlabel-3938' />
+<a id="fig_sousetatspenalises" />
+Classement de tous les sous-états pénalisés qui correspondent à l'état en cours.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3939' />
+Avant de commencer, nous créons un état temporaire <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>e</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> qui est une copie de l'état en cours. Ensuite, à partir du classement des sous-états, on recherche la pénalité la plus haute disponible et on prend le sous-état avec le moins de caisses correspondant à celle-ci. Pour s'assurer qu'aucune caisse ne puisse être utilisée deux fois, la zone du pousseur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>e</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> est réduite des caisses présentes dans le sous-état pénalisé. On continue à procéder de la sorte tant que des sous-états pénalisés sont inclus dans l'état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>e</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3940' />
+Au final, nous obtiendrons la pénalité déduite de l'état grâce à tous les sous-états pénalisés qui ont pu être inclus dans celui-ci. Cette pénalité déduite s'ajoutera à l'estimation de l'état qui a été calculée à l'aide des méthodes du Chapitre <a href="#cha_Estimation">7</a>.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3941' />
+Un exemple de pénalité déduite est illustré sur la Figure <a href="#fig_deductionpenalite">9.7</a>. Celle-ci représente la copie <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>e</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> de l'état en cours (en haut à gauche) qui possède une estimation de <em>189</em>. Chaque fois qu'une pénalité est appliquée sur l'état en cours, les caisses correspondantes sont supprimées de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>e</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> et d'autres pénalités qui correspondent aux caisses restantes peuvent ensuite être appliquées. Au total, la pénalité déduite de l'état est de <em>10+6+4=20</em>. L'estimation de la distance restante de l'état est donc de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mi>e</mi><mi>s</mi><mi>t</mi><mi>i</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>+</mo><mi>p</mi><mi>e</mi><mi>n</mi><mi>a</mi><mi>l</mi><mi>i</mi><mi>t</mi><mi>e</mi><mspace width="6px" /><mi>d</mi><mi>e</mi><mi>d</mi><mi>u</mi><mi>i</mi><mi>t</mi><mi>e</mi><mo>=</mo><mn>189</mn><mo>+</mo><mn>20</mn><mo>=</mo><mn>209</mn>
+  </mrow>
+ </mrow></math>.</div>
+
+<div class="standard"><a id='magicparlabel-3942' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3946' />
+<img style='width:80%;' src='assets/master_thesis/80_Users_michael_Desktop_memoire_images_penalite_deduitetout.png' alt='image: 80_Users_michael_Desktop_memoire_images_penalite_deduitetout.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3947' />
+<div class='float-caption float-caption-figure'>Figure 9.7:<div class="plain_layout"><a id='magicparlabel-3951' />
+<a id="fig_deductionpenalite" />
+Évolution de l'état temporaire <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>e</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> (gauche) et pénalités appliquées (droite).</div>
+</div></div>
+</div>
+
+</div>

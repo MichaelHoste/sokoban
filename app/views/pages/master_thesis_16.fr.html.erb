@@ -1,0 +1,207 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 14</span> <a id='magicparlabel-4122' />
+Perspectives</h1>
+<div class="standard"><a id='magicparlabel-4123' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4124' />
+</div>
+
+<div class="standard"><a id='magicparlabel-4129' />
+Ce chapitre contient quelques pistes pour une future évolution du solveur. Certaines concernent des améliorations de méthodes déjà utilisées et d'autres proposent d'ajouter de nouvelles méthodes.</div>
+<h2 class="section"><span class="section_label">14.1</span> <a id='magicparlabel-4130' />
+Pénalités probables : améliorations</h2>
+<div class="standard"><a id='magicparlabel-4131' />
+La méthode de détection des pénalités probables en post-traitement est actuellement très naïve. Elle peut certainement s'avérer plus performante à l'aide des deux améliorations suivantes.</div>
+<h3 class="subsection"><span class="subsection_label">14.1.1</span> <a id='magicparlabel-4132' />
+Détection d'ensembles de positions occupées simultanément</h3>
+<div class="standard"><a id='magicparlabel-4133' />
+Nous avons parlé du post-traitement dans le Chapitre <a href="#cha_Post_traitement">11</a>. L'une des méthodes proposée consistait à analyser l'arbre de recherche après l'exécution du solveur pour en déduire les sous-états dont la probabilité d'être pénalisés était forte.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4134' />
+Notre méthode était de trouver les positions les plus souvent occupées par des caisses pour en déduire une longue liste de sous-états à tester. Une meilleure approche consisterait à détecter non pas les <em>positions</em> les plus utilisées mais les <em>ensembles de positions</em> les plus utilisées simultanément. Bien entendu, un travail bien plus important sur l'arbre de recherche devra être effectué.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4135' />
+L'avantage d'une telle approche est que les ensembles de positions les plus souvent présents dans l'arbre de recherche vont souvent correspondre à une nouvelle pénalité. Dans le cas actuel où on crèe tous les sous-états possibles à partir de 15 positions différentes, on utilise plutôt une méthode de type <em>brute force</em> qui indiquera un taux bien plus bas de sous-états pénalisés.</div>
+<h3 class="subsection"><span class="subsection_label">14.1.2</span> <a id='magicparlabel-4136' />
+Détection dynamique des pénalités probables</h3>
+<div class="standard"><a id='magicparlabel-4137' />
+Le post-traitement consiste à attendre qu'un parcours se termine infructueusement sur un arbre de recherche pour pouvoir analyser ce dernier. Il pourrait être envisageable de ne pas attendre la fin du parcours pour effectuer cette analyse.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4138' />
+Le but premier de la méthode serait de détecter qu'un sous-ensemble de caisses reste constant dans l'un des sous-arbres de l'arbre de recherche, signe d'une pénalité non détectée. Une technique envisagée serait d'associer un compteur à chaque nœud qui indiquerait le nombre total de ses descendants. À chaque ajout d'un nœud dans l'arbre, le compteur de tous ses parents serait incrémenté.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4139' />
+Lorsqu'un nœud dépasserait un certain nombre de descendants, l'analyse du sous-arbre formé par ce nœud serait effectuée dans le but de trouver des caisses qui ne bougent pas. Un test classique de pénalité sera alors appliqué sur le sous-état formé par ces caisses.</div>
+
+<div class="standard"><a id='magicparlabel-4140' />
+</div>
+<h2 class="section"><span class="section_label">14.2</span> <a id='magicparlabel-4141' />
+Pénalités restrictives</h2>
+<div class="standard"><a id='magicparlabel-4142' />
+Sur base de nos résultats et de ceux du solveur Rolling Stone, on remarque que certains niveaux sont difficiles à résoudre<div class="foot"><span class="foot_label">1</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-4146' />
+Posons <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>v</mi><mi>a</mi>
+   <msub>
+    <mrow><mi>l</mi>
+    </mrow>
+    <mrow><mn>1</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> la valeur <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>f</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>m</mi><mi>a</mi><mi>x</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> de la dernière itération d'IDA* appliquée sans résultat sur un niveau. Posons <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>v</mi><mi>a</mi>
+   <msub>
+    <mrow><mi>l</mi>
+    </mrow>
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> le nombre de poussées de la meilleure solution connue. On considère un niveau comme difficile à résoudre par le solveur si les deux valeurs <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>v</mi><mi>a</mi>
+   <msub>
+    <mrow><mi>l</mi>
+    </mrow>
+    <mrow><mn>1</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> et <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>v</mi><mi>a</mi>
+   <msub>
+    <mrow><mi>l</mi>
+    </mrow>
+    <mrow><mn>2</mn>
+    </mrow>
+   </msub>
+  </mrow>
+ </mrow></math> sont éloignées. </div>
+</div></div>. Ceux-ci correspondent généralement aux niveaux dont les aires des goals sont multiples (<em>cf</em>. Figure <a href="#fig_difficile1">14.1</a>) ou pour lesquels plusieurs entrées sont possibles pour une unique aire de goal (<em>cf</em>. Figure <a href="#fig_difficile2">14.2</a>). Par <em>aire de goals</em>, nous parlons d'un ensemble de positions voisines qui sont des goals. En effet les goals sont souvent proches les uns des autres.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-4150' />
+<img style='width:40%;' src='assets/master_thesis/85_Users_michael_Desktop_memoire_images_difficile1.png' alt='image: 85_Users_michael_Desktop_memoire_images_difficile1.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-4151' />
+<div class='float-caption float-caption-figure'>Figure 14.1:<div class="plain_layout"><a id='magicparlabel-4155' />
+<a id="fig_difficile1" />
+Niveau dans lequel les aires de goals sont multiples.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-4156' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-4160' />
+<img style='width:40%;' src='assets/master_thesis/86_Users_michael_Desktop_memoire_images_difficile2.png' alt='image: 86_Users_michael_Desktop_memoire_images_difficile2.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-4161' />
+<div class='float-caption float-caption-figure'>Figure 14.2:<div class="plain_layout"><a id='magicparlabel-4165' />
+<a id="fig_difficile2" />
+Niveau dans lequel l'aire de goals possède plusieurs entrées.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-4166' />
+Une raison pour laquelle ces niveaux sont plus difficiles est qu'il arrive souvent que la pénalité d'un sous-état n'affecte qu'un certain sous-ensemble de goals (<em>cf</em>. Figure <a href="#fig_validationse">9.5</a>). Nous appellerons ces pénalités particulières des <em>pénalités restrictives</em>. Selon les méthodes utilisées, ces pénalités ne peuvent pas être gardées. Le but de la validation de pénalité est justement de ne garder que celles qui s'appliquent indépendamment de la destination des caisses.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4167' />
+Si ces pénalités pouvaient être prises en compte lors du parcours de l'arbre, il est évident que les coûts des nœuds seraient plus précis et par conséquent que la recherche de solution serait plus efficace.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4168' />
+Le problème est que ces pénalités restrictives sont assez difficiles à utiliser pour les raisons suivantes :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-4169' />
+<strong>Détection</strong>&nbsp;&nbsp;&nbsp;Pour être sûr de pouvoir détecter toutes les pénalités restrictives, il faudrait tester la pénalité de chaque sous-état de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> caisses vers tous les sous-ensembles possibles de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>n</mi>
+ </mrow></math> goals. Un traîtement qui sera très coûteux s'il est fait systématiquement.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4170' />
+<strong>Stockage&nbsp;&nbsp;&nbsp;</strong>S'il faut stocker chaque sous-état relativement à des goals particuliers, le nombre d'informations en mémoire risque d'exploser et la recherche de la pénalité va s'avérer fastidieuse.
+<br />
+
+</li>
+<li class="itemize_item"><a id='magicparlabel-4171' />
+<strong>Application&nbsp;&nbsp;&nbsp;</strong>Actuellement, si un sous-état pénalisé est compris dans l'état en cours, la pénalité trouvée sera ajoutée à l'estimation de l'état. Pour appliquer une pénalité restrictive, il faudrait adapter la méthode hongroise de la Section <a href="#sub_hongrois">7.2.3</a> pour minimiser l'association caisses-goals en prenant en compte cette pénalité.
+<br />
+
+</li>
+</ul>
+<div class="standard"><a id='magicparlabel-4172' />
+Si une méthode est trouvée pour résoudre le problème des pénalités restrictives tout en contournant ces trois difficultés, nul doute qu'elle symbolisera une nouvelle avancée dans la résolution de niveaux de Sokoban.</div>
+<h2 class="section"><span class="section_label">14.3</span> <a id='magicparlabel-4173' />
+Macro-Tunnels</h2>
+<div class="standard"><a id='magicparlabel-4174' />
+La méthode des <em>Macro-Tunnels</em> provient deJunghanns (<a href='#LyXCite-931399'>1999</a>) et consiste à détecter des tunnels dans les niveaux. Un tunnel est une succession de positions qui forment une ligne bornée sur deux côtés par des murs tel qu'illustré sur la Figure <a href="#fig_tunnel">14.3</a>. Si deux caisses s'engagent en même temps dans un tunnel, elles y resteront bloquées et formeront un deadlock.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-4178' />
+<img style='width:40%;' src='assets/master_thesis/87_Users_michael_Desktop_memoire_images_macrotunnel.png' alt='image: 87_Users_michael_Desktop_memoire_images_macrotunnel.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-4179' />
+<div class='float-caption float-caption-figure'>Figure 14.3:<div class="plain_layout"><a id='magicparlabel-4183' />
+<a id="fig_tunnel" />
+Les positions absolues <em>E6</em> à <em>H6</em> forment un tunnel.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-4184' />
+La technique utilisée dans les macro-tunnels consiste à <em>téléporter</em> une caisse qui rentre dans un tunnel directement vers sa sortie (de <em>E6</em> à <em>H6</em> et vice-versa). Le nombre moindre de positions pouvant être occupées par des caisses mènera à un arbre de recherche plus petit.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-4185' />
+Dans les faits, la technique des macro-tunnels ne permet pas d'améliorer les performances du solveur de façon surprenante, mais le faible coût lié à son implémentation suffit à justifier sa présence.</div>
+
+</div>

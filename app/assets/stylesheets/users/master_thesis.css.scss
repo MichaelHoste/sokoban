@@ -1,4 +1,44 @@
 body#pages-master_thesis {
+  #limited-content, #limited-header {
+    width:780px
+  }
+
+  header {
+    height:110px;
+  }
+
+  #menus .rules-menu, #menus .ranking-position, #menus .name, #menus .ranking-menu  {
+    display:none;
+  }
+
+  #menus .play-menu div {
+    font-size:16px;
+    background: url('/assets/sprites.png') no-repeat -200px -403px;
+    height: 31px;
+    line-height: 32px;
+    padding: 0 16px 0 16px;
+  }
+
+  #banner.banner-text {
+    background:none;
+    background-color:#d1d1d1;
+    height:92px;
+    border-top:1px solid #555555;
+    border-bottom:1px solid #555555;
+
+    #limited-banner {
+      color:rgb(68, 68, 68);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 32px;
+      font-style: normal;
+      font-variant: normal;
+      text-shadow:none;
+      font-weight:bold;
+      padding-bottom:0px;
+      padding:16px 0;
+    }
+  }
+
   div.toc {
     border-style: solid;
     border-width: 1px 0px;
@@ -87,7 +127,7 @@ body#pages-master_thesis {
   h1.chapter {
     font-weight: bold;
     font-size: xx-large;
-    margin-top: 2ex;
+    margin-top: 1ex;
     margin-bottom: 0.8ex;
     text-align: left;
   }

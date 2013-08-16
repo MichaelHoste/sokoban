@@ -1,0 +1,485 @@
+<div id="limited-content">
+
+<h1 class="chapter"><span class="chapter_label">Chapitre 8</span> <a id='magicparlabel-3592' />
+<a id="cha_Deadlocks" />
+Deadlock</h1>
+<div class="standard"><a id='magicparlabel-3593' />
+<hr />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3594' />
+</div>
+
+<div class="standard"><a id='magicparlabel-3599' />
+Sokoban est un jeu dans lequel nous pouvons être confrontés à ce que nous appelons des <em>deadlocks</em>.</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3600' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3604' />
+<strong>deadlock</strong> : état de l'arbre de recherche à partir duquel aucun état solution ne pourra être trouvé.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3605' />
+De manière générale, un deadlock est provoqué par un sous-ensemble des caisses de l'état qui provoque une situation dans laquelle il est impossible de pousser toutes les caisses sur des goals.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3606' />
+Si nous parcourons l'arbre de recherche en ignorant ces deadlocks, il est fort probable que nous obtenions un nombre très conséquent de sous-arbres condamnés à ne jamais aboutir à une solution. La taille de l'arbre va alors augmenter de manière importante. C'est pourquoi il existe plusieurs procédés afin d'éviter ce problème.</div>
+<h2 class="section"><span class="section_label">8.1</span> <a id='magicparlabel-3607' />
+<a id="sec_Deadlocks_1caisse" />
+Deadlock à une caisse</h2>
+<div class="standard"><a id='magicparlabel-3608' />
+Le <em>deadlock à une caisse</em> est celui qui se produit le plus fréquemment. Il correspond à un cas particulier de deadlock provoqué par un sous-ensemble de caisses de l'état qui ne comprend qu'une seule caisse. Ceux-ci sont répartis en deux catégories : <em>deadlocks en coin</em> et <em>deadlocks en ligne</em>.</div>
+<h3 class="subsection"><span class="subsection_label">8.1.1</span> <a id='magicparlabel-3609' />
+Deadlock en coin</h3>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3610' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3614' />
+<strong>deadlock en coin</strong> : deadlock provoqué par une caisse coincée sur une position qui n'est pas un goal et qui est cernée par deux murs de manière à former un coin.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3615' />
+Un exemple de <em>deadlock en coin </em>est illustré sur la Figure <a href="#fig_Impasses____une">8.2</a>. Selon les règles du jeu, il parait clair que la caisse située sur la position absolue <em>D2</em> ne pourra pas rejoindre l'un des goals.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3616' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3620' />
+<img style='width:35%;' src='assets/master_thesis/50_Users_michael_Desktop_memoire_images_1boxdeadlock.png' alt='image: 50_Users_michael_Desktop_memoire_images_1boxdeadlock.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3621' />
+<div class='float-caption float-caption-figure'>Figure 8.1:<div class="plain_layout"><a id='magicparlabel-3625' />
+<a id="fig_cornerdead" />
+La caisse sur la position absolue <em>D2 </em>provoque un deadlock en coin</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3626' />
+Pour détecter les positions qui provoquent des deadlocks en coin, nous parcourons toutes les positions internes d'un niveau afin de tester si elles sont bornées par des murs, sur deux côtés consécutifs, de manière à former un coin. Si tel est le cas, nous enregistrons une zone ne comprenant que les positions concernées comme illustré à l'aide de croix sur la Figure <a href="#fig_Impasses____une">8.2</a>. La zone sera utilisée par la suite afin de rejeter de l'arbre de recherche tous les états qui ont une caisse sur l'une des croix.</div>
+
+<div class="standard"><a id='magicparlabel-3627' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3631' />
+<img style='width:35%;' src='assets/master_thesis/51_Users_michael_Desktop_memoire_images_listedeadlocks.png' alt='image: 51_Users_michael_Desktop_memoire_images_listedeadlocks.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3632' />
+<div class='float-caption float-caption-figure'>Figure 8.2:<div class="plain_layout"><a id='magicparlabel-3636' />
+<a id="fig_Impasses____une" />
+Positions qui provoquent un deadlock en coin si une caisse s'y trouve</div>
+</div></div>
+</div>
+
+<h3 class="subsection"><span class="subsection_label">8.1.2</span> <a id='magicparlabel-3637' />
+Deadlock en ligne</h3>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3638' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3642' />
+<strong>deadlock en ligne</strong> : deadlock provoqué par une caisse qui se situe contre un mur et qui est incapable de s'en dégager pour se diriger vers un goal.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3643' />
+Un exemple de <em>deadlock en ligne </em>est illustré sur la Figure <a href="#fig_dead_line">8.3</a>. Selon les règles du jeu, il parait clair que la caisse située sur la position absolue <em>C2</em> ne pourra pas s'écarter du mur pour rejoindre l'un des goals.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3644' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3648' />
+<img style='width:35%;' src='assets/master_thesis/52_Users_michael_Desktop_memoire_images_1boxdeadlock2.png' alt='image: 52_Users_michael_Desktop_memoire_images_1boxdeadlock2.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3649' />
+<div class='float-caption float-caption-figure'>Figure 8.3:<div class="plain_layout"><a id='magicparlabel-3653' />
+<a id="fig_dead_line" />
+La caisse sur la position absolue <em>C2 </em>provoque un deadlock en ligne</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3654' />
+Les deadlocks en ligne sont provoqués par des murs qui ne possèdent pas de possibilité d'échappement, c'est-à-dire un passage par lequel le pousseur pourrait repousser la caisse dans l'autre sens. La méthode utilisée pour détecter les lignes problématiques consiste à utiliser les positions de deadlock en coin. En se servant de l'une de ces positions pour en joindre un deuxième via une ligne droite, si l'un des deux côtés de cette ligne droite est exclusivement formé de murs, alors nous pouvons considérer toutes les positions de cette ligne comme des deadlocks.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3655' />
+Une fois tous les deadlocks en ligne trouvés, nous enregistrons une zone ne comprenant que les positions concernées comme illustré à l'aide de croix sur la Figure <a href="#fig_deadlinelist">8.4</a>. La zone sera utilisée par la suite afin de rejeter de l'arbre de recherche tous les états qui ont une caisse sur l'une des croix.</div>
+
+<div class="standard"><a id='magicparlabel-3656' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3660' />
+<img style='width:35%;' src='assets/master_thesis/53_Users_michael_Desktop_memoire_images_listedeadlocks3.png' alt='image: 53_Users_michael_Desktop_memoire_images_listedeadlocks3.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3661' />
+<div class='float-caption float-caption-figure'>Figure 8.4:<div class="plain_layout"><a id='magicparlabel-3665' />
+<a id="fig_deadlinelist" />
+Positions trouvées à l'aide de la méthode de deadlock en ligne</div>
+</div></div>
+</div>
+
+<h3 class="subsection"><span class="subsection_label">8.1.3</span> <a id='magicparlabel-3666' />
+Implémentation</h3>
+<div class="standard"><a id='magicparlabel-3667' />
+Grâce à l'utilisation des zones, les deadlocks à une caisse sont rapidement évincés de l'arbre de recherche. L'idée consiste à créer une zone <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>z</mi>
+   </mrow>
+   <mrow>
+    <mrow><mi>d</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi>
+    </mrow>
+   </mrow>
+  </msub>
+ </mrow></math> comprenant toutes les positions pour lesquelles l'état sera déclaré comme un deadlock si une caisse s'y trouve. Une telle zone est illustrée sur la Figure <a href="#fig_deadsummary">8.5</a>.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3671' />
+<img style='width:35%;' src='assets/master_thesis/54_Users_michael_Desktop_memoire_images_listedeadlocks2.png' alt='image: 54_Users_michael_Desktop_memoire_images_listedeadlocks2.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3672' />
+<div class='float-caption float-caption-figure'>Figure 8.5:<div class="plain_layout"><a id='magicparlabel-3676' />
+<a id="fig_deadsummary" />
+Ensemble des positions qui provoquent des deadlocks à une caisse. Il ne reste que 4 positions sur lesquelles une caisse peut se déplacer.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3677' />
+Posons <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <msub>
+   <mrow><mi>e</mi>
+   </mrow>
+   <mrow>
+    <msub>
+     <mrow><mi>z</mi>
+     </mrow>
+     <mrow>
+      <mrow><mi>c</mi><mi>a</mi><mi>i</mi><mi>s</mi><mi>s</mi><mi>e</mi><mi>s</mi>
+      </mrow>
+     </mrow>
+    </msub>
+   </mrow>
+  </msub>
+ </mrow></math> la zone des caisses d'un état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>e</mi>
+ </mrow></math>. La méthode consiste à tester, pour chaque nouvel état rencontré lors du parcours de l'arbre de recherche, l'affirmation <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow>
+   <msub>
+    <mrow><mi>e</mi>
+    </mrow>
+    <mrow>
+     <msub>
+      <mrow><mi>z</mi>
+      </mrow>
+      <mrow>
+       <mrow><mi>c</mi><mi>a</mi><mi>i</mi><mi>s</mi><mi>s</mi><mi>e</mi><mi>s</mi>
+       </mrow>
+      </mrow>
+     </msub>
+    </mrow>
+   </msub><mo> &cap; </mo>
+   <msub>
+    <mrow><mi>z</mi>
+    </mrow>
+    <mrow>
+     <mrow><mi>d</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi>
+     </mrow>
+    </mrow>
+   </msub><mo>=</mo><mn>0</mn>
+  </mrow>
+ </mrow></math>. Si l'affirmation est vraie, alors l'état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>e</mi>
+ </mrow></math> ne possède pas de deadlock à une caisse. Si l'affirmation est fausse, cela signifie qu'une caisse de l'état en cours se situe sur une position de deadlock et l'état est alors rejeté.</div>
+<h2 class="section"><span class="section_label">8.2</span> <a id='magicparlabel-3678' />
+Deadlock à plusieurs caisses</h2>
+<div class="standard"><a id='magicparlabel-3679' />
+Le <em>deadlock à plusieurs caisses</em> correspond à un cas particulier de deadlock provoqué par un sous-ensemble de caisses de l'état qui comprend plusieurs caisses. Ce type de deadlock est réparti en plusieurs catégories en fonction de la technique utilisée pour la détection.</div>
+<h3 class="subsection"><span class="subsection_label">8.2.1</span> <a id='magicparlabel-3680' />
+Dernière poussée</h3>
+<div class="standard"><a id='magicparlabel-3681' />
+Un type de deadlock à plusieurs caisses facile à détecter est celui induit par la <em>dernière</em> <em>poussée</em>. Il existe des situations dans lesquelles des caisses se gênent mutuellement de manière à ce qu'aucune d'entre elles ne puisse plus bouger. La méthode la plus simple pour détecter ces situations est de tester la nouvelle position de la dernière caisse poussée.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3682' />
+Deadlock en carré</h4>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3683' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3687' />
+<strong>deadlock en carré</strong> : deadlock provoqué lorsque la dernière caisse poussée forme un carré composé de caisses et de murs avec trois de ses positions voisines.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3688' />
+Comme il est impossible pour le pousseur de pousser une caisse si la position derrière celle-ci n'est pas libre, un <em>deadlock en carré </em>provoque une situation dans laquelle aucune des caisses du carré ne pourra être dégagée. À moins que les caisses présentes dans le carré ne soient toutes sur des goals, l'état courant sera alors un deadlock et rejeté de l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3689' />
+La caisse qui vient d'être poussée sur la position absolue <em>H9 </em>de la Figure <a href="#fig_deadcarre">8.6</a> provoque un deadlock en carré avec les trois autres positions <em>G8</em>, <em>G9</em> et <em>H8</em>.</div>
+
+<div class="standard"><a id='magicparlabel-3690' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3694' />
+<img style='width:50%;' src='assets/master_thesis/55_Users_michael_Desktop_memoire_images_deadlockcarre.png' alt='image: 55_Users_michael_Desktop_memoire_images_deadlockcarre.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3695' />
+<div class='float-caption float-caption-figure'>Figure 8.6:<div class="plain_layout"><a id='magicparlabel-3699' />
+<a id="fig_deadcarre" />
+deadlock en carré induit par la dernière poussée</div>
+</div></div>
+</div>
+
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3700' />
+Deadlock en Z</h4>
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3701' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3705' />
+<strong>deadlock en Z</strong> : proche du deadlock en carré, il se produit lorsque la dernière caisse poussée forme une situation précise dans laquelle deux caisses sont alignées et ne peuvent plus bouger pour rejoindre un goal à cause des murs avoisinants.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3706' />
+Le <em>deadlock en Z</em> est décliné en 4 versions qui sont représentées sur la Figure <a href="#fig_deadZ">8.7</a>.</div>
+
+<div class="standard"><a id='magicparlabel-3707' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3711' />
+<img style='width:11%;' src='assets/master_thesis/56_Users_michael_Desktop_memoire_images_deadlockz1.png' alt='image: 56_Users_michael_Desktop_memoire_images_deadlockz1.png' />
+&nbsp;&nbsp;&nbsp;<img style='width:11%;' src='assets/master_thesis/57_Users_michael_Desktop_memoire_images_deadlockz2.png' alt='image: 57_Users_michael_Desktop_memoire_images_deadlockz2.png' />
+&nbsp;&nbsp;&nbsp;<img style='width:15%;' src='assets/master_thesis/58_Users_michael_Desktop_memoire_images_deadlockz3.png' alt='image: 58_Users_michael_Desktop_memoire_images_deadlockz3.png' />
+&nbsp;&nbsp;&nbsp;<img style='width:15%;' src='assets/master_thesis/59_Users_michael_Desktop_memoire_images_deadlockz4.png' alt='image: 59_Users_michael_Desktop_memoire_images_deadlockz4.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3712' />
+<div class='float-caption float-caption-figure'>Figure 8.7:<div class="plain_layout"><a id='magicparlabel-3716' />
+<a id="fig_deadZ" />
+Les 4 situations qui provoquent un deadlock en Z</div>
+</div></div>
+</div>
+
+<h3 class="subsection"><span class="subsection_label">8.2.2</span> <a id='magicparlabel-3717' />
+<a id="sub_Deadlock_Zone" />
+Deadlock Zone</h3>
+<div class="standard"><a id='magicparlabel-3718' />
+La méthode de la <em>deadlock zone</em> a été conçue en regardant le solveur s'exécuter sur certains niveaux. Il apparaissait régulièrement que certaines caisses n'évoluaient plus dans l'un des sous-arbres de l'arbre de recherche, alors que toutes les autres caisses continuaient de bouger. En analysant la situation, le phénomène était compréhensible car, peu importe la façon dont il aurait été possible de pousser l'une des caisses bloquées, elle introduisait toujours un deadlock. L'état courant n'était donc pas reconnu comme un deadlock mais il n'était pas possible de dégager l'une des caisses bloquées sans en provoquer un. La Figure <a href="#fig_deadlock_zone">8.8</a> montre cette situation par les deux caisses bloquées situées sur les positions absolues <em>C3</em> et <em>D3</em>. Il n'est pas possible de bouger l'une de ces caisses sans provoquer de deadlock en coin.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3722' />
+<img style='width:35%;' src='assets/master_thesis/60_Users_michael_Desktop_memoire_images_deadlockzone.png' alt='image: 60_Users_michael_Desktop_memoire_images_deadlockzone.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3723' />
+<div class='float-caption float-caption-figure'>Figure 8.8:<div class="plain_layout"><a id='magicparlabel-3727' />
+<a id="fig_deadlock_zone" />
+La zone formée par les positions absolues <em>C2</em>, <em>C3</em>, <em>D2</em> et <em>D3</em> est une deadlock zone.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3728' />
+La méthode proposée a donc pour objectif de découvrir les sous-ensembles de caisses qui ne provoquent pas directement de deadlock mais qui ne peuvent pas être poussées sans en provoquer un. De manière générale, les caisses qui sont bloquées entourent, avec des murs, un certain nombre de positions vides. Le fonctionnement de la méthode consiste à détecter des positions vides dont les caisses limitrophes sont toutes bloquées. On appellera ces positions et ces caisses bloquées une deadlock zone<em>. </em>La<em> </em>Figure <a href="#fig_3deadlocks">8.9</a> indique trois de ces deadlock zones.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3732' />
+<img style='width:50%;' src='assets/master_thesis/61_Users_michael_Desktop_memoire_images_exemplesdeadlockzone.png' alt='image: 61_Users_michael_Desktop_memoire_images_exemplesdeadlockzone.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3733' />
+<div class='float-caption float-caption-figure'>Figure 8.9:<div class="plain_layout"><a id='magicparlabel-3737' />
+<a id="fig_3deadlocks" />
+État d'un niveau qui provoque 3 deadlock zones</div>
+</div></div>
+</div>
+
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3738' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3742' />
+<strong>deadlock zone</strong> : ensemble de positions construit comme une zone du pousseur telle que définie dans la Section <a href="#sec___tat">5.2</a> mais en admettant que la construction ne débute pas de la position du pousseur mais d'une position quelconque de l'état.
+<br />
+
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3743' />
+Pour que la zone ainsi construite soit considérée comme une deadlock zone, il faut que les positions comprises dans cette zone :
+<br />
+
+</div>
+
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3744' />
+ne contiennent pas de goal.</li>
+<li class="itemize_item"><a id='magicparlabel-3745' />
+ne contiennent pas de positions en commun avec celles de la zone du pousseur de l'état.</li>
+<li class="itemize_item"><a id='magicparlabel-3746' />
+contiennent uniquement des <em>caisses bloquées</em>.
+<br />
+
+</li>
+</ul>
+<div class="plain_layout"><a id='magicparlabel-3747' />
+<strong>caisse bloquée</strong>: caisse que le pousseur ne pourra pousser que vers une situation de deadlock.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3748' />
+De manière générale, la méthode de la deadlock zone est assez coûteuse mais permet de détecter des situations de deadlock éventuellement provoquées par un grand nombre de caisses (<em>cf. </em>Figure <a href="#fig_granddeadlocks">8.10</a>). Cette méthode vérifie, pour chaque état, que celui-ci ne contient pas une deadlock zone. Si un état en contient une, alors il est rejeté de l'arbre de recherche.
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3752' />
+<img style='width:45%;' src='assets/master_thesis/62_Users_michael_Desktop_memoire_images_grandedeadlockzone.png' alt='image: 62_Users_michael_Desktop_memoire_images_grandedeadlockzone.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3753' />
+<div class='float-caption float-caption-figure'>Figure 8.10:<div class="plain_layout"><a id='magicparlabel-3757' />
+<a id="fig_granddeadlocks" />
+État d'un niveau qui provoque une deadlock zone composée de 6 caisses</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3758' />
+L'aspect le plus intéressant de cette méthode est qu'elle est récursive. En effet, lorsqu'on teste si une caisse est bloquée, on teste ses déplacements possibles et on regarde si ceux-ci provoquent, ou non, un deadlock. Toutes les techniques de détection de deadlock, y compris celle de la deadlock zone, sont donc à nouveau appliquées sur l'état induit par la poussée de la caisse. Cette capacité à fonctionner récursivement permet d'anticiper des situations de deadlock plusieurs poussées avant qu'elles ne se produisent (<em>cf.</em> Figure <a href="#fig_deadschema">8.11</a>).
+<br />
+
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3762' />
+<img style='width:75%;' src='assets/master_thesis/63_Users_michael_Desktop_memoire_images_deadlockzone_schema.png' alt='image: 63_Users_michael_Desktop_memoire_images_deadlockzone_schema.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3763' />
+<div class='float-caption float-caption-figure'>Figure 8.11:<div class="plain_layout"><a id='magicparlabel-3767' />
+<a id="fig_deadschema" />
+La deadlock zone du premier état est testée récursivement et validée par un deadlock en carré</div>
+</div></div>
+</div>
+
+<h3 class="subsection"><span class="subsection_label">8.2.3</span> <a id='magicparlabel-3768' />
+<a id="sub_Deadlock_m__thodique" />
+Deadlock méthodique</h3>
+<div class="standard"><a id='magicparlabel-3769' />
+Rappelons-nous la définition d'un deadlock : &ldquo;<em>un deadlock est un état de l'arbre de recherche à partir duquel il est impossible de trouver un état solution</em>&rdquo;. Un deadlock est souvent provoqué par un <em>sous-état</em> de l'état testé. Il dépend donc des positions des caisses et de celle du pousseur. On peut d'ailleurs remarquer sur la Figure <a href="#fig_Etat_d_un_niveau">8.12</a> qu'un deadlock ne serait pas détecté si le pousseur occupait la position <em>D12</em>.</div>
+
+<div class="standard" style='text-align: center;'><a id='magicparlabel-3770' />
+<strong><div class='Boxed' style='width: 75%; '><div class="plain_layout"><a id='magicparlabel-3774' />
+<strong>sous-état</strong> : un sous-état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>s</mi>
+ </mrow></math> d'un état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>e</mi>
+ </mrow></math> est un état pour lequel on peut affirmer <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>s</mi><mo> &isin; </mo><mi>e</mi>
+  </mrow>
+ </mrow></math> tel que nous l'avons défini dans la Section <a href="#sub_Op__rations">5.5.4</a>.</div>
+</div></strong></div>
+
+<div class="standard"><a id='magicparlabel-3775' />
+</div>
+<div class='float float-figure'><div class="plain_layout" style='text-align: center;'><a id='magicparlabel-3779' />
+<img style='width:40%;' src='assets/master_thesis/64_Users_michael_Desktop_memoire_images_etat.png' alt='image: 64_Users_michael_Desktop_memoire_images_etat.png' />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img style='width:40%;' src='assets/master_thesis/65_Users_michael_Desktop_memoire_images_sousetat.png' alt='image: 65_Users_michael_Desktop_memoire_images_sousetat.png' />
+</div>
+
+<div class="plain_layout"><a id='magicparlabel-3780' />
+<div class='float-caption float-caption-figure'>Figure 8.12:<div class="plain_layout"><a id='magicparlabel-3784' />
+<a id="fig_Etat_d_un_niveau" />
+État d'un niveau dont l'un des sous-états provoque un deadlock.</div>
+</div></div>
+</div>
+
+
+<div class="standard"><a id='magicparlabel-3785' />
+Le <em>deadlock méthodique</em> consiste à tester un sous-état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>s</mi>
+ </mrow></math> pour voir s'il provoque, ou non, un deadlock. Cette méthode n'utilise que des outils qui sont déjà en notre possession. Elle consiste à appliquer le solveur sur ce sous-état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>s</mi>
+ </mrow></math> et à observer si une solution est possible ou si l'arbre de recherche ne peut jamais aboutir à une solution. Si le sous-état ne comprend pas trop de caisses, la présence d'une solution devrait être rapidement vérifiée.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3786' />
+Dans le cas où le sous-état <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow><mi>s</mi>
+ </mrow></math> provoque un deadlock, celui-ci sera enregistré et, par la suite, tous les états de l'arbre de recherche qui le contiennent seront rejetés.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3787' />
+Le solveur utilisé pour tester les sous-états ne doit pas forcément être optimal. Il doit surtout être rapide car nous ne cherchons pas une solution mais simplement la présence ou l'absence d'une solution. C'est pour cela qu'une version modifiée de notre solveur, que nous appellerons <em>goodPushes</em><div class="foot"><span class="foot_label">1</span><div class="foot_inner"><div class="plain_layout"><a id='magicparlabel-3791' />
+Par opposition à <em>BestPushes</em>, notre solveur optimal</div>
+</div></div>, a été utilisée. Ce solveur utilise le même principe que le parcours A* avec l'utilisation comme coût de <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>f</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>=</mo><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo><mo>+</mo><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math>. La différence est que cette fois-ci, <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mrow>
+  <mrow><mi>g</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
+  </mrow>
+ </mrow></math> est fixé à 0. Il ne prend donc en compte que la distance entre un état donné et l'état solution, ce qui a l'avantage d'aboutir très vite à un résultat qui ne sera pas forcément optimal.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3792' />
+L'intérêt du deadlock méthodique est qu'il sert de <em>soutien</em> aux autres méthodes de deadlock. En effet, il est programmé pour ne pas prendre en compte les sous-états déjà bloqués par les autres méthodes pour limiter le nombre de sous-états à stocker en mémoire.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3793' />
+Il existe deux méthodes pour rechercher les deadlocks : la <em>recherche passive</em> et la <em>recherche active</em>.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3794' />
+Recherche passive
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3795' />
+La <em>recherche passive</em> consiste à créer, à partir d'un niveau, tous les états possibles de 1 caisse, 2 caisses, 3 caisses ou plus. Le solveur <em>goodPushes</em> est ensuite exécuté sur chacun de ces états et ceux-ci sont enregistrés lorsqu'un deadlock est détecté. Tous les états ainsi créés sont potentiellement des sous-états qui pourraient apparaître dans l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3796' />
+En fonction de la taille des niveaux, il sera parfois difficile de trouver les deadlocks de 3 caisses et plus à cause du temps de calcul. La méthode reste néanmoins très intéressante car moins un sous-état contient de caisses et plus il a de chance d'être inclus dans un état de l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3797' />
+Nous verrons que la recherche passive de deadlocks est un cas particulier de la recherche passive de pénalités. La Section <a href="#sub_penalpassive">9.2.1</a> décrit plus en profondeur la technique employée pour créer les états à 1, 2 ou 3 caisses.</div>
+<h4 class="paragraph"><span class="paragraph_label"></span> <a id='magicparlabel-3798' />
+Recherche active
+<br />
+
+
+<br />
+
+</h4>
+<div class="standard"><a id='magicparlabel-3799' />
+La <em>recherche active</em> part du principe que la recherche passive est trop générale car elle teste des sous-états sans pouvoir affirmer qu'ils seront présents dans l'arbre de recherche. La technique employée ici consiste à essayer de détecter des sous-états qui pourraient provoquer des deadlocks dans chaque état rencontré dans l'arbre de recherche.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3800' />
+En fonction de la limite de puissance allouée à chaque état rencontré, il est possible de créer <em>sur mesure</em> des sous-états de plus de 3 caisses qui sont inclus dans l'état en cours. L'effort est ainsi dirigé vers les caisses présentes, ce qui permet d'augmenter la probabilité de trouver un deadlock utile.
+<br />
+
+</div>
+
+<div class="standard"><a id='magicparlabel-3801' />
+Comme la recherche passive, la recherche active de deadlocks est un cas particulier de la recherche active de pénalités. La Section <a href="#sub_penalactive">9.2.2</a> explique comment créer des sous-états à tester à partir d'un état de l'arbre de recherche.</div>
+
+</div>
