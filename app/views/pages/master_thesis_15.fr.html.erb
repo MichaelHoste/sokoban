@@ -32,13 +32,11 @@ De manière générale, les méthodes les plus significatives sont :
 
 </div>
 
-<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-4070' />
-<strong>La détection des doublons</strong> à l'aide de la table de hachage. Elle permet d'éviter les sous-arbres identiques et les cycles dans l'arbre.
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-4070' /><strong>La détection des doublons</strong> à l'aide de la table de hachage. Elle permet d'éviter les sous-arbres identiques et les cycles dans l'arbre.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-4071' />
-<strong>Les parcours A* et IDA*</strong> qui améliorent grandement l'efficacité du parcours de l'arbre par rapport aux parcours en largeur et en profondeur. L'utilisation des méthodes les plus performantes pour calculer <math xmlns="http://www.w3.org/1998/Math/MathML">
+<li class="itemize_item"><a id='magicparlabel-4071' /><strong>Les parcours A* et IDA*</strong> qui améliorent grandement l'efficacité du parcours de l'arbre par rapport aux parcours en largeur et en profondeur. L'utilisation des méthodes les plus performantes pour calculer <math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
   </mrow>
@@ -46,13 +44,11 @@ De manière générale, les méthodes les plus significatives sont :
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-4072' />
-<strong>Les différentes méthodes de deadlock</strong> qui réduisent considérablement la taille de l'arbre de recherche.
+<li class="itemize_item"><a id='magicparlabel-4072' /><strong>Les différentes méthodes de deadlock</strong> qui réduisent considérablement la taille de l'arbre de recherche.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-4073' />
-<strong>La recherche passive et active de sous-états pénalisés</strong> pour affiner la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
+<li class="itemize_item"><a id='magicparlabel-4073' /><strong>La recherche passive et active de sous-états pénalisés</strong> pour affiner la valeur de <math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>h</mi><mo form='prefix' fence='true' stretchy='true' symmetric='true'>(</mo><mi>n</mi><mo form='postfix' fence='true' stretchy='true' symmetric='true'>)</mo>
   </mrow>
@@ -73,28 +69,23 @@ Chaque amélioration citée permet d'utiliser de moins en moins de nœuds pour t
 
 </div>
 
-<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-4080' />
-<strong>4000000 nœuds</strong> à l'aide du parcours en largeur et de la méthode des doublons.
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-4080' /><strong>4000000 nœuds</strong> à l'aide du parcours en largeur et de la méthode des doublons.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-4081' />
-<strong>600000 nœuds</strong> avec le parcours IDA* et les deadlocks simples.
+<li class="itemize_item"><a id='magicparlabel-4081' /><strong>600000 nœuds</strong> avec le parcours IDA* et les deadlocks simples.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-4082' />
-<strong>200000 nœuds</strong> avec la recherche passive de deadlocks de 3 caisses.
+<li class="itemize_item"><a id='magicparlabel-4082' /><strong>200000 nœuds</strong> avec la recherche passive de deadlocks de 3 caisses.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-4083' />
-<strong>1500 nœuds</strong> avec la recherche passive de pénalités de 3 caisses.
+<li class="itemize_item"><a id='magicparlabel-4083' /><strong>1500 nœuds</strong> avec la recherche passive de pénalités de 3 caisses.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-4084' />
-<strong>106 nœuds</strong> avec la recherche active de pénalités et l'utilisation des macro-poussées.
+<li class="itemize_item"><a id='magicparlabel-4084' /><strong>106 nœuds</strong> avec la recherche active de pénalités et l'utilisation des macro-poussées.
 <br />
 
 </li>
@@ -109,18 +100,15 @@ Le tableau des résultats reprend plusieurs données pour chacun des niveaux.
 
 </div>
 
-<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-4092' />
-Le <strong>nombre de poussées de la meilleure solution existante</strong> provient deOriginalHighScore (<a href='#LyXCite-OriginalHighScore'>Pas d'année</a>) etExtraHighScore (<a href='#LyXCite-ExtraHighScore'>Pas d'année</a>). Son optimalité n'est pas garantie mais elle a de grandes chances de l'être.
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-4092' />Le <strong>nombre de poussées de la meilleure solution existante</strong> provient deOriginalHighScore (<a href='#LyXCite-OriginalHighScore'>Pas d'année</a>) etExtraHighScore (<a href='#LyXCite-ExtraHighScore'>Pas d'année</a>). Son optimalité n'est pas garantie mais elle a de grandes chances de l'être.
 <br />
 
 </li>
-<li class="enumerate_item"><a id='magicparlabel-4093' />
-Le <strong>pré-processing</strong> représente le nombre de caisses utilisées lors de la recherche des sous-états pénalisés. Si le chiffre est 3, cela signifie que tous les sous-états pénalisés de 3 caisses et moins ont été trouvés avant de résoudre le niveau.
+<li class="enumerate_item"><a id='magicparlabel-4093' />Le <strong>pré-processing</strong> représente le nombre de caisses utilisées lors de la recherche des sous-états pénalisés. Si le chiffre est 3, cela signifie que tous les sous-états pénalisés de 3 caisses et moins ont été trouvés avant de résoudre le niveau.
 <br />
 
 </li>
-<li class="enumerate_item"><a id='magicparlabel-4094' />
-<strong>L'itération IDA* en cours (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<li class="enumerate_item"><a id='magicparlabel-4094' /><strong>L'itération IDA* en cours (<math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <msub>
    <mrow><mi>f</mi>
@@ -134,13 +122,11 @@ Le <strong>pré-processing</strong> représente le nombre de caisses utilisées 
 <br />
 
 </li>
-<li class="enumerate_item"><a id='magicparlabel-4095' />
-<strong>Le nombre de poussées/mouvements de la solution trouvée</strong>. Les solveurs bestPushes et Rolling Stone trouvent la solution optimale. Le solveur Talking Stone (2) créé par <em>Jean-Noël Demaret</em> trouve une <em>bonne</em> solution qui sera rarement optimale.
+<li class="enumerate_item"><a id='magicparlabel-4095' /><strong>Le nombre de poussées/mouvements de la solution trouvée</strong>. Les solveurs bestPushes et Rolling Stone trouvent la solution optimale. Le solveur Talking Stone (2) créé par <em>Jean-Noël Demaret</em> trouve une <em>bonne</em> solution qui sera rarement optimale.
 <br />
 
 </li>
-<li class="enumerate_item"><a id='magicparlabel-4096' />
-<strong>Les nœuds explorés<em> </em></strong>correspondent aux nombres de nœuds de l'arbre de recherche qui ont été explorés, lors de la dernière itération d'IDA*, avant de trouver une solution.
+<li class="enumerate_item"><a id='magicparlabel-4096' /><strong>Les nœuds explorés<em> </em></strong>correspondent aux nombres de nœuds de l'arbre de recherche qui ont été explorés, lors de la dernière itération d'IDA*, avant de trouver une solution.
 <br />
 
 </li>

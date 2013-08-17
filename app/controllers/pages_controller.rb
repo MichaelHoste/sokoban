@@ -8,11 +8,9 @@ class PagesController < ApplicationController
   end
 
   def privacy_policy
-    render 'layouts/privacy_policy', :layout => false
   end
 
   def terms_of_service
-    render 'layouts/terms_of_service', :layout => false
   end
 
   def master_thesis
@@ -36,7 +34,5 @@ class PagesController < ApplicationController
       User.registered.where(:mailing_unsubscribe => false).keep_if do |user|
         user.scores.where('created_at > ?', Time.now - MailingService::TIME_BEFORE_INACTIVE).any?
       end.count
-
-    render 'layouts/stats', :layout => false
   end
 end

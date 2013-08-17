@@ -588,7 +588,56 @@ Une solution plus efficace, qui tire profit de la complexité moyenne en <math x
 
 <div class="standard"><a id='magicparlabel-3238' />
 La fonction <em>dejaExistant(noeud)</em> de l'Algorithme 1, utilisée pour détecter les doublons, est modifiée pour mettre l'arbre de recherche à jour si un doublon s'avère meilleur qu'un nœud déjà présent. L'ancien nœud sera remplacé par le nouveau et les coûts des enfants déjà présents seront adaptés.
-<br />
+
+<br /><br/>
+
+<table class="algorithm">
+  <tr>
+    <td class="algo-title">
+      <strong>Algorithme 4</strong> dejaExistant(T_ouvert, T_ferme, Tas, noeud)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Entrées :</strong><br/>
+      <em>T_ouvert</em> : table de hachage des noeuds ouverts.<br/>
+      <em>T_ferme</em> : table de hachage des noeuds fermés.<br/>
+      <em>Tas</em> : le tas utilisé comme liste d'attente.<br/>
+      <em>Noeud</em> : le nouveau noeud que l'on veut insérer.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Sortie :</strong> vrai si noeud est déjà présent dans T_ouvert ou T_ferme. faux si noeud n'est présent ni dans T_ouvert ni dans T_ferme. L'arbre de recherche sera adapté si noeud est déjà présent mais qu'il possède un meilleur coût.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <pre>
+01:   dejaCherche ← faux
+02:   noeudFerme ← recupere(T_ferme, noeud)
+03:   <strong>si</strong> existe(noeudFerme) <strong>alors</strong>
+04:       dejaCherche ← vrai
+05:       <strong>si</strong> cout(noeud) < cout(noeudFerme) <strong>alors</strong>
+06:           attacheNoeud(noeudFerme, parent(noeud))
+07:           reduitCout(noeudFerme, cout(noeudFerme) − cout(noeud))
+08:       <strong>fin si</strong>
+09:   <strong>sinon</strong>
+10:       noeudOuvert ← recupere(T_ouvert, noeud)
+11:       <strong>si</strong> existe(noeudOuvert) <strong>alors</strong>
+12:           dejaCherche ← vrai
+13:           <strong>si</strong> cout(noeud) < cout(noeudOuvert) <strong>alors</strong>
+14:               cellule ← recupereCelluleTas(T_ouvert, noeud)
+15:               assigneCout(noeudOuvert, cout(noeud))
+16:               repositionneHaut(Tas, cellule)
+12:               attacheNoeud(noeudOuvert, parent(noeud))
+18:           <strong>fin si</strong>
+19:       <strong>fin si</strong>
+20:   <strong>fin si</strong>
+21:   <strong>retourner</strong> dejaCherche</pre>
+    </td>
+  </tr>
+</table>
 
 </div>
 
@@ -716,8 +765,7 @@ Voici quelques explications sur les fonctions utilisées :
 
 </div>
 
-<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3298' />
-<em>noeudOuvert ← recupere(<math xmlns="http://www.w3.org/1998/Math/MathML">
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3298' /><em>noeudOuvert ← recupere(<math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>T</mi>
    <msub><mrow />
@@ -741,8 +789,7 @@ Voici quelques explications sur les fonctions utilisées :
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-3299' />
-<em>cellule ← recupereCelluleTas(<math xmlns="http://www.w3.org/1998/Math/MathML">
+<li class="itemize_item"><a id='magicparlabel-3299' /><em>cellule ← recupereCelluleTas(<math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mi>T</mi>
    <msub><mrow />
@@ -756,18 +803,15 @@ Voici quelques explications sur les fonctions utilisées :
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-3300' />
-<em>assigneCout(noeudOuvert, cout(noeud))</em> : assigne simplement un nouveau coût à un nœud. Comme le nœud est ouvert, il n'a pas encore d'enfants et il n'est donc pas nécessaire de s'en préoccuper.
+<li class="itemize_item"><a id='magicparlabel-3300' /><em>assigneCout(noeudOuvert, cout(noeud))</em> : assigne simplement un nouveau coût à un nœud. Comme le nœud est ouvert, il n'a pas encore d'enfants et il n'est donc pas nécessaire de s'en préoccuper.
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-3301' />
-<em>repositionneHaut(Tas, cellule)</em> : fonction décrite dans l'Algorithme 2. Permet de repositionner, vers le haut, un nœud dans le tas en fonction de son nouveau coût, qui est plus petit que l'ancien..
+<li class="itemize_item"><a id='magicparlabel-3301' /><em>repositionneHaut(Tas, cellule)</em> : fonction décrite dans l'Algorithme 2. Permet de repositionner, vers le haut, un nœud dans le tas en fonction de son nouveau coût, qui est plus petit que l'ancien..
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-3302' />
-<em>attacheNoeud(noeudOuvert, parent(noeud))</em> : attache<em> noeudOuvert</em> au parent du nœud actuellement traité. L'objectif est de déplacer le nœud à un endroit moins profond de l'arbre de recherche et donc relatif à un moindre coût.
+<li class="itemize_item"><a id='magicparlabel-3302' /><em>attacheNoeud(noeudOuvert, parent(noeud))</em> : attache<em> noeudOuvert</em> au parent du nœud actuellement traité. L'objectif est de déplacer le nœud à un endroit moins profond de l'arbre de recherche et donc relatif à un moindre coût.
 <br />
 
 </li>
@@ -988,8 +1032,7 @@ L'utilisation du parcours IDA* possède un double avantage :
 
 </div>
 
-<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3349' />
-La solution optimale sera trouvée avec un arbre de recherche plus petit et donc avec une utilisation moins importante de la mémoire. Cela est dû à la suppression de tous les nœuds pour lesquels le coût est plus grand que l'objectif <math xmlns="http://www.w3.org/1998/Math/MathML">
+<ul class="itemize"><li class="itemize_item"><a id='magicparlabel-3349' />La solution optimale sera trouvée avec un arbre de recherche plus petit et donc avec une utilisation moins importante de la mémoire. Cela est dû à la suppression de tous les nœuds pour lesquels le coût est plus grand que l'objectif <math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <msub>
    <mrow><mi>f</mi>
@@ -1003,8 +1046,7 @@ La solution optimale sera trouvée avec un arbre de recherche plus petit et donc
 <br />
 
 </li>
-<li class="itemize_item"><a id='magicparlabel-3350' />
-À la fin d'une itération du parcours A* pour laquelle <math xmlns="http://www.w3.org/1998/Math/MathML">
+<li class="itemize_item"><a id='magicparlabel-3350' />À la fin d'une itération du parcours A* pour laquelle <math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow>
    <msub>
@@ -1018,10 +1060,8 @@ La solution optimale sera trouvée avec un arbre de recherche plus petit et donc
   </mrow>
  </mrow></math>, il y a deux possibilités :
 
-<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3351' />
-Soit une solution est trouvée et est optimale.</li>
-<li class="enumerate_item"><a id='magicparlabel-3352' />
-Soit aucune solution n'est trouvée mais il est possible d'affirmer que le nombre de poussées de la solution optimale sera <math xmlns="http://www.w3.org/1998/Math/MathML">
+<ol class="enumerate"><li class="enumerate_item"><a id='magicparlabel-3351' />Soit une solution est trouvée et est optimale.</li>
+<li class="enumerate_item"><a id='magicparlabel-3352' />Soit aucune solution n'est trouvée mais il est possible d'affirmer que le nombre de poussées de la solution optimale sera <math xmlns="http://www.w3.org/1998/Math/MathML">
  <mrow>
   <mrow><mo>&gt;</mo><mi>a</mi>
   </mrow>
