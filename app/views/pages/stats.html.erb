@@ -1,7 +1,7 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
 <div id="limited-content">
-  <strong>Users</strong> : <%= @total_users %> (<%= @total_friends %> amis)
+  <h2>Users: <%= @total_users %> (<%= @total_friends %> friends)</h2>
 
   <% data = User.registered.where('registered_at > ?', Time.new(2013, 3))
                            .group_by_week(:registered_at).count %>
@@ -10,9 +10,8 @@
   <% data[data.keys.last] /= extrapolation %>
   <%= line_chart data %>
 
-  <br/><br/>
-
-  <strong>Completed Levels</strong> : <%= @best_scores %> / <%= @total_scores %>
+  <br/>
+  <h2>Completed Levels: <%= @best_scores %> / <%= @total_scores %></h2>
 
   <% data =  LevelUserLink.where('created_at > ?', Time.new(2013, 3))
                            .group_by_week(:created_at).count %>
@@ -22,12 +21,12 @@
   <%= line_chart data %>
 
   <br/>
-
-  <strong>Distribution of number of solved levels</strong>
+  <h2>Distribution of number of solved levels</h2>
 
   <%= column_chart @distribution %>
 
-  <strong>Tasks</strong>
+  <br/>
+  <h2>Tasks</h2>
 
   <ul>
     <% @jobs.each do |job| %>
@@ -38,8 +37,7 @@
   </ul>
 
   <br/>
-
-  <strong>Last 20 users</strong> :
+  <h2>Last 20 users</h2>
 
   <div>
     <% @last_users.each do |user| %>
@@ -55,9 +53,8 @@
     <% end %>
   </div>
 
-  <br/><br/>
-
-  <strong>Last 100 completed levels</strong> :
+  <br/>
+  <h2>Last 100 completed levels</h2>
 
   <div>
     <% @last_scores.each do |score| %>
@@ -76,6 +73,4 @@
       </div>
     <% end %>
   </div>
-
-  <br/><br/>
 </div>

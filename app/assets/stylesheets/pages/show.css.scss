@@ -36,6 +36,63 @@ body#pages-master_thesis, body#pages-privacy_policy, body#pages-terms_of_service
   }
 }
 
+body#pages-terms_of_service, body#pages-privacy_policy, body#pages-stats {
+  #limited-content {
+    h1 {
+      display: block;
+      font-size: 2em;
+      margin-before: 0.67em;
+      margin-after: 0.67em;
+      margin-start: 0px;
+      margin-end: 0px;
+      font-weight: bold;
+    }
+
+    h2 {
+      display: block;
+      font-size: 1.5em;
+      margin:0px;
+      margin-top: 0.83em;
+      margin-bottom: 0.83em;
+      font-weight: bold;
+    }
+
+    ol {
+      display: block;
+      list-style-type: lower-alpha;
+      margin:0px;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      padding-left: 40px;
+    }
+
+    ol.roman {
+      list-style-type: lower-roman;
+    }
+
+    ul {
+      display: block;
+      list-style-type: decimal;
+      margin:0px;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      padding-left: 40px;
+    }
+
+    li {
+      display: list-item;
+      text-align: -webkit-match-parent;
+    }
+
+    p {
+      display: block;
+      margin:0px;
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+  }
+}
+
 body#pages-master_thesis {
   div.toc {
     border-style: solid;
