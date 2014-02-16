@@ -27,6 +27,7 @@ TO DO
  6. Get rid of Jax (and other pagespeed optimizations)
  7. Rules static page (+ master thesis in html format fr-en)
  8. Create other games with the framework and extract a game engine
+ 9. Improve SEO : http://moz.com/beginners-guide-to-seo
 
 License
 -----
