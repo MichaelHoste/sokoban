@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130714213006) do
+ActiveRecord::Schema.define(:version => 20140317190130) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130714213006) do
     t.boolean  "best_level_user_score", :default => false, :null => false
   end
 
+  add_index "level_user_links", ["created_at"], :name => "index_level_user_links_on_created_at"
   add_index "level_user_links", ["level_id"], :name => "index_level_user_links_on_level_id"
   add_index "level_user_links", ["moves"], :name => "index_level_user_links_on_moves"
   add_index "level_user_links", ["pushes"], :name => "index_level_user_links_on_pushes"

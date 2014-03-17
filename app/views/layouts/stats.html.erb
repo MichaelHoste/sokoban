@@ -26,6 +26,32 @@
 
   <br/>
 
+  <strong>Total completed Levels</strong> : <%= @total_scores %>
+
+  <% data = {} %>
+  <% time = Time.new(2013, 1).to_datetime %>
+  <% while time < Time.now + 1.week %>
+    <% data.merge!({ time => LevelUserLink.where('created_at <= ?', time).count }) %>
+    <% time = time + 1.week %>
+  <% end %>
+
+  <%= line_chart data %>
+
+  <br/>
+
+  <strong>Total users</strong> : <%= @total_users %>
+
+  <% data = {} %>
+  <% time = Time.new(2013, 1).to_datetime %>
+  <% while time < Time.now + 1.week %>
+    <% data.merge!({ time => User.registered.where('registered_at <= ?', time).count }) %>
+    <% time = time + 1.week %>
+  <% end %>
+
+  <%= line_chart data %>
+
+  <br/>
+
   <strong>Distribution of number of solved levels</strong>
 
   <%= column_chart @distribution %>
@@ -36,7 +62,7 @@
     <% @jobs.each do |job| %>
       <li><%= "#{job.attempts} attempts - #{job.queue} - last error : #{job.last_error}" %></li>
     <% end %>
-    <li><%= @past_next_mailing_at %> pending mails</li>
+    <li><%= @pending_mails %> pending mails</li>
     <li><%= @mails_by_week %> mails per week</li>
   </ul>
 
