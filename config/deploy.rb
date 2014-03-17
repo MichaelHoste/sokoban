@@ -22,7 +22,7 @@ set :use_sudo,    false
 
 set :scm,  :git
 ssh_options[:forward_agent] = true # use the same ssh keys as my computer for git checkout
-set :branch, "master"
+set :branch, "production"
 
 default_run_options[:pty] = true
 
