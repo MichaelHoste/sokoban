@@ -16,6 +16,7 @@ gem 'daemons' # for delayed job
 gem 'sitemap_generator'
 gem 'httparty'
 gem 'friendly_id'
+gem 'rabl'
 
 # Stats
 gem 'newrelic_rpm'

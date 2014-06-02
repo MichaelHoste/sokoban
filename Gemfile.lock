@@ -147,6 +147,8 @@ GEM
     query_reviewer (0.1.8)
     quiet_assets (1.0.1)
       railties (~> 3.1)
+    rabl (0.8.6)
+      activesupport (>= 2.3.14)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -248,6 +250,7 @@ DEPENDENCIES
   omniauth-facebook (= 1.4.0)
   query_reviewer
   quiet_assets
+  rabl
   rails (= 3.2.12)
   ruby_parser
   sass-rails (~> 3.2.3)

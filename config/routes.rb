@@ -39,6 +39,16 @@ Sokojax::Application.routes.draw do
     end
   end
 
+  # API
+
+  namespace :api do
+    resources :levels do
+      collection do
+        get :random
+      end
+    end
+  end
+
   get '/rankings',        :to => 'users#index', :type => 'global',  :as => :rankings
   get '/friends_ranking', :to => 'users#index', :type => 'friends', :as => :friends_ranking
 
