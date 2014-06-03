@@ -1,3 +1,3 @@
 object @level
 
-attributes :id, :inline_grid
+attributes :id, :inline_grid, :width, :height
