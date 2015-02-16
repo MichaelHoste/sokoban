@@ -31,14 +31,14 @@ default_run_options[:pty] = true
 
 set :deploy_via, :remote_cache
 
-role :web, "188.165.255.96"                          # Your HTTP server, Apache/etc
-role :app, "188.165.255.96"                          # This may be the same as your `Web` server
-role :db,  "188.165.255.96", :primary => true        # This is where Rails migrations will run
+role :web, "178.62.108.245"                          # Your HTTP server, Apache/etc
+role :app, "178.62.108.245"                          # This may be the same as your `Web` server
+role :db,  "178.62.108.245", :primary => true        # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
 # Foreman settings
 set :foreman_sudo,        "#{sudo} env PATH=$PATH"  # Set to `rvmsudo` if you're using RVM
-set :foreman_concurrency, '-c web=1,worker=2'
+set :foreman_concurrency, '-c web=1,worker=1'
 
 set :keep_releases, 5
 after "deploy:restart", "deploy:cleanup"
