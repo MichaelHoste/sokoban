@@ -37,7 +37,7 @@ role :db,  "178.62.108.245", :primary => true        # This is where Rails migra
 # role :db,  "your slave db-server here"
 
 # Foreman settings
-set :foreman_sudo,        "#{sudo} env PATH=$PATH"  # Set to `rvmsudo` if you're using RVM
+set :foreman_sudo,        "#{sudo} env PATH=$PATH"
 set :foreman_concurrency, '-c web=1,worker=1'
 
 set :keep_releases, 5
