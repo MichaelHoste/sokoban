@@ -152,6 +152,9 @@ after 'deploy:update_code' do
   run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
   run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
 
+  run "#{sudo} unlink /etc/logrotate.d/#{application};true"
+  run "#{sudo} ln -s #{deploy_to}/current/config/logrotate /etc/logrotate.d/#{application};true"
+
   upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
   upload "config/initializers/madmimi.rb", "#{deploy_to}/shared/config/initializers/madmimi.rb"
   upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"

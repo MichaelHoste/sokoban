@@ -1,0 +1,9 @@
+/home/deploy/apps/sokoban/shared/log/*.log {
+    daily
+    missingok
+    rotate 15
+    compress
+    delaycompress
+    notifempty
+    copytruncate
+}
