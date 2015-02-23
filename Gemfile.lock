@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    SyslogLogger (2.0)
     actionmailer (3.2.12)
       actionpack (= 3.2.12)
       mail (~> 2.4.4)
@@ -224,7 +223,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  SyslogLogger
   airbrake
   backup
   capistrano
