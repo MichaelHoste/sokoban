@@ -17,7 +17,6 @@ gem 'sitemap_generator'
 gem 'httparty'
 gem 'friendly_id'
 gem 'rabl'
-gem 'SyslogLogger'
 
 # Stats
 gem 'newrelic_rpm'
