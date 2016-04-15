@@ -25,8 +25,8 @@ class User < ActiveRecord::Base
            :class_name => 'LevelUserLink'
 
   has_many :best_scores,
-           :class_name => 'LevelUserLink',
-           :conditions => { :best_level_user_score => true }
+           -> { where(:best_level_user_score => true) },
+           :class_name => 'LevelUserLink'
 
   has_many :levels,
            :through => :scores
@@ -177,10 +177,10 @@ class User < ActiveRecord::Base
 
     # update users and user_user_link relation
     friends.each do |friend|
-      user = User.find_or_create_by_f_id(friend['id'])
+      user = User.where(:f_id => friend['id']).first_or_create
       user.update_attributes!({ :name => friend['name'] })
       user.update_friends_count
-      self.user_user_links.find_or_create_by_user_id_and_friend_id(self.f_id, user.f_id)
+      self.user_user_links.where(:user_id => self.f_id, :friend_id => user.f_id).first_or_create
     end
 
     # delete user_user_link is not facebook friend anymore
@@ -347,6 +347,7 @@ class User < ActiveRecord::Base
   # total_user_friends  : sum of users_friends_count. ATTENTION : in an array ! (here : [100])
   # --> return user and update entry values
   def select_one_user(users, users_friends_count, total_user_friends)
+    users = users.to_a
     selected_user = nil
     rand_number = rand(total_user_friends[0])
     users_friends_count.each_with_index do |friends_count, index|

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  skip_before_filter :check_facebook
+  skip_before_action :check_facebook
 
   def connect_facebook
     if not current_user

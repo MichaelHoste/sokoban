@@ -45,9 +45,6 @@ namespace :app  do
 
       compile_coffee_to_js()
 
-      # Empty shell
-      new_tab('Shell', ["cd #{Dir.pwd}", "clear"])
-
       # Launch server
       system('foreman start -f Procfile.development')
     end
@@ -93,10 +90,3 @@ namespace :app  do
   end
 end
 
-def new_tab(name, commands)
-  commands = ["/bin/bash #{Dir.pwd}/script/rename_tab.sh #{name}"] + commands
-  command_line = commands.collect! { |command| '-e \'tell application "Terminal" to do script "' + command + '" in front window\''}.join(' ')
-  `osascript -e 'tell application "Terminal" to activate' \
-             -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
-             #{command_line} > /dev/null`
-end

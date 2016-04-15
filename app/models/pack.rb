@@ -14,7 +14,7 @@ class Pack < ActiveRecord::Base
   has_many :users,           :through => :pack_user_links
 
   # Scope
-  default_scope :order => 'name ASC'
+  default_scope { order('name ASC') }
 
   # Nested attributes
 

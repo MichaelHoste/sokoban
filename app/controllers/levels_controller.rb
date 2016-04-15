@@ -1,7 +1,7 @@
 class LevelsController < ApplicationController
   def show
-    @pack  = Pack.find(params[:pack_id])
-    @level = @pack.levels.find(params[:id])
+    @pack  = Pack.friendly.find(params[:pack_id])
+    @level = @pack.levels.friendly.find(params[:id])
 
     if params[:json]
       render :json => { :grid        => @level.inline_grid_with_floor,

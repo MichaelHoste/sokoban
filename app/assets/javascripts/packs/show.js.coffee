@@ -23,7 +23,7 @@ $ ->
     $('#levels').scrollTo(level_button, 1000, { easing:'swing', offset: -10 } )
 
     # Click on level (on packs/show)
-    $('#levels li, #levels li a').live('click', ->
+    $('#levels li, #levels li a').on('click', ->
       $('#levels').find(".is-selected").removeClass('is-selected')
       $(this).closest('li').addClass('is-selected')
 

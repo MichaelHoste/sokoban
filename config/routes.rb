@@ -60,8 +60,8 @@ Sokojax::Application.routes.draw do
   get '/connect_facebook',          :to => 'sessions#connect_facebook'
 
   # OmniAuth (facebook)
-  match '/auth/:provider/callback', :to => 'sessions#create'
-  match '/auth/failure',            :to => 'sessions#failure'
+  match '/auth/:provider/callback', :to => 'sessions#create',  via: [:get, :post]
+  match '/auth/failure',            :to => 'sessions#failure', via: [:get, :post]
   get   '/login',                   :to => 'sessions#new'
   get   '/logout',                  :to => 'sessions#destroy', :as => :logout
 

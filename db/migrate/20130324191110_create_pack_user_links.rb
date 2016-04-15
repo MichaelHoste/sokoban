@@ -12,7 +12,7 @@ class CreatePackUserLinks < ActiveRecord::Migration
 
     # Populate PackUserLinks (not-optimized-at-all-but-dont-care-because-only-executed-once)
     LevelUserLink.all.each do |score|
-      PackUserLink.find_or_create_by_pack_id_and_user_id(score.level.pack_id, score.user_id).update_stats
+      PackUserLink.where(:pack_id => score.level.pack_id, :user_id => score.user_id).first_or_create.update_stats
     end
   end
 end

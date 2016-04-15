@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
 
-  before_filter :only_admins, :only => ['stats']
+  before_action :only_admins, :only => ['stats']
 
   def banner
-    @pack = Pack.find(params[:pack_id])
+    @pack = Pack.friendly.find(params[:pack_id])
     render :partial => 'layouts/banner'
   end
 
@@ -30,6 +30,7 @@ class PagesController < ApplicationController
 
     @pending_mails = User.registered
                          .includes(:scores)
+                         .references(:level_user_links)
                          .where(:mailing_unsubscribe => false)
                          .where('next_mailing_at < ?', Time.now)
                          .where('level_user_links.created_at < ?', Time.now - MailingService::TOO_SOON)
@@ -37,6 +38,7 @@ class PagesController < ApplicationController
 
     @mails_by_week = User.registered
                          .includes(:scores)
+                         .references(:level_user_links)
                          .where(:mailing_unsubscribe => false)
                          .where('level_user_links.created_at > ?', Time.now - MailingService::TIME_BEFORE_INACTIVE).count
 

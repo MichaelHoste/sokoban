@@ -1,6 +1,6 @@
 $ ->
   # Refresh scores when click on "more scores" of "friends scores"
-  $('#more-friend-score').live('click', ->
+  $('#scores').on('click', '#more-friend-score', ->
     friend_page = parseInt($(this).attr('data-page')) + 1
     global_page = parseInt($('#more-global-score').attr('data-page'))
 
@@ -8,7 +8,7 @@ $ ->
   )
 
   # Refresh scores when click on "more scores" of "global scores"
-  $('#more-global-score').live('click', ->
+  $('#scores').on('click', '#more-global-score', ->
     friend_page = parseInt($('#more-friend-score').attr('data-page'))
     global_page = parseInt($(this).attr('data-page')) + 1
 
@@ -24,7 +24,7 @@ $ ->
     return false
   )
 
-  $('#game-won .final-score-item').live('click', ->
+  $('#game-won .final-score-item').on('click', ->
     window.facebook_send_to_feed_in_ladder($(this).attr('data-f_id'),
                                            $(this).attr('data-score-worse') == "true",
                                            $('#final-score .score-pushes .num').html(),
@@ -32,7 +32,7 @@ $ ->
     return false
   )
 
-  $('#game-won #share-on-fb').live('click', ->
+  $('#game-won #share-on-fb').on('click', ->
     window.facebook_send_to_feed('', $('#final-score .score-pushes .num').html(),
                                      $('#final-score .score-moves .num').html())
   )
@@ -40,14 +40,14 @@ $ ->
   bragging = false
 
   $('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]')
-    .live('mouseover', ->
+    .on('mouseover', ->
       $(this).parent().find('.brag').hide()
       $(this).parent().find('.score-name, .score-pushes').show()
       $(this).find('.score-name, .score-pushes').hide()
       $(this).find('.brag').show()
       bragging = true
     )
-    .live('mouseout', ->
+    .on('mouseout', ->
       $(this).find('.brag').hide()
       $(this).find('.score-name, .score-pushes').show()
       bragging = false

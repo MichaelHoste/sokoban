@@ -14,7 +14,7 @@ $ ->
     return false
   )
 
-  $('#invitations-more').live('click', ->
+  $('#invitations-more').on('click', ->
     window.reload_invitations()
   )
 

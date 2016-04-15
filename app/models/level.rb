@@ -22,8 +22,8 @@ class Level < ActiveRecord::Base
            :class_name => 'LevelUserLink'
 
   has_many :best_scores,
-           :class_name => 'LevelUserLink',
-           :conditions => { :best_level_user_score => true }
+           -> { where(:best_level_user_score => true) },
+           :class_name => 'LevelUserLink'
 
   has_many :users,
            :through => :scores

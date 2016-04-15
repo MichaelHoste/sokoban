@@ -19,6 +19,7 @@ gem 'sitemap_generator'
 gem 'httparty'
 gem 'friendly_id'
 gem 'rabl'
+gem 'protected_attributes' # TODO remove this and use strong_params
 
 # Stats
 gem 'newrelic_rpm'
@@ -51,6 +52,8 @@ group :development do
   # translation
   gem 'gettext',     :require => false # use "brew link --force gettext" to link to gettext on MacOS (brew was afraid to link)
   gem 'ruby_parser', :require => false
+
+  gem 'web-console', '~> 2.0'
 end
 
 # Production/deployment tools

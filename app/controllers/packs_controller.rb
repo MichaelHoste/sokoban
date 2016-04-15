@@ -4,7 +4,7 @@ class PacksController < ApplicationController
   end
 
   def show
-    @pack = Pack.find(params[:id])
+    @pack = Pack.friendly.find(params[:id])
     @level = @pack.levels.first
 
     # Take first two rows of friends and public scores
@@ -14,7 +14,7 @@ class PacksController < ApplicationController
   end
 
   def download
-    @pack = Pack.find(params[:id])
+    @pack = Pack.friendly.find(params[:id])
     send_file "lib/assets/levels/#{@pack.file_name}.slc",
               :type => 'text/xml'
   end

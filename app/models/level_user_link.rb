@@ -150,7 +150,7 @@ class LevelUserLink < ActiveRecord::Base
     self.tag_best_score
 
     # Update user pack stats
-    PackUserLink.find_or_create_by_pack_id_and_user_id(self.level.pack_id, self.user_id).update_stats
+    PackUserLink.where(:pack_id => self.level.pack_id, :user_id => self.user_id).first_or_create.update_stats
 
     if self.user
       # Update user stats

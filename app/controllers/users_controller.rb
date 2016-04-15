@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
-  before_filter :require_user, :only   => ['levels_to_solve', 'scores_to_improve']
-  before_filter :find_user,    :except => ['index']
-  before_filter :get_ladder,   :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
-  before_filter :get_friends,  :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
+  before_action :require_user, :only   => ['levels_to_solve', 'scores_to_improve']
+  before_action :find_user,    :except => ['index']
+  before_action :get_ladder,   :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
+  before_action :get_friends,  :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
 
   def show
     if (not current_user) or current_user.id == @user.id
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
     if current_user and params[:id] == 'me'
       redirect_to user_path(current_user)
     else
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
   end
 

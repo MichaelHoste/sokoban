@@ -46,17 +46,17 @@ window.update_banner = ->
   )
 
 bind_banner = ->
-  $('#add-one-friend').live('click', ->
+  $('#add-one-friend').on('click', ->
     window.facebook_send_custom_invitation_message()
     return false
   )
 
-  $('#add-more-friends').live('click', ->
+  $('#add-more-friends').on('click', ->
     window.facebook_send_app_request()
     return false
   )
 
-  $('#share-on-wall').live('click', ->
+  $('#share-on-wall').on('click', ->
     window.facebook_send_to_feed()
     return false
   )

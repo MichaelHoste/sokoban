@@ -1,6 +1,6 @@
 $ ->
   # Level on level => create and position thumb
-  $('#levels li').live('mouseenter', ->
+  $('#levels li').on('mouseenter', ->
     level_thumb = $('.level-thumb')
     level_thumb.show()
 
@@ -27,6 +27,6 @@ $ ->
     window.level_thumb()
   )
 
-  $('#levels li').live('mouseleave', ->
+  $('#levels li').on('mouseleave', ->
     $('.level-thumb').hide()
   )

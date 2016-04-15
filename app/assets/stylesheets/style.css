@@ -994,6 +994,8 @@ body {
 			.final-score-item .score-name {
 				float: left;
 				width: 85px;
+        max-height: 28px;
+        overflow: hidden;
 				font-weight: bold;
 				vertical-align: bottom;
 				margin-top:5px;
