@@ -1,4 +1,3 @@
-# IMPORTANT, check that rbenv/RVM is loaded in ~/.bash_profile (export PATH="$HOME/.rbenv/bin:$PATH";eval "$(rbenv init -)")
 set      :output,      "#{path}/log/cron.log"
 job_type :bundle_exec, 'cd :path && bundle exec :task :output' # :path is set to project dir by default
 
