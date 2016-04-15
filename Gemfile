@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails',   '3.2.12'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
 gem 'json'
 gem 'omniauth-facebook', '1.4.0' # because of this in 1.4.1 : https://github.com/mkdynamic/omniauth-facebook/issues/73
