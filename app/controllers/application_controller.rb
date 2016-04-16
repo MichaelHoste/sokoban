@@ -9,11 +9,17 @@ class ApplicationController < ActionController::Base
   before_action :check_facebook
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    if Rails.env.development? && params[:force_user_slug]
+      @current_user ||= User.find_by_slug(params[:force_user_slug])
+      session[:user_id] = @current_user.id
+      @current_user
+    else
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
   end
 
   def check_facebook
-    if current_user and current_user.f_expires_at < Time.now                    # user is connected but session is expired
+    if current_user && current_user.f_expires_at < Time.now && Rails.env.production?                   # user is connected but session is expired
       redirect_to '/auth/facebook'
     elsif not current_user and (params[:fb_source] or params[:signed_request])  # On each click on facebook to the application
       if params[:pack_id] and params[:id]                                       # if click on notification or feed with specific level, keep it on redirected params
