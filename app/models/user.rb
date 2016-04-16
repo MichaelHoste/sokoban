@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
       user.update_attributes!({ :next_mailing_at => Time.now + 7.days })
 
       # email to admin
-      UserNotifier.delay.new_user(user.id)
+      UserNotifier.new_user(user.id).deliver_later
 
       # Post status on facebook page if %100
       if (User.registered.count+1) % 100 == 0

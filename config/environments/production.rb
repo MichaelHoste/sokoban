@@ -76,4 +76,22 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Mail configuration
+  EMAIL = YAML::load_file("#{Rails.root}/config/email.yml")[Rails.env]
+
+  config.action_mailer.default_url_options = { :host => EMAIL['default_url_options'] }
+  config.action_mailer.raise_delivery_errors = EMAIL['raise_delivery_errors'] == 'true'
+  config.action_mailer.delivery_method = EMAIL['delivery_method'].to_sym
+
+  config.action_mailer.smtp_settings =
+  {
+    :user_name            => EMAIL['smtp_settings']['user_name'],
+    :password             => EMAIL['smtp_settings']['password'],
+    :domain               => EMAIL['smtp_settings']['domain'],
+    :address              => EMAIL['smtp_settings']['address'],
+    :port                 => EMAIL['smtp_settings']['port'].to_i,
+    :authentication       => EMAIL['smtp_settings']['authentification'] ? EMAIL['smtp_settings']['authentification'].to_sym : '',
+    :enable_starttls_auto => EMAIL['smtp_settings']['enable_startttls_auto'] ? EMAIL['smtp_settings']['enable_startttls_auto'] == "true" : ''
+  }
 end

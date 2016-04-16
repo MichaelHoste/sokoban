@@ -14,7 +14,7 @@ module MailingService
       MailingService.sync_with_mapmimi
 
       MailingService.users_to_mail_now.each do |user|
-        UserNotifier.delay.weekly_notification(user.id)
+        UserNotifier.weekly_notification(user.id).deliver_later
         user.update_attributes!({ :next_mailing_at => Time.now + 7.days + rand(-12..12).hours })
       end
 

@@ -51,7 +51,7 @@ class SessionsController < ApplicationController
       error_message = @user.errors.full_messages.join(", ")
 
       # Notify via email (delete if airbrake works)
-      UserNotifier.delay.error_to_admin(error_message)
+      UserNotifier.error_to_admin(error_message).deliver_later
 
       # Notify via airbrake
       Airbrake.notify(
