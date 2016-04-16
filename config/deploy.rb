@@ -1,164 +1,22 @@
-require 'bundler/capistrano'
-
-# Comment when first "cap deploy" (gem is not present yet and "bundle" is made after this)
-set :whenever_command, 'bundle exec whenever'
-require 'whenever/capistrano'
-
-# We want Bundler to handle our gems and we want it to package everything locally with the app.
-# The --binstubs flag means any gem executables will be added to <app>/bin
-# and the --shebang ruby-local-exec option makes sure we'll use the ruby version defined in the .rbenv-version in the app root.
-set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
-
-# to find bundle with rbenv
-set :default_environment, {
-  'PATH' => "/home/deploy/.rbenv/shims:/home/deploy/.rbenv/bin:$PATH"
-}
-
-set :application, "sokoban"
-set :repository,  "git://github.com/MichaelHoste/#{application}.git"
-set :user,        "deploy"
-set :deploy_to,   "/home/#{user}/apps/#{application}"
-set :use_sudo,    false
-
-set :scm,  :git
-ssh_options[:forward_agent] = true # use the same ssh keys as my computer for git checkout
-set :branch, "production"
-
-default_run_options[:pty] = true
-
-# get the submodules
-# set :git_enable_submodules, 1
-
-set :deploy_via, :remote_cache
-
-role :web, "178.62.108.245"                          # Your HTTP server, Apache/etc
-role :app, "178.62.108.245"                          # This may be the same as your `Web` server
-role :db,  "178.62.108.245", :primary => true        # This is where Rails migrations will run
-# role :db,  "your slave db-server here"
-
-# Foreman settings
-set :foreman_sudo,        "#{sudo} env PATH=$PATH"
-set :foreman_concurrency, '-c web=1,worker=1'
-
+set :repo_url, 'git://github.com/MichaelHoste/sokoban.git'
 set :keep_releases, 5
-after "deploy:restart", "deploy:cleanup"
 
-before "deploy:assets:precompile" do
-  # Database
-  upload "config/database.yml", "#{deploy_to}/shared/config/database.yml"
-  run "ln -s #{deploy_to}/shared/config/database.yml #{latest_release}/config/database.yml;true"
+set :use_sudo,  false
+set :log_level, :debug
 
-  # Emails
-  upload "config/email.yml", "#{deploy_to}/shared/config/email.yml"
-  run "ln -s #{deploy_to}/shared/config/email.yml #{latest_release}/config/email.yml;true"
+set :linked_files, %w{config/database.yml config/email.yml config/newrelic.yml config/backup.rb config/initializers/facebook.rb config/initializers/madmimi.rb config/initializers/errbit.rb}
+set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/images/levels}
 
-  # NewRelic
-  upload "config/newrelic.yml", "#{deploy_to}/shared/config/newrelic.yml"
-  run "ln -s #{deploy_to}/shared/config/newrelic.yml #{latest_release}/config/newrelic.yml;true"
-end
+set :rbenv_type, 'user'
 
-namespace :foreman do
-  task :export do
-    run "cd #{deploy_to}/current && #{foreman_sudo} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{deploy_to}/shared/log -f Procfile.production -e env.production #{foreman_concurrency}"
-  end
+set :bundle_binstubs, nil
+set :bundle_bins,     %w(gem rake rails)
 
-  task :start do
-    "#{sudo} start #{application}"
-  end
+after 'deploy:publishing', 'delayed_job:restart'
+after 'deploy:publishing', 'deploy:refresh_sitemap'
 
-  task :stop do
-    "#{sudo} stop #{application}"
-  end
+# # Launch delayed job for publish feed
+# run("cd #{latest_release} && bundle exec rake app:facebook_feed_delayed_job RAILS_ENV=#{rails_env}")
 
-  task :restart do
-    run "#{sudo} start #{application} || sudo restart #{application}"
-  end
-end
-
-namespace :deploy do
-  task :start do
-    # Thumbs of levels (generated when needed)
-    run "unlink #{deploy_to}/current/public/images/levels;true"
-    run "ln -s #{deploy_to}/shared/public/images/levels #{deploy_to}/current/public/images/levels;true"
-
-    # Facebook configuration
-    run "unlink #{deploy_to}/current/config/initializers/facebook.rb;true"
-    run "ln -s #{deploy_to}/shared/config/initializers/facebook.rb #{deploy_to}/current/config/initializers/facebook.rb;true"
-
-    # Madmimi configuration
-    run "unlink #{deploy_to}/current/config/initializers/madmimi.rb;true"
-    run "ln -s #{deploy_to}/shared/config/initializers/madmimi.rb #{deploy_to}/current/config/initializers/madmimi.rb;true"
-
-    # Errbit configuration
-    run "unlink #{deploy_to}/current/config/initializers/errbit.rb;true"
-    run "ln -s #{deploy_to}/shared/config/initializers/errbit.rb #{deploy_to}/current/config/initializers/errbit.rb;true"
-
-    # Backup configuration
-    run "mkdir #{deploy_to}/current/config/backups;true"
-    run "unlink #{deploy_to}/current/config/backups/sokoban.rb;true"
-    run "unlink #{deploy_to}/current/config/backup.rb;true"
-    run "ln -s #{deploy_to}/shared/config/backups/sokoban.rb #{deploy_to}/current/config/backups/sokoban.rb;true"
-    run "ln -s #{deploy_to}/shared/config/backup.rb #{deploy_to}/current/config/backup.rb;true"
-
-    deploy.migrate
-
-    # Export / Restart foreman
-    foreman.export
-    foreman.restart
-
-    # Launch delayed job for publish feed
-    run("cd #{latest_release} && bundle exec rake app:facebook_feed_delayed_job RAILS_ENV=#{rails_env}")
-
-    # Launch delayed job for sending (weekly) mailing list
-    run("cd #{latest_release} && bundle exec rake app:send_mailing_delayed_job RAILS_ENV=#{rails_env}")
-
-    # Regeneration of sitemap
-    run("cd #{latest_release} && bundle exec rake sitemap:refresh RAILS_ENV=#{rails_env}")
-  end
-
-  task :stop do
-    foreman.stop
-  end
-
-  task :restart do
-    deploy.stop
-    deploy.start
-  end
-
-  # CLONE PRODUCTION TO DEVELOPMENT : "cap deploy:clone_to_development"
-  task :clone_to_development do
-    config_dev = YAML::load(File.read('config/database.yml'))['development']
-    config_pro = YAML::load(File.read('config/database.yml'))['production']
-
-    # DB dump
-    run "mysqldump -u #{config_pro['username']} -p#{config_pro['password']} #{config_pro['database']} | gzip -9 > /home/deploy/sokoban_dump.sql.gz"
-    get '/home/deploy/sokoban_dump.sql.gz', 'tmp/sokoban_dump.sql.gz'
-    run_locally "gunzip tmp/sokoban_dump.sql.gz"
-    run_locally "mysql -u #{config_dev['username']} -p#{config_dev['password']} #{config_dev['database']} < tmp/sokoban_dump.sql"
-    run_locally "rm tmp/sokoban_dump.sql"
-  end
-end
-
-after 'deploy:setup' do
-  run "mkdir #{deploy_to}/shared/config"
-  run "mkdir #{deploy_to}/shared/config/initializers"
-  run "mkdir #{deploy_to}/shared/public"
-  run "mkdir #{deploy_to}/shared/public/images"
-  run "mkdir #{deploy_to}/shared/public/images/levels"
-  run "mkdir #{deploy_to}/shared/config/backups"
-end
-
-after 'deploy:update_code' do
-  run "#{sudo} unlink /etc/nginx/sites-enabled/#{application};true"
-  run "#{sudo} ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/sites-enabled/#{application};true"
-
-  run "#{sudo} unlink /etc/logrotate.d/#{application};true"
-  run "#{sudo} ln -s #{deploy_to}/current/config/logrotate /etc/logrotate.d/#{application};true"
-
-  upload "config/initializers/facebook.rb", "#{deploy_to}/shared/config/initializers/facebook.rb"
-  upload "config/initializers/madmimi.rb", "#{deploy_to}/shared/config/initializers/madmimi.rb"
-  upload "config/initializers/errbit.rb", "#{deploy_to}/shared/config/initializers/errbit.rb"
-  upload "config/backups/sokoban.rb", "#{deploy_to}/shared/config/backups/sokoban.rb"
-  upload "config/backup.rb", "#{deploy_to}/shared/config/backup.rb"
-end
-
+# # Launch delayed job for sending (weekly) mailing list
+# run("cd #{latest_release} && bundle exec rake app:send_mailing_delayed_job RAILS_ENV=#{rails_env}")

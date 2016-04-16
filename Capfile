@@ -1,7 +1,16 @@
-load 'deploy'
+# Load DSL and Setup Up Stages
+require 'capistrano/setup'
 
-# Uncomment if you are using Rails' asset pipeline
-load 'deploy/assets'
+# Includes default deployment tasks
+require 'capistrano/deploy'
 
-Dir['vendor/gems/*/recipes/*.rb','vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
-load 'config/deploy' # remove this line to skip loading any of the default tasks
+require 'capistrano/rbenv'
+require 'capistrano/bundler'
+require 'capistrano/rails/assets'
+require 'capistrano/rails/migrations'
+require 'capistrano/sitemap_generator'
+require 'whenever/capistrano'
+require 'capistrano/passenger'
+
+# Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
+Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
