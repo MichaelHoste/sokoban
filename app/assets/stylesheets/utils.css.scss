@@ -127,12 +127,12 @@ $darker: #2d5a8b;
 #cboxBottomLeft
 {
   height:10px;
-  background:url(colorbox/controls.png) no-repeat 0 -65px;
+  background:url(asset-path('colorbox/controls.png')) no-repeat 0 -65px;
 }
 #cboxBottomRight
 {
   height:10px;
-  background:url(colorbox/controls.png) no-repeat -36px -65px;
+  background:url(asset-path('colorbox/controls.png')) no-repeat -36px -65px;
 }
 
 #cboxBottomCenter
