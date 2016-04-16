@@ -24,9 +24,6 @@ gem 'protected_attributes' # TODO remove this and use strong_params
 # Stats
 gem 'newrelic_rpm'
 
-# Deployement
-gem 'capistrano'
-
 # Graphs
 gem 'groupdate'
 gem 'chartkick'
@@ -57,7 +54,7 @@ end
 
 # Production/deployment tools
 group :production do
-  gem 'airbrake'
+  gem 'airbrake',    '4.3.5'
   gem 'whenever',    :require => false
   gem 'backup',      :require => false
   gem 'dropbox-sdk', :require => false

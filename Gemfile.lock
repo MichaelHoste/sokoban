@@ -37,9 +37,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    airbrake (5.2.3)
-      airbrake-ruby (~> 1.2)
-    airbrake-ruby (1.2.2)
+    airbrake (4.3.5)
+      builder
+      multi_json
     arel (6.0.3)
     backup (3.4.0)
       open4 (~> 1.3.0)
@@ -232,7 +232,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake
+  airbrake (= 4.3.5)
   backup
   capistrano
   capistrano-bundler
