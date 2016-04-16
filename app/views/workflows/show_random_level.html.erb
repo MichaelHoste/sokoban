@@ -12,19 +12,17 @@
 
   <div id="completed-friends">
     <div id="completed-friends-in">
-      <% friend_names = @level.friends_scores_names(current_user).shuffle if current_user %>
-      <% all_names    = @level.all_scores_names.shuffle %>
+      <% friend_names     = @level.friends_scores_names(current_user).shuffle if current_user %>
+      <% all_scores_count = @level.all_scores_count %>
 
       <% if not current_user or friend_names.count == 0 %>
-        <% if all_names.count == 0 %>
+        <% if all_scores_count == 0 %>
           <%= _("This level has not yet been solved.") %>
-        <% elsif all_names.count == 1 %>
-          <%= _('This level has been solved by <span class="tips" title="%{list_of_people}">one person</span>.' %
-                { :list_of_people => all_names.to_sentence } ) %>
+        <% elsif all_scores_count == 1 %>
+          <%= _('This level has been solved by <span class="tips" title="one person">one person</span>.') %>
         <% else %>
-          <%= _('This level has been solved by <span class="tips" title="%{list_of_people}">%{count_of_people} people</span>.' %
-                { :list_of_people  => all_names.to_sentence,
-                  :count_of_people => all_names.count } ) %>
+          <%= _('This level has been solved by <span class="tips" title="%{count_of_people}">%{count_of_people} people</span>.' %
+                { :count_of_people => all_scores_count } ) %>
         <% end %>
       <% else %>
         <% if friend_names.count <= 5 %>

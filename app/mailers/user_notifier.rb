@@ -17,16 +17,16 @@ class UserNotifier < ActionMailer::Base
       @level = Level.random(@user)
     end
 
-    @friend_names = @level.friends_scores_names(@user).shuffle
-    @all_names    = @level.all_scores_names.shuffle
+    @friend_names     = @level.friends_scores_names(@user).shuffle
+    @all_scores_count = @level.all_scores_count
 
     if @friend_names.count == 0
-      if @all_names.count == 0
+      if @all_scores_count == 0
         @text = "Can you solve this level?"
-      elsif @all_names.count == 1
+      elsif @all_scores_count == 1
         @text = "This level has been solved by one person"
       else
-        @text = "This level has been solved by #{@all_names.count} people"
+        @text = "This level has been solved by #{@all_scores_count} people"
       end
     else
       if @friend_names.count <= 4

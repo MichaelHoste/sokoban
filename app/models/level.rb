@@ -159,9 +159,8 @@ class Level < ActiveRecord::Base
                     .collect { |score| score.user.name }
   end
 
-  def all_scores_names
-    self.best_scores.where('user_id IS NOT NULL')
-                    .collect { |score| score.user.name }
+  def all_scores_count
+    self.best_scores.where('user_id IS NOT NULL').count
   end
 
   # generate an image of the level in /public/images/levels
