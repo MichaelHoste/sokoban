@@ -28,28 +28,28 @@ html {overflow-y: scroll;} /* Force vertical scroll bar in FF */
 /* ==================== Fonts =================== */
 @font-face {
     font-family: 'heroregular';
-    src: url('/assets/fonts/hero-webfont.eot');
-    src: url('/assets/fonts/hero-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/hero-webfont.woff') format('woff'),
-         url('/assets/fonts/hero-webfont.ttf') format('truetype'),
-         url('/assets/fonts/hero-webfont.svg#SnicklesRegular') format('svg');
+    src: asset-url('fonts/hero-webfont.eot');
+    src: asset-url('fonts/hero-webfont.eot?#iefix') format('embedded-opentype'),
+         asset-url('fonts/hero-webfont.woff') format('woff'),
+         asset-url('fonts/hero-webfont.ttf') format('truetype'),
+         asset-url('fonts/hero-webfont.svg#SnicklesRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'androgyneregular';
-    src: url('/assets/fonts/androgyne_tb-webfont.eot');
-    src: url('/assets/fonts/androgyne_tb-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/androgyne_tb-webfont.woff') format('woff'),
-         url('/assets/fonts/androgyne_tb-webfont.ttf') format('truetype'),
-         url('/assets/fonts/androgyne_tb-webfont.svg#SnicklesRegular') format('svg');
+    src: asset-url('fonts/androgyne_tb-webfont.eot');
+    src: asset-url('fonts/androgyne_tb-webfont.eot?#iefix') format('embedded-opentype'),
+         asset-url('fonts/androgyne_tb-webfont.woff') format('woff'),
+         asset-url('fonts/androgyne_tb-webfont.ttf') format('truetype'),
+         asset-url('fonts/androgyne_tb-webfont.svg#SnicklesRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 /* ==================== Page =================== */
-html {background: #f4f4f4 url('/assets/main-bkg.png');}
+html {background: #f4f4f4 asset-url('main-bkg.png');}
 body {
 	height: 100%;
 	font: 87.5% /* 14px / 16px */ Arial, Helvetica, sans-serif;
@@ -59,19 +59,19 @@ body {
 .header {
 /*	overflow: hidden;*/
 	height: 97px;
-	background: url('/assets/header-bkg.png') repeat-x;
+	background: asset-url('header-bkg.png') repeat-x;
 }
 
 #banner {
 	width: 100%;
 	height: 76px;
-	background: url('/assets/banner-blue-bkg.png') repeat-x;
+	background: asset-url('banner-blue-bkg.png') repeat-x;
 	z-index:10;
 	overflow:hidden;
 }
 #banner.banner-friends {
 	height: 76px;
-	background: url('/assets/banner-gray-bkg.png') repeat-x;
+	background: asset-url('banner-gray-bkg.png') repeat-x;
 }
 #banner #users-top li {
 	position:relative;
@@ -101,7 +101,7 @@ body {
 .footer {
 	overflow: hidden;
 	margin: 25px 0 0;
-	background: url('/assets/footer-bkg.png') repeat;
+	background: asset-url('footer-bkg.png') repeat;
 	font-size: 12px;
 	text-align: center;
 	color: #7b7b7b;
@@ -181,13 +181,13 @@ body {
 					top: 58px;
 					left: 546px;
 					z-index: 100;
-					background: url('/assets/player-hover-top.png') no-repeat top left;
+					background: asset-url('player-hover-top.png') no-repeat top left;
 					width: 306px;
 					padding-top: 16px;
 					min-height:50px;
 				}
 					#user-hover .user-hover-in {
-						background: url('/assets/player-hover-bkg.png') repeat-x top left;
+						background: asset-url('player-hover-bkg.png') repeat-x top left;
 						border-left: 1px solid #c9c9c9;
 						border-right: 1px solid #c9c9c9;
 						padding: 14px 14px 0 14px;
@@ -232,7 +232,7 @@ body {
 							text-shadow: 0 1px 1px #555555;
 						}
 .large-shad {
-	background: url('/assets/shadow-large.png') no-repeat bottom center;
+	background: asset-url('shadow-large.png') no-repeat bottom center;
 	width: 596px;
 	height: 10px;
 }
@@ -275,7 +275,7 @@ body {
 	}
 
 	#limited-header #menus .fb-login div {
-		background: url('/assets/sprites.png') no-repeat -100px -200px;
+		background: asset-url('sprites.png') no-repeat -100px -200px;
 		border: 1px solid #506383;
 		height: 24px;
 		line-height: 24px;
@@ -309,11 +309,11 @@ body {
 		overflow: hidden;
 		border: 1px solid #c9c9c9;
 		color: #333;
-		background: url('/assets/sprites.png') no-repeat 50% -402px;
+		background: asset-url('sprites.png') no-repeat 50% -402px;
 	}
 	#limited-header #menus .fb_logged div.selected {
 		color: #8b8b8b;
-		background: url('/assets/sprites.png') no-repeat 100% -350px;
+		background: asset-url('sprites.png') no-repeat 100% -350px;
 	}
 		#limited-header #menus .fb_logged a {
 			float: left;
@@ -331,7 +331,7 @@ body {
 		}
 
 	#limited-header #menus .ranking-menu div {
-		background: url('/assets/sprites.png') no-repeat -200px -100px;
+		background: asset-url('sprites.png') no-repeat -200px -100px;
 		border: 1px solid #c9c9c9;
 		height: 27px;
 		line-height: 28px;
@@ -351,7 +351,7 @@ body {
 	}
 
 	#limited-header #menus .ranking-position div {
-		background: url('/assets/sprites.png') no-repeat -170px -100px;
+		background: asset-url('sprites.png') no-repeat -170px -100px;
 		border: 1px solid #c9c9c9;
 		height: 27px;
 		line-height: 26px;
@@ -371,7 +371,7 @@ body {
 	}
 
 	#limited-header #menus .rules-menu div {
-		background: url('/assets/sprites.png') no-repeat -100px -100px;
+		background: asset-url('sprites.png') no-repeat -100px -100px;
 		border: 1px solid #c9c9c9;
 		height: 27px;
 		line-height: 28px;
@@ -451,7 +451,7 @@ body {
 
 		#menu-levels .packs-button a {
 			display: inline-block;
-			background: url('/assets/sprites.png') no-repeat -100px -150px;
+			background: asset-url('sprites.png') no-repeat -100px -150px;
 			border: 1px solid #c9c9c9;
 			height: 25px;
 			line-height: 25px;
@@ -493,14 +493,14 @@ body {
 			border-radius: 8px 0px 0px 8px;
 			border: 1px solid #c7c7c7;
 			border-right: 0;
-			background: #e4e4e4 url('/assets/level-hover-bkg.png') repeat-x top left;
+			background: #e4e4e4 asset-url('level-hover-bkg.png') repeat-x top left;
 			cursor: pointer;
 		}
 		#levels li.is-selected {
 			-webkit-box-shadow: none;
 			box-shadow: none;
 			border: 1px solid #c7c7c7;
-			background: #e4e4e4 url('/assets/level-hover-bkg.png') repeat-x top left;
+			background: #e4e4e4 asset-url('level-hover-bkg.png') repeat-x top left;
 		}
 		#levels li.won-selected {
 			-webkit-box-shadow: inset 0px 2px 2px 1px #c92d02;
@@ -515,7 +515,7 @@ body {
 			}
 				#levels li .star,
 				.user-stars .star {
-					background: url('/assets/sprites.png') no-repeat;
+					background: asset-url('sprites.png') no-repeat;
 					display: inline-block;
 					vertical-align: middle;
 					width: 20px;
@@ -541,7 +541,7 @@ body {
 		position: absolute;
 		top: 47px;
 		left: 293px;
-		background: #e4e4e4 url('/assets/level-hover2-bkg.png') no-repeat top left;
+		background: #e4e4e4 asset-url('level-hover2-bkg.png') no-repeat top left;
 		width: 200px;
 		height: 150px;
 		border: 1px solid #c7c7c7;
@@ -569,7 +569,7 @@ body {
 		position:absolute;
 		right:16px;
 		top:16px;
-		background:#f4f4f4 url('/assets/fullscreen.png');
+		background:#f4f4f4 asset-url('fullscreen.png');
 		width:32px;
 		height:32px;
 		z-index:1;
@@ -593,7 +593,7 @@ body {
 
 		}
 		#game-won {
-			background: #fff url('/assets/header-bkg.png') repeat-x;
+			background: #fff asset-url('header-bkg.png') repeat-x;
 			position: absolute;
 			z-index: 10;
 			width: 540px;
@@ -602,7 +602,7 @@ body {
 		#game-won .game-won-in {
 			position: relative;
 			height:456px;
-			background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
+			background: #fff asset-url('game-won-bkg.png') repeat-x bottom left;
 			overflow:hidden;
 			padding-top:14px;
 			padding-bottom:11px;
@@ -646,7 +646,7 @@ body {
 						#game-won .game-actions li a {
 							text-decoration: none;
 							display: block;
-							background: url("/assets/sprites.png") no-repeat -100px -250px;
+							background: asset-url("sprites.png") no-repeat -100px -250px;
 							border: 1px solid #C9C9C9;
 							border-radius: 3px;
 							color: #7B7B7B;
@@ -690,7 +690,7 @@ body {
 		#game #current-score .score-pushes,
 		#game #current-score .score-moves {
 			margin: 10px 0 5px;
-			background: url('/assets/sprites.png') no-repeat;
+			background: asset-url('sprites.png') no-repeat;
 			display: block;
 			vertical-align: middle;
 			width: 56px;
@@ -799,7 +799,7 @@ body {
 	font-size: 13px;
 	border-radius: 3px;
 	color: #7B7B7B;
-	background: url('/assets/sprites.png') no-repeat -150px -250px;
+	background: asset-url('sprites.png') no-repeat -150px -250px;
 	height: 27px;
   line-height: 27px;
 }
@@ -818,14 +818,14 @@ body {
 	float: left;
 	width: 383px;
 	position: relative;
-	background: url('/assets/challenges-bkg.png') no-repeat;
+	background: asset-url('challenges-bkg.png') no-repeat;
 }
 	#limited-challenges {
 		width: 323px;
 		margin: 0 auto;
 	}
 		h4.challenge-title {
-			background: url('/assets/challenges-img.png') no-repeat;
+			background: asset-url('challenges-img.png') no-repeat;
 			text-indent: -9999px;
 			text-align: center;
 			overflow: hidden;
@@ -847,7 +847,7 @@ body {
 
 		#invitations-more {
 			text-decoration: none;
-			background: url('/assets/challenges-more.png') no-repeat;
+			background: asset-url('challenges-more.png') no-repeat;
 			display: block;
 			width: 323px;
 			height: 40px;
@@ -892,10 +892,10 @@ body {
 		text-indent: -9999px;
 	}
 	#scores #friends .scores-title {
-		background: url('/assets/friends-img.png') no-repeat;
+		background: asset-url('friends-img.png') no-repeat;
 	}
 	#scores #all .scores-title {
-		background: url('/assets/all-img.png') no-repeat;
+		background: asset-url('all-img.png') no-repeat;
 	}
 	#scores .scores-more,
 	#scores .scores-less {
@@ -912,11 +912,11 @@ body {
 		font-size: 12px;
 		line-height: 12px;
 		font-weight: bold;
-		background: url('/assets/sprites.png') no-repeat 100% 0;
+		background: asset-url('sprites.png') no-repeat 100% 0;
 		cursor:pointer;
 	}
 	#scores .scores-less {
-		background: url('/assets/sprites.png') no-repeat 100% -50px;
+		background: asset-url('sprites.png') no-repeat 100% -50px;
 	}
 /* ==================== People items =================== */
 		#invitations,
