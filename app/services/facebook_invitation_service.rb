@@ -22,6 +22,7 @@ module FacebookInvitationService
       friend_friends = UserUserLink.where(:friend_id => friend.f_id)
                                    .where('user_id != ?', user.f_id)
                                    .collect { |u_u| u_u.user }
+                                   .to_a
                                    .keep_if { |u_user| u_user.registered? }
                                    .collect(&:name).shuffle
 

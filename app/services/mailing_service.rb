@@ -27,6 +27,7 @@ module MailingService
   def self.users_to_mail_now(use_madmimi = true)
     mail_users = User.registered.where(:mailing_unsubscribe => false)
                                 .where('next_mailing_at < ?', Time.now)
+                                .to_a
 
     # Reject from list if not in the madmimi list
     if use_madmimi
