@@ -225,7 +225,7 @@
 {
   .random-level
   {
-    background: #e4e4e4 url('/assets/level-hover3-bkg.png') no-repeat top right;
+    background: #e4e4e4 asset-url('level-hover3-bkg.png') no-repeat top right;
     width: 400px;
     height: 300px;
     margin-top: 20px;
@@ -280,7 +280,7 @@
     a
     {
       display: inline-block;
-      background: url('/assets/sprites.png') no-repeat -100px -150px;
+      background: asset-url('sprites.png') no-repeat -100px -150px;
       border: 1px solid #c9c9c9;
       height: 25px;
       line-height: 25px;
@@ -299,7 +299,7 @@
   {
     a
     {
-      background: url('/assets/sprites.png') no-repeat -200px -150px;
+      background: asset-url('sprites.png') no-repeat -200px -150px;
       padding: 0 10px 0 13px;
     }
   }
@@ -490,8 +490,8 @@
 
 #cboxLoadedContent
 {
-  /*background: #fff url('/assets/header-bkg.png') repeat-x;*/
-  background: #fff url('/assets/game-won-bkg.png') repeat-x bottom left;
+  /*background: #fff asset-url('header-bkg.png') repeat-x;*/
+  background: #fff asset-url('game-won-bkg.png') repeat-x bottom left;
 }
 
 

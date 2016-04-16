@@ -19,7 +19,8 @@ gem 'sitemap_generator'
 gem 'httparty'
 gem 'friendly_id'
 gem 'rabl'
-gem 'protected_attributes' # TODO remove this and use strong_params
+gem 'protected_attributes'     # TODO remove this and use strong_params
+gem "non-stupid-digest-assets" # to have non-digested assets
 
 # Stats
 gem 'newrelic_rpm'
