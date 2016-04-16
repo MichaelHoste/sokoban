@@ -24,7 +24,7 @@ $ ->
     return false
   )
 
-  $('#game-won .final-score-item').on('click', ->
+  $('#game-won').on('click', '.final-score-item', ->
     window.facebook_send_to_feed_in_ladder($(this).attr('data-f_id'),
                                            $(this).attr('data-score-worse') == "true",
                                            $('#final-score .score-pushes .num').html(),
@@ -32,26 +32,26 @@ $ ->
     return false
   )
 
-  $('#game-won #share-on-fb').on('click', ->
+  $('#game-won').on('click', '#share-on-fb', ->
     window.facebook_send_to_feed('', $('#final-score .score-pushes .num').html(),
                                      $('#final-score .score-moves .num').html())
   )
 
   bragging = false
 
-  $('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]')
-    .on('mouseover', ->
-      $(this).parent().find('.brag').hide()
-      $(this).parent().find('.score-name, .score-pushes').show()
-      $(this).find('.score-name, .score-pushes').hide()
-      $(this).find('.brag').show()
-      bragging = true
-    )
-    .on('mouseout', ->
-      $(this).find('.brag').hide()
-      $(this).find('.score-name, .score-pushes').show()
-      bragging = false
-    )
+  $('#game-won').on('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]', 'mouseover', ->
+    $(this).parent().find('.brag').hide()
+    $(this).parent().find('.score-name, .score-pushes').show()
+    $(this).find('.score-name, .score-pushes').hide()
+    $(this).find('.brag').show()
+    bragging = true
+  )
+
+  $('#game-won').on('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]', 'mouseout', ->
+    $(this).find('.brag').hide()
+    $(this).find('.score-name, .score-pushes').show()
+    bragging = false
+  )
 
   hide_brag_anim = ->
     if not bragging

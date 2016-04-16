@@ -62,7 +62,7 @@ bind_banner = ->
   )
 
   # mouse hover on a picture in the banner to show the won levels of this user
-  $('#limited-banner').delegate('img', 'mouseenter', ->
+  $('#limited-banner').delegate('img.facebook-friends', 'mouseenter', ->
     span = $(this).next() # hidden span with won levels informations
     won_levels_list = $.trim(span.text()).split(',')
     for level_id in won_levels_list
