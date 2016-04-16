@@ -1,3 +1,5 @@
+lock '3.4.1'
+
 set :repo_url, 'git://github.com/MichaelHoste/sokoban.git'
 set :keep_releases, 5
 
@@ -8,6 +10,7 @@ set :linked_files, %w{config/database.yml config/email.yml config/newrelic.yml c
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/images/levels}
 
 set :rbenv_type, 'user'
+set :rbenv_path, '/home/deploy/.rbenv/'
 
 set :bundle_binstubs, nil
 set :bundle_bins,     %w(gem rake rails)
