@@ -13,7 +13,7 @@ set :rbenv_type, 'user'
 set :rbenv_path, '/home/deploy/.rbenv/'
 
 set :bundle_binstubs, nil
-set :bundle_bins,     %w(gem rake rails)
+set :bundle_bins,     %w(gem rake rails delayed_job)
 
 after 'deploy:publishing', 'delayed_job:restart'
 after 'deploy:publishing', 'deploy:refresh_sitemap'
