@@ -56,7 +56,7 @@ end
 # Production/deployment tools
 group :production do
   gem 'airbrake',    '4.3.5'
-  gem 'whenever',    :require => false
-  gem 'backup',      :require => false
-  gem 'dropbox-sdk', :require => false
+  gem 'whenever'
+  gem 'backup'
+  gem 'dropbox-sdk'
 end
