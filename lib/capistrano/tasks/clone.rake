@@ -7,7 +7,7 @@ namespace :deploy do
       config_pro = YAML::load(File.read('config/database.yml'))['production']
 
       run_locally do
-        execute "rm tmp/production.sql tmp/production.sql.gz"
+        execute "rm -f tmp/production.sql tmp/production.sql.gz"
       end
 
       on roles(:db) do
