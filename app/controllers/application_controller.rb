@@ -5,8 +5,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  before_action :allow_iframe_requests
   before_action :set_gettext_locale
   before_action :check_facebook
+
+  def allow_iframe_requests
+    response.headers.delete('X-Frame-Options')
+  end
 
   def current_user
     if Rails.env.development? && params[:force_user_slug]
