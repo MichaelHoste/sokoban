@@ -2,8 +2,9 @@
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],
-           :scope            => ENV['FACEBOOK_SCOPE'],
-           :secure_image_url => true
+           :scope                  => ENV['FACEBOOK_SCOPE'],
+           :secure_image_url       => true,
+           :provider_ignores_state => true
 end
 
 OmniAuth.config.on_failure = Proc.new { |env|
