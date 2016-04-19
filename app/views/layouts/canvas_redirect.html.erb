@@ -7,5 +7,5 @@
 <% end %>
 
 <script type = "text/javascript">
-  top.location.href='https://www.facebook.com/dialog/oauth?client_id=<%= ENV['FACEBOOK_APP_ID'] %>&scope=<%= ENV['FACEBOOK_SCOPE'] %>&redirect_uri=https://apps.facebook.com/sokoban_game/auth/facebook/callback?<%= redirection %>'
+  top.location.href='https://www.facebook.com/dialog/oauth?client_id=<%= ENV['FACEBOOK_APP_ID'] %>&scope=<%= ENV['FACEBOOK_SCOPE'] %>&redirect_uri=https://apps.facebook.com/sokoban_game/?<%= redirection %>'
 </script>"
