@@ -54,6 +54,7 @@ Sokojax::Application.routes.draw do
 
   # Root
   root :to => "packs#show", :id => 'dimitri-yorick' # or 'Novoban'
+  post "/" => "packs#show", :id => 'dimitri-yorick'
 
   # Redirect user back to the page before login
   # http://forrst.com/posts/Redirect_a_user_back_to_the_current_page_after_a-R1q
