@@ -29,10 +29,13 @@ class ApplicationController < ActionController::Base
       if params[:pack_id] and params[:id]                                       # if click on notification or feed with specific level, keep it on redirected params
         pack   = Pack.find(params[:pack_id])
         @level = pack.levels.find(params[:id])
+        session['referer_level_id'] = @level.id
       elsif params[:level_id]
         @level = Level.find(params[:level_id])                                  # if redirected by notification
+        session['referer_level_id'] = @level.id
       elsif params[:user_id]
         @user = User.find(params[:user_id])                                     # if redirected by notification
+        session['referer_user_id'] = @user.id
       end
       render 'layouts/canvas_redirect', :layout => false                        # canvas redirect to facebook oauth (register or log user)
     elsif params[:controller].in?(['levels', 'packs']) and params[:level_id]

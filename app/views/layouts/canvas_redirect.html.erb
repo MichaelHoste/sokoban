@@ -1,11 +1,3 @@
-<% if @level %>
-  <% redirection = "level_id=#{@level.id}" %>
-<% elsif @user %>
-  <% redirection = "user_id=#{@user.id}" %>
-<% else %>
-  <% redirection = "" %>
-<% end %>
-
 <script type = "text/javascript">
   //top.location.href = 'https://sokoban-game.com/connect_facebook'
   location.href = 'https://sokoban-game.com/connect_facebook'

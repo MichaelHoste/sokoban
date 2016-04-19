@@ -36,11 +36,13 @@ class SessionsController < ApplicationController
         end
       end
 
-      if params[:level_id]
-        level = Level.find_by_id(params[:level_id])
+      if session['referer_level_id']
+        level = Level.find_by_id(session['referer_level_id'])
+        session.delete('referer_level_id')
         redirect_to pack_level_path(level.pack, level)
-      elsif params[:user_id]
-        user = User.find_by_id(params[:user_id])
+      elsif session['referer_user_id']
+        user = User.find_by_id(session['referer_user_id'])
+        session.delete('referer_user_id')
         redirect_to user_path(user)
       elsif session['referer'] and not session['referer'].empty?
         redirect_to session['referer']
