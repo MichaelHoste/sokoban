@@ -1,7 +1,6 @@
 class CreateLevels < ActiveRecord::Migration
   def change
     create_table :levels do |t|
-      t.integer :id
       t.integer :pack_id
       t.string  :name
       t.integer :width

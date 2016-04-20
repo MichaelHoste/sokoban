@@ -1,5 +1,3 @@
-require 'v8'
-
 module LevelImportService
   def self.populate
     packs = []
@@ -38,44 +36,22 @@ module LevelImportService
           end
 
           # save level information
-          new_level = pack.levels.create!({ :name      => level['Id'].strip,
-                                            :width     => level['Width'].strip.to_i,
-                                            :height    => level['Height'].strip.to_i,
-                                            :copyright => (level.has_attribute?('Copyright') ? level['Copyright'].strip : ''),
-                                            :grid      => grid })
+          new_level = pack.levels.create!({ :name       => level['Id'].strip,
+                                            :width      => level['Width'].strip.to_i,
+                                            :height     => level['Height'].strip.to_i,
+                                            :copyright  => (level.has_attribute?('Copyright') ? level['Copyright'].strip : ''),
+                                            :grid       => grid,
+                                            :won_count  => 0 })
 
-          # Import the level to javascript, compute the floor and some useful datas
-          # and then get back the new grid from javascript to save it to the database
-          V8::C::Locker() do
-            V8::Context.new do |cxt|
-              cxt.eval('var window = new Object')
-              cxt.load('lib/assets/level_core.js')
-              cxt.eval('var lines = new Array')
-              grid.each_with_index do |line, i|
-                cxt.eval("lines[#{i}]  = '#{line}'")
-              end
+          core_level = Core::Level.new(grid.join("\n"))
 
-              cxt.eval('var level = new window.LevelCore()')
-              cxt.eval("level.create_from_grid(lines, #{new_level.width}, #{new_level.height}, \"#{pack.name}\", \"#{new_level.name}\", \"#{new_level.copyright}\")")
-
-              new_level.grid_with_floor = Array.new
-              (0..new_level.height-1).each do |i|
-                line = ""
-                (0..new_level.width-1).each do |j|
-                  letter = cxt.eval("level.grid[#{i*new_level.width+j}]")
-                  line = line + (letter ? letter : ' ')
-                  new_level.grid_with_floor[i] = line
-                end
-              end
-              new_level.boxes_number = cxt.eval("level.boxes_number")
-              new_level.goals_number = cxt.eval("level.goals_number")
-              new_level.pusher_pos_m = cxt.eval("level.pusher_pos_m")
-              new_level.pusher_pos_n = cxt.eval("level.pusher_pos_n")
-              new_level.save!
-            end
-          end
-          # for garbage collector purposes
-          V8::C::V8::IdleNotification()
+          new_level.grid_with_floor = core_level.grid.join.scan(/.{#{core_level.cols}}/)
+          new_level.boxes_number    = core_level.boxes
+          new_level.goals_number    = core_level.goals
+          new_level.pusher_pos_m    = core_level.pusher[:pos_m]
+          new_level.pusher_pos_n    = core_level.pusher[:pos_n]
+          new_level.complexity      = core_level.cols * core_level.rows * core_level.boxes
+          new_level.save!
         end # end of levels
         puts ""
       end # end of fopen pack

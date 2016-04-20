@@ -126,6 +126,12 @@ class Level < ActiveRecord::Base
     complete_grid.join
   end
 
+  def inline_grid_with_new_lines
+    complete_grid = Array.new(self.grid)
+    complete_grid.collect!{ |line| line + (1..self.width-line.length).collect { |n| ' ' }.join }
+    complete_grid.join("\n")
+  end
+
   def cols_number
     self.width
   end

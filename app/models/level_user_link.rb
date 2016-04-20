@@ -1,29 +1,14 @@
-require 'v8'
-
 class ValidatePath < ActiveModel::Validator
   # path is a uncompressed string
   def validate(score)
-    path = score.uncompressed_path
-    level = Level.find(score.level_id)
-    is_won = false
+    level      = Level.find(score.level_id)
+    core_level = Core::Level.new(level.inline_grid_with_new_lines)
 
-    V8::C::Locker() do
-      V8::Context.new do |cxt|
-        cxt.eval('var window = new Object')
-        cxt.load('lib/assets/path_core.js')
-        cxt.load('lib/assets/level_core.js')
+    score.uncompressed_path.each_char { |move| core_level.move(move) }
 
-        cxt.eval('var path = new window.PathCore()')
-        cxt.eval("path.create_from_uncompressed('#{path}')")
-
-        cxt.eval('var level = new window.LevelCore()')
-        cxt.eval("level.create_from_line('#{level.inline_grid}', #{level.width}, #{level.height}, '', '')")
-
-        is_won = cxt.eval('level.is_solution_path(path)')
-      end
+    if !core_level.won?
+      score.errors.add(:base, "Path is not solution")
     end
-
-    score.errors.add(:base, "Path is not solution") if not is_won
   end
 end
 
@@ -204,47 +189,21 @@ class LevelUserLink < ActiveRecord::Base
     end
   end
 
-  def generate_pushes_and_moves()
-    V8::C::Locker() do
-      V8::Context.new do |cxt|
-        cxt.eval('var window = new Object')
-        cxt.load('lib/assets/path_core.js')
-        cxt.eval('var path = new window.PathCore()')
-        cxt.eval("path.create_from_uncompressed('#{self.uncompressed_path}')")
-        self.pushes = cxt.eval('path.n_pushes')
-        self.moves = cxt.eval('path.n_moves')
-      end
-    end
+  def generate_pushes_and_moves
+    path = Core::Path.new(self.uncompressed_path)
+
+    self.pushes = path.pushes_count
+    self.moves  = path.moves_count
   end
 
   # compress path
   def compress_path(path)
-    compressed_path = ""
-    V8::C::Locker() do
-      V8::Context.new do |cxt|
-        cxt.eval('var window = new Object')
-        cxt.load('lib/assets/path_core.js')
-        cxt.eval('var path = new window.PathCore()')
-        cxt.eval("path.create_from_uncompressed('#{path}')")
-        compressed_path = cxt.eval("path.get_compressed_string_path()")
-      end
-    end
-    compressed_path
+    Core::Path.new(path).compressed_string_path
   end
 
   # uncompres path
   def uncompress_path(path)
-    uncompressed_path = ""
-    V8::C::Locker() do
-      V8::Context.new do |cxt|
-        cxt.eval('var window = new Object')
-        cxt.load('lib/assets/path_core.js')
-        cxt.eval('var path = new window.PathCore()')
-        cxt.eval("path.create_from_compressed('#{path}')")
-        uncompressed_path = cxt.eval("path.get_uncompressed_string_path()")
-      end
-    end
-    uncompressed_path
+    Core::Path.new(path).uncompressed_string_path
   end
 
   # name of the user and 'visitor' if anonymous score

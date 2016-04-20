@@ -1,7 +1,6 @@
 class CreatePacks < ActiveRecord::Migration
   def change
     create_table :packs do |t|
-      t.integer :id
       t.string  :name
       t.string  :file_name
       t.text    :description

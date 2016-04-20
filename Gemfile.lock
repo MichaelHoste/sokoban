@@ -246,7 +246,6 @@ DEPENDENCIES
   jquery-rails
   kgio
   koala
-  libv8
   madmimi
   mysql2
   newrelic_rpm

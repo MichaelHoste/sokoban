@@ -1,11 +1,10 @@
 class CreatePackUserLinks < ActiveRecord::Migration
   def change
     create_table :pack_user_links do |t|
-      t.integer :id
       t.integer :pack_id
       t.integer :user_id
       t.integer :won_levels_count, :default => 0
-      t.text    :won_levels_list,  :default => ''
+      t.text    :won_levels_list
 
       t.timestamps
     end

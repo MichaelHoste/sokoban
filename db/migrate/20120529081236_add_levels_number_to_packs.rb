@@ -6,9 +6,6 @@ class AddLevelsNumberToPacks < ActiveRecord::Migration
     Pack.select(:id).find_each do |pack|
       Pack.reset_counters pack.id, :levels
     end
-
-    # Populate levels and thumbs
-    LevelImportService.populate
   end
 
   def down

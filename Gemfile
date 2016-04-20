@@ -38,7 +38,6 @@ gem 'kgio' # 20-30% boost for memcached
 
 gem 'jquery-rails'
 gem 'therubyracer'  # Exec js code in ruby
-gem 'libv8'
 
 # Development tools
 group :development do

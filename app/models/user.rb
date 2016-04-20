@@ -283,8 +283,8 @@ class User < ActiveRecord::Base
 
   def ladder
     self.ladder_positions.merge({
-      :top_friends          => (self.friends.registered.all + [self]).sort_by(&:total_won_levels).reverse,
-      :top_users            => User.registered.order('total_won_levels DESC').limit(50)
+      :top_friends => (self.friends.registered.all + [self]).sort_by(&:total_won_levels).reverse,
+      :top_users   => User.registered.order('total_won_levels DESC').limit(50)
     })
   end
 
