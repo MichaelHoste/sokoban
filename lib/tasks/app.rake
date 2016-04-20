@@ -8,6 +8,29 @@ namespace :app  do
     end
   end
 
+  task :update_stats => :environment do
+    LevelUserLink.order(:id => :asc).each do |level_user_link|
+      puts "TAG BEST SCORE #{level_user_link.id}\n"
+      level_user_link.tag_best_score
+    end
+
+    PackUserLink.order(:id => :asc).each do |pack_user_link|
+      puts "UPDATE PACK STATS #{pack_user_link.id}\n"
+      pack_user_link.update_stats
+    end
+
+    Level.order(:id => :asc).each do |level|
+      puts "UPDATE LEVEL WON_COUNT #{level.id}"
+      level.update_attributes!({ :won_count => level.best_scores.count })
+    end
+
+    User.registered.order(:id => :asc).each do |user|
+      puts "UPDATE USER WON_LEVELS_COUNT #{user.id}"
+      user.update_attributes!({ :total_won_levels => user.pack_user_links.collect(&:won_levels_count).sum })
+      UserUserLink.recompute_counts_for_user(user.id)
+    end
+  end
+
   task :facebook_feed_delayed_job => :environment do
     publish_jobs = Delayed::Job.where(:queue => 'publish_random_level')
     if publish_jobs.empty?
