@@ -1,4 +1,4 @@
-server '62.210.237.63', user: 'deploy', roles: %w{web app db}
+server '163.172.63.142', user: 'deploy', roles: %w{web app db}
 
 set :application,  'sokoban'
 set :deploy_to,    '/home/deploy/apps/sokoban'
