@@ -306,7 +306,7 @@ class User < ActiveRecord::Base
     current_user_level_ids = self.best_scores.pluck(:level_id)
     user_level_ids         = user.best_scores.pluck(:level_id)
     level_ids              = user_level_ids - current_user_level_ids
-    Level.find(level_ids)
+    Level.includes(:pack).where(:id => level_ids)
   end
 
   # levels that "user" solved better than current_user
@@ -315,8 +315,8 @@ class User < ActiveRecord::Base
     user_level_ids         = user.best_scores.pluck(:level_id)
     common_level_ids       = user_level_ids & current_user_level_ids
 
-    current_user_scores = self.best_scores.where(:level_id => common_level_ids).order('level_id ASC').all
-    user_scores         = user.best_scores.where(:level_id => common_level_ids).order('level_id ASC').all
+    current_user_scores = self.best_scores.where(:level_id => common_level_ids).includes(:level => :pack).order('level_id ASC').all
+    user_scores         = user.best_scores.where(:level_id => common_level_ids).includes(:level => :pack).order('level_id ASC').all
 
     levels = []
     scores = []

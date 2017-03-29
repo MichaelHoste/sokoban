@@ -11,5 +11,7 @@ module Sokojax
     config.time_zone           = 'UTC'
     config.i18n.default_locale = :en
     config.active_record.raise_in_transactional_callbacks = true
+
+    #ActiveRecordQueryTrace.enabled = true
   end
 end

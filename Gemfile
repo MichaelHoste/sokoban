@@ -50,6 +50,8 @@ group :development do
   gem 'capistrano-passenger', '0.0.2'
 
   gem 'web-console', '~> 2.0'
+
+  #gem 'active_record_query_trace' # pour voir où dans le code sont appelées les requetes SQL
 end
 
 # Production/deployment tools
