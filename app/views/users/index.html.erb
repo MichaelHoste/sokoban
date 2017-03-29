@@ -1,43 +1,35 @@
-<% content_for :title, _('Friends Ranking') if params[:type] == 'friends' %>
-<% content_for :title, _('Global Ranking')  if params[:type] == 'global' %>
+<% if @page == 1 %>
+  <% content_for :title, _('Friends Ranking') if params[:type] == 'friends' %>
+  <% content_for :title, _('Global Ranking')  if params[:type] == 'global' %>
 
-<% content_for :description, _("%{user_num} users solved %{level_num} levels" % { :user_num => User.registered.count, :level_num => LevelUserLink.count }) %>
+  <% content_for :description, _("%{user_num} users solved %{level_num} levels" % { :user_num => User.registered.count, :level_num => LevelUserLink.count }) %>
 
-<% content_for :keywords, _('friends, ranking') if params[:type] == 'friends' %>
-<% content_for :keywords, _('global, ranking')  if params[:type] == 'global' %>
+  <% content_for :keywords, _('friends, ranking') if params[:type] == 'friends' %>
+  <% content_for :keywords, _('global, ranking')  if params[:type] == 'global' %>
 
-<div id="limited-content">
+  <div id="limited-content">
 
-  <% if current_user %>
-    <% friends_selected = params[:type] == 'friends' ? 'selected' : '' %>
-    <% global_selected  = params[:type] == 'global'  ? 'selected' : '' %>
+    <% if current_user %>
+      <% friends_selected = params[:type] == 'friends' ? 'selected friends' : '' %>
+      <% global_selected  = params[:type] == 'global'  ? 'selected global' : '' %>
 
-    <div id="ranking-buttons">
-      <a class="<%= friends_selected %>" href="<%= friends_ranking_path %>"><%= _('Friends') %></a>
-      <a class="<%= global_selected %>" href="<%= rankings_path %>"><%= _('Global') %></a>
-    </div>
+      <div id="ranking-buttons">
+        <a class="<%= friends_selected %>" href="<%= friends_ranking_path %>"><%= _('Friends') %></a>
+        <a class="<%= global_selected %>" href="<%= rankings_path %>"><%= _('Global') %></a>
+      </div>
 
-    <div style="clear:both">
-    </div>
-  <% end %>
-
-  <table id="ladder">
-    <% list = params[:type] == 'global' ? @ladder[:top_users] : @ladder[:top_friends] %>
-    <% list.each_with_index do |user, i| %>
-      <tr class="<%= 'selected' if current_user and user.id == current_user.id %>">
-        <td class="num">
-          <%= i+1 %>
-        </td>
-        <td class="picture">
-          <%= link_to image_tag(user.profile_picture), user_path(user), :alt => user.name %>
-        </td>
-        <td class="name">
-          <%= link_to user.name, user_path(user) %>
-        </td>
-        <td class="score">
-          <%= _("<span>%{num}</span> solved levels" % { :num => user.total_won_levels }) %>
-        </td>
-      </tr>
+      <div style="clear:both">
+      </div>
     <% end %>
-  </table>
-</div>
+
+    <table id="ladder">
+      <% list = params[:type] == 'global' ? @ladder[:top_users] : @ladder[:top_friends] %>
+
+      <%= render 'users/ladder_items', :items => list, :start => 0 %>
+    </table>
+  </div>
+<% else %>
+  <% list = params[:type] == 'global' ? @ladder[:top_users] : @ladder[:top_friends] %>
+
+  <%= render 'users/ladder_items', :items => list, :start => (@page-1)*50 %>
+<% end %>

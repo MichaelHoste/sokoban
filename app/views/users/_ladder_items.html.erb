@@ -1,0 +1,16 @@
+<% items.each_with_index do |user, i| %>
+  <tr class="<%= 'selected' if current_user and user.id == current_user.id %>">
+    <td class="num">
+      <%= start+i+1 %>
+    </td>
+    <td class="picture">
+      <%= link_to image_tag(user.profile_picture), user_path(user), :alt => user.name %>
+    </td>
+    <td class="name">
+      <%= link_to user.name, user_path(user) %>
+    </td>
+    <td class="score">
+      <%= _("<span>%{num}</span> solved levels" % { :num => user.total_won_levels }) %>
+    </td>
+  </tr>
+<% end %>

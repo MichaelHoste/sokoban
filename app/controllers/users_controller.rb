@@ -41,10 +41,18 @@ class UsersController < ApplicationController
   end
 
   def index
+    @page = params[:page] ? params[:page].to_i : 1
+
     if current_user
-      @ladder = current_user.ladder
+      @ladder = current_user.ladder(@page)
     else
-      @ladder = User.find(1).ladder # Only general datas are used
+      @ladder = User.find(1).ladder(@page) # Only general datas are used
+    end
+
+    if @page == 1
+      render
+    else
+      render :layout => false
     end
   end
 
