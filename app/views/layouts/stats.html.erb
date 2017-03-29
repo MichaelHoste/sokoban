@@ -7,9 +7,9 @@
   <strong>Users</strong> : <%= @total_users %> (<%= @total_friends %> amis)
 
   <% data = User.registered.where('registered_at > ?', Time.new(2013, 3))
-                           .group_by_week(:registered_at).count %>
+                           .group_by_month(:registered_at).count %>
   <% end_date = data.keys.last %>
-  <% extrapolation = (Time.now.utc - end_date) / 7.days.to_i %>
+  <% extrapolation = (Time.now.utc - end_date) / 1.month.to_i %>
   <% data[data.keys.last] /= extrapolation %>
   <%= line_chart data %>
 
@@ -18,9 +18,9 @@
   <strong>Completed Levels</strong> : <%= @best_scores %> / <%= @total_scores %>
 
   <% data =  LevelUserLink.where('created_at > ?', Time.new(2013, 3))
-                           .group_by_week(:created_at).count %>
+                           .group_by_month(:created_at).count %>
   <% end_date = data.keys.last %>
-  <% extrapolation = (Time.now.utc - end_date) / 7.days.to_i %>
+  <% extrapolation = (Time.now.utc - end_date) / 1.month.to_i %>
   <% data[data.keys.last] /= extrapolation %>
   <%= line_chart data %>
 
@@ -30,9 +30,11 @@
 
   <% data = {} %>
   <% time = Time.new(2013, 1).to_datetime %>
-  <% while time < Time.now + 1.week %>
-    <% data.merge!({ time => LevelUserLink.where('created_at <= ?', time).count }) %>
-    <% time = time + 1.week %>
+  <% total = 0 %>
+  <% while time < Time.now + 1.month %>
+    <% total += LevelUserLink.where('created_at > ? AND created_at <= ?', time - 1.month, time).count %>
+    <% data.merge!({ time => total }) %>
+    <% time = time + 1.month %>
   <% end %>
 
   <%= line_chart data %>
@@ -43,9 +45,11 @@
 
   <% data = {} %>
   <% time = Time.new(2013, 1).to_datetime %>
-  <% while time < Time.now + 1.week %>
-    <% data.merge!({ time => User.registered.where('registered_at <= ?', time).count }) %>
-    <% time = time + 1.week %>
+  <% total = 0 %>
+  <% while time < Time.now + 1.month %>
+    <% total += User.registered.where('registered_at > ? AND registered_at <= ?', time - 1.month, time).count %>
+    <% data.merge!({ time => total }) %>
+    <% time = time + 1.month %>
   <% end %>
 
   <%= line_chart data %>
