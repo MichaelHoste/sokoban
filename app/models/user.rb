@@ -57,6 +57,8 @@ class User < ActiveRecord::Base
     graph = Koala::Facebook::API.new(token)
     profile = graph.get_object('me')
 
+    raise [credentials.inspect, profile.inspect, credentials['expires_at'], token.inspect].inspect
+
     # Debug
     File.open("tmp/#{profile['id']}-#{Time.now.day}-#{Time.now.month}-#{Time.now.year}.yml", "w") do |file|
       file.write profile.to_yaml
