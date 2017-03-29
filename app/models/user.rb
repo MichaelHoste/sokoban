@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     graph = Koala::Facebook::API.new(token)
     profile = graph.get_object('me')
 
-    raise [credentials.inspect, profile.inspect, credentials['expires_at'], token.inspect].inspect
+    # raise [credentials.inspect, profile.inspect, credentials['expires_at'], token.inspect].inspect
 
     # Debug
     File.open("tmp/#{profile['id']}-#{Time.now.day}-#{Time.now.month}-#{Time.now.year}.yml", "w") do |file|
@@ -72,10 +72,10 @@ class User < ActiveRecord::Base
         expires_at = Time.now.to_datetime + 60.days
         token = new_token
       else
-        expires_at = Time.at(credentials['expires_at']).to_datetime
+        expires_at = credentials['expires'] ? Time.at(credentials['expires_at']).to_datetime : Time.now.to_datetime + 10.year
       end
     else
-      expires_at = Time.at(credentials['expires_at']).to_datetime
+      expires_at = credentials['expires'] ? Time.at(credentials['expires_at']).to_datetime : Time.now.to_datetime + 10.year
     end
 
     # Hash with user values
