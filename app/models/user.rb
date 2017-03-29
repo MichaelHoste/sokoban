@@ -64,8 +64,14 @@ class User < ActiveRecord::Base
 
     # Admin get an extended token for the fan page publications
     if profile['id'] == ENV['FACEBOOK_ADMIN_ID']
-      token = extended_token(token)
-      expires_at = Time.now.to_datetime + 60.days
+      new_token = extended_token(token)
+
+      if new_token.present?
+        expires_at = Time.now.to_datetime + 60.days
+        token = new_token
+      else
+        expires_at = Time.at(credentials['expires_at']).to_datetime
+      end
     else
       expires_at = Time.at(credentials['expires_at']).to_datetime
     end
@@ -127,8 +133,8 @@ class User < ActiveRecord::Base
       end
     end
 
-    # Facebook bug : sometimes the email is empty => investigate !
-    user.email = "#{user.f_username}@facebook.com" if not user.email or user.email.empty?
+    # Facebook bug: sometimes the email is empty => investigate !
+    user.email = "#{user.f_username}@facebook.com" if !user.email || user.email.empty?
 
     user.like_fan_page = user.request_like_fan_page?
     user.update_friends_count
@@ -338,7 +344,7 @@ class User < ActiveRecord::Base
     https.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     token = https.request_get(url.path + '?' + url.query).body
-    token.split('&').collect {|params| params.split('=')}.keep_if { |param| param.first == 'access_token' }.first.second
+    token.split('&').collect { |params| params.split('=')}.keep_if { |param| param.first == 'access_token' }.first.try(:second)
   end
 
   # select one random user depending on the common number of friends (the more friends, the more the chance to be selected)
