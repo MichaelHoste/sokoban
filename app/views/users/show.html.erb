@@ -19,7 +19,7 @@
 
     <div class="friends">
       <% @friends.each do |user| %>
-        <%= link_to image_tag(user.profile_picture), user_path(user), :class => 'tips-users', :title => "#{user.name} - #{user.total_won_levels} levels", :alt => user.name %>
+        <%= link_to image_tag(user.profile_picture, :width => "50"), user_path(user), :class => 'tips-users', :title => "#{user.name} - #{user.total_won_levels} levels", :alt => user.name %>
       <% end %>
     </div>
 

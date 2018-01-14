@@ -109,7 +109,7 @@ GEM
       addressable
       faraday
       multi_json
-    libv8 (3.16.14.13)
+    libv8 (3.16.14.19)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     madmimi (1.1.2)
@@ -202,8 +202,8 @@ GEM
     sshkit (1.9.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
       ref
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
@@ -264,4 +264,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.12.5
+   1.16.0
