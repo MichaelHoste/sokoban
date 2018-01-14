@@ -8,7 +8,7 @@
                                title=           "<%= level_user_link.user ? "#{level_user_link.user.total_won_levels} solved levels" : "" %>"
                                data-score-worse="<%= level_user_link.worse %>">
     <div class="score-picture">
-      <%= image_tag(user_picture, :title => level_user_link.user_name) %>
+      <%= image_tag(user_picture, :title => level_user_link.user_name, :width => '50') %>
     </div>
     <div class="score-name">
       <%= level_user_link.user_name %>
