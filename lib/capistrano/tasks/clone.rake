@@ -1,4 +1,4 @@
-  # CLONE PRODUCTION TO DEVELOPMENT : "bundle exec cap production deploy:clone_to_development"
+# CLONE PRODUCTION TO DEVELOPMENT : "bundle exec cap production deploy:clone_to_development"
 
 namespace :deploy do
   task :clone_to_development do
