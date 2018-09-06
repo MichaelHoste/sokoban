@@ -49,5 +49,13 @@ namespace :app  do
   task :flush_cache => :environment do
     Rails.cache.clear
   end
+
+  task :delete_user => :environment do
+    user = User.where(:email => 'email').first
+    # or
+    user = User.where(:name => 'name').first
+
+    user.remove_from_application
+  end
 end
 

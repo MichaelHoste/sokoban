@@ -152,6 +152,13 @@ class User < ActiveRecord::Base
     self.f_id == ENV['FACEBOOK_ADMIN_ID'].to_i
   end
 
+  def remove_from_application
+    LevelUserLink.where(:user_id => self.id).each { |lul| lul.update_attributes(:user_id => nil) }
+    PackUserLink.where(:user_id => self.id).destroy_all
+    UserUserLink.where(:user_id => self.id).destroy_all
+    self.destroy
+  end
+
   # Ask facebook if this user likes the facebook fan page of the application
   # return true or false
   def request_like_fan_page?
