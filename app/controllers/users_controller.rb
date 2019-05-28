@@ -58,7 +58,8 @@ class UsersController < ApplicationController
 
   def destroy
     if current_user.id == @user.id || current_user.admin?
-      current_user.remove_from_application
+      @user.remove_from_application
+      session[:user_id] = nil
       redirect_to '/'
     end
   end

@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
       session[:user_id] = @current_user.id
       @current_user
     else
-      @current_user ||= User.where(:id => session[:user_id]).try(:first) if session[:user_id]
+      @current_user ||= User.where(:id => session[:user_id]).try(:first)
     end
   end
 
