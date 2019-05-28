@@ -22,6 +22,8 @@ namespace :deploy do
         passwd_option = config_dev['password'].nil? ? '' : "-p#{dev_config['password']}"
         execute "mysql -u #{config_dev['username']} #{passwd_option} #{config_dev['database']} < tmp/production.sql"
         execute "bundle exec rake db:migrate"
+
+        execute "rm -f tmp/production.sql tmp/production.sql.gz"
       end
     else
       abort "Run this command with production only !"

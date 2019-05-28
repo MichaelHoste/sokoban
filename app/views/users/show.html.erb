@@ -1,6 +1,6 @@
 <div id="limited-content">
   <div id="left-side">
-    <%= link_to image_tag(@user.profile_picture(274), :class => 'profile', :alt => @user.name, :title => @user.name), @user.f_link %>
+    <%= link_to image_tag(@user.profile_picture(274), :class => 'profile', :alt => @user.name, :title => @user.name), user_path(@user) %>
 
     <table class="stats">
       <tr>
@@ -23,7 +23,18 @@
       <% end %>
     </div>
 
+    <br/>
+
+    <% if @user.id == current_user.id || current_user.admin? %>
+      <div style="font-size: 12px;">
+        <a href="/logout">Logout</a>
+        &nbsp;|&nbsp;
+        <a href="<%= user_path(@user) %>" style="color:red" data-confirm="Are you sure to destroy your account? All your solved levels will also be deleted. This operation will not be reversible." data-method="delete">Destroy my account</a>
+      </div>
+    <% end %>
+
     <% if Rails.env.development? %>
+      <br/>
       <a href="?force_user_slug=<%= @user.slug %>">Impersonation</a>
     <% end %>
   </div>

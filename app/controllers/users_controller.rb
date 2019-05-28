@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :require_user, :only   => ['levels_to_solve', 'scores_to_improve']
+  before_action :require_user, :only   => ['levels_to_solve', 'scores_to_improve', 'destroy']
   before_action :find_user,    :except => ['index']
   before_action :get_ladder,   :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
   before_action :get_friends,  :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
@@ -56,6 +56,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user.id == @user.id || current_user.admin?
+      current_user.remove_from_application
+      redirect_to '/'
+    end
+  end
+
   # HTML Templates
 
   def popular_friends
@@ -90,7 +97,7 @@ class UsersController < ApplicationController
   protected
 
   def find_user
-    if current_user and params[:id] == 'me'
+    if current_user && params[:id] == 'me'
       redirect_to user_path(current_user)
     else
       @user = User.friendly.find(params[:id])
