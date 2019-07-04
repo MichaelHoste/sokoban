@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416192317) do
+ActiveRecord::Schema.define(version: 20190704131044) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   limit: 4,     default: 0
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 20160416192317) do
   create_table "users", force: :cascade do |t|
     t.string   "name",                limit: 255
     t.string   "email",               limit: 255
-    t.string   "picture",             limit: 255
+    t.text     "picture",             limit: 65535
     t.string   "gender",              limit: 255
     t.string   "locale",              limit: 255
     t.integer  "f_id",                limit: 8
@@ -131,17 +131,17 @@ ActiveRecord::Schema.define(version: 20160416192317) do
     t.boolean  "f_verified"
     t.boolean  "f_expires"
     t.datetime "f_expires_at"
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
     t.datetime "registered_at"
-    t.integer  "friends_count",       limit: 4,   default: 0,                     null: false
-    t.integer  "total_won_levels",    limit: 4,   default: 0,                     null: false
+    t.integer  "friends_count",       limit: 4,     default: 0,                     null: false
+    t.integer  "total_won_levels",    limit: 4,     default: 0,                     null: false
     t.datetime "friends_updated_at"
-    t.datetime "send_invitations_at",             default: '2013-03-11 00:00:00'
-    t.boolean  "like_fan_page",                   default: false
-    t.boolean  "full_game",                       default: false
-    t.boolean  "mailing_unsubscribe",             default: false
-    t.datetime "next_mailing_at",                 default: '2013-04-21 19:40:40'
+    t.datetime "send_invitations_at",               default: '2013-03-11 00:00:00'
+    t.boolean  "like_fan_page",                     default: false
+    t.boolean  "full_game",                         default: false
+    t.boolean  "mailing_unsubscribe",               default: false
+    t.datetime "next_mailing_at",                   default: '2013-04-21 19:40:40'
     t.string   "slug",                limit: 255
   end
 
