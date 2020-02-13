@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190704131044) do
+ActiveRecord::Schema.define(version: 20200213135540) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   limit: 4,     default: 0
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20190704131044) do
   add_index "level_user_links", ["created_at"], name: "index_level_user_links_on_created_at", using: :btree
   add_index "level_user_links", ["level_id"], name: "index_level_user_links_on_level_id", using: :btree
   add_index "level_user_links", ["moves"], name: "index_level_user_links_on_moves", using: :btree
+  add_index "level_user_links", ["pushes", "moves", "created_at"], name: "index_level_user_links_on_pushes_and_moves_and_created_at", using: :btree
   add_index "level_user_links", ["pushes"], name: "index_level_user_links_on_pushes", using: :btree
   add_index "level_user_links", ["user_id"], name: "index_level_user_links_on_user_id", using: :btree
 
