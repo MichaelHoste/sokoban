@@ -47,7 +47,7 @@
 
       <ul id="users-top">
         <% if @pack %>
-          <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(15) %>
+          <% subscribed_friends_and_me = current_user.subscribed_friends_and_me(@pack).take(16) %>
           <% u_u_links = UserUserLink.where(:user_id => current_user.f_id, :friend_id => subscribed_friends_and_me.collect(&:f_id)) %>
           <% array_counts = u_u_links.collect { |u_u| [ u_u.friend_id, u_u.total_improve_count ] }.flatten %>
           <% hash_counts  = Hash[*array_counts] %>
@@ -75,11 +75,11 @@
           <% end %>
         <% end %>
 
-        <li>
+<!--         <li>
           <a href="#">
             <%= image_tag 'add_friend.png', :id => 'add-one-friend', :class => 'tips popup', :title => _('Challenge one friend on this level') %>
           </a>
-        </li>
+        </li> -->
 
         <li>
           <a href="#">
