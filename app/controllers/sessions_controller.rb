@@ -4,8 +4,7 @@ class SessionsController < ApplicationController
 
   def connect_facebook
     if not current_user
-      session['close_popup'] = "true" if params[:close_popup]
-      session['referer']     = request.env["HTTP_REFERER"] || ''
+      session['referer'] = request.env["HTTP_REFERER"] || ''
       redirect_to '/auth/facebook'
     else
       redirect_to :back
