@@ -1,9 +1,0 @@
-I"Ã(function() {
-  $(function() {
-    return $('#session .session-button').on('click', function() {
-      return location.assign($('.session-connect a').attr('href'));
-    });
-  });
-
-}).call(this);
-:ET
