@@ -27,7 +27,7 @@ $ ->
   )
 
   # close popup once logged!
-  if window.opener && $('body').attr('data-close-popup') == 'true'
+  if window.opener #&& $('body').attr('data-close-popup') == 'true'
     #window.opener.location.reload(true)
     window.opener.location.assign($("#menus .fb-login a").attr('href'))
     window.close()
