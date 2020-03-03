@@ -22,7 +22,7 @@ $ ->
   )
 
   # close popup once logged!
-  if window.opener
+  if window.opener && $('body').data('close-popup') == 'true'
     window.opener.location.reload(true)
     window.close()
 

@@ -61,7 +61,10 @@
   </head>
 
   <% new_user = cookies[:already_read_the_welcome_message] ? '0' : '1' %>
-  <body id="<%= "#{params[:controller]}-#{params[:action]}" %>" data-new-user="<%= new_user %>">
+  <body id="<%= "#{params[:controller]}-#{params[:action]}" %>" data-new-user="<%= new_user %>" data-close-popup="<%= session[:close_popup] %>">
+
+    <% session.delete(:close_popup) if session[:close_popup] %> <%# only use this session variable one time! %>
+
     <%= render 'layouts/facebook_headers' %>
     <%# render 'layouts/googleplus_headers' %>
     <%# render 'layouts/advert_success' %>
