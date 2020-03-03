@@ -25,19 +25,19 @@ class ApplicationController < ActionController::Base
   def check_facebook
     if current_user && current_user.f_expires_at < Time.now && Rails.env.production?                   # user is connected but session is expired
       redirect_to '/auth/facebook'
-    elsif !current_user && (params[:fb_source] || params[:signed_request])      # On each click on facebook to the application
-      if params[:pack_id] and params[:id]                                       # if click on notification or feed with specific level, keep it on redirected params
-        pack   = Pack.find(params[:pack_id])
-        @level = pack.levels.find(params[:id])
-        session['referer_level_id'] = @level.id
-      elsif params[:level_id]
-        @level = Level.find(params[:level_id])                                  # if redirected by notification
-        session['referer_level_id'] = @level.id
-      elsif params[:user_id]
-        @user = User.find(params[:user_id])                                     # if redirected by notification
-        session['referer_user_id'] = @user.id
-      end
-      render 'layouts/canvas_redirect', :layout => false                        # canvas redirect to facebook oauth (register or log user)
+    # elsif !current_user && (params[:fb_source] || params[:signed_request])      # On each click on facebook to the application
+    #   if params[:pack_id] and params[:id]                                       # if click on notification or feed with specific level, keep it on redirected params
+    #     pack   = Pack.find(params[:pack_id])
+    #     @level = pack.levels.find(params[:id])
+    #     session['referer_level_id'] = @level.id
+    #   elsif params[:level_id]
+    #     @level = Level.find(params[:level_id])                                  # if redirected by notification
+    #     session['referer_level_id'] = @level.id
+    #   elsif params[:user_id]
+    #     @user = User.find(params[:user_id])                                     # if redirected by notification
+    #     session['referer_user_id'] = @user.id
+    #   end
+    #   render 'layouts/canvas_redirect', :layout => false                        # canvas redirect to facebook oauth (register or log user)
     elsif params[:controller].in?(['levels', 'packs']) and params[:level_id]
       @level = Level.find_by_id(params[:level_id])
       redirect_to pack_level_path(@level.pack, @level)
