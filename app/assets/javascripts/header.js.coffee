@@ -22,10 +22,9 @@ $ ->
   )
 
   # close popup once logged!
-  if(window.opener) {
+  if window.opener
     window.opener.location.reload(true)
     window.close()
-  }
 
   # Show logout only if not on facebook canvas
   # http://blog.blakesimpson.co.uk/read/22-detect-if-page-is-within-facebook-iframe-or-not-javascript
