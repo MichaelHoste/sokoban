@@ -4,8 +4,8 @@ $ ->
     # on canvas ! https://blog.blakesimpson.co.uk/page.php?id=22&title=detect-if-page-is-within-facebook-iframe-or-not-javascript
     # Open login in popup => https://stackoverflow.com/questions/4491433/turn-omniauth-facebook-login-into-a-popup
     if window.name.indexOf('iframe_canvas_fb') > -1
-      width  = 600
-      height = 400
+      width  = 1000
+      height = 700
       left   = (screen.width/2)-(width/2)
       top    = (screen.height/2)-(height/2)
       url    = $(this).find('.session-connect a').attr("href")
