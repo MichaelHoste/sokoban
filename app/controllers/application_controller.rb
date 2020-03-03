@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
         @user = User.find(params[:user_id])                                     # if redirected by notification
         session['referer_user_id'] = @user.id
       end
-      render 'layouts/canvas_redirect', :layout => false                        # canvas redirect to facebook oauth (register or log user)
+      #render 'layouts/canvas_redirect', :layout => false                        # canvas redirect to facebook oauth (register or log user)
     elsif params[:controller].in?(['levels', 'packs']) and params[:level_id]
       @level = Level.find_by_id(params[:level_id])
       redirect_to pack_level_path(@level.pack, @level)

@@ -29,7 +29,7 @@ $ ->
   # close popup once logged!
   if window.opener && $('body').attr('data-close-popup') == 'true'
     #window.opener.location.reload(true)
-    location.assign($("#menus .fb-login a").attr('href'))
+    window.opener.location.assign($("#menus .fb-login a").attr('href'))
     window.close()
 
   # Show logout only if not on facebook canvas
