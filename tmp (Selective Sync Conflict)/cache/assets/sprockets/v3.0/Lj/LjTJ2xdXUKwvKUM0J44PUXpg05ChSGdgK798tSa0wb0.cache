@@ -1,0 +1,23 @@
+I"À(function() {
+  $(function() {
+    window.reload_invitations = function() {
+      var current_user_id;
+      if ($('#user-infos').length) {
+        current_user_id = $("#user-infos").attr('data-id');
+        return $.get("/users/" + current_user_id + "/popular_friends").success(function(data, status, xhr) {
+          return $('#invitations').html(data);
+        });
+      }
+    };
+    $('#challenges').delegate('.invite-item', 'click', function() {
+      window.facebook_send_app_request_to_challenge_users();
+      return false;
+    });
+    $('#invitations-more').on('click', function() {
+      return window.reload_invitations();
+    });
+    return window.reload_invitations();
+  });
+
+}).call(this);
+:ET

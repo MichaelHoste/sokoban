@@ -1,0 +1,32 @@
+I"9(function() {
+  $(function() {
+    var load_page, loading, page;
+    loading = false;
+    page = 1;
+    load_page = function(page) {
+      loading = true;
+      return $.get('/rankings', {
+        page: page
+      }).success((function(_this) {
+        return function(data, status, xhr) {
+          $('#ladder tbody').append(data);
+          return loading = false;
+        };
+      })(this));
+    };
+    if ($('#users-index').length) {
+      return $(window).scroll((function(_this) {
+        return function() {
+          if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+            if (loading === false && !$('.friends.selected').length) {
+              page = page + 1;
+              return load_page(page);
+            }
+          }
+        };
+      })(this));
+    }
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,11 @@
+I"8(function() {
+  $(function() {
+    return $('#users-show .level, #users-latest_levels .level, #users-levels_to_solve .level, #users-scores_to_improve .level').each(function() {
+      var id;
+      id = $(this).attr('data-level-id');
+      return window.create_thumb("level-" + id);
+    });
+  });
+
+}).call(this);
+:ET

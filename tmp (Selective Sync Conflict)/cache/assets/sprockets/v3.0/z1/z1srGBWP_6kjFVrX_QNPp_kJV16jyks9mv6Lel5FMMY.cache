@@ -1,0 +1,29 @@
+I"T(function() {
+  var display_stars;
+
+  display_stars = function() {
+    var i, len, level_id, levels_string, load_level_id, span, won_levels_list;
+    if ($('#user-infos').length) {
+      levels_string = $('#user-infos').attr('data-won-levels-list');
+      won_levels_list = $.trim(levels_string).split(',');
+      for (i = 0, len = won_levels_list.length; i < len; i++) {
+        level_id = won_levels_list[i];
+        span = $("#level-" + level_id + " .star");
+        $(span).removeClass('s-icon-star-empty');
+        $(span).addClass('s-icon-star');
+      }
+    }
+    if ($("#menus")) {
+      load_level_id = $("#menus").attr('data-level-id');
+      if ($("#level-" + load_level_id).length) {
+        return $("#level-" + load_level_id).addClass('is-selected');
+      }
+    }
+  };
+
+  $(function() {
+    return display_stars();
+  });
+
+}).call(this);
+:ET
