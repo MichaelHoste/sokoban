@@ -13,7 +13,7 @@ $ ->
     height = 400
     left   = (screen.width/2)-(width/2)
     top    = (screen.height/2)-(height/2)
-    url    = $(this).attr("href")
+    url    = $(this).find('a').attr("href")
 
     window.open(url + '?close_popup=true', "authPopup", "menubar=no,toolbar=no,status=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top)
 
