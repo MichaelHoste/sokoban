@@ -120,7 +120,7 @@ $ ->
     )
     .success((data, status, xhr) =>
       $('#scores').html(data)
-      FB.XFBML.parse(document)
+      FB.XFBML.parse()
     )
 
   window.update_like_facebook_page_value = ->
