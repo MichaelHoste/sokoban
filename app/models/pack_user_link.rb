@@ -2,8 +2,8 @@ class PackUserLink < ApplicationRecord
 
   # Associations
 
-  belongs_to :pack
-  belongs_to :user
+  belongs_to :pack, :optional => true
+  belongs_to :user, :optional => true
 
   # Validations
 

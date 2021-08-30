@@ -5,7 +5,7 @@ ruby '2.4.10' # ensure consistency with .ruby-version!
               # ON SERVER AFTER BUMP!
 
 # Rails
-gem 'rails', '5.0.7.2'
+gem 'rails', '5.1.7'
 gem 'mysql2'
 
 # Assets
@@ -44,8 +44,7 @@ gem 'jquery-rails'
 
 # Development tools
 group :development do
-  gem 'thin'
-
+  gem 'puma'
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'

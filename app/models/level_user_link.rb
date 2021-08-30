@@ -23,8 +23,8 @@ class LevelUserLink < ApplicationRecord
 
   # Associations
 
-  belongs_to :level
-  belongs_to :user
+  belongs_to :level, :optional => true
+  belongs_to :user,  :optional => true
 
   # Nested attributes
 

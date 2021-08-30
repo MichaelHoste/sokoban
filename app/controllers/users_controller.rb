@@ -91,7 +91,7 @@ class UsersController < ApplicationController
   def unsubscribe_from_mailing
     if @user.created_at.to_i.to_s == params[:check]
       @user.unsubscribe_from_mailing
-      render :text => "We successfully unsubscribed your email (#{@user.email}) from the mailing list."
+      render :plain => "We successfully unsubscribed your email (#{@user.email}) from the mailing list."
     end
   end
 

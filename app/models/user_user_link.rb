@@ -3,11 +3,13 @@ class UserUserLink < ApplicationRecord
   # Associations
   belongs_to :user,
              :class_name  => 'User',
-             :primary_key => 'f_id'
+             :primary_key => 'f_id',
+             :optional    => true
 
   belongs_to :friend,
              :class_name  => 'User',
-             :primary_key => 'f_id'
+             :primary_key => 'f_id',
+             :optional    => true
 
   # Nested attributes
 

@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
         :parameters    => {}
       )
 
-      render :text => "Facebook connection failed (user informations could not be saved)"
+      render :plain => "Facebook connection failed (user informations could not be saved)"
     end
   end
 
