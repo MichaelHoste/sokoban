@@ -47,8 +47,10 @@ class UserUserLink < ApplicationRecord
   def recompute_count
     # levels that friend solved and not user
     # levels that friend solved better than user
-    update_attributes!({ :levels_to_solve_count   => user.levels_to_solve(friend).count,
-                         :scores_to_improve_count => user.scores_to_improve(friend)[:levels].count })
+    update_attributes!({
+      :levels_to_solve_count   => user.levels_to_solve(friend).count,
+      :scores_to_improve_count => user.scores_to_improve(friend)[:levels].count
+    })
   end
 
   def total_improve_count
