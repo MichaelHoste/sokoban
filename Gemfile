@@ -23,7 +23,8 @@ gem 'sitemap_generator'
 gem 'httparty'
 gem 'friendly_id'
 gem 'rabl'
-gem "non-stupid-digest-assets" # to have non-digested assets
+gem 'non-stupid-digest-assets' # to have non-digested assets
+gem 'bugsnag'
 
 # Stats
 gem 'newrelic_rpm'
@@ -58,7 +59,6 @@ end
 
 # Production/deployment tools
 group :production do
-  gem 'bugsnag'
   gem 'whenever'
   #gem 'backup'      # Install on server: http://backup.github.io/backup/v4/storage-dropbox/
   #gem 'dropbox-sdk'
