@@ -58,7 +58,9 @@
     <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu:700' rel='stylesheet' type='text/css'>
 
     <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
-    <script>window.bugsnagClient = bugsnag('<%= BUGSNAG_API_KEY %>')</script>
+    <script>
+      if (typeof bugsnag !== 'undefined') { window.bugsnagClient = bugsnag('<%= BUGSNAG_API_KEY %>') }
+    </script>
 
     <%= csrf_meta_tags %>
   </head>
