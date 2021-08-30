@@ -70,7 +70,7 @@ GEM
     concurrent-ruby (1.1.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    crass (1.0.4)
+    crass (1.0.6)
     daemons (1.4.1)
     dalli (2.7.6)
     debug_inspector (0.0.2)
@@ -111,7 +111,7 @@ GEM
       addressable
       faraday
       multi_json
-    loofah (2.2.3)
+    loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     madmimi (1.1.2)
