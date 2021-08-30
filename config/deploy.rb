@@ -11,6 +11,7 @@ set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/im
 
 set :rbenv_type, 'user'
 set :rbenv_path, '/home/deploy/.rbenv/'
+set :rbenv_ruby, File.read('.ruby-version').strip
 
 set :bundle_binstubs, nil
 set :bundle_bins,     %w(gem rake rails delayed_job)
