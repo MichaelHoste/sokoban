@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include AuthorizationFilters
 
-  protect_from_forgery
+  protect_from_forgery prepend: true
 
   helper_method :current_user
   before_action :allow_iframe_requests

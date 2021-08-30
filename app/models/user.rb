@@ -1,6 +1,6 @@
 require 'net/https'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   extend FriendlyId
 
   friendly_id :name, :use => :slugged
@@ -10,9 +10,6 @@ class User < ActiveRecord::Base
   DAYS_BEFORE_UPDATING_FRIENDS        = 5
   DAYS_WITHOUT_ADS_IF_FRIENDS_INVITED = 7
   DAYS_WITHOUT_FRIENDS_INVITE_POPUP   = 7
-
-  # Attributes
-  attr_protected :created_at, :updated_at
 
   # Associations
   has_many :user_user_links,

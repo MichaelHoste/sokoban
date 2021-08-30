@@ -1,12 +1,7 @@
-class Pack < ActiveRecord::Base
+class Pack < ApplicationRecord
   extend FriendlyId
 
   friendly_id :name, :use => :slugged
-
-  # Constants
-
-  # Attributes
-  attr_protected :created_at, :updated_at
 
   # Associations
   has_many :levels

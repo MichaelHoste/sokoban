@@ -12,7 +12,7 @@ class ValidatePath < ActiveModel::Validator
   end
 end
 
-class LevelUserLink < ActiveRecord::Base
+class LevelUserLink < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   # Constants
@@ -20,7 +20,6 @@ class LevelUserLink < ActiveRecord::Base
   # Attributes
 
   attr_accessor :path, :position, :worse
-  attr_protected :created_at, :updated_at
 
   # Associations
 

@@ -1,13 +1,17 @@
 source 'https://rubygems.org'
 
+ruby '2.4.10' # ensure consistency with .ruby-version!
+              # IF BUMPING RUBY VERSION, EXECUTE 'gem install backup -v5.0.0.beta.2'
+              # ON SERVER AFTER BUMP!
+
 # Rails
-gem 'rails', '4.2.11.1'
+gem 'rails', '5.0.7.2'
 gem 'mysql2'
 
 # Assets
-gem 'sass-rails',   '~> 5.0'
+gem 'sass-rails'
 gem 'uglifier',     '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.0'
 
 gem 'omniauth-facebook'
 gem 'koala'
@@ -19,7 +23,6 @@ gem 'sitemap_generator'
 gem 'httparty'
 gem 'friendly_id'
 gem 'rabl'
-gem 'protected_attributes'     # TODO remove this and use strong_params
 gem "non-stupid-digest-assets" # to have non-digested assets
 
 # Stats
@@ -49,7 +52,7 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-passenger', '0.0.2'
 
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 
   #gem 'active_record_query_trace' # pour voir où dans le code sont appelées les requetes SQL
 end

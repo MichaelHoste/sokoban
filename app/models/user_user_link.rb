@@ -1,9 +1,4 @@
-class UserUserLink < ActiveRecord::Base
-
-  # Constants
-
-  # Attributes
-  attr_protected :created_at, :updated_at
+class UserUserLink < ApplicationRecord
 
   # Associations
   belongs_to :user,

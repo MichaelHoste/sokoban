@@ -1,8 +1,4 @@
-class PackUserLink < ActiveRecord::Base
-
-  # Attributes
-
-  attr_protected :created_at, :updated_at
+class PackUserLink < ApplicationRecord
 
   # Associations
 

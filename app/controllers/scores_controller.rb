@@ -3,10 +3,12 @@ class ScoresController < ApplicationController
     @level = Level.find_by_id(params[:level_id])
     @pack  = @level.pack
 
-    @score = LevelUserLink.new(:user_id  => (current_user ? current_user.id : nil),
-                               :level_id => @level.id)
+    @score = LevelUserLink.new(
+      :user_id  => current_user.try(:id),
+      :level_id => @level.id
+    )
 
-    # score.path is not saved in the database, it is use to populate compressed
+    # score.path is not saved in the database, it is used to populate compressed
     # and uncompressed path when saving
     @score.path = params[:path]
 

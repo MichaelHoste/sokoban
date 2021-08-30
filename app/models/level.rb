@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Level < ActiveRecord::Base
+class Level < ApplicationRecord
   extend FriendlyId
 
   friendly_id :name, :use => :slugged
@@ -10,8 +10,6 @@ class Level < ActiveRecord::Base
   # Attributes
   serialize :grid_with_floor
   serialize :grid
-
-  attr_protected :created_at, :updated_at
 
   # Associations
 
