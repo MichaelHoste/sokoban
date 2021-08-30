@@ -57,6 +57,11 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
     <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu:700' rel='stylesheet' type='text/css'>
 
+    <% if Rails.env.production? || Rails.env.staging? %>
+      <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
+      <script>window.bugsnagClient = bugsnag('<%= BUGSNAG_API_KEY %>')</script>
+    <% end %>
+
     <%= csrf_meta_tags %>
   </head>
 
