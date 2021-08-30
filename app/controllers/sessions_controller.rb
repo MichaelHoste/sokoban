@@ -52,15 +52,14 @@ class SessionsController < ApplicationController
     else
       error_message = @user.errors.full_messages.join(", ")
 
-      # Notify via email (delete if airbrake works)
-      UserNotifier.error_to_admin(error_message).deliver_later
+      begin
+        raise error_message
+      rescue => exception
+        Bugsnag.notify(exception)
+      end
 
-      # Notify via airbrake
-      Airbrake.notify(
-        :error_class   => "Registration error",
-        :error_message => "Registration error : #{error_message}",
-        :parameters    => {}
-      )
+      # Notify via email (delete if Bugsnag works)
+      UserNotifier.error_to_admin(error_message).deliver_later
 
       render :plain => "Facebook connection failed (user informations could not be saved)"
     end

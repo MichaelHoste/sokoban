@@ -6,7 +6,7 @@ set :keep_releases, 5
 set :use_sudo,  false
 set :log_level, :debug
 
-set :linked_files, %w{config/database.yml config/email.yml config/newrelic.yml config/backup.rb config/initializers/facebook.rb config/initializers/madmimi.rb config/initializers/errbit.rb}
+set :linked_files, %w{config/database.yml config/email.yml config/newrelic.yml config/backup.rb config/initializers/facebook.rb config/initializers/madmimi.rb config/initializers/bugsnag.rb}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/images/levels}
 
 set :rbenv_type, 'user'

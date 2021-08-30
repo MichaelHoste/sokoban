@@ -1,0 +1,7 @@
+BUGSNAG_API_KEY = '00000000000000000000000000000000'
+
+Bugsnag.configure do |config|
+  config.api_key               = BUGSNAG_API_KEY
+  config.notify_release_stages = ['production', 'staging']
+  config.send_environment      = true
+end

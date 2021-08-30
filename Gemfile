@@ -58,7 +58,7 @@ end
 
 # Production/deployment tools
 group :production do
-  gem 'airbrake',    '4.3.5'
+  gem 'bugsnag'
   gem 'whenever'
   #gem 'backup'      # Install on server: http://backup.github.io/backup/v4/storage-dropbox/
   #gem 'dropbox-sdk'

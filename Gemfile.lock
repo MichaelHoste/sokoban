@@ -39,11 +39,10 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    airbrake (4.3.5)
-      builder
-      multi_json
     arel (8.0.0)
     bindex (0.8.1)
+    bugsnag (6.22.1)
+      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     capistrano (3.4.1)
       i18n
@@ -231,7 +230,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake (= 4.3.5)
+  bugsnag
   capistrano
   capistrano-bundler
   capistrano-passenger (= 0.0.2)
