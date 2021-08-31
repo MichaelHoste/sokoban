@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" prefix="fb: http://www.facebook.com/2008/fbml">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# sokoban_game: http://ogp.me/ns/fb/sokoban_game#">
-    <title>
-      <% if yield(:title).present? %>
-        <%= yield(:title) %>
-      <% elsif @level %>
-        <%= "#{@level.pack.name} - #{@level.name}" %>
-      <% elsif @user %>
-        <%= "#{@user.name} - #{@user.total_won_levels} " + _('levels solved') %>
-      <% else %>
-        <%= "Sokoban - " + _("Free and Social Puzzle Game") %>
-      <% end %>
-    </title>
+    <% if yield(:title).present? %>
+      <% title = yield(:title) %>
+    <% elsif @level %>
+      <% title = "#{@level.pack.name} - #{@level.name}" %>
+    <% elsif @user %>
+      <% title = "#{@user.name} - #{@user.total_won_levels} " + _('levels solved') %>
+    <% else %>
+      <% title = "Sokoban - " + _("Free and Social Puzzle Game") %>
+    <% end %>
+
+    <title><%= title %></title>
     <meta charset="UTF-8" />
     <meta name="author" content="Michaël Hoste">
 
     <% if yield(:title).present? %>
       <% description = yield(:description) %>
     <% elsif @level %>
-      <% description = "#{@level.pack.file_name}.slc | #{@level.name} (#{@level.pack.description}.slc - #{@level.pack.copyright} - #{@level.pack.email} - #{@level.pack.url})" %>
+      <% description = "#{@level.name} [#{@level.pack.file_name}.slc] - #{@level.pack.description} - #{@level.pack.copyright}" %>
     <% elsif @user %>
       <% description = "Profile of #{@user.name} - #{@user.total_won_levels} " + _('levels solved') %>
     <% else %>

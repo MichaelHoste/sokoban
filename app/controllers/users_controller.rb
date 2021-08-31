@@ -6,11 +6,11 @@ class UsersController < ApplicationController
   before_action :get_friends,  :only   => ['latest_levels', 'levels_to_solve', 'scores_to_improve']
 
   def show
-    if (not current_user) or current_user.id == @user.id
+    if !current_user || current_user.id == @user.id
       # Render latest levels (no redirection because default action)
       @ladder  = get_ladder
       @friends = get_friends
-      @levels  = @user.latest_levels.take(60)
+      @levels  = @user.latest_levels(60)
       render 'show'
     else
       if current_user.levels_to_solve(@user).count > 0
@@ -24,12 +24,12 @@ class UsersController < ApplicationController
   end
 
   def latest_levels
-    @levels = @user.latest_levels.take(60)
+    @levels = @user.latest_levels(60)
     render 'show'
   end
 
   def levels_to_solve
-    @levels = current_user.levels_to_solve(@user).take(60)
+    @levels = current_user.levels_to_solve(@user, 60)
     render 'show'
   end
 

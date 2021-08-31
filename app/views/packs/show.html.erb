@@ -5,11 +5,8 @@
   <div id="menu-levels">
     <div id="current-level-name" itemscope itemtype="http://schema.org/Thing">
       <a href="<%= pack_level_url(@pack, @level) %>" itemprop="url">
-        <h3 itemprop="name"><%= @level.name %></h3>
+        <h2 itemprop="name"><%= @level.name %></h2>
       </a>
-    </div>
-    <div id="current-level-description" itemprop="description">
-      <%= "#{@level.pack.description} (#{@level.pack.copyright})" %>
     </div>
     <img id="current-level-image" itemprop="image" src="<%= @level.thumb %>"/>
 

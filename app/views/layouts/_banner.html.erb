@@ -1,9 +1,9 @@
 
-<% if params[:controller] == 'users' and params[:action] == 'index' %>
+<% if params[:controller] == 'users' && params[:action] == 'index' %>
 
   <% banner_class = 'banner-text' %>
 
-  <% if not current_user %>
+  <% if !current_user %>
     <% text = _("Global Ranking : %{user_num} users solved %{level_num} levels" % { :user_num => User.registered.count, :level_num => LevelUserLink.count }) %>
   <% else %>
     <% if params[:type] == 'global' %>
@@ -13,20 +13,25 @@
     <% end %>
   <% end %>
 
-<% elsif params[:controller] == 'users' and params[:action].in? %w(show latest_levels levels_to_solve scores_to_improve) %>
+<% elsif params[:controller] == 'users' && params[:action].in?(%w(show latest_levels levels_to_solve scores_to_improve)) %>
 
   <% banner_class = 'banner-text' %>
   <% text = @user.name %>
 
-<% elsif params[:controller] == 'packs' and params[:action] == 'index' %>
+<% elsif params[:controller] == 'packs' && params[:action] == 'index' %>
 
   <% banner_class = 'banner-text' %>
   <% text = _("List of Packs & Copyright") %>
 
-<% elsif not current_user %>
+<% elsif !current_user && !@pack && !@level %>
 
   <% banner_class = 'banner-text' %>
   <% text = _("Play Sokoban and Challenge your Friends") %>
+
+<% elsif !current_user && @pack && @level %>
+
+  <% banner_class = 'banner-text' %>
+  <% text = @pack.name %>
 
 <% else %>
 
@@ -39,7 +44,11 @@
   <div id="limited-banner">
     <% if banner_class == 'banner-text' %>
 
-      <h3><%= text %></h3>
+      <h1><%= text %></h1>
+
+      <div id="current-level-description" itemprop="description">
+        <%= "#{@level.pack.description} (#{@level.pack.copyright})" %>
+      </div>
 
     <% elsif banner_class == 'banner-friends' %>
 

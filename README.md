@@ -19,14 +19,10 @@ Appcenter presentation : https://www.facebook.com/appcenter/sokoban_game
 TO DO
 -----
 
- 1. Send mails to users to tell about the last activities of their friends.
- 2. Delete "challenges" panel. Extend friends and "all users" ?
- 3. Improve Fullscreen mode
- 4. Remove text in images (and translate it !)
- 5. Improve friends invitations (remove 3 on top !). Modal windows on "challenge" button
- 6. Get rid of Jax (and other pagespeed optimizations)
- 7. Rules static page (+ master thesis in html format fr-en)
- 8. Create other games with the framework and extract a game engine
+ 1. Improve Fullscreen mode.
+ 2. Improve(/Remove?) FB friends invitations.
+ 3. Rules static page for SEO.
+ 4. Improve master thesis layout and add PDF/presentation (see https://opengl.fr/memoire/)
 
 License
 -----

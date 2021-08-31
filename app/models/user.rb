@@ -141,6 +141,10 @@ class User < ApplicationRecord
     user
   end
 
+  def first_name
+    name.split(' ').first
+  end
+
   def registered?
     self.email != nil
   end
@@ -300,16 +304,16 @@ class User < ApplicationRecord
     })
   end
 
-  def latest_levels
-    level_ids = self.best_scores.order('created_at DESC').pluck(:level_id)
+  def latest_levels(limit = 100_000_000)
+    level_ids = self.best_scores.order('created_at DESC').limit(limit).pluck(:level_id)
     Level.find_and_preserve_order(level_ids)
   end
 
   # levels that "user" solved and not current_user
-  def levels_to_solve(user)
+  def levels_to_solve(user, limit = 100_000_000)
     current_user_level_ids = self.best_scores.pluck(:level_id)
     user_level_ids         = user.best_scores.pluck(:level_id)
-    level_ids              = user_level_ids - current_user_level_ids
+    level_ids              = (user_level_ids - current_user_level_ids).take(limit)
     Level.includes(:pack).where(:id => level_ids)
   end
 

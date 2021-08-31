@@ -103,9 +103,6 @@ $ ->
     # Initialize selected level
     window.level_controller = new LevelController()
 
-    real_name = $('#levels .is-selected').attr('data-level-name')
-    $('#current-level-name h3').html(real_name)
-
     # show scores related to the new level
     window.reload_scores()
     window.reload_invitations()

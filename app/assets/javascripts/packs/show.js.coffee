@@ -36,7 +36,7 @@ $ ->
       false
     )
 
-    # Change level when select another level
+    # Change pack when select another pack
     $('#packs select').on('change', ->
       pack_name = $('#packs select').val()
       location.assign("/packs/#{pack_name}")
@@ -47,5 +47,5 @@ $ ->
       false
     )
 
-    $('#current-level-name h3').on('mouseenter', -> $('#current-level-description').fadeIn())
-    $('#current-level-name h3').on('mouseleave', -> $('#current-level-description').stop().fadeOut())
+    $('#banner').on('mouseenter', 'h1', -> $('#current-level-description').stop().fadeIn())
+    $('#banner').on('mouseleave', 'h1', -> $('#current-level-description').stop().fadeOut())

@@ -67,7 +67,11 @@ body {
 	height: 76px;
 	background: asset-url('banner-blue-bkg.png') repeat-x;
 	z-index:10;
-	overflow:hidden;
+	//overflow:hidden;
+}
+#banner h1 {
+  display: inline;
+  cursor: help;
 }
 #banner.banner-friends {
 	height: 76px;
@@ -251,7 +255,7 @@ body {
 		text-shadow: 0px 1px 1px #fff;
 		filter: dropshadow(color=#fff, offx=0, offy=1);
 	}
-	#title h2 {
+	#title div {
 		margin-top:-6px;
 	}
 #limited-header #menus {
@@ -393,9 +397,9 @@ body {
 
 #current-level-name {
 	position: absolute;
-	left: 376px;
-	top: 437px;
-	width: 573px;
+	left: 457px;
+	top: 24px; //437px;
+	width: 470px;
 	text-align: center;
 	color: #888888;
 	z-index:2;
@@ -406,18 +410,27 @@ body {
 	text-decoration:none;
 }
 
+#current-level-name a h2 {
+  display: inline;
+}
+
 #current-level-description {
-	display:none;
+	display: none;
 	position: absolute;
-	left: 470px;
-	top: 458px;
+  left: 290px;
+  top: 60px;
 	width: 373px;
 	text-align: center;
 	color: #888888;
-	z-index:2;
+	z-index: 2;
+  line-height: 20px;
 	border:1px solid;
 	background-color:white;
 	padding:3px;
+
+  text-shadow: none;
+  filter: none;
+  font-size: 14px;
 
 	-webkit-box-shadow: 0px 2px 2px 1px #cacaca;
 	box-shadow: 0px 2px 2px 1px #cacaca;
@@ -589,9 +602,11 @@ body {
 			background: #F4F4F4;
 			width: 514px;
 			height: 445px;
-			padding-left:60px;
-
+			padding-left: 60px;
 		}
+    #game .game-out .game-in svg {
+      margin-top: 10px;
+    }
 		#game-won {
 			background: #fff asset-url('header-bkg.png') repeat-x;
 			position: absolute;
