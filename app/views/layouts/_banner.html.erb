@@ -46,9 +46,11 @@
 
       <h1><%= text %></h1>
 
-      <div id="current-level-description" itemprop="description">
-        <%= "#{@level.pack.description} (#{@level.pack.copyright})" %>
-      </div>
+      <% if @level %>
+        <div id="current-level-description" itemprop="description">
+          <%= "#{@level.pack.description} (#{@level.pack.copyright})" %>
+        </div>
+      <% end %>
 
     <% elsif banner_class == 'banner-friends' %>
 
