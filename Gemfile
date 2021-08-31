@@ -5,13 +5,14 @@ ruby '2.4.10' # ensure consistency with .ruby-version!
               # ON SERVER AFTER BUMP!
 
 # Rails
-gem 'rails', '5.1.7'
+gem 'rails', '5.2.6'
 gem 'mysql2'
 
 # Assets
 gem 'sass-rails'
 gem 'uglifier',     '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0'
+gem 'bootsnap', '1.7.2', :require => false
 
 gem 'omniauth-facebook'
 gem 'koala'
@@ -51,6 +52,8 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger', '0.0.2'
+
+  gem 'listen', '3.5.1' # for EventedFileUpdateChecker
 
   gem 'web-console'
 
