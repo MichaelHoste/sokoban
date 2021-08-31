@@ -20,10 +20,11 @@ TO DO
 -----
 
  1. Improve Fullscreen mode.
- 2. Improve game (click on a tile to move the player, click on a box to see possible destinations of box)
- 3. Improve(/Remove?) FB friends invitations.
- 4. Rules static page for SEO.
- 5. Improve master thesis layout and add PDF/presentation (see https://opengl.fr/memoire/)
+ 2. Improve "LEVEL SUCCESSFULLY COMPLETED!" modal to remove ad div.
+ 3. Improve game (click on a tile to move the player, click on a box to see possible destinations of box)
+ 4. Improve(/Remove?) FB friends invitations.
+ 5. Rules static page for SEO.
+ 6. Improve master thesis layout and add PDF/presentation (see https://opengl.fr/memoire/)
 
 License
 -----

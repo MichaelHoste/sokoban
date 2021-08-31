@@ -13,10 +13,10 @@
         <div class="final-score-item tips-left" data-id="<%= score.user ? score.user.id : '' %>" data-f_id="<%= score.user ? score.user.f_id : '' %>" title="<%= _("%{num} solved levels" % { :num => score.user.total_won_levels }) %>" data-score-worse="<%= score.worse %>">
           <div class="score-position"><%= score.position %></div>
           <div class="score-picture">
-            <%= link_to image_tag(score.user.profile_picture, :width => '50px'), score.user.f_link %>
+            <%= link_to image_tag(score.user.profile_picture, :width => '50px'), user_path(score.user) %>
           </div>
           <div class="score-name">
-            <%= link_to score.user.name, score.user.f_link, :title => score.user.name %>
+            <%= link_to score.user.name, user_path(score.user), :title => score.user.name %>
           </div>
           <div class="score-pushes">
             <p><strong><%= score.pushes %></strong> <%= _("pushes") %> (<%= score.moves %>)</p>
