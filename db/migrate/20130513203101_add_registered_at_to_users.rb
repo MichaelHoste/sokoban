@@ -3,7 +3,7 @@ class AddRegisteredAtToUsers < ActiveRecord::Migration
     add_column :users, :registered_at, :datetime, :after => :updated_at, :default => nil
 
     User.registered.each do |user|
-      user.update_attributes!({ :registered_at => user.created_at })
+      user.update!({ :registered_at => user.created_at })
     end
 
     add_index :users, :registered_at

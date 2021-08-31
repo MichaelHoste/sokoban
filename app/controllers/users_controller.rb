@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   end
 
   def update_send_invitations_at
-    @user.update_attributes!({ :send_invitations_at => Time.now })
+    @user.update!({ :send_invitations_at => Time.now })
     render :json => {}
   end
 

@@ -16,7 +16,7 @@ class PackUserLink < ApplicationRecord
 
   def update_stats
     if self.user # not anonymous score
-      self.update_attributes!({
+      self.update!({
         :won_levels_count => self.user.best_scores.where(:level_id => self.pack.level_ids).count,
         :won_levels_list  => self.pack.won_levels_list(self.user)
       })

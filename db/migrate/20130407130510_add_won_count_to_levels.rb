@@ -6,7 +6,7 @@ class AddWonCountToLevels < ActiveRecord::Migration
     Level.reset_column_information
 
     Level.all.each do |level|
-      level.update_attributes!({ :won_count => level.best_scores.where('level_user_links.user_id IS NOT NULL').count })
+      level.update!({ :won_count => level.best_scores.where('level_user_links.user_id IS NOT NULL').count })
     end
   end
 end

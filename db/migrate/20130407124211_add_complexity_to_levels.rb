@@ -7,7 +7,7 @@ class AddComplexityToLevels < ActiveRecord::Migration
     Level.reset_column_information
 
     Level.all.each do |level|
-      level.update_attributes!({ :complexity => level.width * level.height * level.boxes_number })
+      level.update!({ :complexity => level.width * level.height * level.boxes_number })
     end
   end
 end

@@ -40,33 +40,33 @@ $ ->
   bragging = false
 
   $('#game-won').on('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]', 'mouseover', ->
-    $(this).parent().find('.brag').hide()
+    #$(this).parent().find('.brag').hide()
     $(this).parent().find('.score-name, .score-pushes').show()
     $(this).find('.score-name, .score-pushes').hide()
-    $(this).find('.brag').show()
+    #$(this).find('.brag').show()
     bragging = true
   )
 
   $('#game-won').on('.final-score-item[data-score-worse="true"], .score-item[data-score-worse="true"]', 'mouseout', ->
-    $(this).find('.brag').hide()
+    #$(this).find('.brag').hide()
     $(this).find('.score-name, .score-pushes').show()
     bragging = false
   )
 
-  hide_brag_anim = ->
-    if not bragging
-      worse_scores = $('.final-score-item[data-score-worse="true"]')
-      worse_scores.find('.brag').hide()
-      worse_scores.find('.score-name').show()
-      worse_scores.find('.score-pushes').show()
-    setTimeout(show_brag_anim, 3000)
+  # hide_brag_anim = ->
+  #   if not bragging
+  #     worse_scores = $('.final-score-item[data-score-worse="true"]')
+  #     worse_scores.find('.brag').hide()
+  #     worse_scores.find('.score-name').show()
+  #     worse_scores.find('.score-pushes').show()
+  #   setTimeout(show_brag_anim, 3000)
 
-  show_brag_anim = ->
-    if not bragging
-      worse_scores = $('.final-score-item[data-score-worse="true"]')
-      worse_scores.find('.score-name').hide()
-      worse_scores.find('.score-pushes').hide()
-      worse_scores.find('.brag').show()
-    setTimeout(hide_brag_anim, 500)
+  # show_brag_anim = ->
+  #   if not bragging
+  #     worse_scores = $('.final-score-item[data-score-worse="true"]')
+  #     worse_scores.find('.score-name').hide()
+  #     worse_scores.find('.score-pushes').hide()
+  #     worse_scores.find('.brag').show()
+  #   setTimeout(hide_brag_anim, 500)
 
-  setTimeout(show_brag_anim, 1000)
+  # setTimeout(show_brag_anim, 1000)

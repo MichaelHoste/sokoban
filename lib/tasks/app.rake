@@ -21,12 +21,12 @@ namespace :app  do
 
     Level.order(:id => :asc).find_each do |level|
       puts "UPDATE LEVEL WON_COUNT #{level.id}"
-      level.update_attributes!({ :won_count => level.best_scores.count })
+      level.update!({ :won_count => level.best_scores.count })
     end
 
     User.registered.order(:id => :asc).find_each do |user|
       puts "UPDATE USER WON_LEVELS_COUNT #{user.id}"
-      user.update_attributes!({ :total_won_levels => user.pack_user_links.collect(&:won_levels_count).sum })
+      user.update!({ :total_won_levels => user.pack_user_links.collect(&:won_levels_count).sum })
       UserUserLink.recompute_counts_for_user(user.id)
     end
   end

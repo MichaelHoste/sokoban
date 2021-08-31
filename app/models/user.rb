@@ -115,8 +115,8 @@ class User < ApplicationRecord
                       "#{user.email}, #{user.f_first_name}, #{user.f_last_name}, #{user.name}, #{user.gender}, #{user.locale}")
       mimi.add_to_list(user.email, ENV['MADMIMI_LIST'])
 
-      user.update_attributes!({ :registered_at   => Time.now })
-      user.update_attributes!({ :next_mailing_at => Time.now + 7.days })
+      user.update!({ :registered_at   => Time.now })
+      user.update!({ :next_mailing_at => Time.now + 7.days })
 
       # email to admin
       UserNotifier.new_user(user.id).deliver_later
@@ -154,7 +154,7 @@ class User < ApplicationRecord
   end
 
   def remove_from_application
-    LevelUserLink.where(:user_id => self.id).each { |lul| lul.update_attributes(:user_id => nil) }
+    LevelUserLink.where(:user_id => self.id).each { |lul| lul.update(:user_id => nil) }
     PackUserLink.where(:user_id => self.id).destroy_all
     UserUserLink.where(:user_id => self.id).destroy_all
     self.destroy
@@ -194,7 +194,7 @@ class User < ApplicationRecord
     # update users and user_user_link relation
     friends.each do |friend|
       user = User.where(:f_id => friend['id']).first_or_create
-      user.update_attributes!({ :name => friend['name'] })
+      user.update!({ :name => friend['name'] })
       user.update_friends_count
       self.user_user_links.where(:user_id => self.f_id, :friend_id => user.f_id).first_or_create
     end
@@ -203,7 +203,7 @@ class User < ApplicationRecord
     friend_ids = friends.collect{ |friend| friend['id'] }
     self.user_user_links.where('user_user_links.friend_id not in (?)', friend_ids).destroy_all
 
-    self.update_attributes!({ :friends_updated_at => Time.now })
+    self.update!({ :friends_updated_at => Time.now })
   end
 
   def profile_picture(size = "square")
@@ -271,20 +271,20 @@ class User < ApplicationRecord
     end
   end
 
-  # update friends count (friends that are on the database : registered or not)
+  # update friends count (friends that are on the database: registered or not)
   def update_friends_count
     # registered user or not registered user
     if self.email
-      self.update_attributes!({ :friends_count => self.friends.count })
+      self.update!({ :friends_count => self.friends.count })
     else
-      self.update_attributes!({ :friends_count => UserUserLink.where(:friend_id => self.f_id).count })
+      self.update!({ :friends_count => UserUserLink.where(:friend_id => self.f_id).count })
     end
   end
 
   def unsubscribe_from_mailing
+    self.update!({ :mailing_unsubscribe => true })
     mimi = MadMimi.new(ENV['MADMIMI_EMAIL'], ENV['MADMIMI_KEY'])
     mimi.remove_from_list(self.email, ENV['MADMIMI_LIST'])
-    self.update_attributes!({ :mailing_unsubscribe => true })
   end
 
   def ladder_positions

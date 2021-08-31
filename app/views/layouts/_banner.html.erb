@@ -23,12 +23,12 @@
   <% banner_class = 'banner-text' %>
   <% text = _("List of Packs & Copyright") %>
 
-<% elsif !current_user && !@pack && !@level %>
+<% elsif !current_user && !@pack %>
 
   <% banner_class = 'banner-text' %>
   <% text = _("Play Sokoban and Challenge your Friends") %>
 
-<% elsif !current_user && @pack && @level %>
+<% elsif !current_user && @pack %>
 
   <% banner_class = 'banner-text' %>
   <% text = @pack.name %>
@@ -46,15 +46,16 @@
 
       <h1><%= text %></h1>
 
-      <% if @level %>
+      <% if @pack %>
         <div id="current-level-description" itemprop="description">
-          <%= "#{@level.pack.description} (#{@level.pack.copyright})" %>
+          <%= "#{@pack.description} (#{@pack.copyright})" %>
         </div>
       <% end %>
 
     <% elsif banner_class == 'banner-friends' %>
 
-      <%= render 'layouts/fb_friend_ids' %>
+      <%# was only useful for fb app requests %>
+      <%# render 'layouts/fb_friend_ids' %>
 
       <ul id="users-top">
         <% if @pack %>

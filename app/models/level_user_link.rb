@@ -138,31 +138,31 @@ class LevelUserLink < ApplicationRecord
 
     if self.user
       # Update user stats
-      self.user.update_attributes!({ :total_won_levels => self.user.pack_user_links.collect(&:won_levels_count).sum })
+      self.user.update!({ :total_won_levels => self.user.pack_user_links.collect(&:won_levels_count).sum })
 
       # Update user_user stats (levels to solve, scores to improve)
       UserUserLink.delay.recompute_counts_for_user(self.user.id)
     end
 
     # Update level stats
-    self.level.delay.update_attributes!({ :won_count => self.level.best_scores.count })
+    self.level.delay.update!({ :won_count => self.level.best_scores.count })
   end
 
   # Tag (only) the best score (best_level_user_score = true) for each level/user combo
   def tag_best_score
     if self.user_id == nil
-      self.update_attributes!({ :best_level_user_score => true })
+      self.update!({ :best_level_user_score => true })
     else
       l_u = LevelUserLink.where(:user_id => self.user_id, :level_id => self.level_id)
                          .where('pushes < :p or (pushes = :p and moves < :m) or (pushes = :p and moves = :m and created_at > :c)',
                                 :p => self.pushes, :m => self.moves, :c => self.created_at)
       if l_u.empty?
         LevelUserLink.where('id != ?', self.id).where(:user_id => self.user_id, :level_id => self.level_id).each do |score|
-          score.update_attributes!({ :best_level_user_score => false })
+          score.update!({ :best_level_user_score => false })
         end
-        self.update_attributes!({ :best_level_user_score => true })
+        self.update!({ :best_level_user_score => true })
       else
-        self.update_attributes!({ :best_level_user_score => false })
+        self.update!({ :best_level_user_score => false })
       end
     end
   end

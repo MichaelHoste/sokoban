@@ -5,7 +5,7 @@ class AddNextMailingAtToUsers < ActiveRecord::Migration
     User.reset_column_information
 
     User.registered.each do |user|
-      user.update_attributes!({ :next_mailing_at => Time.now + rand(1..7).days + rand(1..24).hours })
+      user.update!({ :next_mailing_at => Time.now + rand(1..7).days + rand(1..24).hours })
     end
   end
 end

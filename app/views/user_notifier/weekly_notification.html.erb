@@ -268,7 +268,6 @@
       <tr>
         <td style="color:#999999!important;font-family:Helvetica;font-size:13px;padding:8px!important">
           <span>This email was sent to <a style="color:#999999!important;font-family:Helvetica;font-size:13px;text-decoration:underline"><%= @user.email %></a>. </span>
-          <span>To ensure that you continue receiving our emails, please add us to your address book or safe list.</span>
           <br>
           <a href="https://sokoban-game.com/users/<%= @user.id %>/unsubscribe_from_mailing?check=<%= @user.created_at.to_i %>" style="color:#999999!important;font-family:Helvetica;font-size:13px;font-weight:bold;text-decoration:underline" target="_blank">Unsubscribe</a>
         </td>

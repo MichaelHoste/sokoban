@@ -15,7 +15,7 @@ module MailingService
 
       MailingService.users_to_mail_now.each do |user|
         UserNotifier.weekly_notification(user.id).deliver_later
-        user.update_attributes!({ :next_mailing_at => Time.now + 7.days + rand(-12..12).hours })
+        user.update!({ :next_mailing_at => Time.now + 7.days + rand(-12..12).hours })
       end
 
       if repeat
@@ -80,7 +80,7 @@ module MailingService
     mails_to_unsubscribe_to_bdd = mapmimi_suppressed_mails - bdd_suppressed_mails
     mails_to_unsubscribe_to_bdd.each do |mail|
       user = User.where(:email => mail).try(:first)
-      user.update_attributes!({ :mailing_unsubscribe => true }) if user
+      user.update!({ :mailing_unsubscribe => true }) if user
     end
   end
 

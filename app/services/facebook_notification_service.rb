@@ -21,7 +21,7 @@ module FacebookNotificationService
             graph.put_connections(user.f_id, "notifications",
                                   :template => text,
                                   :href     => "?level_id=#{l_u.level.id}")
-            u_u.update_attributes!({ :notified_at => Time.now })
+            u_u.update!({ :notified_at => Time.now })
           rescue
             Rails.logger.info("NOTIFICATION FAILED FOR BETTER #{user.name}")
           end
