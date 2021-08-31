@@ -105,7 +105,7 @@ $ ->
 
     # show scores related to the new level
     window.reload_scores()
-    window.reload_invitations()
+    #window.reload_invitations()
 
   window.reload_scores = (friend_page = 1, global_page = 1) ->
     level_id = parseInt($('#levels').find('.is-selected').attr('data-level-id'))
