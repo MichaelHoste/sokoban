@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.4.10' # ensure consistency with .ruby-version!
-              # IF BUMPING RUBY VERSION, EXECUTE 'gem install backup -v5.0.0.beta.2'
-              # ON SERVER AFTER BUMP!
+ruby '2.6.5' # ensure consistency with .ruby-version!
+             # IF BUMPING RUBY VERSION, EXECUTE 'gem install backup -v5.0.0.beta.2'
+             # ON SERVER AFTER BUMP!
 
 # Rails
 gem 'rails', '5.2.6'
@@ -12,7 +12,7 @@ gem 'mysql2'
 gem 'sass-rails'
 gem 'uglifier',     '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0'
-gem 'bootsnap', '1.7.2', :require => false
+gem 'bootsnap',     '1.7.2', :require => false
 
 gem 'omniauth-facebook'
 gem 'koala'
