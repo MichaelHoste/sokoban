@@ -204,11 +204,11 @@ class Level < ApplicationRecord
 
   def best_global_scores(user, count)
     scores = self.best_scores.best_before.limit(count)
-    LevelUserLink.tag_worse_scores_than_user(scores, user ? user.id : 0)
+    #LevelUserLink.tag_worse_scores_than_user(scores, user ? user.id : 0)
   end
 
   def best_friends_scores(user, count)
     scores = user ? self.best_scores.where(:user_id => user.friends.registered.pluck('users.id') + [user.id]).best_before.limit(count) : []
-    LevelUserLink.tag_worse_scores_than_user(scores, user ? user.id : 0)
+    #LevelUserLink.tag_worse_scores_than_user(scores, user ? user.id : 0)
   end
 end
