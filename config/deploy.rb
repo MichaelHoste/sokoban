@@ -17,7 +17,7 @@ set :bundle_binstubs, nil
 set :bundle_bins,     %w(gem rake rails delayed_job)
 
 after 'deploy:publishing', 'delayed_job:restart'
-after 'deploy:publishing', 'deploy:refresh_sitemap'
+after 'deploy:publishing', 'sitemap:refresh'
 
 # # Launch delayed job for publish feed
 # run("cd #{latest_release} && bundle exec rake app:facebook_feed_delayed_job RAILS_ENV=#{rails_env}")

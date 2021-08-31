@@ -7,7 +7,7 @@ SitemapGenerator::Sitemap.create do
   add '/privacy_policy',   :priority => 1.0
   add '/packs',            :priority => 1.0
   add '/rankings',         :priority => 1.0
-  add '/master_thesis',    :priority => 0.5
+  add '/master_thesis',    :priority => 1.0
 
   Pack.all.each do |pack|
     add pack_path(pack), :priority => 1.0
