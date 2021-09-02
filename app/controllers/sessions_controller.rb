@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
   skip_before_action :check_facebook
 
   def connect_facebook
-    if not current_user
+    if !current_user
       session['referer'] = request.env["HTTP_REFERER"] || ''
       redirect_to '/auth/facebook'
     else
-      redirect_to :back
+      redirect_back(:fallback_location => root_path)
     end
   end
 
