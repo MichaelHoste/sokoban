@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Sokojax
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+    config.load_defaults 6.0
 
     config.time_zone           = 'UTC'
     config.i18n.default_locale = :en
