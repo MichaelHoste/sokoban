@@ -5,7 +5,7 @@ ruby '2.6.5' # ensure consistency with .ruby-version!
              # ON SERVER AFTER BUMP!
 
 # Rails
-gem 'rails', '6.0.4.1'
+gem 'rails', '6.0.4.6'
 gem 'mysql2'
 
 # Assets
