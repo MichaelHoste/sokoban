@@ -142,7 +142,11 @@ class User < ApplicationRecord
   end
 
   def first_name
-    name.split(' ').first
+    if name.nil?
+      'Anonymous user' # subscribed but without any name
+    else
+      name.split(' ').first
+    end
   end
 
   def registered?
