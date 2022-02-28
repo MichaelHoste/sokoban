@@ -32,7 +32,7 @@ gem 'newrelic_rpm'
 
 # Graphs
 gem 'groupdate'
-gem 'chartkick', '1.5.2'
+gem 'chartkick', '3.4.0'
 
 # Translation
 gem 'gettext_i18n_rails'

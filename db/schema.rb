@@ -2,17 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210831142839) do
+ActiveRecord::Schema.define(version: 2022_01_17_120022) do
 
-  create_table "delayed_jobs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci" do |t|
+  create_table "delayed_jobs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "priority", default: 0
     t.integer "attempts", default: 0
     t.text "handler"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20210831142839) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "level_user_links", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci" do |t|
+  create_table "level_user_links", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "level_id"
     t.text "uncompressed_path"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20210831142839) do
     t.index ["user_id"], name: "index_level_user_links_on_user_id"
   end
 
-  create_table "levels", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci" do |t|
+  create_table "levels", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "pack_id"
     t.string "name"
     t.integer "width"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20210831142839) do
     t.index ["won_count"], name: "index_levels_on_won_count"
   end
 
-  create_table "pack_user_links", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci" do |t|
+  create_table "pack_user_links", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "pack_id"
     t.integer "user_id"
     t.integer "won_levels_count", default: 0
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20210831142839) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "packs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci" do |t|
+  create_table "packs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.string "file_name"
     t.text "description"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20210831142839) do
     t.index ["slug"], name: "index_packs_on_slug"
   end
 
-  create_table "user_user_links", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci" do |t|
+  create_table "user_user_links", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "friend_id"
     t.datetime "notified_at", default: "2013-03-17 00:00:00"
@@ -108,14 +108,14 @@ ActiveRecord::Schema.define(version: 20210831142839) do
     t.index ["user_id"], name: "index_user_user_links_on_user_id"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci" do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "picture"
     t.string "gender"
     t.string "locale"
     t.bigint "f_id"
-    t.string "f_token"
+    t.text "f_token"
     t.string "f_first_name"
     t.string "f_middle_name"
     t.string "f_last_name"
