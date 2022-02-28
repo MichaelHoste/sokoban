@@ -32,14 +32,13 @@ gem 'newrelic_rpm'
 
 # Graphs
 gem 'groupdate'
-gem 'chartkick'
+gem 'chartkick', '1.5.2'
 
 # Translation
 gem 'gettext_i18n_rails'
 
 # Cache
 gem 'dalli'
-gem 'kgio' # 20-30% boost for memcached
 
 gem 'jquery-rails'
 #gem 'therubyracer'  # Exec js code in ruby
