@@ -1,6 +1,6 @@
 <div id="limited-content">
   <div id="left-side">
-    <% if @user.id == current_user.id %>
+    <% if current_user && @user.id == current_user.id %>
       <%= link_to image_tag(@user.profile_picture(@current_user_fb_graph, 274), :class => 'profile', :alt => @user.name, :title => @user.name), user_path(@user) %>
     <% else %>
       <%= link_to image_tag(@user.profile_picture(nil, 274), :class => 'profile', :alt => @user.name, :title => @user.name), user_path(@user) %>
