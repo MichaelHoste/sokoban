@@ -14,7 +14,7 @@ gem 'uglifier',     '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0'
 gem 'bootsnap',     '1.7.2', :require => false
 
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '4.0.0'
 gem 'koala'
 gem 'nokogiri'
 gem 'madmimi'

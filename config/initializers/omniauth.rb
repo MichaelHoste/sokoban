@@ -3,6 +3,7 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],
            :scope                  => ENV['FACEBOOK_SCOPE'],
+           :info_fields            => 'email,name,first_name,middle_name,last_name,picture',
            :provider_ignores_state => true,
            :secure_image_url       => true
 end

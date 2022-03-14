@@ -286,7 +286,7 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri
   non-stupid-digest-assets
-  omniauth-facebook
+  omniauth-facebook (= 4.0.0)
   puma
   rabl
   rails (= 6.0.4.6)
