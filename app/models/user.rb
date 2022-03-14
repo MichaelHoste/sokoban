@@ -211,16 +211,13 @@ class User < ApplicationRecord
   end
 
   def profile_picture(current_user_fb_graph = nil, size = "square")
-    #if current_user_fb_graph
-      #current_user_fb_graph.get_picture(f_id)
-      oauth        = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'])
-      @access_token = oauth.get_app_access_token
+    if current_user_fb_graph
+      arg = (size.is_a? Integer) ? { :width => size } : { :type => size }
+      current_user_fb_graph.get_picture(f_id, arg)
+    else
       arg = (size.is_a? Integer) ? "width=#{size}" : "type=#{size}"
-      "https://graph.facebook.com/v5.0/270181473507150/picture?access_token=#{@access_token}&#{arg}"
-    #else
-    #  arg = (size.is_a? Integer) ? "width=#{size}" : "type=#{size}"
-    #  "https://graph.facebook.com/#{self.f_id}/picture?#{arg}"
-    #end
+      "https://graph.facebook.com/#{self.f_id}/picture?#{arg}"
+    end
   end
 
   # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to one pack)
