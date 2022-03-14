@@ -210,9 +210,13 @@ class User < ApplicationRecord
     self.update!({ :friends_updated_at => Time.now })
   end
 
-  def profile_picture(size = "square")
-    arg = (size.is_a? Integer) ? "width=#{size}" : "type=#{size}"
-    "https://graph.facebook.com/#{self.f_id}/picture?#{arg}"
+  def profile_picture(current_user_fb_graph = nil, size = "square")
+    if current_user_fb_graph
+      current_user_fb_graph.get_picture(f_id)
+    else
+      arg = (size.is_a? Integer) ? "width=#{size}" : "type=#{size}"
+     "https://graph.facebook.com/#{self.f_id}/picture?#{arg}"
+   end
   end
 
   # list of subscribed friends, user NOT INCLUDED, sorted by won levels (relative to one pack)

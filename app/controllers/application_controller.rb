@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :allow_iframe_requests
   before_action :set_gettext_locale
   before_action :check_facebook
+  before_action :get_current_user_fb_graph
 
   def allow_iframe_requests
     response.headers.delete('X-Frame-Options')
@@ -49,5 +50,11 @@ class ApplicationController < ActionController::Base
   # delete this method when reverting to the default behaviour
   def set_gettext_locale
     session[:locale] = FastGettext.set_locale('en')
+  end
+
+  def get_current_user_fb_graph
+    if current_user
+      @current_user_fb_graph = Koala::Facebook::API.new(current_user.f_token)
+    end
   end
 end

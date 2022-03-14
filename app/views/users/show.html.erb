@@ -1,6 +1,6 @@
 <div id="limited-content">
   <div id="left-side">
-    <%= link_to image_tag(@user.profile_picture(274), :class => 'profile', :alt => @user.name, :title => @user.name), user_path(@user) %>
+    <%= link_to image_tag(@user.profile_picture(@current_user_fb_graph, 274), :class => 'profile', :alt => @user.name, :title => @user.name), user_path(@user) %>
 
     <table class="stats">
       <tr>
@@ -19,7 +19,7 @@
 
     <div class="friends">
       <% @friends.each do |user| %>
-        <%= link_to image_tag(user.profile_picture, :width => "50"), user_path(user), :class => 'tips-users', :title => "#{user.name} - #{user.total_won_levels} levels", :alt => user.name %>
+        <%= link_to image_tag(user.profile_picture(@current_user_fb_graph), :width => "50"), user_path(user), :class => 'tips-users', :title => "#{user.name} - #{user.total_won_levels} levels", :alt => user.name %>
       <% end %>
     </div>
 

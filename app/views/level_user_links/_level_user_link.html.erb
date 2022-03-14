@@ -1,4 +1,4 @@
-<% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture : 'default_user.gif' )%>
+<% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture(@current_user_fb_graph) : 'default_user.gif' )%>
 <% is_friend = current_user && level_user_link.user_id ? current_user.friends.registered.pluck('users.id').include?(level_user_link.user.id) : false %>
 
 <a class="score-item-a" href="<%= user_path(level_user_link.user) if level_user_link.user %>">
