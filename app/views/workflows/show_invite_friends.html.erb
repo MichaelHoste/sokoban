@@ -12,13 +12,13 @@
   <div class="friends">
     <div class="top">
       <% @friends.take(28).each do |friend| %>
-        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture(@current_user_fb_graph) %>" data-f_id="<%= friend.f_id %>" />
+        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
       <% end %>
     </div>
 
     <div class="left">
       <% @friends.drop(28).take(9).each do |friend| %>
-        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture(@current_user_fb_graph) %>" data-f_id="<%= friend.f_id %>" />
+        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
       <% end %>
     </div>
 
@@ -28,7 +28,7 @@
 
     <div class="right">
       <% @friends.drop(37).take(9).each do |friend| %>
-        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture(@current_user_fb_graph) %>" data-f_id="<%= friend.f_id %>" />
+        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
       <% end %>
     </div>
 
@@ -36,7 +36,7 @@
 
     <div class="bottom">
       <% @friends.drop(46).take(28).each do |friend| %>
-        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture(@current_user_fb_graph) %>" data-f_id="<%= friend.f_id %>" />
+        <img class="tips-direct" title="<%= _("Invite") %> <%= friend.name %>" src="<%= friend.profile_picture %>" data-f_id="<%= friend.f_id %>" />
       <% end %>
     </div>
   </div>
