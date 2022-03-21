@@ -1,6 +1,6 @@
 lock '3.4.1'
 
-set :repo_url, 'git://github.com/MichaelHoste/sokoban.git'
+set :repo_url, 'git@github.com:MichaelHoste/sokoban.git'
 set :keep_releases, 5
 
 set :use_sudo,  false
