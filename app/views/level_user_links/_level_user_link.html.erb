@@ -1,5 +1,17 @@
-<% user_picture = (level_user_link.user_id ? level_user_link.user.profile_picture : 'default_user.gif' )%>
-<% is_friend = current_user && level_user_link.user_id ? current_user.friends.registered.pluck('users.id').include?(level_user_link.user.id) : false %>
+<%
+is_friend = current_user && level_user_link.user_id ? current_user.friends.registered.pluck('users.id').include?(level_user_link.user.id) : false
+
+# Get correct user picture
+if level_user_link.user_id
+  if is_friend
+    user_picture = level_user_link.user.profile_picture(@current_user_fb_graph)
+  else
+    user_picture = level_user_link.user.profile_picture
+  end
+else
+  user_picture = 'default_user.gif'
+end
+%>
 
 <a class="score-item-a" href="<%= user_path(level_user_link.user) if level_user_link.user %>">
   <div class="score-item tips" data-id=         "<%= level_user_link.user ? level_user_link.user.id : '' %>"
